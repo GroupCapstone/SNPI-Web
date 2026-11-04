@@ -1221,7 +1221,7 @@ export function MaterialGlossarySection() {
             return (
               <div
                 key={item.term}
-                className="group relative flex flex-col justify-between rounded-2xl border border-[#CAD3F5] bg-white p-5 shadow-2xs transition-all hover:border-[#0056FF]/60 hover:shadow-xs"
+                className="group relative flex flex-col justify-between rounded-2xl border border-[#CAD3F5] bg-white p-5 shadow-2xs"
               >
                 <div className="space-y-3">
                   {/* Top Header: Letter Tag + Category Badge */}

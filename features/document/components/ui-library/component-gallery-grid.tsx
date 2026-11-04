@@ -77,7 +77,6 @@ export function ComponentGalleryGrid({ onSelectComponent, selectedId }: Componen
             className={cn(
               'group flex cursor-pointer flex-col overflow-hidden rounded-2xl border text-left transition-all duration-200 select-none',
               'bg-white shadow-[0_1px_3px_rgba(0,0,0,0.04)]',
-              'hover:-translate-y-0.5 hover:border-[#0056FF]/50 hover:shadow-[0_8px_20px_rgba(0,86,255,0.06)]',
               isSelected ? 'border-[#0056FF] ring-2 ring-[#0056FF]/20' : 'border-slate-200/90',
             )}
           >

@@ -8,6 +8,13 @@ export interface ChangeLogEntry {
 
 export const CHANGE_LOGS: ChangeLogEntry[] = [
   {
+    version: '0.2.18',
+    date: '05.11.2026',
+    developer: '史力爱卫',
+    description:
+      'Remove bento grid hero section from component feed and eliminate card hover event styles across UI library',
+  },
+  {
     version: '0.2.17',
     date: '04.11.2026',
     commitHash: 'd87b1a7',

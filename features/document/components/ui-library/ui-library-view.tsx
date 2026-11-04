@@ -38,7 +38,6 @@ import {
   HookSidebar,
   type HookSidebarItem,
   generateAiAgentPrompt,
-  BentoHeroGrid,
   LibraryTooltip,
   BlankFutureComponent,
   type ComponentItemDoc,
@@ -440,7 +439,7 @@ export function UiLibraryView() {
 
   // Section IDs for active tracking in Left Sticky Menu (strictly linear sequential flow)
   const scrollSectionIds = React.useMemo(() => {
-    const ids = ['ui-library-head', 'interactive-feed'];
+    const ids = ['interactive-feed'];
     feedCategories.forEach((group) => {
       ids.push(group.categoryId);
       group.components.forEach((comp) => {
@@ -821,34 +820,6 @@ export function UiLibraryView() {
 
           {/* COLUMN 2: Center Main Interactive Component Feed (1-Column Continuous Scroll Feed) */}
           <main className="min-w-0 flex-1 space-y-10">
-            {/* HERO HEAD TITLE: Bento Grid Homepage Hero Engine (Matching Reference Specification) */}
-            <section id="ui-library-head" className="scroll-mt-36 space-y-4">
-              <BentoHeroGrid
-                onExploreCampus={() => {
-                  const target =
-                    document.getElementById('comp-campus-branch-selector') ||
-                    document.getElementById('cat-navigation');
-                  if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                  }
-                }}
-                onSelectProgram={(query) => {
-                  setSearchQuery(query);
-                  if (searchInputRef.current) {
-                    searchInputRef.current.focus();
-                  }
-                }}
-                onBulletinClick={() => {
-                  const target =
-                    document.getElementById('interactive-feed') ||
-                    document.getElementById('cat-navigation');
-                  if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                  }
-                }}
-              />
-            </section>
-
             {/* COMPONENT DEMOS FEED (Clean Open Feed with Signature Parent Colors & Pseudo-Random Stage Canvas) */}
             <div className="w-full space-y-16">
               {feedCategories.map((group) => {
