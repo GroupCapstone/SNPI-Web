@@ -45,11 +45,26 @@ export class ApiClientError extends Error {
       this.requestId = codeOrOptions.requestId;
       this.timestamp = codeOrOptions.timestamp;
       this.errors = codeOrOptions.errors;
-      if (codeOrOptions.headers && typeof codeOrOptions.headers.forEach === 'function') {
+      if (codeOrOptions.headers) {
         const headerObj: Record<string, string> = {};
-        codeOrOptions.headers.forEach((val, key) => {
-          headerObj[key.toLowerCase()] = val;
-        });
+        if (typeof codeOrOptions.headers.forEach === 'function') {
+          codeOrOptions.headers.forEach((val, key) => {
+            headerObj[key.toLowerCase()] = val;
+          });
+        } else if (
+          typeof (codeOrOptions.headers as unknown as { entries?: () => Iterable<[string, string]> })
+            .entries === 'function'
+        ) {
+          for (const [k, v] of (
+            codeOrOptions.headers as unknown as { entries: () => Iterable<[string, string]> }
+          ).entries()) {
+            headerObj[String(k).toLowerCase()] = String(v);
+          }
+        } else if (typeof codeOrOptions.headers === 'object') {
+          for (const [k, v] of Object.entries(codeOrOptions.headers)) {
+            headerObj[k.toLowerCase()] = String(v);
+          }
+        }
         this.responseHeaders = headerObj;
       }
     }
@@ -58,6 +73,19 @@ export class ApiClientError extends Error {
   /** Retrieve a response header by name (case-insensitive) */
   public getHeader(name: string): string | undefined {
     return this.responseHeaders?.[name.toLowerCase()];
+  }
+
+  /** Retrieve numeric Retry-After value in seconds if present (HTTP 429) */
+  public get retryAfter(): number | undefined {
+    const header = this.getHeader('retry-after');
+    if (!header) return undefined;
+    const parsed = parseInt(header, 10);
+    return Number.isFinite(parsed) ? parsed : undefined;
+  }
+
+  /** Retrieve WWW-Authenticate header if present (HTTP 401) */
+  public get wwwAuthenticate(): string | undefined {
+    return this.getHeader('www-authenticate');
   }
 }
 

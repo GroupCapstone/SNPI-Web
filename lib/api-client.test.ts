@@ -271,6 +271,41 @@ describe('RFC 7807 Problem Details and REST API standardization', () => {
     expect(err.status).toBe(429);
     expect(err.code).toBe('RATE_LIMIT_EXCEEDED');
     expect(err.getHeader('retry-after')).toBe('60');
+    expect(err.retryAfter).toBe(60);
+  });
+
+  it('captures 401 Unauthorized status and WWW-Authenticate response header', async () => {
+    fetchMock.mockResolvedValueOnce(
+      new Response(
+        JSON.stringify({
+          type: 'https://api.kesararamwithdigital.tech/errors/UNAUTHORIZED',
+          title: 'Unauthorized',
+          status: 401,
+          detail: 'Session expired or token invalid',
+          code: 'UNAUTHORIZED',
+        }),
+        {
+          status: 401,
+          headers: {
+            'Content-Type': 'application/problem+json',
+            'WWW-Authenticate': 'Bearer error="invalid_token", error_description="Token expired"',
+          },
+        },
+      ),
+    );
+
+    let caught: unknown;
+    try {
+      await apiClient.get('/secure-profile');
+    } catch (e) {
+      caught = e;
+    }
+
+    expect(caught).toBeInstanceOf(ApiClientError);
+    const err = caught as ApiClientError;
+    expect(err.status).toBe(401);
+    expect(err.code).toBe('UNAUTHORIZED');
+    expect(err.wwwAuthenticate).toContain('Bearer error="invalid_token"');
   });
 
   it('bidirectionally populates meta from pagination, and pagination from meta', async () => {
