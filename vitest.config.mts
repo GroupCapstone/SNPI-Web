@@ -7,9 +7,11 @@ const directory = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
   resolve: {
-    alias: {
-      '@': directory,
-    },
+    alias: [
+      { find: /^@snp\/shared\/(.*)$/, replacement: `${path.resolve(directory, './contracts')}/$1` },
+      { find: '@snp/shared', replacement: path.resolve(directory, './contracts/index.ts') },
+      { find: '@', replacement: directory },
+    ],
   },
   test: {
     environment: 'node',

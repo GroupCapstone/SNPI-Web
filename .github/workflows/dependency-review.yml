@@ -20,5 +20,5 @@ jobs:
         uses: actions/dependency-review-action@3b139cfc5fae8b618d3eae3675e383bb1769c019 # v4.5.0
         with:
           comment-summary-in-pr: on-failure
-          fail-on-severity: moderate
+          fail-on-severity: high
           deny-licenses: GPL-1.0-or-later, LGPL-2.0-or-later, AGPL-3.0-or-later

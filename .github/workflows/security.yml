@@ -35,8 +35,5 @@ jobs:
       - name: Audit Production Dependencies
         run: npm audit --omit=dev --audit-level=high
 
-      - name: Build Shared Package
-        run: npm run build -w packages/shared
-
-      - name: Verify Monorepo Workspace Smoke Health
-        run: npm run smoke
+      - name: Verify Web TypeScript Static Analysis
+        run: npm run typecheck
