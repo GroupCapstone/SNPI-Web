@@ -11,6 +11,9 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "format:check": "prettier --check .",
+    "push:green": "tsx scripts/check-deploy-push-green.ts",
+    "check:deploy:push": "tsx scripts/check-deploy-push-green.ts",
+    "push:verify": "tsx scripts/verify-ci-status.ts",
     "docs:dev": "cd docs && npm run dev",
     "docs:build": "cd docs && npm run build"
   },
@@ -48,6 +51,7 @@
     "prettier": "^3.9.10",
     "prettier-plugin-tailwindcss": "^0.8.1",
     "tailwindcss": "^4.3.3",
+    "tsx": "4.23.15",
     "typescript": "^5.8.2",
     "vite": "^8.3.5",
     "vitest": "^5.0.5"
