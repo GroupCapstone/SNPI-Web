@@ -17,7 +17,7 @@ const backendUrl =
 let backendDestination: string;
 try {
   const parsedBackendUrl = new URL(backendUrl);
-  const backendPath = parsedBackendUrl.pathname.replace(/\/$/, '');
+  const rawPath = parsedBackendUrl.pathname.replace(/\/$/, '');
   const allowedProtocol =
     parsedBackendUrl.protocol === 'https:' ||
     (!requiresHttpsBackend && parsedBackendUrl.protocol === 'http:');
@@ -27,12 +27,12 @@ try {
     parsedBackendUrl.username ||
     parsedBackendUrl.password ||
     parsedBackendUrl.search ||
-    parsedBackendUrl.hash ||
-    backendPath !== '/api/v1'
+    parsedBackendUrl.hash
   ) {
     throw new Error('invalid backend URL');
   }
 
+  const backendPath = rawPath === '/api/v1' || rawPath === '' ? '/api/v1' : `${rawPath}/api/v1`;
   backendDestination = `${parsedBackendUrl.origin}${backendPath}`;
 } catch {
   throw new Error(
