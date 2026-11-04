@@ -1,3 +1,4 @@
+<!-- markdownlint-disable -->
 # SNP-SMS Full-Stack Monorepo Agent Rules
 
 These rules apply to every AI coding agent and human contributor working in the SNP-SMS repository. They are project rules, not instructions for one vendor, model, IDE, or agent framework.
