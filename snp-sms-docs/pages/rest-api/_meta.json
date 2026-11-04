@@ -1,0 +1,7 @@
+{
+  "conventions": "REST Conventions & Errors",
+  "identity": "Identity & Access API",
+  "academic": "Academic Operations API",
+  "student": "Student Lifecycle API",
+  "finance": "Finance & Fees API"
+}

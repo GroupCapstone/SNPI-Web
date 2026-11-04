@@ -1,0 +1,10 @@
+{
+  "name": "@snp/tsconfig",
+  "version": "0.2.7",
+  "private": true,
+  "files": [
+    "base.json",
+    "node.json",
+    "nextjs.json"
+  ]
+}

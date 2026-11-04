@@ -1,0 +1,37 @@
+import { Callout } from 'nextra/components';
+
+# RFC 8725: JWT Best Current Practices
+
+All token generation, exchange, and signature verification adheres strictly to **RFC 8725**.
+
+---
+
+## 1. Algorithm Whitelisting
+
+Token decoders explicitly enforce a verified algorithm whitelist:
+
+```typescript
+jwt.verify(token, secret, {
+  algorithms: ['HS256'], // Blocks algorithm confusion & 'none' attack
+  issuer: 'https://api.snpi.edu.kh',
+  audience: 'snpi-sms-web',
+  clockTolerance: 5, // 5-second maximum clock skew
+});
+```
+
+---
+
+## 2. Refresh Token Rotation (RTR)
+
+To minimize the impact of credential theft:
+
+- **Short-Lived Access Tokens**: Lifetime restricted to **15 minutes**.
+- **Single-Use Refresh Tokens**: Every refresh request burns the active refresh token and returns a new cryptographic pair.
+- **Reuse Detection**: If a revoked refresh token is presented, the system detects a breach and immediately invalidates **all sessions** for that user.
+
+---
+
+## 3. Storage Security Standards
+
+- **Client Storage**: Refresh tokens are stored in `HttpOnly; Secure; SameSite=Strict` cookies.
+- **Server Storage**: Refresh tokens are stored in MongoDB as SHA-256 hashes (`crypto.createHash('sha256')`). Plaintext tokens are never persisted.
