@@ -1,0 +1,43 @@
+# Version control & tooling
+.git/
+.github/
+.agents/
+.vscode/
+.idea/
+
+# Dependencies & Build artifacts
+node_modules/
+.next/
+.vercel/
+coverage/
+*.tsbuildinfo
+*.log
+
+# Tests & fixtures
+__tests__/
+*.test.ts
+*.test.tsx
+vitest.config.mts
+test-fixtures/
+
+# Documentation & internal files
+docs/
+api-endpoints.txt
+AGENTS.md
+CHANGELOG.md
+CITATION.cff
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md
+SECURITY.md
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Large media files
+*.mov
+*.mp4
+*.zip
+*.pdf
+*.pptx

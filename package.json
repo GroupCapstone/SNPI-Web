@@ -14,6 +14,9 @@
     "push:green": "tsx scripts/check-deploy-push-green.ts",
     "check:deploy:push": "tsx scripts/check-deploy-push-green.ts",
     "push:verify": "tsx scripts/verify-ci-status.ts",
+    "release:github": "tsx scripts/check-deploy-push-green.ts",
+    "deploy:vercel": "vercel deploy --archive=tgz",
+    "deploy:vercel:prod": "vercel deploy --archive=tgz --prod",
     "docs:dev": "cd docs && npm run dev",
     "docs:build": "cd docs && npm run build"
   },
