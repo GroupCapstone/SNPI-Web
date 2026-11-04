@@ -279,11 +279,8 @@ export function BentoHeroGrid({
         {/* ========================================================================= */}
         <div className="flex flex-col gap-3.5 sm:gap-4 lg:col-span-4 lg:gap-4.5">
           {/* CARD 1: Mascots Trio (Fluid Liquid Tilt + Reference Colors: Royal Blue, Sunny Yellow, Mint Emerald) */}
-          <motion.div
-            whileHover={shouldReduceMotion ? undefined : { rotate: 0, y: -4, scale: 1.015 }}
-            transition={{ type: 'spring', stiffness: 350, damping: 20 }}
-            style={{ transform: shouldReduceMotion ? undefined : 'rotate(-1.2deg)' }}
-            className="relative flex h-36 flex-col justify-between overflow-hidden rounded-[22px] border border-[#CAD3F5]/80 bg-white p-3.5 shadow-xs transition-shadow hover:shadow-md sm:h-40 sm:p-4"
+          <div
+            className="relative flex h-36 flex-col justify-between overflow-hidden rounded-[22px] border border-[#CAD3F5]/80 bg-white p-3.5 shadow-xs sm:h-40 sm:p-4"
           >
             <div className="flex items-center justify-between">
               <span className="font-mono text-[10px] font-bold tracking-wider text-[#0056FF] uppercase">
@@ -391,14 +388,11 @@ export function BentoHeroGrid({
                 </svg>
               </motion.div>
             </div>
-          </motion.div>
+          </div>
 
           {/* CARD 3: Distributed Campus Telemetry Radar (Fluid Liquid Tilt) */}
-          <motion.div
-            whileHover={shouldReduceMotion ? undefined : { rotate: 0, y: -4, scale: 1.015 }}
-            transition={{ type: 'spring', stiffness: 350, damping: 20 }}
-            style={{ transform: shouldReduceMotion ? undefined : 'rotate(0.8deg)' }}
-            className="relative flex h-52 flex-col justify-between overflow-hidden rounded-[22px] border border-[#CAD3F5]/80 bg-white p-3.5 shadow-xs transition-shadow hover:shadow-md sm:h-56"
+          <div
+            className="relative flex h-52 flex-col justify-between overflow-hidden rounded-[22px] border border-[#CAD3F5]/80 bg-white p-3.5 shadow-xs sm:h-56"
           >
             {/* Center: Vector Radar Coordinate Grid with Sweep Beam */}
             <div className="relative mx-auto my-auto flex size-38 items-center justify-center sm:size-42">
@@ -502,14 +496,11 @@ export function BentoHeroGrid({
                 <span>{activeNode.latency}</span>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* CARD 5: Design Token Laboratory (Fluid Liquid Tilt) */}
-          <motion.div
-            whileHover={shouldReduceMotion ? undefined : { rotate: 0, y: -4, scale: 1.015 }}
-            transition={{ type: 'spring', stiffness: 350, damping: 20 }}
-            style={{ transform: shouldReduceMotion ? undefined : 'rotate(-1deg)' }}
-            className="flex flex-col justify-between rounded-[22px] border border-[#CAD3F5]/80 bg-white p-4 shadow-xs transition-shadow hover:shadow-md sm:p-5"
+          <div
+            className="flex flex-col justify-between rounded-[22px] border border-[#CAD3F5]/80 bg-white p-4 shadow-xs sm:p-5"
           >
             {/* Header: Title & Version Pill */}
             <div className="mb-3 flex items-center justify-between">
@@ -598,7 +589,7 @@ export function BentoHeroGrid({
                 <Copy className="size-3 opacity-70" />
               </button>
             </div>
-          </motion.div>
+          </div>
         </div>
 
         {/* ========================================================================= */}
@@ -606,12 +597,9 @@ export function BentoHeroGrid({
         {/* ========================================================================= */}
         <div className="flex flex-col gap-3.5 sm:gap-4 lg:col-span-4 lg:gap-4.5">
           {/* CARD 2: Tactile Semester Calendar (Mint Emerald - From Reference Image LOCATIONS SPEC) */}
-          <motion.div
-            whileHover={shouldReduceMotion ? undefined : { rotate: 0, y: -4, scale: 1.015 }}
-            transition={{ type: 'spring', stiffness: 350, damping: 20 }}
-            style={{ transform: shouldReduceMotion ? undefined : 'rotate(1.2deg)' }}
+          <div
             onClick={() => setCalendarView(calendarView === 'day' ? 'week' : 'day')}
-            className="relative flex h-36 cursor-pointer items-center justify-center overflow-hidden rounded-[22px] bg-gradient-to-br from-[#10B981] to-[#059669] p-4 text-white shadow-sm transition-shadow hover:shadow-md sm:h-40"
+            className="relative flex h-36 cursor-pointer items-center justify-center overflow-hidden rounded-[22px] bg-gradient-to-br from-[#10B981] to-[#059669] p-4 text-white shadow-sm sm:h-40"
           >
             {/* Tactile Calendar Icon Body */}
             <div className="flex flex-col items-center">
@@ -653,14 +641,11 @@ export function BentoHeroGrid({
                   : 'Curriculum Sprint · Week 04'}
               </span>
             </div>
-          </motion.div>
+          </div>
 
           {/* CARD 4: Kinetic Harmonic Brand Core (Fluid Liquid Flower Mask) */}
-          <motion.div
-            whileHover={shouldReduceMotion ? undefined : { rotate: 0, y: -4, scale: 1.015 }}
-            transition={{ type: 'spring', stiffness: 350, damping: 20 }}
-            style={{ transform: shouldReduceMotion ? undefined : 'rotate(-0.6deg)' }}
-            className="relative flex h-64 items-center justify-center overflow-hidden rounded-[22px] bg-[#0056FF] p-4 shadow-sm transition-shadow hover:shadow-md sm:h-72"
+          <div
+            className="relative flex h-64 items-center justify-center overflow-hidden rounded-[22px] bg-[#0056FF] p-4 shadow-sm sm:h-72"
           >
             {/* Background Radial Glow */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.22)_0%,transparent_75%)]" />
@@ -765,15 +750,12 @@ export function BentoHeroGrid({
                 />
               </svg>
             </div>
-          </motion.div>
+          </div>
 
           {/* CARD 6: Sunny Yellow Bulletin (From Reference Image: ACADEMIC DATES Palette) */}
-          <motion.div
-            whileHover={shouldReduceMotion ? undefined : { rotate: 0, y: -4, scale: 1.015 }}
-            transition={{ type: 'spring', stiffness: 350, damping: 20 }}
-            style={{ transform: shouldReduceMotion ? undefined : 'rotate(1.4deg)' }}
+          <div
             onClick={onBulletinClick}
-            className="relative flex h-44 cursor-pointer flex-col justify-between overflow-hidden rounded-[22px] bg-gradient-to-br from-[#FACC15] to-[#F59E0B] p-5 text-[#0A1A4A] shadow-sm transition-shadow hover:shadow-md sm:h-48"
+            className="relative flex h-44 cursor-pointer flex-col justify-between overflow-hidden rounded-[22px] bg-gradient-to-br from-[#FACC15] to-[#F59E0B] p-5 text-[#0A1A4A] shadow-sm sm:h-48"
           >
             <div>
               <div className="flex items-center justify-between">
@@ -808,20 +790,17 @@ export function BentoHeroGrid({
                 <path d="M28 35L41 22L45 26L32 39H28V35Z" />
               </svg>
             </div>
-          </motion.div>
+          </div>
         </div>
 
         {/* ========================================================================= */}
         {/* RIGHT COLUMN: Interactive Kid-Friendly Snappy Companion Lab (Fluid Liquid Tilt) */}
         {/* ========================================================================= */}
-        <motion.div
+        <div
           ref={rightCardRef}
-          whileHover={shouldReduceMotion ? undefined : { rotate: 0, y: -4, scale: 1.01 }}
-          transition={{ type: 'spring', stiffness: 350, damping: 20 }}
-          style={{ transform: shouldReduceMotion ? undefined : 'rotate(-0.8deg)' }}
           onMouseMove={handleRightCardMouseMove}
           onMouseLeave={handleRightCardMouseLeave}
-          className="relative flex flex-col justify-between overflow-hidden rounded-[22px] border border-[#CAD3F5]/80 bg-white p-5 shadow-xs transition-shadow hover:shadow-md sm:p-6 lg:col-span-4"
+          className="relative flex flex-col justify-between overflow-hidden rounded-[22px] border border-[#CAD3F5]/80 bg-white p-5 shadow-xs sm:p-6 lg:col-span-4"
         >
           {/* Top Section: Mascot Identity & Mood Selectors */}
           <div>
@@ -1215,7 +1194,7 @@ export function BentoHeroGrid({
               </div>
             </motion.div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </div>
   );

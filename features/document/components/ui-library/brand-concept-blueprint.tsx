@@ -59,7 +59,7 @@ export function BrandConceptBlueprint() {
         {/* 01 Royal Blue (Tall Left Anchor: Spans 5 Columns & Both Rows) */}
         <div
           onClick={() => handleCopy('#0056FF', 'Royal Blue')}
-          className="group relative flex min-h-[340px] cursor-pointer flex-col justify-between rounded-2xl bg-[#0056FF] p-6 text-white transition-all duration-200 hover:brightness-105 active:scale-[0.99] md:col-span-5 md:row-span-2"
+          className="group relative flex min-h-[340px] cursor-pointer flex-col justify-between rounded-2xl bg-[#0056FF] p-6 text-white shadow-xs md:col-span-5 md:row-span-2"
           title="Click to copy HEX: #0056FF"
         >
           {/* Top: Massive Number & Copy Badge */}
@@ -100,7 +100,7 @@ export function BrandConceptBlueprint() {
         {/* 02 Azure Blue */}
         <div
           onClick={() => handleCopy('#2277FF', 'Azure Blue')}
-          className="group relative flex min-h-[160px] cursor-pointer flex-col justify-between rounded-2xl bg-[#2277FF] p-5 text-white transition-all duration-200 hover:brightness-105 active:scale-[0.99] sm:col-span-6 md:col-span-3"
+          className="group relative flex min-h-[160px] cursor-pointer flex-col justify-between rounded-2xl bg-[#2277FF] p-5 text-white shadow-xs sm:col-span-6 md:col-span-3"
           title="Click to copy HEX: #2277FF"
         >
           <div className="flex items-start justify-between">
@@ -120,7 +120,7 @@ export function BrandConceptBlueprint() {
         {/* 03 Soft Lavender */}
         <div
           onClick={() => handleCopy('#E3E7FC', 'Soft Lavender')}
-          className="group relative flex min-h-[160px] cursor-pointer flex-col justify-between rounded-2xl border border-[#CAD3F5] bg-[#E3E7FC] p-5 text-[#0A1A4A] transition-all duration-200 hover:brightness-95 active:scale-[0.99] sm:col-span-6 md:col-span-4"
+          className="group relative flex min-h-[160px] cursor-pointer flex-col justify-between rounded-2xl border border-[#CAD3F5] bg-[#E3E7FC] p-5 text-[#0A1A4A] shadow-xs sm:col-span-6 md:col-span-4"
           title="Click to copy HEX: #E3E7FC"
         >
           <div className="flex items-start justify-between">
@@ -140,7 +140,7 @@ export function BrandConceptBlueprint() {
         {/* 04 White */}
         <div
           onClick={() => handleCopy('#FFFFFF', 'White')}
-          className="group relative flex min-h-[160px] cursor-pointer flex-col justify-between rounded-2xl border-2 border-[#CAD3F5] bg-white p-5 text-[#0A1A4A] shadow-xs transition-all duration-200 hover:border-[#0056FF] active:scale-[0.99] sm:col-span-6 md:col-span-3"
+          className="group relative flex min-h-[160px] cursor-pointer flex-col justify-between rounded-2xl border-2 border-[#CAD3F5] bg-white p-5 text-[#0A1A4A] shadow-xs sm:col-span-6 md:col-span-3"
           title="Click to copy HEX: #FFFFFF"
         >
           <div className="flex items-start justify-between">
@@ -160,7 +160,7 @@ export function BrandConceptBlueprint() {
         {/* 05 Ice Tint */}
         <div
           onClick={() => handleCopy('#EFF5FF', 'Ice Tint')}
-          className="group relative flex min-h-[160px] cursor-pointer flex-col justify-between rounded-2xl border border-[#D0E1FD] bg-[#EFF5FF] p-5 text-[#0056FF] transition-all duration-200 hover:brightness-95 active:scale-[0.99] sm:col-span-6 md:col-span-4"
+          className="group relative flex min-h-[160px] cursor-pointer flex-col justify-between rounded-2xl border border-[#D0E1FD] bg-[#EFF5FF] p-5 text-[#0056FF] shadow-xs sm:col-span-6 md:col-span-4"
           title="Click to copy HEX: #EFF5FF"
         >
           <div className="flex items-start justify-between">

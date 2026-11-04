@@ -2,6 +2,10 @@
 
 All notable changes, commits, and skill updates are recorded here in real-time.
 
+### Version 0.2.18 (05.11.2026) (Developer: **史力爱卫**)
+
+- Remove bento grid hero section from component feed and eliminate card hover event styles across UI library
+
 ### Version 0.2.17 (04.11.2026) - `d87b1a7` (Developer: **史力爱卫**)
 
 - Apply fluid liquid tilted placement and multi-color card palette to bento hero grid
