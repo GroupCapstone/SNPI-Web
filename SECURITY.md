@@ -1,119 +1,99 @@
-# Security Policy
+# SNP-SMS Security Policy & DevSecOps Standard
 
-## 1. Supported Versions
+## 1. Security Architecture & Hierarchy
 
-Security updates and critical patches are actively provided for the following releases:
-
-| Version   | Status            | Supported Until  |
-| :-------- | :---------------- | :--------------- |
-| `0.1.x`   | Active Support    | Current Baseline |
-| `< 0.1.0` | End of Life (EOL) | Not Supported    |
-
-Production deployments must remain on the latest tagged release checkpoint.
-
----
-
-## 2. Reporting a Vulnerability
-
-We take the security of student records, faculty identities, and campus financial data with the highest priority.
-
-### 2.1 Private Disclosure Channel
-
-- **DO NOT report security vulnerabilities through public GitHub issues, discussions, or pull requests.**
-- Use **GitHub Private Vulnerability Reporting** via the repository's `Security` tab (`Advisories -> Report a vulnerability`).
-- Alternatively, report directly to repository maintainers via private channels.
-
-### 2.2 Report Contents
-
-Please include the following information in your report:
-
-- A descriptive summary of the potential vulnerability and its impact.
-- Affected modules, endpoint paths, or component filenames.
-- Step-by-step reproduction instructions or a minimal proof of concept (PoC).
-- Any suggested remediations or mitigations.
-- **Do not include real student names, credentials, passwords, or production database dumps.**
-
-### 2.3 Response Timelines
-
-- **Initial Acknowledgement**: Within 24 hours of report receipt.
-- **Triage & Impact Assessment**: Within 72 hours.
-- **Remediation & Patch Deployment**: Timelines coordinated based on CVSS severity (critical within 7 days).
-- **Public Disclosure**: Coordinated disclosure after patches have been verified and deployed.
-
----
-
-## 3. DevSecOps & Security Architecture
-
-SNP-SMS embeds automated security controls directly into the software development lifecycle:
+SNP-SMS adheres to modern Application Security (AppSec) and DevSecOps engineering standards. The security inspection taxonomy is structured as follows:
 
 ```text
-+-------------------------------------------------------------------------+
-|                    DevSecOps Pipeline Architecture                      |
-+-------------------------------------------------------------------------+
-                                     |
-                                     v
-+-------------------------------------------------------------------------+
-|                      Application Security (AppSec)                      |
-|       Static Analysis, Secret Detection, Dependency Auditing, RBAC       |
-+-------------------+--------------------+--------------------+-----------+
-                    |                    |                    |
-                    v                    v                    v
-          +-------------------+ +------------------+ +------------------+
-          |       SAST        | | Secret Detection | | Dependency Audit |
-          | CodeQL / ESLint   | | Gitleaks / Hooks | | npm audit / CVE  |
-          +-------------------+ +------------------+ +------------------+
+┌────────────────────────────────────────────────────────────────────────┐
+│                   DevSecOps (Lifecycle & Culture)                     │
+│    Integrating automated security controls into Git & CI/CD pipelines  │
+└───────────────────────────────────┬────────────────────────────────────┘
+                                    │
+                                    ▼
+┌────────────────────────────────────────────────────────────────────────┐
+│                   Application Security (AppSec)                        │
+│   Broader security discipline covering code, dependencies, & secrets   │
+└───────────┬───────────────────────┼───────────────────────┬────────────┘
+            │                       │                       │
+            ▼                       ▼                       ▼
+┌───────────────────────┐ ┌───────────────────┐ ┌────────────────────────┐
+│         SAST          │ │ Secret Detection  │ │  Dependency Scanning   │
+│ Static Code Analysis  │ │ Token & Key Leaks │ │     CVE / SCA Audit    │
+└───────────┬───────────┘ └───────────────────┘ └────────────────────────┘
+            │
+            ▼
+┌────────────────────────────────────────────────────────────────────────┐
+│                     Engines & Analyzers                                │
+│   Semgrep (GitLab SAST) · CodeQL (AST Data-Flow) · Gemnasium · ESLint  │
+└────────────────────────────────────────────────────────────────────────┘
 ```
 
----
-
-## 4. Core Security Controls Matrix
-
-### 4.1 Authentication & Token Lifecycle
-
-- **Short-Lived Access Tokens**: Signed JWTs expiring after 15 minutes, passed strictly via `Authorization: Bearer <token>`. Never stored in persistent browser `localStorage`.
-- **HttpOnly Refresh Cookies**: Refresh tokens are stored in `HttpOnly`, `SameSite=Strict` cookies with `Secure` enabled in production.
-- **Session Rotation & Revocation**: Refresh tokens use session rotation; compromised refresh tokens invalidate the entire active session hierarchy.
-- **Password Hashing**: Passwords hashed with `bcryptjs` using 12 or more salt rounds.
-
-### 4.2 Multi-Tenant Campus Isolation & RBAC
-
-- **Deny-by-Default Authorization**: Access is forbidden unless an explicit permission is verified server-side.
-- **Hierarchical Permission Catalog**: Granular permissions in `module.action.scope` format (e.g. `student.view.own_branch`, `finance.create.all_branches`).
-- **Campus Branch Scoping**: Queries enforce branch boundaries using `getAuthorizedBranchFilter()`. The client-supplied `X-Branch-Id` header is strictly validated against the user's authorized branch list.
-
-### 4.3 Input Validation & Injection Defense
-
-- **Zod Schema Validation**: Every API route validates request parameters, query strings, and payloads before invoking service layers.
-- **Parameterized Mongoose Queries**: Strict query construction prevents NoSQL operator injection (`$gt`, `$ne`, `$where`).
-
-### 4.4 Rate Limiting & DoS Protection
-
-- **Global Rate Limiting**: Enforced on public endpoints (`2,000 requests / 15 minutes`).
-- **Strict Authentication Limiting**: Brute-force protection on `/api/v1/auth/login` (`5 failed attempts / 15 minutes` per IP and account).
-- **Standard Rate Limit Headers**: RFC draft-8 headers (`RateLimit-Limit`, `RateLimit-Remaining`, `RateLimit-Reset`).
-
-### 4.5 Immutable Audit Logging
-
-- High-risk operations (grade modifications, fee collections, user role assignments, refunds) record immutable audit trail entries containing actor ID, campus branch, IP address, timestamp, and pre/post mutation snapshots.
+- **CodeQL & Semgrep**: Specialized static analysis engines that query ASTs and track tainted data-flow from source to sink.
+- **SAST (Static Application Security Testing)**: The category of automated tests that inspect source code for flaws without executing it.
+- **Application Security (AppSec)**: The overarching discipline encompassing SAST, Secret Detection, Software Composition Analysis (SCA), and defensive design.
+- **DevSecOps**: Shifting security left by embedding automated scanning, quality gates, and audit ledgers directly into development workflows and CI/CD pipelines.
 
 ---
 
-## 5. Security Checkpoint Policy
+## 2. GitLab Application Security & DevSecOps Scanners
 
-Prior to publishing any release checkpoint:
+SNP-SMS integrates GitLab's native Security and DevSecOps templates within `.gitlab-ci.yml`:
 
-1. Run `npm run format:check` to ensure code integrity.
-2. Run `npm run typecheck` to assert zero TypeScript errors.
-3. Run `npm run smoke` and `npm run test:api` to verify RBAC enforcement across all 47 domain modules.
-4. Verify zero credentials, test secrets, or private keys are staged in git.
+| Scanner / Template                                                     | Stage            | Purpose                                                                             | Engine / Tool               |
+| ---------------------------------------------------------------------- | ---------------- | ----------------------------------------------------------------------------------- | --------------------------- |
+| **SAST** (`Security/SAST.gitlab-ci.yml`)                               | `test`           | Static analysis for injection, XSS, insecure deserialization, and path traversal    | Semgrep / NodeJsScan        |
+| **Secret Detection** (`Security/Secret-Detection.gitlab-ci.yml`)       | `test`           | Scans git commits and source tree for leaked tokens, private keys, and API secrets  | Gitleaks / Secret Detection |
+| **Dependency Scanning** (`Security/Dependency-Scanning.gitlab-ci.yml`) | `test`           | Scans `package.json` and lockfiles for known CVEs and vulnerable dependencies       | Gemnasium Analyzer          |
+| **Code Quality** (`Code-Quality.gitlab-ci.yml`)                        | `test`           | Measures code complexity, maintainability, and structural code smells               | Code Climate                |
+| **Dependency Audit Gate** (`npm audit`)                                | `quality-check`  | Generates machine-readable `npm-audit-report.json` for rapid pipeline feedback      | npm audit engine            |
+| **Multi-Phase Custom Audit**                                           | `security-audit` | 6-phase proprietary institutional audit verifying RBAC, schemas, and attack classes | Custom Security Runner      |
 
 ---
 
-## 6. Security Audit & Remediation History
+## 3. Core Security Controls Matrix
 
-Historical security audit findings, vulnerability resolutions, and patch certifications are maintained under `docs/security/`:
+### 3.1 Authentication & Token Lifecycle
 
-| Date       | Scope              | Advisory / Topic                      | Status                | Audit Report                                                                                                                        |
-| :--------- | :----------------- | :------------------------------------ | :-------------------- | :---------------------------------------------------------------------------------------------------------------------------------- |
-| 2026-11-01 | Full Monorepo      | 77-Point Audit & 42 Security Tests    | Verified (42/42 Pass) | [Security Audit & Automated Test Results](file:///Users/Apple16/Desktop/SNP-SMS/docs/security/security-audit-remediation-report.md) |
-| 2026-11-01 | Monorepo Lockfiles | GHSA-g3hv-75wg-m249 (`minimatch` DoS) | Tracked (Dev Only)    | [Security Audit & Remediation Report](file:///Users/Apple16/Desktop/SNP-SMS/docs/security/security-audit-remediation-report.md)     |
+- **Access Tokens**: Short-lived JWTs (15-minute expiration) returned by the existing login/refresh API contract, held in application memory, and sent via `Authorization: Bearer` headers. They are not written to browser storage or included in the React auth context.
+- **Refresh Tokens**: Long-lived JWTs (7-day expiration) stored in `HttpOnly`, `SameSite=Strict` cookies with `Secure` enabled in production. Browser requests use the same-origin `/api/v1` proxy; HTTPS protects both the browser-to-frontend and frontend-to-API connections.
+- **Password Hashing**: Passwords hashed with `bcryptjs` using $\ge 12$ salt rounds.
+
+### 3.2 Role-Based Access Control (RBAC) & Multi-Branch Scoping
+
+- **Granular Permissions**: Follows `module.action.scope` format (e.g., `attendance.read.own_branch`, `finance.create.all_branches`).
+- **Deny-by-Default**: Access is blocked unless an explicit grant exists.
+- **Tenant & Branch Isolation**: Every database query filters by authorized `branchId` using `getAuthorizedBranchFilter()`. Client-provided branch IDs are strictly validated on the server.
+
+### 3.3 Input Validation & Defensive Coding
+
+- **Zod Schemas**: Every route handler validates incoming request parameters, query strings, and payloads before invoking service layers.
+- **Mongoose Sanitization**: Parameterized queries prevent NoSQL operator injection (`$gt`, `$ne`, `$where`).
+
+### 3.4 Immutable Audit Logging
+
+- High-risk operations (`CREATE`, `UPDATE`, `DELETE`, fee adjustments, grade modifications, voids) record immutable audit entries with user ID, branch ID, IP address, timestamp, and diff snapshots.
+
+---
+
+## 4. 6-Phase Institutional Security Audit Framework
+
+SNP-SMS includes an automated audit runner located in `.agents/skills/security-audit/`:
+
+1. **Phase 1: Reconnaissance & Topology Mapping**: Discovers network endpoints, microservices, and port bindings.
+2. **Phase 2: Threat Modeling**: Analyzes trust boundaries, privilege boundaries, and data flow.
+3. **Phase 3: Vulnerability Hunting**: Static inspection across OWASP Top 10, CWE top 25, and logic flaws.
+4. **Phase 4: Dynamic & Safe Verification**: Validates rate limits, session expiration, and state machines.
+5. **Phase 5: Machine-Readable Reporting**: Compiles schema-conforming `findings.json` and `coverage-ledger.json`.
+6. **Phase 6: Independent Machine Validation**: Asserts report integrity and zero unverified findings.
+
+---
+
+## 5. Vulnerability Reporting & Responsible Disclosure
+
+If you discover a security vulnerability within SNP-SMS:
+
+1. **Do NOT open a public issue** on GitLab or GitHub.
+2. Submit a confidential report directly to the security team or repository administrator.
+3. Include detailed steps to reproduce, proof-of-concept payloads, and affected versions.
+4. We aim to acknowledge reports within 24 hours and provide coordinated remediation timelines.

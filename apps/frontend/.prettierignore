@@ -1,7 +1,0 @@
-node_modules
-.next
-dist
-coverage
-package-lock.json
-next-env.d.ts
-.agents/skills/font-size-standard/SKILL.md
