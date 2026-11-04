@@ -1,6 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import {
+  ApiClientError,
   apiClient,
   getAccessToken,
   performTokenRefresh,
@@ -117,5 +118,182 @@ describe('protected API session lifecycle', () => {
     expect(await performTokenRefresh()).toBeNull();
     expect(getAccessToken()).toBeNull();
     expect(refreshed).not.toHaveBeenCalled();
+  });
+});
+
+describe('RFC 7807 Problem Details and REST API standardization', () => {
+  const fetchMock = vi.fn();
+
+  beforeEach(() => {
+    vi.clearAllMocks();
+    vi.stubGlobal('fetch', fetchMock);
+    setAccessToken('test-token');
+  });
+
+  afterEach(() => {
+    setAccessToken(null);
+    vi.unstubAllGlobals();
+  });
+
+  it('parses RFC 7807 application/problem+json error responses into ApiClientError', async () => {
+    const problemPayload = {
+      type: 'https://api.kesararamwithdigital.tech/errors/VALIDATION_ERROR',
+      title: 'Validation Error',
+      status: 400,
+      detail: 'Invalid payload submitted',
+      instance: '/api/v1/students',
+      code: 'VALIDATION_ERROR',
+      timestamp: '2026-11-05T03:00:00.000Z',
+      requestId: 'req-uuid-1234',
+      errors: [{ field: 'email', message: 'Invalid email address' }],
+    };
+
+    fetchMock.mockResolvedValueOnce(
+      new Response(JSON.stringify(problemPayload), {
+        status: 400,
+        headers: {
+          'Content-Type': 'application/problem+json',
+          'X-Request-ID': 'req-uuid-1234',
+          'X-Error-Code': 'VALIDATION_ERROR',
+        },
+      }),
+    );
+
+    let caughtError: unknown;
+    try {
+      await apiClient.post('/students', { email: 'bad' });
+    } catch (err) {
+      caughtError = err;
+    }
+
+    expect(caughtError).toBeInstanceOf(ApiClientError);
+    const apiErr = caughtError as ApiClientError;
+    expect(apiErr.status).toBe(400);
+    expect(apiErr.code).toBe('VALIDATION_ERROR');
+    expect(apiErr.type).toBe('https://api.kesararamwithdigital.tech/errors/VALIDATION_ERROR');
+    expect(apiErr.title).toBe('Validation Error');
+    expect(apiErr.detail).toBe('Invalid payload submitted');
+    expect(apiErr.instance).toBe('/api/v1/students');
+    expect(apiErr.requestId).toBe('req-uuid-1234');
+    expect(apiErr.timestamp).toBe('2026-11-05T03:00:00.000Z');
+    expect(apiErr.errors).toEqual([{ field: 'email', message: 'Invalid email address' }]);
+    expect(apiErr.getHeader('x-request-id')).toBe('req-uuid-1234');
+    expect(apiErr.message).toContain('email - Invalid email address');
+  });
+
+  it('handles HTTP 201 Created with Location header and exposes raw headers via apiClient.raw', async () => {
+    const createdPayload = {
+      success: true,
+      data: { id: 'stu-999', name: 'New Student' },
+      message: 'Student created',
+      meta: { page: 1, limit: 20, total: 1, totalPages: 1 },
+    };
+
+    fetchMock.mockResolvedValueOnce(
+      new Response(JSON.stringify(createdPayload), {
+        status: 201,
+        headers: {
+          'Content-Type': 'application/json',
+          Location: '/api/v1/students/stu-999',
+          ETag: 'W/"etag-xyz"',
+          'X-Request-ID': 'req-create-123',
+        },
+      }),
+    );
+
+    const raw = await apiClient.raw<typeof createdPayload>('/students', { method: 'POST' });
+    expect(raw.status).toBe(201);
+    expect(raw.location).toBe('/api/v1/students/stu-999');
+    expect(raw.etag).toBe('W/"etag-xyz"');
+    expect(raw.requestId).toBe('req-create-123');
+    expect(raw.data.data.id).toBe('stu-999');
+    expect((raw.data as unknown as { pagination: unknown }).pagination).toEqual(createdPayload.meta);
+  });
+
+  it('handles HTTP 204 No Content gracefully without JSON parsing syntax errors', async () => {
+    fetchMock.mockResolvedValueOnce(
+      new Response(null, {
+        status: 204,
+        statusText: 'No Content',
+      }),
+    );
+
+    const result = await apiClient.delete<{ success: boolean; data: null }>('/students/stu-123');
+    expect(result).toEqual({
+      success: true,
+      message: 'Operation completed successfully',
+      data: null,
+    });
+  });
+
+  it('handles HTTP 202 Accepted for batch/async operations', async () => {
+    fetchMock.mockResolvedValueOnce(
+      new Response(JSON.stringify({ success: true, message: 'Processing batch' }), {
+        status: 202,
+        headers: { 'Content-Type': 'application/json' },
+      }),
+    );
+
+    const result = await apiClient.post<{ success: boolean; message: string }>('/students/batch', {});
+    expect(result.success).toBe(true);
+    expect(result.message).toBe('Processing batch');
+  });
+
+  it('captures Rate Limited 429 status and Retry-After response header', async () => {
+    fetchMock.mockResolvedValueOnce(
+      new Response(
+        JSON.stringify({
+          type: 'https://api.kesararamwithdigital.tech/errors/RATE_LIMIT_EXCEEDED',
+          title: 'Rate Limit Exceeded',
+          status: 429,
+          detail: 'Too many requests, please retry after 60 seconds',
+          code: 'RATE_LIMIT_EXCEEDED',
+        }),
+        {
+          status: 429,
+          headers: {
+            'Content-Type': 'application/problem+json',
+            'Retry-After': '60',
+          },
+        },
+      ),
+    );
+
+    let caught: unknown;
+    try {
+      await apiClient.get('/students');
+    } catch (e) {
+      caught = e;
+    }
+
+    expect(caught).toBeInstanceOf(ApiClientError);
+    const err = caught as ApiClientError;
+    expect(err.status).toBe(429);
+    expect(err.code).toBe('RATE_LIMIT_EXCEEDED');
+    expect(err.getHeader('retry-after')).toBe('60');
+  });
+
+  it('bidirectionally populates meta from pagination, and pagination from meta', async () => {
+    // 1. Backend returns legacy pagination -> apiClient populates meta
+    fetchMock.mockResolvedValueOnce(
+      json({
+        success: true,
+        data: ['a', 'b'],
+        pagination: { page: 1, limit: 20, total: 2, totalPages: 1 },
+      }),
+    );
+    const res1 = await apiClient.get<{ meta: unknown; pagination: unknown }>('/test1');
+    expect(res1.meta).toEqual(res1.pagination);
+
+    // 2. Backend returns new meta (with hasMore and nextCursor) -> apiClient populates pagination
+    fetchMock.mockResolvedValueOnce(
+      json({
+        success: true,
+        data: ['c', 'd'],
+        meta: { page: 2, limit: 20, total: 40, totalPages: 2, hasMore: false, nextCursor: null },
+      }),
+    );
+    const res2 = await apiClient.get<{ meta: unknown; pagination: unknown }>('/test2');
+    expect(res2.pagination).toEqual(res2.meta);
   });
 });

@@ -30,29 +30,59 @@ export interface PaginationMeta {
   limit: number;
   total: number;
   totalPages: number;
+  hasMore?: boolean;
+  nextCursor?: string | null;
 }
 
 export interface ApiSuccessResponse<T> {
   success: true;
-  message: string;
   data: T;
+  message?: string;
+  meta?: PaginationMeta;
+  pagination?: PaginationMeta;
 }
 
 export interface ApiPaginatedResponse<T> {
   success: true;
-  message: string;
   data: T[];
+  message?: string;
+  meta?: PaginationMeta;
   pagination: PaginationMeta;
 }
 
-export interface ApiErrorResponse {
-  success: false;
+export interface ProblemDetailsError {
+  field?: string;
   message: string;
-  code: string;
-  errors?: Array<{
-    field?: string;
-    message: string;
-  }>;
+}
+
+/**
+ * RFC 7807 Problem Details object structure (application/problem+json)
+ */
+export interface ProblemDetails {
+  type: string;
+  title: string;
+  status: number;
+  detail: string;
+  instance?: string;
+  code?: string;
+  timestamp?: string;
+  requestId?: string;
+  errors?: ProblemDetailsError[];
+  [key: string]: unknown;
+}
+
+export interface ApiErrorResponse {
+  success?: false;
+  message?: string;
+  code?: string;
+  type?: string;
+  title?: string;
+  status?: number;
+  detail?: string;
+  instance?: string;
+  timestamp?: string;
+  requestId?: string;
+  errors?: ProblemDetailsError[];
 }
 
 export type SuccessResponse<T> = ApiSuccessResponse<T>;
