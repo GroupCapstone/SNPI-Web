@@ -1,0 +1,46 @@
+# Large Git Repository Management & Scaling Policy
+# Framework Alignment: GitHub Well-Architected Framework (Managing Large Git Repositories)
+version: '1.0'
+
+repositoryScaling:
+  maxIndividualFileSizeMB: 50
+  maxRepoSizeBytesMB: 1024
+  maxTreeDepth: 8
+
+gitLfsConfiguration:
+  enabled: true
+  gitattributesPath: '.gitattributes'
+  trackedPatterns:
+    - '*.mp4'
+    - '*.mov'
+    - '*.zip'
+    - '*.tar.gz'
+    - '*.dmg'
+    - '*.iso'
+    - '*.psd'
+    - '*.ai'
+    - '*.onnx'
+    - '*.weights'
+
+historyAndStorageOptimization:
+  gitSizerAuditing: true
+  deepGitignoreRules: true
+  staleBranchPruning: true
+  staleTagArchiving: true
+
+cloningAndFetchingMechanisms:
+  ciDefaultFetchDepth: 1
+  partialCloneSupported: true
+  sparseCheckoutGuidance: true
+  frequentFetchPolicy: true
+
+cicdPipelineEfficiency:
+  dependencyCaching: true
+  buildArtifactCaching: true
+  parallelMatrixJobs: true
+  avoidThunderingHerd: true
+
+collaborationAndWorkflow:
+  mergeQueueEnabled: true
+  maxChangesetFiles: 50
+  batchMergesSupported: true
