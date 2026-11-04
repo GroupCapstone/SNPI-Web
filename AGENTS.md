@@ -144,3 +144,28 @@ Never run an unrelated full suite solely because it is listed here; report which
 - Keep the developer library first for new UI designs. Do not apply experimental designs to production frontend routes unless the user explicitly asks.
 - Preserve the repository's mandatory design rules, including approved brand tokens, accessible contrast and touch targets, zero emojis, no blue indicator dots, SNPI naming, and the immutable Brand Colors and Color Ramps menu anchors. The design skill is authoritative for their full definitions.
 - Do not load or apply unrelated design manuals to backend, CI, or other non-UI tasks.
+
+---
+
+## 9. Zero-Bridge Architecture: GitHub & Vercel Separation and Single Test Domain Policy
+
+- **Zero-Bridge Decoupled Architecture**:
+  - Strictly **NO auto-deployment bridge or webhook linkage** between GitHub and Vercel.
+  - GitHub (`origin`, `org`, `personal`) is dedicated exclusively to source code version control, PR reviews, and GitHub Actions CI verification.
+  - Production deployments to Vercel are executed exclusively via Vercel CLI (`npm run deploy:vercel:prod` / `vercel deploy --archive=tgz --prod`).
+  - Neither system triggers the other automatically; all releases and deployments are independently commanded.
+
+- **Single Temporary Test Subdomain Policy (`snpis.kesararamwithdigital.tech`)**:
+  - The authorized host is strictly **`snpis.kesararamwithdigital.tech`** (free testing subdomain, to be replaced with custom school domain in the future).
+  - Strictly **ZERO extra subdomains**: Never configure or route to `app.*`, `auth.*`, `admin.*`, `portal.*`, or any nested subdomains.
+  - Strictly **Slug / Path-Based Navigation**: All feature slices, dashboards, and portals must be routed via URL paths under the single origin (e.g., `/dashboard`, `/academic-periods`, `/finance`, `/document`, `/reports`).
+
+- **Dual-Pipeline Triage Protocol (GitHub CI Failure vs Vercel Success)**:
+  - **Root Cause of Divergence**: Vercel evaluates only production bundle compilation (`next build`), whereas GitHub Actions executes strict pre-flight gates (`npm run lint`, `npm run typecheck`, `npm test`, `format:check`, security bots).
+  - **Authoritative Resolution Rule**: GitHub Actions is the canonical Software Quality Gate. If a GitHub workflow or label fails while Vercel succeeded, the deployment is in an unverified state.
+  - **Action Steps**:
+    1. Retrieve the failure log: `gh run view <RUN_ID> --log-failed` (or view GitHub Actions tab).
+    2. Reproduce and fix locally: Run `npm run typecheck && npm run lint && npm test`.
+    3. Commit the fix locally and push to GitHub so GitHub Actions reaches 100% green `[PASSED]`.
+    4. Re-deploy to Vercel via `npm run deploy:vercel:prod` to restore parity between repository `main` and production.
+
