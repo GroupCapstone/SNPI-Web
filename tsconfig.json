@@ -35,5 +35,5 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"
   ],
-  "exclude": ["node_modules", "docs", "scripts", "infrastructure", "packages", "snp-sms-docs"]
+  "exclude": ["node_modules", "docs"]
 }
