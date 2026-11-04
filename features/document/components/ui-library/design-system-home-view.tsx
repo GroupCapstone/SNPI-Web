@@ -24,7 +24,6 @@ import {
   X,
   Layers,
   Sparkles,
-  Check,
   Settings,
 } from '@/components/icons';
 import { cn } from '@/lib/utils';
@@ -54,8 +53,6 @@ const SIDEBAR_TREE: NavTreeItem[] = [
   {
     id: 'brand-group',
     label: 'Brand',
-    badge: 'Completed',
-    badgeColor: 'emerald',
     description:
       'Brand drives every single decision you make when building new products or features.',
     children: [
@@ -63,8 +60,6 @@ const SIDEBAR_TREE: NavTreeItem[] = [
         id: 'brand-blueprint',
         label: 'Brand Blueprint & Assets',
         index: '01',
-        badge: 'Completed',
-        badgeColor: 'emerald',
       },
       { id: 'brand-vision', label: 'Vision', index: 'B1' },
       { id: 'brand-principles', label: 'Design Principles', index: 'B2' },
@@ -396,10 +391,13 @@ export function DesignSystemHomeView() {
   }, []);
 
   const toggleNode = (nodeId: string) => {
-    setExpandedNodes((prev) => ({
-      ...prev,
-      [nodeId]: !prev[nodeId],
-    }));
+    setExpandedNodes((prev) => {
+      const current = prev[nodeId] ?? true;
+      return {
+        ...prev,
+        [nodeId]: !current,
+      };
+    });
   };
 
   const filteredTree = React.useMemo(() => {
@@ -504,18 +502,15 @@ export function DesignSystemHomeView() {
             )}
 
             {/* Navigation Tree */}
-            <nav aria-label="Foundations Outline" className="space-y-2 pt-1">
+            <nav aria-label="Foundations Outline" className="space-y-1 pt-1">
               {filteredTree.map((item) => {
                 const hasChildren = Boolean(item.children && item.children.length > 0);
-                const isExpanded = expandedNodes[item.id] || searchQuery.length > 0;
+                const isExpanded = (expandedNodes[item.id] ?? true) || searchQuery.length > 0;
                 const isSelected = selectedNode === item.id;
                 const GroupIcon = getSidebarGroupIcon(item.id);
 
                 return (
-                  <div
-                    key={item.id}
-                    className="space-y-1 rounded-xl border border-slate-100 bg-[#F8FAFC]/50 p-1.5"
-                  >
+                  <div key={item.id} className="space-y-0.5">
                     <button
                       type="button"
                       onClick={() => {
@@ -526,21 +521,21 @@ export function DesignSystemHomeView() {
                         }
                       }}
                       className={cn(
-                        'group flex w-full cursor-pointer items-center justify-between rounded-lg px-2 py-1.5 text-left font-sans text-xs font-bold transition-colors',
+                        'group flex w-full cursor-pointer items-center justify-between rounded-lg px-2.5 py-2 text-left font-sans text-xs font-bold transition-all',
                         isSelected
                           ? 'bg-[#EFF5FF] text-[#0056FF]'
-                          : 'text-[#0A1A4A] hover:bg-white',
+                          : 'text-[#0A1A4A] hover:bg-slate-100/70 hover:text-[#0056FF]',
                       )}
                       title={item.label}
                     >
                       <div className="flex min-w-0 flex-1 items-center gap-2 pr-2">
                         <GroupIcon className="size-4 shrink-0 text-[#0056FF]" />
-                        <span className="min-w-0 flex-1 leading-snug font-black tracking-tight break-words">
+                        <span className="min-w-0 flex-1 leading-snug font-bold tracking-tight break-words">
                           {item.label}
                         </span>
                       </div>
                       <div className="flex shrink-0 items-center gap-1.5">
-                        {item.badge && (
+                        {item.badge && item.badge.toLowerCase() !== 'completed' && (
                           <span
                             className={cn(
                               'py-0.2 rounded-md px-1.5 font-mono text-[9px] font-bold',
@@ -557,16 +552,16 @@ export function DesignSystemHomeView() {
                         )}
                         {hasChildren &&
                           (isExpanded ? (
-                            <ChevronDown className="size-3.5 text-[#0056FF] transition-colors" />
+                            <ChevronDown className="size-3.5 text-slate-400 transition-colors group-hover:text-[#0056FF]" />
                           ) : (
-                            <ChevronRight className="size-3.5 text-[#0056FF] transition-colors" />
+                            <ChevronRight className="size-3.5 text-slate-400 transition-colors group-hover:text-[#0056FF]" />
                           ))}
                       </div>
                     </button>
 
-                    {/* Submenu Children */}
+                    {/* Submenu Children: Auto Drop-Down List Menu */}
                     {hasChildren && isExpanded && (
-                      <div className="ml-1 space-y-0.5 border-l border-[#CAD3F5] pl-2">
+                      <div className="ml-3.5 space-y-0.5 border-l-2 border-[#CAD3F5] py-0.5 pl-2.5">
                         {item.children?.map((child) => {
                           const isChildSelected = selectedNode === child.id;
                           return (
@@ -576,10 +571,10 @@ export function DesignSystemHomeView() {
                               onClick={() => scrollToSection(child.id)}
                               title={child.label}
                               className={cn(
-                                'group flex w-full cursor-pointer items-start justify-between gap-1.5 rounded-lg px-2 py-1.5 text-left font-sans text-xs transition-colors',
+                                'group flex w-full cursor-pointer items-start justify-between gap-1.5 rounded-md px-2 py-1.5 text-left font-sans text-xs transition-colors',
                                 isChildSelected
                                   ? 'bg-[#EFF5FF] font-bold text-[#0056FF]'
-                                  : 'text-slate-600 hover:bg-white hover:text-slate-900',
+                                  : 'text-slate-600 hover:bg-slate-100/60 hover:text-[#0A1A4A]',
                               )}
                             >
                               <div className="flex min-w-0 flex-1 items-start gap-2">
@@ -594,7 +589,7 @@ export function DesignSystemHomeView() {
                                   {child.label}
                                 </span>
                               </div>
-                              {child.badge && (
+                              {child.badge && child.badge.toLowerCase() !== 'completed' && (
                                 <span
                                   className={cn(
                                     'py-0.2 ml-1 shrink-0 rounded px-1.5 font-mono text-[9px] font-bold',
