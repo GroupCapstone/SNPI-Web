@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { Search, Copy, Check, BookOpen, Filter } from '@/components/icons';
+import { Search, Copy, Check, BookOpen, Filter, Code, List, Grid2x2, RotateCcw } from '@/components/icons';
 import { cn } from '@/lib/utils';
 
 export type GlossaryCategory =
@@ -881,7 +881,8 @@ export function MaterialGlossarySection() {
   const [searchQuery, setSearchQuery] = React.useState('');
   const [selectedCategory, setSelectedCategory] = React.useState<GlossaryCategory>('All');
   const [selectedLetter, setSelectedLetter] = React.useState<string>('ALL');
-  const [copiedTerm, setCopiedTerm] = React.useState<string | null>(null);
+  const [viewMode, setViewMode] = React.useState<'lexicon' | 'grid'>('lexicon');
+  const [copiedKey, setCopiedKey] = React.useState<string | null>(null);
 
   const filteredTerms = React.useMemo(() => {
     return MATERIAL_GLOSSARY_TERMS.filter((item) => {
@@ -905,16 +906,6 @@ export function MaterialGlossarySection() {
     });
   }, [searchQuery, selectedCategory, selectedLetter]);
 
-  const categoryCounts = React.useMemo(() => {
-    const counts: Record<string, number> = { All: MATERIAL_GLOSSARY_TERMS.length };
-    CATEGORIES.forEach((cat) => {
-      if (cat !== 'All') {
-        counts[cat] = MATERIAL_GLOSSARY_TERMS.filter((t) => t.category === cat).length;
-      }
-    });
-    return counts;
-  }, []);
-
   const availableLetters = React.useMemo(() => {
     const lettersSet = new Set<string>();
     MATERIAL_GLOSSARY_TERMS.forEach((term) => {
@@ -925,88 +916,139 @@ export function MaterialGlossarySection() {
     return lettersSet;
   }, [selectedCategory]);
 
-  const handleCopyDefinition = (item: GlossaryTerm) => {
-    const textToCopy = `${item.term}: ${item.definition}${
-      item.codeOrToken ? ` (Code/Token: ${item.codeOrToken})` : ''
-    }`;
-    navigator.clipboard.writeText(textToCopy);
-    setCopiedTerm(item.term);
-    setTimeout(() => {
-      setCopiedTerm(null);
-    }, 2000);
+  const groupedByLetter = React.useMemo(() => {
+    const map = new Map<string, GlossaryTerm[]>();
+    for (const term of filteredTerms) {
+      const group = map.get(term.letter) || [];
+      group.push(term);
+      map.set(term.letter, group);
+    }
+    return Array.from(map.entries()).sort(([a], [b]) => a.localeCompare(b));
+  }, [filteredTerms]);
+
+  const handleCopy = (text: string, key: string) => {
+    if (typeof window === 'undefined') return;
+    try {
+      if (navigator?.clipboard?.writeText) {
+        navigator.clipboard.writeText(text);
+        setCopiedKey(key);
+        setTimeout(() => {
+          setCopiedKey(null);
+        }, 1800);
+      }
+    } catch {
+      // Fallback
+    }
   };
+
+  const handleResetFilters = () => {
+    setSearchQuery('');
+    setSelectedCategory('All');
+    setSelectedLetter('ALL');
+  };
+
+  const hasActiveFilters = searchQuery !== '' || selectedCategory !== 'All' || selectedLetter !== 'ALL';
 
   return (
     <div className="space-y-6">
-      {/* Search & Stats Bar */}
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <div className="relative max-w-md flex-1">
-          <Search className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-slate-400" />
+      {/* Top Controls: Search, View Mode, Clear */}
+      <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+        {/* Search Input Box */}
+        <div className="relative flex-1">
+          <Search className="pointer-events-none absolute top-1/2 left-3.5 size-4 -translate-y-1/2 text-[#0056FF]" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search Material A-Z terms, concepts, tokens..."
-            className="w-full rounded-xl border border-[#CAD3F5] bg-[#EFF5FF]/40 py-2 pr-9 pl-9 font-sans text-xs text-[#0A1A4A] transition-all placeholder:text-slate-400 focus:border-[#0056FF] focus:bg-white focus:outline-hidden"
+            placeholder="Search Material A-Z terms, concepts, tokens, or definitions..."
+            className="w-full rounded-xl border border-[#CAD3F5] bg-[#EFF5FF]/40 py-2.5 pr-10 pl-10 font-sans text-xs text-[#0A1A4A] transition-all placeholder:text-slate-400 focus:border-[#0056FF] focus:bg-white focus:outline-hidden"
           />
           {searchQuery && (
             <button
               type="button"
               onClick={() => setSearchQuery('')}
-              className="absolute top-1/2 right-2.5 -translate-y-1/2 text-xs font-bold text-slate-400 hover:text-[#0056FF]"
+              className="absolute top-1/2 right-3 -translate-y-1/2 cursor-pointer rounded-md p-1 font-mono text-xs font-bold text-slate-400 hover:text-[#0056FF]"
             >
               Clear
             </button>
           )}
         </div>
 
-        {/* Count Pill */}
+        {/* View Mode Switcher & Reset */}
         <div className="flex items-center gap-2">
-          <span className="rounded-lg border border-[#CAD3F5] bg-[#EFF5FF] px-2.5 py-1 font-mono text-xs font-bold text-[#0056FF]">
-            {filteredTerms.length} of {MATERIAL_GLOSSARY_TERMS.length} Terms
-          </span>
+          {hasActiveFilters && (
+            <button
+              type="button"
+              onClick={handleResetFilters}
+              className="flex cursor-pointer items-center gap-1.5 rounded-lg border border-[#CAD3F5] bg-white px-3 py-2 font-mono text-xs font-semibold text-[#0056FF] transition-all hover:bg-[#EFF5FF]"
+            >
+              <RotateCcw className="size-3.5" />
+              <span>Reset</span>
+            </button>
+          )}
+
+          {/* Segmented View Mode Toggle */}
+          <div className="inline-flex rounded-xl border border-[#CAD3F5] bg-[#EFF5FF]/60 p-1">
+            <button
+              type="button"
+              onClick={() => setViewMode('lexicon')}
+              className={cn(
+                'flex cursor-pointer items-center gap-1.5 rounded-lg px-3 py-1.5 font-sans text-xs font-semibold transition-all',
+                viewMode === 'lexicon'
+                  ? 'bg-[#0056FF] text-white shadow-xs'
+                  : 'text-[#0A1A4A] hover:bg-white/60 hover:text-[#0056FF]',
+              )}
+            >
+              <List className="size-3.5" />
+              <span>Lexicon</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setViewMode('grid')}
+              className={cn(
+                'flex cursor-pointer items-center gap-1.5 rounded-lg px-3 py-1.5 font-sans text-xs font-semibold transition-all',
+                viewMode === 'grid'
+                  ? 'bg-[#0056FF] text-white shadow-xs'
+                  : 'text-[#0A1A4A] hover:bg-white/60 hover:text-[#0056FF]',
+              )}
+            >
+              <Grid2x2 className="size-3.5" />
+              <span>Cards</span>
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* Category Pills with Counts */}
+      {/* Domain Category Filter Pills */}
       <div className="flex flex-wrap items-center gap-1.5">
         <span className="mr-1 flex items-center gap-1 font-mono text-[11px] font-bold text-slate-500 uppercase">
-          <Filter className="size-3" />
+          <Filter className="size-3 text-[#0056FF]" />
           Domain:
         </span>
         {CATEGORIES.map((cat) => {
           const isActive = selectedCategory === cat;
-          const count = categoryCounts[cat] ?? 0;
           return (
             <button
               key={cat}
               type="button"
               onClick={() => setSelectedCategory(cat)}
               className={cn(
-                'flex cursor-pointer items-center gap-1.5 rounded-lg px-2.5 py-1.5 font-sans text-xs font-semibold transition-all',
+                'cursor-pointer rounded-lg px-3 py-1.5 font-sans text-xs font-semibold transition-all',
                 isActive
-                  ? 'bg-[#0056FF] text-white shadow-2xs'
-                  : 'border border-[#CAD3F5] bg-white text-[#0A1A4A] hover:bg-[#EFF5FF]',
+                  ? 'bg-[#0056FF] text-white shadow-xs'
+                  : 'border border-[#CAD3F5] bg-white text-[#0A1A4A] hover:border-[#0056FF]/40 hover:bg-[#EFF5FF]',
               )}
             >
-              <span>{cat}</span>
-              <span
-                className={cn(
-                  'py-0.2 rounded px-1 font-mono text-[10px]',
-                  isActive ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-500',
-                )}
-              >
-                {count}
-              </span>
+              {cat}
             </button>
           );
         })}
       </div>
 
-      {/* Touch-Friendly Alphabet Horizontal Ribbon */}
-      <div className="flex items-center gap-1.5 rounded-xl border border-[#CAD3F5] bg-[#F8FAFC] p-2 text-xs">
+      {/* Touch-Friendly Alphabet Jump Strip */}
+      <div className="flex items-center gap-2 rounded-xl border border-[#CAD3F5] bg-[#F8FAFC] p-2 text-xs">
         <span className="mr-1 hidden font-mono text-[10px] font-bold text-slate-500 uppercase sm:inline-block">
-          Jump:
+          Index:
         </span>
         <div className="flex flex-1 items-center gap-1 overflow-x-auto py-0.5">
           {LETTERS.map((letter) => {
@@ -1019,12 +1061,12 @@ export function MaterialGlossarySection() {
                 disabled={!hasTerms}
                 onClick={() => setSelectedLetter(letter)}
                 className={cn(
-                  'flex h-7 min-w-[28px] cursor-pointer items-center justify-center rounded-md px-1.5 font-mono text-xs font-bold transition-all',
+                  'flex h-7 min-w-[28px] cursor-pointer items-center justify-center rounded-lg px-1.5 font-mono text-xs font-bold transition-all',
                   isActive
                     ? 'bg-[#0056FF] text-white shadow-xs'
                     : hasTerms
-                      ? 'border border-[#CAD3F5] bg-white text-[#0A1A4A] hover:bg-[#EFF5FF] hover:text-[#0056FF]'
-                      : 'cursor-not-allowed border border-slate-200 bg-slate-100 text-slate-300',
+                      ? 'border border-[#CAD3F5] bg-white text-[#0A1A4A] hover:border-[#0056FF]/50 hover:bg-[#EFF5FF] hover:text-[#0056FF]'
+                      : 'cursor-not-allowed border border-transparent bg-transparent text-slate-300',
                 )}
               >
                 {letter}
@@ -1036,82 +1078,206 @@ export function MaterialGlossarySection() {
           <button
             type="button"
             onClick={() => setSelectedLetter('ALL')}
-            className="cursor-pointer rounded-md border border-[#CAD3F5] bg-white px-2 py-1 font-mono text-[10px] font-bold text-[#0056FF] hover:bg-[#EFF5FF]"
+            className="cursor-pointer rounded-lg border border-[#CAD3F5] bg-white px-2.5 py-1 font-mono text-[11px] font-bold text-[#0056FF] transition-all hover:bg-[#EFF5FF]"
           >
-            Reset
+            All Letters
           </button>
         )}
       </div>
 
-      {/* Terms Card Grid */}
+      {/* Content Rendering: Empty State vs Lexicon vs Grid */}
       {filteredTerms.length === 0 ? (
-        <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-[#CAD3F5] p-12 text-center">
-          <BookOpen className="mb-2 size-8 text-slate-400" />
-          <h4 className="font-sans text-sm font-bold text-[#0A1A4A]">No matching terms found</h4>
-          <p className="mt-1 font-sans text-xs text-slate-500">
-            Try adjusting your search query, letter filter, or category.
+        <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-[#CAD3F5] bg-[#EFF5FF]/30 p-12 text-center">
+          <BookOpen className="mb-3 size-9 text-[#0056FF]" />
+          <h4 className="font-sans text-base font-bold text-[#0A1A4A]">No matching terms found</h4>
+          <p className="mt-1 max-w-sm font-sans text-xs leading-relaxed text-slate-500">
+            No glossary entries match your active query or filters. Try adjusting your search keywords, letter index, or category filter.
           </p>
           <button
             type="button"
-            onClick={() => {
-              setSearchQuery('');
-              setSelectedCategory('All');
-              setSelectedLetter('ALL');
-            }}
-            className="mt-4 rounded-lg bg-[#0056FF] px-3.5 py-1.5 font-mono text-xs font-bold text-white hover:bg-[#2277FF]"
+            onClick={handleResetFilters}
+            className="mt-4 inline-flex cursor-pointer items-center gap-1.5 rounded-lg bg-[#0056FF] px-4 py-2 font-mono text-xs font-bold text-white transition-all hover:bg-[#2277FF]"
           >
-            Reset All Filters
+            <RotateCcw className="size-3.5" />
+            <span>Reset All Filters</span>
           </button>
         </div>
+      ) : viewMode === 'lexicon' ? (
+        <div className="space-y-8">
+          {groupedByLetter.map(([letter, terms]) => (
+            <div key={letter} className="space-y-4">
+              {/* Letter Section Header */}
+              <div className="flex items-center gap-3 border-b-2 border-[#CAD3F5] pb-2">
+                <span className="flex size-8 items-center justify-center rounded-xl bg-[#0056FF] font-mono text-sm font-black text-white shadow-2xs">
+                  {letter}
+                </span>
+                <span className="font-mono text-xs font-bold tracking-wider text-slate-500 uppercase">
+                  Letter {letter}
+                </span>
+              </div>
+
+              {/* Terms List */}
+              <div className="divide-y divide-slate-100 rounded-2xl border border-[#CAD3F5] bg-white">
+                {terms.map((item) => {
+                  const defKey = `def-${item.term}`;
+                  const tokenKey = `token-${item.term}`;
+                  const isDefCopied = copiedKey === defKey;
+                  const isTokenCopied = copiedKey === tokenKey;
+
+                  return (
+                    <div
+                      key={item.term}
+                      className="group flex flex-col justify-between gap-4 p-5 transition-colors hover:bg-[#EFF5FF]/30 sm:flex-row sm:items-start"
+                    >
+                      {/* Term Info */}
+                      <div className="flex-1 space-y-2">
+                        <div className="flex flex-wrap items-center gap-2.5">
+                          <h4 className="font-sans text-base font-bold tracking-tight text-[#0A1A4A]">
+                            {item.term}
+                          </h4>
+                          <span className="rounded-full border border-[#CAD3F5] bg-[#EFF5FF] px-2.5 py-0.5 font-mono text-[10px] font-bold text-[#0056FF]">
+                            {item.category}
+                          </span>
+                        </div>
+
+                        <p className="font-sans text-xs leading-relaxed text-[#334155] sm:text-sm">
+                          {item.definition}
+                        </p>
+
+                        {/* Code / Token Snippet */}
+                        {item.codeOrToken && (
+                          <div className="mt-2 flex flex-wrap items-center gap-2">
+                            <div className="inline-flex max-w-full items-center gap-1.5 rounded-lg border border-[#CAD3F5] bg-[#EFF5FF]/60 px-2.5 py-1 font-mono text-xs text-[#0056FF]">
+                              <Code className="size-3 shrink-0 text-[#0056FF]" />
+                              <code className="truncate">{item.codeOrToken}</code>
+                            </div>
+                            <button
+                              type="button"
+                              onClick={() => handleCopy(item.codeOrToken!, tokenKey)}
+                              className="flex cursor-pointer items-center gap-1 font-mono text-[11px] font-semibold text-slate-500 transition-colors hover:text-[#0056FF]"
+                            >
+                              {isTokenCopied ? (
+                                <>
+                                  <Check className="size-3 text-emerald-600" />
+                                  <span className="text-emerald-600">Copied</span>
+                                </>
+                              ) : (
+                                <>
+                                  <Copy className="size-3" />
+                                  <span>Copy Token</span>
+                                </>
+                              )}
+                            </button>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Right Action: Copy Definition */}
+                      <div className="shrink-0 pt-1">
+                        <button
+                          type="button"
+                          onClick={() =>
+                            handleCopy(`${item.term}: ${item.definition}`, defKey)
+                          }
+                          className="flex cursor-pointer items-center gap-1.5 rounded-lg border border-[#CAD3F5] bg-white px-3 py-1.5 font-mono text-xs font-semibold text-[#0A1A4A] transition-all hover:border-[#0056FF] hover:bg-[#EFF5FF] hover:text-[#0056FF]"
+                        >
+                          {isDefCopied ? (
+                            <>
+                              <Check className="size-3.5 text-emerald-600" />
+                              <span className="text-emerald-600">Copied</span>
+                            </>
+                          ) : (
+                            <>
+                              <Copy className="size-3.5 text-slate-400 group-hover:text-[#0056FF]" />
+                              <span>Copy Definition</span>
+                            </>
+                          )}
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
+        </div>
       ) : (
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+        <div
+          className={cn(
+            'grid gap-4.5',
+            filteredTerms.length === 1
+              ? 'max-w-xl mx-auto w-full'
+              : filteredTerms.length === 2
+                ? 'grid-cols-1 md:grid-cols-2 max-w-3xl mx-auto w-full'
+                : 'grid-cols-1 md:grid-cols-2 xl:grid-cols-3',
+          )}
+        >
           {filteredTerms.map((item) => {
-            const isCopied = copiedTerm === item.term;
+            const defKey = `def-${item.term}`;
+            const tokenKey = `token-${item.term}`;
+            const isDefCopied = copiedKey === defKey;
+            const isTokenCopied = copiedKey === tokenKey;
+
             return (
               <div
                 key={item.term}
-                className="group relative flex flex-col justify-between rounded-xl border border-[#CAD3F5] bg-white p-4 shadow-2xs transition-all hover:border-[#0056FF]/60 hover:shadow-xs"
+                className="group relative flex flex-col justify-between rounded-2xl border border-[#CAD3F5] bg-white p-5 shadow-2xs transition-all hover:border-[#0056FF]/60 hover:shadow-xs"
               >
-                <div className="space-y-2">
+                <div className="space-y-3">
                   {/* Top Header: Letter Tag + Category Badge */}
                   <div className="flex items-center justify-between">
-                    <span className="flex size-6 items-center justify-center rounded bg-[#0056FF] font-mono text-xs font-black text-white">
+                    <span className="flex size-7 items-center justify-center rounded-lg bg-[#0056FF] font-mono text-xs font-black text-white shadow-2xs">
                       {item.letter}
                     </span>
-                    <span className="rounded border border-[#CAD3F5] bg-[#EFF5FF] px-2 py-0.5 font-mono text-[10px] font-bold text-[#0056FF]">
+                    <span className="rounded-full border border-[#CAD3F5] bg-[#EFF5FF] px-2.5 py-0.5 font-mono text-[10px] font-bold text-[#0056FF]">
                       {item.category}
                     </span>
                   </div>
 
                   {/* Term Title */}
-                  <h4 className="font-sans text-sm font-black text-[#0A1A4A]">{item.term}</h4>
+                  <h4 className="font-sans text-base font-bold tracking-tight text-[#0A1A4A]">
+                    {item.term}
+                  </h4>
 
                   {/* Definition */}
-                  <p className="font-sans text-xs leading-relaxed text-slate-600">
+                  <p className="font-sans text-xs leading-relaxed text-[#334155] sm:text-sm">
                     {item.definition}
                   </p>
 
                   {/* Code / Token Snippet */}
                   {item.codeOrToken && (
-                    <div className="mt-2 rounded border border-slate-200 bg-slate-50 p-2">
-                      <code className="block font-mono text-[10px] break-all text-[#0056FF]">
-                        {item.codeOrToken}
-                      </code>
+                    <div className="mt-2 rounded-xl border border-[#CAD3F5] bg-[#EFF5FF]/50 p-2.5">
+                      <div className="flex items-center justify-between gap-2">
+                        <code className="font-mono text-[11px] break-all text-[#0056FF]">
+                          {item.codeOrToken}
+                        </code>
+                        <button
+                          type="button"
+                          onClick={() => handleCopy(item.codeOrToken!, tokenKey)}
+                          title="Copy token"
+                          className="shrink-0 cursor-pointer p-1 text-slate-400 hover:text-[#0056FF]"
+                        >
+                          {isTokenCopied ? (
+                            <Check className="size-3 text-emerald-600" />
+                          ) : (
+                            <Copy className="size-3" />
+                          )}
+                        </button>
+                      </div>
                     </div>
                   )}
                 </div>
 
                 {/* Bottom Action: Copy Definition */}
-                <div className="mt-4 flex items-center justify-end border-t border-slate-100 pt-2.5">
+                <div className="mt-4 flex items-center justify-end border-t border-slate-100 pt-3">
                   <button
                     type="button"
-                    title={`Copy definition for ${item.term}`}
-                    onClick={() => handleCopyDefinition(item)}
-                    className="flex cursor-pointer items-center gap-1.5 font-mono text-[11px] font-bold text-slate-500 transition-colors hover:text-[#0056FF]"
+                    onClick={() => handleCopy(`${item.term}: ${item.definition}`, defKey)}
+                    className="flex cursor-pointer items-center gap-1.5 font-mono text-xs font-semibold text-slate-500 transition-colors hover:text-[#0056FF]"
                   >
-                    {isCopied ? (
+                    {isDefCopied ? (
                       <>
-                        <Check className="size-3.5 stroke-[2.5] text-emerald-600" />
+                        <Check className="size-3.5 text-emerald-600" />
                         <span className="text-emerald-600">Copied</span>
                       </>
                     ) : (
