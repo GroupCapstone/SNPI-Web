@@ -1,0 +1,10 @@
+{
+  "name": "@snp/eslint-config",
+  "version": "0.2.7",
+  "private": true,
+  "main": "index.mjs",
+  "type": "module",
+  "files": [
+    "index.mjs"
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "owasp-api-top-10": "OWASP API Top 10",
+  "jwt-best-practices": "JWT & Token Hygiene",
+  "asvs-verification": "ASVS 4.0 Verification",
+  "rbac": "RBAC & Scopes"
+}

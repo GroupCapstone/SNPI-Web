@@ -1,0 +1,696 @@
+================================================================================
+SMART SCHOOL ENTERPRISE ARCHITECTURE, DEVELOPMENT ENVIRONMENT & AGENT SKILL RULES
+================================================================================
+Document Type   : Authoritative Architecture Specification, Dev Guide & Agent Rules
+Target Platform : Enterprise Smart School System (SMS / LMS / SIS / Control Center)
+Primary Backend : Spring Boot 3.3+ (Java 21 LTS / Project Loom Virtual Threads)
+Cloud Database  : Neon Serverless PostgreSQL 16+ (SSL, Row-Level Security, Multi-Branch)
+Event Backbone  : Apache Kafka (KRaft Mode, Idempotent Producers, At-Least-Once)
+Testing Harness : Postman (Collections, Environments, JWT Auto-Extraction)
+Client Bridges  : Next.js 15+ (Web Portal) & Android Jetpack Compose (Mobile App)
+Institutional   : Super Admin, Admin, Accountant, Receptionist, Teacher, Librarian,
+Roles Covered     Parent, Student
+================================================================================
+
+TABLE OF CONTENTS:
+--------------------------------------------------------------------------------
+1. CORE ARCHITECTURAL PHILOSOPHY & DESIGN DIRECTIVES
+2. AGENT SKILL RULES & CODING STANDARDS ("VIBE CODE READY")
+3. COMPLETE INSTITUTIONAL ROLES & ACCESS CONTROL MATRIX (RBAC / ABAC)
+4. FULL MICROSERVICE DECOMPOSITION & RESPONSIBILITIES
+5. COMPLETE REST API SPECIFICATION (ENDPOINTS, INPUTS, OUTPUTS, STATUS CODES)
+6. CANONICAL APACHE KAFKA EVENT ENVELOPE & TOPIC TOPOLOGY
+7. NEON SERVERLESS POSTGRESQL CONFIGURATION & ROW-LEVEL SECURITY (RLS)
+8. STEP-BY-STEP MACOS DEVELOPMENT ENVIRONMENT SETUP GUIDE
+9. POSTMAN ENVIRONMENT, PRE-REQUEST SCRIPTS & AUTOMATED TEST SUITE
+10. DISTRIBUTED RELIABILITY: OUTBOX PATTERN, SAGA TRANSACTIONS & DLQ
+================================================================================
+
+
+--------------------------------------------------------------------------------
+SECTION 1: CORE ARCHITECTURAL PHILOSOPHY & DESIGN DIRECTIVES
+--------------------------------------------------------------------------------
+
+1.1 THE SYNCHRONOUS-TO-ASYNCHRONOUS BRIDGE
+- Client applications (Web browsers, mobile devices, IoT turnstiles, biometric gates)
+  require deterministic, rapid responses (< 100ms for web, < 15ms for IoT hardware).
+- Traditional systems couple the web request with third-party telco SMS gateways,
+  heavy analytics calculations, and distributed database writes. Under peak traffic
+  (07:00 AM - 07:45 AM morning gate rush), this causes thread pool exhaustion and
+  HTTP 504 Gateway Timeouts.
+- Architectural Mandate: The API Gateway and Ingress Controllers accept high-throughput
+  commands, validate schemas and authentication, persist to a local Transactional
+  Outbox, publish an immutable event to Apache Kafka, and IMMEDIATELY return
+  "HTTP 202 Accepted" containing a tracking ID.
+- Downstream workers consume the Kafka log asynchronously to perform SMS dispatch,
+  parent mobile push notifications, GPA re-calculations, and ledger balancing.
+
+1.2 MULTI-BRANCH TENANT ISOLATION
+- The architecture is inherently hierarchical:
+    Organization / District -> School Tenant -> Physical Campus / Branch.
+- Every incoming HTTP request MUST supply the target branch context either through
+  a verified JWT claim or an "X-Branch-ID" header.
+- PostgreSQL Row-Level Security (RLS) guarantees at the database engine level that
+  staff at Branch A cannot read or modify student records from Branch B.
+
+1.3 VIRTUAL THREADS (PROJECT LOOM)
+- The Spring Boot engine MUST run on Java 21+ with "spring.threads.virtual.enabled=true".
+- Every Tomcat HTTP connection executes on a lightweight virtual thread, enabling
+  tens of thousands of concurrent I/O requests with minimal memory footprint.
+
+
+--------------------------------------------------------------------------------
+SECTION 2: AGENT SKILL RULES & CODING STANDARDS ("VIBE CODE READY")
+--------------------------------------------------------------------------------
+
+When any AI coding assistant or engineer generates or modifies code for this
+codebase, the following immutable directives MUST be followed:
+
+[RULE 01] ZERO RAW CONTROLLER QUERIES:
+- Controllers must ONLY validate inputs, extract security headers, and delegate to
+  Command or Query service layers. No JPA logic in Controllers.
+
+[RULE 02] MANDATORY KAFKA EVENT ENVELOPE:
+- Every event published to Kafka MUST wrap its payload in the standardized
+  "EventEnvelope<T>" containing eventId, eventType, tenantId, branchId,
+  correlationId, and timestamp. Never publish raw, un-enveloped JSON payloads.
+
+[RULE 03] STRICT PARTITION KEY STRATEGY:
+- Never publish Kafka messages with null keys. Always use natural domain keys:
+    Attendance Events : "{branchId}#{studentId}"
+    Academic Grading  : "{branchId}#{courseId}#{studentId}"
+    Finance / Billing : "{tenantId}#{studentId}"
+  This ensures strict chronological event ordering at the partition level.
+
+[RULE 04] ZERO DIRECT DUAL-WRITES:
+- When an operation requires both a database update and a Kafka event publication,
+  use the Transactional Outbox pattern or write to Kafka with "acks=all" and
+  "enable.idempotence=true". Never assume an HTTP write and Kafka send succeed
+  together without transactional encapsulation.
+
+[RULE 05] TYPE SAFETY & CONSTANT TOKENS:
+- Never use magic strings for user roles, attendance states, or event types.
+  Always use Java Enums or strongly typed constant interfaces.
+
+[RULE 06] CLEAN CONTEXT CLEANUP:
+- Any ThreadLocal storage (such as TenantBranchContext) MUST be cleared in a
+  "finally" block within filters or interceptors to prevent memory leaks and
+  cross-tenant pollution across thread pools.
+
+[RULE 07] RESILIENCE & DEAD-LETTER QUEUES (DLQ):
+- All Kafka consumers must configure error handlers with exponential backoff.
+  Poison-pill messages that fail after 3 retries must be routed to a ".dlq" topic
+  and never crash the consumer loop.
+
+
+--------------------------------------------------------------------------------
+SECTION 3: COMPLETE INSTITUTIONAL ROLES & ACCESS CONTROL MATRIX (RBAC / ABAC)
+--------------------------------------------------------------------------------
+
+The platform defines 6 administrative and academic staff roles, plus 2 consumer roles:
+
+1. SUPER_ADMIN (Platform Governor)
+   - Scope: Universal (Cross-tenant, Cross-branch).
+   - Bypasses PostgreSQL Row-Level Security via session flag "app.bypass_rls = true".
+   - Permissions: Provision new schools, create branches, assign Deans, audit system logs,
+     configure global billing policies, view cross-campus analytics.
+
+2. ADMIN (Campus Dean / Principal)
+   - Scope: Assigned Branch Only.
+   - Permissions: Manage campus teachers, librarians, receptionists, accountants;
+     approve student leave requests; view campus-wide attendance and academic standing;
+     broadcast campus-wide emergency notifications.
+
+3. ACCOUNTANT (Finance Officer)
+   - Scope: Assigned Branch Only.
+   - Permissions: Configure tuition fee masters, generate batch student invoices,
+     record manual cash/bank payments, view due fees, issue receipts, reconcile
+     online payment gateway transactions, manage expense categories.
+   - Prohibited: Modifying student grades, taking attendance, or editing curriculum.
+
+4. RECEPTIONIST (Front Desk Officer)
+   - Scope: Assigned Branch Only.
+   - Permissions: Manage visitor logs, phone call records, postal dispatch/receive,
+     admission inquiries, issue visitor badges and gate security passes.
+   - Prohibited: Financial transactions, grading, and curriculum modification.
+
+5. TEACHER (Academic Instructor)
+   - Scope: Assigned Classes and Assigned Branch Only.
+   - Permissions: Take classroom attendance (roll call), submit assignment scores,
+     enter midterm/final exam marks, view class rosters, issue behavioral incidents.
+   - Prohibited: Accessing tuition fee ledgers or issuing books in the library.
+
+6. LIBRARIAN (Media & Resource Officer)
+   - Scope: Assigned Branch Only.
+   - Permissions: Manage book catalog, index ISBNs, record book issues and returns,
+     track student library cards, compute and record overdue library fines.
+   - Prohibited: Modifying grades or accessing institutional accounting.
+
+7. PARENT (Guardian / Consumer)
+   - Scope: Own Children Only.
+   - Permissions: View real-time check-in/out attendance timeline, view published
+     report cards, pay pending tuition invoices via mobile app, receive SMS alerts.
+
+8. STUDENT (Learner / Consumer)
+   - Scope: Own Identity Only.
+   - Permissions: View timetable, class schedule, homework assignments, library
+     borrowing history, and digital student ID badge.
+
+
+--------------------------------------------------------------------------------
+SECTION 4: FULL MICROSERVICE DECOMPOSITION & RESPONSIBILITIES
+--------------------------------------------------------------------------------
+
++----------------------+-------------------------------------------------------+
+| Microservice Name    | Core Responsibilities & Boundaries                   |
++----------------------+-------------------------------------------------------+
+| 1. API Gateway       | - Edge TLS termination                                |
+|    (Ingress Boundary)| - Asymmetric JWT signature verification (JWKS)       |
+|                      | - Header propagation (X-User-ID, X-Branch-ID)         |
+|                      | - Redis-backed rate limiting (Token Bucket)           |
+|                      | - Path routing to downstream microservices            |
++----------------------+-------------------------------------------------------+
+| 2. Identity & Auth   | - User authentication (Email + Password + Branch)     |
+|    Service           | - Asymmetric RSA key-pair generation (RS256)          |
+|                      | - JWKS endpoint (/api/v1/auth/jwks.json)              |
+|                      | - User lifecycle (Staff onboarding, deactivation)     |
+|                      | - Refresh token rotation & revocation                 |
++----------------------+-------------------------------------------------------+
+| 3. Attendance & IoT  | - High-velocity scan ingestion (RFID, QR, Biometric)  |
+|    Ingress Service   | - Instant evaluation of ON_TIME vs. LATE rules        |
+|                      | - Immediate HTTP 202 Accepted response (< 10ms)       |
+|                      | - High-throughput Kafka producer with partition keys  |
+|                      | - Query endpoint for daily campus headcount summaries |
++----------------------+-------------------------------------------------------+
+| 4. Academic Core     | - Student Information System (SIS) records            |
+|    (SIS / LMS)       | - Class sections, student rosters, courses, syllabus  |
+|                      | - Gradebook engine, marks entry, GPA calculations     |
+|                      | - Publishes academic.grades.published events to Kafka |
++----------------------+-------------------------------------------------------+
+| 5. Finance & Billing | - Tuition fee structure & fee discount groups         |
+|    Service           | - Batch invoice generation for academic sessions      |
+|                      | - Payment gateway webhook handling (ABA, Stripe, etc.)|
+|                      | - Payment saga orchestration & ledger balancing       |
++----------------------+-------------------------------------------------------+
+| 6. Front Office Desk | - Visitor logbooks, gate pass generation              |
+|    Service           | - Admission inquiry pipeline & phone call records     |
+|                      | - Postal dispatch and receipt tracking                |
++----------------------+-------------------------------------------------------+
+| 7. Library Resource  | - Book cataloging (Title, Author, ISBN, Rack No.)     |
+|    Service           | - Book issue & return tracking                        |
+|                      | - Overdue fine calculations                           |
++----------------------+-------------------------------------------------------+
+| 8. Notification &    | - Pure asynchronous event consumer                    |
+|    Dispatcher Service| - Consumes attendance, grading, and payment events    |
+|                      | - Dispatches Firebase Cloud Messaging (FCM) pushes    |
+|                      | - Dispatches SMS via telecom carrier aggregators      |
++----------------------+-------------------------------------------------------+
+
+
+--------------------------------------------------------------------------------
+SECTION 5: COMPLETE REST API SPECIFICATION
+--------------------------------------------------------------------------------
+
+================================================================================
+SERVICE: IDENTITY & AUTH SERVICE
+================================================================================
+
+1. Sign In (Authentication)
+   POST /api/v1/auth/login
+   Public Access
+   Request Body:
+   {
+     "email": "accountant@school.edu",
+     "password": "SecurePassword2026!",
+     "branchCode": "PPH-01"
+   }
+   Response (200 OK):
+   {
+     "success": true,
+     "data": {
+       "accessToken": "eyJhbGciOiJSUzI1NiIs...",
+       "refreshToken": "d8f34a10-8911-...",
+       "expiresIn": 3600,
+       "user": {
+         "id": "usr_acc_001",
+         "email": "accountant@school.edu",
+         "fullName": "Sokha Meng",
+         "role": "ACCOUNTANT",
+         "branchId": "brn_phnom_penh"
+       }
+     }
+   }
+
+2. Refresh Token
+   POST /api/v1/auth/refresh
+   Public Access
+   Request Body:
+   {
+     "refreshToken": "d8f34a10-8911-..."
+   }
+   Response (200 OK): Returns new accessToken and refreshToken.
+
+3. Cryptographic Public Keys (JWKS)
+   GET /api/v1/auth/jwks.json
+   Public / Internal Gateway Access
+   Response (200 OK): Standard RFC 7517 JSON Web Key Set.
+
+4. Create Staff Account
+   POST /api/v1/auth/users
+   Roles Allowed: SUPER_ADMIN, ADMIN
+   Request Body:
+   {
+     "email": "librarian@school.edu",
+     "fullName": "Bopha Pich",
+     "role": "LIBRARIAN",
+     "branchId": "brn_phnom_penh",
+     "temporaryPassword": "InitPass2026!"
+   }
+   Response (201 Created)
+
+================================================================================
+SERVICE: ATTENDANCE & IOT INGRESS SERVICE
+================================================================================
+
+1. Record Gate Scan (Async Ingress Bridge)
+   POST /api/v1/attendance/scans
+   Roles Allowed: IOT_GATE, TEACHER, ADMIN
+   Headers:
+     X-Branch-ID: brn_phnom_penh
+     X-Correlation-ID: scan-req-991204
+   Request Body:
+   {
+     "studentId": "STU-2026-001",
+     "scanMethod": "RFID_TURNSTILE_GATE_1",
+     "deviceId": "TURNSTILE_EAST",
+     "scanTimestamp": "2026-09-12T07:22:15Z"
+   }
+   Response (202 Accepted) - Execution Time < 10ms:
+   {
+     "success": true,
+     "data": {
+       "trackingId": "scan-req-991204",
+       "status": "ACCEPTED",
+       "branchId": "brn_phnom_penh",
+       "studentId": "STU-2026-001",
+       "timestamp": "2026-09-12T07:22:15.012Z"
+     },
+     "message": "Attendance scan received and queued for asynchronous processing."
+   }
+
+2. Get Daily Campus Attendance Summary
+   GET /api/v1/attendance/daily-summary?date=2026-09-12
+   Roles Allowed: SUPER_ADMIN, ADMIN, DEAN
+   Headers: X-Branch-ID: brn_phnom_penh
+   Response (200 OK):
+   {
+     "success": true,
+     "data": {
+       "date": "2026-09-12",
+       "totalEnrolled": 1240,
+       "presentCount": 1165,
+       "lateCount": 42,
+       "absentCount": 33,
+       "presentPercentage": 93.95
+     }
+   }
+
+3. Student Attendance History
+   GET /api/v1/attendance/student/{studentId}/history?month=09&year=2026
+   Roles Allowed: ADMIN, TEACHER, PARENT (own child), STUDENT (self)
+   Response (200 OK): Array of daily attendance records.
+
+================================================================================
+SERVICE: ACADEMIC CORE (SIS / LMS)
+================================================================================
+
+1. Enroll Student
+   POST /api/v1/academic/students/enroll
+   Roles Allowed: SUPER_ADMIN, ADMIN
+   Headers: X-Branch-ID: brn_phnom_penh
+   Request Body:
+   {
+     "firstName": "Vannak",
+     "lastName": "Sok",
+     "currentGradeLevel": "Grade 10",
+     "currentSection": "A",
+     "rfidBadgeUid": "RFID-A1-8842",
+     "guardianEmail": "parent.sok@gmail.com",
+     "guardianPhone": "+85512888999"
+   }
+   Response (201 Created): Returns allocated studentId "STU-2026-001".
+
+2. Get Classroom Roster
+   GET /api/v1/academic/sections/{sectionId}/roster
+   Roles Allowed: ADMIN, TEACHER
+   Response (200 OK): List of enrolled students in the section.
+
+3. Submit Term Exam Grades (Batch)
+   POST /api/v1/academic/grades/batch-submit
+   Roles Allowed: TEACHER, ADMIN
+   Headers: X-Branch-ID: brn_phnom_penh
+   Request Body:
+   {
+     "courseId": "CRS-MATH-10",
+     "sectionId": "SEC-10A",
+     "term": "Term 1",
+     "grades": [
+       { "studentId": "STU-2026-001", "score": 92.5, "maxScore": 100, "remarks": "Excellent" },
+       { "studentId": "STU-2026-002", "score": 78.0, "maxScore": 100, "remarks": "Good effort" }
+     ]
+   }
+   Response (200 OK): Saves records and publishes "academic.grades.published" to Kafka.
+
+================================================================================
+SERVICE: FINANCE & BILLING SERVICE
+================================================================================
+
+1. Generate Term Invoices (Batch)
+   POST /api/v1/finance/invoices/generate-batch
+   Roles Allowed: SUPER_ADMIN, ACCOUNTANT
+   Headers: X-Branch-ID: brn_phnom_penh
+   Request Body:
+   {
+     "academicYear": "2026-2027",
+     "term": "Term 1",
+     "gradeLevel": "Grade 10",
+     "dueDate": "2026-10-15"
+   }
+   Response (202 Accepted): Triggers asynchronous invoice generation job.
+
+2. Get Student Invoices & Fee Ledger
+   GET /api/v1/finance/students/{studentId}/invoices
+   Roles Allowed: SUPER_ADMIN, ACCOUNTANT, PARENT (own child)
+   Response (200 OK): List of paid, pending, and overdue fee invoices.
+
+3. Payment Gateway Webhook Ingress
+   POST /api/v1/finance/payments/webhook
+   Allowed: Payment Provider / Webhook Gateway (Signature Verified)
+   Request Body:
+   {
+     "transactionId": "TXN_ABA_99812401",
+     "invoiceId": "INV-2026-00412",
+     "amount": 450.00,
+     "currency": "USD",
+     "paymentMethod": "ABA_PAYWAY",
+     "signature": "3f8a9b2c..."
+   }
+   Response (200 OK): Reconciles invoice and publishes "finance.payment.completed".
+
+================================================================================
+SERVICE: FRONT OFFICE & DESK MANAGEMENT
+================================================================================
+
+1. Record Visitor Check-In
+   POST /api/v1/front-office/visitors
+   Roles Allowed: RECEPTIONIST, ADMIN
+   Headers: X-Branch-ID: brn_phnom_penh
+   Request Body:
+   {
+     "visitorName": "John Doe",
+     "nationalId": "ID-9921441",
+     "phoneNumber": "+85592111222",
+     "purposeOfVisit": "Parent-Teacher Inquiry",
+     "visitingStaffId": "usr_teach_004"
+   }
+   Response (201 Created): Generates visitor badge number "VIS-2026-089".
+
+2. Record Admission Inquiry
+   POST /api/v1/front-office/admissions/enquiry
+   Roles Allowed: RECEPTIONIST, ADMIN
+   Response (201 Created): Logs contact details and creates follow-up reminder.
+
+================================================================================
+SERVICE: LIBRARY RESOURCE MANAGEMENT
+================================================================================
+
+1. Index New Book Catalog Item
+   POST /api/v1/library/books
+   Roles Allowed: LIBRARIAN, ADMIN
+   Headers: X-Branch-ID: brn_phnom_penh
+   Request Body:
+   {
+     "isbn": "978-0134685991",
+     "title": "Effective Java (3rd Edition)",
+     "author": "Joshua Bloch",
+     "rackNumber": "RACK-CS-04",
+     "totalCopies": 5
+   }
+   Response (201 Created)
+
+2. Issue Book to Student
+   POST /api/v1/library/books/issue
+   Roles Allowed: LIBRARIAN, ADMIN
+   Request Body:
+   {
+     "bookId": "BK-99812",
+     "studentId": "STU-2026-001",
+     "dueDate": "2026-09-26"
+   }
+   Response (200 OK): Records book loan and prints loan slip.
+
+
+--------------------------------------------------------------------------------
+SECTION 6: CANONICAL APACHE KAFKA EVENT ENVELOPE & TOPIC TOPOLOGY
+--------------------------------------------------------------------------------
+
+6.1 CANONICAL EVENT CONTRACT (JSON SCHEMA)
+All topics in this platform adhere strictly to this envelope:
+
+{
+  "metadata": {
+    "eventId": "UUID (v4)",
+    "eventType": "String (e.g., 'school.attendance.student.scanned')",
+    "aggregateType": "String (e.g., 'STUDENT_ATTENDANCE')",
+    "aggregateId": "String (e.g., 'att_88921')",
+    "tenantId": "String (e.g., 'ten_ideai_hq')",
+    "branchId": "String (e.g., 'brn_phnom_penh')",
+    "timestamp": 1789123456789,
+    "correlationId": "String (traceparent or request ID)",
+    "version": "1.0.0"
+  },
+  "payload": {
+    /* Strongly-typed domain data */
+  }
+}
+
+6.2 TOPIC TAXONOMY & PARTITIONING TABLE
+
++----------------------------------+------------+-----------------------+---------------------+
+| Topic Name                       | Partitions | Partition Key         | Producing Service   |
++----------------------------------+------------+-----------------------+---------------------+
+| school.attendance.raw-scans      | 12         | {branchId}#{studentId}| Attendance Service  |
+| school.academic.grades           | 8          | {branchId}#{studentId}| Academic SIS/LMS    |
+| school.finance.payments          | 6          | {tenantId}#{studentId}| Finance Service     |
+| school.identity.user-lifecycle   | 3          | {tenantId}#{userId}   | Auth Service        |
+| school.notifications.sms-outbound| 6          | {branchId}#{recipient}| Notification Svc    |
+| school.attendance.raw-scans.dlq  | 3          | Random / Original Key | Dead Letter Handler |
++----------------------------------+------------+-----------------------+---------------------+
+
+6.3 KAFKA PRODUCER CONFIGURATION DIRECTIVES:
+- acks=all (Requires acknowledgment from all in-sync replicas)
+- enable.idempotence=true (Guarantees no duplicate writes on network retry)
+- retries=2147483647 (Infinite retries until delivery or timeout)
+- max.in.flight.requests.per.connection=5
+- compression.type=zstd (Highest compression ratio under JSON payloads)
+- linger.ms=20 (Batches high-volume morning scans efficiently)
+
+
+--------------------------------------------------------------------------------
+SECTION 7: NEON SERVERLESS POSTGRESQL & ROW-LEVEL SECURITY (RLS)
+--------------------------------------------------------------------------------
+
+7.1 WHY NEON SERVERLESS POSTGRESQL?
+- Zero local Docker / RAM footprint on your computer.
+- Automatic autoscaling and branching for zero-risk schema migrations.
+- Native TLS/SSL encryption enforced via "sslmode=require".
+
+7.2 SPRING BOOT APPLICATION.YML TUNING FOR NEON:
+HikariCP must be configured to support Neon's serverless suspend/resume cycle:
+
+spring:
+  datasource:
+    url: ${NEON_DATABASE_URL} # jdbc:postgresql://ep-...neon.tech/neondb?sslmode=require
+    username: ${NEON_DATABASE_USER}
+    password: ${NEON_DATABASE_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      idle-timeout: 300000        # 5 minutes
+      max-lifetime: 600000        # 10 minutes
+      connection-timeout: 30000   # 30 seconds
+      connection-test-query: SELECT 1
+
+7.3 NATIVE ROW-LEVEL SECURITY (RLS) POLICIES IN POSTGRESQL:
+
+-- Enable RLS on core student and operational tables:
+ALTER TABLE students ENABLE ROW LEVEL SECURITY;
+ALTER TABLE attendance_records ENABLE ROW LEVEL SECURITY;
+
+-- Create Tenant Branch Isolation Policy:
+CREATE POLICY branch_isolation_students ON students
+    FOR ALL
+    TO PUBLIC
+    USING (
+        current_setting('app.bypass_rls', true) = 'true'
+        OR branch_id = current_setting('app.current_branch_id', true)
+    );
+
+CREATE POLICY branch_isolation_attendance ON attendance_records
+    FOR ALL
+    TO PUBLIC
+    USING (
+        current_setting('app.bypass_rls', true) = 'true'
+        OR branch_id = current_setting('app.current_branch_id', true)
+    );
+
+7.4 AUTOMATIC SESSION VARIABLE INJECTION:
+In Spring Boot, an Aspect runs before every repository method:
+entityManager.createNativeQuery("SELECT set_config('app.current_branch_id', :bId, true)")
+             .setParameter("bId", TenantBranchContext.getBranchId())
+             .getSingleResult();
+
+
+--------------------------------------------------------------------------------
+SECTION 8: STEP-BY-STEP MACOS DEVELOPMENT ENVIRONMENT SETUP GUIDE
+--------------------------------------------------------------------------------
+
+Your Mac has: macOS, Java 26 / OpenJDK, Node.js 25.9.0, Homebrew 6.0.22.
+
+Execute these terminal steps once to configure your Mac:
+
+STEP 1: INSTALL MAVEN (FOR BUILDING SPRING BOOT)
+------------------------------------------------
+$ brew install maven
+$ mvn -version
+
+STEP 2: RETRIEVE YOUR NEON CLOUD DATABASE URL
+---------------------------------------------
+1. Log in to https://neon.tech
+2. Create a Project named "smart-school-db"
+3. Copy your Connection String. It looks like:
+   postgres://username:password@ep-cool-fog-123456.ap-southeast-1.aws.neon.tech/neondb?sslmode=require
+4. Add these environment variables to your ~/.zshrc file:
+   export NEON_DATABASE_URL="jdbc:postgresql://ep-cool-fog-123456.ap-southeast-1.aws.neon.tech/neondb?sslmode=require"
+   export NEON_DATABASE_USER="username"
+   export NEON_DATABASE_PASSWORD="password"
+5. Reload shell:
+   $ source ~/.zshrc
+
+STEP 3: INSTALL AND RUN LOCAL KAFKA (HOMEBREW)
+----------------------------------------------
+$ brew install kafka
+$ brew services start kafka
+
+To test that Kafka is running:
+$ kafka-topics --bootstrap-server localhost:9092 --list
+
+STEP 4: INSTALL POSTMAN
+-----------------------
+$ brew install --cask postman
+
+STEP 5: RUN THE SPRING BOOT CORE ENGINE
+---------------------------------------
+$ cd /Users/Apple16/.gemini/antigravity/scratch/smart-school-system/backend
+$ mvn clean spring-boot:run
+
+
+--------------------------------------------------------------------------------
+SECTION 9: POSTMAN ENVIRONMENT, PRE-REQUEST SCRIPTS & AUTOMATED TEST SUITE
+--------------------------------------------------------------------------------
+
+9.1 POSTMAN ENVIRONMENT SETUP
+Create an Environment in Postman named "Smart School Local / Dev":
+
+Variable Name       Initial Value                       Current Value
+---------------------------------------------------------------------------
+base_url            http://localhost:8080               http://localhost:8080
+tenant_id           ten_ideai_hq                        ten_ideai_hq
+branch_id           brn_phnom_penh                      brn_phnom_penh
+auth_token          (leave blank)                       (auto-filled by script)
+
+9.2 AUTOMATED TOKEN EXTRACTION SCRIPT (POSTMAN "TESTS" TAB)
+Paste this script into the "Tests" tab of your "POST /api/v1/auth/login" request:
+
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+
+var response = pm.response.json();
+if (response.data && response.data.accessToken) {
+    pm.environment.set("auth_token", response.data.accessToken);
+    pm.environment.set("user_role", response.data.user.role);
+    console.log("Token and Role automatically saved to Postman Environment!");
+}
+
+9.3 PRE-REQUEST SCRIPT FOR ALL SUBSEQUENT CALLS
+In your Postman Collection Settings -> "Pre-request Scripts":
+
+pm.request.headers.add({
+    key: 'Authorization',
+    value: 'Bearer ' + pm.environment.get('auth_token')
+});
+pm.request.headers.add({
+    key: 'X-Tenant-ID',
+    value: pm.environment.get('tenant_id')
+});
+pm.request.headers.add({
+    key: 'X-Branch-ID',
+    value: pm.environment.get('branch_id')
+});
+
+9.4 ASSERTION TEST FOR ASYNC INGRESS (HTTP 202 ACCEPTED)
+Paste this into the "Tests" tab of "POST /api/v1/attendance/scans":
+
+pm.test("Ingress responded with HTTP 202 Accepted", function () {
+    pm.response.to.have.status(202);
+});
+
+pm.test("Response contains valid tracking ID", function () {
+    var jsonData = pm.response.json();
+    pm.expect(jsonData.success).to.eql(true);
+    pm.expect(jsonData.data.status).to.eql("ACCEPTED");
+    pm.expect(jsonData.data.trackingId).to.not.be.null;
+});
+
+
+--------------------------------------------------------------------------------
+SECTION 10: DISTRIBUTED RELIABILITY: OUTBOX PATTERN, SAGA & DLQ
+--------------------------------------------------------------------------------
+
+10.1 THE TRANSACTIONAL OUTBOX PATTERN
+To eliminate distributed dual-write inconsistency (where database write succeeds
+but Kafka publication fails):
+1. In a single ACID PostgreSQL transaction:
+   a) Insert student attendance record into "attendance_records".
+   b) Insert canonical event into "transactional_outbox" with "is_published = FALSE".
+2. A lightweight background worker or Debezium CDC reads the outbox table and streams
+   the records to Kafka.
+3. Once Kafka responds with an ACK, set "is_published = TRUE".
+
+10.2 THE SAGA PATTERN FOR TUITION PAYMENTS
+Tuition payment involves 3 distinct microservices:
+1. Payment Service: Confirms bank transaction.
+2. Academic SIS: Updates student active registration status.
+3. Ledger Service: Balances invoice account to $0.
+
+Workflow (Choreographed Saga):
+- Step 1: Payment Service publishes "finance.payment.completed".
+- Step 2: Ledger Service listens, credits account, and publishes "ledger.invoice.settled".
+- Step 3: If Ledger fails, it publishes "ledger.settlement.failed".
+- Step 4: Payment Service consumes the failure event and triggers a compensating
+  refund or marks invoice as "DISPUTED".
+
+10.3 DEAD LETTER QUEUE (DLQ) CONFIGURATION
+- When a Kafka consumer encounters a malformed payload or unrecoverable database
+  constraint failure:
+  - Retry 3 times with 1-second fixed backoff.
+  - On 4th failure, forward the raw record to:
+    "school.attendance.raw-scans.dlq" with exception stack trace in the record header.
+  - Consumer commits offset and moves to the next message. No cluster blockage.
+
+================================================================================
+END OF SPECIFICATION FILE
+Stored Path: /Users/Apple16/.gemini/antigravity/scratch/smart-school-system/SMART_SCHOOL_ENTERPRISE_ARCHITECTURE_AND_SKILL_RULES.txt
+================================================================================

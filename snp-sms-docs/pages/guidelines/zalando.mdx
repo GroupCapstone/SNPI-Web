@@ -1,0 +1,32 @@
+# Zalando RESTful API Guidelines
+
+The SNPI REST API adapts core principles from **Zalando's RESTful API Guidelines** (the industry benchmark covering 74 standardized design topics).
+
+---
+
+## 1. The 4-8 Resource Bounded Context Rule
+
+Zalando benchmarks that an enterprise microservice API should expose between **4 and 8 primary resources** to prevent monolithic sprawl and reduce cognitive load.
+
+SNPI adheres to this by organizing 47 modules into 5 Bounded Contexts:
+
+- `identity` (5 resources)
+- `academic` (7 resources)
+- `student` (5 resources)
+- `assessment` (4 resources)
+- `finance` (5 resources)
+
+---
+
+## 2. Casing Standards
+
+- **Path Segments**: `kebab-case` (`/api/v1/student/placement-tests`)
+- **Query Parameters**: `snake_case` or `camelCase` (strictly standardized per domain)
+- **JSON Properties**: `camelCase` (`studentId`, `academicYearId`)
+- **HTTP Headers**: `Hyphenated-Pascal-Case` (`X-Flow-Id`, `X-Request-ID`)
+
+---
+
+## 3. RFC 7807 Error Handling
+
+Zalando mandates that every error response must return machine-parsable fields (`type`, `title`, `status`, `detail`, `instance`) rather than unstructured text strings.

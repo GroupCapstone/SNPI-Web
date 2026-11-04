@@ -1,0 +1,63 @@
+import { Callout } from 'nextra/components';
+
+# REST API Conventions & Error Standards
+
+The SNPI API is built upon standard RESTful principles derived from the **API Stylebook** and **Zalando RESTful Guidelines**.
+
+---
+
+## 1. URI Naming & Casing Standards
+
+- **Path Segments**: Lowercase hyphenated nouns (`kebab-case`): `/api/v1/student/placement-tests`
+- **JSON Properties**: Lowercase camelCase (`firstName`, `birthDate`, `primaryBranchId`)
+- **Query Parameters**: Lowercase camelCase (`?gradeLevel=10&page=1&limit=25`)
+- **Plural Nouns for Collections**: Always pluralize collection resources (`/students`, `/classes`, `/invoices`)
+
+---
+
+## 2. HTTP Methods & Status Codes
+
+| Method       | Idempotent |          Success Code          | Description                                         |
+| :----------- | :--------: | :----------------------------: | :-------------------------------------------------- |
+| **`GET`**    |    Yes     |            `200 OK`            | Retrieve single or collection resources.            |
+| **`POST`**   |     No     | `201 Created` / `202 Accepted` | Create a new record or trigger an asynchronous job. |
+| **`PUT`**    |    Yes     |  `200 OK` / `204 No Content`   | Complete resource replacement.                      |
+| **`PATCH`**  |     No     |            `200 OK`            | Delta/partial update of specified fields.           |
+| **`DELETE`** |    Yes     |        `204 No Content`        | Remove or soft-delete a resource.                   |
+
+---
+
+## 3. Standardized Error Format (RFC 7807 Problem Details)
+
+Every error response returned by the API adheres to the **RFC 7807 Problem Details** standard with `Content-Type: application/problem+json`:
+
+```json
+{
+  "type": "https://api.snpi.edu.kh/errors/validation-failed",
+  "title": "Validation Failed",
+  "status": 422,
+  "detail": "The request payload failed input schema validation.",
+  "instance": "/api/v1/student/students",
+  "invalid_params": [
+    {
+      "name": "dob",
+      "reason": "Date of birth must be a past date."
+    },
+    {
+      "name": "email",
+      "reason": "Invalid email address format."
+    }
+  ]
+}
+```
+
+### Standard Status Codes:
+
+- `400 Bad Request`: Generic malformed JSON syntax.
+- `401 Unauthorized`: Missing or invalid Bearer token.
+- `403 Forbidden`: Authenticated, but lacking required RBAC permissions.
+- `404 Not Found`: Resource identifier does not exist.
+- `409 Conflict`: Unique constraint violation (e.g. duplicate email or student ID).
+- `422 Unprocessable Entity`: Valid syntax, but domain business rules failed.
+- `429 Too Many Requests`: Rate limit threshold exceeded.
+- `500 Internal Server Error`: Unhandled server exception (stack trace redacted).
