@@ -71,6 +71,11 @@ These rules apply to every AI coding agent and human contributor working in the 
   - **NEVER execute `git push`**, push release tags, publish release checkpoints, or perform remote publishing actions under any circumstances unless the user gives an explicit, direct command (e.g., `git push`, `push now`, `push to github`).
   - Do not auto-push "for convenience", at the conclusion of a turn, or after running builds, tests, or changelog syncs.
   - Remote publishing is exclusively gated behind explicit user command.
+- **Mandatory In-Project File Writing & Build Isolation Rule — ABSOLUTE RULE**:
+  - In every conversation, session, and task, AI agents and contributors MUST **strictly write files inside the `SNPI-Web` project directory**.
+  - **Never write outside `SNPI-Web`**: Under no circumstances should files, code, scratch scripts, tests, configs, or build artifacts be written to the workspace root (`/Users/Apple16/Desktop/SNPI/`), sibling project (`SNPI-API/`), Desktop (`/Users/Apple16/Desktop/`), home folder (`~/`), or `/tmp`.
+  - **Build Output Isolation**: All build commands (`npm run build`, `next build`, `npm run dev`) must strictly output within `SNPI-Web` (e.g. `.next/`). No build script or compiler may emit artifacts outside `SNPI-Web`.
+  - **Zero Cross-Project Contamination**: Never write frontend code, web components, or styles into `SNPI-API`.
 
 ---
 
