@@ -360,7 +360,7 @@ const PaymentPlanWorkspace = () => {
       {payingPlan && (
         <InstallmentPaymentDialog plan={payingPlan} onClose={() => setPayingPlan(null)} />
       )}
-      {data && data.pagination.totalPages > 1 && (
+      {data?.pagination && data.pagination.totalPages > 1 && (
         <div className="flex items-center justify-between text-sm leading-5">
           <span>
             Page {page} of {data.pagination.totalPages} · {data.pagination.total} plans

@@ -5,4 +5,6 @@ export type {
   ApiErrorResponse,
   SuccessResponse,
   PaginatedResponse,
+  ProblemDetails,
+  ProblemDetailsError,
 } from '@snp/shared';
