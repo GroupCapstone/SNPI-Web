@@ -1,0 +1,60 @@
+name: Bug Report
+description: File a reproducible bug or defect in SNP-SMS
+title: '[BUG]: '
+labels: ['bug', 'triage']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please provide clear, concise details about the issue. Adhere to repository standards (zero emojis).
+
+  - type: dropdown
+    id: workspace
+    attributes:
+      label: Affected Workspace
+      description: Select the workspace where the bug occurs.
+      options:
+        - 'apps/backend (Express 5 API)'
+        - 'apps/frontend (Next.js App Router)'
+        - 'packages/shared (@snp/shared Contracts)'
+        - 'Infrastructure / CI / Database'
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug Description
+      description: Clear and concise description of what the bug is.
+      placeholder: Describe the defect...
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce
+      description: Exact steps to reproduce the behavior.
+      placeholder: |
+        1. Navigate to '...'
+        2. Execute API request '...'
+        3. See error '...'
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What should have happened according to system specifications.
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment & Context
+      description: Node version, OS, browser, or deployment mode.
+      placeholder: 'Node v22.13+, Ubuntu 24.04 / macOS, MongoDB rs0'
+    validations:
+      required: false

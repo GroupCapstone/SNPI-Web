@@ -1,0 +1,44 @@
+# Repository Architecture Strategy Manifest
+# Framework Alignment: GitHub Well-Architected Framework (Architecture Strategy)
+version: '1.0'
+
+repositoryStrategy:
+  type: monorepo
+  selectedArchitecture: 'npm-workspaces-modular-monolith'
+  rationale: >
+    SNPI-SMS requires tight coupling of API contracts (@snp/shared), unified authentication
+    mechanisms, atomic database migrations across backend models, and synchronized releases
+    between the Next.js frontend and Express 5 backend without microservices networking overhead.
+
+boundaries:
+  workspaces:
+    - apps/backend
+    - apps/frontend
+    - packages/shared
+    - packages/tsconfig
+    - packages/eslint-config
+  boundaryRules:
+    - 'apps/* must never import directly from sibling apps/* (apps/frontend cannot import from apps/backend)'
+    - 'apps/* can only consume shared types, contracts, DTOs, and schemas through packages/shared (@snp/shared)'
+    - 'packages/shared must remain completely framework-agnostic with zero runtime dependencies on Express, Next.js, or Mongoose'
+    - 'packages/tsconfig and packages/eslint-config provide canonical root inheritance for compiler and linter rules'
+
+circularDependencyGuards:
+  enforced: true
+  maxAllowedCycles: 0
+
+dependencyManagement:
+  tool: 'npm-workspaces'
+  lockfilePolicy: 'deterministic-package-lock'
+  rootHoistPolicy: 'dev-dependencies-hoisted'
+
+cicdOptimization:
+  incrementalBuilds: true
+  pathFiltering: true
+  cacheStrategy: 'actions-cache-and-npm-cache'
+
+alternateDeploymentContinuity:
+  breakGlassRunbook: 'docs/runbooks/break-glass-deployment.md'
+  independentAuthentication: true
+  portableDeploymentScript: 'scripts/deploy-production.sh'
+  reconciliationAuditRequired: true

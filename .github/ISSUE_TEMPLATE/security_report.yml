@@ -1,0 +1,51 @@
+name: Security Vulnerability Report
+description: Report a security finding or vulnerability privately
+title: '[SEC-REPORT]: '
+labels: ['security', 'vulnerability']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        NOTE: If this is a critical zero-day or exploits production data, please also email security@kesararamwithdigital.tech directly per our SECURITY.md policy.
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity Assessment
+      description: Estimated severity based on CVSS v3.1 scoring.
+      options:
+        - 'Low (Informational / Best Practice)'
+        - 'Medium (Elevated Risk under specific conditions)'
+        - 'High (Privilege escalation, auth bypass, tenant leakage)'
+        - 'Critical (Remote code execution, complete auth compromise)'
+    validations:
+      required: true
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Vulnerability Summary
+      description: Overview of the security finding.
+      placeholder: Summary of the issue...
+    validations:
+      required: true
+
+  - type: textarea
+    id: proof_of_concept
+    attributes:
+      label: Proof of Concept & Reproduction
+      description: Detailed instructions to reproduce the security finding safely.
+      placeholder: |
+        1. Request payload...
+        2. Endpoint affected...
+        3. Observed response...
+    validations:
+      required: true
+
+  - type: textarea
+    id: mitigation
+    attributes:
+      label: Recommended Remediation
+      description: Suggested patches, input sanitization, or RBAC permission lock.
+    validations:
+      required: false

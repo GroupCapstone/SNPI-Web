@@ -1,0 +1,58 @@
+name: Deployment Verification
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      target_env:
+        description: 'Target deployment environment'
+        required: true
+        default: 'production'
+        type: choice
+        options:
+          - production
+          - staging
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy-gate:
+    name: Pre-Deployment Verification Gate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install Dependencies & Linux Native Bindings
+        run: |
+          npm ci
+          npm install --no-save \
+            @rolldown/binding-linux-x64-gnu@1.2.15 \
+            lightningcss-linux-x64-gnu@1.33.0 \
+            @tailwindcss/oxide-linux-x64-gnu@4.3.3 \
+            --workspace=apps/backend --workspace=apps/frontend
+
+      - name: Build Production Bundles
+        run: npm run build
+        env:
+          NODE_ENV: production
+          NEXT_TELEMETRY_DISABLED: 1
+
+      - name: Verify Deployment Health Check Configuration
+        run: |
+          echo "[DEPLOY] Verifying Kubernetes manifests..."
+          test -f apps/backend/infrastructure/k8s/backend-deployment.yaml
+          test -f apps/frontend/vercel.json
+          echo "[PASSED] Deployment manifests verified."

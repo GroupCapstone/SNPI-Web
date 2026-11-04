@@ -1,0 +1,30 @@
+# mirror-config.yaml - SNP-SMS Repository Resilience Mirror Configuration
+version: '1.0.0'
+
+repositories:
+  - id: 'snp-sms-monorepo'
+    primary:
+      provider: 'github-cloud'
+      repo: 'Tan-Saphea/SNPI-SMS'
+      url: 'https://github.com/Tan-Saphea/SNPI-SMS.git'
+      defaultBranch: 'main'
+
+    mirror:
+      provider: 'independent-ghes'
+      repo: 'snp-resilience/SNPI-SMS'
+      url: 'https://mirror-git.snpi.edu.kh/snp-resilience/SNPI-SMS.git'
+      failureDomain: 'ap-southeast-1-onprem-dc'
+      visibility: 'private'
+
+    syncScope:
+      refspecs:
+        - '+refs/heads/main:refs/heads/main'
+        - '+refs/tags/*:refs/tags/*'
+
+    sla:
+      maxStalenessMinutes: 30
+      activationTimeMinutes: 15
+
+    lock:
+      checkUrl: 'https://status.snpi.edu.kh/api/v1/sync-lock/snp-sms-monorepo'
+      expectedActiveValue: 'UNLOCKED'

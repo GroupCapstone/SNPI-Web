@@ -1,0 +1,51 @@
+name: Automated Test Suites
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tests-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test-suites:
+    name: Backend & Frontend Vitest Suites
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install Dependencies & Linux Native Bindings
+        run: |
+          npm ci
+          npm install --no-save \
+            @rolldown/binding-linux-x64-gnu@1.2.15 \
+            lightningcss-linux-x64-gnu@1.33.0 \
+            @tailwindcss/oxide-linux-x64-gnu@4.3.3 \
+            --workspace=apps/backend --workspace=apps/frontend
+
+      - name: Spin Up MongoDB Replica Set (rs0)
+        run: |
+          docker run -d --name mongodb -p 27017:27017 mongo:7.0 mongod --replSet rs0 --bind_ip_all
+          until docker exec mongodb mongosh --eval "db.adminCommand('ping')" > /dev/null 2>&1; do
+            echo "Waiting for MongoDB engine to start..."
+            sleep 1
+          done
+          docker exec mongodb mongosh --eval "rs.initiate({_id: 'rs0', members: [{_id: 0, host: '127.0.0.1:27017'}]})"
+          echo "MongoDB rs0 initialized successfully."
+
+      - name: Run Test Suites
+        run: npm run test

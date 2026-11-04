@@ -1,0 +1,26 @@
+{
+  "name": "enterprise-prevent-secret-scanning-bypass",
+  "target": "push",
+  "enforcement": "active",
+  "conditions": {
+    "repository_name": {
+      "include": ["~ALL"],
+      "exclude": []
+    }
+  },
+  "rules": [
+    {
+      "type": "file_path_restriction",
+      "parameters": {
+        "restricted_file_paths": [".github/secret_scanning.yml", ".github/secret_scanning.yaml"]
+      }
+    }
+  ],
+  "bypass_actors": [
+    {
+      "actor_id": 1,
+      "actor_type": "OrganizationAdmin",
+      "bypass_mode": "always"
+    }
+  ]
+}

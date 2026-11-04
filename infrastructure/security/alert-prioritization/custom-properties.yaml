@@ -1,0 +1,36 @@
+# GitHub Enterprise Repository Custom Properties
+# Standard: Greg Mohler & Tom Horton Alert Prioritization Architecture
+# Step 2: Supplement Alert Metadata with Organizational Context
+
+schemaVersion: '1.0'
+repository: 'SNPI-SMS'
+organization: 'Tan-Saphea'
+lastUpdated: '2026-11-03'
+
+properties:
+  # 1. Exposure Profile
+  internet_facing: true
+  public_endpoints:
+    - '/api/v1/health'
+    - '/api/v1/auth/login'
+    - '/api/v1/auth/refresh'
+
+  # 2. Regulatory & Compliance Scope
+  regulatory_compliance:
+    - 'FERPA'
+    - 'GDPR'
+    - 'SOC2'
+    - 'CAMBODIA_DATA_PROTECTION'
+
+  # 3. Business Criticality Tier
+  business_criticality: 'mission-critical'
+
+  # 4. Impact Blast Radius & User Population
+  user_tier: 'enterprise'
+  estimated_active_users: 25000
+  data_classification: 'restricted' # Student PII, Academic Records, Financial Ledger
+
+  # 5. Service & Architecture Boundary
+  architecture_pattern: 'modular-monolith'
+  runtime_environment: 'node22-alpine'
+  hosting_tier: 'hybrid-vercel-container'
