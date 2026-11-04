@@ -207,7 +207,9 @@ describe('RFC 7807 Problem Details and REST API standardization', () => {
     expect(raw.etag).toBe('W/"etag-xyz"');
     expect(raw.requestId).toBe('req-create-123');
     expect(raw.data.data.id).toBe('stu-999');
-    expect((raw.data as unknown as { pagination: unknown }).pagination).toEqual(createdPayload.meta);
+    expect((raw.data as unknown as { pagination: unknown }).pagination).toEqual(
+      createdPayload.meta,
+    );
   });
 
   it('handles HTTP 204 No Content gracefully without JSON parsing syntax errors', async () => {
@@ -234,7 +236,10 @@ describe('RFC 7807 Problem Details and REST API standardization', () => {
       }),
     );
 
-    const result = await apiClient.post<{ success: boolean; message: string }>('/students/batch', {});
+    const result = await apiClient.post<{ success: boolean; message: string }>(
+      '/students/batch',
+      {},
+    );
     expect(result.success).toBe(true);
     expect(result.message).toBe('Processing batch');
   });

@@ -4601,7 +4601,6 @@ export function AccessibleDesignPrinciples({
         </div>
       )}
 
-
       {/* TAB: SELECTION MODES & INDICATORS (SURFACE, CHECK, BATCH)     */}
       {/* ------------------------------------------------------------- */}
       {activeTab === 'selection' && (

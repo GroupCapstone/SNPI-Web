@@ -1,7 +1,17 @@
 'use client';
 
 import * as React from 'react';
-import { Search, Copy, Check, BookOpen, Filter, Code, List, Grid2x2, RotateCcw } from '@/components/icons';
+import {
+  Search,
+  Copy,
+  Check,
+  BookOpen,
+  Filter,
+  Code,
+  List,
+  Grid2x2,
+  RotateCcw,
+} from '@/components/icons';
 import { cn } from '@/lib/utils';
 
 export type GlossaryCategory =
@@ -947,7 +957,8 @@ export function MaterialGlossarySection() {
     setSelectedLetter('ALL');
   };
 
-  const hasActiveFilters = searchQuery !== '' || selectedCategory !== 'All' || selectedLetter !== 'ALL';
+  const hasActiveFilters =
+    searchQuery !== '' || selectedCategory !== 'All' || selectedLetter !== 'ALL';
 
   return (
     <div className="space-y-6">
@@ -1091,7 +1102,8 @@ export function MaterialGlossarySection() {
           <BookOpen className="mb-3 size-9 text-[#0056FF]" />
           <h4 className="font-sans text-base font-bold text-[#0A1A4A]">No matching terms found</h4>
           <p className="mt-1 max-w-sm font-sans text-xs leading-relaxed text-slate-500">
-            No glossary entries match your active query or filters. Try adjusting your search keywords, letter index, or category filter.
+            No glossary entries match your active query or filters. Try adjusting your search
+            keywords, letter index, or category filter.
           </p>
           <button
             type="button"
@@ -1176,9 +1188,7 @@ export function MaterialGlossarySection() {
                       <div className="shrink-0 pt-1">
                         <button
                           type="button"
-                          onClick={() =>
-                            handleCopy(`${item.term}: ${item.definition}`, defKey)
-                          }
+                          onClick={() => handleCopy(`${item.term}: ${item.definition}`, defKey)}
                           className="flex cursor-pointer items-center gap-1.5 rounded-lg border border-[#CAD3F5] bg-white px-3 py-1.5 font-mono text-xs font-semibold text-[#0A1A4A] transition-all hover:border-[#0056FF] hover:bg-[#EFF5FF] hover:text-[#0056FF]"
                         >
                           {isDefCopied ? (
@@ -1206,9 +1216,9 @@ export function MaterialGlossarySection() {
           className={cn(
             'grid gap-4.5',
             filteredTerms.length === 1
-              ? 'max-w-xl mx-auto w-full'
+              ? 'mx-auto w-full max-w-xl'
               : filteredTerms.length === 2
-                ? 'grid-cols-1 md:grid-cols-2 max-w-3xl mx-auto w-full'
+                ? 'mx-auto w-full max-w-3xl grid-cols-1 md:grid-cols-2'
                 : 'grid-cols-1 md:grid-cols-2 xl:grid-cols-3',
           )}
         >

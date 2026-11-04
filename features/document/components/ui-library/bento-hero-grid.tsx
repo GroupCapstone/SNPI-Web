@@ -279,9 +279,7 @@ export function BentoHeroGrid({
         {/* ========================================================================= */}
         <div className="flex flex-col gap-3.5 sm:gap-4 lg:col-span-4 lg:gap-4.5">
           {/* CARD 1: Mascots Trio (Fluid Liquid Tilt + Reference Colors: Royal Blue, Sunny Yellow, Mint Emerald) */}
-          <div
-            className="relative flex h-36 flex-col justify-between overflow-hidden rounded-[22px] border border-[#CAD3F5]/80 bg-white p-3.5 shadow-xs sm:h-40 sm:p-4"
-          >
+          <div className="relative flex h-36 flex-col justify-between overflow-hidden rounded-[22px] border border-[#CAD3F5]/80 bg-white p-3.5 shadow-xs sm:h-40 sm:p-4">
             <div className="flex items-center justify-between">
               <span className="font-mono text-[10px] font-bold tracking-wider text-[#0056FF] uppercase">
                 SNPI Brand Companions
@@ -391,9 +389,7 @@ export function BentoHeroGrid({
           </div>
 
           {/* CARD 3: Distributed Campus Telemetry Radar (Fluid Liquid Tilt) */}
-          <div
-            className="relative flex h-52 flex-col justify-between overflow-hidden rounded-[22px] border border-[#CAD3F5]/80 bg-white p-3.5 shadow-xs sm:h-56"
-          >
+          <div className="relative flex h-52 flex-col justify-between overflow-hidden rounded-[22px] border border-[#CAD3F5]/80 bg-white p-3.5 shadow-xs sm:h-56">
             {/* Center: Vector Radar Coordinate Grid with Sweep Beam */}
             <div className="relative mx-auto my-auto flex size-38 items-center justify-center sm:size-42">
               <svg viewBox="0 0 160 160" className="size-full">
@@ -499,9 +495,7 @@ export function BentoHeroGrid({
           </div>
 
           {/* CARD 5: Design Token Laboratory (Fluid Liquid Tilt) */}
-          <div
-            className="flex flex-col justify-between rounded-[22px] border border-[#CAD3F5]/80 bg-white p-4 shadow-xs sm:p-5"
-          >
+          <div className="flex flex-col justify-between rounded-[22px] border border-[#CAD3F5]/80 bg-white p-4 shadow-xs sm:p-5">
             {/* Header: Title & Version Pill */}
             <div className="mb-3 flex items-center justify-between">
               <div className="flex items-center gap-1.5">
@@ -644,9 +638,7 @@ export function BentoHeroGrid({
           </div>
 
           {/* CARD 4: Kinetic Harmonic Brand Core (Fluid Liquid Flower Mask) */}
-          <div
-            className="relative flex h-64 items-center justify-center overflow-hidden rounded-[22px] bg-[#0056FF] p-4 shadow-sm sm:h-72"
-          >
+          <div className="relative flex h-64 items-center justify-center overflow-hidden rounded-[22px] bg-[#0056FF] p-4 shadow-sm sm:h-72">
             {/* Background Radial Glow */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.22)_0%,transparent_75%)]" />
 
