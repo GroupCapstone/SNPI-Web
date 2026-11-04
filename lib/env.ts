@@ -10,15 +10,15 @@ const getServerApiBaseUrl = (): string => {
     process.env.BACKEND_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || defaultUrl;
 
   const parsedUrl = new URL(backendUrl);
-  const apiPath = parsedUrl.pathname.replace(/\/$/, '');
+  const rawPath = parsedUrl.pathname.replace(/\/$/, '');
+  const apiPath = rawPath === '/api/v1' || rawPath === '' ? API_PATH : `${rawPath}${API_PATH}`;
 
   if (
     (requiresHttps && parsedUrl.protocol !== 'https:') ||
     parsedUrl.username ||
     parsedUrl.password ||
     parsedUrl.search ||
-    parsedUrl.hash ||
-    apiPath !== API_PATH
+    parsedUrl.hash
   ) {
     throw new Error('BACKEND_INTERNAL_URL must be a credential-free HTTPS API base in production');
   }
