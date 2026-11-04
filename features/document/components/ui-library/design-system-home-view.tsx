@@ -71,8 +71,6 @@ const SIDEBAR_TREE: NavTreeItem[] = [
   {
     id: 'guidelines-group',
     label: 'Guidelines',
-    badge: '0/5',
-    badgeColor: 'blue',
     description:
       'Understanding how to approach common UX patterns will allow your organization to establish a consistent approach.',
     children: [
@@ -116,8 +114,6 @@ const SIDEBAR_TREE: NavTreeItem[] = [
   {
     id: 'foundations-group',
     label: 'Foundations',
-    badge: '0/26',
-    badgeColor: 'blue',
     description:
       'Design assets and tokens that store values for the base layer of your design system.',
     children: [
@@ -182,8 +178,6 @@ const SIDEBAR_TREE: NavTreeItem[] = [
   {
     id: 'core-components-group',
     label: 'Core Components',
-    badge: '0/166',
-    badgeColor: 'blue',
     description:
       'Components are the main building blocks for user interfaces, reducing design and tech debt.',
     children: [
@@ -245,8 +239,6 @@ const SIDEBAR_TREE: NavTreeItem[] = [
   {
     id: 'maintenance-group',
     label: 'Maintenance',
-    badge: '0/28',
-    badgeColor: 'blue',
     description:
       'Design systems strategy, documentation, local libraries, team processes, community support, and contribution.',
     children: [
@@ -290,8 +282,6 @@ const SIDEBAR_TREE: NavTreeItem[] = [
   {
     id: 'open-source-checklist-group',
     label: 'Open-Source Checklist',
-    badge: '5/230',
-    badgeColor: 'emerald',
     description:
       'Unified macro-phases tracking (230 total checks): Design language (5/10), Foundations (0/26), Core components (0/166), and Maintenance (0/28).',
     children: [
@@ -535,21 +525,6 @@ export function DesignSystemHomeView() {
                         </span>
                       </div>
                       <div className="flex shrink-0 items-center gap-1.5">
-                        {item.badge && item.badge.toLowerCase() !== 'completed' && (
-                          <span
-                            className={cn(
-                              'py-0.2 rounded-md px-1.5 font-mono text-[9px] font-bold',
-                              item.badgeColor === 'emerald' &&
-                                'border border-emerald-300 bg-emerald-50 text-emerald-700',
-                              item.badgeColor === 'blue' &&
-                                'border border-[#0056FF]/30 bg-[#EFF5FF] text-[#0056FF]',
-                              item.badgeColor === 'slate' &&
-                                'border border-slate-200 bg-slate-50 text-slate-600',
-                            )}
-                          >
-                            {item.badge}
-                          </span>
-                        )}
                         {hasChildren &&
                           (isExpanded ? (
                             <ChevronDown className="size-3.5 text-slate-400 transition-colors group-hover:text-[#0056FF]" />
@@ -589,18 +564,20 @@ export function DesignSystemHomeView() {
                                   {child.label}
                                 </span>
                               </div>
-                              {child.badge && child.badge.toLowerCase() !== 'completed' && (
-                                <span
-                                  className={cn(
-                                    'py-0.2 ml-1 shrink-0 rounded px-1.5 font-mono text-[9px] font-bold',
-                                    child.badgeColor === 'emerald'
-                                      ? 'bg-emerald-50 text-emerald-700'
-                                      : 'bg-[#EFF5FF] text-[#0056FF]',
-                                  )}
-                                >
-                                  {child.badge}
-                                </span>
-                              )}
+                              {child.badge &&
+                                !child.badge.includes('/') &&
+                                child.badge.toLowerCase() !== 'completed' && (
+                                  <span
+                                    className={cn(
+                                      'py-0.2 ml-1 shrink-0 rounded px-1.5 font-mono text-[9px] font-bold',
+                                      child.badgeColor === 'emerald'
+                                        ? 'bg-emerald-50 text-emerald-700'
+                                        : 'bg-[#EFF5FF] text-[#0056FF]',
+                                    )}
+                                  >
+                                    {child.badge}
+                                  </span>
+                                )}
                             </button>
                           );
                         })}
