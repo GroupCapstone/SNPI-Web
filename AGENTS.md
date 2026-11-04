@@ -160,6 +160,11 @@ Never run an unrelated full suite solely because it is listed here; report which
   - Strictly **ZERO extra subdomains**: Never configure or route to `app.*`, `auth.*`, `admin.*`, `portal.*`, or any nested subdomains.
   - Strictly **Slug / Path-Based Navigation**: All feature slices, dashboards, and portals must be routed via URL paths under the single origin (e.g., `/dashboard`, `/academic-periods`, `/finance`, `/document`, `/reports`).
 
+- **Mandatory GitHub & Vercel Release Parity Rule**:
+  - Whenever code is pushed to GitHub `main`, Vercel production **MUST be updated as well** (`npm run deploy:vercel:prod` or `npm run release:all`).
+  - Production deployments on Vercel must never remain on older commits or fall behind repository `main`.
+  - To release to GitHub and deploy to Vercel in one verified sequence, execute `npm run release:all`.
+
 - **Dual-Pipeline Triage Protocol (GitHub CI Failure vs Vercel Success)**:
   - **Root Cause of Divergence**: Vercel evaluates only production bundle compilation (`next build`), whereas GitHub Actions executes strict pre-flight gates (`npm run lint`, `npm run typecheck`, `npm test`, `format:check`, security bots).
   - **Authoritative Resolution Rule**: GitHub Actions is the canonical Software Quality Gate. If a GitHub workflow or label fails while Vercel succeeded, the deployment is in an unverified state.
