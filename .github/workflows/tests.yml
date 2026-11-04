@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   test-suites:
-    name: Backend & Frontend Vitest Suites
+    name: Frontend Vitest Suites
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -28,24 +28,8 @@ jobs:
           node-version: 22
           cache: npm
 
-      - name: Install Dependencies & Linux Native Bindings
-        run: |
-          npm ci
-          npm install --no-save \
-            @rolldown/binding-linux-x64-gnu@1.2.15 \
-            lightningcss-linux-x64-gnu@1.33.0 \
-            @tailwindcss/oxide-linux-x64-gnu@4.3.3 \
-            --workspace=apps/backend --workspace=apps/frontend
-
-      - name: Spin Up MongoDB Replica Set (rs0)
-        run: |
-          docker run -d --name mongodb -p 27017:27017 mongo:7.0 mongod --replSet rs0 --bind_ip_all
-          until docker exec mongodb mongosh --eval "db.adminCommand('ping')" > /dev/null 2>&1; do
-            echo "Waiting for MongoDB engine to start..."
-            sleep 1
-          done
-          docker exec mongodb mongosh --eval "rs.initiate({_id: 'rs0', members: [{_id: 0, host: '127.0.0.1:27017'}]})"
-          echo "MongoDB rs0 initialized successfully."
+      - name: Install Dependencies
+        run: npm ci
 
       - name: Run Test Suites
         run: npm run test
