@@ -126,13 +126,15 @@ Never run an unrelated full suite solely because it is listed here; report which
 
 ---
 
-## 7. Repository Ownership & Future Transfer Protocol
+## 7. Organization Repositories, Push Policy & Permissions
 
-- **Official Repository Ownership**: The official GitHub repository owner is `@Tan-Saphea` (`https://github.com/Tan-Saphea/SNPI-SMS.git`).
-- **Portable & Decoupled Configuration**:
-  - Never hardcode personal GitHub usernames or user paths into CI/CD workflows, automation secrets, or package metadata.
-  - Maintainer verification relies on immutable numeric GitHub account IDs in `.github/maintainers.json`, which must be updated upon ownership migration.
-  - Remote repository URLs in git remotes, documentation (`README.md`, `CONTRIBUTING.md`), and container registries must remain easily re-targetable via `git remote set-url origin <new-url>`.
+- **Organization Remotes (`ytivargitna`)**:
+  - `SNPI-Web`: `origin` -> `https://github.com/ytivargitna/SNPI-Web.git` (tracked on `main -> origin/main`).
+  - Secondary Remote: `personal` (`shiliaiwei/SNPI-Web.git`).
+- **Equal Organization Admin Permissions**:
+  - Both repositories (`SNPI-API` and `SNPI-Web`) are hosted under the `ytivargitna` organization, granting equal Admin rights to `shiliaiwei` and `Tan-Saphea`.
+- **Push Quality Gate**:
+  - Before pushing, always run `npm run typecheck` and `npm run build` in `SNPI-Web/`.
 
 ---
 
