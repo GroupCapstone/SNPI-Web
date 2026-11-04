@@ -6,11 +6,8 @@ import { ColorRampsTokens } from './color-ramps-tokens';
 import { AccessibleDesignPrinciples } from './accessible-design-principles';
 import { MaterialGlossarySection } from './material-glossary-section';
 import { ScaffoldArchitectureSection } from './scaffold-architecture-section';
-import { DesignLanguageManual } from './design-language-manual';
 import { CoreComponentsManual } from './core-components-manual';
 import { MaintenanceManual } from './maintenance-manual';
-import { CulinaryTaxonomySection } from './culinary-taxonomy-section';
-import { PsychologicalRuleInspector } from './psychological-rule-inspector';
 import { OpenSourceChecklistSection } from './open-source-checklist-section';
 import {
   Search,
@@ -129,20 +126,6 @@ const SIDEBAR_TREE: NavTreeItem[] = [
         label: 'Layout & Scaffold Architecture',
         index: '05',
         badge: '0/4',
-        badgeColor: 'blue',
-      },
-      {
-        id: 'culinary-taxonomy-section',
-        label: 'Culinary Component Taxonomy',
-        index: '06',
-        badge: '6 Tiers',
-        badgeColor: 'blue',
-      },
-      {
-        id: 'psychological-rule-inspector',
-        label: 'Psychological Design Rules (HCI)',
-        index: '07',
-        badge: 'Live Auditor',
         badgeColor: 'blue',
       },
       {
@@ -290,13 +273,6 @@ const SIDEBAR_TREE: NavTreeItem[] = [
         label: 'All 230 Macro-Phase Checks',
         index: 'CK',
         badge: '5/230',
-        badgeColor: 'emerald',
-      },
-      {
-        id: 'design-language-manual',
-        label: '1. Design Language',
-        index: 'P1',
-        badge: '5/10',
         badgeColor: 'emerald',
       },
       {
@@ -712,36 +688,6 @@ export function DesignSystemHomeView() {
 
               {/* Layout Scaffold Interactive Engine */}
               <ScaffoldArchitectureSection />
-            </section>
-
-            {/* ------------------------------------------------------- */}
-            {/* CULINARY COMPONENT TAXONOMY (SECTION 06)                */}
-            {/* ------------------------------------------------------- */}
-            <section
-              id="culinary-taxonomy-section"
-              className="scroll-mt-24 space-y-6 rounded-2xl border border-[#CAD3F5] bg-white p-6 sm:p-8 lg:p-10"
-            >
-              <CulinaryTaxonomySection />
-            </section>
-
-            {/* ------------------------------------------------------- */}
-            {/* PSYCHOLOGICAL DESIGN RULES (SECTION 07)                 */}
-            {/* ------------------------------------------------------- */}
-            <section
-              id="psychological-rule-inspector"
-              className="scroll-mt-24 space-y-6 rounded-2xl border border-[#CAD3F5] bg-white p-6 sm:p-8 lg:p-10"
-            >
-              <PsychologicalRuleInspector />
-            </section>
-
-            {/* ------------------------------------------------------- */}
-            {/* DESIGN LANGUAGE MANUAL (BRAND, GUIDELINES, FOUNDATIONS) */}
-            {/* ------------------------------------------------------- */}
-            <section
-              id="design-language-manual"
-              className="scroll-mt-24 space-y-6 rounded-2xl border border-[#CAD3F5] bg-white p-6 sm:p-8 lg:p-10"
-            >
-              <DesignLanguageManual />
             </section>
 
             {/* ------------------------------------------------------- */}

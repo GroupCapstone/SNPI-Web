@@ -106,7 +106,7 @@ export const OPEN_SOURCE_CHECKLIST_230: ChecklistItem[] = [
     status: 'queued',
     description:
       'Sentence case capitalization, active voice verbs, concise error states, and clear instructional copy.',
-    targetId: 'design-language-manual',
+    targetId: 'brand-blueprint',
   },
   {
     id: 'ck-dl-8',
@@ -117,7 +117,7 @@ export const OPEN_SOURCE_CHECKLIST_230: ChecklistItem[] = [
     status: 'queued',
     description:
       'Button action labels, contextual input placeholders, empty states, and dismissible notification banners.',
-    targetId: 'design-language-manual',
+    targetId: 'brand-blueprint',
   },
   {
     id: 'ck-dl-9',
@@ -139,7 +139,7 @@ export const OPEN_SOURCE_CHECKLIST_230: ChecklistItem[] = [
     status: 'queued',
     description:
       'Bilingual typography scaling, Khmer Unicode (U+1780-U+17FF) word-break handling, and RTL/LTR layout adaptability.',
-    targetId: 'design-language-manual',
+    targetId: 'brand-blueprint',
   },
 
   // =========================================================================

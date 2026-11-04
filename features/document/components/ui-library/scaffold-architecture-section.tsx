@@ -151,7 +151,7 @@ export function ScaffoldArchitectureSection() {
           {HIERARCHY_STAGES.map((stage, idx) => (
             <a
               key={stage.id}
-              href="#culinary-taxonomy-section"
+              href="#layout-scaffold-architecture"
               title={`View ${stage.title} Taxonomy & Invariants`}
               className={cn(
                 'group relative flex cursor-pointer flex-col items-center justify-between rounded-xl border p-3.5 text-center transition-all',
