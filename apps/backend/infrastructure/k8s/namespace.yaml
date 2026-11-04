@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: snp-sms
-  labels:
-    app.kubernetes.io/name: snp-sms
-    app.kubernetes.io/part-of: snp-integrated-system

@@ -1,8 +1,0 @@
-blank_issues_enabled: false
-contact_links:
-  - name: Security Vulnerability Disclosure
-    url: https://github.com/Tan-Saphea/SNPI-SMS/security/policy
-    about: Report sensitive vulnerabilities privately per our SECURITY.md policy.
-  - name: Technical Architecture Portal
-    url: https://snpis.kesararamwithdigital.tech/document
-    about: Read full 47-domain architectural specifications and API contracts.
