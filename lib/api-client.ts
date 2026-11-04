@@ -52,8 +52,9 @@ export class ApiClientError extends Error {
             headerObj[key.toLowerCase()] = val;
           });
         } else if (
-          typeof (codeOrOptions.headers as unknown as { entries?: () => Iterable<[string, string]> })
-            .entries === 'function'
+          typeof (
+            codeOrOptions.headers as unknown as { entries?: () => Iterable<[string, string]> }
+          ).entries === 'function'
         ) {
           for (const [k, v] of (
             codeOrOptions.headers as unknown as { entries: () => Iterable<[string, string]> }
@@ -324,19 +325,15 @@ const executeRequest = async <T>(
   }
 
   if (!response.ok) {
-    const errorPayload = (typeof response.json === 'function'
-      ? await response.json().catch(() => ({}))
-      : {}) as ApiErrorPayload;
+    const errorPayload = (
+      typeof response.json === 'function' ? await response.json().catch(() => ({})) : {}
+    ) as ApiErrorPayload;
 
     const requestId =
-      errorPayload.requestId ||
-      getHeaderFromResponse(response, 'x-request-id') ||
-      undefined;
+      errorPayload.requestId || getHeaderFromResponse(response, 'x-request-id') || undefined;
 
     const errorCode =
-      errorPayload.code ||
-      getHeaderFromResponse(response, 'x-error-code') ||
-      undefined;
+      errorPayload.code || getHeaderFromResponse(response, 'x-error-code') || undefined;
 
     const title = errorPayload.title;
     const detail = errorPayload.detail || errorPayload.message;
