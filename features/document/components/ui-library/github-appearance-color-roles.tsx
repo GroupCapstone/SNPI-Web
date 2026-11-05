@@ -76,29 +76,29 @@ export const DARK_THEMES: ThemeOption<DarkThemeId>[] = [
   {
     id: 'dark-default',
     label: 'Dark default',
-    description: 'Deep navy obsidian canvas with luminous azure accents and pure white text.',
-    swatchFill: '#0A1A4A',
+    description: 'Deep midnight obsidian canvas (Primary 950) with luminous azure accents and pure white text.',
+    swatchFill: '#050E28',
     swatchBorder: '#2277FF',
   },
   {
     id: 'dark-dimmed',
     label: 'Dark dimmed (Moon)',
-    description: 'Nocturnal charcoal and moonlit slate for reduced eye fatigue in low light.',
+    description: 'Nocturnal charcoal and moonlit slate (Neutral 800) for reduced eye fatigue in low light.',
     swatchFill: '#1E293B',
     swatchBorder: '#60A5FA',
   },
   {
     id: 'dark-high-contrast',
     label: 'Dark high contrast',
-    description: 'Pitch midnight canvas with bright cyan-blue highlights and stark white borders.',
-    swatchFill: '#050E28',
+    description: 'Pitch black canvas (Neutral 950 #020617) with bright cyan-blue highlights and stark white borders.',
+    swatchFill: '#020617',
     swatchBorder: '#FFFFFF',
   },
   {
     id: 'dark-colorblind',
     label: 'Dark colorblind',
     description: 'High-visibility dual-tone nocturnal theme with separated colorblind bands.',
-    swatchFill: '#0A1A4A',
+    swatchFill: '#050E28',
     swatchBorder: '#60A5FA',
     isSplit: true,
     splitColors: ['#60A5FA', '#FBBF24'],
@@ -333,11 +333,11 @@ export function computeActiveColorRoles(
   const isMoon = darkSub === 'dark-dimmed';
   const isColorblind = darkSub === 'dark-colorblind';
 
-  const canvasBg = isHC ? '#050E28' : isMoon ? '#1E293B' : '#0A1A4A';
-  const subsurfaceBg = isHC ? '#0B1938' : isMoon ? '#24334D' : '#0F225A';
-  const cardBorder = isHC ? '#CBD5E1' : isMoon ? '#334155' : '#1E3A8A';
+  const canvasBg = isHC ? '#020617' : isMoon ? '#1E293B' : '#050E28';
+  const subsurfaceBg = isHC ? '#0B132B' : isMoon ? '#24334D' : '#0F172A';
+  const cardBorder = isHC ? '#CBD5E1' : isMoon ? '#334155' : '#334155';
   const textPrimary = isHC ? '#FFFFFF' : isMoon ? '#F8FAFC' : '#FFFFFF';
-  const textSecondary = isHC ? '#F1F5F9' : isMoon ? '#94A3B8' : '#CBD5E1';
+  const textSecondary = isHC ? '#F1F5F9' : isMoon ? '#94A3B8' : '#94A3B8';
 
   const primaryFill = isHC ? '#BFDBFE' : isMoon ? '#60A5FA' : '#93C5FD';
   const primaryOn = '#002A8C';
@@ -440,30 +440,30 @@ export function computeActiveColorRoles(
       description: 'Subdued error card containers and validation callouts.',
     },
     surfaces: [
-      { role: 'surface-container-lowest', fill: isHC ? '#000000' : '#050E28', on: textPrimary, tokenAlias: 'primary-950', contrastRatio: '18.9:1', contrastGrade: 'AAA', description: 'Deep obsidian base layer' },
-      { role: 'surface-container-low', fill: canvasBg, on: textPrimary, tokenAlias: 'primary-900', contrastRatio: '16.5:1', contrastGrade: 'AAA', description: 'Nocturnal workspace canvas' },
-      { role: 'surface-container', fill: subsurfaceBg, on: textPrimary, tokenAlias: 'neutral-800', contrastRatio: '14.5:1', contrastGrade: 'AAA', description: 'Subsurface card foundation' },
-      { role: 'surface-container-high', fill: '#2A3F7E', on: textPrimary, tokenAlias: 'primary-800', contrastRatio: '11.8:1', contrastGrade: 'AAA', description: 'Elevated dropdown and hover layer' },
-      { role: 'surface-container-highest', fill: '#3E579F', on: textPrimary, tokenAlias: 'primary-700', contrastRatio: '9.2:1', contrastGrade: 'AAA', description: 'Modal popups and floating tooltips' },
-      { role: 'inverse-surface', fill: '#FFFFFF', on: '#0A1A4A', tokenAlias: 'neutral-50', contrastRatio: '16.5:1', contrastGrade: 'AAA', description: 'Inverse stark light callout' },
+      { role: 'surface-container-lowest', fill: isHC ? '#000000' : '#020617', on: textPrimary, tokenAlias: 'neutral-950', contrastRatio: '19.8:1', contrastGrade: 'AAA', description: 'Deep obsidian pitch base layer (Neutral 950)' },
+      { role: 'surface-container-low', fill: canvasBg, on: textPrimary, tokenAlias: isHC ? 'neutral-950' : 'primary-950', contrastRatio: isHC ? '19.8:1' : '18.4:1', contrastGrade: 'AAA', description: 'Nocturnal workspace canvas (Primary 950)' },
+      { role: 'surface-container', fill: subsurfaceBg, on: textPrimary, tokenAlias: isHC ? 'neutral-950' : 'neutral-900', contrastRatio: isHC ? '17.5:1' : '15.8:1', contrastGrade: 'AAA', description: 'Subsurface card foundation (Neutral 900)' },
+      { role: 'surface-container-high', fill: '#1E293B', on: textPrimary, tokenAlias: 'neutral-800', contrastRatio: '12.4:1', contrastGrade: 'AAA', description: 'Elevated dropdown and hover layer (Neutral 800)' },
+      { role: 'surface-container-highest', fill: '#334155', on: textPrimary, tokenAlias: 'neutral-700', contrastRatio: '9.1:1', contrastGrade: 'AAA', description: 'Modal popups and floating tooltips (Neutral 700)' },
+      { role: 'inverse-surface', fill: '#FFFFFF', on: '#050E28', tokenAlias: 'neutral-50', contrastRatio: '18.4:1', contrastGrade: 'AAA', description: 'Inverse stark light callout' },
     ],
     outline: {
       role: 'outline',
       fill: canvasBg,
       on: textPrimary,
-      tokenAlias: isHC ? 'neutral-50' : 'neutral-400',
-      contrastRatio: isHC ? '7.5:1' : '4.2:1',
-      contrastGrade: isHC ? 'AAA' : 'UI',
-      description: 'High-contrast input borders, prominent component keylines.',
+      tokenAlias: isHC ? 'neutral-50' : 'neutral-600',
+      contrastRatio: isHC ? '19.8:1' : '5.8:1',
+      contrastGrade: 'AAA',
+      description: 'High-contrast input borders, prominent component keylines (Neutral 600).',
     },
     outlineVariant: {
       role: 'outline-variant',
       fill: subsurfaceBg,
       on: textSecondary,
-      tokenAlias: 'primary-800',
-      contrastRatio: '3.2:1',
+      tokenAlias: 'neutral-700',
+      contrastRatio: '4.2:1',
       contrastGrade: 'UI',
-      description: 'Subtle table dividers, card keylines in night mode.',
+      description: 'Subtle table dividers, card keylines in night mode (Neutral 700).',
     },
     statusSuccess: {
       role: 'status-success',
@@ -761,8 +761,8 @@ export function GithubAppearanceColorRoles() {
           className={cn(
             'group relative cursor-pointer rounded-2xl border p-4 sm:p-5 transition-all',
             activeTheme === 'dark'
-              ? 'border-[#0056FF] bg-[#0A1A4A] text-white ring-2 ring-[#0056FF]/20'
-              : 'border-[#334155] bg-[#0A1A4A] text-white hover:border-[#2277FF]',
+              ? 'border-[#0056FF] bg-[#050E28] text-white ring-2 ring-[#0056FF]/20'
+              : 'border-[#334155] bg-[#050E28] text-white hover:border-[#2277FF]',
           )}
         >
           {/* Card Header */}
@@ -785,7 +785,7 @@ export function GithubAppearanceColorRoles() {
           <div
             className="mt-3.5 overflow-hidden rounded-xl border p-3 shadow-xs"
             style={{
-              backgroundColor: roles.isDark ? roles.canvasBg : '#0A1A4A',
+              backgroundColor: roles.isDark ? roles.canvasBg : '#050E28',
               borderColor: roles.isDark ? roles.cardBorder : '#334155',
             }}
           >
@@ -816,7 +816,7 @@ export function GithubAppearanceColorRoles() {
                   <div className="h-full w-2/3 rounded bg-[#34D399]" />
                 </div>
                 <div className="flex gap-1.5">
-                  <div className="h-6 flex-1 rounded border border-[#2A3F7E] bg-[#0F225A]" />
+                  <div className="h-6 flex-1 rounded border border-[#334155] bg-[#0F172A]" />
                   <div className="h-6 flex-1 rounded border border-slate-700 bg-[#1E293B]" />
                 </div>
               </div>
@@ -847,7 +847,7 @@ export function GithubAppearanceColorRoles() {
                   className={cn(
                     'relative size-6 rounded-full border transition-transform hover:scale-110 focus:outline-none',
                     isSelected
-                      ? 'border-white ring-2 ring-[#60A5FA] ring-offset-2 ring-offset-[#0A1A4A]'
+                      ? 'border-white ring-2 ring-[#60A5FA] ring-offset-2 ring-offset-[#050E28]'
                       : 'border-slate-500',
                   )}
                   style={{

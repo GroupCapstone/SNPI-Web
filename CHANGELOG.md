@@ -2,6 +2,11 @@
 
 All notable changes, commits, and skill updates are recorded here in real-time.
 
+### Version 0.2.21 (05.11.2026) (Developer: **史力爱卫**)
+
+- Replaced `#0A1A4A` in Dark mode with authentic Neutral AAA scale (`#64748B`, `#475569`, `#334155`, `#1E293B`, `#0F172A`, `#020617`) and Primary 950 (`#050E28`) obsidian canvas
+
+
 ### Version 0.2.20 (05.11.2026) (Developer: **史力爱卫**)
 
 - Redesign standard high-contrast form inputs with brand token styling, streamline dropdown component feed with zero description clutter, and convert domain card icons to status success green

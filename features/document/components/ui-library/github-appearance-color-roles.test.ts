@@ -36,13 +36,13 @@ describe('GitHub Appearance Color Roles Engine (computeActiveColorRoles)', () =>
     expect(roles.primary.contrastGrade).toBe('AAA');
   });
 
-  it('derives dark-default roles with deep navy obsidian canvas', () => {
+  it('derives dark-default roles with Primary 950 obsidian canvas and Neutral 900 subsurface', () => {
     const roles = computeActiveColorRoles('dark', 'light-default', 'dark-default', false, false);
 
     expect(roles.isDark).toBe(true);
     expect(roles.themeName).toBe('Dark default');
-    expect(roles.canvasBg).toBe('#0A1A4A');
-    expect(roles.subsurfaceBg).toBe('#0F225A');
+    expect(roles.canvasBg).toBe('#050E28');
+    expect(roles.subsurfaceBg).toBe('#0F172A');
     expect(roles.textPrimary).toBe('#FFFFFF');
     expect(roles.primary.fill).toBe('#93C5FD');
   });
