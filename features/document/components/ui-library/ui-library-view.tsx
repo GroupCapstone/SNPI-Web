@@ -1097,161 +1097,80 @@ function renderFeedComponentDemo(
       );
 
     case 'dropdown': {
-      const activeCampusMeta = {
-        'phnom-penh': {
+      const campusOptions = [
+        {
+          value: 'phnom-penh',
           label: 'Phnom Penh Innovation Hub',
           badge: 'PP-01',
-          desc: 'Capital Campus · Tech Tower & Software Engineering Labs',
-          students: '3,120',
-          faculty: '142 Staff',
-          programs: '18 Majors',
-          province: 'Phnom Penh',
           icon: Building2,
         },
-        'siem-reap': {
+        {
+          value: 'siem-reap',
           label: 'Siem Reap Main Campus',
           badge: 'SR-01',
-          desc: 'Main Campus · Science Wing & Advanced Research Cluster',
-          students: '2,450',
-          faculty: '118 Staff',
-          programs: '14 Majors',
-          province: 'Siem Reap',
           icon: GraduationCap,
         },
-        battambang: {
+        {
+          value: 'battambang',
           label: 'Battambang Regional Center',
           badge: 'BB-01',
-          desc: 'Regional Center · Agro-Tech & Environmental Studies',
-          students: '1,080',
-          faculty: '64 Staff',
-          programs: '8 Majors',
-          province: 'Battambang',
           icon: Compass,
         },
-        'kampong-cham': {
+        {
+          value: 'kampong-cham',
           label: 'Kampong Cham Learning Center',
           badge: 'KC-01',
-          desc: 'Learning Center · Digital Media & Applied Computing',
-          students: '890',
-          faculty: '48 Staff',
-          programs: '6 Majors',
-          province: 'Kampong Cham',
           icon: Globe,
         },
-      }[state.dropdownCampus] || {
-        label: 'Phnom Penh Innovation Hub',
-        badge: 'PP-01',
-        desc: 'Capital Campus · Tech Tower & Software Engineering Labs',
-        students: '3,120',
-        faculty: '142 Staff',
-        programs: '18 Majors',
-        province: 'Phnom Penh',
-        icon: Building2,
-      };
+        {
+          value: 'kandal',
+          label: 'Kandal Technology Campus',
+          badge: 'KD-01',
+          icon: Building2,
+        },
+      ];
 
-      const CampusIcon = activeCampusMeta.icon;
+      const selectedCampus =
+        campusOptions.find((c) => c.value === state.dropdownCampus) || campusOptions[0];
 
       return (
         <div className="flex w-full flex-col items-center">
-          <div className="w-full max-w-xl space-y-3 rounded-[4px] border border-[#CAD3F5] bg-white p-5 shadow-2xs sm:p-6">
+          <div className="w-full max-w-lg space-y-4 rounded-2xl border border-[#CAD3F5] bg-white p-5 shadow-xs sm:p-6">
+            {/* Header */}
+            <div className="flex items-center justify-between border-b border-[#CAD3F5]/60 pb-3">
+              <div className="flex items-center gap-2.5">
+                <div className="flex size-8 shrink-0 items-center justify-center rounded-lg border border-[#CAD3F5] bg-[#EFF5FF] text-[#0056FF]">
+                  <Building2 className="size-4 stroke-[2]" />
+                </div>
+                <h4 className="font-sans text-xs font-bold text-[#0A1A4A] sm:text-sm">
+                  Campus Branch Selector
+                </h4>
+              </div>
+              <span className="rounded-md border border-[#CAD3F5] bg-[#EFF5FF] px-2 py-0.5 font-mono text-[10px] font-bold text-[#0056FF]">
+                Searchable Dropdown
+              </span>
+            </div>
+
+            {/* Clean Dropdown Component (Focused, Zero Clutter) */}
             <LibraryDropdown
               label="Campus Location Branch"
               value={state.dropdownCampus}
               onChange={(val) => state.setDropdownCampus(val)}
-              options={[
-                {
-                  value: 'phnom-penh',
-                  label: 'Phnom Penh Innovation Hub',
-                  badge: 'PP-01',
-                  description: '3,120 Enrolled Students · Tech Tower · Cyber Security Lab',
-                  icon: Building2,
-                },
-                {
-                  value: 'siem-reap',
-                  label: 'Siem Reap Main Campus',
-                  badge: 'SR-01',
-                  description: '2,450 Enrolled Students · Science Wing · High Performance Cluster',
-                  icon: GraduationCap,
-                },
-                {
-                  value: 'battambang',
-                  label: 'Battambang Regional Center',
-                  badge: 'BB-01',
-                  description: '1,080 Enrolled Students · Campus A · Agro-Tech Innovation',
-                  icon: Compass,
-                },
-                {
-                  value: 'kampong-cham',
-                  label: 'Kampong Cham Learning Center',
-                  badge: 'KC-01',
-                  description: '890 Enrolled Students · Campus B · Digital Media Center',
-                  icon: Globe,
-                },
-              ]}
+              options={campusOptions}
             />
 
-            {/* Selected Campus Overview Card (Pure White Clean Surface, Zero Dots, Brand Colors) */}
-            <div className="rounded-[4px] border border-[#CAD3F5] bg-white p-4">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <span className="font-mono text-[10px] font-bold tracking-wider text-slate-500 uppercase">
-                    Selected Campus
-                  </span>
-                  <span className="rounded-[2px] border border-[#CAD3F5] bg-[#E3E7FC] px-1.5 py-0.5 font-mono text-[9px] font-bold text-[#0056FF]">
-                    {activeCampusMeta.badge}
-                  </span>
-                </div>
+            {/* Compact Selection Status Pill */}
+            <div className="flex items-center justify-between rounded-xl border border-[#CAD3F5] bg-[#EFF5FF]/40 px-3.5 py-2.5 font-sans text-xs">
+              <div className="flex items-center gap-2">
+                <span className="font-bold text-[#0A1A4A]">Selected:</span>
+                <span className="rounded border border-[#CAD3F5] bg-[#E3E7FC] px-1.5 py-0.5 font-mono text-[10px] font-bold text-[#0056FF]">
+                  {selectedCampus.badge}
+                </span>
+                <span className="font-medium text-[#0A1A4A]">{selectedCampus.label}</span>
               </div>
-
-              <div className="mt-3 flex items-start gap-3">
-                <div className="flex size-9 shrink-0 items-center justify-center rounded-[4px] border border-[#CAD3F5] bg-[#EFF5FF] text-[#0056FF]">
-                  <CampusIcon className="size-4.5 stroke-[2]" />
-                </div>
-                <div>
-                  <h4 className="font-sans text-sm font-bold text-[#0A1A4A] sm:text-base">
-                    {activeCampusMeta.label}
-                  </h4>
-                  <p className="mt-0.5 font-sans text-xs leading-relaxed text-[#334155]">
-                    {activeCampusMeta.desc}
-                  </p>
-                </div>
-              </div>
-
-              {/* Institutional Metrics Grid (Clean, Zero Dots) */}
-              <div className="mt-3.5 grid grid-cols-2 gap-2 border-t border-[#CAD3F5]/60 pt-3 font-mono sm:grid-cols-4">
-                <div className="rounded-[4px] border border-[#CAD3F5] bg-[#EFF5FF]/40 p-2 text-center">
-                  <span className="block text-[9px] font-bold tracking-wider text-slate-400 uppercase">
-                    Students
-                  </span>
-                  <span className="mt-0.5 block font-sans text-sm font-bold text-[#0056FF]">
-                    {activeCampusMeta.students}
-                  </span>
-                </div>
-                <div className="rounded-[4px] border border-[#CAD3F5] bg-[#EFF5FF]/40 p-2 text-center">
-                  <span className="block text-[9px] font-bold tracking-wider text-slate-400 uppercase">
-                    Faculty
-                  </span>
-                  <span className="mt-0.5 block font-sans text-sm font-bold text-[#0A1A4A]">
-                    {activeCampusMeta.faculty}
-                  </span>
-                </div>
-                <div className="rounded-[4px] border border-[#CAD3F5] bg-[#EFF5FF]/40 p-2 text-center">
-                  <span className="block text-[9px] font-bold tracking-wider text-slate-400 uppercase">
-                    Programs
-                  </span>
-                  <span className="mt-0.5 block font-sans text-sm font-bold text-[#0A1A4A]">
-                    {activeCampusMeta.programs}
-                  </span>
-                </div>
-                <div className="rounded-[4px] border border-[#CAD3F5] bg-[#EFF5FF]/40 p-2 text-center">
-                  <span className="block text-[9px] font-bold tracking-wider text-slate-400 uppercase">
-                    Province
-                  </span>
-                  <span className="mt-0.5 block font-sans text-xs font-bold text-[#0056FF]">
-                    {activeCampusMeta.province}
-                  </span>
-                </div>
-              </div>
+              <span className="font-mono text-[10px] font-bold text-emerald-600">
+                [ACTIVE]
+              </span>
             </div>
           </div>
         </div>

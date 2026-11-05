@@ -2,6 +2,10 @@
 
 All notable changes, commits, and skill updates are recorded here in real-time.
 
+### Version 0.2.20 (05.11.2026) (Developer: **史力爱卫**)
+
+- Redesign standard high-contrast form inputs with brand token styling, streamline dropdown component feed with zero description clutter, and convert domain card icons to status success green
+
 ### Version 0.2.19 (05.11.2026) (Developer: **史力爱卫**)
 
 - Implement GitHub Appearance Preferences with Dual Theme Mode (Light, Dark, Moonlit Dimmed) and Dynamic 26 Color Roles Architecture on Blueprint page

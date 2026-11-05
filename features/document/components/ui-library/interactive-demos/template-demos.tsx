@@ -21,6 +21,10 @@ import {
   CreditCard,
   Layers,
   X,
+  User,
+  Mail,
+  IdCard,
+  ShieldCheck,
 } from '@/components/icons';
 
 import { RareUiNavigationMenu } from '../navigation-menu';
@@ -305,115 +309,213 @@ export { LogoMarqueeDemo as MarqueeSectionDemo } from '../logo-marquee';
 // 5. FORMS
 // ==========================================
 
-// 5.1 Floating Label Form (Redesigned with Standard Form Inputs & Placeholders)
+// 5.1 Standard Form Inputs (Candidate Registration Dossier)
 export function FloatingLabelFormDemo() {
   const [formData, setFormData] = React.useState({
     fullName: 'Dara Sok',
     email: 'dara.sok@student.snpi.edu.kh',
     studentId: 'STU-2026-0891',
-    branch: 'phnom-penh',
   });
   const [submitted, setSubmitted] = React.useState(false);
 
+  const isFormValid =
+    formData.fullName.trim().length >= 3 &&
+    formData.email.includes('@') &&
+    formData.studentId.trim().length >= 6;
+
+  const handleReset = () => {
+    setFormData({
+      fullName: '',
+      email: '',
+      studentId: '',
+    });
+    setSubmitted(false);
+  };
+
+  const handleFillSample = () => {
+    setFormData({
+      fullName: 'Dara Sok',
+      email: 'dara.sok@student.snpi.edu.kh',
+      studentId: 'STU-2026-0891',
+    });
+    setSubmitted(false);
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!isFormValid) return;
     setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3500);
+    setTimeout(() => setSubmitted(false), 4500);
   };
 
   return (
-    <div className="w-full max-w-xl space-y-4 rounded-[4px] border border-[#CAD3F5] bg-white p-5 shadow-2xs sm:p-6">
-      <div className="flex items-center justify-between border-b border-[#CAD3F5]/60 pb-3">
-        <div>
-          <h4 className="font-sans text-xs font-bold text-[#0A1A4A]">
-            Candidate Registration Form
-          </h4>
-          <p className="font-sans text-[11px] text-[#334155]">
-            Standard Form Inputs · High-Contrast Precision
-          </p>
+    <div className="w-full max-w-xl space-y-5 rounded-2xl border border-[#CAD3F5] bg-white p-5 shadow-xs sm:p-7">
+      {/* Form Dossier Header */}
+      <div className="flex items-center justify-between border-b border-[#CAD3F5] pb-4">
+        <div className="flex items-center gap-3">
+          <div className="flex size-10 shrink-0 items-center justify-center rounded-xl border border-[#CAD3F5] bg-[#EFF5FF] text-[#0056FF]">
+            <FileText className="size-5 stroke-[2]" />
+          </div>
+          <div>
+            <h4 className="font-sans text-sm font-bold text-[#0A1A4A] sm:text-base">
+              Candidate Registration Dossier
+            </h4>
+            <p className="font-sans text-xs text-[#334155]">
+              Standard Form Inputs &middot; High-Contrast Precision
+            </p>
+          </div>
         </div>
-        <span className="rounded-[2px] border border-[#CAD3F5] bg-[#EFF5FF] px-2 py-0.5 font-mono text-[10px] font-bold text-[#0056FF]">
+        <span className="rounded-md border border-[#CAD3F5] bg-[#EFF5FF] px-2.5 py-1 font-mono text-[10px] font-bold text-[#0056FF]">
           Verified Form
         </span>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-4">
-        {/* Field 1: Full Name */}
+        {/* Field 1: Candidate Full Legal Name */}
         <div className="space-y-1.5">
-          <label
-            htmlFor="std-full-name"
-            className="block font-sans text-xs font-semibold text-[#0A1A4A]"
-          >
-            Candidate Full Legal Name
-          </label>
-          <input
-            type="text"
-            id="std-full-name"
-            required
-            value={formData.fullName}
-            onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-            placeholder="e.g. Dara Sok"
-            className="h-10 w-full rounded-[4px] border border-[#CAD3F5] bg-white px-3 font-sans text-xs text-[#0A1A4A] transition-colors placeholder:text-slate-400 focus:border-[#0056FF] focus:ring-1 focus:ring-[#0056FF]/20 focus:outline-none"
-          />
+          <div className="flex items-center justify-between">
+            <label
+              htmlFor="std-full-name"
+              className="block font-sans text-xs font-bold text-[#0A1A4A]"
+            >
+              Candidate Full Legal Name <span className="text-[#0056FF]">*</span>
+            </label>
+            {formData.fullName.trim().length >= 3 && (
+              <span className="inline-flex items-center gap-1 font-mono text-[10px] font-bold text-emerald-600">
+                <Check className="size-3 stroke-[2.5]" />
+                <span>Valid Name</span>
+              </span>
+            )}
+          </div>
+          <div className="group relative flex items-center">
+            <div className="pointer-events-none absolute left-3 flex size-5 items-center justify-center text-slate-400 transition-colors group-focus-within:text-[#0056FF]">
+              <User className="size-4 stroke-[2]" />
+            </div>
+            <input
+              type="text"
+              id="std-full-name"
+              required
+              value={formData.fullName}
+              onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+              placeholder="Enter full legal name (e.g. Dara Sok)"
+              className="h-11 w-full rounded-xl border-2 border-[#CAD3F5] bg-[#EFF5FF]/40 pr-3 pl-10 font-sans text-xs font-semibold text-[#0A1A4A] transition-all placeholder:text-slate-400 hover:border-[#0056FF]/50 hover:bg-white focus:border-[#0056FF] focus:bg-white focus:ring-3 focus:ring-[#0056FF]/15 focus:outline-none"
+            />
+          </div>
+          <p className="font-sans text-[11px] text-slate-500">
+            Official legal name matching civil registration identity records.
+          </p>
         </div>
 
-        {/* Field 2: Email */}
+        {/* Field 2: Institutional Campus Email Address */}
         <div className="space-y-1.5">
-          <label
-            htmlFor="std-email"
-            className="block font-sans text-xs font-semibold text-[#0A1A4A]"
-          >
-            Institutional Campus Email Address
-          </label>
-          <input
-            type="email"
-            id="std-email"
-            required
-            value={formData.email}
-            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-            placeholder="e.g. dara.sok@student.snpi.edu.kh"
-            className="h-10 w-full rounded-[4px] border border-[#CAD3F5] bg-white px-3 font-sans text-xs text-[#0A1A4A] transition-colors placeholder:text-slate-400 focus:border-[#0056FF] focus:ring-1 focus:ring-[#0056FF]/20 focus:outline-none"
-          />
+          <div className="flex items-center justify-between">
+            <label
+              htmlFor="std-email"
+              className="block font-sans text-xs font-bold text-[#0A1A4A]"
+            >
+              Institutional Campus Email Address <span className="text-[#0056FF]">*</span>
+            </label>
+            {formData.email.includes('@') && (
+              <span className="inline-flex items-center gap-1 font-mono text-[10px] font-bold text-emerald-600">
+                <Check className="size-3 stroke-[2.5]" />
+                <span>Verified Domain</span>
+              </span>
+            )}
+          </div>
+          <div className="group relative flex items-center">
+            <div className="pointer-events-none absolute left-3 flex size-5 items-center justify-center text-slate-400 transition-colors group-focus-within:text-[#0056FF]">
+              <Mail className="size-4 stroke-[2]" />
+            </div>
+            <input
+              type="email"
+              id="std-email"
+              required
+              value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              placeholder="e.g. dara.sok@student.snpi.edu.kh"
+              className="h-11 w-full rounded-xl border-2 border-[#CAD3F5] bg-[#EFF5FF]/40 pr-3 pl-10 font-sans text-xs font-semibold text-[#0A1A4A] transition-all placeholder:text-slate-400 hover:border-[#0056FF]/50 hover:bg-white focus:border-[#0056FF] focus:bg-white focus:ring-3 focus:ring-[#0056FF]/15 focus:outline-none"
+            />
+          </div>
+          <p className="font-sans text-[11px] text-slate-500">
+            Official campus single sign-on address (@student.snpi.edu.kh).
+          </p>
         </div>
 
-        {/* Field 3: Student ID */}
+        {/* Field 3: National Student ID */}
         <div className="space-y-1.5">
-          <label
-            htmlFor="std-student-id"
-            className="block font-sans text-xs font-semibold text-[#0A1A4A]"
-          >
-            National Student ID (STU-XXXX-XXXX)
-          </label>
-          <input
-            type="text"
-            id="std-student-id"
-            required
-            value={formData.studentId}
-            onChange={(e) => setFormData({ ...formData, studentId: e.target.value })}
-            placeholder="e.g. STU-2026-0891"
-            className="h-10 w-full rounded-[4px] border border-[#CAD3F5] bg-white px-3 font-mono text-xs text-[#0A1A4A] transition-colors placeholder:text-slate-400 focus:border-[#0056FF] focus:ring-1 focus:ring-[#0056FF]/20 focus:outline-none"
-          />
+          <div className="flex items-center justify-between">
+            <label
+              htmlFor="std-student-id"
+              className="block font-sans text-xs font-bold text-[#0A1A4A]"
+            >
+              National Student ID (STU-XXXX-XXXX) <span className="text-[#0056FF]">*</span>
+            </label>
+            {formData.studentId.trim().length >= 6 && (
+              <span className="inline-flex items-center gap-1 font-mono text-[10px] font-bold text-emerald-600">
+                <Check className="size-3 stroke-[2.5]" />
+                <span>ID Standard</span>
+              </span>
+            )}
+          </div>
+          <div className="group relative flex items-center">
+            <div className="pointer-events-none absolute left-3 flex size-5 items-center justify-center text-slate-400 transition-colors group-focus-within:text-[#0056FF]">
+              <IdCard className="size-4 stroke-[2]" />
+            </div>
+            <input
+              type="text"
+              id="std-student-id"
+              required
+              value={formData.studentId}
+              onChange={(e) => setFormData({ ...formData, studentId: e.target.value })}
+              placeholder="e.g. STU-2026-0891"
+              className="h-11 w-full rounded-xl border-2 border-[#CAD3F5] bg-[#EFF5FF]/40 pr-3 pl-10 font-mono text-xs font-bold text-[#0A1A4A] transition-all placeholder:font-sans placeholder:font-normal placeholder:text-slate-400 hover:border-[#0056FF]/50 hover:bg-white focus:border-[#0056FF] focus:bg-white focus:ring-3 focus:ring-[#0056FF]/15 focus:outline-none"
+            />
+          </div>
+          <p className="font-sans text-[11px] text-slate-500">
+            Standard format: STU-YYYY-XXXX institutional identifier.
+          </p>
         </div>
 
-        {/* Form Action Controls */}
-        <div className="flex items-center justify-between pt-2">
-          <span className="font-mono text-[10px] text-slate-400">All fields validated via Zod</span>
-          <button
-            type="submit"
-            className="cursor-pointer rounded-[4px] bg-[#0056FF] px-4 py-2 font-sans text-xs font-semibold text-white shadow-2xs transition-colors hover:bg-[#2277FF] active:bg-[#0047D4]"
-          >
-            {submitted ? 'Record Registered' : 'Register Candidate'}
-          </button>
+        {/* Action Buttons & Verification Note */}
+        <div className="flex flex-wrap items-center justify-between gap-3 pt-3">
+          <div className="flex items-center gap-1.5 font-mono text-[11px] text-emerald-700">
+            <ShieldCheck className="size-4 stroke-[2.5] text-emerald-600" />
+            <span>Strict Zod Schema Validation</span>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={formData.fullName ? handleReset : handleFillSample}
+              className="cursor-pointer rounded-xl border border-[#CAD3F5] bg-white px-3.5 py-2 font-sans text-xs font-bold text-[#0A1A4A] transition-colors hover:border-[#0056FF] hover:bg-[#EFF5FF] hover:text-[#0056FF] active:scale-95"
+            >
+              {formData.fullName ? 'Clear' : 'Fill Sample'}
+            </button>
+            <button
+              type="submit"
+              disabled={!isFormValid}
+              className="cursor-pointer rounded-xl border border-[#0056FF] bg-[#0056FF] px-5 py-2 font-sans text-xs font-bold text-white shadow-xs transition-all hover:bg-[#2277FF] active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              {submitted ? 'Record Registered' : 'Register Candidate'}
+            </button>
+          </div>
         </div>
       </form>
 
+      {/* Submission Success Toast Card */}
       {submitted && (
-        <div className="animate-in fade-in flex items-center gap-2 rounded-[4px] border border-[#CAD3F5] bg-[#EFF5FF] p-3 font-sans text-xs font-medium text-[#0056FF]">
-          <Check className="size-4 stroke-[2.5]" />
-          <span>
-            Candidate record for {formData.fullName} ({formData.studentId}) successfully registered
-            into campus directory.
-          </span>
+        <div className="animate-in fade-in flex items-start gap-3 rounded-xl border border-emerald-300 bg-emerald-50/80 p-4 font-sans text-xs text-emerald-950">
+          <div className="flex size-6 shrink-0 items-center justify-center rounded-full bg-emerald-600 text-white">
+            <Check className="size-3.5 stroke-[2.5]" />
+          </div>
+          <div className="space-y-0.5">
+            <div className="font-bold text-emerald-900">Registration Complete</div>
+            <p className="text-emerald-800">
+              Candidate record for <span className="font-bold">{formData.fullName}</span> (
+              <span className="font-mono font-bold">{formData.studentId}</span>) was verified and
+              registered into the campus directory.
+            </p>
+          </div>
         </div>
       )}
     </div>
