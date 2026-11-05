@@ -397,11 +397,11 @@ export function DocsStickyHeader({
                                 onClick={() => toggleCategoryGroup(group.groupId)}
                                 className="group flex w-full cursor-pointer items-center justify-between rounded-xl px-2.5 py-2 text-left font-sans text-xs font-bold text-black transition-colors select-none hover:bg-slate-50"
                               >
-                                <div className="flex min-w-0 items-center gap-3.5">
-                                  <div className="flex size-10 shrink-0 items-center justify-center rounded-xl border border-slate-200/90 bg-white text-black shadow-2xs transition-colors group-hover:border-slate-300 group-hover:bg-slate-50/80">
-                                    <ParentGroupIcon className="size-5 stroke-[2] text-black" />
+                                <div className="flex min-w-0 items-center gap-2.5">
+                                  <div className="flex size-8 shrink-0 items-center justify-center rounded-lg border border-slate-200/90 bg-white text-black shadow-2xs transition-colors group-hover:border-slate-300 group-hover:bg-slate-50/80">
+                                    <ParentGroupIcon className="size-4 stroke-[2] text-black" />
                                   </div>
-                                  <span className="truncate text-sm font-bold text-black">
+                                  <span className="truncate text-xs font-bold text-black sm:text-[13px]">
                                     {group.group}
                                   </span>
                                 </div>

@@ -3,7 +3,7 @@
 import * as React from 'react';
 import Image from 'next/image';
 import { Copy, Check } from '@/components/icons';
-import { AsteriskLogo, SaveLogoButton } from './asterisk-logo';
+import { AsteriskLogo, SaveLogoButton, BrandMediaKitDownloadSuite } from './asterisk-logo';
 
 export function BrandConceptBlueprint() {
   const [copiedToken, setCopiedToken] = React.useState<string | null>(null);
@@ -182,56 +182,82 @@ export function BrandConceptBlueprint() {
       {/* SNPI OFFICIAL BRAND ASTERISK LOGO (LIGHT & DARK DUAL MODE) */}
       <div className="rounded-2xl border border-[#CAD3F5] bg-white p-6 shadow-xs sm:p-7">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-          <div className="space-y-1">
+          <div className="space-y-1.5">
             <h3 className="font-sans text-xl font-extrabold text-slate-950 sm:text-2xl">
               SNPI Official Brand Asterisk Logo
             </h3>
-            <p className="text-xs text-slate-600 sm:text-sm">
+            <p className="max-w-xl text-xs leading-relaxed text-slate-600 sm:text-sm">
               Official brand logo rendered with the iconic bold Sora typeface asterisk glyph (
               <code className="font-mono font-bold text-[#0056FF]">*</code>) in Royal Blue (
               <code className="font-mono font-bold text-[#0056FF]">#0056FF</code>) on pure light
-              canvas.
+              canvas, and crisp White (
+              <code className="font-mono font-bold text-[#0056FF]">#FFFFFF</code>) on Obsidian Slate
+              (<code className="font-mono font-bold text-[#0056FF]">#020617</code>) dark surfaces.
             </p>
-            <div className="pt-2">
-              <SaveLogoButton />
-            </div>
+            {/* Unified Media Kit & High-Res PNG Download Suite (strictly below 20MB) */}
+            <BrandMediaKitDownloadSuite />
           </div>
 
           {/* Logo Visual Presentation */}
           <div className="flex flex-wrap items-center gap-4">
             {/* White Canvas Preview (Light Mode) */}
-            <div className="flex items-center gap-4 rounded-xl border border-slate-200 bg-white p-3.5 shadow-2xs">
-              <div className="flex size-16 shrink-0 items-center justify-center">
-                <AsteriskLogo size="lg" variant="standard" mode="light" />
-              </div>
-              <div className="space-y-0.5">
-                <div className="font-sans text-xs font-bold text-slate-950">Light Mode</div>
-                <div className="font-mono text-[10px] text-slate-500">
-                  bg-[#FFFFFF] · Brand Tile
+            <div className="flex flex-col gap-2 rounded-xl border border-slate-200 bg-white p-3.5 shadow-2xs">
+              <div className="flex items-center gap-3.5">
+                <div className="flex size-14 shrink-0 items-center justify-center">
+                  <AsteriskLogo size="lg" variant="standard" mode="light" />
+                </div>
+                <div className="space-y-0.5">
+                  <div className="font-sans text-xs font-bold text-slate-950">Light Mode</div>
+                  <div className="font-mono text-[10px] text-slate-500">
+                    bg-[#FFFFFF] · Brand Tile
+                  </div>
                 </div>
               </div>
+              <SaveLogoButton
+                variant="light"
+                label="Save PNG"
+                className="w-full justify-center py-1 text-[10px]"
+              />
             </div>
 
-            {/* Dark Mode Canvas Preview */}
-            <div className="flex items-center gap-4 rounded-xl border border-slate-800 bg-[#0A1A4A] p-3.5 shadow-2xs">
-              <div className="flex size-16 shrink-0 items-center justify-center">
-                <AsteriskLogo size="lg" variant="standard" mode="dark" />
+            {/* Dark Mode Canvas Preview (Obsidian Slate #020617) */}
+            <div className="flex flex-col gap-2 rounded-xl border border-slate-800 bg-[#020617] p-3.5 shadow-2xs">
+              <div className="flex items-center gap-3.5">
+                <div className="flex size-14 shrink-0 items-center justify-center">
+                  <AsteriskLogo size="lg" variant="standard" mode="dark" />
+                </div>
+                <div className="space-y-0.5">
+                  <div className="font-sans text-xs font-bold text-white">Dark Mode</div>
+                  <div className="font-mono text-[10px] text-slate-400">
+                    bg-[#020617] · Obsidian Slate
+                  </div>
+                </div>
               </div>
-              <div className="space-y-0.5">
-                <div className="font-sans text-xs font-bold text-white">Dark Mode</div>
-                <div className="font-mono text-[10px] text-blue-200">bg-[#0A1A4A] · Azure Glow</div>
-              </div>
+              <SaveLogoButton
+                variant="dark"
+                label="Save PNG"
+                className="w-full justify-center border-white/20 bg-white/10 py-1 text-[10px] text-white hover:border-white/30 hover:bg-white/20"
+              />
             </div>
 
             {/* Royal Brand Solid Canvas Preview */}
-            <div className="flex items-center gap-4 rounded-xl border border-[#0048D9] bg-[#0056FF] p-3.5 shadow-2xs">
-              <div className="flex size-16 shrink-0 items-center justify-center">
-                <AsteriskLogo size="lg" variant="brand" />
+            <div className="flex flex-col gap-2 rounded-xl border border-[#0048D9] bg-[#0056FF] p-3.5 shadow-2xs">
+              <div className="flex items-center gap-3.5">
+                <div className="flex size-14 shrink-0 items-center justify-center">
+                  <AsteriskLogo size="lg" variant="brand" />
+                </div>
+                <div className="space-y-0.5">
+                  <div className="font-sans text-xs font-bold text-white">Royal Solid</div>
+                  <div className="font-mono text-[10px] text-blue-100">
+                    bg-[#0056FF] · Solid Mark
+                  </div>
+                </div>
               </div>
-              <div className="space-y-0.5">
-                <div className="font-sans text-xs font-bold text-white">Royal Solid</div>
-                <div className="font-mono text-[10px] text-blue-100">bg-[#0056FF] · Solid Mark</div>
-              </div>
+              <SaveLogoButton
+                variant="royal"
+                label="Save PNG"
+                className="w-full justify-center border-white/30 bg-white/15 py-1 text-[10px] text-white hover:border-white/40 hover:bg-white/25"
+              />
             </div>
           </div>
         </div>

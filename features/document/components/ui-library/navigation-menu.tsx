@@ -313,10 +313,10 @@ export function RareUiNavigationMenu({ className }: { className?: string }) {
                   <div className="flex flex-col justify-between gap-2 sm:col-span-7">
                     <a
                       href="#cat-forms"
-                      className="group/item flex items-start gap-3 rounded-xl border border-transparent p-2 transition-colors hover:border-[#CAD3F5] hover:bg-[#EFF5FF]"
+                      className="group/item flex items-start gap-2.5 rounded-xl border border-transparent p-2 transition-colors hover:border-[#CAD3F5] hover:bg-[#EFF5FF]"
                     >
-                      <div className="flex size-9.5 shrink-0 items-center justify-center rounded-xl border border-slate-200/90 bg-white text-black shadow-2xs transition-colors group-hover/item:border-slate-300">
-                        <SquarePen className="size-5 stroke-[2]" />
+                      <div className="flex size-8 shrink-0 items-center justify-center rounded-lg border border-slate-200/90 bg-white text-black shadow-2xs transition-colors group-hover/item:border-slate-300">
+                        <SquarePen className="size-4 stroke-[2]" />
                       </div>
                       <div>
                         <div className="flex items-center gap-1.5">
@@ -335,10 +335,10 @@ export function RareUiNavigationMenu({ className }: { className?: string }) {
 
                     <a
                       href="#cat-feedback"
-                      className="group/item flex items-start gap-3 rounded-xl border border-transparent p-2 transition-colors hover:border-[#CAD3F5] hover:bg-[#EFF5FF]"
+                      className="group/item flex items-start gap-2.5 rounded-xl border border-transparent p-2 transition-colors hover:border-[#CAD3F5] hover:bg-[#EFF5FF]"
                     >
-                      <div className="flex size-9.5 shrink-0 items-center justify-center rounded-xl border border-slate-200/90 bg-white text-black shadow-2xs transition-colors group-hover/item:border-slate-300">
-                        <Bell className="size-5 stroke-[2]" />
+                      <div className="flex size-8 shrink-0 items-center justify-center rounded-lg border border-slate-200/90 bg-white text-black shadow-2xs transition-colors group-hover/item:border-slate-300">
+                        <Bell className="size-4 stroke-[2]" />
                       </div>
                       <div>
                         <span className="font-sans text-xs font-bold text-[#0A1A4A] group-hover/item:text-[#0056FF]">
@@ -352,10 +352,10 @@ export function RareUiNavigationMenu({ className }: { className?: string }) {
 
                     <a
                       href="#interactive-feed"
-                      className="group/item flex items-start gap-3 rounded-xl border border-transparent p-2 transition-colors hover:border-[#CAD3F5] hover:bg-[#EFF5FF]"
+                      className="group/item flex items-start gap-2.5 rounded-xl border border-transparent p-2 transition-colors hover:border-[#CAD3F5] hover:bg-[#EFF5FF]"
                     >
-                      <div className="flex size-9.5 shrink-0 items-center justify-center rounded-xl border border-slate-200/90 bg-white text-black shadow-2xs transition-colors group-hover/item:border-slate-300">
-                        <Layers className="size-5 stroke-[2]" />
+                      <div className="flex size-8 shrink-0 items-center justify-center rounded-lg border border-slate-200/90 bg-white text-black shadow-2xs transition-colors group-hover/item:border-slate-300">
+                        <Layers className="size-4 stroke-[2]" />
                       </div>
                       <div>
                         <span className="font-sans text-xs font-bold text-[#0A1A4A] group-hover/item:text-[#0056FF]">

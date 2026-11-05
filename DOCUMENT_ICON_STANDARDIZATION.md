@@ -121,14 +121,40 @@ svg:where([data-slot='icon'], [class*='size-'], [class*='h-'][class*='w-']) {
 
 ---
 
-## 4. Official Web Logo & Standalone Export Button
+## 4. Official Web Logo, Dark Mode Obsidian Slate (#020617) & Brand Media Kit Suite
 
-In alignment with the motionless icon policy, the SNPI brand logo provides a dedicated, simple button to save the original logo as seen on the web:
+In alignment with the motionless icon and brand color policy:
 
-- **Component**: `<SaveLogoButton />` (`features/document/components/ui-library/asterisk-logo.tsx`)
-- **Action**: Instantly downloads `snpi-brand-logo.svg` containing the mathematically centered Sora Bold asterisk vector mark (`viewBox="0 0 100 100"` in Royal Blue `#0056FF` with `strokeWidth="1.5"`).
-- **Presentation**: One simple, high-contrast button placed in hero sections, brand concept blueprints, and logo cards:
-  ```tsx
-  <SaveLogoButton />
-  ```
-- **File Output**: Pure vector SVG file ("only logo"), zero extraneous UI containers or text wrappers.
+- **Dark Mode Background**: Strictly standardized to Obsidian Slate (`#020617`) for all dark mode brand logo representations, replacing legacy navy values.
+- **Export Formats & File Size**:
+  - Pure vector SVG export (`downloadOriginalLogo()`)
+  - High-resolution raster PNG export (`downloadLogoPng()`), generated via client-side canvas rasterization, strictly below 20MB (lossless 1024x1024, ~60KB to 250KB each).
+- **Comprehensive Brand Media Kit (.ZIP)**:
+  - Single-click packaging via `downloadBrandMediaKitZip()` delivering all 11 production assets:
+    1. `01-snpi-logo-light-1024.png` (White canvas, Royal Blue asterisk)
+    2. `02-snpi-logo-dark-1024.png` (Obsidian Slate `#020617`, White asterisk)
+    3. `03-snpi-logo-royal-1024.png` (Royal Blue `#0056FF`, White asterisk)
+    4. `04-snpi-logo-transparent-1024.png` (Transparent background)
+    5. `05-snpi-avatar-circle-512.png` (Social profile circular avatar, Royal Blue)
+    6. `06-snpi-avatar-dark-circle-512.png` (Social profile circular avatar, Obsidian Slate `#020617`)
+    7. `07-snpi-avatar-squircle-512.png` (App squircle avatar, 512px)
+    8. `08-snpi-web-favicon-192.png` (Web favicon standard)
+    9. `09-snpi-web-app-icon-512.png` (PWA web app manifest standard)
+    10. `10-snpi-brand-logo.svg` (Pure vector SVG)
+    11. `README-BRAND-STANDARDS.txt` (Textual specs & guidelines)
+- **UI Components**:
+  - `<SaveLogoButton variant="light"|"dark"|"royal" />`: Single-click instant PNG download.
+  - `<BrandMediaKitDownloadSuite />`: Complete action group featuring "Download Media Kit (.ZIP)", "Save PNG (1024px)", and "Save SVG".
+
+---
+
+## 5. Standardized Compact Squircle Icon Containers
+
+For sidebar navigation rows, menus, and section headers, icon containers follow refined compact metrics to avoid bulky visual footprint:
+
+| Context | Container Dimensions | Border Radius | Icon Sizing | Visual Style |
+|---|---|---|---|---|
+| **Sidebar Navigation Groups** | `size-8` (32x32px) | `rounded-lg` (8px) | `size-4` (16x16px), `stroke-[2]` | `border-slate-200/90 bg-white shadow-2xs` |
+| **Dropdown / Navigation Panels** | `size-8` (32x32px) | `rounded-lg` (8px) | `size-4` (16x16px), `stroke-[2]` | `border-slate-200/90 bg-white shadow-2xs` |
+| **Documentation Section Headers** | `size-9.5` (38x38px) | `rounded-xl` (12px) | `size-5` (20x20px), `stroke-[2]` | `border-[#CAD3F5] bg-[#EFF5FF] text-[#0056FF] shadow-2xs` |
+
