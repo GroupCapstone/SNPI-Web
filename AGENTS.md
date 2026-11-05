@@ -100,8 +100,13 @@ Never run an unrelated full suite solely because it is listed here; report which
 
 ## 5. Mandatory Pre-Push CI, Dual-Developer Sync & Deployment Quality Gate Rule
 
-- **One-Command Automated Push & Checkpoint (`npm run push:checkpoint`)**:
-  - Whenever the user explicitly commands to push (`push`, `git push`, `publish`), always run `npm run push:checkpoint` (or the complete 10-step sequence: format, lint, typecheck, smoke, deploy:verify, git:sync, changelog:sync, commit, tag, push, and live CI status verification).
+- **Mandatory Fast Sequential Push Workflow (GitHub First -> Watch 100% Green CI -> Vercel Production Deploy)**:
+  - Whenever the user explicitly commands to push (`push`, `git push`, `publish`, `push now`), the agent and contributor MUST strictly execute in this exact sequence:
+    1. **Pre-Flight Gates**: Run fast `npm run lint`, `npm run typecheck`, and `npm test` with 0 errors.
+    2. **Push to GitHub First**: Push local commits to GitHub `origin main` (and organization remotes).
+    3. **Live CI Watch Until 100% Green**: Actively monitor GitHub Actions CI runs for the pushed commit SHA (`gh run list --commit <SHA>`) with tight 4-second polling intervals until ALL triggered workflows complete with `[PASSED]` status. Never proceed to Vercel if any check is running or failed.
+    4. **Vercel Production Deploy (Triggered Post-Green Only)**: ONLY AFTER GitHub Actions CI reaches 100% green, execute Vercel production deployment (`npm run deploy:vercel:prod` / `vercel deploy --archive=tgz --prod`).
+    5. **Optimized Fast Execution**: Use the streamlined pipeline `npm run push` (or `npm run release:all`) which automates this full sequential chain without pauses, redundant re-builds, or polling delays.
 - **Mandatory Pre-Push ESLint Quality Gate (`npm run lint`)**:
   - `npm run lint` MUST be executed and pass with 0 errors before any commit or push. JSX text node violations, unescaped entities, and typing errors must never reach remote CI.
 - **Mandatory Dual-Developer Git Reconciliation & Merge Gate (`npm run git:sync`)**:

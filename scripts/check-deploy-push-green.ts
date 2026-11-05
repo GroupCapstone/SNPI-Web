@@ -19,6 +19,7 @@ export async function checkDeployPushGreen(): Promise<void> {
   const args = process.argv.slice(2);
   const skipCiWait = args.includes('--skip-ci-wait');
   const dryRun = args.includes('--dry-run');
+  const deployVercel = args.includes('--deploy-vercel');
 
   let messageArg = '';
   const msgIdx = args.indexOf('--message');
@@ -187,7 +188,7 @@ export async function checkDeployPushGreen(): Promise<void> {
   }
 
   // Gate 9: Real-time GitHub Actions CI Monitoring Until 100% Green
-  console.log('\n[9/9] Initiating automated live monitoring of GitHub Actions CI/CD workflows...');
+  console.log('\n[9/10] Initiating automated live monitoring of GitHub Actions CI/CD workflows...');
   const repoToMonitor = targetRemotes.includes('origin')
     ? getRemoteRepo('origin')
     : getRemoteRepo('org');
@@ -195,10 +196,17 @@ export async function checkDeployPushGreen(): Promise<void> {
   await waitForCIStatus({
     commitSha: headSha,
     repo: repoToMonitor,
-    pollIntervalMs: 10000,
+    pollIntervalMs: 4000, // Optimized fast polling interval
     timeoutMinutes: 15,
     minWorkflows: 4,
   });
+
+  // Gate 10: Automatic Vercel Production Deploy (ONLY after GitHub Actions is 100% Green)
+  if (deployVercel) {
+    console.log('\n[10/10] GitHub Actions CI is 100% green! Deploying verified build to Vercel Production...');
+    run('vercel deploy --archive=tgz --prod', true);
+    console.log('       [PASS] Production deployment to Vercel completed successfully.');
+  }
 
   console.log('\n================================================================');
   console.log('[COMPLETED] Standard check, deploy, push & 100% green verified!');
