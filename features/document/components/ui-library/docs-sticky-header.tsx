@@ -1,13 +1,11 @@
 'use client';
 
 import * as React from 'react';
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { AsteriskLogo } from './asterisk-logo';
+import { DocumentLogo } from './document-logo';
 import {
   FileText,
   Layers,
-  Code,
   Menu,
   X,
   Search,
@@ -228,22 +226,15 @@ export function DocsStickyHeader({
     <header className="sticky top-0 z-50 w-full border-b border-[#0048D9] bg-[#0056FF] shadow-[0_2px_12px_rgba(0,40,150,0.2)] backdrop-blur-xl">
       <div className="relative mx-auto flex h-[68px] max-w-[1560px] items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Left: Brand Identity */}
-        <Link
+        <DocumentLogo
+          variant="header"
+          mode="dark"
+          showLabel={true}
+          label="SNPI-SMS"
+          subtitle="Docs"
           href="/document"
-          className="group z-10 flex items-center gap-2.5 select-none sm:gap-3.5"
-          title="SNPI-SMS Developer Documentation Portal"
-        >
-          <AsteriskLogo size="md" variant="standard" className="shadow-xs shrink-0" />
-          <div className="flex items-center gap-1.5 sm:gap-2">
-            <span className="font-sans text-base font-black tracking-tight text-white transition-colors group-hover:text-blue-100 sm:text-lg md:text-xl">
-              SNPI-SMS
-            </span>
-            <span className="h-4 w-[2px] bg-white/40" />
-            <span className="font-sans text-[11px] font-bold tracking-wider text-blue-100 uppercase sm:text-xs">
-              Docs
-            </span>
-          </div>
-        </Link>
+          className="z-10"
+        />
 
         {/* Center: Futuristic Cyber Armor Modular Nav Bar (Desktop Only) */}
         <div className="pointer-events-auto absolute top-1/2 left-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center md:flex">
