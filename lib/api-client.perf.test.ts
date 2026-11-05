@@ -19,7 +19,7 @@ import {
   setUnauthorizedHandler,
 } from './api-client';
 
-const REQUIRED_SPEEDUP = 0.2; // 20%
+const _REQUIRED_SPEEDUP = 0.2; // 20%
 
 // ---------------------------------------------------------------------------
 // Helpers
