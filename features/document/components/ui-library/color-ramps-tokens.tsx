@@ -1,12 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import {
-  Check,
-  Copy,
-  ChevronDown,
-  ChevronRight,
-} from '@/components/icons';
+import { Check, Copy, ChevronDown, ChevronRight } from '@/components/icons';
 import { cn } from '@/lib/utils';
 import { GithubAppearanceColorRoles } from './github-appearance-color-roles';
 
@@ -333,12 +328,6 @@ export function ColorRampsTokens() {
   const [activeCategory, setActiveCategory] = React.useState<string>('all');
   const [agentDrawerOpen, setAgentDrawerOpen] = React.useState<boolean>(false);
   const [copiedPalette, setCopiedPalette] = React.useState<boolean>(false);
-
-
-
-
-
-
 
   const handleCopy = async (text: string, label: string) => {
     if (typeof window === 'undefined') return;

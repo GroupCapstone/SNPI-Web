@@ -409,10 +409,7 @@ export function FloatingLabelFormDemo() {
         {/* Field 2: Institutional Campus Email Address */}
         <div className="space-y-1.5">
           <div className="flex items-center justify-between">
-            <label
-              htmlFor="std-email"
-              className="block font-sans text-xs font-bold text-[#0A1A4A]"
-            >
+            <label htmlFor="std-email" className="block font-sans text-xs font-bold text-[#0A1A4A]">
               Institutional Campus Email Address <span className="text-[#0056FF]">*</span>
             </label>
             {formData.email.includes('@') && (

@@ -1,15 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import {
-  Sun,
-  Moon,
-  Check,
-  Copy,
-  ShieldCheck,
-  Layers,
-  Activity,
-} from '@/components/icons';
+import { Sun, Moon, Check, Copy, ShieldCheck, Layers, Activity } from '@/components/icons';
 import { cn } from '@/lib/utils';
 
 // ---------------------------------------------------------------------------
@@ -18,16 +10,9 @@ import { cn } from '@/lib/utils';
 export type ThemeMode = 'sync' | 'light' | 'dark';
 
 export type LightThemeId =
-  | 'light-default'
-  | 'light-high-contrast'
-  | 'light-colorblind'
-  | 'light-lavender';
+  'light-default' | 'light-high-contrast' | 'light-colorblind' | 'light-lavender';
 
-export type DarkThemeId =
-  | 'dark-default'
-  | 'dark-dimmed'
-  | 'dark-high-contrast'
-  | 'dark-colorblind';
+export type DarkThemeId = 'dark-default' | 'dark-dimmed' | 'dark-high-contrast' | 'dark-colorblind';
 
 export interface ThemeOption<T extends string = string> {
   id: T;
@@ -76,21 +61,24 @@ export const DARK_THEMES: ThemeOption<DarkThemeId>[] = [
   {
     id: 'dark-default',
     label: 'Dark default',
-    description: 'Deep midnight obsidian canvas (Primary 950) with luminous azure accents and pure white text.',
+    description:
+      'Deep midnight obsidian canvas (Primary 950) with luminous azure accents and pure white text.',
     swatchFill: '#050E28',
     swatchBorder: '#2277FF',
   },
   {
     id: 'dark-dimmed',
     label: 'Dark dimmed (Moon)',
-    description: 'Nocturnal charcoal and moonlit slate (Neutral 800) for reduced eye fatigue in low light.',
+    description:
+      'Nocturnal charcoal and moonlit slate (Neutral 800) for reduced eye fatigue in low light.',
     swatchFill: '#1E293B',
     swatchBorder: '#60A5FA',
   },
   {
     id: 'dark-high-contrast',
     label: 'Dark high contrast',
-    description: 'Pitch black canvas (Neutral 950 #020617) with bright cyan-blue highlights and stark white borders.',
+    description:
+      'Pitch black canvas (Neutral 950 #020617) with bright cyan-blue highlights and stark white borders.',
     swatchFill: '#020617',
     swatchBorder: '#FFFFFF',
   },
@@ -184,7 +172,13 @@ export function computeActiveColorRoles(
     const errorContainerOn = '#991B1B';
 
     return {
-      themeName: isHC ? 'Light high contrast' : isColorblind ? 'Light colorblind' : isLavender ? 'Light soft lavender' : 'Light default',
+      themeName: isHC
+        ? 'Light high contrast'
+        : isColorblind
+          ? 'Light colorblind'
+          : isLavender
+            ? 'Light soft lavender'
+            : 'Light default',
       isDark: false,
       canvasBg,
       subsurfaceBg,
@@ -264,12 +258,60 @@ export function computeActiveColorRoles(
         description: 'Alert containers, invalid form input backgrounds.',
       },
       surfaces: [
-        { role: 'surface-container-lowest', fill: '#FFFFFF', on: textPrimary, tokenAlias: 'neutral-50', contrastRatio: '16.5:1', contrastGrade: 'AAA', description: 'Base document canvas layer' },
-        { role: 'surface-container-low', fill: '#F8FAFC', on: textPrimary, tokenAlias: 'neutral-100', contrastRatio: '15.8:1', contrastGrade: 'AAA', description: 'Sidebar & recessed track' },
-        { role: 'surface-container', fill: subsurfaceBg, on: textPrimary, tokenAlias: 'primary-50', contrastRatio: '15.2:1', contrastGrade: 'AAA', description: 'Default card container' },
-        { role: 'surface-container-high', fill: '#E2E8F0', on: textPrimary, tokenAlias: 'neutral-200', contrastRatio: '12.4:1', contrastGrade: 'AAA', description: 'Hovered card & dropdown track' },
-        { role: 'surface-container-highest', fill: '#CBD5E1', on: textPrimary, tokenAlias: 'neutral-300', contrastRatio: '9.8:1', contrastGrade: 'AAA', description: 'Modal dialogs & elevated sheets' },
-        { role: 'inverse-surface', fill: '#0A1A4A', on: '#FFFFFF', tokenAlias: 'primary-900', contrastRatio: '16.5:1', contrastGrade: 'AAA', description: 'Inverse snackbars & tooltips' },
+        {
+          role: 'surface-container-lowest',
+          fill: '#FFFFFF',
+          on: textPrimary,
+          tokenAlias: 'neutral-50',
+          contrastRatio: '16.5:1',
+          contrastGrade: 'AAA',
+          description: 'Base document canvas layer',
+        },
+        {
+          role: 'surface-container-low',
+          fill: '#F8FAFC',
+          on: textPrimary,
+          tokenAlias: 'neutral-100',
+          contrastRatio: '15.8:1',
+          contrastGrade: 'AAA',
+          description: 'Sidebar & recessed track',
+        },
+        {
+          role: 'surface-container',
+          fill: subsurfaceBg,
+          on: textPrimary,
+          tokenAlias: 'primary-50',
+          contrastRatio: '15.2:1',
+          contrastGrade: 'AAA',
+          description: 'Default card container',
+        },
+        {
+          role: 'surface-container-high',
+          fill: '#E2E8F0',
+          on: textPrimary,
+          tokenAlias: 'neutral-200',
+          contrastRatio: '12.4:1',
+          contrastGrade: 'AAA',
+          description: 'Hovered card & dropdown track',
+        },
+        {
+          role: 'surface-container-highest',
+          fill: '#CBD5E1',
+          on: textPrimary,
+          tokenAlias: 'neutral-300',
+          contrastRatio: '9.8:1',
+          contrastGrade: 'AAA',
+          description: 'Modal dialogs & elevated sheets',
+        },
+        {
+          role: 'inverse-surface',
+          fill: '#0A1A4A',
+          on: '#FFFFFF',
+          tokenAlias: 'primary-900',
+          contrastRatio: '16.5:1',
+          contrastGrade: 'AAA',
+          description: 'Inverse snackbars & tooltips',
+        },
       ],
       outline: {
         role: 'outline',
@@ -360,7 +402,13 @@ export function computeActiveColorRoles(
   const errorContainerOn = '#FEE2E2';
 
   return {
-    themeName: isHC ? 'Dark high contrast' : isMoon ? 'Dark dimmed (Moon)' : isColorblind ? 'Dark colorblind' : 'Dark default',
+    themeName: isHC
+      ? 'Dark high contrast'
+      : isMoon
+        ? 'Dark dimmed (Moon)'
+        : isColorblind
+          ? 'Dark colorblind'
+          : 'Dark default',
     isDark: true,
     canvasBg,
     subsurfaceBg,
@@ -440,12 +488,60 @@ export function computeActiveColorRoles(
       description: 'Subdued error card containers and validation callouts.',
     },
     surfaces: [
-      { role: 'surface-container-lowest', fill: isHC ? '#000000' : '#020617', on: textPrimary, tokenAlias: 'neutral-950', contrastRatio: '19.8:1', contrastGrade: 'AAA', description: 'Deep obsidian pitch base layer (Neutral 950)' },
-      { role: 'surface-container-low', fill: canvasBg, on: textPrimary, tokenAlias: isHC ? 'neutral-950' : 'primary-950', contrastRatio: isHC ? '19.8:1' : '18.4:1', contrastGrade: 'AAA', description: 'Nocturnal workspace canvas (Primary 950)' },
-      { role: 'surface-container', fill: subsurfaceBg, on: textPrimary, tokenAlias: isHC ? 'neutral-950' : 'neutral-900', contrastRatio: isHC ? '17.5:1' : '15.8:1', contrastGrade: 'AAA', description: 'Subsurface card foundation (Neutral 900)' },
-      { role: 'surface-container-high', fill: '#1E293B', on: textPrimary, tokenAlias: 'neutral-800', contrastRatio: '12.4:1', contrastGrade: 'AAA', description: 'Elevated dropdown and hover layer (Neutral 800)' },
-      { role: 'surface-container-highest', fill: '#334155', on: textPrimary, tokenAlias: 'neutral-700', contrastRatio: '9.1:1', contrastGrade: 'AAA', description: 'Modal popups and floating tooltips (Neutral 700)' },
-      { role: 'inverse-surface', fill: '#FFFFFF', on: '#050E28', tokenAlias: 'neutral-50', contrastRatio: '18.4:1', contrastGrade: 'AAA', description: 'Inverse stark light callout' },
+      {
+        role: 'surface-container-lowest',
+        fill: isHC ? '#000000' : '#020617',
+        on: textPrimary,
+        tokenAlias: 'neutral-950',
+        contrastRatio: '19.8:1',
+        contrastGrade: 'AAA',
+        description: 'Deep obsidian pitch base layer (Neutral 950)',
+      },
+      {
+        role: 'surface-container-low',
+        fill: canvasBg,
+        on: textPrimary,
+        tokenAlias: isHC ? 'neutral-950' : 'primary-950',
+        contrastRatio: isHC ? '19.8:1' : '18.4:1',
+        contrastGrade: 'AAA',
+        description: 'Nocturnal workspace canvas (Primary 950)',
+      },
+      {
+        role: 'surface-container',
+        fill: subsurfaceBg,
+        on: textPrimary,
+        tokenAlias: isHC ? 'neutral-950' : 'neutral-900',
+        contrastRatio: isHC ? '17.5:1' : '15.8:1',
+        contrastGrade: 'AAA',
+        description: 'Subsurface card foundation (Neutral 900)',
+      },
+      {
+        role: 'surface-container-high',
+        fill: '#1E293B',
+        on: textPrimary,
+        tokenAlias: 'neutral-800',
+        contrastRatio: '12.4:1',
+        contrastGrade: 'AAA',
+        description: 'Elevated dropdown and hover layer (Neutral 800)',
+      },
+      {
+        role: 'surface-container-highest',
+        fill: '#334155',
+        on: textPrimary,
+        tokenAlias: 'neutral-700',
+        contrastRatio: '9.1:1',
+        contrastGrade: 'AAA',
+        description: 'Modal popups and floating tooltips (Neutral 700)',
+      },
+      {
+        role: 'inverse-surface',
+        fill: '#FFFFFF',
+        on: '#050E28',
+        tokenAlias: 'neutral-50',
+        contrastRatio: '18.4:1',
+        contrastGrade: 'AAA',
+        description: 'Inverse stark light callout',
+      },
     ],
     outline: {
       role: 'outline',
@@ -517,12 +613,16 @@ export function GithubAppearanceColorRoles() {
   const [copiedToken, setCopiedToken] = React.useState<string | null>(null);
 
   // Active view tab for Color Roles explorer
-  const [rolesTab, setRolesTab] = React.useState<'groups' | 'surfaces' | 'components' | 'demo'>('groups');
+  const [rolesTab, setRolesTab] = React.useState<'groups' | 'surfaces' | 'components' | 'demo'>(
+    'groups',
+  );
 
   // Interactive Demo State
   const [demoInput, setDemoInput] = React.useState<string>('SNPI Campus Academic Core');
   const [demoButtonActive, setDemoButtonActive] = React.useState<string>('primary');
-  const [demoVerificationState, setDemoVerificationState] = React.useState<'idle' | 'running' | 'passed'>('idle');
+  const [demoVerificationState, setDemoVerificationState] = React.useState<
+    'idle' | 'running' | 'passed'
+  >('idle');
 
   // Compute active Color Roles
   const roles = React.useMemo(() => {
@@ -570,7 +670,9 @@ export function GithubAppearanceColorRoles() {
         <div className="flex items-start justify-between gap-2">
           <div className="min-w-0">
             <span className="font-mono text-xs font-bold tracking-tight">{r.role}</span>
-            <div className="font-mono text-[10px] opacity-80">{r.tokenAlias} &middot; {r.fill}</div>
+            <div className="font-mono text-[10px] opacity-80">
+              {r.tokenAlias} &middot; {r.fill}
+            </div>
           </div>
           <button
             type="button"
@@ -599,7 +701,7 @@ export function GithubAppearanceColorRoles() {
   };
 
   return (
-    <div className="space-y-8 rounded-2xl border border-[#CAD3F5] bg-white p-4 sm:p-7 text-[#0A1A4A]">
+    <div className="space-y-8 rounded-2xl border border-[#CAD3F5] bg-white p-4 text-[#0A1A4A] sm:p-7">
       {/* ------------------------------------------------------------- */}
       {/* 1. GITHUB APPEARANCE HEADER                                   */}
       {/* ------------------------------------------------------------- */}
@@ -611,8 +713,8 @@ export function GithubAppearanceColorRoles() {
             </h3>
             <p className="max-w-2xl font-sans text-xs leading-relaxed text-slate-500 sm:text-sm">
               Choose how SNPI looks to you. Select a single theme, or sync with your system and
-              automatically switch between day and night themes. Selections are applied immediately and
-              saved automatically.
+              automatically switch between day and night themes. Selections are applied immediately
+              and saved automatically.
             </p>
           </div>
           <span className="inline-flex items-center gap-1.5 rounded-full border border-[#CAD3F5] bg-[#EFF5FF] px-3 py-1 font-mono text-xs font-bold text-[#0056FF]">
@@ -623,7 +725,10 @@ export function GithubAppearanceColorRoles() {
 
         {/* Theme mode select */}
         <div className="pt-3">
-          <label htmlFor="theme-mode-select" className="block font-sans text-xs font-bold text-slate-700">
+          <label
+            htmlFor="theme-mode-select"
+            className="block font-sans text-xs font-bold text-slate-700"
+          >
             Theme mode
           </label>
           <div className="mt-1.5 flex flex-wrap items-center gap-3">
@@ -658,7 +763,7 @@ export function GithubAppearanceColorRoles() {
         <div
           onClick={() => setActiveTheme('light')}
           className={cn(
-            'group relative cursor-pointer rounded-2xl border p-4 sm:p-5 transition-all',
+            'group relative cursor-pointer rounded-2xl border p-4 transition-all sm:p-5',
             activeTheme === 'light'
               ? 'border-[#0056FF] bg-[#F8FAFC] ring-2 ring-[#0056FF]/15'
               : 'border-[#CAD3F5] bg-white hover:border-[#0056FF]/50',
@@ -759,7 +864,7 @@ export function GithubAppearanceColorRoles() {
         <div
           onClick={() => setActiveTheme('dark')}
           className={cn(
-            'group relative cursor-pointer rounded-2xl border p-4 sm:p-5 transition-all',
+            'group relative cursor-pointer rounded-2xl border p-4 transition-all sm:p-5',
             activeTheme === 'dark'
               ? 'border-[#0056FF] bg-[#050E28] text-white ring-2 ring-[#0056FF]/20'
               : 'border-[#334155] bg-[#050E28] text-white hover:border-[#2277FF]',
@@ -871,7 +976,8 @@ export function GithubAppearanceColorRoles() {
         <div className="space-y-0.5 border-b border-slate-200 pb-2.5">
           <h4 className="font-sans text-sm font-bold text-[#0A1A4A]">Contrast</h4>
           <p className="font-sans text-slate-500">
-            Increase contrast. Enable high contrast for light or dark mode (or both) based on your system settings.
+            Increase contrast. Enable high contrast for light or dark mode (or both) based on your
+            system settings.
           </p>
         </div>
 
@@ -953,7 +1059,8 @@ export function GithubAppearanceColorRoles() {
               </span>
             </div>
             <p className="font-sans text-xs opacity-75">
-              Strictly derived from the 11-step Color Ramps (50&ndash;950). Dynamically maps surface luminance, text contrast, and interactive states.
+              Strictly derived from the 11-step Color Ramps (50&ndash;950). Dynamically maps surface
+              luminance, text contrast, and interactive states.
             </p>
           </div>
 
@@ -1072,7 +1179,9 @@ export function GithubAppearanceColorRoles() {
               }}
             >
               <div className="flex items-center justify-between border-b border-current/15 pb-2">
-                <span className="font-sans text-xs font-bold uppercase">5. Outline &amp; Borders</span>
+                <span className="font-sans text-xs font-bold uppercase">
+                  5. Outline &amp; Borders
+                </span>
                 <span className="font-mono text-[10px] font-bold opacity-75">2 Roles</span>
               </div>
               <div className="space-y-2">
@@ -1122,7 +1231,9 @@ export function GithubAppearanceColorRoles() {
                 >
                   <div className="min-w-0">
                     <span className="font-mono text-xs font-bold">{s.role}</span>
-                    <div className="font-mono text-[10px] opacity-75">{s.tokenAlias} &middot; {s.fill}</div>
+                    <div className="font-mono text-[10px] opacity-75">
+                      {s.tokenAlias} &middot; {s.fill}
+                    </div>
                     <p className="mt-1 font-sans text-[11px] opacity-80">{s.description}</p>
                   </div>
                   <span className="rounded border border-current/25 px-1.5 py-0.5 font-mono text-[9px] font-black uppercase">
@@ -1139,13 +1250,21 @@ export function GithubAppearanceColorRoles() {
           <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-4">
             {[
               { component: 'Filled Buttons', role: 'primary', on: 'on-primary' },
-              { component: 'Tonal Buttons', role: 'secondary-container', on: 'on-secondary-container' },
+              {
+                component: 'Tonal Buttons',
+                role: 'secondary-container',
+                on: 'on-secondary-container',
+              },
               { component: 'Keyline Buttons', role: 'outline-variant', on: 'text-primary' },
               { component: 'Form Inputs', role: 'outline', on: 'text-primary' },
               { component: 'Card Foundations', role: 'surface-container', on: 'text-primary' },
               { component: 'Modal Sheets', role: 'surface-container-highest', on: 'text-primary' },
               { component: 'Status Badges', role: 'status-success', on: 'white' },
-              { component: 'Warning Callouts', role: 'tertiary-container', on: 'on-tertiary-container' },
+              {
+                component: 'Warning Callouts',
+                role: 'tertiary-container',
+                on: 'on-tertiary-container',
+              },
             ].map((c) => (
               <div
                 key={c.component}
@@ -1182,7 +1301,8 @@ export function GithubAppearanceColorRoles() {
                   </h4>
                 </div>
                 <p className="font-sans text-xs opacity-75">
-                  Interactive verification of token mapping, live component contrast, and WCAG AAA compliance.
+                  Interactive verification of token mapping, live component contrast, and WCAG AAA
+                  compliance.
                 </p>
               </div>
 
@@ -1371,35 +1491,49 @@ export function GithubAppearanceColorRoles() {
                       <td className="px-3.5 py-2.5 text-[#0056FF]">{roles.textPrimary}</td>
                       <td className="px-3.5 py-2.5">&gt;= 7.0:1 (WCAG AAA)</td>
                       <td className="px-3.5 py-2.5 font-bold">16.5:1</td>
-                      <td className="px-3.5 py-2.5 text-right font-bold text-emerald-600">[PASSED]</td>
+                      <td className="px-3.5 py-2.5 text-right font-bold text-emerald-600">
+                        [PASSED]
+                      </td>
                     </tr>
                     <tr>
                       <td className="px-3.5 py-2.5 font-sans font-bold">Secondary Copy Contrast</td>
                       <td className="px-3.5 py-2.5 text-[#0056FF]">{roles.textSecondary}</td>
                       <td className="px-3.5 py-2.5">&gt;= 4.5:1 (WCAG AA)</td>
                       <td className="px-3.5 py-2.5 font-bold">7.2:1</td>
-                      <td className="px-3.5 py-2.5 text-right font-bold text-emerald-600">[PASSED]</td>
+                      <td className="px-3.5 py-2.5 text-right font-bold text-emerald-600">
+                        [PASSED]
+                      </td>
                     </tr>
                     <tr>
                       <td className="px-3.5 py-2.5 font-sans font-bold">Primary Action Contrast</td>
                       <td className="px-3.5 py-2.5 text-[#0056FF]">{roles.primary.fill}</td>
                       <td className="px-3.5 py-2.5">&gt;= 4.5:1 (Action Base)</td>
                       <td className="px-3.5 py-2.5 font-bold">{roles.primary.contrastRatio}</td>
-                      <td className="px-3.5 py-2.5 text-right font-bold text-emerald-600">[PASSED]</td>
+                      <td className="px-3.5 py-2.5 text-right font-bold text-emerald-600">
+                        [PASSED]
+                      </td>
                     </tr>
                     <tr>
-                      <td className="px-3.5 py-2.5 font-sans font-bold">Surface Luminance Tiering</td>
+                      <td className="px-3.5 py-2.5 font-sans font-bold">
+                        Surface Luminance Tiering
+                      </td>
                       <td className="px-3.5 py-2.5 text-[#0056FF]">6 Tiers Monotonic</td>
                       <td className="px-3.5 py-2.5">Lowest &lt; Low &lt; Default &lt; High</td>
                       <td className="px-3.5 py-2.5 font-bold">Verified</td>
-                      <td className="px-3.5 py-2.5 text-right font-bold text-emerald-600">[PASSED]</td>
+                      <td className="px-3.5 py-2.5 text-right font-bold text-emerald-600">
+                        [PASSED]
+                      </td>
                     </tr>
                     <tr>
-                      <td className="px-3.5 py-2.5 font-sans font-bold">Nocturnal Moonlit Parity</td>
+                      <td className="px-3.5 py-2.5 font-sans font-bold">
+                        Nocturnal Moonlit Parity
+                      </td>
                       <td className="px-3.5 py-2.5 text-[#0056FF]">Dark Dimmed (Moon)</td>
                       <td className="px-3.5 py-2.5">Non-Inverting Contrast</td>
                       <td className="px-3.5 py-2.5 font-bold">Verified</td>
-                      <td className="px-3.5 py-2.5 text-right font-bold text-emerald-600">[PASSED]</td>
+                      <td className="px-3.5 py-2.5 text-right font-bold text-emerald-600">
+                        [PASSED]
+                      </td>
                     </tr>
                   </tbody>
                 </table>
