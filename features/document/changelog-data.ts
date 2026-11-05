@@ -8,6 +8,13 @@ export interface ChangeLogEntry {
 
 export const CHANGE_LOGS: ChangeLogEntry[] = [
   {
+    version: '0.2.24',
+    date: '06.11.2026',
+    developer: '史力爱卫',
+    description:
+      'Standardize official brand logo dark mode background to Obsidian Slate (#020617), implement pure client-side high-resolution PNG rasterizer (<20MB) and one-click Brand Media Kit ZIP bundler (packaging all 11 media, avatar, and favicon assets), refine icon squircle container to compact size-8 rounded-lg across navigation menus, and apply squircle badges to all documentation section headers',
+  },
+  {
     version: '0.2.23',
     date: '06.11.2026',
     developer: '史力爱卫',

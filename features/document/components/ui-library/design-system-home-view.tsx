@@ -494,16 +494,16 @@ export function DesignSystemHomeView() {
                       )}
                       title={item.label}
                     >
-                      <div className="flex min-w-0 flex-1 items-center gap-3 pr-2">
+                      <div className="flex min-w-0 flex-1 items-center gap-2.5 pr-2">
                         <div
                           className={cn(
-                            'flex size-9 shrink-0 items-center justify-center rounded-xl border bg-white shadow-2xs transition-colors',
+                            'flex size-8 shrink-0 items-center justify-center rounded-lg border bg-white shadow-2xs transition-colors',
                             isSelected
                               ? 'border-[#0056FF]/30 text-[#0056FF] ring-2 ring-[#0056FF]/10'
                               : 'border-slate-200/90 text-slate-800 group-hover:border-slate-300',
                           )}
                         >
-                          <GroupIcon className="size-4.5 stroke-[2]" />
+                          <GroupIcon className="size-4 stroke-[2]" />
                         </div>
                         <span className="min-w-0 flex-1 leading-snug font-bold tracking-tight break-words text-slate-900">
                           {item.label}
@@ -588,8 +588,10 @@ export function DesignSystemHomeView() {
               className="scroll-mt-24 space-y-8 rounded-2xl border border-[#CAD3F5] bg-white p-6 sm:p-8 lg:p-10"
             >
               {/* Section Header Title */}
-              <div className="flex items-center gap-3 border-b border-slate-100 pb-4">
-                <ShieldKey className="size-6 shrink-0 text-[#0056FF]" />
+              <div className="flex items-center gap-3.5 border-b border-slate-100 pb-4">
+                <div className="flex size-9.5 shrink-0 items-center justify-center rounded-xl border border-[#CAD3F5] bg-[#EFF5FF] text-[#0056FF] shadow-2xs">
+                  <ShieldKey className="size-5 stroke-[2]" />
+                </div>
                 <h1 className="font-sans text-2xl font-black tracking-tight text-[#0A1A4A] sm:text-3xl">
                   Brand Blueprint &amp; Assets
                 </h1>
@@ -608,8 +610,10 @@ export function DesignSystemHomeView() {
             >
               {/* Section Header */}
               <div className="space-y-1 border-b border-slate-100 pb-4">
-                <div className="flex items-center gap-3">
-                  <Sliders className="size-6 shrink-0 text-[#0056FF]" />
+                <div className="flex items-center gap-3.5">
+                  <div className="flex size-9.5 shrink-0 items-center justify-center rounded-xl border border-[#CAD3F5] bg-[#EFF5FF] text-[#0056FF] shadow-2xs">
+                    <Sliders className="size-5 stroke-[2]" />
+                  </div>
                   <h2 className="font-sans text-2xl font-black tracking-tight text-[#0A1A4A] sm:text-3xl">
                     Color Ramps &amp; Semantic Tokens
                   </h2>
@@ -633,8 +637,10 @@ export function DesignSystemHomeView() {
             >
               {/* Section Header */}
               <div className="space-y-1 border-b border-slate-100 pb-4">
-                <div className="flex items-center gap-3">
-                  <Accessibility className="size-6 shrink-0 text-[#0056FF]" />
+                <div className="flex items-center gap-3.5">
+                  <div className="flex size-9.5 shrink-0 items-center justify-center rounded-xl border border-[#CAD3F5] bg-[#EFF5FF] text-[#0056FF] shadow-2xs">
+                    <Accessibility className="size-5 stroke-[2]" />
+                  </div>
                   <h2 className="font-sans text-2xl font-black tracking-tight text-[#0A1A4A] sm:text-3xl">
                     Principles for Accessible Design
                   </h2>
@@ -658,8 +664,10 @@ export function DesignSystemHomeView() {
             >
               {/* Section Header */}
               <div className="space-y-1 border-b border-slate-100 pb-4">
-                <div className="flex items-center gap-3">
-                  <BookOpen className="size-6 shrink-0 text-[#0056FF]" />
+                <div className="flex items-center gap-3.5">
+                  <div className="flex size-9.5 shrink-0 items-center justify-center rounded-xl border border-[#CAD3F5] bg-[#EFF5FF] text-[#0056FF] shadow-2xs">
+                    <BookOpen className="size-5 stroke-[2]" />
+                  </div>
                   <h2 className="font-sans text-2xl font-black tracking-tight text-[#0A1A4A] sm:text-3xl">
                     Material Design A-Z Lexicon
                   </h2>
@@ -683,8 +691,10 @@ export function DesignSystemHomeView() {
             >
               {/* Section Header */}
               <div className="space-y-1 border-b border-slate-100 pb-4">
-                <div className="flex items-center gap-3">
-                  <AppWindow className="size-6 shrink-0 text-[#0056FF]" />
+                <div className="flex items-center gap-3.5">
+                  <div className="flex size-9.5 shrink-0 items-center justify-center rounded-xl border border-[#CAD3F5] bg-[#EFF5FF] text-[#0056FF] shadow-2xs">
+                    <AppWindow className="size-5 stroke-[2]" />
+                  </div>
                   <h2 className="font-sans text-2xl font-black tracking-tight text-[#0A1A4A] sm:text-3xl">
                     Layout Scaffold Architecture
                   </h2>

@@ -2,6 +2,10 @@
 
 All notable changes, commits, and skill updates are recorded here in real-time.
 
+### Version 0.2.24 (06.11.2026) (Developer: **史力爱卫**)
+
+- Standardize official brand logo dark mode background to Obsidian Slate (`#020617`), implement pure client-side high-resolution PNG rasterizer (<20MB) and one-click Brand Media Kit ZIP bundler (packaging all 11 media, avatar, and favicon assets), refine icon squircle container to compact `size-8 rounded-lg` across navigation menus, and apply squircle badges to all documentation section headers
+
 ### Version 0.2.23 (06.11.2026) (Developer: **史力爱卫**)
 
 - Standardize squircle icon tile containers across document portal navigation and all menu pages with Keyline Two-Tone icons, size-10 rounded-xl white cards, and motionless stability

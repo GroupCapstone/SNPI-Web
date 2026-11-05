@@ -50,9 +50,24 @@ The Keyline Two-Tone Icon style delivers a crisp, consistent visual language acr
 
 ---
 
-## 3. Web Logo Standalone Export Standard
+## 3. Web Logo Standalone Export, Obsidian Slate (#020617) & Brand Media Kit Standard
 
-The official SNPI brand logo offers a simple, dedicated button to export the original logo vector as seen on the web:
-- **Component**: `<SaveLogoButton />` (`features/document/components/ui-library/asterisk-logo.tsx`)
-- **Action**: Generates and downloads `snpi-brand-logo.svg` containing the pure Sora Bold asterisk vector glyph.
-- **Scope**: "Only logo" — pure vector mark with zero extraneous text or wrappers.
+The official SNPI brand logo offers a dedicated export suite and strict color definitions:
+- **Dark Mode Background**: Strictly `#020617` (Obsidian Slate) for all dark mode brand logo representations.
+- **Save PNG (<20MB)**: Pure client-side Canvas rasterization to lossless 1024x1024 PNG (~60KB - 250KB each, strictly under 20MB limit).
+- **Save SVG**: Original vector mark download via `downloadOriginalLogo()`.
+- **Download Media Kit (.ZIP)**: Complete production bundle (`downloadBrandMediaKitZip()`) delivering all 11 assets:
+  - 1024x1024 PNGs (Light, Dark `#020617`, Royal, Transparent)
+  - 512x512 Profile Avatars (Circle Royal, Circle Dark `#020617`, Squircle)
+  - Web Favicons (192px, 512px)
+  - Scalable Vector SVG
+  - `README-BRAND-STANDARDS.txt`
+
+---
+
+## 4. Compact Squircle Icon Containers
+
+To ensure sleek, uncrowded sidebar menus and headers, squircle containers behind icons follow standardized compact metrics:
+- **Sidebar Nav Groups & Mega Menus**: `size-8` (32x32px), `rounded-lg` (8px radius), with `size-4` (16x16px) icon `stroke-[2]`, `gap-2.5`.
+- **Documentation Section Headers**: `size-9.5` (38x38px), `rounded-xl` (12px radius), with `size-5` (20x20px) icon `stroke-[2]`, `border-[#CAD3F5] bg-[#EFF5FF] text-[#0056FF]`.
+
