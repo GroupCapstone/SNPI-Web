@@ -58,13 +58,11 @@ textarea {
   -webkit-tap-highlight-color: transparent;
 }
 
-:where(
-  button,
+:where(button,
   a,
   input:not([data-geometric]):not(.geometric-input-field),
   select,
-  textarea
-):focus-visible {
+  textarea):focus-visible {
   outline: 2px solid var(--brand-secondary);
   outline-offset: 2px;
 }
@@ -94,8 +92,10 @@ input[data-geometric]:focus-visible {
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .no-scrollbar {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 /* Ensure enterprise data tables keep headers and cells on a single line by default */
@@ -131,4 +131,43 @@ svg:where([data-slot='icon'], [class*='size-'], [class*='h-'][class*='w-']) {
   color: oklch(0.446 0.043 257.281) !important;
   fill: none !important;
   stroke: currentColor !important;
+}
+
+/* ============================================================================
+   ICON GLASSMORPHIC CONTAINER STYLE
+   Adds a subtle glass border with rounded corners behind icons
+   Prevents movement/animation on hover and tap events
+   ============================================================================ */
+.icon-glass-container {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem;
+  border-radius: 1.25rem;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(203, 211, 229, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  transition: none;
+  transform: none !important;
+}
+
+.icon-glass-container:hover,
+.icon-glass-container:active,
+.icon-glass-container:focus {
+  transform: none !important;
+  animation: none !important;
+}
+
+.icon-glass-container .keyline-two-tone-icon {
+  transform: none !important;
+  animation: none !important;
+  transition: none !important;
+}
+
+.icon-glass-container .keyline-two-tone-icon:hover,
+.icon-glass-container .keyline-two-tone-icon:active {
+  transform: none !important;
+  animation: none !important;
 }
