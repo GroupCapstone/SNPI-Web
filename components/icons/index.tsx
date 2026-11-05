@@ -20,10 +20,11 @@ export type { IconGlassWrapperProps } from './icon-glass-wrapper';
  * Fill: none (outlined style)
  * Background: rgba(0, 0, 0, 0) - transparent
  * Stroke: uses the stroke property to define visible lines
+ * Size: 20px x 20px (1.25rem) - consistent everywhere
  */
 function wrapIcon(Component: React.ComponentType<IconProps>, name: string): IconComponent {
   const IconWrapper = React.forwardRef<SVGSVGElement, IconProps>(function KeylineTwoToneIcon(
-    { className, style, ...props },
+    { className, style, size, ...props },
     ref,
   ) {
     const combinedClassName = [
@@ -44,8 +45,12 @@ function wrapIcon(Component: React.ComponentType<IconProps>, name: string): Icon
           backgroundColor: 'transparent',
           fill: 'none',
           stroke: 'currentColor',
+          width: '1.25rem', // 20px - consistent size
+          height: '1.25rem', // 20px - consistent size
           ...style,
         }}
+        width="20"
+        height="20"
         {...props}
       />
     );

@@ -1,38 +1,37 @@
 # Document Logo Implementation Summary
 
 **Date**: November 6, 2026  
-**Feature**: Official Geometric Asterisk Emblem Logo System for /document Portal
+**Feature**: Official Bold Sora Asterisk Brand Logo System for /document Portal
 
 ---
 
 ## Overview
 
-Implemented the official geometric 8-axis Asterisk Emblem logo system for the `/document` portal and all documentation menus. The emblem synthesizes four core institutional pillars:
-1. **STAR**: Excellence and quality (8-axis radial foundation).
-2. **CHECK MARK**: Accuracy and expert level (V-chevron arms).
-3. **SHIELD**: Security and high probability prediction trust.
-4. **HAPPY HUMAN**: Customer and student satisfaction (Zenith head dot + triumphant arms).
+Standardized the official SNPI brand logo across the `/document` portal and all its navigation menus using the original **Sora typeface bold asterisk glyph (`*`)**. 
 
-The logo uses the 5 primary brand tokens (`#0056FF` Royal Blue, `#2277FF` Azure Blue, `#CAD3F5` Soft Lavender, `#FFFFFF` White, `#EFF5FF` Ice Tint) and provides seamless Light and Dark mode adaptations.
+The brand identity adheres strictly to the primary blue palette:
+- **Light Mode**: Royal Blue (`#0056FF`) bold Sora asterisk on Pure White (`#FFFFFF`) canvas with Soft Lavender (`#CAD3F5`) border and `#0056FF`/10 ring glow.
+- **Dark Mode**: Crisp White (`#FFFFFF`) bold Sora asterisk on Deep Navy (`#0A1A4A`) / Royal Blue (`#0056FF`) squircle tile with `white/20` border.
+- **Typography Standard**: Always rendered in `Sora` (`'Sora Variable', 'Sora', sans-serif`) with `fontWeight: 800` (bold/extrabold).
 
 ---
 
 ## Components
 
-### 1. `AsteriskEmblem` & `AsteriskLogo`
+### 1. `AsteriskLogo`
 **File**: `features/document/components/ui-library/asterisk-logo.tsx`
 
-Pure vector SVG emblem rendered with subpixel-sharp stroke and fill geometry:
-- **Zenith Head Dot**: `circle` at `(50, 10)` with radius `6.8`
-- **Chevron Arms**: `path` `M 18 22 L 50 47 L 82 22` with stroke width `11` and round caps/joins
-- **Radial Base**: `path` with 5 spokes meeting at hub `(50, 64)` with stroke width `11` and round caps/joins
+Renders the iconic bold Sora asterisk sign (`*`) inside standardized squircle containers or as a bare glyph:
+- Optical vertical centering via `translate-y-[8%]`
+- Standardized size classes: `xs` (24px) up to `hero` (192-208px)
+- Strictly enforces brand Royal Blue (`#0056FF`) on light canvas
 
 ### 2. `DocumentLogo`
 **File**: `features/document/components/ui-library/document-logo.tsx`
 
-Integrated brand identity container for headers, hero sections, and footers:
-- **Header**: Compact squircle with Dark Mode white-accent emblem on Royal Blue `#0056FF` header
-- **Hero**: Monumental centered squircle with Light Mode dual-tone brand emblem (Royal Blue base + Azure Blue arms)
+Integrated brand identity container pairing the bold Sora asterisk tile with brand typography:
+- **Header**: Compact squircle with White Sora asterisk on Royal Blue `#0056FF` sticky header
+- **Hero**: Monumental centered squircle with Royal Blue `#0056FF` Sora asterisk on `/document`
 - **Inline**: Compact inline mark for tables and badges
 - **Footer**: Medium squircle for footer navigation anchor
 
@@ -143,19 +142,18 @@ Large (> 1024px):   224px logo, text-6xl title
 
 ---
 
-## Logo Vector Specification
+## Logo Typography Specification
 
-**Component**: `AsteriskEmblem` (`features/document/components/ui-library/asterisk-logo.tsx`)  
-**Resolution**: Scalable vector graphics (SVG 100×100 viewBox) with subpixel precision  
-**Geometry**:
-- Head Dot: `circle cx="50" cy="10" r="6.8"`
-- Chevron: `path d="M 18 22 L 50 47 L 82 22"` (stroke 11, round cap/join)
-- 5 Base Spokes: `path d="M 7 54 L 50 64 L 93 54 M 22 86 L 50 64 L 78 86 M 50 64 L 50 94"` (stroke 11, round cap/join)
+**Component**: `AsteriskLogo` (`features/document/components/ui-library/asterisk-logo.tsx`)  
+**Glyph**: Original Sora asterisk character `*`  
+**Font Family**: `'Sora Variable', 'Sora', sans-serif`  
+**Font Weight**: `800` (Bold / Extrabold)  
+**Alignment**: Centered with `translate-y-[8%]` optical baseline offset  
 
-**Color Modes**:
-- Light Mode: Royal Blue (`#0056FF`) foundation with Azure Blue (`#2277FF`) checkmark arms
-- Dark Mode: Pure White (`#FFFFFF`) foundation with luminous Azure Blue (`#60A5FA`) checkmark arms
-- Royal Solid: Pure White emblem on Royal Blue (`#0056FF`) squircle tile
+**Color Standards**:
+- Light Mode: **Only Blue** — Royal Blue (`#0056FF`) on White (`#FFFFFF`) or Ice Tint (`#EFF5FF`)
+- Dark Mode: Pure White (`#FFFFFF`) on Deep Navy (`#0A1A4A`) or Royal Blue (`#0056FF`)
+- Border & Glow: Soft Lavender (`#CAD3F5`) with Royal Blue ring (`#0056FF`/10)
 
 ---
 

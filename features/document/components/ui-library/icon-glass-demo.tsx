@@ -37,31 +37,31 @@ export function IconGlassDemo() {
         <h3 className="font-sans text-base font-bold text-slate-950">Size Variations</h3>
         <div className="flex flex-wrap items-center gap-4">
           <div className="flex flex-col items-center gap-2">
+            <IconGlassWrapper size="xs">
+              <Bell />
+            </IconGlassWrapper>
+            <span className="text-xs text-slate-600">Extra Small</span>
+          </div>
+
+          <div className="flex flex-col items-center gap-2">
             <IconGlassWrapper size="sm">
-              <Bell className="size-4" />
+              <Calendar />
             </IconGlassWrapper>
             <span className="text-xs text-slate-600">Small</span>
           </div>
 
           <div className="flex flex-col items-center gap-2">
             <IconGlassWrapper size="md">
-              <Calendar className="size-5" />
+              <FileText />
             </IconGlassWrapper>
             <span className="text-xs text-slate-600">Medium</span>
           </div>
 
           <div className="flex flex-col items-center gap-2">
             <IconGlassWrapper size="lg">
-              <FileText className="size-6" />
+              <Users />
             </IconGlassWrapper>
             <span className="text-xs text-slate-600">Large</span>
-          </div>
-
-          <div className="flex flex-col items-center gap-2">
-            <IconGlassWrapper size="xl">
-              <Users className="size-8" />
-            </IconGlassWrapper>
-            <span className="text-xs text-slate-600">Extra Large</span>
           </div>
         </div>
       </div>
@@ -85,8 +85,8 @@ export function IconGlassDemo() {
               type="button"
               className="flex items-center gap-4 rounded-xl border border-slate-200 bg-white p-4 text-left transition-colors hover:bg-slate-50"
             >
-              <IconGlassWrapper size="md">
-                <item.icon className="size-5" />
+              <IconGlassWrapper size="sm">
+                <item.icon />
               </IconGlassWrapper>
               <span className="font-sans text-sm font-medium text-slate-950">
                 {item.label}
@@ -110,8 +110,8 @@ export function IconGlassDemo() {
             type="button"
             className="rounded-xl border border-slate-200 bg-white p-4 transition-colors hover:bg-slate-50"
           >
-            <IconGlassWrapper size="lg">
-              <Bell className="size-6" />
+            <IconGlassWrapper size="md">
+              <Bell />
             </IconGlassWrapper>
           </button>
 
@@ -119,8 +119,8 @@ export function IconGlassDemo() {
             type="button"
             className="rounded-xl border border-slate-200 bg-white p-4 transition-colors hover:bg-slate-50"
           >
-            <IconGlassWrapper size="lg">
-              <Calendar className="size-6" />
+            <IconGlassWrapper size="md">
+              <Calendar />
             </IconGlassWrapper>
           </button>
 
@@ -128,8 +128,8 @@ export function IconGlassDemo() {
             type="button"
             className="rounded-xl border border-slate-200 bg-white p-4 transition-colors hover:bg-slate-50"
           >
-            <IconGlassWrapper size="lg">
-              <Settings className="size-6" />
+            <IconGlassWrapper size="md">
+              <Settings />
             </IconGlassWrapper>
           </button>
         </div>
@@ -142,8 +142,8 @@ export function IconGlassDemo() {
           <pre className="overflow-x-auto p-4 font-mono text-xs text-slate-800">
             {`import { Bell, IconGlassWrapper } from '@/components/icons';
 
-<IconGlassWrapper size="md">
-  <Bell className="size-5" />
+<IconGlassWrapper size="sm">
+  <Bell />
 </IconGlassWrapper>`}
           </pre>
         </div>

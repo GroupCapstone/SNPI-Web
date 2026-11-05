@@ -183,18 +183,18 @@ export function BrandConceptBlueprint() {
         </div>
       </div>
 
-      {/* SNPI OFFICIAL BRAND ASTERISK EMBLEM (LIGHT & DARK DUAL MODE) */}
+      {/* SNPI OFFICIAL BRAND ASTERISK LOGO (LIGHT & DARK DUAL MODE) */}
       <div className="rounded-2xl border border-[#CAD3F5] bg-white p-6 shadow-xs sm:p-7">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
           <div className="space-y-1">
             <h3 className="font-sans text-xl font-extrabold text-slate-950 sm:text-2xl">
-              SNPI Official Brand Asterisk Emblem
+              SNPI Official Brand Asterisk Logo
             </h3>
             <p className="text-xs text-slate-600 sm:text-sm">
-              Geometric 8-axis synthesis: Star (Excellence), Check Mark (Accuracy), Shield (Trust),
-              and Happy Human (Satisfaction) in Royal Blue (
-              <code className="font-mono font-bold text-[#0056FF]">#0056FF</code>) and Azure Blue (
-              <code className="font-mono font-bold text-[#2277FF]">#2277FF</code>).
+              Official brand logo rendered with the iconic bold Sora typeface asterisk glyph (
+              <code className="font-mono font-bold text-[#0056FF]">*</code>) in Royal Blue (
+              <code className="font-mono font-bold text-[#0056FF]">#0056FF</code>) on pure light
+              canvas.
             </p>
           </div>
 
