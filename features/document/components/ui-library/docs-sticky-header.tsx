@@ -46,10 +46,10 @@ const OPEN_API_SECTIONS = [
   { id: 'toc', label: 'Table of contents' },
   { id: 'introduction', label: 'Introduction & Scope' },
   { id: 'overall-api', label: 'Overall API Matrix' },
-  { id: 'security', label: 'Zero-Trust Dual-Layer Security' },
+  { id: 'security', label: 'Security & Access Control' },
   { id: 'status-codes', label: 'HTTP Status Codes' },
-  { id: 'public-apis', label: 'Public Endpoints (/health, /certificates)' },
-  { id: 'protected-apis', label: 'Protected Endpoints (/auth, /students, etc.)' },
+  { id: 'public-apis', label: 'Public Services (/health, /certificates)' },
+  { id: 'protected-apis', label: 'Protected Services (/auth, /students, etc.)' },
 ];
 
 const DESIGN_SYSTEM_SECTIONS = [

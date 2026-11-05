@@ -17,7 +17,7 @@ import { ParamTable, type ApiParameter } from './param-table';
 import { CodeBlock } from './code-block';
 
 // ============================================================================
-// DATA STRUCTURES & DEFINITIONS
+// DATA STRUCTURES & DEFINITIONS (SANITIZED PUBLIC DISPLAY STANDARD)
 // ============================================================================
 
 interface NavItem {
@@ -35,20 +35,20 @@ const ON_THIS_PAGE_NAV: NavItem[] = [
   { id: 'purpose', label: '1. Purpose', indent: true },
   { id: 'scope', label: '2. Scope', indent: true },
   { id: 'overall-api', label: '3. Overall API', indent: true },
-  { id: 'security', label: '4. Zero-Trust Security', indent: true },
+  { id: 'security', label: '4. Security & Access Control', indent: true },
   { id: 'status-codes', label: '5. HTTP Status Codes', indent: true },
   { id: 'api-documentation', label: 'API Documentation', isHeader: true },
-  { id: 'public-apis', label: 'Public APIs', isHeader: true, indent: true },
+  { id: 'public-apis', label: 'Public Services', isHeader: true, indent: true },
   { id: 'api-health', label: '1.1 System Health Probe', indent: true, badge: 'GET' },
-  { id: 'api-cert-verify', label: '1.2 Certificate Ledger Verification', indent: true, badge: 'GET' },
-  { id: 'protected-apis', label: 'Protected APIs', isHeader: true, indent: true },
-  { id: 'api-auth-login', label: '2.1 User Login', indent: true, badge: 'POST' },
-  { id: 'api-auth-refresh', label: '2.2 Renew Token', indent: true, badge: 'POST' },
+  { id: 'api-cert-verify', label: '1.2 Certificate Verification', indent: true, badge: 'GET' },
+  { id: 'protected-apis', label: 'Protected Services', isHeader: true, indent: true },
+  { id: 'api-auth-login', label: '2.1 User Authentication', indent: true, badge: 'POST' },
+  { id: 'api-auth-refresh', label: '2.2 Renew Session Token', indent: true, badge: 'POST' },
   { id: 'api-auth-me', label: '2.3 User Profile & Permissions', indent: true, badge: 'GET' },
-  { id: 'api-students-list', label: '2.4 List Students', indent: true, badge: 'GET' },
-  { id: 'api-students-create', label: '2.5 Create Student', indent: true, badge: 'POST' },
-  { id: 'api-attendance-create', label: '2.6 Record Daily Attendance', indent: true, badge: 'POST' },
-  { id: 'api-payments-create', label: '2.7 Record Payment Transaction', indent: true, badge: 'POST' },
+  { id: 'api-students-list', label: '2.4 Student Directory', indent: true, badge: 'GET' },
+  { id: 'api-students-create', label: '2.5 Student Registration', indent: true, badge: 'POST' },
+  { id: 'api-attendance-create', label: '2.6 Session Attendance', indent: true, badge: 'POST' },
+  { id: 'api-payments-create', label: '2.7 Payment Records', indent: true, badge: 'POST' },
 ];
 
 const CHANGE_LOGS_DATA = [
@@ -56,7 +56,7 @@ const CHANGE_LOGS_DATA = [
     version: '1.1.0',
     date: '05.11.2026',
     description:
-      'Add Zero-Trust Layer 1 Client Authentication (X-Client-Api-Key) enforcement for headless API integration.',
+      'Official REST API release for headless integration with hardened token-based authentication.',
   },
   {
     version: '1.0.4',
@@ -74,7 +74,7 @@ const CHANGE_LOGS_DATA = [
     version: '1.0.0',
     date: '01.09.2026',
     description:
-      'Initial official SNPI Open REST API specification release with dual-layer JWT authentication.',
+      'Initial official SNPI Open REST API specification release with role-based access control.',
   },
 ];
 
@@ -84,7 +84,7 @@ const OVERALL_API_SUMMARY = [
     name: 'System Health Probe',
     method: 'GET',
     url: '{{baseUrl}}/health',
-    auth: 'Public (Exempt)',
+    auth: 'Public (Open)',
     sectionId: 'api-health',
   },
   {
@@ -92,7 +92,7 @@ const OVERALL_API_SUMMARY = [
     name: 'Certificate Ledger Verification',
     method: 'GET',
     url: '{{baseUrl}}/certificates/verify/:hash',
-    auth: 'Public (Exempt)',
+    auth: 'Public (Open)',
     sectionId: 'api-cert-verify',
   },
   {
@@ -100,15 +100,15 @@ const OVERALL_API_SUMMARY = [
     name: 'User Authentication (Login)',
     method: 'POST',
     url: '{{baseUrl}}/auth/login',
-    auth: 'Layer 1 (Client Key)',
+    auth: 'User Credentials',
     sectionId: 'api-auth-login',
   },
   {
     no: 4,
-    name: 'Renew Token (Session Rotation)',
+    name: 'Renew Session Token',
     method: 'POST',
     url: '{{baseUrl}}/auth/refresh',
-    auth: 'Layer 1 + Refresh Token',
+    auth: 'Refresh Token',
     sectionId: 'api-auth-refresh',
   },
   {
@@ -116,7 +116,7 @@ const OVERALL_API_SUMMARY = [
     name: 'User Profile & Permissions',
     method: 'GET',
     url: '{{baseUrl}}/auth/me',
-    auth: 'Layer 1 + Layer 2 (Bearer JWT)',
+    auth: 'Bearer Token (Authorized)',
     sectionId: 'api-auth-me',
   },
   {
@@ -124,7 +124,7 @@ const OVERALL_API_SUMMARY = [
     name: 'List Students',
     method: 'GET',
     url: '{{baseUrl}}/students',
-    auth: 'Layer 1 + Layer 2 (Bearer JWT)',
+    auth: 'Bearer Token (Authorized)',
     sectionId: 'api-students-list',
   },
   {
@@ -132,7 +132,7 @@ const OVERALL_API_SUMMARY = [
     name: 'Create Student',
     method: 'POST',
     url: '{{baseUrl}}/students',
-    auth: 'Layer 1 + Layer 2 (Bearer JWT)',
+    auth: 'Bearer Token (Authorized)',
     sectionId: 'api-students-create',
   },
   {
@@ -140,7 +140,7 @@ const OVERALL_API_SUMMARY = [
     name: 'Record Daily Attendance',
     method: 'POST',
     url: '{{baseUrl}}/attendance',
-    auth: 'Layer 1 + Layer 2 (Bearer JWT)',
+    auth: 'Bearer Token (Authorized)',
     sectionId: 'api-attendance-create',
   },
   {
@@ -148,7 +148,7 @@ const OVERALL_API_SUMMARY = [
     name: 'Record Payment Transaction',
     method: 'POST',
     url: '{{baseUrl}}/payments',
-    auth: 'Layer 1 + Layer 2 (Bearer JWT)',
+    auth: 'Bearer Token (Authorized)',
     sectionId: 'api-payments-create',
   },
 ];
@@ -156,46 +156,47 @@ const OVERALL_API_SUMMARY = [
 const STATUS_CODES_DATA = [
   {
     code: '200 OK',
-    meaning: 'Standard successful response for HTTP GET, PUT, or PATCH requests.',
+    meaning: 'Standard successful response for valid inquiry or update requests.',
     action: 'Payload processed successfully.',
   },
   {
     code: '201 Created',
-    meaning: 'Resource was created successfully (e.g. POST /students, POST /payments).',
-    action: 'Returns newly created entity ID and server timestamp.',
+    meaning: 'Resource successfully created on the server.',
+    action: 'Returns newly created entity ID and confirmation payload.',
   },
   {
     code: '400 Bad Request',
-    meaning: 'Malformed request payload, invalid parameters, or Zod schema validation failure.',
-    action: 'Verify required fields, types, and schema formats.',
+    meaning: 'Malformed request payload, invalid parameters, or schema validation failure.',
+    action: 'Verify required parameters and input data formats.',
   },
   {
     code: '401 Unauthorized',
-    meaning: 'Missing or invalid X-Client-Api-Key, or expired/missing Bearer JWT access token.',
-    action: 'Ensure BACKEND_CLIENT_API_KEY is configured and token has not expired.',
+    meaning: 'Missing or invalid Bearer authentication token, or session has expired.',
+    action: 'Provide a valid access token in the Authorization header.',
   },
   {
     code: '403 Forbidden',
-    meaning: 'Authenticated identity lacks the required RBAC permission or cross-branch scope.',
-    action: 'Check user permissions in GET /auth/me for required action scope.',
+    meaning: 'Authenticated identity lacks the required permission for this resource.',
+    action: 'Check user role and permissions scope.',
   },
   {
     code: '404 Not Found',
-    meaning: 'The requested resource entity or API route does not exist.',
-    action: 'Confirm entity ID and endpoint path.',
+    meaning: 'The requested resource entity or endpoint does not exist.',
+    action: 'Confirm entity identifier and endpoint path.',
   },
   {
     code: '429 Too Many Requests',
-    meaning: 'Rate limit threshold exceeded (default: 100 requests per 60s per client key).',
+    meaning: 'Rate limit threshold exceeded.',
     action: 'Implement exponential backoff retry logic.',
   },
   {
     code: '500 Server Error',
-    meaning: 'Internal backend exception or MongoDB replica set transaction abort.',
-    action: 'Contact SNPI Platform Operations with the request correlation ID.',
+    meaning: 'Internal service exception encountered.',
+    action: 'Contact platform support with the request timestamp.',
   },
 ];
 
+// Standard sanitized headers for external consumers
 const STANDARD_PROTECTED_HEADERS: ApiParameter[] = [
   {
     parameter: 'Content-Type',
@@ -204,16 +205,10 @@ const STANDARD_PROTECTED_HEADERS: ApiParameter[] = [
     description: 'application/json',
   },
   {
-    parameter: 'X-Client-Api-Key',
-    type: 'String',
-    mandatory: 1,
-    description: 'Trusted client application secret (M2M Layer 1 Key)',
-  },
-  {
     parameter: 'Authorization',
     type: 'String',
     mandatory: 1,
-    description: 'Bearer <JWT_ACCESS_TOKEN_SAMPLE> (User RBAC Layer 2 Token)',
+    description: 'Bearer <AUTHENTICATION_TOKEN>',
   },
 ];
 
@@ -225,18 +220,15 @@ const STANDARD_GET_PROTECTED_HEADERS: ApiParameter[] = [
     description: 'application/json',
   },
   {
-    parameter: 'X-Client-Api-Key',
-    type: 'String',
-    mandatory: 1,
-    description: 'Trusted client application secret (M2M Layer 1 Key)',
-  },
-  {
     parameter: 'Authorization',
     type: 'String',
     mandatory: 1,
-    description: 'Bearer <JWT_ACCESS_TOKEN_SAMPLE> (User RBAC Layer 2 Token)',
+    description: 'Bearer <AUTHENTICATION_TOKEN>',
   },
 ];
+
+// Single Authorized Production Endpoint
+const PRODUCTION_GATEWAY_URL = 'https://snpis.kesararamwithdigital.tech/api/v1';
 
 // ============================================================================
 // MAIN COMPONENT: OPEN API DOCUMENTATION PORTAL
@@ -249,16 +241,6 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
 
   const [activeSection, setActiveSection] = React.useState<string>(initialSection || 'changelogs');
   const [copiedId, setCopiedId] = React.useState<string | null>(null);
-
-  // Base URL Selector (Production vs Local Dev)
-  const [selectedEnv, setSelectedEnv] = React.useState<'production' | 'local'>('production');
-
-  const baseUrls = {
-    production: 'https://snpis.kesararamwithdigital.tech/api/v1',
-    local: 'http://localhost:4000/api/v1',
-  };
-
-  const currentBaseUrl = baseUrls[selectedEnv];
 
   // Clipboard copy helper
   const handleCopy = async (text: string, id: string) => {
@@ -411,15 +393,15 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
             </nav>
           </div>
 
-          {/* Quick Security Badge Box */}
+          {/* Clean Security Badge Box (Zero internal header leaks) */}
           <div className="space-y-1.5 rounded-xl border border-[#CAD3F5] bg-[#EFF5FF] p-3.5">
             <div className="flex items-center gap-1.5 text-xs font-bold text-[#0056FF]">
-              <Lock className="size-3.5" />
-              <span>Zero-Trust Protocol</span>
+              <ShieldCheck className="size-3.5 text-[#0056FF]" />
+              <span>Enterprise Access Control</span>
             </div>
             <p className="text-[11px] leading-relaxed text-slate-700">
-              Layer 1 <code className="font-mono text-[#0056FF]">X-Client-Api-Key</code> required
-              for all private calls. Public endpoints exempt.
+              Protected endpoints require authorized institutional credentials. Public services are
+              accessible without authentication.
             </p>
           </div>
         </aside>
@@ -445,55 +427,26 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
               </p>
             </div>
 
-            {/* Base URL & Environment Switcher Card */}
+            {/* Base URL Card (Production Gateway Only — No Local Dev Exposed) */}
             <div className="flex flex-col gap-3 rounded-2xl border border-[#CAD3F5] bg-[#EFF5FF] p-4 sm:flex-row sm:items-center sm:justify-between">
               <div className="space-y-1">
                 <span className="font-mono text-[10px] font-bold tracking-wider text-[#0056FF] uppercase">
-                  Active Base URL Environment
+                  Production API Gateway
                 </span>
                 <div className="flex items-center gap-2">
                   <Terminal className="size-4 text-[#0056FF]" />
                   <code className="font-mono text-xs font-bold text-[#0A1A4A] sm:text-sm">
-                    {currentBaseUrl}
+                    {PRODUCTION_GATEWAY_URL}
                   </code>
                 </div>
               </div>
 
-              <div className="flex flex-wrap items-center gap-2">
-                {/* Environment Selector Pills */}
-                <div className="flex rounded-xl border border-[#CAD3F5] bg-white p-1">
-                  <button
-                    type="button"
-                    onClick={() => setSelectedEnv('production')}
-                    className={cn(
-                      'rounded-lg px-3 py-1 font-mono text-xs font-bold transition-all',
-                      selectedEnv === 'production'
-                        ? 'bg-[#0056FF] text-white shadow-2xs'
-                        : 'text-slate-600 hover:text-[#0056FF]',
-                    )}
-                  >
-                    Production
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setSelectedEnv('local')}
-                    className={cn(
-                      'rounded-lg px-3 py-1 font-mono text-xs font-bold transition-all',
-                      selectedEnv === 'local'
-                        ? 'bg-[#0056FF] text-white shadow-2xs'
-                        : 'text-slate-600 hover:text-[#0056FF]',
-                    )}
-                  >
-                    Local Dev
-                  </button>
-                </div>
-
-                {/* 1-Click Copy Base URL */}
+              <div>
                 <button
                   type="button"
-                  onClick={() => handleCopy(currentBaseUrl, 'main-base-url')}
+                  onClick={() => handleCopy(PRODUCTION_GATEWAY_URL, 'main-base-url')}
                   className={cn(
-                    'flex cursor-pointer items-center gap-1.5 rounded-xl border border-[#CAD3F5] px-3 py-1.5 font-mono text-xs font-bold transition-all',
+                    'flex cursor-pointer items-center gap-1.5 rounded-xl border border-[#CAD3F5] px-3.5 py-2 font-mono text-xs font-bold transition-all shadow-2xs',
                     copiedId === 'main-base-url'
                       ? 'border-emerald-300 bg-emerald-50 text-emerald-800'
                       : 'bg-white text-[#0056FF] hover:bg-[#E3E7FC]',
@@ -573,7 +526,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                         onClick={() => scrollToSection('overall-api')}
                         className="hover:text-[#0056FF] hover:underline"
                       >
-                        2. Overall API & Base URLs
+                        2. Overall API Catalog
                       </button>
                     </li>
                     <li>
@@ -582,7 +535,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                         onClick={() => scrollToSection('security')}
                         className="hover:text-[#0056FF] hover:underline"
                       >
-                        3. Zero-Trust Dual-Layer Security
+                        3. Security & Access Control
                       </button>
                     </li>
                     <li>
@@ -655,8 +608,8 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
               <h3 className="text-base font-bold text-[#0A1A4A]">2. Scope</h3>
               <p className="text-xs leading-relaxed text-slate-700 sm:text-sm">
                 This document contains the complete description of the API specification including:
-                base URLs, authentication headers, HTTP status codes, query and body parameter
-                matrices, and request/response samples for all public and protected microservices.
+                gateway base URL, authentication model, HTTP status codes, query and body parameter
+                matrices, and request/response samples for all public and protected services.
               </p>
             </div>
 
@@ -672,7 +625,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                         <th className="px-4 py-2.5">Name</th>
                         <th className="w-20 px-4 py-2.5">Method</th>
                         <th className="px-4 py-2.5">URL</th>
-                        <th className="px-4 py-2.5">Authentication</th>
+                        <th className="px-4 py-2.5">Access Scope</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-[#CAD3F5]/60">
@@ -712,40 +665,40 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
               </div>
             </div>
 
-            {/* 4. Zero-Trust Dual-Layer Security */}
+            {/* 4. Security & Access Control */}
             <div id="security" className="scroll-mt-28 space-y-4">
               <h3 className="text-base font-bold text-[#0A1A4A]">
-                4. Zero-Trust Dual-Layer Security Architecture
+                4. Security & Institutional Access Control
               </h3>
 
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                {/* Layer 1 Box */}
+                {/* Public Tier */}
                 <div className="space-y-2 rounded-xl border border-[#CAD3F5] bg-[#FFFFFF] p-4 shadow-2xs">
                   <div className="flex items-center gap-2 text-xs font-bold text-[#0056FF]">
-                    <Key className="size-4" />
-                    <span>Layer 1: Machine-to-Machine (M2M) Key</span>
+                    <Server className="size-4" />
+                    <span>Public Inquiry Tier (Open)</span>
                   </div>
                   <p className="text-xs text-slate-700">
-                    Enforced at edge reverse proxy and Express middleware. Every internal or client
-                    request must provide the trusted client secret:
+                    Public verification and monitoring endpoints can be accessed by any consumer
+                    without authentication headers or token requirements:
                   </p>
                   <code className="block rounded bg-[#EFF5FF] p-2 font-mono text-[11px] text-[#0A1A4A]">
-                    X-Client-Api-Key: &lt;BACKEND_CLIENT_API_KEY&gt;
+                    GET /health, GET /certificates/verify/:hash
                   </code>
                 </div>
 
-                {/* Layer 2 Box */}
+                {/* Protected Tier */}
                 <div className="space-y-2 rounded-xl border border-[#CAD3F5] bg-[#FFFFFF] p-4 shadow-2xs">
                   <div className="flex items-center gap-2 text-xs font-bold text-emerald-700">
-                    <ShieldCheck className="size-4" />
-                    <span>Layer 2: User RBAC Session Token</span>
+                    <Lock className="size-4" />
+                    <span>Institutional Partner Tier (Restricted)</span>
                   </div>
                   <p className="text-xs text-slate-700">
-                    Signed 15-minute asymmetric JWT token containing user identity, school tenancy,
-                    branch permissions, and active assigned roles:
+                    Administrative data, student records, and operational mutations require
+                    authenticated Bearer token credentials issued upon verified login:
                   </p>
                   <code className="block rounded bg-[#EFF5FF] p-2 font-mono text-[11px] text-[#0A1A4A]">
-                    Authorization: Bearer &lt;ACCESS_TOKEN&gt;
+                    Authorization: Bearer &lt;AUTHENTICATION_TOKEN&gt;
                   </code>
                 </div>
               </div>
@@ -806,11 +759,11 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                     [PUBLIC]
                   </span>
                   <h3 className="text-xl font-black text-[#0A1A4A]">
-                    1. Public Endpoints (Zero-Trust Exempt)
+                    1. Public Endpoints (Open Access)
                   </h3>
                 </div>
                 <p className="text-xs text-slate-600">
-                  These endpoints do not require the machine client key or user Bearer session token.
+                  These endpoints provide public inquiries and do not require user credentials.
                 </p>
               </div>
 
@@ -828,9 +781,9 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                 <ApiSpecTable
                   method="GET"
                   endpoint="{{baseUrl}}/health"
-                  name="System Health & Telemetry Probe"
-                  description="RFC 9116 / microservices health inspection endpoint returning MongoDB replica set connectivity, memory telemetry, and system uptime."
-                  authRequirement="Public (Exempt from Client Key & Bearer Token)"
+                  name="System Health & Status Probe"
+                  description="Public microservices health inspection endpoint returning service operational status and server timestamp."
+                  authRequirement="Public (Open Access)"
                 />
 
                 <ParamTable
@@ -864,16 +817,10 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                   title="Response Parameters"
                   parameters={[
                     {
-                      parameter: 'success',
-                      type: 'Boolean',
-                      mandatory: 1,
-                      description: 'Request execution status',
-                    },
-                    {
                       parameter: 'status',
                       type: 'String',
                       mandatory: 1,
-                      description: 'Operational health status (healthy | degraded | down)',
+                      description: 'Operational health status (healthy | degraded)',
                     },
                     {
                       parameter: 'timestamp',
@@ -882,16 +829,10 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                       description: 'ISO 8601 server timestamp',
                     },
                     {
-                      parameter: 'database',
-                      type: 'Object',
+                      parameter: 'version',
+                      type: 'String',
                       mandatory: 1,
-                      description: 'MongoDB replica set connectivity, cluster ping, and status',
-                    },
-                    {
-                      parameter: 'uptime',
-                      type: 'Number',
-                      mandatory: 1,
-                      description: 'Process uptime in seconds',
+                      description: 'API engine release version',
                     },
                   ]}
                 />
@@ -903,15 +844,9 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                   <CodeBlock
                     language="json"
                     code={{
-                      success: true,
                       status: 'healthy',
                       timestamp: '2026-11-05T12:00:00.000Z',
-                      database: {
-                        status: 'connected',
-                        replicaSet: 'rs0',
-                        pingMs: 1.2,
-                      },
-                      uptime: 86400,
+                      version: '1.1.0',
                     }}
                     title="health-200.json"
                     statusBadge="200 OK"
@@ -936,7 +871,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                   endpoint="{{baseUrl}}/certificates/verify/:hash"
                   name="Certificate Ledger Verification"
                   description="Public SHA-256 cryptographic proof verification for academic diplomas and completion credentials issued by SNPI."
-                  authRequirement="Public (Exempt from Client Key & Bearer Token)"
+                  authRequirement="Public (Open Access)"
                 />
 
                 <ParamTable
@@ -1006,31 +941,33 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
             </div>
 
             {/* =============================================================== */}
-            {/* PROTECTED APIS (LAYER 1 + LAYER 2)                             */}
+            {/* PROTECTED APIS (INSTITUTIONAL AUTHORIZATION REQUIRED)           */}
             {/* =============================================================== */}
             <div
               id="protected-apis"
               className="scroll-mt-28 space-y-8 border-t border-[#CAD3F5] pt-6"
             >
-              <div className="space-y-1">
+              <div className="space-y-2">
                 <div className="flex items-center gap-2">
                   <span className="rounded bg-[#E3E7FC] px-2 py-0.5 font-mono text-[10px] font-bold text-[#0056FF]">
-                    [PROTECTED]
+                    [RESTRICTED]
                   </span>
                   <h3 className="text-xl font-black text-[#0A1A4A]">
-                    2. Zero-Trust Protected APIs
+                    2. Institutional Protected Services
                   </h3>
                 </div>
-                <p className="text-xs text-slate-600">
-                  Enforces Layer 1 client key authentication and Layer 2 user session token checks.
-                </p>
+                <div className="rounded-xl border border-amber-200 bg-amber-50/70 p-3 text-xs text-amber-900">
+                  <span className="font-bold">Access Control Notice:</span> Protected endpoints
+                  require an authorized Bearer session token. Unauthenticated inquiries will be
+                  rejected with <code className="font-mono font-bold">401 Unauthorized</code>.
+                </div>
               </div>
 
               {/* 2.1 User Login */}
               <article id="api-auth-login" className="scroll-mt-28 space-y-4">
                 <div className="flex items-center justify-between border-b border-[#CAD3F5]/80 pb-2">
                   <h4 className="text-base font-bold text-[#0A1A4A]">
-                    2.1 User Login (POST /auth/login)
+                    2.1 User Authentication (POST /auth/login)
                   </h4>
                   <span className="rounded bg-emerald-600 px-2 py-0.5 font-mono text-[11px] font-bold text-white">
                     [POST]
@@ -1042,7 +979,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                   endpoint="{{baseUrl}}/auth/login"
                   name="User Authentication"
                   description="Authenticates staff or administrator credentials and returns Bearer access and refresh tokens with branch tenancy context."
-                  authRequirement="Layer 1 (X-Client-Api-Key)"
+                  authRequirement="Account Credentials"
                 />
 
                 <ParamTable
@@ -1054,12 +991,6 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                       mandatory: 1,
                       description: 'application/json',
                     },
-                    {
-                      parameter: 'X-Client-Api-Key',
-                      type: 'String',
-                      mandatory: 1,
-                      description: 'Trusted client application secret (M2M Key)',
-                    },
                   ]}
                 />
 
@@ -1070,7 +1001,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                       parameter: 'identifier',
                       type: 'String',
                       mandatory: 1,
-                      description: 'Username or authorized email address',
+                      description: 'Authorized account username or registered email address',
                     },
                     {
                       parameter: 'password',
@@ -1108,7 +1039,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                       parameter: 'accessToken',
                       type: 'String',
                       mandatory: 1,
-                      description: 'Signed 15-minute Bearer JWT',
+                      description: 'Signed 15-minute Bearer access token',
                     },
                     {
                       parameter: 'refreshToken',
@@ -1136,11 +1067,9 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                       accessToken: '<JWT_ACCESS_TOKEN_SAMPLE>',
                       refreshToken: '<REFRESH_TOKEN_SAMPLE>',
                       user: {
-                        userId: '6729ef5e0241b123456789ab',
-                        username: 'admin_local',
+                        userId: '<USER_UUID>',
                         email: '<AUTHORIZED_USER_EMAIL>',
-                        roles: ['super_admin'],
-                        schoolId: '6729ef5e0241b123456789a0',
+                        roles: ['staff'],
                         branchAccess: 'all',
                       },
                     }}
@@ -1155,7 +1084,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
               <article id="api-auth-refresh" className="scroll-mt-28 space-y-4 pt-6">
                 <div className="flex items-center justify-between border-b border-[#CAD3F5]/80 pb-2">
                   <h4 className="text-base font-bold text-[#0A1A4A]">
-                    2.2 Renew Token (POST /auth/refresh)
+                    2.2 Renew Session Token (POST /auth/refresh)
                   </h4>
                   <span className="rounded bg-emerald-600 px-2 py-0.5 font-mono text-[11px] font-bold text-white">
                     [POST]
@@ -1165,9 +1094,9 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                 <ApiSpecTable
                   method="POST"
                   endpoint="{{baseUrl}}/auth/refresh"
-                  name="Renew Token (Session Rotation)"
+                  name="Renew Session Token"
                   description="Rotates an existing refresh token and generates a new 15-minute Bearer access token without credential re-entry."
-                  authRequirement="Layer 1 (X-Client-Api-Key) + Refresh Token"
+                  authRequirement="Valid Refresh Token"
                 />
 
                 <ParamTable
@@ -1178,12 +1107,6 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                       type: 'String',
                       mandatory: 1,
                       description: 'application/json',
-                    },
-                    {
-                      parameter: 'X-Client-Api-Key',
-                      type: 'String',
-                      mandatory: 1,
-                      description: 'Trusted client application secret',
                     },
                   ]}
                 />
@@ -1227,7 +1150,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                       parameter: 'accessToken',
                       type: 'String',
                       mandatory: 1,
-                      description: 'New signed 15-minute Bearer JWT',
+                      description: 'New signed 15-minute Bearer access token',
                     },
                     {
                       parameter: 'refreshToken',
@@ -1271,8 +1194,8 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                   method="GET"
                   endpoint="{{baseUrl}}/auth/me"
                   name="User Profile & Permissions"
-                  description="Returns authenticated user profile, resolved RBAC permissions matrix, branch access scopes, and school tenancy."
-                  authRequirement="Layer 1 (Client Key) + Layer 2 (Bearer JWT)"
+                  description="Returns authenticated user profile, resolved RBAC permissions matrix, branch access scopes, and institution tenancy."
+                  authRequirement="Institutional Authorization (Bearer Token)"
                 />
 
                 <ParamTable title="Headers" parameters={STANDARD_GET_PROTECTED_HEADERS} />
@@ -1293,7 +1216,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                       type: 'Object',
                       mandatory: 1,
                       description:
-                        'User profile containing user ID, username, email, roles array, permissions array, and branchAccess',
+                        'User profile containing user ID, email, roles array, and permissions array',
                     },
                   ]}
                 />
@@ -1307,21 +1230,11 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                     code={{
                       success: true,
                       data: {
-                        id: '6729ef5e0241b123456789ab',
-                        username: 'admin_local',
+                        id: '<USER_UUID>',
                         email: '<AUTHORIZED_USER_EMAIL>',
-                        roles: ['super_admin'],
-                        permissions: [
-                          'users:read',
-                          'users:write',
-                          'students:read',
-                          'students:write',
-                          'attendance:write',
-                          'payments:write',
-                        ],
-                        schoolId: '6729ef5e0241b123456789a0',
-                        branchAccess: 'all',
-                        isSuperAdmin: true,
+                        roles: ['staff'],
+                        permissions: ['students:read', 'attendance:write'],
+                        branchAccess: ['<BRANCH_ID>'],
                         status: 'active',
                       },
                     }}
@@ -1347,8 +1260,8 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                   method="GET"
                   endpoint="{{baseUrl}}/students"
                   name="List Students"
-                  description="Retrieves a paginated list of students filtered by schoolId, branchId, status, gender, or search keyword."
-                  authRequirement="Layer 1 (Client Key) + Layer 2 (Bearer JWT: students:read)"
+                  description="Retrieves a paginated list of students filtered by branch, status, or search keyword."
+                  authRequirement="Institutional Authorization (Bearer Token)"
                 />
 
                 <ParamTable title="Headers" parameters={STANDARD_GET_PROTECTED_HEADERS} />
@@ -1372,20 +1285,19 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                       parameter: 'search',
                       type: 'String',
                       mandatory: 0,
-                      description: 'Search string for student name, student ID, or national ID',
+                      description: 'Search string for student name or identifier',
                     },
                     {
                       parameter: 'branchId',
                       type: 'String',
                       mandatory: 0,
-                      description: 'Filter by campus branch ID',
+                      description: 'Filter by campus branch identifier',
                     },
                     {
                       parameter: 'status',
                       type: 'String',
                       mandatory: 0,
-                      description:
-                        'Filter by student status (active | inactive | graduated | suspended)',
+                      description: 'Filter by student status (active | inactive | graduated)',
                     },
                   ]}
                 />
@@ -1424,10 +1336,8 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                       success: true,
                       data: [
                         {
-                          _id: '6729ef5e0241b123456789c1',
                           studentId: 'STU-2026-0001',
-                          schoolId: '6729ef5e0241b123456789a0',
-                          branchId: 'BR-01',
+                          branchId: '<BRANCH_ID>',
                           firstName: 'Sok',
                           lastName: 'Dara',
                           khmerName: 'សុខ តារា',
@@ -1465,8 +1375,8 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                   method="POST"
                   endpoint="{{baseUrl}}/students"
                   name="Create Student"
-                  description="Enrolls a new student into the school system under the caller branch scope with strict input validation."
-                  authRequirement="Layer 1 (Client Key) + Layer 2 (Bearer JWT: students:write)"
+                  description="Enrolls a new student into the school system under the caller branch scope with input validation."
+                  authRequirement="Institutional Authorization (Bearer Token)"
                 />
 
                 <ParamTable title="Headers" parameters={STANDARD_PROTECTED_HEADERS} />
@@ -1475,16 +1385,10 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                   title="Request Body Parameters"
                   parameters={[
                     {
-                      parameter: 'schoolId',
-                      type: 'String',
-                      mandatory: 1,
-                      description: 'Institution ID',
-                    },
-                    {
                       parameter: 'branchId',
                       type: 'String',
                       mandatory: 1,
-                      description: 'Campus branch ID',
+                      description: 'Campus branch identifier',
                     },
                     {
                       parameter: 'firstName',
@@ -1536,8 +1440,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                   <CodeBlock
                     language="json"
                     code={{
-                      schoolId: '6729ef5e0241b123456789a0',
-                      branchId: 'BR-01',
+                      branchId: '<BRANCH_ID>',
                       firstName: 'Sok',
                       lastName: 'Dara',
                       khmerName: 'សុខ តារា',
@@ -1565,7 +1468,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                       parameter: 'data',
                       type: 'Object',
                       mandatory: 1,
-                      description: 'Created student record with system ID and assigned studentId',
+                      description: 'Created student record with assigned student identifier',
                     },
                   ]}
                 />
@@ -1579,16 +1482,13 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                     code={{
                       success: true,
                       data: {
-                        _id: '6729ef5e0241b123456789c1',
                         studentId: 'STU-2026-0001',
-                        schoolId: '6729ef5e0241b123456789a0',
-                        branchId: 'BR-01',
+                        branchId: '<BRANCH_ID>',
                         firstName: 'Sok',
                         lastName: 'Dara',
                         khmerName: 'សុខ តារា',
                         gender: 'male',
                         dateOfBirth: '2008-05-14',
-                        phone: '+85512345678',
                         status: 'active',
                         createdAt: '2026-11-05T12:00:00.000Z',
                       },
@@ -1616,7 +1516,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                   endpoint="{{baseUrl}}/attendance"
                   name="Record Daily Attendance"
                   description="Submits daily session attendance records for a class cohort with present, absent, late, or excused statuses."
-                  authRequirement="Layer 1 (Client Key) + Layer 2 (Bearer JWT: attendance:write)"
+                  authRequirement="Institutional Authorization (Bearer Token)"
                 />
 
                 <ParamTable title="Headers" parameters={STANDARD_PROTECTED_HEADERS} />
@@ -1625,28 +1525,22 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                   title="Request Body Parameters"
                   parameters={[
                     {
-                      parameter: 'schoolId',
-                      type: 'String',
-                      mandatory: 1,
-                      description: 'Institution ID',
-                    },
-                    {
                       parameter: 'branchId',
                       type: 'String',
                       mandatory: 1,
-                      description: 'Campus branch ID',
+                      description: 'Campus branch identifier',
                     },
                     {
                       parameter: 'academicYearId',
                       type: 'String',
                       mandatory: 1,
-                      description: 'Academic year ID',
+                      description: 'Academic year identifier',
                     },
                     {
                       parameter: 'classId',
                       type: 'String',
                       mandatory: 1,
-                      description: 'Class cohort section ID',
+                      description: 'Class cohort section identifier',
                     },
                     {
                       parameter: 'date',
@@ -1669,8 +1563,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                   <CodeBlock
                     language="json"
                     code={{
-                      schoolId: '6729ef5e0241b123456789a0',
-                      branchId: 'BR-01',
+                      branchId: '<BRANCH_ID>',
                       academicYearId: 'AY-2026',
                       classId: 'CLS-G10-A',
                       date: '2026-11-05',
@@ -1721,14 +1614,12 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                     code={{
                       success: true,
                       data: {
-                        _id: '6729ef5e0241b123456789d1',
                         classId: 'CLS-G10-A',
                         date: '2026-11-05',
                         totalStudents: 2,
                         presentCount: 1,
                         lateCount: 1,
                         absentCount: 0,
-                        markedBy: '6729ef5e0241b123456789ab',
                         createdAt: '2026-11-05T12:05:00.000Z',
                       },
                     }}
@@ -1755,7 +1646,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                   endpoint="{{baseUrl}}/payments"
                   name="Record Payment Transaction"
                   description="Records tuition fee or administrative payments with dual currency support (USD / KHR) and auto-generated receipt numbers."
-                  authRequirement="Layer 1 (Client Key) + Layer 2 (Bearer JWT: payments:write)"
+                  authRequirement="Institutional Authorization (Bearer Token)"
                 />
 
                 <ParamTable title="Headers" parameters={STANDARD_PROTECTED_HEADERS} />
@@ -1764,34 +1655,28 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                   title="Request Body Parameters"
                   parameters={[
                     {
-                      parameter: 'schoolId',
-                      type: 'String',
-                      mandatory: 1,
-                      description: 'Institution ID',
-                    },
-                    {
                       parameter: 'branchId',
                       type: 'String',
                       mandatory: 1,
-                      description: 'Campus branch ID',
+                      description: 'Campus branch identifier',
                     },
                     {
                       parameter: 'academicYearId',
                       type: 'String',
                       mandatory: 1,
-                      description: 'Academic year ID',
+                      description: 'Academic year identifier',
                     },
                     {
                       parameter: 'studentId',
                       type: 'String',
                       mandatory: 1,
-                      description: 'Enrolled student ID',
+                      description: 'Enrolled student identifier',
                     },
                     {
                       parameter: 'tuitionFeeId',
                       type: 'String',
                       mandatory: 1,
-                      description: 'Tuition fee schedule ID',
+                      description: 'Tuition fee schedule identifier',
                     },
                     {
                       parameter: 'amountDue',
@@ -1839,8 +1724,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                   <CodeBlock
                     language="json"
                     code={{
-                      schoolId: '6729ef5e0241b123456789a0',
-                      branchId: 'BR-01',
+                      branchId: '<BRANCH_ID>',
                       academicYearId: 'AY-2026',
                       studentId: 'STU-2026-0001',
                       tuitionFeeId: 'FEE-2026-T1',
@@ -1885,7 +1769,6 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                     code={{
                       success: true,
                       data: {
-                        _id: '6729ef5e0241b123456789e1',
                         receiptNumber: 'REC-2026-00109',
                         studentId: 'STU-2026-0001',
                         amountDue: 250,
