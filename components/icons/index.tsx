@@ -11,8 +11,11 @@ export type LucideIcon = IconComponent;
 export type LucideProps = IconProps;
 
 /**
- * Higher-order component enforcing the Keyline Two-Tone styling rule:
- * Prevents any background color or highlight from being applied behind or below the icon.
+ * Higher-order component enforcing the SNPI Document Icon Style:
+ * Color: oklch(0.446 0.043 257.281) - slate/blue-gray
+ * Fill: none (outlined style)
+ * Background: rgba(0, 0, 0, 0) - transparent
+ * Stroke: uses the stroke property to define visible lines
  */
 function wrapIcon(Component: React.ComponentType<IconProps>, name: string): IconComponent {
   const IconWrapper = React.forwardRef<SVGSVGElement, IconProps>(function KeylineTwoToneIcon(
@@ -33,7 +36,12 @@ function wrapIcon(Component: React.ComponentType<IconProps>, name: string): Icon
       <Component
         ref={ref}
         className={combinedClassName}
-        style={{ backgroundColor: 'transparent', ...style }}
+        style={{
+          backgroundColor: 'transparent',
+          fill: 'none',
+          stroke: 'currentColor',
+          ...style,
+        }}
         {...props}
       />
     );

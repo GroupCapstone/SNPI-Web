@@ -119,3 +119,16 @@ svg:where([data-slot='icon'], [class*='size-'], [class*='h-'][class*='w-']) {
   background-image: none !important;
   box-shadow: none !important;
 }
+
+/* ============================================================================
+   SNPI DOCUMENT ICON STYLE OVERRIDE
+   Applied to all icons in document, API, and blueprint pages
+   Color: oklch(0.446 0.043 257.281) - slate/blue-gray
+   Fill: none (outlined style)
+   Background: rgba(0, 0, 0, 0) - transparent
+   ============================================================================ */
+.keyline-two-tone-icon {
+  color: oklch(0.446 0.043 257.281) !important;
+  fill: none !important;
+  stroke: currentColor !important;
+}
