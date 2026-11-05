@@ -3,7 +3,7 @@
 import * as React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { BrandMark } from '@/components/shared/brand-mark';
+import { AsteriskLogo } from './asterisk-logo';
 import {
   FileText,
   Layers,
@@ -233,7 +233,7 @@ export function DocsStickyHeader({
           className="group z-10 flex items-center gap-2.5 select-none sm:gap-3.5"
           title="SNPI-SMS Developer Documentation Portal"
         >
-          <BrandMark compact size={38} />
+          <AsteriskLogo size="lg" variant="success" className="text-3xl filter-none drop-shadow-sm select-none" />
           <div className="flex items-center gap-1.5 sm:gap-2">
             <span className="font-sans text-base font-black tracking-tight text-white transition-colors group-hover:text-blue-100 sm:text-lg md:text-xl">
               SNPI-SMS
