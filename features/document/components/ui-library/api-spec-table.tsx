@@ -18,7 +18,7 @@ export function ApiSpecTable({
   endpoint,
   name,
   description,
-  authRequirement = 'Layer 1 (Client Key) + Layer 2 (Bearer JWT)',
+  authRequirement = 'Institutional Authorization (Bearer Token)',
   className,
 }: ApiSpecTableProps) {
   const [copied, setCopied] = React.useState(false);
