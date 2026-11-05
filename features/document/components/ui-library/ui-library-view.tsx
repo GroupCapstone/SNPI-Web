@@ -1168,9 +1168,7 @@ function renderFeedComponentDemo(
                 </span>
                 <span className="font-medium text-[#0A1A4A]">{selectedCampus.label}</span>
               </div>
-              <span className="font-mono text-[10px] font-bold text-emerald-600">
-                [ACTIVE]
-              </span>
+              <span className="font-mono text-[10px] font-bold text-emerald-600">[ACTIVE]</span>
             </div>
           </div>
         </div>
