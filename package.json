@@ -2,7 +2,7 @@
   "name": "snpi-web",
   "version": "1.0.0",
   "private": true,
-  "description": "SNPI School Management System - Next.js Web Portal & Integrated Nextra Docs",
+  "description": "SNPI School Management System - Next.js Web Portal & Developer Portal",
   "scripts": {
     "dev": "next dev",
     "build": "next build --webpack",
@@ -17,9 +17,7 @@
     "release:github": "tsx scripts/check-deploy-push-green.ts",
     "deploy:vercel": "vercel deploy --archive=tgz",
     "deploy:vercel:prod": "vercel deploy --archive=tgz --prod",
-    "release:all": "npm run release:github && npm run deploy:vercel:prod",
-    "docs:dev": "cd docs && npm run dev",
-    "docs:build": "cd docs && npm run build"
+    "release:all": "npm run release:github && npm run deploy:vercel:prod"
   },
   "dependencies": {
     "@fontsource-variable/google-sans": "^5.3.2",

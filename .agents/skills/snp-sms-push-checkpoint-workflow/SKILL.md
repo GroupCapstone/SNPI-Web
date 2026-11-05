@@ -23,7 +23,7 @@ Both repositories are hosted under the shared GitHub Organization **`ytivargitna
   * Organization Permissions: Equal Admin (`shiliaiwei` & `Tan-Saphea`).
 
 * **Frontend Web Portal (`SNPI-Web`)**:
-  * Next.js 16 Web Portal & Integrated Nextra Docs (React 19, Tailwind CSS 4, Radix UI).
+  * Next.js 16 Web Portal & Developer Portal (React 19, Tailwind CSS 4, Radix UI).
   * Primary Remote (`origin`): `https://github.com/ytivargitna/SNPI-Web.git` (tracked on `main -> origin/main`).
   * Secondary Remote: `personal` (`shiliaiwei/SNPI-Web.git`).
   * Organization Permissions: Equal Admin (`shiliaiwei` & `Tan-Saphea`).

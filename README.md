@@ -1,6 +1,6 @@
-# SNPI-Web: Next.js Web Portal & Integrated Docs
+# SNPI-Web: Next.js Web Portal & Developer Portal
 
-> Official enterprise web application and developer documentation portal for the **SNPI School Management System (SMS)**, powered by Next.js 16, React 19, Tailwind CSS v4, and Nextra.
+> Official enterprise web application and developer documentation portal for the **SNPI School Management System (SMS)**, powered by Next.js 16, React 19, and Tailwind CSS v4.
 
 ---
 
@@ -9,7 +9,7 @@
 * **Framework**: Next.js 16 (App Router) with React 19.
 * **Styling & UI**: Tailwind CSS v4, Motion (Framer Motion v14), Radix UI primitives.
 * **Client Data Fetching**: SWR (RFC 5861 Stale-While-Revalidate) with local optimistic mutations.
-* **Integrated Documentation**: Nextra MDX documentation engine located in `docs/` (accessible at `/docs`).
+* **Integrated Documentation**: Built-in App Router developer portal located at `/document`.
 * **Design Standards**: Material Design 3 Expressive UI, high-contrast accessible typography (WCAG AAA), and clean brand tokens.
 * **Domains & Pages**:
   * Executive Campus Dashboard
@@ -38,10 +38,7 @@ cp .env.example .env.local
 # 3. Start web portal dev server (Port 3000)
 npm run dev
 
-# 4. Start integrated Nextra documentation dev server (Port 3002)
-npm run docs:dev
-
-# 5. Typecheck & production build
+# 4. Typecheck & production build
 npm run typecheck
 npm run build
 ```

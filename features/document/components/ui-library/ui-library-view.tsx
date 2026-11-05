@@ -586,22 +586,22 @@ export function UiLibraryView() {
       {/* Main Grid Container */}
       <div className="mx-auto max-w-[1560px] px-4 py-8 sm:px-6 lg:px-8">
         <div className="flex flex-col gap-8 lg:flex-row">
-          {/* COLUMN 1: Left Sticky Sidebar Navigation (Clean, Simple, Easy General Concept) */}
+          {/* COLUMN 1: Left Sticky Sidebar Navigation (Squircle Tiles, All Black Text & Icons, No Numbers) */}
           <aside className="hidden lg:sticky lg:top-20 lg:z-30 lg:block lg:w-64 lg:shrink-0 lg:self-start xl:w-72">
             <div
               ref={sidebarContainerRef}
-              className="no-scrollbar max-h-[calc(100vh-5.5rem)] [scrollbar-width:none] space-y-4 overflow-y-auto pr-2 [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+              className="no-scrollbar max-h-[calc(100vh-5.5rem)] [scrollbar-width:none] space-y-3.5 overflow-y-auto rounded-2xl border border-slate-200 bg-white p-3.5 shadow-2xs [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
             >
               {/* Minimalist Search Bar */}
               <div className="group relative flex items-center">
-                <Search className="pointer-events-none absolute left-3 size-4 text-[#0056FF]" />
+                <Search className="pointer-events-none absolute left-3 size-4 text-black" />
                 <input
                   ref={searchInputRef}
                   type="text"
                   placeholder="Search components..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="h-9.5 w-full rounded-xl border border-[#CAD3F5] bg-[#F8FAFC] py-2 pr-12 pl-9 font-sans text-xs font-medium text-[#0A1A4A] shadow-2xs transition-colors placeholder:font-normal placeholder:text-slate-400 hover:border-slate-300 hover:bg-white focus:border-[#0056FF] focus:bg-white focus:shadow-xs focus:ring-2 focus:ring-[#0056FF]/15 focus:outline-none"
+                  className="h-9.5 w-full rounded-xl border border-slate-200 bg-[#F8FAFC] py-2 pr-12 pl-9 font-sans text-xs font-medium text-black shadow-2xs transition-colors placeholder:font-normal placeholder:text-slate-400 hover:border-slate-300 hover:bg-white focus:border-black focus:bg-white focus:shadow-xs focus:ring-2 focus:ring-black/10 focus:outline-none"
                   style={{ outline: 'none' }}
                 />
                 {searchQuery ? (
@@ -612,28 +612,28 @@ export function UiLibraryView() {
                       searchInputRef.current?.focus();
                     }}
                     title="Clear search"
-                    className="absolute right-2.5 flex size-5 cursor-pointer items-center justify-center rounded-md text-[#0056FF] transition-colors hover:bg-blue-50 active:scale-95"
+                    className="absolute right-2.5 flex size-5 cursor-pointer items-center justify-center rounded-md text-black transition-colors hover:bg-slate-100 active:scale-95"
                   >
                     <X className="size-3.5 stroke-[2.5]" />
                   </button>
                 ) : (
-                  <kbd className="pointer-events-none absolute right-2.5 inline-flex items-center gap-0.5 rounded-md border border-[#CAD3F5] bg-white px-1.5 py-0.5 font-mono text-[10px] font-semibold text-slate-400 shadow-2xs select-none">
+                  <kbd className="pointer-events-none absolute right-2.5 inline-flex items-center gap-0.5 rounded-md border border-slate-200 bg-white px-1.5 py-0.5 font-mono text-[10px] font-semibold text-slate-500 shadow-2xs select-none">
                     <span className="font-sans text-[11px]">⌘</span>K
                   </kbd>
                 )}
               </div>
 
               {/* Hierarchy Identity Header */}
-              <div className="border-b border-[#CAD3F5] pb-2.5">
-                <span className="block font-sans text-[11px] font-bold tracking-wider text-[#0056FF] uppercase select-none">
+              <div className="border-b border-slate-200 pb-2.5">
+                <span className="block font-sans text-[11px] font-bold tracking-wider text-black uppercase select-none">
                   Web
                 </span>
-                <span className="block font-sans text-sm font-black tracking-tight text-[#0A1A4A] select-none">
+                <span className="block font-sans text-sm font-black tracking-tight text-black select-none">
                   SNPI System
                 </span>
               </div>
 
-              {/* COMPONENT GROUPS (Clean Typography, Zero Icon Circles, Zero Numbers) */}
+              {/* COMPONENT GROUPS (Black Squircle Icon Tiles, All Black Text & Icons, Zero Numbers) */}
               <div className="space-y-1.5 font-sans text-xs">
                 {filteredComponentGroups.length === 0 ? (
                   <div className="px-3 py-6 text-center font-sans text-xs text-slate-400">
@@ -663,41 +663,47 @@ export function UiLibraryView() {
 
                     return (
                       <div key={group.groupId} className="space-y-0.5">
-                        {/* Parent Group Header (Clean Direct Icon, No Circle Border, Zero Numbers) */}
+                        {/* Parent Group Header (Squircle Tile, Solid Black Icon & Text, No Numbers) */}
                         <button
                           type="button"
                           data-section-id={groupCatSlug}
                           data-active={isGroupActive ? 'true' : undefined}
                           onClick={() => toggleCategoryGroup(group.groupId)}
                           className={cn(
-                            'group flex w-full cursor-pointer items-center justify-between rounded-xl px-2.5 py-2 text-left font-sans text-xs font-bold transition-all select-none',
+                            'group flex w-full cursor-pointer items-center justify-between rounded-xl px-2.5 py-2 text-left font-sans text-xs transition-all select-none',
                             isGroupActive
-                              ? 'bg-[#EFF5FF] text-[#0056FF]'
-                              : 'text-[#0A1A4A] hover:bg-slate-100',
+                              ? 'border border-slate-300 bg-slate-100/90 shadow-2xs'
+                              : 'border border-transparent hover:border-slate-200/90 hover:bg-slate-50/90',
                           )}
                         >
-                          <div className="flex items-center gap-2.5">
-                            <ParentGroupIcon className="size-4.5 shrink-0 stroke-[2.2] text-[#0056FF]" />
-                            <span
+                          <div className="flex items-center gap-2.5 min-w-0">
+                            {/* Squircle Icon Tile */}
+                            <div
                               className={cn(
-                                'text-[13px] font-bold transition-colors',
-                                isGroupActive ? 'text-[#0056FF]' : 'text-[#0A1A4A]',
+                                'flex size-7.5 shrink-0 items-center justify-center rounded-lg border shadow-2xs transition-all duration-200',
+                                isGroupActive
+                                  ? 'border-slate-300 bg-slate-200/90 text-black shadow-xs'
+                                  : 'border-slate-200 bg-slate-50 text-black group-hover:scale-105 group-hover:border-slate-300 group-hover:bg-slate-100',
                               )}
                             >
+                              <ParentGroupIcon className="size-4 stroke-[2.2] text-black" />
+                            </div>
+                            <span className="truncate text-[13px] font-bold text-black">
                               {group.group}
                             </span>
                           </div>
+
                           <ChevronRight
                             className={cn(
-                              'size-3.5 stroke-[2.2] text-slate-400 transition-transform duration-200 group-hover:text-[#0056FF]',
-                              !isGroupCollapsed && 'rotate-90 text-[#0056FF]',
+                              'size-3.5 stroke-[2.2] text-black transition-transform duration-200',
+                              !isGroupCollapsed && 'rotate-90',
                             )}
                           />
                         </button>
 
-                        {/* Group Items (Indented Simple Hierarchy, Zero Numbers) */}
+                        {/* Group Items (Indented Hierarchy with Continuous Guide Rail, Zero Numbers) */}
                         {!isGroupCollapsed && (
-                          <div className="space-y-0.5 pt-0.5 pl-6">
+                          <div className="relative mt-1 ml-3.5 space-y-0.5 border-l-2 border-slate-200 py-1 pl-3">
                             {group.items.map((item) => {
                               if (item.isParent && item.children) {
                                 const isExpanded = Boolean(expandedParents[item.id]);
@@ -716,8 +722,8 @@ export function UiLibraryView() {
                                       className={cn(
                                         'group flex w-full cursor-pointer items-center justify-between rounded-lg py-1.5 pr-2 pl-2 text-left font-sans text-xs transition-colors select-none',
                                         isParentActive
-                                          ? 'font-bold text-[#0056FF]'
-                                          : 'font-medium text-slate-700 hover:text-[#0056FF]',
+                                          ? 'font-bold text-black bg-slate-100/80'
+                                          : 'font-semibold text-black/80 hover:text-black hover:bg-slate-50',
                                       )}
                                     >
                                       <span className="text-left leading-snug break-words whitespace-normal">
@@ -725,15 +731,15 @@ export function UiLibraryView() {
                                       </span>
                                       <ChevronRight
                                         className={cn(
-                                          'ml-1 size-3 shrink-0 stroke-[2] text-slate-400 transition-transform duration-200',
-                                          isExpanded && 'rotate-90 text-[#0056FF]',
+                                          'ml-1 size-3 shrink-0 stroke-[2] text-black transition-transform duration-200',
+                                          isExpanded && 'rotate-90',
                                         )}
                                       />
                                     </button>
 
                                     {/* Sub-Group Child Items */}
                                     {isExpanded && (
-                                      <div className="space-y-0.5 pl-2.5">
+                                      <div className="space-y-0.5 pl-2">
                                         {item.children.map((child: M3NavItem) => {
                                           const freshness = getComponentFreshness(child);
                                           const target = child.targetId || `comp-${child.id}`;
@@ -746,17 +752,17 @@ export function UiLibraryView() {
                                               data-active={isChildActive ? 'true' : undefined}
                                               onClick={() => scrollToSection(target)}
                                               className={cn(
-                                                'group relative flex w-full cursor-pointer items-center justify-between rounded-md py-1.5 pr-2 pl-3 text-left transition-colors select-none',
+                                                'group relative flex w-full cursor-pointer items-center justify-between rounded-md py-1.5 pr-2 pl-3 text-left transition-all select-none',
                                                 isChildActive
-                                                  ? 'bg-[#EFF5FF] font-bold text-[#0056FF] before:absolute before:top-1.5 before:bottom-1.5 before:left-0 before:w-[3px] before:rounded-full before:bg-[#0056FF]'
-                                                  : 'font-normal text-slate-600 hover:bg-slate-50 hover:text-slate-950',
+                                                  ? 'bg-slate-100 font-bold text-black before:absolute before:top-1.5 before:bottom-1.5 before:left-0 before:w-[3px] before:rounded-full before:bg-black'
+                                                  : 'font-normal text-black/75 hover:bg-slate-50 hover:text-black',
                                               )}
                                             >
                                               <span className="text-left font-sans text-xs leading-snug break-words whitespace-normal">
                                                 {child.name}
                                               </span>
                                               {freshness === 'new' && (
-                                                <span className="py-0.2 ml-1.5 shrink-0 rounded-full border border-emerald-300/80 bg-emerald-50 px-1.5 font-sans text-[9px] font-bold text-emerald-700 uppercase">
+                                                <span className="py-0.2 ml-1.5 shrink-0 rounded-full border border-slate-300 bg-slate-100 px-1.5 font-sans text-[9px] font-bold text-black uppercase">
                                                   New
                                                 </span>
                                               )}
@@ -786,17 +792,17 @@ export function UiLibraryView() {
                                   data-active={isActive ? 'true' : undefined}
                                   onClick={() => scrollToSection(target)}
                                   className={cn(
-                                    'group relative flex w-full cursor-pointer items-center justify-between rounded-md py-1.5 pr-2 pl-3 text-left transition-colors select-none',
+                                    'group relative flex w-full cursor-pointer items-center justify-between rounded-md py-1.5 pr-2 pl-3 text-left transition-all select-none',
                                     isActive
-                                      ? 'bg-[#EFF5FF] font-bold text-[#0056FF] before:absolute before:top-1.5 before:bottom-1.5 before:left-0 before:w-[3px] before:rounded-full before:bg-[#0056FF]'
-                                      : 'font-normal text-slate-600 hover:bg-slate-50 hover:text-slate-950',
+                                      ? 'bg-slate-100 font-bold text-black before:absolute before:top-1.5 before:bottom-1.5 before:left-0 before:w-[3px] before:rounded-full before:bg-black'
+                                      : 'font-normal text-black/75 hover:bg-slate-50 hover:text-black',
                                   )}
                                 >
                                   <span className="text-left font-sans text-xs leading-snug break-words whitespace-normal">
                                     {item.name}
                                   </span>
                                   {freshness === 'new' && (
-                                    <span className="py-0.2 ml-1.5 shrink-0 rounded-full border border-emerald-300/80 bg-emerald-50 px-1.5 font-sans text-[9px] font-bold text-emerald-700 uppercase">
+                                    <span className="py-0.2 ml-1.5 shrink-0 rounded-full border border-slate-300 bg-slate-100 px-1.5 font-sans text-[9px] font-bold text-black uppercase">
                                       New
                                     </span>
                                   )}
