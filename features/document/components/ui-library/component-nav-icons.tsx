@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import { cn } from '@/lib/utils';
 import {
   Compass,
   Navigation,
@@ -127,6 +128,51 @@ export function getParentGroupIcon(groupId: string): IconComponent {
     default:
       return Layers;
   }
+}
+
+/**
+ * Standardized Squircle Menu Icon Tile
+ * Renders a clean white rounded squircle container with subtle border and micro-shadow,
+ * housing a perfectly centered Keyline Two-Tone vector icon with 40% fill accent layer.
+ * Strictly motionless: zero hover scaling, zero jumping, zero animation events.
+ */
+export function MenuIconTile({
+  icon: Icon,
+  className,
+  active = false,
+  size = 'md',
+}: {
+  icon: IconComponent | React.ComponentType<{ className?: string }>;
+  className?: string;
+  active?: boolean;
+  size?: 'sm' | 'md' | 'lg';
+}) {
+  const sizeClasses = {
+    sm: 'size-8 rounded-lg',
+    md: 'size-10 rounded-xl',
+    lg: 'size-11 rounded-2xl',
+  }[size];
+
+  const iconSizes = {
+    sm: 'size-4',
+    md: 'size-5',
+    lg: 'size-5.5',
+  }[size];
+
+  return (
+    <div
+      className={cn(
+        'flex shrink-0 items-center justify-center border bg-white text-black shadow-2xs transition-colors',
+        sizeClasses,
+        active
+          ? 'border-slate-300 shadow-xs ring-2 ring-slate-200/80'
+          : 'border-slate-200/90 group-hover:border-slate-300 group-hover:bg-slate-50/80',
+        className,
+      )}
+    >
+      <Icon className={cn(iconSizes, 'stroke-[2] text-black')} />
+    </div>
+  );
 }
 
 export interface LiquidGlassCircleTheme {

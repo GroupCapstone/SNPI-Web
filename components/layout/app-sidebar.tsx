@@ -193,7 +193,7 @@ export const AppSidebar = ({ onClose, className }: AppSidebarProps) => {
                   {GroupIcon && (
                     <GroupIcon
                       className={cn(
-                        'size-5 shrink-0 transition-transform group-hover:scale-110',
+                        'size-5 shrink-0',
                         isGroupActive ? 'text-[#ffd60a]' : 'text-slate-400 group-hover:text-white',
                       )}
                     />
@@ -224,14 +224,16 @@ export const AppSidebar = ({ onClose, className }: AppSidebarProps) => {
               >
                 <div className="flex min-w-0 items-center gap-2.5">
                   {GroupIcon && (
-                    <GroupIcon
+                    <div
                       className={cn(
-                        'size-4 shrink-0 transition-transform group-hover:scale-105',
+                        'flex size-8 shrink-0 items-center justify-center rounded-lg border transition-colors',
                         isGroupActive
-                          ? 'text-[#ffd60a]'
-                          : 'text-slate-400 group-hover:text-slate-200',
+                          ? 'border-blue-500/30 bg-blue-500/10 text-[#ffd60a]'
+                          : 'border-slate-800 bg-slate-900/60 text-slate-400 group-hover:border-slate-700 group-hover:text-slate-200',
                       )}
-                    />
+                    >
+                      <GroupIcon className="size-4 shrink-0" />
+                    </div>
                   )}
                   <span className="truncate text-left text-sm leading-5">{groupTitle}</span>
                 </div>

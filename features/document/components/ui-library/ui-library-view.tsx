@@ -676,19 +676,19 @@ export function UiLibraryView() {
                               : 'border border-transparent hover:border-slate-200/90 hover:bg-slate-50/90',
                           )}
                         >
-                          <div className="flex min-w-0 items-center gap-2.5">
-                            {/* Squircle Icon Tile */}
+                          <div className="flex min-w-0 items-center gap-3.5">
+                            {/* Standardized Squircle Icon Tile (Keyline Two-Tone Standard) */}
                             <div
                               className={cn(
-                                'flex size-7.5 shrink-0 items-center justify-center rounded-lg border shadow-2xs',
+                                'flex size-10 shrink-0 items-center justify-center rounded-xl border bg-white shadow-2xs transition-colors',
                                 isGroupActive
-                                  ? 'border-slate-300 bg-slate-200/90 text-black shadow-xs'
-                                  : 'border-slate-200 bg-slate-50 text-black group-hover:border-slate-300 group-hover:bg-slate-100',
+                                  ? 'border-slate-300 text-black shadow-xs ring-2 ring-slate-200/80'
+                                  : 'border-slate-200/90 text-black group-hover:border-slate-300 group-hover:bg-slate-50/80',
                               )}
                             >
-                              <ParentGroupIcon className="size-4 stroke-[2.2] text-black" />
+                              <ParentGroupIcon className="size-5 stroke-[2] text-black" />
                             </div>
-                            <span className="truncate text-[13px] font-bold text-black">
+                            <span className="truncate text-sm font-bold text-black">
                               {group.group}
                             </span>
                           </div>
