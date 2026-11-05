@@ -78,17 +78,33 @@ npm run build
 
 ---
 
-## 4. Remote Push Execution Protocol
+## 4. Remote Push & Vercel Production Deployment Protocol
 
-Once quality gates pass, execute remote synchronization to the `ytivargitna` organization:
+Whenever the user commands to push (`push`, `git push`, `publish`, `push now`), strictly execute the **GitHub First -> 100% Green CI -> Vercel Production Deploy** sequential pipeline:
 
 ```bash
-# Set large buffer to prevent RPC push failures
-git config http.postBuffer 524288000
-
-# Push main branch to organization origin
-git push origin main
+# Optimized One-Command Pipeline:
+npm run push
+# (Or: npm run release:all)
 ```
+
+### Sequential Execution Steps:
+1. **Pre-Flight Gates**: Run `npm run lint`, `npm run typecheck`, and `npm test` with 0 errors.
+2. **Push to GitHub First**:
+   ```bash
+   git config http.postBuffer 524288000
+   git push origin main
+   ```
+3. **Live CI Monitoring Until 100% Green**:
+   * Actively monitor GitHub Actions CI runs for the target commit SHA (`npm run push:verify` / `gh run list --commit <SHA>`).
+   * Polling runs at optimized 4-second intervals.
+   * If any workflow fails, diagnose failed logs (`gh run view <ID> --log-failed`), resolve locally, and push fix.
+   * Do NOT proceed to Vercel until all workflows reach completed `[PASSED]` status.
+4. **Vercel Production Deployment**:
+   * Executed strictly AFTER GitHub Actions is verified 100% green:
+   ```bash
+   npm run deploy:vercel:prod
+   ```
 
 ---
 
