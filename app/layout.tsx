@@ -1,6 +1,7 @@
 import '@fontsource-variable/google-sans';
 import '@fontsource-variable/inter';
 import '@fontsource-variable/noto-sans-khmer';
+import '@fontsource-variable/sora';
 import type { Metadata, Viewport } from 'next';
 
 import { QueryProvider } from '@/components/providers/query-provider';

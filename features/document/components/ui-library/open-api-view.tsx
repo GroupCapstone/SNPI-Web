@@ -15,6 +15,7 @@ import { cn } from '@/lib/utils';
 import { ApiSpecTable } from './api-spec-table';
 import { ParamTable, type ApiParameter } from './param-table';
 import { CodeBlock } from './code-block';
+import { AsteriskLogo } from './asterisk-logo';
 
 // ============================================================================
 // DATA STRUCTURES & DEFINITIONS (SANITIZED PUBLIC DISPLAY STANDARD)
@@ -343,9 +344,10 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                   return (
                     <div
                       key={item.id}
-                      className="mt-3 mb-1 px-2.5 font-mono text-[10px] font-black tracking-wider text-slate-400 uppercase"
+                      className="mt-5 mb-2 flex items-center gap-2 px-2.5 font-sans text-xs font-black tracking-wider text-[#0A1A4A] uppercase"
                     >
-                      * {item.label}
+                      <AsteriskLogo size="md" variant="bare" className="text-xl text-[#0056FF] shrink-0" />
+                      <span>{item.label}</span>
                     </div>
                   );
                 }
@@ -354,9 +356,10 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                   return (
                     <div
                       key={item.id}
-                      className="mt-2 mb-0.5 px-4 font-mono text-[9px] font-black tracking-wider text-[#0056FF] uppercase"
+                      className="mt-3 mb-1.5 flex items-center gap-2 px-4 font-mono text-[10px] font-black tracking-wider text-[#0056FF] uppercase"
                     >
-                      {item.label}
+                      <AsteriskLogo size="sm" variant="bare" className="text-sm text-[#0056FF] shrink-0" />
+                      <span>{item.label}</span>
                     </div>
                   );
                 }
@@ -413,32 +416,43 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
           {/* ----------------------------------------------------------------- */}
           {/* HEADER SECTION                                                    */}
           {/* ----------------------------------------------------------------- */}
-          <header className="space-y-4 border-b border-[#CAD3F5] pb-6">
-            <div className="space-y-1.5">
-              <div className="inline-flex items-center gap-2 rounded-full border border-[#CAD3F5] bg-[#E3E7FC] px-3 py-0.8 text-[11px] font-bold text-[#0056FF]">
-                <Server className="size-3.5 text-[#0056FF]" />
+          <header className="flex flex-col items-center justify-center text-center space-y-6 border-b border-[#CAD3F5] pb-10 pt-4">
+            {/* Centered Large Sora Asterisk Brand Logo */}
+            <div className="relative flex flex-col items-center justify-center">
+              <div className="absolute -inset-4 rounded-full bg-[#0056FF]/10 blur-xl" />
+              <AsteriskLogo
+                size="2xl"
+                variant="glow"
+                className="relative shadow-xl hover:scale-105 transition-transform duration-300"
+                ariaLabel="SNPI Brand Asterisk Emblem"
+              />
+            </div>
+
+            {/* Title & Subtitle */}
+            <div className="space-y-2.5 max-w-2xl flex flex-col items-center">
+              <div className="inline-flex items-center gap-2 rounded-full border border-[#CAD3F5] bg-[#E3E7FC] px-3.5 py-1 text-xs font-bold text-[#0056FF]">
+                <AsteriskLogo size="xs" variant="bare" className="text-xs text-[#0056FF]" />
                 <span>REST API Specification · Open API 3.0</span>
+                <AsteriskLogo size="xs" variant="bare" className="text-xs text-[#0056FF]" />
               </div>
-              <h1 className="text-3xl font-black tracking-tight text-[#0A1A4A] sm:text-4xl">
+              <h1 className="text-3xl font-black tracking-tight text-[#0A1A4A] sm:text-4xl md:text-5xl">
                 SNPI Open API Documentation
               </h1>
-              <p className="text-sm font-medium text-slate-600 sm:text-base">
+              <p className="text-sm font-medium text-slate-600 sm:text-base leading-relaxed">
                 Official REST API Integration Specification for the SNPI School Management System
               </p>
             </div>
 
-            {/* Base URL Card (Production Gateway Only — No Local Dev Exposed) */}
-            <div className="flex flex-col gap-3 rounded-2xl border border-[#CAD3F5] bg-[#EFF5FF] p-4 sm:flex-row sm:items-center sm:justify-between">
-              <div className="space-y-1">
-                <span className="font-mono text-[10px] font-bold tracking-wider text-[#0056FF] uppercase">
-                  Production API Gateway
+            {/* Centered Base URL Card (Production Gateway Only — No Local Dev Exposed) */}
+            <div className="flex flex-col sm:flex-row items-center gap-3 rounded-2xl border border-[#CAD3F5] bg-[#EFF5FF] px-5 py-3.5 shadow-2xs">
+              <div className="flex items-center gap-2 text-slate-700">
+                <Terminal className="size-4 text-[#0056FF] shrink-0" />
+                <span className="font-mono text-xs font-bold text-[#0056FF] uppercase">
+                  Production Gateway:
                 </span>
-                <div className="flex items-center gap-2">
-                  <Terminal className="size-4 text-[#0056FF]" />
-                  <code className="font-mono text-xs font-bold text-[#0A1A4A] sm:text-sm">
-                    {PRODUCTION_GATEWAY_URL}
-                  </code>
-                </div>
+                <code className="font-mono text-xs font-bold text-[#0A1A4A] sm:text-sm">
+                  {PRODUCTION_GATEWAY_URL}
+                </code>
               </div>
 
               <div>
@@ -446,7 +460,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                   type="button"
                   onClick={() => handleCopy(PRODUCTION_GATEWAY_URL, 'main-base-url')}
                   className={cn(
-                    'flex cursor-pointer items-center gap-1.5 rounded-xl border border-[#CAD3F5] px-3.5 py-2 font-mono text-xs font-bold transition-all shadow-2xs',
+                    'flex cursor-pointer items-center gap-1.5 rounded-xl border border-[#CAD3F5] px-3.5 py-1.5 font-mono text-xs font-bold transition-all shadow-2xs',
                     copiedId === 'main-base-url'
                       ? 'border-emerald-300 bg-emerald-50 text-emerald-800'
                       : 'bg-white text-[#0056FF] hover:bg-[#E3E7FC]',
@@ -472,7 +486,10 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
           {/* SECTION 1: CHANGE LOGS                                            */}
           {/* ----------------------------------------------------------------- */}
           <section id="changelogs" className="scroll-mt-28 space-y-3">
-            <h2 className="text-xl font-bold tracking-tight text-[#0A1A4A]">Change Logs</h2>
+            <h2 className="flex items-center gap-2 text-xl font-bold tracking-tight text-[#0A1A4A]">
+              <AsteriskLogo size="sm" variant="bare" className="text-base text-[#0056FF]" />
+              <span>Change Logs</span>
+            </h2>
 
             <div className="overflow-hidden rounded-xl border border-[#CAD3F5] bg-white shadow-2xs">
               <div className="overflow-x-auto">
@@ -504,7 +521,10 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
           {/* SECTION 2: TABLE OF CONTENTS                                      */}
           {/* ----------------------------------------------------------------- */}
           <section id="toc" className="scroll-mt-28 space-y-3">
-            <h2 className="text-xl font-bold tracking-tight text-[#0A1A4A]">Table of contents</h2>
+            <h2 className="flex items-center gap-2 text-xl font-bold tracking-tight text-[#0A1A4A]">
+              <AsteriskLogo size="sm" variant="bare" className="text-base text-[#0056FF]" />
+              <span>Table of contents</span>
+            </h2>
 
             <div className="rounded-xl border border-[#CAD3F5] bg-[#EFF5FF]/40 p-4 font-mono text-xs">
               <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
@@ -590,7 +610,10 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
           {/* SECTION 3: INTRODUCTION                                           */}
           {/* ----------------------------------------------------------------- */}
           <section id="introduction" className="scroll-mt-28 space-y-6">
-            <h2 className="text-2xl font-black tracking-tight text-[#0A1A4A]">Introduction</h2>
+            <h2 className="flex items-center gap-2.5 text-2xl font-black tracking-tight text-[#0A1A4A]">
+              <AsteriskLogo size="md" variant="bare" className="text-2xl text-[#0056FF]" />
+              <span>Introduction</span>
+            </h2>
 
             {/* 1. Purpose */}
             <div id="purpose" className="scroll-mt-28 space-y-2">
@@ -744,8 +767,9 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                 <FileText className="size-3.5" />
                 <span>API Endpoint Specifications</span>
               </div>
-              <h2 className="mt-2 text-2xl font-black tracking-tight text-[#0A1A4A]">
-                Detailed API Documentation
+              <h2 className="mt-2 flex items-center gap-2.5 text-2xl font-black tracking-tight text-[#0A1A4A]">
+                <AsteriskLogo size="md" variant="bare" className="text-2xl text-[#0056FF]" />
+                <span>Detailed API Documentation</span>
               </h2>
             </div>
 
