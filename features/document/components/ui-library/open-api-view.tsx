@@ -9,13 +9,13 @@ import {
   Lock,
   Terminal,
   FileText,
-  Key,
 } from '@/components/icons';
 import { cn } from '@/lib/utils';
 import { ApiSpecTable } from './api-spec-table';
 import { ParamTable, type ApiParameter } from './param-table';
 import { CodeBlock } from './code-block';
 import { AsteriskLogo } from './asterisk-logo';
+import { DocumentLogo } from './document-logo';
 
 // ============================================================================
 // DATA STRUCTURES & DEFINITIONS (SANITIZED PUBLIC DISPLAY STANDARD)
@@ -417,15 +417,16 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
           {/* HEADER SECTION                                                    */}
           {/* ----------------------------------------------------------------- */}
           <header className="flex flex-col items-center justify-center text-center space-y-6 border-b border-[#CAD3F5] pb-12 pt-6">
-            {/* Centered Standard Sora Asterisk Brand Emblem (Success Squircle Tile · #10B981) */}
-            <div className="relative flex flex-col items-center justify-center">
-              <AsteriskLogo
-                size="hero"
-                variant="standard"
-                className="select-none transition-transform hover:scale-105 duration-300 cursor-default"
-                ariaLabel="SNPI Brand Asterisk Emblem"
-              />
-            </div>
+            {/* Centered SNPI Logo (Large Hero Variant) */}
+            <DocumentLogo
+              variant="hero"
+              mode="light"
+              showLabel={true}
+              label="SNPI-SMS"
+              subtitle="API Documentation"
+              centered={true}
+              className="select-none"
+            />
 
             {/* Title & Subtitle */}
             <div className="space-y-3 max-w-2xl flex flex-col items-center">
