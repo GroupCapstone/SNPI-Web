@@ -194,9 +194,9 @@ export function BrandConceptBlueprint() {
           {/* Logo Visual Presentation */}
           <div className="flex flex-wrap items-center gap-4">
             {/* White Canvas Preview */}
-            <div className="flex items-center gap-4 rounded-xl border border-slate-200 bg-white p-3.5 shadow-2xs">
-              <div className="flex size-14 shrink-0 items-center justify-center bg-transparent">
-                <AsteriskLogo size="lg" variant="success" className="text-4xl" />
+            <div className="flex items-center gap-4 rounded-xl border border-slate-200 bg-white p-4 shadow-2xs">
+              <div className="flex size-20 shrink-0 items-center justify-center bg-transparent">
+                <AsteriskLogo size="xl" variant="success" />
               </div>
               <div className="space-y-0.5">
                 <div className="font-sans text-xs font-bold text-slate-950">White Canvas</div>
@@ -205,9 +205,9 @@ export function BrandConceptBlueprint() {
             </div>
 
             {/* Soft Lavender Canvas Preview */}
-            <div className="flex items-center gap-4 rounded-xl border border-[#CAD3F5] bg-[#E3E7FC] p-3.5 shadow-2xs">
-              <div className="flex size-14 shrink-0 items-center justify-center bg-transparent">
-                <AsteriskLogo size="lg" variant="success" className="text-4xl" />
+            <div className="flex items-center gap-4 rounded-xl border border-[#CAD3F5] bg-[#E3E7FC] p-4 shadow-2xs">
+              <div className="flex size-20 shrink-0 items-center justify-center bg-transparent">
+                <AsteriskLogo size="xl" variant="success" />
               </div>
               <div className="space-y-0.5">
                 <div className="font-sans text-xs font-bold text-[#0A1A4A]">Lavender Canvas</div>

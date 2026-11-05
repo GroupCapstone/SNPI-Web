@@ -10,6 +10,20 @@ export interface AsteriskLogoProps {
   ariaLabel?: string;
 }
 
+const SIZE_TYPOGRAPHY_MAP: Record<
+  NonNullable<AsteriskLogoProps['size']>,
+  { fontSize: string; lineHeight: number | string }
+> = {
+  xs: { fontSize: '14px', lineHeight: 1 },
+  sm: { fontSize: '20px', lineHeight: 1 },
+  md: { fontSize: '28px', lineHeight: 1 },
+  lg: { fontSize: '48px', lineHeight: 0.9 },
+  xl: { fontSize: '84px', lineHeight: 0.8 },
+  '2xl': { fontSize: '150px', lineHeight: 0.75 },
+  '3xl': { fontSize: '240px', lineHeight: 0.7 },
+  hero: { fontSize: 'clamp(280px, 30vw, 460px)', lineHeight: 0.65 },
+};
+
 /**
  * Official SNPI Star / Asterisk Brand Emblem
  * Rendered using the Sora typeface geometric 6-spoke rounded asterisk glyph.
@@ -21,20 +35,13 @@ export function AsteriskLogo({
   className,
   ariaLabel = 'SNPI Asterisk Emblem',
 }: AsteriskLogoProps) {
-  const sizeClasses = {
-    xs: 'text-xs',
-    sm: 'text-base',
-    md: 'text-2xl',
-    lg: 'text-4xl',
-    xl: 'text-6xl',
-    '2xl': 'text-8xl',
-    '3xl': 'text-9xl sm:text-[130px]',
-    hero: 'text-[110px] sm:text-[150px] md:text-[180px]',
-  };
+  const typo = SIZE_TYPOGRAPHY_MAP[size];
 
   const soraFontStyle: React.CSSProperties = {
     fontFamily: "'Sora Variable', 'Sora', sans-serif",
     fontWeight: 800,
+    fontSize: typo.fontSize,
+    lineHeight: typo.lineHeight,
   };
 
   // 'success' variant: 100% transparent background, vibrant "success" green (#10B981) glyph with subtle emerald glow
@@ -42,14 +49,14 @@ export function AsteriskLogo({
     return (
       <span
         className={cn(
-          'inline-flex items-center justify-center leading-none select-none bg-transparent transition-transform hover:scale-105 duration-300',
-          sizeClasses[size],
+          'inline-flex items-center justify-center select-none bg-transparent transition-transform hover:scale-105 duration-300',
+          size === 'hero' && 'my-2 sm:my-4',
           className,
         )}
         style={{
           ...soraFontStyle,
           color: '#10B981',
-          filter: 'drop-shadow(0 4px 20px rgba(16, 185, 129, 0.3))',
+          filter: 'drop-shadow(0 8px 30px rgba(16, 185, 129, 0.35))',
         }}
         aria-label={ariaLabel}
         role="img"
@@ -64,8 +71,7 @@ export function AsteriskLogo({
     return (
       <span
         className={cn(
-          'inline-flex items-center justify-center leading-none select-none bg-transparent',
-          sizeClasses[size],
+          'inline-flex items-center justify-center select-none bg-transparent',
           className,
         )}
         style={soraFontStyle}
@@ -78,14 +84,14 @@ export function AsteriskLogo({
 
   // Boxed variants (solid, tint, outline, glow)
   const boxSizeClasses = {
-    xs: 'size-5 text-xs rounded-md',
-    sm: 'size-7 text-base rounded-lg',
-    md: 'size-10 text-2xl rounded-xl',
-    lg: 'size-14 sm:size-16 text-3xl sm:text-4xl rounded-2xl',
-    xl: 'size-20 sm:size-24 text-5xl sm:text-6xl rounded-3xl',
-    '2xl': 'size-24 sm:size-28 md:size-32 text-6xl sm:text-7xl md:text-8xl rounded-3xl',
-    '3xl': 'size-32 sm:size-36 text-8xl rounded-3xl',
-    hero: 'size-40 sm:size-48 text-9xl rounded-3xl',
+    xs: 'size-6 rounded-md',
+    sm: 'size-8 rounded-lg',
+    md: 'size-11 rounded-xl',
+    lg: 'size-16 rounded-2xl',
+    xl: 'size-24 rounded-3xl',
+    '2xl': 'size-32 rounded-3xl',
+    '3xl': 'size-44 rounded-3xl',
+    hero: 'size-56 sm:size-64 md:size-72 rounded-[2.5rem]',
   };
 
   const boxVariantClasses = {
@@ -99,7 +105,7 @@ export function AsteriskLogo({
   return (
     <div
       className={cn(
-        'inline-flex shrink-0 items-center justify-center leading-none select-none transition-transform hover:scale-105 duration-200',
+        'inline-flex shrink-0 items-center justify-center select-none transition-transform hover:scale-105 duration-200',
         boxSizeClasses[size],
         boxVariantClasses[variant],
         className,
