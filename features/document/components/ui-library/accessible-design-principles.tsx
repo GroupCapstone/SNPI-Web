@@ -409,13 +409,20 @@ export function AccessibleDesignPrinciples({
                 <div className="flex w-full items-center justify-between">
                   <div
                     className={cn(
-                      'flex size-7 items-center justify-center rounded-lg transition-colors',
+                      'flex size-7 items-center justify-center rounded-lg border transition-colors',
                       isDomainActive
-                        ? 'bg-white/20 text-white'
-                        : 'bg-[#EFF5FF] text-[#0056FF] group-hover:bg-[#0056FF] group-hover:text-white',
+                        ? 'border-emerald-400/40 bg-emerald-500/25 text-emerald-300'
+                        : 'border-emerald-200/80 bg-emerald-50 text-emerald-600 group-hover:border-emerald-600 group-hover:bg-emerald-600 group-hover:text-white',
                     )}
                   >
-                    <DomainIcon className="size-4" />
+                    <DomainIcon
+                      className={cn(
+                        'size-4 stroke-[2] transition-colors',
+                        isDomainActive
+                          ? 'fill-emerald-300/30 text-emerald-300'
+                          : 'fill-emerald-500/20 text-emerald-600 group-hover:fill-white/30 group-hover:text-white',
+                      )}
+                    />
                   </div>
                   <span
                     className={cn(
