@@ -175,7 +175,7 @@ function LogoCard({ item, isDark }: { item: EnterpriseLogoItem; isDark: boolean 
       {/* Monochrome Vector Logo Icon */}
       <div
         className={cn(
-          'flex size-10 shrink-0 items-center justify-center rounded-xl p-1.5 transition-transform group-hover:scale-110',
+          'flex size-10 shrink-0 items-center justify-center rounded-xl p-1.5',
           isDark
             ? 'bg-neutral-800 text-white'
             : 'bg-slate-100 text-slate-900 group-hover:bg-white group-hover:text-black',

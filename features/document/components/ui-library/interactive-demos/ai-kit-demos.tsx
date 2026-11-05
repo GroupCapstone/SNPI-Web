@@ -34,7 +34,7 @@ export function FluidOrbDemo() {
           {/* Morphing Inner Sphere */}
           <div className="relative flex size-24 items-center justify-center rounded-full bg-[#0056FF]">
             <div className="flex size-16 items-center justify-center rounded-full bg-white/20">
-              <Sparkles className="animate-spin-slow size-8 text-white" />
+              <Sparkles className="size-8 text-white" />
             </div>
           </div>
         </button>

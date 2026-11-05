@@ -12,6 +12,7 @@ import {
   Plus,
   PowerOff,
   Search,
+  ShieldCheck,
   Trash2,
   Users,
   X,
@@ -443,11 +444,35 @@ export const UserTable = () => {
                       </td>
 
                       <td className="px-4 py-3 whitespace-nowrap">
-                        <Badge tone={getStatusTone(user.status)}>{user.status}</Badge>
+                        <div className="flex items-center gap-1.5">
+                          <Badge tone={getStatusTone(user.status)}>{user.status}</Badge>
+                          {user.twoFactorEnabled && (
+                            <span
+                              className="inline-flex items-center gap-0.5 rounded border border-emerald-200 bg-emerald-50 px-1.5 py-0.5 font-mono text-[10px] font-semibold text-emerald-700"
+                              title="Two-Factor Authentication is active"
+                            >
+                              <ShieldCheck className="size-3 text-emerald-600" />
+                              2FA
+                            </span>
+                          )}
+                        </div>
                       </td>
 
                       <td className="px-4 py-3 text-right whitespace-nowrap">
                         <div className="flex shrink-0 items-center justify-end gap-1">
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => router.push(`/admin/users/${user._id}`)}
+                            title={`Security details & 2FA management for ${user.username}`}
+                            className={`h-7 w-7 p-0 ${
+                              user.twoFactorEnabled
+                                ? 'text-emerald-700 hover:bg-emerald-50 hover:text-emerald-800'
+                                : 'text-slate-400 hover:bg-slate-100 hover:text-slate-700'
+                            }`}
+                          >
+                            <ShieldCheck className="size-3.5" />
+                          </Button>
                           <Button
                             variant="ghost"
                             size="sm"

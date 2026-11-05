@@ -27,6 +27,8 @@ export interface User {
   status: UserStatus;
   lastLoginAt?: string;
   isDeleted?: boolean;
+  twoFactorEnabled?: boolean;
+  telegramChatId?: string | null;
   createdAt: string;
   updatedAt: string;
 }

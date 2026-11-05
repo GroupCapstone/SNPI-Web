@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import Image from 'next/image';
-import { Copy, Check, IconGlassWrapper } from '@/components/icons';
-import { AsteriskLogo } from './asterisk-logo';
+import { Copy, Check } from '@/components/icons';
+import { AsteriskLogo, SaveLogoButton } from './asterisk-logo';
 
 export function BrandConceptBlueprint() {
   const [copiedToken, setCopiedToken] = React.useState<string | null>(null);
@@ -78,16 +78,12 @@ export function BrandConceptBlueprint() {
             >
               {copiedToken === 'Royal Blue' ? (
                 <>
-                  <IconGlassWrapper size="sm">
-                    <Check className="size-3 text-white" />
-                  </IconGlassWrapper>
+                  <Check className="size-3 text-white" />
                   <span>Copied!</span>
                 </>
               ) : (
                 <>
-                  <IconGlassWrapper size="sm">
-                    <Copy className="size-3 text-white/80" />
-                  </IconGlassWrapper>
+                  <Copy className="size-3 text-white/80" />
                   <span>#0056FF</span>
                 </>
               )}
@@ -196,6 +192,9 @@ export function BrandConceptBlueprint() {
               <code className="font-mono font-bold text-[#0056FF]">#0056FF</code>) on pure light
               canvas.
             </p>
+            <div className="pt-2">
+              <SaveLogoButton />
+            </div>
           </div>
 
           {/* Logo Visual Presentation */}

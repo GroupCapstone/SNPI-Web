@@ -398,8 +398,8 @@ export function NotificationBellDemo() {
             >
               <Bell
                 className={cn(
-                  'size-5 stroke-[2.2] transition-transform',
-                  hasNewAlert ? 'animate-bounce text-[#0056FF]' : 'group-hover:rotate-12',
+                  'size-5 stroke-[2.2]',
+                  hasNewAlert && 'text-[#0056FF]',
                 )}
               />
               {unreadCount > 0 && (
@@ -524,7 +524,7 @@ export function NotificationBellDemo() {
                           {/* Domain Icon Badge */}
                           <div
                             className={cn(
-                              'flex size-8 shrink-0 items-center justify-center rounded-xl shadow-2xs transition-transform group-hover:scale-105',
+                              'flex size-8 shrink-0 items-center justify-center rounded-xl shadow-2xs',
                               meta.iconClass,
                             )}
                           >

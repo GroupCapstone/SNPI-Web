@@ -8,6 +8,20 @@ export interface ChangeLogEntry {
 
 export const CHANGE_LOGS: ChangeLogEntry[] = [
   {
+    version: '0.2.23',
+    date: '06.11.2026',
+    developer: '史力爱卫',
+    description:
+      'Implement Two-Factor Authentication (RFC 6238 TOTP), 8 single-use backup recovery codes with text export, Telegram Desktop OTP fallback, dual-auth protected deactivation modal, and administrator emergency break-glass 2FA reset at /admin/users/[id]',
+  },
+  {
+    version: '0.2.22',
+    date: '06.11.2026',
+    developer: '史力爱卫',
+    description:
+      'Standardize Keyline Two-Tone icons with 40% fill accent, stroke-width 2, size-6 default, zero animations/hover movement, and add single-click original logo vector export',
+  },
+  {
     version: '0.2.18',
     date: '05.11.2026',
     developer: '史力爱卫',

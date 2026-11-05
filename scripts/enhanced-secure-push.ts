@@ -27,7 +27,11 @@ function run(cmd: string, echo = false): string {
   }
 }
 
-function logStep(step: string, message: string, status: 'INFO' | 'PASS' | 'FAIL' | 'WARN' = 'INFO') {
+function logStep(
+  step: string,
+  message: string,
+  status: 'INFO' | 'PASS' | 'FAIL' | 'WARN' = 'INFO',
+) {
   const colors = {
     INFO: '\x1b[36m', // Cyan
     PASS: '\x1b[32m', // Green
@@ -270,11 +274,7 @@ async function waitForAllCIGreen(commitSha: string, timeoutMinutes = 15): Promis
       if (inProgress.length === 0 && queued.length === 0) {
         if (success.length >= 4) {
           // Require at least 4 critical workflows
-          logStep(
-            'CI MONITOR',
-            `All ${runs.length} workflows completed successfully! ✓`,
-            'PASS',
-          );
+          logStep('CI MONITOR', `All ${runs.length} workflows completed successfully! ✓`, 'PASS');
           return;
         } else {
           logStep(

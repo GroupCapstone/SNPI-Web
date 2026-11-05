@@ -2,6 +2,14 @@
 
 All notable changes, commits, and skill updates are recorded here in real-time.
 
+### Version 0.2.23 (06.11.2026) (Developer: **史力爱卫**)
+
+- Implement Two-Factor Authentication (RFC 6238 TOTP), 8 single-use backup recovery codes with text export, Telegram Desktop OTP fallback, dual-auth protected deactivation modal, and administrator emergency break-glass 2FA reset at `/admin/users/[id]`
+
+### Version 0.2.22 (06.11.2026) (Developer: **史力爱卫**)
+
+- Standardize Keyline Two-Tone icons with 40% fill accent, stroke-width 2, size-6 default, zero animations/hover movement, and add single-click original logo vector export
+
 ### Version 0.2.21 (05.11.2026) (Developer: **史力爱卫**)
 
 - Replaced `#0A1A4A` in Dark mode with authentic Neutral AAA scale (`#64748B`, `#475569`, `#334155`, `#1E293B`, `#0F172A`, `#020617`) and Primary 950 (`#050E28`) obsidian canvas

@@ -155,11 +155,7 @@ export function DocsFooter({ className }: DocsFooterProps) {
         <div className="grid grid-cols-1 gap-10 md:grid-cols-12 lg:gap-12">
           {/* Brand Asterisk Mark */}
           <div className="md:col-span-1 lg:col-span-1">
-            <Link
-              href="/document"
-              title="SNPI-SMS Developer Portal"
-              className="inline-block transition-transform hover:scale-105"
-            >
+            <Link href="/document" title="SNPI-SMS Developer Portal" className="inline-block">
               <AsteriskLogo size="md" variant="standard" mode="light" />
             </Link>
           </div>

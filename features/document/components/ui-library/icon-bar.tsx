@@ -152,7 +152,7 @@ export function IconBar({
               )}
 
               {/* Tool Icon */}
-              <Icon className="size-4.5 shrink-0 stroke-[1.8] transition-transform duration-200 group-hover:scale-105" />
+              <Icon className="size-4.5 shrink-0 stroke-[1.8]" />
 
               {/* Bloom-Open Label Reveal */}
               <span

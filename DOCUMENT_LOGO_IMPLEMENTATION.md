@@ -21,9 +21,11 @@ The brand identity adheres strictly to the primary blue palette:
 ### 1. `AsteriskLogo`
 **File**: `features/document/components/ui-library/asterisk-logo.tsx`
 
-Renders the iconic bold Sora asterisk sign (`*`) inside standardized squircle containers or as a bare glyph:
-- Optical vertical centering via `translate-y-[8%]`
-- Standardized size classes: `xs` (24px) up to `hero` (192-208px)
+Renders the official bold Sora asterisk (`*`) as a pure vector SVG logo mark:
+- Mathematically centered in `viewBox 0 0 100 100`: `cx=50.00, cy=50.00`
+- Balanced margins: exactly `12.52` horizontal and `12.00` vertical on top, bottom, left, right
+- Enlarged size classes (`xs` up to `hero` 240px)
+- Strictly motionless and stationary (zero hover scale, zero jumping, zero animation events)
 - Strictly enforces brand Royal Blue (`#0056FF`) on light canvas
 
 ### 2. `DocumentLogo`
@@ -50,17 +52,19 @@ Integrated brand identity container pairing the bold Sora asterisk tile with bra
 - **Logo Border**: `#CAD3F5` (Soft Lavender)
 - **Logo Background**: `#FFFFFF` (White)
 - **Logo Ring**: `#0056FF/10` (Royal Blue 10% opacity)
+- **Asterisk Glyph**: `#0056FF` (Royal Blue) — Strictly Only Blue
 - **Title Text**: `#0A1A4A` (Deep Navy)
 - **Subtitle Text**: `#0056FF` (Royal Blue)
-- **Hover**: Scale 1.05, Shadow XL with Royal Blue glow
+- **Hover Policy**: Strictly motionless and stable (NO hover scaling, NO jumping, NO animation events)
 
 #### Dark Mode (Header Navigation)
 - **Logo Border**: `white/20` (White 20% opacity)
-- **Logo Background**: `#1E293B` (Slate 900)
+- **Logo Background**: `#0056FF` (Royal Blue) / `#0A1A4A` (Deep Navy)
 - **Logo Ring**: `white/10` (White 10% opacity)
+- **Asterisk Glyph**: `#FFFFFF` (Pure White)
 - **Title Text**: `#FFFFFF` (White)
 - **Subtitle Text**: `#BFDBFE` (Blue 200)
-- **Hover**: Scale 1.05, Shadow XL with White glow
+- **Hover Policy**: Strictly motionless and stable (NO hover scaling, NO jumping, NO animation events)
 
 ---
 

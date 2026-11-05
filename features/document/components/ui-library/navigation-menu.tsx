@@ -305,7 +305,7 @@ export function RareUiNavigationMenu({ className }: { className?: string }) {
                       className="group/cta mt-4 inline-flex items-center gap-1.5 font-mono text-xs font-bold text-[#0056FF] hover:underline"
                     >
                       <span>Explore Docks</span>
-                      <ArrowRight className="size-3 transition-transform group-hover/cta:translate-x-1" />
+                      <ArrowRight className="size-3" />
                     </a>
                   </div>
 

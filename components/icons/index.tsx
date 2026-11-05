@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as RawIcons from '@keyline-icons/react/two-tone';
 import type { SVGProps } from 'react';
+import { cn } from '@/lib/utils';
 
 export type IconProps = Omit<SVGProps<SVGSVGElement>, 'children'> & {
   size?: number | string;
@@ -10,47 +11,37 @@ export type IconComponent = React.ComponentType<IconProps>;
 export type LucideIcon = IconComponent;
 export type LucideProps = IconProps;
 
-// Export the glass wrapper component
-export { IconGlassWrapper } from './icon-glass-wrapper';
-export type { IconGlassWrapperProps } from './icon-glass-wrapper';
-
 /**
- * Higher-order component enforcing the SNPI Document Icon Style:
- * Color: oklch(0.446 0.043 257.281) - slate/blue-gray
- * Fill: none (outlined style)
- * Background: rgba(0, 0, 0, 0) - transparent
- * Stroke: uses the stroke property to define visible lines
- * Size: 20px x 20px (1.25rem) - consistent everywhere
+ * Keyline Two-Tone Standardized Icon Component Wrapper
+ * Follows the official Keyline Two-Tone Icon Style Specification:
+ * - Color: text-slate-600 default (currentColor)
+ * - Stroke: stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+ * - Two-Tone Accent: fill="currentColor" fill-opacity="0.4" stroke="none" (preserved across all icons)
+ * - Outline: stroke defines visible lines (stroke-width: 2)
+ * - Size: default size-6 (width=24, height=24) across all pages
+ * - Background: 100% transparent surface (zero canvas blocks, zero box-shadow, zero backdrop-filter)
+ * - Accessibility: aria-hidden="true" focusable="false"
+ * - Motionless Integrity: strictly motionless, zero animations, zero hover movement, perfectly stable
  */
 function wrapIcon(Component: React.ComponentType<IconProps>, name: string): IconComponent {
   const IconWrapper = React.forwardRef<SVGSVGElement, IconProps>(function KeylineTwoToneIcon(
-    { className, style, size, ...props },
+    { className, style, size = 24, ...props },
     ref,
   ) {
-    const combinedClassName = [
-      'keyline-two-tone-icon',
-      'inline-block',
-      'shrink-0',
-      'bg-transparent',
+    const combinedClassName = cn(
+      'keyline-two-tone-icon inline-block shrink-0 bg-transparent size-6 text-slate-600',
       className,
-    ]
-      .filter(Boolean)
-      .join(' ');
+    );
 
     return (
       <Component
         ref={ref}
+        aria-hidden="true"
+        focusable="false"
+        width={size}
+        height={size}
         className={combinedClassName}
-        style={{
-          backgroundColor: 'transparent',
-          fill: 'none',
-          stroke: 'currentColor',
-          width: '1.25rem', // 20px - consistent size
-          height: '1.25rem', // 20px - consistent size
-          ...style,
-        }}
-        width="20"
-        height="20"
+        style={{ backgroundColor: 'transparent', ...style }}
         {...props}
       />
     );
