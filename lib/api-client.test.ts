@@ -31,6 +31,8 @@ describe('protected API session lifecycle', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     vi.stubGlobal('fetch', fetchMock);
+    vi.stubEnv('NEXT_PUBLIC_CLIENT_API_KEY', 'snpi_m2m_trusted_client_key_2026_sec');
+    vi.stubEnv('BACKEND_CLIENT_API_KEY', 'snpi_m2m_trusted_client_key_2026_sec');
     setAccessToken('original-token');
     setSessionRefreshHandler(refreshed);
     setUnauthorizedHandler(unauthorized);
@@ -39,6 +41,7 @@ describe('protected API session lifecycle', () => {
     setAccessToken(null);
     setSessionRefreshHandler(null);
     setUnauthorizedHandler(null);
+    vi.unstubAllEnvs();
     vi.unstubAllGlobals();
   });
 
