@@ -233,7 +233,7 @@ export function DocsStickyHeader({
           className="group z-10 flex items-center gap-2.5 select-none sm:gap-3.5"
           title="SNPI-SMS Developer Documentation Portal"
         >
-          <AsteriskLogo size="lg" variant="success" className="text-3xl filter-none drop-shadow-sm select-none" />
+          <AsteriskLogo size="md" variant="standard" className="shadow-xs shrink-0" />
           <div className="flex items-center gap-1.5 sm:gap-2">
             <span className="font-sans text-base font-black tracking-tight text-white transition-colors group-hover:text-blue-100 sm:text-lg md:text-xl">
               SNPI-SMS
