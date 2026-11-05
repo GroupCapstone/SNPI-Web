@@ -162,6 +162,9 @@ const getActiveBranchId = (): string | null => {
   return _cachedBranchId;
 };
 
+const getClientApiKey = (): string =>
+  process.env.NEXT_PUBLIC_CLIENT_API_KEY || process.env.BACKEND_CLIENT_API_KEY || '';
+
 const getHeaderFromResponse = (res: Response, name: string): string | null => {
   if (res.headers && typeof res.headers.get === 'function') {
     return res.headers.get(name);
@@ -202,13 +205,19 @@ export const performTokenRefresh = async <
   const refreshingSessionVersion = sessionVersion;
   refreshPromise = (async () => {
     try {
+      const clientApiKey = getClientApiKey();
+      const headers: Record<string, string> = {
+        Accept: 'application/json, application/problem+json',
+        'Content-Type': 'application/json',
+      };
+      if (clientApiKey) {
+        headers['X-Client-Api-Key'] = clientApiKey;
+      }
+
       const response = await fetch(`${getApiBaseUrl()}/auth/refresh`, {
         method: 'POST',
         credentials: 'include',
-        headers: {
-          Accept: 'application/json, application/problem+json',
-          'Content-Type': 'application/json',
-        },
+        headers,
       });
 
       if (refreshingSessionVersion !== sessionVersion) return null;
@@ -271,6 +280,11 @@ const executeRequest = async <T>(
 
   if (init?.headers) {
     Object.assign(headers, init.headers);
+  }
+
+  const clientApiKey = getClientApiKey();
+  if (clientApiKey && !headers['X-Client-Api-Key']) {
+    headers['X-Client-Api-Key'] = clientApiKey;
   }
 
   if (inMemoryAccessToken && !headers.Authorization) {

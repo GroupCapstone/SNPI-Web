@@ -60,12 +60,25 @@ const nextConfig: NextConfig = {
     : {}),
   reactStrictMode: true,
   async headers() {
-    if (!requiresHttpsBackend) return [];
+    const securityHeaders = requiresHttpsBackend
+      ? [
+          {
+            source: '/:path*',
+            headers: [{ key: 'Strict-Transport-Security', value: 'max-age=31536000' }],
+          },
+        ]
+      : [];
 
     return [
+      ...securityHeaders,
       {
-        source: '/:path*',
-        headers: [{ key: 'Strict-Transport-Security', value: 'max-age=31536000' }],
+        source: '/api/v1/:path*',
+        headers: [
+          {
+            key: 'X-Client-Api-Key',
+            value: process.env.BACKEND_CLIENT_API_KEY || '',
+          },
+        ],
       },
     ];
   },

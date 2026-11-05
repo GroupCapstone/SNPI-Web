@@ -42,6 +42,13 @@ describe('protected API session lifecycle', () => {
     vi.unstubAllGlobals();
   });
 
+  it('automatically attaches X-Client-Api-Key header to outgoing requests', async () => {
+    fetchMock.mockResolvedValueOnce(json({ success: true, data: { status: 'healthy' } }));
+    await apiClient.get('/system-health');
+    const callHeaders = fetchMock.mock.calls[0][1].headers;
+    expect(callHeaders['X-Client-Api-Key']).toBe('***REMOVED***');
+  });
+
   it('retries an expired token with refreshed permissions and scope', async () => {
     fetchMock
       .mockResolvedValueOnce(json({ message: 'Expired' }, 401))

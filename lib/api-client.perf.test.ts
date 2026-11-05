@@ -70,8 +70,11 @@ describe('api-client performance: header construction hot-path', () => {
         return h;
       };
 
-      // Warm up
-      optimizedBuildHeaders(token);
+      // Warm up JIT for both paths
+      for (let i = 0; i < 2000; i++) {
+        legacyBuildHeaders(token);
+        optimizedBuildHeaders(token);
+      }
 
       const optimizedStart = performance.now();
       for (let i = 0; i < ITERATIONS_COUNT; i++) optimizedBuildHeaders(token);

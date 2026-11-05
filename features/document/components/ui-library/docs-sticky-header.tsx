@@ -42,10 +42,14 @@ export interface DocsStickyHeaderProps {
 }
 
 const OPEN_API_SECTIONS = [
-  { id: 'open-api-head', label: 'Welcome & Overview' },
-  { id: 'available-services', label: '2 Core Services' },
-  { id: 'public-feeds', label: 'Public Feeds & RSS 2.0' },
-  { id: 'changelogs', label: 'Syndication Releases' },
+  { id: 'changelogs', label: 'Change Logs' },
+  { id: 'toc', label: 'Table of contents' },
+  { id: 'introduction', label: 'Introduction & Scope' },
+  { id: 'overall-api', label: 'Overall API Matrix' },
+  { id: 'security', label: 'Zero-Trust Dual-Layer Security' },
+  { id: 'status-codes', label: 'HTTP Status Codes' },
+  { id: 'public-apis', label: 'Public Endpoints (/health, /certificates)' },
+  { id: 'protected-apis', label: 'Protected Endpoints (/auth, /students, etc.)' },
 ];
 
 const DESIGN_SYSTEM_SECTIONS = [
@@ -343,14 +347,14 @@ export function DocsStickyHeader({
 
               {/* Modern Minimalist Search Bar (Clean Blueprint Standard) */}
               <div className="group relative mb-3 flex items-center">
-                <Search className="pointer-events-none absolute left-3 size-4 text-slate-400 transition-colors group-focus-within:text-[#0056FF] group-hover:text-slate-600" />
+                <Search className="pointer-events-none absolute left-3 size-4 text-black" />
                 <input
                   ref={searchInputRef}
                   type="text"
                   value={mobileSearch}
                   onChange={(e) => setMobileSearch(e.target.value)}
                   placeholder="Search components..."
-                  className="h-9.5 w-full rounded-xl border border-[#CAD3F5] bg-[#F8FAFC] py-2 pr-10 pl-9 font-sans text-xs font-medium text-[#0A1A4A] shadow-2xs transition-all placeholder:font-normal placeholder:text-slate-400 hover:border-slate-300 hover:bg-white focus:border-[#0056FF] focus:bg-white focus:shadow-xs focus:ring-2 focus:ring-[#0056FF]/15 focus:outline-none focus-visible:outline-none"
+                  className="h-9.5 w-full rounded-xl border border-slate-200 bg-[#F8FAFC] py-2 pr-10 pl-9 font-sans text-xs font-medium text-black shadow-2xs transition-all placeholder:font-normal placeholder:text-slate-400 hover:border-slate-300 hover:bg-white focus:border-black focus:bg-white focus:shadow-xs focus:ring-2 focus:ring-black/10 focus:outline-none focus-visible:outline-none"
                   style={{ outline: 'none' }}
                 />
                 {mobileSearch && (
@@ -361,7 +365,7 @@ export function DocsStickyHeader({
                       searchInputRef.current?.focus();
                     }}
                     title="Clear search"
-                    className="absolute right-2.5 flex size-5 cursor-pointer items-center justify-center rounded-md text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-700 active:scale-95"
+                    className="absolute right-2.5 flex size-5 cursor-pointer items-center justify-center rounded-md text-black transition-colors hover:bg-slate-100 active:scale-95"
                   >
                     <X className="size-3.5 stroke-[2.5]" />
                   </button>
@@ -375,15 +379,15 @@ export function DocsStickyHeader({
                   <div className="space-y-3 font-sans text-xs">
                     {/* Top Hierarchy Identity */}
                     <div className="border-b border-slate-100 pb-1.5">
-                      <span className="block font-sans text-[10px] font-bold tracking-wider text-slate-400 uppercase select-none">
+                      <span className="block font-sans text-[10px] font-bold tracking-wider text-black uppercase select-none">
                         Web
                       </span>
-                      <span className="block font-sans text-xs font-black tracking-tight text-slate-950 select-none">
+                      <span className="block font-sans text-xs font-black tracking-tight text-black select-none">
                         SNPI System
                       </span>
                     </div>
 
-                    {/* COMPONENT GROUPS */}
+                    {/* COMPONENT GROUPS (Black Squircle Icon Tiles, All Black Text & Icons, Zero Numbers) */}
                     <div className="space-y-2 font-sans text-xs">
                       {filteredComponentGroups.length === 0 ? (
                         <div className="py-4 text-center font-sans text-xs text-slate-400">
@@ -396,22 +400,28 @@ export function DocsStickyHeader({
 
                           return (
                             <div key={group.groupId} className="space-y-0.5">
-                              {/* Parent Group Header (Clean Direct Icon, No Circle Border) */}
+                              {/* Parent Group Header (Black Squircle Tile, Black Text, No Numbers) */}
                               <button
                                 type="button"
                                 onClick={() => toggleCategoryGroup(group.groupId)}
-                                className="group flex w-full cursor-pointer items-center justify-between rounded-lg px-2.5 py-2 text-left font-sans text-xs font-bold text-slate-900 transition-colors select-none hover:bg-slate-100"
+                                className="group flex w-full cursor-pointer items-center justify-between rounded-xl px-2.5 py-2 text-left font-sans text-xs font-bold text-black transition-colors select-none hover:bg-slate-50"
                               >
-                                <div className="flex items-center gap-2.5">
-                                  <ParentGroupIcon className="size-4.5 shrink-0 stroke-[2.2] text-[#0056FF]" />
-                                  <span className="text-[13px] font-bold text-slate-900">
+                                <div className="flex items-center gap-2.5 min-w-0">
+                                  <div
+                                    className="flex size-7.5 shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-slate-50 text-black shadow-2xs transition-all duration-200 group-hover:scale-105 group-hover:border-slate-300 group-hover:bg-slate-100"
+                                  >
+                                    <ParentGroupIcon
+                                      className="size-4 stroke-[2.2] text-black"
+                                    />
+                                  </div>
+                                  <span className="truncate text-[13px] font-bold text-black">
                                     {group.group}
                                   </span>
                                 </div>
                                 <ChevronRight
                                   className={cn(
-                                    'size-3.5 stroke-[2.2] text-slate-400 transition-transform duration-200 group-hover:text-[#0056FF]',
-                                    !isGroupCollapsed && 'rotate-90 text-[#0056FF]',
+                                    'size-3.5 stroke-[2.2] text-black transition-transform duration-200',
+                                    !isGroupCollapsed && 'rotate-90',
                                   )}
                                 />
                               </button>
@@ -428,15 +438,15 @@ export function DocsStickyHeader({
                                           <button
                                             type="button"
                                             onClick={() => toggleParentGroup(item.id)}
-                                            className="group flex w-full cursor-pointer items-center justify-between rounded-md py-1.5 pr-2 pl-3 text-left font-sans text-xs font-medium text-slate-700 transition-colors select-none hover:bg-slate-50 hover:text-slate-950"
+                                            className="group flex w-full cursor-pointer items-center justify-between rounded-md py-1.5 pr-2 pl-3 text-left font-sans text-xs font-semibold text-black transition-colors select-none hover:bg-slate-50"
                                           >
                                             <span className="text-left leading-snug break-words whitespace-normal">
                                               {item.name}
                                             </span>
                                             {isExpanded ? (
-                                              <ChevronDown className="ml-1 size-3 shrink-0 text-[#0056FF]" />
+                                              <ChevronDown className="ml-1 size-3 shrink-0 text-black" />
                                             ) : (
-                                              <ChevronRight className="ml-1 size-3 shrink-0 text-[#0056FF]" />
+                                              <ChevronRight className="ml-1 size-3 shrink-0 text-black" />
                                             )}
                                           </button>
 
@@ -453,7 +463,7 @@ export function DocsStickyHeader({
                                                         child.targetId || `comp-${child.id}`;
                                                       handleMobileNavigate('library', target);
                                                     }}
-                                                    className="group relative flex w-full cursor-pointer items-center justify-between rounded-md py-1.5 pr-2 pl-3.5 text-left font-normal text-slate-600 transition-colors select-none hover:bg-slate-50 hover:text-slate-950"
+                                                    className="group relative flex w-full cursor-pointer items-center justify-between rounded-md py-1.5 pr-2 pl-3.5 text-left font-normal text-black/80 transition-colors select-none hover:bg-slate-50 hover:text-black"
                                                   >
                                                     <span className="text-left font-sans text-xs leading-snug break-words whitespace-normal">
                                                       {child.name}
@@ -487,7 +497,7 @@ export function DocsStickyHeader({
                                           const target = item.targetId || `comp-${item.id}`;
                                           handleMobileNavigate('library', target);
                                         }}
-                                        className="group relative flex w-full cursor-pointer items-center justify-between rounded-md py-1.5 pr-2 pl-3.5 text-left font-normal text-slate-600 transition-colors select-none hover:bg-slate-50 hover:text-slate-950"
+                                        className="group relative flex w-full cursor-pointer items-center justify-between rounded-md py-1.5 pr-2 pl-3.5 text-left font-normal text-black/80 transition-colors select-none hover:bg-slate-50 hover:text-black"
                                       >
                                         <span className="text-left font-sans text-xs leading-snug break-words whitespace-normal">
                                           {item.name}

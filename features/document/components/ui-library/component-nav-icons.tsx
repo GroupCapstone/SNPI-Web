@@ -137,6 +137,48 @@ export interface LiquidGlassCircleTheme {
   glow: string;
 }
 
+export interface SidebarCategoryColorTheme {
+  boxBg: string;
+  boxBorder: string;
+  iconColor: string;
+  hoverBoxBg: string;
+  activeBoxBg: string;
+  activeBoxBorder: string;
+  activeIconColor: string;
+  badgeBg: string;
+  badgeBorder: string;
+  badgeText: string;
+  activeBadgeBg: string;
+  activeBadgeText: string;
+  activeRowBg: string;
+  activeRowBorder: string;
+  activeText: string;
+}
+
+/**
+ * Returns clean, monochromatic black color token mapping for sidebar parent categories
+ * featuring squircle icon tiles with solid black icons and black typography.
+ */
+export function getSidebarCategoryColorTheme(_groupIdOrCategory?: string): SidebarCategoryColorTheme {
+  return {
+    boxBg: 'bg-slate-50',
+    boxBorder: 'border-slate-200',
+    iconColor: 'text-black',
+    hoverBoxBg: 'group-hover:bg-slate-100 group-hover:border-slate-300',
+    activeBoxBg: 'bg-slate-200/90',
+    activeBoxBorder: 'border-slate-300',
+    activeIconColor: 'text-black',
+    badgeBg: 'bg-transparent',
+    badgeBorder: 'border-transparent',
+    badgeText: 'text-black',
+    activeBadgeBg: 'bg-transparent',
+    activeBadgeText: 'text-black',
+    activeRowBg: 'bg-slate-100/90',
+    activeRowBorder: 'border-slate-300',
+    activeText: 'text-black',
+  };
+}
+
 /**
  * Returns tactile Liquid Glass color circle tokens for sidebar parent group icons.
  * Strictly unified to Brand Royal Blue (#0056FF), Azure Blue (#2277FF), Soft Lavender (#E3E7FC), and Ice Tint (#EFF5FF).

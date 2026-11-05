@@ -113,9 +113,17 @@ export const getInvoicePreview = async (paymentId: string) =>
 
 const requestPdf = async (path: string, retry = false): Promise<Blob> => {
   const token = getAccessToken();
+  const clientApiKey =
+    process.env.NEXT_PUBLIC_CLIENT_API_KEY || process.env.BACKEND_CLIENT_API_KEY || '';
+  const headers: Record<string, string> = {
+    Accept: 'application/pdf',
+  };
+  if (token) headers.Authorization = `Bearer ${token}`;
+  if (clientApiKey) headers['X-Client-Api-Key'] = clientApiKey;
+
   const response = await fetch(`${getApiBaseUrl()}${path}`, {
     credentials: 'include',
-    headers: token ? { Authorization: `Bearer ${token}`, Accept: 'application/pdf' } : undefined,
+    headers,
   });
   if (response.status === 401 && !retry) {
     const refreshed = await performTokenRefresh();
