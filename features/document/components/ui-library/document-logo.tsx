@@ -104,7 +104,7 @@ export function DocumentLogo({
   showSaveButton,
 }: DocumentLogoProps) {
   const styles = VARIANT_CONTAINER_STYLES[variant];
-  const shouldShowSaveButton = showSaveButton ?? (variant === 'hero');
+  const shouldShowSaveButton = showSaveButton ?? variant === 'hero';
 
   // Light mode colors (default for document pages) - STRICT: Motionless logo, NO hover scaling
   const lightModeColors = {
@@ -173,7 +173,11 @@ export function DocumentLogo({
 
   if (href) {
     return (
-      <div className={centered ? 'flex flex-col items-center justify-center' : 'inline-flex items-center gap-3'}>
+      <div
+        className={
+          centered ? 'flex flex-col items-center justify-center' : 'inline-flex items-center gap-3'
+        }
+      >
         <Link href={href} className={containerClasses} title={`${label} - ${subtitle}`}>
           {logoElement}
           {textElement}
