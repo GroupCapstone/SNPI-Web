@@ -676,7 +676,7 @@ export function UiLibraryView() {
                               : 'border border-transparent hover:border-slate-200/90 hover:bg-slate-50/90',
                           )}
                         >
-                          <div className="flex items-center gap-2.5 min-w-0">
+                          <div className="flex min-w-0 items-center gap-2.5">
                             {/* Squircle Icon Tile */}
                             <div
                               className={cn(
@@ -722,8 +722,8 @@ export function UiLibraryView() {
                                       className={cn(
                                         'group flex w-full cursor-pointer items-center justify-between rounded-lg py-1.5 pr-2 pl-2 text-left font-sans text-xs transition-colors select-none',
                                         isParentActive
-                                          ? 'font-bold text-black bg-slate-100/80'
-                                          : 'font-semibold text-black/80 hover:text-black hover:bg-slate-50',
+                                          ? 'bg-slate-100/80 font-bold text-black'
+                                          : 'font-semibold text-black/80 hover:bg-slate-50 hover:text-black',
                                       )}
                                     >
                                       <span className="text-left leading-snug break-words whitespace-normal">

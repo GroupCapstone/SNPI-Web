@@ -159,7 +159,9 @@ export interface SidebarCategoryColorTheme {
  * Returns clean, monochromatic black color token mapping for sidebar parent categories
  * featuring squircle icon tiles with solid black icons and black typography.
  */
-export function getSidebarCategoryColorTheme(_groupIdOrCategory?: string): SidebarCategoryColorTheme {
+export function getSidebarCategoryColorTheme(
+  _groupIdOrCategory?: string,
+): SidebarCategoryColorTheme {
   return {
     boxBg: 'bg-slate-50',
     boxBorder: 'border-slate-200',

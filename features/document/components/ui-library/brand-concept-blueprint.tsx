@@ -187,7 +187,9 @@ export function BrandConceptBlueprint() {
               SNPI Standard Brand Asterisk Emblem
             </h3>
             <p className="text-xs text-slate-600 sm:text-sm">
-              Standard squircle brand badge in Status Success (<code className="font-mono font-bold text-emerald-600">#10B981</code>) with centered Sora asterisk glyph.
+              Standard squircle brand badge in Status Success (
+              <code className="font-mono font-bold text-emerald-600">#10B981</code>) with centered
+              Sora asterisk glyph.
             </p>
           </div>
 
@@ -200,7 +202,9 @@ export function BrandConceptBlueprint() {
               </div>
               <div className="space-y-0.5">
                 <div className="font-sans text-xs font-bold text-slate-950">White Canvas</div>
-                <div className="font-mono text-[10px] text-slate-500">bg-[#FFFFFF] · Success Tile</div>
+                <div className="font-mono text-[10px] text-slate-500">
+                  bg-[#FFFFFF] · Success Tile
+                </div>
               </div>
             </div>
 
@@ -211,7 +215,9 @@ export function BrandConceptBlueprint() {
               </div>
               <div className="space-y-0.5">
                 <div className="font-sans text-xs font-bold text-[#0A1A4A]">Lavender Canvas</div>
-                <div className="font-mono text-[10px] text-[#0056FF]">bg-[#E3E7FC] · Success Tile</div>
+                <div className="font-mono text-[10px] text-[#0056FF]">
+                  bg-[#E3E7FC] · Success Tile
+                </div>
               </div>
             </div>
 
@@ -221,8 +227,12 @@ export function BrandConceptBlueprint() {
                 <AsteriskLogo size="lg" variant="tint" />
               </div>
               <div className="space-y-0.5">
-                <div className="font-sans text-xs font-bold text-emerald-950">Emerald Tint Canvas</div>
-                <div className="font-mono text-[10px] text-emerald-700">bg-[#ECFDF5] · Tint Tile</div>
+                <div className="font-sans text-xs font-bold text-emerald-950">
+                  Emerald Tint Canvas
+                </div>
+                <div className="font-mono text-[10px] text-emerald-700">
+                  bg-[#ECFDF5] · Tint Tile
+                </div>
               </div>
             </div>
           </div>

@@ -68,7 +68,7 @@ export function AsteriskLogo({
     return (
       <span
         className={cn(
-          'inline-flex items-center justify-center select-none bg-transparent',
+          'inline-flex items-center justify-center bg-transparent select-none',
           className,
         )}
         style={{
@@ -103,7 +103,7 @@ export function AsteriskLogo({
   return (
     <div
       className={cn(
-        'inline-flex shrink-0 items-center justify-center select-none transition-transform hover:scale-105 duration-300',
+        'inline-flex shrink-0 items-center justify-center transition-transform duration-300 select-none hover:scale-105',
         BOX_SIZE_CLASSES[size],
         variantStyleClasses[variant],
         className,
