@@ -1,15 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import {
-  Check,
-  Copy,
-  Server,
-  ShieldCheck,
-  Lock,
-  Terminal,
-  FileText,
-} from '@/components/icons';
+import { Check, Copy, Server, ShieldCheck, Lock, Terminal, FileText } from '@/components/icons';
 import { cn } from '@/lib/utils';
 import { ApiSpecTable } from './api-spec-table';
 import { ParamTable, type ApiParameter } from './param-table';
@@ -68,8 +60,7 @@ const CHANGE_LOGS_DATA = [
   {
     version: '1.0.2',
     date: '10.10.2026',
-    description:
-      'Add public certificate ledger SHA-256 hash tamper-proof verification endpoint.',
+    description: 'Add public certificate ledger SHA-256 hash tamper-proof verification endpoint.',
   },
   {
     version: '1.0.0',
@@ -346,7 +337,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                       key={item.id}
                       className="mt-5 mb-2 flex items-center gap-2 px-2.5 font-sans text-xs font-black tracking-wider text-[#0A1A4A] uppercase"
                     >
-                      <AsteriskLogo size="md" variant="success" className="text-xl shrink-0" />
+                      <AsteriskLogo size="md" variant="success" className="shrink-0 text-xl" />
                       <span>{item.label}</span>
                     </div>
                   );
@@ -358,7 +349,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                       key={item.id}
                       className="mt-3 mb-1.5 flex items-center gap-2 px-4 font-mono text-[10px] font-black tracking-wider text-[#0056FF] uppercase"
                     >
-                      <AsteriskLogo size="sm" variant="success" className="text-sm shrink-0" />
+                      <AsteriskLogo size="sm" variant="success" className="shrink-0 text-sm" />
                       <span>{item.label}</span>
                     </div>
                   );
@@ -381,7 +372,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                     {item.badge && (
                       <span
                         className={cn(
-                          'shrink-0 rounded px-1.5 py-0.2 font-mono text-[9px] font-bold',
+                          'py-0.2 shrink-0 rounded px-1.5 font-mono text-[9px] font-bold',
                           item.badge === 'GET'
                             ? 'bg-[#E3E7FC] text-[#0056FF]'
                             : 'bg-emerald-100 text-emerald-800',
@@ -416,7 +407,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
           {/* ----------------------------------------------------------------- */}
           {/* HEADER SECTION                                                    */}
           {/* ----------------------------------------------------------------- */}
-          <header className="flex flex-col items-center justify-center text-center space-y-6 border-b border-[#CAD3F5] pb-12 pt-6">
+          <header className="flex flex-col items-center justify-center space-y-6 border-b border-[#CAD3F5] pt-6 pb-12 text-center">
             {/* Centered SNPI Logo (Large Hero Variant) */}
             <DocumentLogo
               variant="hero"
@@ -429,7 +420,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
             />
 
             {/* Title & Subtitle */}
-            <div className="space-y-3 max-w-2xl flex flex-col items-center">
+            <div className="flex max-w-2xl flex-col items-center space-y-3">
               <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3.5 py-1 text-xs font-bold text-emerald-800">
                 <AsteriskLogo size="xs" variant="bare" className="text-xs text-emerald-600" />
                 <span>REST API Specification · Open API 3.0</span>
@@ -438,15 +429,15 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
               <h1 className="text-3xl font-black tracking-tight text-[#0A1A4A] sm:text-4xl md:text-5xl">
                 SNPI Open API Documentation
               </h1>
-              <p className="text-sm font-medium text-slate-600 sm:text-base leading-relaxed">
+              <p className="text-sm leading-relaxed font-medium text-slate-600 sm:text-base">
                 Official REST API Integration Specification for the SNPI School Management System
               </p>
             </div>
 
             {/* Centered Base URL Card (Production Gateway Only — No Local Dev Exposed) */}
-            <div className="flex flex-col sm:flex-row items-center gap-3 rounded-2xl border border-[#CAD3F5] bg-[#EFF5FF] px-5 py-3.5 shadow-2xs">
+            <div className="flex flex-col items-center gap-3 rounded-2xl border border-[#CAD3F5] bg-[#EFF5FF] px-5 py-3.5 shadow-2xs sm:flex-row">
               <div className="flex items-center gap-2 text-slate-700">
-                <Terminal className="size-4 text-[#0056FF] shrink-0" />
+                <Terminal className="size-4 shrink-0 text-[#0056FF]" />
                 <span className="font-mono text-xs font-bold text-[#0056FF] uppercase">
                   Production Gateway:
                 </span>
@@ -460,7 +451,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                   type="button"
                   onClick={() => handleCopy(PRODUCTION_GATEWAY_URL, 'main-base-url')}
                   className={cn(
-                    'flex cursor-pointer items-center gap-1.5 rounded-xl border border-[#CAD3F5] px-3.5 py-1.5 font-mono text-xs font-bold transition-all shadow-2xs',
+                    'flex cursor-pointer items-center gap-1.5 rounded-xl border border-[#CAD3F5] px-3.5 py-1.5 font-mono text-xs font-bold shadow-2xs transition-all',
                     copiedId === 'main-base-url'
                       ? 'border-emerald-300 bg-emerald-50 text-emerald-800'
                       : 'bg-white text-[#0056FF] hover:bg-[#E3E7FC]',

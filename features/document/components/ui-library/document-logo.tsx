@@ -13,39 +13,39 @@ export interface DocumentLogoProps {
    * - footer: Medium logo for footer sections
    */
   variant?: 'header' | 'hero' | 'inline' | 'footer';
-  
+
   /**
    * Theme mode for color adaptation
    * - light: White/light background (default for document pages)
    * - dark: Dark background
    */
   mode?: 'light' | 'dark';
-  
+
   /**
    * Show text label next to logo
    */
   showLabel?: boolean;
-  
+
   /**
    * Custom label text (defaults to "SNPI-SMS")
    */
   label?: string;
-  
+
   /**
    * Subtitle text (defaults to "API Documentation")
    */
   subtitle?: string;
-  
+
   /**
    * Additional CSS classes
    */
   className?: string;
-  
+
   /**
    * Make the logo clickable
    */
   href?: string;
-  
+
   /**
    * Center align the logo
    */
@@ -102,7 +102,7 @@ export function DocumentLogo({
   centered = false,
 }: DocumentLogoProps) {
   const styles = VARIANT_STYLES[variant];
-  
+
   // Light mode colors (default for document pages)
   const lightModeColors = {
     logoBorder: 'border-[#CAD3F5]',
@@ -113,7 +113,7 @@ export function DocumentLogo({
     hoverTitle: 'group-hover:text-[#0056FF]',
     hoverLogo: 'group-hover:scale-105 group-hover:shadow-xl group-hover:shadow-[#0056FF]/30',
   };
-  
+
   // Dark mode colors
   const darkModeColors = {
     logoBorder: 'border-white/20',
@@ -124,9 +124,9 @@ export function DocumentLogo({
     hoverTitle: 'group-hover:text-blue-100',
     hoverLogo: 'group-hover:scale-105 group-hover:shadow-xl group-hover:shadow-white/20',
   };
-  
+
   const colors = mode === 'dark' ? darkModeColors : lightModeColors;
-  
+
   const logoElement = (
     <div
       className={cn(
@@ -143,14 +143,18 @@ export function DocumentLogo({
       <Image
         src="/images/logo.png"
         alt="SNPI International School Logo"
-        width={variant === 'hero' ? 256 : variant === 'footer' ? 128 : variant === 'inline' ? 48 : 88}
-        height={variant === 'hero' ? 256 : variant === 'footer' ? 128 : variant === 'inline' ? 48 : 88}
+        width={
+          variant === 'hero' ? 256 : variant === 'footer' ? 128 : variant === 'inline' ? 48 : 88
+        }
+        height={
+          variant === 'hero' ? 256 : variant === 'footer' ? 128 : variant === 'inline' ? 48 : 88
+        }
         className="size-full object-contain p-2 sm:p-2.5"
         priority={variant === 'hero' || variant === 'header'}
       />
     </div>
   );
-  
+
   const textElement = showLabel && (
     <div className={styles.textContainer}>
       <p
@@ -176,27 +180,23 @@ export function DocumentLogo({
       )}
     </div>
   );
-  
+
   const containerClasses = cn(
     'group flex select-none transition-all',
     centered ? 'flex-col items-center justify-center' : 'items-center',
     styles.container,
     className,
   );
-  
+
   if (href) {
     return (
-      <a
-        href={href}
-        className={containerClasses}
-        title={`${label} - ${subtitle}`}
-      >
+      <a href={href} className={containerClasses} title={`${label} - ${subtitle}`}>
         {logoElement}
         {textElement}
       </a>
     );
   }
-  
+
   return (
     <div className={containerClasses}>
       {logoElement}
