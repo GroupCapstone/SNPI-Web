@@ -398,7 +398,7 @@ export function DocsStickyHeader({
                                 className="group flex w-full cursor-pointer items-center justify-between rounded-xl px-2.5 py-2 text-left font-sans text-xs font-bold text-black transition-colors select-none hover:bg-slate-50"
                               >
                                 <div className="flex min-w-0 items-center gap-2.5">
-                                  <div className="flex size-7.5 shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-slate-50 text-black shadow-2xs transition-all duration-200 group-hover:scale-105 group-hover:border-slate-300 group-hover:bg-slate-100">
+                                  <div className="flex size-7.5 shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-slate-50 text-black shadow-2xs group-hover:border-slate-300 group-hover:bg-slate-100">
                                     <ParentGroupIcon className="size-4 stroke-[2.2] text-black" />
                                   </div>
                                   <span className="truncate text-[13px] font-bold text-black">

@@ -680,10 +680,10 @@ export function UiLibraryView() {
                             {/* Squircle Icon Tile */}
                             <div
                               className={cn(
-                                'flex size-7.5 shrink-0 items-center justify-center rounded-lg border shadow-2xs transition-all duration-200',
+                                'flex size-7.5 shrink-0 items-center justify-center rounded-lg border shadow-2xs',
                                 isGroupActive
                                   ? 'border-slate-300 bg-slate-200/90 text-black shadow-xs'
-                                  : 'border-slate-200 bg-slate-50 text-black group-hover:scale-105 group-hover:border-slate-300 group-hover:bg-slate-100',
+                                  : 'border-slate-200 bg-slate-50 text-black group-hover:border-slate-300 group-hover:bg-slate-100',
                               )}
                             >
                               <ParentGroupIcon className="size-4 stroke-[2.2] text-black" />

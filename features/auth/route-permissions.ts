@@ -280,7 +280,8 @@ export const dashboardRoutePermissionRules: RoutePermissionRule[] = [
       'report.finance.view.all_branches',
     ],
   },
-  { pattern: /^\/users\/?$/, permissions: branchScopedView('user') },
+  { pattern: /^\/users(?:\/[^/]+)?\/?$/, permissions: branchScopedView('user') },
+  { pattern: /^\/admin\/users(?:\/[^/]+)?\/?$/, permissions: branchScopedView('user') },
   {
     pattern: /^\/roles\/?$/,
     permissions: ['role.view.all_branches', 'role.edit.all_branches'],
@@ -297,7 +298,7 @@ export const dashboardRoutePermissionRules: RoutePermissionRule[] = [
 ];
 
 export const getRequiredPermissionsForPath = (pathname: string): string[] | null => {
-  if (/^\/(?:dashboard|unauthorized)\/?$/.test(pathname)) return null;
+  if (/^\/(?:dashboard|unauthorized|settings\/security)\/?$/.test(pathname)) return null;
   return (
     dashboardRoutePermissionRules.find((rule) => rule.pattern.test(pathname))?.permissions ?? [
       '__route_not_authorized__',

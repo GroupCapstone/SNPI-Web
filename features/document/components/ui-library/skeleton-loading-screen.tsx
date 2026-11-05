@@ -425,7 +425,7 @@ export function SkeletonLoadingScreenDemo() {
               : 'border-[#0056FF] bg-[#0056FF] text-white hover:bg-[#2277FF]',
           )}
         >
-          <RefreshCw className={cn('size-3.5', !isLoaded && 'animate-spin')} />
+          <RefreshCw className="size-3.5 shrink-0" />
           <span>{isLoaded ? 'STATE: LOADED CONTENT' : 'STATE: SKELETON LOADING'}</span>
         </button>
       </div>

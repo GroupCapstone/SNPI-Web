@@ -3,7 +3,7 @@
 import * as React from 'react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
-import { AsteriskLogo } from './asterisk-logo';
+import { AsteriskLogo, SaveLogoButton } from './asterisk-logo';
 
 export interface DocumentLogoProps {
   /**
@@ -51,6 +51,11 @@ export interface DocumentLogoProps {
    * Center align the logo
    */
   centered?: boolean;
+
+  /**
+   * Simple button to save the logo as seen original in web ("only logo")
+   */
+  showSaveButton?: boolean;
 }
 
 const VARIANT_CONTAINER_STYLES = {
@@ -61,7 +66,7 @@ const VARIANT_CONTAINER_STYLES = {
     subtitleSize: 'text-[11px] sm:text-xs font-bold',
   },
   hero: {
-    container: 'gap-6',
+    container: 'gap-6 sm:gap-8',
     textContainer: 'min-w-0 text-center',
     titleSize: 'text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black',
     subtitleSize: 'text-sm sm:text-base md:text-lg font-bold',
@@ -96,23 +101,23 @@ export function DocumentLogo({
   className,
   href,
   centered = false,
+  showSaveButton,
 }: DocumentLogoProps) {
   const styles = VARIANT_CONTAINER_STYLES[variant];
+  const shouldShowSaveButton = showSaveButton ?? (variant === 'hero');
 
-  // Light mode colors (default for document pages)
+  // Light mode colors (default for document pages) - STRICT: Motionless logo, NO hover scaling
   const lightModeColors = {
     title: 'text-[#0A1A4A]',
     subtitle: 'text-[#0056FF]',
     hoverTitle: 'group-hover:text-[#0056FF]',
-    hoverLogo: 'group-hover:scale-105 group-hover:shadow-xl group-hover:shadow-[#0056FF]/30',
   };
 
-  // Dark mode colors (default for navigation headers)
+  // Dark mode colors (default for navigation headers) - STRICT: Motionless logo, NO hover scaling
   const darkModeColors = {
     title: 'text-white',
     subtitle: 'text-blue-200',
     hoverTitle: 'group-hover:text-blue-100',
-    hoverLogo: 'group-hover:scale-105 group-hover:shadow-xl group-hover:shadow-white/20',
   };
 
   const colors = mode === 'dark' ? darkModeColors : lightModeColors;
@@ -122,7 +127,6 @@ export function DocumentLogo({
       size={LOGO_SIZE_MAP[variant]}
       variant={mode === 'dark' ? 'solid' : 'standard'}
       mode={mode}
-      className={colors.hoverLogo}
       ariaLabel={`${label} Official Asterisk Brand Logo`}
     />
   );
@@ -153,8 +157,15 @@ export function DocumentLogo({
     </div>
   );
 
+  const saveButtonElement = shouldShowSaveButton && (
+    <div className={centered ? 'mt-4 flex items-center justify-center' : 'mt-2'}>
+      <SaveLogoButton />
+    </div>
+  );
+
+  // STRICT POLICY: Solid, stable container without jumping hover effects or scale animations
   const containerClasses = cn(
-    'group flex select-none transition-all',
+    'group flex select-none',
     centered ? 'flex-col items-center justify-center' : 'items-center',
     styles.container,
     className,
@@ -162,10 +173,13 @@ export function DocumentLogo({
 
   if (href) {
     return (
-      <Link href={href} className={containerClasses} title={`${label} - ${subtitle}`}>
-        {logoElement}
-        {textElement}
-      </Link>
+      <div className={centered ? 'flex flex-col items-center justify-center' : 'inline-flex items-center gap-3'}>
+        <Link href={href} className={containerClasses} title={`${label} - ${subtitle}`}>
+          {logoElement}
+          {textElement}
+        </Link>
+        {saveButtonElement}
+      </div>
     );
   }
 
@@ -173,6 +187,7 @@ export function DocumentLogo({
     <div className={containerClasses}>
       {logoElement}
       {textElement}
+      {saveButtonElement}
     </div>
   );
 }

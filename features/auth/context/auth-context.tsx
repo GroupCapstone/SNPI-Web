@@ -10,7 +10,7 @@ import { checkUserPermission } from '@/lib/permissions';
 import { changePasswordApi, getMeApi, loginApi, logoutApi, refreshApi } from '../api/auth-api';
 import type { ChangePasswordFormData } from '../schemas/change-password-schema';
 import type { LoginFormData } from '../schemas/login-schema';
-import type { AuthUser } from '../types';
+import type { AuthUser, LoginResponseData } from '../types';
 
 const BRANCH_STORAGE_KEY = 'snp_active_branch_id';
 const SESSION_STORAGE_KEY = 'snp_sms_has_session';
@@ -27,7 +27,8 @@ interface AuthContextValue {
   assignedSubjects: string[];
   currentBranchId: string;
   setCurrentBranchId: (branchId: string) => void;
-  login: (credentials: LoginFormData) => Promise<AuthUser>;
+  login: (credentials: LoginFormData) => Promise<LoginResponseData>;
+  complete2FaLogin: (data: LoginResponseData) => Promise<AuthUser>;
   logout: () => Promise<void>;
   changePassword: (data: ChangePasswordFormData) => Promise<void>;
   hasPermission: (permissionCode: string) => boolean;
@@ -190,8 +191,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         const refreshResponse = await refreshApi();
         if (isMounted && refreshResponse.success && refreshResponse.data) {
           const { user: refreshedUser, accessToken: newToken } = refreshResponse.data;
-          setAccessToken(newToken);
-          setUser(refreshedUser);
+          setAccessToken(newToken ?? null);
+          setUser(refreshedUser ?? null);
         } else {
           if (typeof window !== 'undefined') {
             try {
@@ -231,10 +232,42 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }, [queryClient]);
 
   const login = React.useCallback(
-    async (credentials: LoginFormData): Promise<AuthUser> => {
+    async (credentials: LoginFormData): Promise<LoginResponseData> => {
       const response = await loginApi(credentials);
-      const loggedInUser = response.data.user;
-      const token = response.data.accessToken;
+
+      // If MFA is required, do NOT set active session yet; return MFA challenge metadata
+      if (response.data.mfaRequired) {
+        return response.data;
+      }
+
+      const loggedInUser = response.data.user ?? null;
+      const token = response.data.accessToken ?? null;
+      await queryClient.cancelQueries();
+      queryClient.clear();
+
+      if (typeof window !== 'undefined') {
+        try {
+          localStorage.setItem(SESSION_STORAGE_KEY, '1');
+        } catch {
+          // Ignore storage errors
+        }
+      }
+
+      setAccessToken(token);
+      setUser(loggedInUser);
+      return response.data;
+    },
+    [queryClient],
+  );
+
+  const complete2FaLogin = React.useCallback(
+    async (data: LoginResponseData): Promise<AuthUser> => {
+      const loggedInUser = data.user;
+      const token = data.accessToken;
+      if (!loggedInUser || !token) {
+        throw new Error('Authentication failed: Missing session payload');
+      }
+
       await queryClient.cancelQueries();
       queryClient.clear();
 
@@ -325,6 +358,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       currentBranchId: effectiveBranchId,
       setCurrentBranchId,
       login,
+      complete2FaLogin,
       logout: handleLogout,
       changePassword,
       hasPermission,
@@ -347,6 +381,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       effectiveBranchId,
       setCurrentBranchId,
       login,
+      complete2FaLogin,
       handleLogout,
       changePassword,
       hasPermission,
