@@ -422,9 +422,9 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
             {/* Title & Subtitle */}
             <div className="flex max-w-2xl flex-col items-center space-y-3">
               <div className="inline-flex items-center gap-2 rounded-full border border-[#CAD3F5] bg-[#EFF5FF] px-3.5 py-1 text-xs font-bold text-[#0056FF]">
-                <AsteriskLogo size="xs" variant="bare" colorVariant="brand" />
+                <AsteriskLogo size="xs" variant="bare" />
                 <span>REST API Specification · Open API 3.0</span>
-                <AsteriskLogo size="xs" variant="bare" colorVariant="brand" />
+                <AsteriskLogo size="xs" variant="bare" />
               </div>
               <h1 className="text-3xl font-black tracking-tight text-[#0A1A4A] sm:text-4xl md:text-5xl">
                 SNPI Open API Documentation
