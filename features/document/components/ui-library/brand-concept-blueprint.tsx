@@ -3,6 +3,7 @@
 import * as React from 'react';
 import Image from 'next/image';
 import { Copy, Check } from '@/components/icons';
+import { AsteriskLogo } from './asterisk-logo';
 
 export function BrandConceptBlueprint() {
   const [copiedToken, setCopiedToken] = React.useState<string | null>(null);
@@ -178,50 +179,39 @@ export function BrandConceptBlueprint() {
         </div>
       </div>
 
-      {/* SNPI INTERNATIONAL SCHOOL LOGO */}
+      {/* SNPI BRAND ASTERISK EMBLEM (SUCCESS EDITION) */}
       <div className="rounded-2xl border border-[#CAD3F5] bg-white p-6 shadow-xs sm:p-7">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-          <div>
+          <div className="space-y-1">
             <h3 className="font-sans text-xl font-extrabold text-slate-950 sm:text-2xl">
-              SNPI International School Logo
+              SNPI Brand Asterisk Emblem
             </h3>
+            <p className="text-xs text-slate-600 sm:text-sm">
+              Geometric Sora 6-spoke emblem in Status Success (<code className="font-mono font-bold text-emerald-600">#10B981</code>) with 100% transparent background.
+            </p>
           </div>
 
           {/* Logo Visual Presentation */}
           <div className="flex flex-wrap items-center gap-4">
             {/* White Canvas Preview */}
             <div className="flex items-center gap-4 rounded-xl border border-slate-200 bg-white p-3.5 shadow-2xs">
-              <div className="relative size-14 shrink-0 overflow-hidden rounded-full border border-slate-100 bg-white p-1 shadow-2xs">
-                <Image
-                  src="/images/logo.png"
-                  alt="SNPI International School Logo - Light Canvas"
-                  width={56}
-                  height={56}
-                  className="size-full object-contain"
-                  priority
-                />
+              <div className="flex size-14 shrink-0 items-center justify-center bg-transparent">
+                <AsteriskLogo size="lg" variant="success" className="text-4xl" />
               </div>
               <div className="space-y-0.5">
                 <div className="font-sans text-xs font-bold text-slate-950">White Canvas</div>
-                <div className="font-mono text-[10px] text-slate-500">bg-[#FFFFFF]</div>
+                <div className="font-mono text-[10px] text-slate-500">bg-transparent · #10B981</div>
               </div>
             </div>
 
             {/* Soft Lavender Canvas Preview */}
             <div className="flex items-center gap-4 rounded-xl border border-[#CAD3F5] bg-[#E3E7FC] p-3.5 shadow-2xs">
-              <div className="relative size-14 shrink-0 overflow-hidden rounded-full border border-white/40 bg-white p-1 shadow-2xs">
-                <Image
-                  src="/images/logo.png"
-                  alt="SNPI International School Logo - Soft Lavender Canvas"
-                  width={56}
-                  height={56}
-                  className="size-full object-contain"
-                  priority
-                />
+              <div className="flex size-14 shrink-0 items-center justify-center bg-transparent">
+                <AsteriskLogo size="lg" variant="success" className="text-4xl" />
               </div>
               <div className="space-y-0.5">
                 <div className="font-sans text-xs font-bold text-[#0A1A4A]">Lavender Canvas</div>
-                <div className="font-mono text-[10px] text-[#0056FF]">bg-[#E3E7FC]</div>
+                <div className="font-mono text-[10px] text-[#0056FF]">bg-transparent · #10B981</div>
               </div>
             </div>
           </div>
