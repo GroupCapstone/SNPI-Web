@@ -80,9 +80,7 @@ export function ApiSpecTable({
             </tr>
 
             <tr className="border-b border-[#CAD3F5]/60 hover:bg-[#EFF5FF]/40">
-              <td className="w-40 bg-[#EFF5FF]/50 px-4 py-3 font-semibold text-[#0A1A4A]">
-                Name
-              </td>
+              <td className="w-40 bg-[#EFF5FF]/50 px-4 py-3 font-semibold text-[#0A1A4A]">Name</td>
               <td className="px-4 py-3 font-bold text-[#0A1A4A]">{name}</td>
             </tr>
 

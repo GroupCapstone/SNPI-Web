@@ -203,7 +203,9 @@ export async function checkDeployPushGreen(): Promise<void> {
 
   // Gate 10: Automatic Vercel Production Deploy (ONLY after GitHub Actions is 100% Green)
   if (deployVercel) {
-    console.log('\n[10/10] GitHub Actions CI is 100% green! Deploying verified build to Vercel Production...');
+    console.log(
+      '\n[10/10] GitHub Actions CI is 100% green! Deploying verified build to Vercel Production...',
+    );
     run('vercel deploy --archive=tgz --prod', true);
     console.log('       [PASS] Production deployment to Vercel completed successfully.');
   }
