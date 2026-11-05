@@ -184,34 +184,45 @@ export function BrandConceptBlueprint() {
         <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
           <div className="space-y-1">
             <h3 className="font-sans text-xl font-extrabold text-slate-950 sm:text-2xl">
-              SNPI Brand Asterisk Emblem
+              SNPI Standard Brand Asterisk Emblem
             </h3>
             <p className="text-xs text-slate-600 sm:text-sm">
-              Geometric Sora 6-spoke emblem in Status Success (<code className="font-mono font-bold text-emerald-600">#10B981</code>) with 100% transparent background.
+              Standard squircle brand badge in Status Success (<code className="font-mono font-bold text-emerald-600">#10B981</code>) with centered Sora asterisk glyph.
             </p>
           </div>
 
           {/* Logo Visual Presentation */}
           <div className="flex flex-wrap items-center gap-4">
             {/* White Canvas Preview */}
-            <div className="flex items-center gap-4 rounded-xl border border-slate-200 bg-white p-4 shadow-2xs">
-              <div className="flex size-20 shrink-0 items-center justify-center bg-transparent">
-                <AsteriskLogo size="xl" variant="success" />
+            <div className="flex items-center gap-4 rounded-xl border border-slate-200 bg-white p-3.5 shadow-2xs">
+              <div className="flex size-16 shrink-0 items-center justify-center">
+                <AsteriskLogo size="lg" variant="standard" />
               </div>
               <div className="space-y-0.5">
                 <div className="font-sans text-xs font-bold text-slate-950">White Canvas</div>
-                <div className="font-mono text-[10px] text-slate-500">bg-transparent · #10B981</div>
+                <div className="font-mono text-[10px] text-slate-500">bg-[#FFFFFF] · Success Tile</div>
               </div>
             </div>
 
             {/* Soft Lavender Canvas Preview */}
-            <div className="flex items-center gap-4 rounded-xl border border-[#CAD3F5] bg-[#E3E7FC] p-4 shadow-2xs">
-              <div className="flex size-20 shrink-0 items-center justify-center bg-transparent">
-                <AsteriskLogo size="xl" variant="success" />
+            <div className="flex items-center gap-4 rounded-xl border border-[#CAD3F5] bg-[#E3E7FC] p-3.5 shadow-2xs">
+              <div className="flex size-16 shrink-0 items-center justify-center">
+                <AsteriskLogo size="lg" variant="standard" />
               </div>
               <div className="space-y-0.5">
                 <div className="font-sans text-xs font-bold text-[#0A1A4A]">Lavender Canvas</div>
-                <div className="font-mono text-[10px] text-[#0056FF]">bg-transparent · #10B981</div>
+                <div className="font-mono text-[10px] text-[#0056FF]">bg-[#E3E7FC] · Success Tile</div>
+              </div>
+            </div>
+
+            {/* Light Tint Canvas Preview */}
+            <div className="flex items-center gap-4 rounded-xl border border-emerald-200 bg-emerald-50/70 p-3.5 shadow-2xs">
+              <div className="flex size-16 shrink-0 items-center justify-center">
+                <AsteriskLogo size="lg" variant="tint" />
+              </div>
+              <div className="space-y-0.5">
+                <div className="font-sans text-xs font-bold text-emerald-950">Emerald Tint Canvas</div>
+                <div className="font-mono text-[10px] text-emerald-700">bg-[#ECFDF5] · Tint Tile</div>
               </div>
             </div>
           </div>

@@ -417,12 +417,12 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
           {/* HEADER SECTION                                                    */}
           {/* ----------------------------------------------------------------- */}
           <header className="flex flex-col items-center justify-center text-center space-y-6 border-b border-[#CAD3F5] pb-12 pt-6">
-            {/* Centered Massive Sora Asterisk Brand Logo (100% Transparent Background · Success Color #10B981) */}
+            {/* Centered Standard Sora Asterisk Brand Emblem (Success Squircle Tile · #10B981) */}
             <div className="relative flex flex-col items-center justify-center">
               <AsteriskLogo
                 size="hero"
-                variant="success"
-                className="select-none transition-transform hover:scale-110 duration-300 cursor-default"
+                variant="standard"
+                className="select-none transition-transform hover:scale-105 duration-300 cursor-default"
                 ariaLabel="SNPI Brand Asterisk Emblem"
               />
             </div>
@@ -430,9 +430,9 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
             {/* Title & Subtitle */}
             <div className="space-y-3 max-w-2xl flex flex-col items-center">
               <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3.5 py-1 text-xs font-bold text-emerald-800">
-                <AsteriskLogo size="xs" variant="success" className="text-xs" />
+                <AsteriskLogo size="xs" variant="bare" className="text-xs text-emerald-600" />
                 <span>REST API Specification · Open API 3.0</span>
-                <AsteriskLogo size="xs" variant="success" className="text-xs" />
+                <AsteriskLogo size="xs" variant="bare" className="text-xs text-emerald-600" />
               </div>
               <h1 className="text-3xl font-black tracking-tight text-[#0A1A4A] sm:text-4xl md:text-5xl">
                 SNPI Open API Documentation
