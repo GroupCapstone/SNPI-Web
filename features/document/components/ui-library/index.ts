@@ -32,6 +32,7 @@ export * from './navigation-menu';
 export * from './docs-footer';
 export * from './docs-nav-context';
 export * from './open-api-view';
+export * from './asterisk-logo';
 export * from './api-spec-table';
 export * from './param-table';
 export * from './code-block';
