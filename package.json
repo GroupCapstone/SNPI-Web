@@ -27,17 +27,17 @@
     "@fontsource-variable/noto-sans-khmer": "^5.3.0",
     "@fontsource-variable/sora": "^5.3.0",
     "@hookform/resolvers": "^6.0.2",
-    "@keyline-icons/react": "^2.2.0",
+    "@keyline-icons/react": "^2.5.0",
     "@radix-ui/react-slot": "^1.5.0",
-    "@tanstack/react-query": "^5.105.0",
+    "@tanstack/react-query": "^5.105.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "motion": "^14.9.0",
-    "next": "^16.4.3",
+    "next": "^16.4.4",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "react-hook-form": "^7.91.0",
-    "read-excel-file": "^9.3.13",
+    "read-excel-file": "^9.3.14",
     "sonner": "^2.0.8",
     "swr": "^2.3.2",
     "tailwind-merge": "^3.7.0",
@@ -47,18 +47,18 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.3",
-    "@types/node": "^22.10.0",
+    "@types/node": "^26.6.6",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "eslint": "^9.39.5",
-    "eslint-config-next": "^16.4.3",
+    "eslint-config-next": "^16.4.4",
     "prettier": "^3.9.10",
     "prettier-plugin-tailwindcss": "^0.8.1",
     "tailwindcss": "^4.3.3",
     "tsx": "4.23.15",
-    "typescript": "^5.8.2",
+    "typescript": "^6.0.3",
     "vite": "^8.3.5",
-    "vitest": "^5.0.5"
+    "vitest": "^5.1.0"
   },
   "engines": {
     "node": ">=20.0.0"
@@ -67,7 +67,7 @@
     "@tailwindcss/oxide-darwin-arm64": "^4.3.3",
     "@tailwindcss/oxide-linux-x64-gnu": "^4.3.3",
     "@tailwindcss/oxide-linux-x64-musl": "^4.3.3",
-    "lightningcss-linux-x64-gnu": "^1.32.0",
-    "lightningcss-linux-x64-musl": "^1.32.0"
+    "lightningcss-linux-x64-gnu": "^1.33.0",
+    "lightningcss-linux-x64-musl": "^1.33.0"
   }
 }
