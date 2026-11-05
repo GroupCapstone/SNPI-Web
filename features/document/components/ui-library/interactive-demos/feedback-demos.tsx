@@ -396,12 +396,7 @@ export function NotificationBellDemo() {
                 hasNewAlert && 'scale-105 ring-4 ring-[#0056FF]/30',
               )}
             >
-              <Bell
-                className={cn(
-                  'size-5 stroke-[2.2]',
-                  hasNewAlert && 'text-[#0056FF]',
-                )}
-              />
+              <Bell className={cn('size-5 stroke-[2.2]', hasNewAlert && 'text-[#0056FF]')} />
               {unreadCount > 0 && (
                 <span className="absolute -top-1.5 -right-1.5 flex size-5.5 items-center justify-center rounded-full bg-[#0056FF] font-mono text-[10px] font-black text-white shadow-xs ring-2 ring-white">
                   {unreadCount > 9 ? '9+' : unreadCount}
