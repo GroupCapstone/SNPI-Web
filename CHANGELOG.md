@@ -4,6 +4,7 @@ All notable changes, commits, and skill updates are recorded here in real-time.
 
 ### Version 0.2.23 (06.11.2026) (Developer: **史力爱卫**)
 
+- Standardize squircle icon tile containers across document portal navigation and all menu pages with Keyline Two-Tone icons, size-10 rounded-xl white cards, and motionless stability
 - Implement Two-Factor Authentication (RFC 6238 TOTP), 8 single-use backup recovery codes with text export, Telegram Desktop OTP fallback, dual-auth protected deactivation modal, and administrator emergency break-glass 2FA reset at `/admin/users/[id]`
 
 ### Version 0.2.22 (06.11.2026) (Developer: **史力爱卫**)

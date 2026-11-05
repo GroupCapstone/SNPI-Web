@@ -494,9 +494,18 @@ export function DesignSystemHomeView() {
                       )}
                       title={item.label}
                     >
-                      <div className="flex min-w-0 flex-1 items-center gap-2 pr-2">
-                        <GroupIcon className="size-4 shrink-0 text-[#0056FF]" />
-                        <span className="min-w-0 flex-1 leading-snug font-bold tracking-tight break-words">
+                      <div className="flex min-w-0 flex-1 items-center gap-3 pr-2">
+                        <div
+                          className={cn(
+                            'flex size-9 shrink-0 items-center justify-center rounded-xl border bg-white shadow-2xs transition-colors',
+                            isSelected
+                              ? 'border-[#0056FF]/30 text-[#0056FF] ring-2 ring-[#0056FF]/10'
+                              : 'border-slate-200/90 text-slate-800 group-hover:border-slate-300',
+                          )}
+                        >
+                          <GroupIcon className="size-4.5 stroke-[2]" />
+                        </div>
+                        <span className="min-w-0 flex-1 leading-snug font-bold tracking-tight break-words text-slate-900">
                           {item.label}
                         </span>
                       </div>

@@ -12,7 +12,7 @@ export const CHANGE_LOGS: ChangeLogEntry[] = [
     date: '06.11.2026',
     developer: '史力爱卫',
     description:
-      'Implement Two-Factor Authentication (RFC 6238 TOTP), 8 single-use backup recovery codes with text export, Telegram Desktop OTP fallback, dual-auth protected deactivation modal, and administrator emergency break-glass 2FA reset at /admin/users/[id]',
+      'Standardize squircle icon tile containers across document portal navigation and all menu pages with Keyline Two-Tone icons, size-10 rounded-xl white cards, and motionless stability; implement 2FA TOTP and break-glass reset',
   },
   {
     version: '0.2.22',
