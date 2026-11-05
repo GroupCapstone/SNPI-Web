@@ -337,7 +337,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                       key={item.id}
                       className="mt-5 mb-2 flex items-center gap-2 px-2.5 font-sans text-xs font-black tracking-wider text-[#0A1A4A] uppercase"
                     >
-                      <AsteriskLogo size="md" variant="success" className="shrink-0 text-xl" />
+                      <AsteriskLogo size="xs" variant="standard" className="shrink-0" />
                       <span>{item.label}</span>
                     </div>
                   );
@@ -349,7 +349,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                       key={item.id}
                       className="mt-3 mb-1.5 flex items-center gap-2 px-4 font-mono text-[10px] font-black tracking-wider text-[#0056FF] uppercase"
                     >
-                      <AsteriskLogo size="sm" variant="success" className="shrink-0 text-sm" />
+                      <AsteriskLogo size="xs" variant="tint" className="shrink-0" />
                       <span>{item.label}</span>
                     </div>
                   );
@@ -421,10 +421,10 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
 
             {/* Title & Subtitle */}
             <div className="flex max-w-2xl flex-col items-center space-y-3">
-              <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3.5 py-1 text-xs font-bold text-emerald-800">
-                <AsteriskLogo size="xs" variant="bare" className="text-xs text-emerald-600" />
+              <div className="inline-flex items-center gap-2 rounded-full border border-[#CAD3F5] bg-[#EFF5FF] px-3.5 py-1 text-xs font-bold text-[#0056FF]">
+                <AsteriskLogo size="xs" variant="bare" colorVariant="brand" />
                 <span>REST API Specification · Open API 3.0</span>
-                <AsteriskLogo size="xs" variant="bare" className="text-xs text-emerald-600" />
+                <AsteriskLogo size="xs" variant="bare" colorVariant="brand" />
               </div>
               <h1 className="text-3xl font-black tracking-tight text-[#0A1A4A] sm:text-4xl md:text-5xl">
                 SNPI Open API Documentation
@@ -478,7 +478,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
           {/* ----------------------------------------------------------------- */}
           <section id="changelogs" className="scroll-mt-28 space-y-3">
             <h2 className="flex items-center gap-2 text-xl font-bold tracking-tight text-[#0A1A4A]">
-              <AsteriskLogo size="sm" variant="success" className="text-base" />
+              <AsteriskLogo size="sm" variant="standard" />
               <span>Change Logs</span>
             </h2>
 
@@ -513,7 +513,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
           {/* ----------------------------------------------------------------- */}
           <section id="toc" className="scroll-mt-28 space-y-3">
             <h2 className="flex items-center gap-2 text-xl font-bold tracking-tight text-[#0A1A4A]">
-              <AsteriskLogo size="sm" variant="success" className="text-base" />
+              <AsteriskLogo size="sm" variant="standard" />
               <span>Table of contents</span>
             </h2>
 
@@ -602,7 +602,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
           {/* ----------------------------------------------------------------- */}
           <section id="introduction" className="scroll-mt-28 space-y-6">
             <h2 className="flex items-center gap-2.5 text-2xl font-black tracking-tight text-[#0A1A4A]">
-              <AsteriskLogo size="md" variant="success" className="text-2xl" />
+              <AsteriskLogo size="md" variant="standard" />
               <span>Introduction</span>
             </h2>
 
@@ -759,7 +759,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                 <span>API Endpoint Specifications</span>
               </div>
               <h2 className="mt-2 flex items-center gap-2.5 text-2xl font-black tracking-tight text-[#0A1A4A]">
-                <AsteriskLogo size="md" variant="success" className="text-2xl" />
+                <AsteriskLogo size="md" variant="standard" />
                 <span>Detailed API Documentation</span>
               </h2>
             </div>

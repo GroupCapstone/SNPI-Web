@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import Image from 'next/image';
-import { Copy, Check } from '@/components/icons';
+import { Copy, Check, IconGlassWrapper } from '@/components/icons';
 import { AsteriskLogo } from './asterisk-logo';
 
 export function BrandConceptBlueprint() {
@@ -78,12 +78,16 @@ export function BrandConceptBlueprint() {
             >
               {copiedToken === 'Royal Blue' ? (
                 <>
-                  <Check className="size-3 text-white" />
+                  <IconGlassWrapper size="sm">
+                    <Check className="size-3 text-white" />
+                  </IconGlassWrapper>
                   <span>Copied!</span>
                 </>
               ) : (
                 <>
-                  <Copy className="size-3 text-white/80" />
+                  <IconGlassWrapper size="sm">
+                    <Copy className="size-3 text-white/80" />
+                  </IconGlassWrapper>
                   <span>#0056FF</span>
                 </>
               )}
@@ -179,60 +183,55 @@ export function BrandConceptBlueprint() {
         </div>
       </div>
 
-      {/* SNPI BRAND ASTERISK EMBLEM (SUCCESS EDITION) */}
+      {/* SNPI OFFICIAL BRAND ASTERISK EMBLEM (LIGHT & DARK DUAL MODE) */}
       <div className="rounded-2xl border border-[#CAD3F5] bg-white p-6 shadow-xs sm:p-7">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
           <div className="space-y-1">
             <h3 className="font-sans text-xl font-extrabold text-slate-950 sm:text-2xl">
-              SNPI Standard Brand Asterisk Emblem
+              SNPI Official Brand Asterisk Emblem
             </h3>
             <p className="text-xs text-slate-600 sm:text-sm">
-              Standard squircle brand badge in Status Success (
-              <code className="font-mono font-bold text-emerald-600">#10B981</code>) with centered
-              Sora asterisk glyph.
+              Geometric 8-axis synthesis: Star (Excellence), Check Mark (Accuracy), Shield (Trust),
+              and Happy Human (Satisfaction) in Royal Blue (
+              <code className="font-mono font-bold text-[#0056FF]">#0056FF</code>) and Azure Blue (
+              <code className="font-mono font-bold text-[#2277FF]">#2277FF</code>).
             </p>
           </div>
 
           {/* Logo Visual Presentation */}
           <div className="flex flex-wrap items-center gap-4">
-            {/* White Canvas Preview */}
+            {/* White Canvas Preview (Light Mode) */}
             <div className="flex items-center gap-4 rounded-xl border border-slate-200 bg-white p-3.5 shadow-2xs">
               <div className="flex size-16 shrink-0 items-center justify-center">
-                <AsteriskLogo size="lg" variant="standard" />
+                <AsteriskLogo size="lg" variant="standard" mode="light" />
               </div>
               <div className="space-y-0.5">
-                <div className="font-sans text-xs font-bold text-slate-950">White Canvas</div>
+                <div className="font-sans text-xs font-bold text-slate-950">Light Mode</div>
                 <div className="font-mono text-[10px] text-slate-500">
-                  bg-[#FFFFFF] · Success Tile
+                  bg-[#FFFFFF] · Brand Tile
                 </div>
               </div>
             </div>
 
-            {/* Soft Lavender Canvas Preview */}
-            <div className="flex items-center gap-4 rounded-xl border border-[#CAD3F5] bg-[#E3E7FC] p-3.5 shadow-2xs">
+            {/* Dark Mode Canvas Preview */}
+            <div className="flex items-center gap-4 rounded-xl border border-slate-800 bg-[#0A1A4A] p-3.5 shadow-2xs">
               <div className="flex size-16 shrink-0 items-center justify-center">
-                <AsteriskLogo size="lg" variant="standard" />
+                <AsteriskLogo size="lg" variant="standard" mode="dark" />
               </div>
               <div className="space-y-0.5">
-                <div className="font-sans text-xs font-bold text-[#0A1A4A]">Lavender Canvas</div>
-                <div className="font-mono text-[10px] text-[#0056FF]">
-                  bg-[#E3E7FC] · Success Tile
-                </div>
+                <div className="font-sans text-xs font-bold text-white">Dark Mode</div>
+                <div className="font-mono text-[10px] text-blue-200">bg-[#0A1A4A] · Azure Glow</div>
               </div>
             </div>
 
-            {/* Light Tint Canvas Preview */}
-            <div className="flex items-center gap-4 rounded-xl border border-emerald-200 bg-emerald-50/70 p-3.5 shadow-2xs">
+            {/* Royal Brand Solid Canvas Preview */}
+            <div className="flex items-center gap-4 rounded-xl border border-[#0048D9] bg-[#0056FF] p-3.5 shadow-2xs">
               <div className="flex size-16 shrink-0 items-center justify-center">
-                <AsteriskLogo size="lg" variant="tint" />
+                <AsteriskLogo size="lg" variant="brand" />
               </div>
               <div className="space-y-0.5">
-                <div className="font-sans text-xs font-bold text-emerald-950">
-                  Emerald Tint Canvas
-                </div>
-                <div className="font-mono text-[10px] text-emerald-700">
-                  bg-[#ECFDF5] · Tint Tile
-                </div>
+                <div className="font-sans text-xs font-bold text-white">Royal Solid</div>
+                <div className="font-mono text-[10px] text-blue-100">bg-[#0056FF] · Solid Mark</div>
               </div>
             </div>
           </div>

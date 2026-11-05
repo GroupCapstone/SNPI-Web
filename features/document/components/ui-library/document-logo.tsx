@@ -1,8 +1,9 @@
 'use client';
 
 import * as React from 'react';
-import Image from 'next/image';
+import Link from 'next/link';
 import { cn } from '@/lib/utils';
+import { AsteriskEmblem } from './asterisk-logo';
 
 export interface DocumentLogoProps {
   /**
@@ -58,6 +59,7 @@ const VARIANT_STYLES = {
     logoSize: 'size-10 sm:size-11',
     logoRounded: 'rounded-xl',
     logoShadow: 'shadow-sm',
+    emblemPadding: 'p-1.5 sm:p-2',
     textContainer: 'min-w-0',
     titleSize: 'text-base sm:text-lg font-black',
     subtitleSize: 'text-[11px] sm:text-xs font-bold',
@@ -67,6 +69,7 @@ const VARIANT_STYLES = {
     logoSize: 'size-32 sm:size-40 md:size-48 lg:size-56',
     logoRounded: 'rounded-3xl sm:rounded-[2.5rem]',
     logoShadow: 'shadow-2xl shadow-[#0056FF]/20',
+    emblemPadding: 'p-6 sm:p-8 md:p-10',
     textContainer: 'min-w-0 text-center',
     titleSize: 'text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black',
     subtitleSize: 'text-sm sm:text-base md:text-lg font-bold',
@@ -76,6 +79,7 @@ const VARIANT_STYLES = {
     logoSize: 'size-6 sm:size-7',
     logoRounded: 'rounded-lg',
     logoShadow: 'shadow-xs',
+    emblemPadding: 'p-0.5 sm:p-1',
     textContainer: 'min-w-0',
     titleSize: 'text-xs sm:text-sm font-bold',
     subtitleSize: 'text-[10px] font-medium',
@@ -85,6 +89,7 @@ const VARIANT_STYLES = {
     logoSize: 'size-14 sm:size-16',
     logoRounded: 'rounded-2xl',
     logoShadow: 'shadow-md',
+    emblemPadding: 'p-2.5 sm:p-3',
     textContainer: 'min-w-0',
     titleSize: 'text-lg sm:text-xl font-black',
     subtitleSize: 'text-xs sm:text-sm font-bold',
@@ -112,17 +117,19 @@ export function DocumentLogo({
     subtitle: 'text-[#0056FF]',
     hoverTitle: 'group-hover:text-[#0056FF]',
     hoverLogo: 'group-hover:scale-105 group-hover:shadow-xl group-hover:shadow-[#0056FF]/30',
+    colorVariant: 'brand' as const,
   };
 
-  // Dark mode colors
+  // Dark mode colors (default for navigation headers)
   const darkModeColors = {
     logoBorder: 'border-white/20',
-    logoBg: 'bg-slate-900',
+    logoBg: 'bg-[#0A1A4A]/90 backdrop-blur-md',
     logoRing: 'ring-4 ring-white/10',
     title: 'text-white',
     subtitle: 'text-blue-200',
     hoverTitle: 'group-hover:text-blue-100',
     hoverLogo: 'group-hover:scale-105 group-hover:shadow-xl group-hover:shadow-white/20',
+    colorVariant: 'white-accent' as const,
   };
 
   const colors = mode === 'dark' ? darkModeColors : lightModeColors;
@@ -130,7 +137,7 @@ export function DocumentLogo({
   const logoElement = (
     <div
       className={cn(
-        'relative shrink-0 overflow-hidden border transition-all duration-300',
+        'relative flex shrink-0 items-center justify-center overflow-hidden border transition-all duration-300',
         styles.logoSize,
         styles.logoRounded,
         styles.logoShadow,
@@ -140,17 +147,10 @@ export function DocumentLogo({
         colors.hoverLogo,
       )}
     >
-      <Image
-        src="/images/logo.png"
-        alt="SNPI International School Logo"
-        width={
-          variant === 'hero' ? 256 : variant === 'footer' ? 128 : variant === 'inline' ? 48 : 88
-        }
-        height={
-          variant === 'hero' ? 256 : variant === 'footer' ? 128 : variant === 'inline' ? 48 : 88
-        }
-        className="size-full object-contain p-2 sm:p-2.5"
-        priority={variant === 'hero' || variant === 'header'}
+      <AsteriskEmblem
+        colorVariant={colors.colorVariant}
+        className={cn('size-full transition-transform duration-300', styles.emblemPadding)}
+        ariaLabel={`${label} Official Asterisk Emblem`}
       />
     </div>
   );
@@ -190,10 +190,10 @@ export function DocumentLogo({
 
   if (href) {
     return (
-      <a href={href} className={containerClasses} title={`${label} - ${subtitle}`}>
+      <Link href={href} className={containerClasses} title={`${label} - ${subtitle}`}>
         {logoElement}
         {textElement}
-      </a>
+      </Link>
     );
   }
 

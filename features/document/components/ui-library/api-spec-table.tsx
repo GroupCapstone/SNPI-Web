@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { cn } from '@/lib/utils';
-import { Copy, Check } from '@/components/icons';
+import { Copy, Check, IconGlassWrapper } from '@/components/icons';
 
 export interface ApiSpecTableProps {
   method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
@@ -101,12 +101,16 @@ export function ApiSpecTable({
                   >
                     {copied ? (
                       <>
-                        <Check className="size-3 text-emerald-600" />
+                        <IconGlassWrapper size="sm">
+                          <Check className="size-3 text-emerald-600" />
+                        </IconGlassWrapper>
                         <span className="text-emerald-700">Copied</span>
                       </>
                     ) : (
                       <>
-                        <Copy className="size-3" />
+                        <IconGlassWrapper size="sm">
+                          <Copy className="size-3" />
+                        </IconGlassWrapper>
                         <span>Copy</span>
                       </>
                     )}

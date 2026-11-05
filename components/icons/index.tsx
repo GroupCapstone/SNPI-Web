@@ -10,6 +10,10 @@ export type IconComponent = React.ComponentType<IconProps>;
 export type LucideIcon = IconComponent;
 export type LucideProps = IconProps;
 
+// Export the glass wrapper component
+export { IconGlassWrapper } from './icon-glass-wrapper';
+export type { IconGlassWrapperProps } from './icon-glass-wrapper';
+
 /**
  * Higher-order component enforcing the SNPI Document Icon Style:
  * Color: oklch(0.446 0.043 257.281) - slate/blue-gray

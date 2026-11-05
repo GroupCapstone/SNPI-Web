@@ -3,6 +3,7 @@
 import * as React from 'react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
+import { AsteriskLogo } from './asterisk-logo';
 import { CHANGE_LOGS } from '../../changelog-data';
 
 export interface DocsFooterProps {
@@ -152,14 +153,14 @@ export function DocsFooter({ className }: DocsFooterProps) {
       <div className="relative mx-auto w-full max-w-[1560px] overflow-hidden rounded-t-[36px] border-x border-t border-slate-200/90 bg-[#F8FAFC] px-6 pt-12 pb-8 shadow-xs sm:rounded-t-[44px] sm:px-10 md:rounded-t-[48px] lg:px-14">
         {/* Upper Navigation Section: 3 Columns + Right Meta */}
         <div className="grid grid-cols-1 gap-10 md:grid-cols-12 lg:gap-12">
-          {/* Brand Sparkle Mark ✦ */}
+          {/* Brand Asterisk Mark */}
           <div className="md:col-span-1 lg:col-span-1">
             <Link
               href="/document"
               title="SNPI-SMS Developer Portal"
-              className="flex size-10 items-center justify-center rounded-xl border border-[#CAD3F5] bg-[#E3E7FC] transition-transform hover:scale-105"
+              className="inline-block transition-transform hover:scale-105"
             >
-              <StarMarkIcon className="size-6 text-[#0056FF]" />
+              <AsteriskLogo size="md" variant="standard" mode="light" />
             </Link>
           </div>
 

@@ -1,19 +1,40 @@
 # Document Logo Implementation Summary
 
 **Date**: November 6, 2026  
-**Feature**: Enhanced SNPI Logo System for /document Portal
+**Feature**: Official Geometric Asterisk Emblem Logo System for /document Portal
 
 ---
 
 ## Overview
 
-Implemented a comprehensive logo system for the `/document` portal with multiple variants, proper sizing, centering, and light/dark mode support. The logo uses the official SNPI International School logo image with standardized positioning and styling.
+Implemented the official geometric 8-axis Asterisk Emblem logo system for the `/document` portal and all documentation menus. The emblem synthesizes four core institutional pillars:
+1. **STAR**: Excellence and quality (8-axis radial foundation).
+2. **CHECK MARK**: Accuracy and expert level (V-chevron arms).
+3. **SHIELD**: Security and high probability prediction trust.
+4. **HAPPY HUMAN**: Customer and student satisfaction (Zenith head dot + triumphant arms).
+
+The logo uses the 5 primary brand tokens (`#0056FF` Royal Blue, `#2277FF` Azure Blue, `#CAD3F5` Soft Lavender, `#FFFFFF` White, `#EFF5FF` Ice Tint) and provides seamless Light and Dark mode adaptations.
 
 ---
 
-## Component: DocumentLogo
+## Components
 
+### 1. `AsteriskEmblem` & `AsteriskLogo`
+**File**: `features/document/components/ui-library/asterisk-logo.tsx`
+
+Pure vector SVG emblem rendered with subpixel-sharp stroke and fill geometry:
+- **Zenith Head Dot**: `circle` at `(50, 10)` with radius `6.8`
+- **Chevron Arms**: `path` `M 18 22 L 50 47 L 82 22` with stroke width `11` and round caps/joins
+- **Radial Base**: `path` with 5 spokes meeting at hub `(50, 64)` with stroke width `11` and round caps/joins
+
+### 2. `DocumentLogo`
 **File**: `features/document/components/ui-library/document-logo.tsx`
+
+Integrated brand identity container for headers, hero sections, and footers:
+- **Header**: Compact squircle with Dark Mode white-accent emblem on Royal Blue `#0056FF` header
+- **Hero**: Monumental centered squircle with Light Mode dual-tone brand emblem (Royal Blue base + Azure Blue arms)
+- **Inline**: Compact inline mark for tables and badges
+- **Footer**: Medium squircle for footer navigation anchor
 
 ### Variants
 
@@ -122,20 +143,19 @@ Large (> 1024px):   224px logo, text-6xl title
 
 ---
 
-## Logo Image
+## Logo Vector Specification
 
-**Source**: `/public/images/logo.png`  
-**Alt Text**: "SNPI International School Logo"
+**Component**: `AsteriskEmblem` (`features/document/components/ui-library/asterisk-logo.tsx`)  
+**Resolution**: Scalable vector graphics (SVG 100×100 viewBox) with subpixel precision  
+**Geometry**:
+- Head Dot: `circle cx="50" cy="10" r="6.8"`
+- Chevron: `path d="M 18 22 L 50 47 L 82 22"` (stroke 11, round cap/join)
+- 5 Base Spokes: `path d="M 7 54 L 50 64 L 93 54 M 22 86 L 50 64 L 78 86 M 50 64 L 50 94"` (stroke 11, round cap/join)
 
-**Image Sizes** (optimized for Next.js Image):
-- Header: 88×88px
-- Hero: 256×256px
-- Inline: 48×48px
-- Footer: 128×128px
-
-**Loading Priority**:
-- Hero and Header variants: `priority={true}` (eager loading)
-- Inline and Footer variants: `priority={false}` (lazy loading)
+**Color Modes**:
+- Light Mode: Royal Blue (`#0056FF`) foundation with Azure Blue (`#2277FF`) checkmark arms
+- Dark Mode: Pure White (`#FFFFFF`) foundation with luminous Azure Blue (`#60A5FA`) checkmark arms
+- Royal Solid: Pure White emblem on Royal Blue (`#0056FF`) squircle tile
 
 ---
 
