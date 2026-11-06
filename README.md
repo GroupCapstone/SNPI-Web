@@ -63,3 +63,5 @@ npm run typecheck
 # Code formatting check
 npm run format:check
 ```
+
+Hello, this is MUSE AI
