@@ -25,3 +25,14 @@ coverage/
 
 .vercel
 .env*
+
+# Secrets and local data (defense in depth)
+*.pem
+*.key
+*.p12
+*.pfx
+credentials.json
+service-account*.json
+*.dump
+*.bak
+*.sql.gz

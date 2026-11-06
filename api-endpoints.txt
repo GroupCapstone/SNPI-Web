@@ -10,7 +10,7 @@ BASE URLS:
 AUTHENTICATION:
 - Login Endpoint: POST /api/v1/auth/login
 - Super Admin:    admin_local
-- Password:       ***REMOVED***
+- Password:       (from the SUPER_ADMIN_PASSWORD environment variable)
 - Header:         Authorization: Bearer <ACCESS_TOKEN>
 
 ================================================================================

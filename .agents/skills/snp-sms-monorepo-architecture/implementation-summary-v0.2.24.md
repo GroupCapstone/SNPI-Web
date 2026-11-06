@@ -93,8 +93,8 @@ The header is automatically attached to:
 ```env
 BACKEND_INTERNAL_URL="https://snpis.kesararamwithdigital.tech"
 NEXT_PUBLIC_API_URL="https://snpis.kesararamwithdigital.tech/api/v1"
-BACKEND_CLIENT_API_KEY="***REMOVED***"
-NEXT_PUBLIC_CLIENT_API_KEY="***REMOVED***"
+BACKEND_CLIENT_API_KEY="<set-in-environment>"
+NEXT_PUBLIC_CLIENT_API_KEY="<set-in-environment>"
 ```
 
 **.env.example** (Template for New Developers):
@@ -115,7 +115,7 @@ it('automatically attaches X-Client-Api-Key header to outgoing requests', async 
   fetchMock.mockResolvedValueOnce(json({ success: true, data: { status: 'healthy' } }));
   await apiClient.get('/system-health');
   const callHeaders = fetchMock.mock.calls[0][1].headers;
-  expect(callHeaders['X-Client-Api-Key']).toBe('***REMOVED***');
+  expect(callHeaders['X-Client-Api-Key']).toBe('<set-in-environment>');
 });
 ```
 
@@ -134,7 +134,7 @@ npm test -- api-client.test.ts
 | Constant-Time Comparison | `crypto.timingSafeEqual` | N/A (client-side) | [COMPATIBLE] |
 | Exempt Paths | `/health`, `/docs`, `/openapi.json` | Headers sent to all paths | [COMPATIBLE] |
 | Token Refresh | Required on `/auth/refresh` | Included in refresh requests | [PASS] |
-| Production Key | `***REMOVED***` | `***REMOVED***` | [VERIFIED] |
+| Production Key | `<set-in-environment>` | `<set-in-environment>` | [VERIFIED] |
 
 ---
 
@@ -239,7 +239,7 @@ $ npm test -- api-client.test.ts
 ```bash
 # Test against production backend with client key
 curl -X GET 'https://snpis.kesararamwithdigital.tech/api/v1/health' \
-  -H 'X-Client-Api-Key: ***REMOVED***'
+  -H 'X-Client-Api-Key: <set-in-environment>'
 
 Expected: 200 OK {"status":"healthy","timestamp":"...","version":"1.0.0"}
 ```

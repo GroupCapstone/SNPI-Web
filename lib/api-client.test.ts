@@ -31,8 +31,8 @@ describe('protected API session lifecycle', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     vi.stubGlobal('fetch', fetchMock);
-    vi.stubEnv('NEXT_PUBLIC_CLIENT_API_KEY', '***REMOVED***');
-    vi.stubEnv('BACKEND_CLIENT_API_KEY', '***REMOVED***');
+    vi.stubEnv('NEXT_PUBLIC_CLIENT_API_KEY', 'test_only_client_key_for_unit_tests');
+    vi.stubEnv('BACKEND_CLIENT_API_KEY', 'test_only_client_key_for_unit_tests');
     setAccessToken('original-token');
     setSessionRefreshHandler(refreshed);
     setUnauthorizedHandler(unauthorized);
@@ -49,7 +49,7 @@ describe('protected API session lifecycle', () => {
     fetchMock.mockResolvedValueOnce(json({ success: true, data: { status: 'healthy' } }));
     await apiClient.get('/system-health');
     const callHeaders = fetchMock.mock.calls[0][1].headers;
-    expect(callHeaders['X-Client-Api-Key']).toBe('***REMOVED***');
+    expect(callHeaders['X-Client-Api-Key']).toBe('test_only_client_key_for_unit_tests');
   });
 
   it('retries an expired token with refreshed permissions and scope', async () => {
