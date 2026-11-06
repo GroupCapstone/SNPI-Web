@@ -738,7 +738,7 @@ export function GithubAppearanceColorRoles() {
           className={cn(
             'group relative cursor-pointer rounded-2xl border p-4 transition-all duration-150 ease-out active:scale-[0.97] sm:p-5',
             activeTheme === 'light'
-              ? 'border-[#0056FF] bg-[#F8FAFC] ring-2 ring-[#0056FF]/20 shadow-xs'
+              ? 'border-[#0056FF] bg-[#F8FAFC] shadow-xs ring-2 ring-[#0056FF]/20'
               : 'border-[#CAD3F5] bg-white hover:border-[#0056FF]/50',
           )}
         >
@@ -768,7 +768,8 @@ export function GithubAppearanceColorRoles() {
             )}
           </div>
           <p className="font-sans text-xs text-slate-600">
-            Crisp pure white canvas with soft lavender borders and deep navy typography. Photopic focus for high ambient light.
+            Crisp pure white canvas with soft lavender borders and deep navy typography. Photopic
+            focus for high ambient light.
           </p>
 
           {/* Light Theme Mockup Illustration */}
@@ -835,7 +836,7 @@ export function GithubAppearanceColorRoles() {
           className={cn(
             'group relative cursor-pointer rounded-2xl border p-4 transition-all duration-150 ease-out active:scale-[0.97] sm:p-5',
             activeTheme === 'dark'
-              ? 'border-[#60A5FA] bg-[#0F172A] text-white ring-2 ring-[#60A5FA]/20 shadow-xs'
+              ? 'border-[#60A5FA] bg-[#0F172A] text-white shadow-xs ring-2 ring-[#60A5FA]/20'
               : 'border-[#334155] bg-[#0F172A] text-white hover:border-[#60A5FA]',
           )}
         >
@@ -865,7 +866,8 @@ export function GithubAppearanceColorRoles() {
             )}
           </div>
           <p className="font-sans text-xs text-slate-300">
-            Psychologically optimized nocturnal moonlit slate canvas (#0F172A) with pure white typography (#FFFFFF) and pure white keyline icons (#FFFFFF).
+            Psychologically optimized nocturnal moonlit slate canvas (#0F172A) with pure white
+            typography (#FFFFFF) and pure white keyline icons (#FFFFFF).
           </p>
 
           {/* Dark Theme Mockup Illustration */}
@@ -954,38 +956,44 @@ export function GithubAppearanceColorRoles() {
 
         <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
           <div className="space-y-1.5 rounded-xl border border-slate-200 bg-white p-3.5 shadow-2xs">
-            <span className="font-mono text-[10px] font-bold uppercase text-[#0056FF]">
+            <span className="font-mono text-[10px] font-bold text-[#0056FF] uppercase">
               01. Scotopic Glare Mitigation
             </span>
             <p className="font-sans text-xs font-extrabold text-[#0A1A4A]">
               Why Moon Uses Slate (#0F172A) Over Pitch Black
             </p>
             <p className="font-sans text-[11px] leading-relaxed text-slate-600">
-              Pitch black (#000000) causes extreme pupillary dilation shock against bright text, inducing astigmatic halation and light bleed. Neutral 900 (#0F172A) cushions retinal light intake while maintaining 15.8:1 contrast.
+              Pitch black (#000000) causes extreme pupillary dilation shock against bright text,
+              inducing astigmatic halation and light bleed. Neutral 900 (#0F172A) cushions retinal
+              light intake while maintaining 15.8:1 contrast.
             </p>
           </div>
 
           <div className="space-y-1.5 rounded-xl border border-slate-200 bg-white p-3.5 shadow-2xs">
-            <span className="font-mono text-[10px] font-bold uppercase text-[#0056FF]">
+            <span className="font-mono text-[10px] font-bold text-[#0056FF] uppercase">
               02. 1:1 Vector &amp; Typographic Luminescence
             </span>
             <p className="font-sans text-xs font-extrabold text-[#0A1A4A]">
               Pure White (#FFFFFF) Icons in Moon Mode
             </p>
             <p className="font-sans text-[11px] leading-relaxed text-slate-600">
-              In Moon mode, headings and icons form a single Gestalt unit. UI icons render in pure white (#FFFFFF), matching code editors (VS Code, Cursor), GitHub dark mode, and Antigravity Skills for zero visual noise.
+              In Moon mode, headings and icons form a single Gestalt unit. UI icons render in pure
+              white (#FFFFFF), matching code editors (VS Code, Cursor), GitHub dark mode, and
+              Antigravity Skills for zero visual noise.
             </p>
           </div>
 
           <div className="space-y-1.5 rounded-xl border border-slate-200 bg-white p-3.5 shadow-2xs">
-            <span className="font-mono text-[10px] font-bold uppercase text-[#0056FF]">
+            <span className="font-mono text-[10px] font-bold text-[#0056FF] uppercase">
               03. Geometric Container Invariant
             </span>
             <p className="font-sans text-xs font-extrabold text-[#0A1A4A]">
               Strict 2px Corner Radius Containers
             </p>
             <p className="font-sans text-[11px] leading-relaxed text-slate-600">
-              All icon backing containers strictly enforce rounded-[2px] across both Day (#EFF5FF fill) and Moon (#1E293B fill), preserving mathematical geometric consistency and preventing circular distortion.
+              All icon backing containers strictly enforce rounded-[2px] across both Day (#EFF5FF
+              fill) and Moon (#1E293B fill), preserving mathematical geometric consistency and
+              preventing circular distortion.
             </p>
           </div>
         </div>

@@ -3,11 +3,7 @@
 import * as React from 'react';
 import { motion, AnimatePresence, type HTMLMotionProps } from 'motion/react';
 import { cn } from '@/lib/utils';
-import {
-  popoverMotionVariants,
-  WHILE_TAP_SCALE,
-  MOTION_EASE_OUT,
-} from '@/lib/motion';
+import { popoverMotionVariants, WHILE_TAP_SCALE, MOTION_EASE_OUT } from '@/lib/motion';
 import {
   ChevronDown,
   Layers,
@@ -118,8 +114,7 @@ export function NavigationMenuItem({
   );
 }
 
-export interface NavigationMenuTriggerProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface NavigationMenuTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   value: string;
 }
 
@@ -136,7 +131,7 @@ export function NavigationMenuTrigger({
     <button
       type="button"
       className={cn(
-        'group inline-flex h-9 w-max items-center justify-center rounded-[4px] px-3.5 py-1.5 font-sans text-xs font-semibold transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 active:scale-[0.97]',
+        'group inline-flex h-9 w-max items-center justify-center rounded-[4px] px-3.5 py-1.5 font-sans text-xs font-semibold transition-colors focus-visible:outline-none active:scale-[0.97] disabled:pointer-events-none disabled:opacity-50',
         isOpen
           ? 'bg-white/10 text-white shadow-inner'
           : 'text-slate-300 hover:bg-white/5 hover:text-white',

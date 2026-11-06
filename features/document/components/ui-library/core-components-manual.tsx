@@ -1288,12 +1288,36 @@ export function CoreComponentsManual({ hideHeader = false }: { hideHeader?: bool
   const categories = React.useMemo(
     () => [
       { id: 'All', label: 'All', count: CORE_COMPONENTS_SPECS.length },
-      { id: 'Form', label: 'Form', count: CORE_COMPONENTS_SPECS.filter((s) => s.category === 'Form').length },
-      { id: 'Navigation', label: 'Navigation', count: CORE_COMPONENTS_SPECS.filter((s) => s.category === 'Navigation').length },
-      { id: 'Structure', label: 'Structure', count: CORE_COMPONENTS_SPECS.filter((s) => s.category === 'Structure').length },
-      { id: 'Feedback', label: 'Feedback', count: CORE_COMPONENTS_SPECS.filter((s) => s.category === 'Feedback').length },
-      { id: 'Media', label: 'Media', count: CORE_COMPONENTS_SPECS.filter((s) => s.category === 'Media').length },
-      { id: 'Action', label: 'Action', count: CORE_COMPONENTS_SPECS.filter((s) => s.category === 'Action').length },
+      {
+        id: 'Form',
+        label: 'Form',
+        count: CORE_COMPONENTS_SPECS.filter((s) => s.category === 'Form').length,
+      },
+      {
+        id: 'Navigation',
+        label: 'Navigation',
+        count: CORE_COMPONENTS_SPECS.filter((s) => s.category === 'Navigation').length,
+      },
+      {
+        id: 'Structure',
+        label: 'Structure',
+        count: CORE_COMPONENTS_SPECS.filter((s) => s.category === 'Structure').length,
+      },
+      {
+        id: 'Feedback',
+        label: 'Feedback',
+        count: CORE_COMPONENTS_SPECS.filter((s) => s.category === 'Feedback').length,
+      },
+      {
+        id: 'Media',
+        label: 'Media',
+        count: CORE_COMPONENTS_SPECS.filter((s) => s.category === 'Media').length,
+      },
+      {
+        id: 'Action',
+        label: 'Action',
+        count: CORE_COMPONENTS_SPECS.filter((s) => s.category === 'Action').length,
+      },
     ],
     [],
   );
@@ -1325,8 +1349,8 @@ export function CoreComponentsManual({ hideHeader = false }: { hideHeader?: bool
               <p className="max-w-3xl font-sans text-xs leading-relaxed text-slate-600 sm:text-sm">
                 Components are the main building blocks for user interfaces. Building a reusable
                 component library enhances your product development workflow by reducing design and
-                tech debt and speeding up the process. Core components can&apos;t be broken down into
-                granular pieces without losing their meaning.
+                tech debt and speeding up the process. Core components can&apos;t be broken down
+                into granular pieces without losing their meaning.
               </p>
             </div>
 
@@ -1362,7 +1386,12 @@ export function CoreComponentsManual({ hideHeader = false }: { hideHeader?: bool
                   )}
                 >
                   <span>{cat.label}</span>
-                  <span className={cn('ml-1 font-mono text-[10px]', isActive ? 'text-white/80' : 'text-slate-400')}>
+                  <span
+                    className={cn(
+                      'ml-1 font-mono text-[10px]',
+                      isActive ? 'text-white/80' : 'text-slate-400',
+                    )}
+                  >
                     ({cat.count})
                   </span>
                 </button>
@@ -1393,7 +1422,12 @@ export function CoreComponentsManual({ hideHeader = false }: { hideHeader?: bool
                   )}
                 >
                   <span>{cat.label}</span>
-                  <span className={cn('ml-1.5 font-mono text-[10px]', isActive ? 'text-white/80' : 'text-slate-400')}>
+                  <span
+                    className={cn(
+                      'ml-1.5 font-mono text-[10px]',
+                      isActive ? 'text-white/80' : 'text-slate-400',
+                    )}
+                  >
                     ({cat.count})
                   </span>
                 </button>
@@ -1411,7 +1445,9 @@ export function CoreComponentsManual({ hideHeader = false }: { hideHeader?: bool
               <span>{expandAllDrawers ? 'Collapse Invariants' : 'Expand All Invariants'}</span>
             </button>
             <div className="inline-flex items-center gap-1.5 rounded-lg border border-[#CAD3F5] bg-white px-3 py-1.5 font-mono text-xs font-bold text-[#0056FF]">
-              <span>{currentCheckedCount} of {totalPossibleChecks} Verified</span>
+              <span>
+                {currentCheckedCount} of {totalPossibleChecks} Verified
+              </span>
             </div>
           </div>
         </div>
@@ -1431,7 +1467,7 @@ export function CoreComponentsManual({ hideHeader = false }: { hideHeader?: bool
               key={spec.id}
               id={spec.id}
               className={cn(
-                'group scroll-mt-24 flex flex-col justify-between overflow-hidden rounded-2xl border bg-white transition-all duration-200 hover:shadow-md',
+                'group flex scroll-mt-24 flex-col justify-between overflow-hidden rounded-2xl border bg-white transition-all duration-200 hover:shadow-md',
                 isComplete ? 'border-emerald-300 ring-2 ring-emerald-500/10' : 'border-[#CAD3F5]',
               )}
             >
@@ -1471,7 +1507,9 @@ export function CoreComponentsManual({ hideHeader = false }: { hideHeader?: bool
                   )}
                 >
                   {isComplete && <Check className="size-3 stroke-[3]" />}
-                  <span>{checkedInSpec}/{spec.totalChecks} Verified</span>
+                  <span>
+                    {checkedInSpec}/{spec.totalChecks} Verified
+                  </span>
                 </button>
               </div>
 
@@ -1490,1021 +1528,1042 @@ export function CoreComponentsManual({ hideHeader = false }: { hideHeader?: bool
 
                   {/* Individual Component Previews */}
                   <div className="py-1">
-                {spec.id === 'comp-accordion' && (
-                  <div className="rounded-lg border border-[#CAD3F5] bg-white">
-                    <button
-                      type="button"
-                      onClick={() => setAccordionOpen(!accordionOpen)}
-                      className="flex w-full items-center justify-between p-2.5 font-sans text-xs font-bold text-[#0A1A4A]"
-                    >
-                      <span>Academic Calendar 2026-2027</span>
-                      <ChevronDown
-                        className={cn('size-4 transition-transform', accordionOpen && 'rotate-180')}
-                      />
-                    </button>
-                    {accordionOpen && (
-                      <div className="border-t border-slate-100 p-2.5 font-sans text-xs text-slate-600">
-                        Semester 1 begins October 15, 2026. Fall enrollment window open.
+                    {spec.id === 'comp-accordion' && (
+                      <div className="rounded-lg border border-[#CAD3F5] bg-white">
+                        <button
+                          type="button"
+                          onClick={() => setAccordionOpen(!accordionOpen)}
+                          className="flex w-full items-center justify-between p-2.5 font-sans text-xs font-bold text-[#0A1A4A]"
+                        >
+                          <span>Academic Calendar 2026-2027</span>
+                          <ChevronDown
+                            className={cn(
+                              'size-4 transition-transform',
+                              accordionOpen && 'rotate-180',
+                            )}
+                          />
+                        </button>
+                        {accordionOpen && (
+                          <div className="border-t border-slate-100 p-2.5 font-sans text-xs text-slate-600">
+                            Semester 1 begins October 15, 2026. Fall enrollment window open.
+                          </div>
+                        )}
                       </div>
                     )}
-                  </div>
-                )}
 
-                {spec.id === 'comp-alert' && (
-                  <div className="flex items-start gap-2.5 rounded-lg border border-amber-300 bg-amber-50 p-2.5 text-amber-900">
-                    <AlertTriangle className="mt-0.5 size-4 shrink-0 text-amber-600" />
-                    <div className="space-y-0.5">
-                      <div className="font-sans text-xs font-bold">
-                        Unsaved Roster Modifications
+                    {spec.id === 'comp-alert' && (
+                      <div className="flex items-start gap-2.5 rounded-lg border border-amber-300 bg-amber-50 p-2.5 text-amber-900">
+                        <AlertTriangle className="mt-0.5 size-4 shrink-0 text-amber-600" />
+                        <div className="space-y-0.5">
+                          <div className="font-sans text-xs font-bold">
+                            Unsaved Roster Modifications
+                          </div>
+                          <div className="text-[11px]">Save class changes before leaving page.</div>
+                        </div>
                       </div>
-                      <div className="text-[11px]">Save class changes before leaving page.</div>
-                    </div>
-                  </div>
-                )}
+                    )}
 
-                {spec.id === 'comp-avatar' && (
-                  <div className="flex items-center gap-3">
-                    <div className="flex size-9 items-center justify-center rounded-full bg-[#0056FF] font-sans text-xs font-bold text-white">
-                      SC
-                    </div>
-                    <div className="flex -space-x-2">
-                      <div className="flex size-7 items-center justify-center rounded-full border-2 border-white bg-slate-900 text-[10px] font-bold text-white">
-                        JD
+                    {spec.id === 'comp-avatar' && (
+                      <div className="flex items-center gap-3">
+                        <div className="flex size-9 items-center justify-center rounded-full bg-[#0056FF] font-sans text-xs font-bold text-white">
+                          SC
+                        </div>
+                        <div className="flex -space-x-2">
+                          <div className="flex size-7 items-center justify-center rounded-full border-2 border-white bg-slate-900 text-[10px] font-bold text-white">
+                            JD
+                          </div>
+                          <div className="flex size-7 items-center justify-center rounded-full border-2 border-white bg-blue-600 text-[10px] font-bold text-white">
+                            MK
+                          </div>
+                          <div className="flex size-7 items-center justify-center rounded-full border-2 border-white bg-emerald-600 text-[10px] font-bold text-white">
+                            +4
+                          </div>
+                        </div>
                       </div>
-                      <div className="flex size-7 items-center justify-center rounded-full border-2 border-white bg-blue-600 text-[10px] font-bold text-white">
-                        MK
-                      </div>
-                      <div className="flex size-7 items-center justify-center rounded-full border-2 border-white bg-emerald-600 text-[10px] font-bold text-white">
-                        +4
-                      </div>
-                    </div>
-                  </div>
-                )}
+                    )}
 
-                {spec.id === 'comp-badge' && (
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className="rounded-md border border-emerald-300 bg-emerald-50 px-2 py-0.5 font-mono text-[10px] font-bold text-emerald-700">
-                      Active
-                    </span>
-                    <span className="rounded-md border border-[#0056FF]/30 bg-[#EFF5FF] px-2 py-0.5 font-mono text-[10px] font-bold text-[#0056FF]">
-                      Enrolled
-                    </span>
-                    <span className="rounded-md border border-amber-300 bg-amber-50 px-2 py-0.5 font-mono text-[10px] font-bold text-amber-700">
-                      Pending (3)
-                    </span>
-                  </div>
-                )}
-
-                {spec.id === 'comp-button' && (
-                  <div className="flex flex-wrap items-center gap-2">
-                    <button
-                      type="button"
-                      className="cursor-pointer rounded-lg bg-[#0056FF] px-3 py-1.5 font-sans text-xs font-bold text-white transition-transform active:scale-95"
-                    >
-                      Primary Action
-                    </button>
-                    <button
-                      type="button"
-                      className="cursor-pointer rounded-lg border border-[#CAD3F5] bg-white px-3 py-1.5 font-sans text-xs font-bold text-[#0A1A4A] hover:bg-[#EFF5FF]"
-                    >
-                      Secondary
-                    </button>
-                    <button
-                      type="button"
-                      disabled
-                      className="cursor-not-allowed rounded-lg border border-slate-200 bg-slate-100 px-3 py-1.5 font-sans text-xs font-bold text-slate-400"
-                    >
-                      Disabled
-                    </button>
-                  </div>
-                )}
-
-                {spec.id === 'comp-breadcrumbs' && (
-                  <nav
-                    aria-label="Breadcrumbs"
-                    className="flex items-center gap-1.5 font-mono text-[11px] text-slate-500"
-                  >
-                    <span className="cursor-pointer hover:text-[#0056FF]">Academics</span>
-                    <span>/</span>
-                    <span className="cursor-pointer hover:text-[#0056FF]">Curriculum</span>
-                    <span>/</span>
-                    <span className="font-bold text-[#0A1A4A]">CS401</span>
-                  </nav>
-                )}
-
-                {spec.id === 'comp-calendar' && (
-                  <div className="flex items-center justify-between rounded-lg border border-[#CAD3F5] bg-white p-2">
-                    <div className="flex items-center gap-2 font-sans text-xs font-bold text-[#0A1A4A]">
-                      <CalendarIcon className="size-4 text-[#0056FF]" />
-                      <span>October 2026</span>
-                    </div>
-                    <span className="rounded bg-[#EFF5FF] px-2 py-0.5 font-mono text-[10px] text-[#0056FF]">
-                      Khmer / English (Mon Start)
-                    </span>
-                  </div>
-                )}
-
-                {spec.id === 'comp-card' && (
-                  <div className="rounded-lg border border-[#CAD3F5] bg-white p-2.5">
-                    <div className="flex items-center justify-between">
-                      <span className="font-sans text-xs font-bold text-[#0A1A4A]">
-                        CS401 Syllabus
-                      </span>
-                      <span className="font-mono text-[10px] text-[#0056FF]">3 Credits</span>
-                    </div>
-                  </div>
-                )}
-
-                {spec.id === 'comp-carousel' && (
-                  <div className="flex items-center gap-2 overflow-x-auto py-1">
-                    {[1, 2, 3].map((num) => (
-                      <div
-                        key={num}
-                        className="flex h-14 w-28 shrink-0 items-center justify-center rounded-lg border border-[#CAD3F5] bg-white font-mono text-xs font-bold text-slate-700"
-                      >
-                        Slide {num}
-                      </div>
-                    ))}
-                  </div>
-                )}
-
-                {spec.id === 'comp-checkbox' && (
-                  <div className="flex items-center gap-3">
-                    <label className="flex items-center gap-1.5 font-sans text-xs font-bold text-[#0A1A4A]">
-                      <input
-                        type="checkbox"
-                        checked={checkboxState === 'checked'}
-                        onChange={() =>
-                          setCheckboxState(checkboxState === 'checked' ? 'unchecked' : 'checked')
-                        }
-                        className="size-4 rounded text-[#0056FF]"
-                      />
-                      <span>Active Enrollment</span>
-                    </label>
-                  </div>
-                )}
-
-                {spec.id === 'comp-divider' && (
-                  <div className="flex items-center gap-2">
-                    <span className="text-slate-500">Left Section</span>
-                    <div className="h-4 w-px bg-[#CAD3F5]" />
-                    <span className="text-slate-500">Right Section</span>
-                  </div>
-                )}
-
-                {spec.id === 'comp-dropdown' && (
-                  <div className="flex items-center justify-between rounded-lg border border-[#CAD3F5] bg-white p-2 text-xs">
-                    <span className="font-bold text-[#0A1A4A]">Select Campus Branch...</span>
-                    <ChevronDown className="size-3.5 text-slate-400" />
-                  </div>
-                )}
-
-                {spec.id === 'comp-icon' && (
-                  <div className="flex items-center gap-4 text-[#0056FF]">
-                    <div className="flex flex-col items-center gap-1">
-                      <Sparkles className="size-4" />
-                      <span className="font-mono text-[9px] text-slate-400">16dp</span>
-                    </div>
-                    <div className="flex flex-col items-center gap-1">
-                      <Sparkles className="size-5" />
-                      <span className="font-mono text-[9px] text-slate-400">20dp</span>
-                    </div>
-                    <div className="flex flex-col items-center gap-1">
-                      <Sparkles className="size-6" />
-                      <span className="font-mono text-[9px] text-slate-400">24dp</span>
-                    </div>
-                    <div className="flex flex-col items-center gap-1">
-                      <Sparkles className="size-8" />
-                      <span className="font-mono text-[9px] text-slate-400">32dp</span>
-                    </div>
-                  </div>
-                )}
-
-                {spec.id === 'comp-image' && (
-                  <div className="relative flex aspect-video w-full flex-col justify-between overflow-hidden rounded-lg border border-[#CAD3F5] bg-slate-100 p-3">
-                    <div className="flex items-center justify-between font-mono text-[10px] text-slate-500">
-                      <span>Aspect Ratio: 16:9</span>
-                      <span className="rounded bg-white px-1.5 py-0.5 font-bold text-[#0056FF]">
-                        Density: 2x
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-2 font-sans text-xs text-slate-600">
-                      <Info className="size-4 text-[#0056FF]" />
-                      <span>alt=&quot;Campus Faculty Administration Hall Exterior&quot;</span>
-                    </div>
-                  </div>
-                )}
-
-                {spec.id === 'comp-link' && (
-                  <div className="font-sans text-xs leading-relaxed text-slate-700">
-                    View institutional governance details in the{' '}
-                    <a
-                      href="#brand-blueprint"
-                      className="inline-flex items-center gap-1 font-bold text-[#0056FF] underline decoration-[#0056FF]/40 underline-offset-2 hover:decoration-[#0056FF]"
-                    >
-                      <span>Academic Charter</span>
-                      <ExternalLink className="size-3" />
-                    </a>{' '}
-                    or inspect branch locations.
-                  </div>
-                )}
-
-                {spec.id === 'comp-list' && (
-                  <ul className="space-y-1 font-sans text-xs text-slate-700" role="list">
-                    <li className="flex items-center gap-2">
-                      <span className="flex size-4 items-center justify-center rounded-full bg-[#EFF5FF] font-mono text-[10px] font-bold text-[#0056FF]">
-                        1
-                      </span>
-                      <span>Configure Institutional Branches</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <span className="flex size-4 items-center justify-center rounded-full bg-[#EFF5FF] font-mono text-[10px] font-bold text-[#0056FF]">
-                        2
-                      </span>
-                      <span>Assign Department Faculty Leads</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <span className="flex size-4 items-center justify-center rounded-full bg-[#EFF5FF] font-mono text-[10px] font-bold text-[#0056FF]">
-                        3
-                      </span>
-                      <span>Enroll Students &amp; Issue Invoices</span>
-                    </li>
-                  </ul>
-                )}
-
-                {spec.id === 'comp-loading' && (
-                  <div className="flex items-center gap-3">
-                    <div
-                      className="size-5 animate-spin rounded-full border-2 border-[#CAD3F5] border-t-[#0056FF]"
-                      role="status"
-                      aria-label="Loading student records"
-                    />
-                    <span className="font-mono text-xs font-bold text-[#0056FF]">
-                      Loading class roster... (84%)
-                    </span>
-                  </div>
-                )}
-
-                {spec.id === 'comp-modal' && (
-                  <div className="space-y-2 rounded-lg border border-[#CAD3F5] bg-white p-3 shadow-xs">
-                    <div className="flex items-center justify-between border-b border-slate-100 pb-1.5">
-                      <span className="font-sans text-xs font-bold text-[#0A1A4A]">
-                        Confirm Enrollment
-                      </span>
-                      <span className="rounded bg-slate-100 px-1 font-mono text-[9px] text-slate-500">
-                        Esc to close
-                      </span>
-                    </div>
-                    <p className="font-sans text-[11px] text-slate-600">
-                      Register Student ID #4092 for CS401 Fall Term?
-                    </p>
-                    <div className="flex justify-end gap-1.5 pt-1">
-                      <button
-                        type="button"
-                        className="rounded px-2 py-1 font-sans text-[11px] font-bold text-slate-600 hover:bg-slate-100"
-                      >
-                        Cancel
-                      </button>
-                      <button
-                        type="button"
-                        className="rounded bg-[#0056FF] px-2.5 py-1 font-sans text-[11px] font-bold text-white"
-                      >
-                        Confirm
-                      </button>
-                    </div>
-                  </div>
-                )}
-
-                {spec.id === 'comp-pagination' && (
-                  <div className="flex items-center justify-between font-mono text-xs">
-                    <div className="flex items-center gap-1">
-                      <button
-                        type="button"
-                        className="flex size-6 items-center justify-center rounded border border-[#CAD3F5] bg-white text-slate-500"
-                      >
-                        <ChevronLeft className="size-3.5" />
-                      </button>
-                      <button
-                        type="button"
-                        className="flex size-6 items-center justify-center rounded bg-[#0056FF] font-bold text-white"
-                      >
-                        1
-                      </button>
-                      <button
-                        type="button"
-                        className="flex size-6 items-center justify-center rounded border border-[#CAD3F5] bg-white text-slate-700"
-                      >
-                        2
-                      </button>
-                      <button
-                        type="button"
-                        className="flex size-6 items-center justify-center rounded border border-[#CAD3F5] bg-white text-slate-700"
-                      >
-                        3
-                      </button>
-                      <span className="px-1 text-slate-400">...</span>
-                      <button
-                        type="button"
-                        className="flex size-6 items-center justify-center rounded border border-[#CAD3F5] bg-white text-slate-700"
-                      >
-                        12
-                      </button>
-                      <button
-                        type="button"
-                        className="flex size-6 items-center justify-center rounded border border-[#CAD3F5] bg-white text-slate-500"
-                      >
-                        <ChevronRight className="size-3.5" />
-                      </button>
-                    </div>
-                    <span className="text-[10px] text-slate-400">10 of 120 items</span>
-                  </div>
-                )}
-
-                {spec.id === 'comp-progress-bar' && (
-                  <div className="space-y-3 font-sans">
-                    <div className="flex items-center justify-between text-xs">
-                      <div className="flex items-center gap-2">
-                        <span className="font-bold text-[#0A1A4A]">Uploading Transcript PDF</span>
-                        <span className="font-mono text-[10px] text-slate-400">
-                          ({progressBarVal}%)
+                    {spec.id === 'comp-badge' && (
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="rounded-md border border-emerald-300 bg-emerald-50 px-2 py-0.5 font-mono text-[10px] font-bold text-emerald-700">
+                          Active
+                        </span>
+                        <span className="rounded-md border border-[#0056FF]/30 bg-[#EFF5FF] px-2 py-0.5 font-mono text-[10px] font-bold text-[#0056FF]">
+                          Enrolled
+                        </span>
+                        <span className="rounded-md border border-amber-300 bg-amber-50 px-2 py-0.5 font-mono text-[10px] font-bold text-amber-700">
+                          Pending (3)
                         </span>
                       </div>
-                      <div className="flex items-center gap-1.5 font-mono text-[10px]">
-                        <span className="text-slate-500">Est. 8s left</span>
-                        <div className="flex rounded border border-[#CAD3F5] p-0.5">
-                          {(['sm', 'md', 'lg'] as const).map((sz) => (
+                    )}
+
+                    {spec.id === 'comp-button' && (
+                      <div className="flex flex-wrap items-center gap-2">
+                        <button
+                          type="button"
+                          className="cursor-pointer rounded-lg bg-[#0056FF] px-3 py-1.5 font-sans text-xs font-bold text-white transition-transform active:scale-95"
+                        >
+                          Primary Action
+                        </button>
+                        <button
+                          type="button"
+                          className="cursor-pointer rounded-lg border border-[#CAD3F5] bg-white px-3 py-1.5 font-sans text-xs font-bold text-[#0A1A4A] hover:bg-[#EFF5FF]"
+                        >
+                          Secondary
+                        </button>
+                        <button
+                          type="button"
+                          disabled
+                          className="cursor-not-allowed rounded-lg border border-slate-200 bg-slate-100 px-3 py-1.5 font-sans text-xs font-bold text-slate-400"
+                        >
+                          Disabled
+                        </button>
+                      </div>
+                    )}
+
+                    {spec.id === 'comp-breadcrumbs' && (
+                      <nav
+                        aria-label="Breadcrumbs"
+                        className="flex items-center gap-1.5 font-mono text-[11px] text-slate-500"
+                      >
+                        <span className="cursor-pointer hover:text-[#0056FF]">Academics</span>
+                        <span>/</span>
+                        <span className="cursor-pointer hover:text-[#0056FF]">Curriculum</span>
+                        <span>/</span>
+                        <span className="font-bold text-[#0A1A4A]">CS401</span>
+                      </nav>
+                    )}
+
+                    {spec.id === 'comp-calendar' && (
+                      <div className="flex items-center justify-between rounded-lg border border-[#CAD3F5] bg-white p-2">
+                        <div className="flex items-center gap-2 font-sans text-xs font-bold text-[#0A1A4A]">
+                          <CalendarIcon className="size-4 text-[#0056FF]" />
+                          <span>October 2026</span>
+                        </div>
+                        <span className="rounded bg-[#EFF5FF] px-2 py-0.5 font-mono text-[10px] text-[#0056FF]">
+                          Khmer / English (Mon Start)
+                        </span>
+                      </div>
+                    )}
+
+                    {spec.id === 'comp-card' && (
+                      <div className="rounded-lg border border-[#CAD3F5] bg-white p-2.5">
+                        <div className="flex items-center justify-between">
+                          <span className="font-sans text-xs font-bold text-[#0A1A4A]">
+                            CS401 Syllabus
+                          </span>
+                          <span className="font-mono text-[10px] text-[#0056FF]">3 Credits</span>
+                        </div>
+                      </div>
+                    )}
+
+                    {spec.id === 'comp-carousel' && (
+                      <div className="flex items-center gap-2 overflow-x-auto py-1">
+                        {[1, 2, 3].map((num) => (
+                          <div
+                            key={num}
+                            className="flex h-14 w-28 shrink-0 items-center justify-center rounded-lg border border-[#CAD3F5] bg-white font-mono text-xs font-bold text-slate-700"
+                          >
+                            Slide {num}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+
+                    {spec.id === 'comp-checkbox' && (
+                      <div className="flex items-center gap-3">
+                        <label className="flex items-center gap-1.5 font-sans text-xs font-bold text-[#0A1A4A]">
+                          <input
+                            type="checkbox"
+                            checked={checkboxState === 'checked'}
+                            onChange={() =>
+                              setCheckboxState(
+                                checkboxState === 'checked' ? 'unchecked' : 'checked',
+                              )
+                            }
+                            className="size-4 rounded text-[#0056FF]"
+                          />
+                          <span>Active Enrollment</span>
+                        </label>
+                      </div>
+                    )}
+
+                    {spec.id === 'comp-divider' && (
+                      <div className="flex items-center gap-2">
+                        <span className="text-slate-500">Left Section</span>
+                        <div className="h-4 w-px bg-[#CAD3F5]" />
+                        <span className="text-slate-500">Right Section</span>
+                      </div>
+                    )}
+
+                    {spec.id === 'comp-dropdown' && (
+                      <div className="flex items-center justify-between rounded-lg border border-[#CAD3F5] bg-white p-2 text-xs">
+                        <span className="font-bold text-[#0A1A4A]">Select Campus Branch...</span>
+                        <ChevronDown className="size-3.5 text-slate-400" />
+                      </div>
+                    )}
+
+                    {spec.id === 'comp-icon' && (
+                      <div className="flex items-center gap-4 text-[#0056FF]">
+                        <div className="flex flex-col items-center gap-1">
+                          <Sparkles className="size-4" />
+                          <span className="font-mono text-[9px] text-slate-400">16dp</span>
+                        </div>
+                        <div className="flex flex-col items-center gap-1">
+                          <Sparkles className="size-5" />
+                          <span className="font-mono text-[9px] text-slate-400">20dp</span>
+                        </div>
+                        <div className="flex flex-col items-center gap-1">
+                          <Sparkles className="size-6" />
+                          <span className="font-mono text-[9px] text-slate-400">24dp</span>
+                        </div>
+                        <div className="flex flex-col items-center gap-1">
+                          <Sparkles className="size-8" />
+                          <span className="font-mono text-[9px] text-slate-400">32dp</span>
+                        </div>
+                      </div>
+                    )}
+
+                    {spec.id === 'comp-image' && (
+                      <div className="relative flex aspect-video w-full flex-col justify-between overflow-hidden rounded-lg border border-[#CAD3F5] bg-slate-100 p-3">
+                        <div className="flex items-center justify-between font-mono text-[10px] text-slate-500">
+                          <span>Aspect Ratio: 16:9</span>
+                          <span className="rounded bg-white px-1.5 py-0.5 font-bold text-[#0056FF]">
+                            Density: 2x
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-2 font-sans text-xs text-slate-600">
+                          <Info className="size-4 text-[#0056FF]" />
+                          <span>alt=&quot;Campus Faculty Administration Hall Exterior&quot;</span>
+                        </div>
+                      </div>
+                    )}
+
+                    {spec.id === 'comp-link' && (
+                      <div className="font-sans text-xs leading-relaxed text-slate-700">
+                        View institutional governance details in the{' '}
+                        <a
+                          href="#brand-blueprint"
+                          className="inline-flex items-center gap-1 font-bold text-[#0056FF] underline decoration-[#0056FF]/40 underline-offset-2 hover:decoration-[#0056FF]"
+                        >
+                          <span>Academic Charter</span>
+                          <ExternalLink className="size-3" />
+                        </a>{' '}
+                        or inspect branch locations.
+                      </div>
+                    )}
+
+                    {spec.id === 'comp-list' && (
+                      <ul className="space-y-1 font-sans text-xs text-slate-700" role="list">
+                        <li className="flex items-center gap-2">
+                          <span className="flex size-4 items-center justify-center rounded-full bg-[#EFF5FF] font-mono text-[10px] font-bold text-[#0056FF]">
+                            1
+                          </span>
+                          <span>Configure Institutional Branches</span>
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <span className="flex size-4 items-center justify-center rounded-full bg-[#EFF5FF] font-mono text-[10px] font-bold text-[#0056FF]">
+                            2
+                          </span>
+                          <span>Assign Department Faculty Leads</span>
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <span className="flex size-4 items-center justify-center rounded-full bg-[#EFF5FF] font-mono text-[10px] font-bold text-[#0056FF]">
+                            3
+                          </span>
+                          <span>Enroll Students &amp; Issue Invoices</span>
+                        </li>
+                      </ul>
+                    )}
+
+                    {spec.id === 'comp-loading' && (
+                      <div className="flex items-center gap-3">
+                        <div
+                          className="size-5 animate-spin rounded-full border-2 border-[#CAD3F5] border-t-[#0056FF]"
+                          role="status"
+                          aria-label="Loading student records"
+                        />
+                        <span className="font-mono text-xs font-bold text-[#0056FF]">
+                          Loading class roster... (84%)
+                        </span>
+                      </div>
+                    )}
+
+                    {spec.id === 'comp-modal' && (
+                      <div className="space-y-2 rounded-lg border border-[#CAD3F5] bg-white p-3 shadow-xs">
+                        <div className="flex items-center justify-between border-b border-slate-100 pb-1.5">
+                          <span className="font-sans text-xs font-bold text-[#0A1A4A]">
+                            Confirm Enrollment
+                          </span>
+                          <span className="rounded bg-slate-100 px-1 font-mono text-[9px] text-slate-500">
+                            Esc to close
+                          </span>
+                        </div>
+                        <p className="font-sans text-[11px] text-slate-600">
+                          Register Student ID #4092 for CS401 Fall Term?
+                        </p>
+                        <div className="flex justify-end gap-1.5 pt-1">
+                          <button
+                            type="button"
+                            className="rounded px-2 py-1 font-sans text-[11px] font-bold text-slate-600 hover:bg-slate-100"
+                          >
+                            Cancel
+                          </button>
+                          <button
+                            type="button"
+                            className="rounded bg-[#0056FF] px-2.5 py-1 font-sans text-[11px] font-bold text-white"
+                          >
+                            Confirm
+                          </button>
+                        </div>
+                      </div>
+                    )}
+
+                    {spec.id === 'comp-pagination' && (
+                      <div className="flex items-center justify-between font-mono text-xs">
+                        <div className="flex items-center gap-1">
+                          <button
+                            type="button"
+                            className="flex size-6 items-center justify-center rounded border border-[#CAD3F5] bg-white text-slate-500"
+                          >
+                            <ChevronLeft className="size-3.5" />
+                          </button>
+                          <button
+                            type="button"
+                            className="flex size-6 items-center justify-center rounded bg-[#0056FF] font-bold text-white"
+                          >
+                            1
+                          </button>
+                          <button
+                            type="button"
+                            className="flex size-6 items-center justify-center rounded border border-[#CAD3F5] bg-white text-slate-700"
+                          >
+                            2
+                          </button>
+                          <button
+                            type="button"
+                            className="flex size-6 items-center justify-center rounded border border-[#CAD3F5] bg-white text-slate-700"
+                          >
+                            3
+                          </button>
+                          <span className="px-1 text-slate-400">...</span>
+                          <button
+                            type="button"
+                            className="flex size-6 items-center justify-center rounded border border-[#CAD3F5] bg-white text-slate-700"
+                          >
+                            12
+                          </button>
+                          <button
+                            type="button"
+                            className="flex size-6 items-center justify-center rounded border border-[#CAD3F5] bg-white text-slate-500"
+                          >
+                            <ChevronRight className="size-3.5" />
+                          </button>
+                        </div>
+                        <span className="text-[10px] text-slate-400">10 of 120 items</span>
+                      </div>
+                    )}
+
+                    {spec.id === 'comp-progress-bar' && (
+                      <div className="space-y-3 font-sans">
+                        <div className="flex items-center justify-between text-xs">
+                          <div className="flex items-center gap-2">
+                            <span className="font-bold text-[#0A1A4A]">
+                              Uploading Transcript PDF
+                            </span>
+                            <span className="font-mono text-[10px] text-slate-400">
+                              ({progressBarVal}%)
+                            </span>
+                          </div>
+                          <div className="flex items-center gap-1.5 font-mono text-[10px]">
+                            <span className="text-slate-500">Est. 8s left</span>
+                            <div className="flex rounded border border-[#CAD3F5] p-0.5">
+                              {(['sm', 'md', 'lg'] as const).map((sz) => (
+                                <button
+                                  key={sz}
+                                  type="button"
+                                  onClick={() => setProgressBarSize(sz)}
+                                  className={cn(
+                                    'py-0.2 cursor-pointer rounded px-1.5 text-[9px] font-bold uppercase transition-colors',
+                                    progressBarSize === sz
+                                      ? 'bg-[#0056FF] text-white'
+                                      : 'text-slate-500 hover:text-slate-900',
+                                  )}
+                                >
+                                  {sz}
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+
+                        <div
+                          role="progressbar"
+                          aria-valuenow={progressBarVal}
+                          aria-valuemin={0}
+                          aria-valuemax={100}
+                          aria-label="Academic Transcript Upload Progress"
+                          className={cn(
+                            'w-full overflow-hidden rounded-full bg-slate-100',
+                            progressBarSize === 'sm' && 'h-1.5',
+                            progressBarSize === 'md' && 'h-2.5',
+                            progressBarSize === 'lg' && 'h-4',
+                          )}
+                        >
+                          <div
+                            className="h-full rounded-full bg-[#0056FF] transition-all duration-300"
+                            style={{ width: `${progressBarVal}%` }}
+                          />
+                        </div>
+
+                        <div className="flex items-center justify-between font-mono text-[10px] text-slate-400">
+                          <span>File size: 4.2 MB / 6.1 MB</span>
+                          <div className="flex items-center gap-2">
                             <button
-                              key={sz}
                               type="button"
-                              onClick={() => setProgressBarSize(sz)}
+                              onClick={() => setProgressBarVal((v) => Math.max(10, v - 15))}
+                              className="cursor-pointer hover:text-[#0056FF]"
+                            >
+                              -15%
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => setProgressBarVal((v) => Math.min(100, v + 15))}
+                              className="cursor-pointer hover:text-[#0056FF]"
+                            >
+                              +15%
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {spec.id === 'comp-radio' && (
+                      <div className="space-y-3 font-sans">
+                        <div className="flex items-center justify-between">
+                          <span className="text-xs font-bold text-[#0A1A4A]">
+                            Tuition Payment Frequency
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() => setRadioHasError(!radioHasError)}
+                            className={cn(
+                              'cursor-pointer rounded px-1.5 py-0.5 font-mono text-[10px] font-bold transition-colors',
+                              radioHasError
+                                ? 'border border-red-200 bg-red-50 text-red-600'
+                                : 'bg-slate-100 text-slate-600',
+                            )}
+                          >
+                            {radioHasError ? 'Clear Error' : 'Simulate Error'}
+                          </button>
+                        </div>
+
+                        <div
+                          role="radiogroup"
+                          aria-label="Payment Frequency"
+                          aria-invalid={radioHasError}
+                          className="space-y-2"
+                        >
+                          {[
+                            {
+                              id: 'term-semester',
+                              label: 'Semester Payment',
+                              desc: 'Two installment billing cycles per academic year',
+                            },
+                            {
+                              id: 'term-annual',
+                              label: 'Annual Advance',
+                              desc: '5% tuition discount paid upfront before term orientation',
+                            },
+                            {
+                              id: 'term-monthly',
+                              label: 'Monthly Direct Debit',
+                              desc: '10 recurring debit schedules via Bakong KHQR',
+                            },
+                          ].map((opt) => {
+                            const isChecked = radioSelected === opt.id;
+                            return (
+                              <label
+                                key={opt.id}
+                                htmlFor={`radio-${opt.id}`}
+                                className={cn(
+                                  'flex cursor-pointer items-start gap-3 rounded-xl border p-2.5 transition-all',
+                                  isChecked
+                                    ? 'border-[#0056FF] bg-[#EFF5FF]/40'
+                                    : 'border-[#CAD3F5] bg-white hover:bg-slate-50',
+                                  radioHasError && 'border-red-300 bg-red-50/20',
+                                )}
+                              >
+                                <input
+                                  type="radio"
+                                  id={`radio-${opt.id}`}
+                                  name="paymentFrequency"
+                                  value={opt.id}
+                                  checked={isChecked}
+                                  onChange={() => setRadioSelected(opt.id)}
+                                  className="mt-0.5 size-4 text-[#0056FF] focus:ring-[#0056FF]"
+                                />
+                                <div className="space-y-0.5">
+                                  <span className="block font-sans text-xs font-bold text-[#0A1A4A]">
+                                    {opt.label}
+                                  </span>
+                                  <span className="block font-sans text-[11px] text-slate-500">
+                                    {opt.desc}
+                                  </span>
+                                </div>
+                              </label>
+                            );
+                          })}
+                        </div>
+
+                        {radioHasError && (
+                          <p className="flex items-center gap-1 font-sans text-xs text-red-600">
+                            <AlertTriangle className="size-3.5" />
+                            <span>
+                              Please select an active tuition payment option to continue
+                              registration.
+                            </span>
+                          </p>
+                        )}
+                      </div>
+                    )}
+
+                    {spec.id === 'comp-select' && (
+                      <div className="space-y-3 font-sans">
+                        <div className="flex items-center justify-between">
+                          <label
+                            htmlFor="campus-select"
+                            className="text-xs font-bold text-[#0A1A4A]"
+                          >
+                            Campus Branch Location
+                          </label>
+                          <button
+                            type="button"
+                            onClick={() => setSelectHasError(!selectHasError)}
+                            className={cn(
+                              'cursor-pointer rounded px-1.5 py-0.5 font-mono text-[10px] font-bold transition-colors',
+                              selectHasError
+                                ? 'border border-red-200 bg-red-50 text-red-600'
+                                : 'bg-slate-100 text-slate-600',
+                            )}
+                          >
+                            {selectHasError ? 'Clear Error' : 'Simulate Error'}
+                          </button>
+                        </div>
+
+                        <div className="relative">
+                          <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                            <span className="rounded bg-slate-100 px-1.5 py-0.5 font-mono text-[10px] font-bold text-[#0056FF]">
+                              KH-01
+                            </span>
+                          </div>
+                          <select
+                            id="campus-select"
+                            value={selectValue}
+                            onChange={(e) => setSelectValue(e.target.value)}
+                            aria-invalid={selectHasError}
+                            className={cn(
+                              'w-full appearance-none rounded-xl border bg-white py-2.5 pr-10 pl-18 font-sans text-xs font-medium text-[#0A1A4A] shadow-2xs transition-all focus:border-[#0056FF] focus:ring-2 focus:ring-[#0056FF]/20 focus:outline-hidden',
+                              selectHasError
+                                ? 'border-red-400 bg-red-50/20 text-red-900 focus:border-red-500 focus:ring-red-200'
+                                : 'border-[#CAD3F5] hover:border-[#0056FF]/50',
+                            )}
+                          >
+                            <option value="">Choose campus location...</option>
+                            <option value="pp-central">Phnom Penh Central Campus (Sen Sok)</option>
+                            <option value="siem-reap">Siem Reap Regional Campus (Wat Bo)</option>
+                            <option value="battambang">Battambang Innovation Hub</option>
+                          </select>
+                          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 text-slate-400">
+                            {selectHasError ? (
+                              <AlertTriangle className="size-4 text-red-500" />
+                            ) : (
+                              <ChevronDown className="size-4" />
+                            )}
+                          </div>
+                        </div>
+
+                        {selectHasError ? (
+                          <p className="flex items-center gap-1 font-sans text-xs text-red-600">
+                            <AlertTriangle className="size-3.5" />
+                            <span>Valid campus branch is required for faculty allocation.</span>
+                          </p>
+                        ) : (
+                          <p className="font-sans text-[11px] text-slate-500">
+                            Determines localized classroom scheduling, faculty advisors, and
+                            regional fee adjustments.
+                          </p>
+                        )}
+                      </div>
+                    )}
+
+                    {spec.id === 'comp-skeleton' && (
+                      <div className="space-y-3 font-sans">
+                        <div className="flex items-center justify-between text-xs">
+                          <span className="font-bold text-[#0A1A4A]">
+                            Content Card Loading State
+                          </span>
+                          <span className="font-mono text-[10px] text-slate-400">
+                            Avoids Cumulative Layout Shift (CLS)
+                          </span>
+                        </div>
+
+                        <div className="space-y-3 rounded-xl border border-slate-200 bg-white p-3.5 shadow-2xs">
+                          <div className="flex items-center gap-3">
+                            <div className="size-10 shrink-0 animate-pulse rounded-full bg-slate-200" />
+                            <div className="min-w-0 flex-1 space-y-1.5">
+                              <div className="h-3.5 w-1/3 animate-pulse rounded-md bg-slate-200" />
+                              <div className="h-2.5 w-1/2 animate-pulse rounded-md bg-slate-100" />
+                            </div>
+                          </div>
+
+                          <div className="space-y-2 pt-1">
+                            <div className="h-2.5 w-full animate-pulse rounded-md bg-slate-100" />
+                            <div className="h-2.5 w-5/6 animate-pulse rounded-md bg-slate-100" />
+                            <div className="h-2.5 w-2/3 animate-pulse rounded-md bg-slate-100" />
+                          </div>
+
+                          <div className="flex items-center justify-between border-t border-slate-100 pt-2">
+                            <div className="h-6 w-20 animate-pulse rounded-lg bg-slate-200" />
+                            <div className="h-6 w-14 animate-pulse rounded-lg bg-slate-100" />
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {spec.id === 'comp-switch' && (
+                      <div className="space-y-3 font-sans">
+                        <div className="flex items-center justify-between">
+                          <span className="text-xs font-bold text-[#0A1A4A]">
+                            Immediate State Toggle
+                          </span>
+                          <span
+                            className={cn(
+                              'rounded-md px-1.5 py-0.5 font-mono text-[10px] font-bold',
+                              switchActive
+                                ? 'border border-emerald-200 bg-emerald-50 text-emerald-700'
+                                : 'bg-slate-100 text-slate-500',
+                            )}
+                          >
+                            {switchActive ? 'Enabled · Auto-Save' : 'Disabled · Standby'}
+                          </span>
+                        </div>
+
+                        <div className="space-y-2.5">
+                          <label className="flex cursor-pointer items-center justify-between rounded-xl border border-[#CAD3F5] bg-white p-3 transition-colors hover:bg-slate-50">
+                            <div className="space-y-0.5 pr-4">
+                              <span className="block font-sans text-xs font-bold text-[#0A1A4A]">
+                                Automated SMS Grade Notification
+                              </span>
+                              <span className="block font-sans text-[11px] text-slate-500">
+                                Dispatches instant SMS to registered guardians upon exam score
+                                publication
+                              </span>
+                            </div>
+                            <button
+                              type="button"
+                              role="switch"
+                              aria-checked={switchActive}
+                              onClick={() => setSwitchActive(!switchActive)}
                               className={cn(
-                                'py-0.2 cursor-pointer rounded px-1.5 text-[9px] font-bold uppercase transition-colors',
-                                progressBarSize === sz
+                                'relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:ring-2 focus:ring-[#0056FF] focus:ring-offset-2 focus:outline-hidden',
+                                switchActive ? 'bg-[#0056FF]' : 'bg-slate-200',
+                              )}
+                            >
+                              <span
+                                aria-hidden="true"
+                                className={cn(
+                                  'pointer-events-none inline-block size-5 transform rounded-full bg-white shadow-sm ring-0 transition duration-200 ease-in-out',
+                                  switchActive ? 'translate-x-5' : 'translate-x-0',
+                                )}
+                              />
+                            </button>
+                          </label>
+
+                          <label className="flex cursor-not-allowed items-center justify-between rounded-xl border border-slate-200 bg-slate-50 p-3 opacity-60">
+                            <div className="space-y-0.5 pr-4">
+                              <span className="block font-sans text-xs font-bold text-slate-500">
+                                Enterprise Ledger Sync (Locked)
+                              </span>
+                              <span className="block font-sans text-[11px] text-slate-400">
+                                Requires Super Administrator elevated access permissions to
+                                reconfigure
+                              </span>
+                            </div>
+                            <div className="relative inline-flex h-6 w-11 shrink-0 rounded-full border-2 border-transparent bg-slate-300">
+                              <span className="inline-block size-5 rounded-full bg-white shadow-sm" />
+                            </div>
+                          </label>
+                        </div>
+                      </div>
+                    )}
+
+                    {spec.id === 'comp-tabs' && (
+                      <div className="space-y-3 font-sans">
+                        <div className="flex items-center justify-between">
+                          <span className="text-xs font-bold text-[#0A1A4A]">
+                            Section Navigation
+                          </span>
+                          <div className="flex rounded border border-[#CAD3F5] p-0.5 font-mono text-[10px]">
+                            <button
+                              type="button"
+                              onClick={() => setTabsVariant('pills')}
+                              className={cn(
+                                'cursor-pointer rounded px-2 py-0.5 font-bold transition-colors',
+                                tabsVariant === 'pills'
                                   ? 'bg-[#0056FF] text-white'
                                   : 'text-slate-500 hover:text-slate-900',
                               )}
                             >
-                              {sz}
+                              Pills
                             </button>
-                          ))}
+                            <button
+                              type="button"
+                              onClick={() => setTabsVariant('underlined')}
+                              className={cn(
+                                'cursor-pointer rounded px-2 py-0.5 font-bold transition-colors',
+                                tabsVariant === 'underlined'
+                                  ? 'bg-[#0056FF] text-white'
+                                  : 'text-slate-500 hover:text-slate-900',
+                              )}
+                            >
+                              Underlined
+                            </button>
+                          </div>
                         </div>
-                      </div>
-                    </div>
 
-                    <div
-                      role="progressbar"
-                      aria-valuenow={progressBarVal}
-                      aria-valuemin={0}
-                      aria-valuemax={100}
-                      aria-label="Academic Transcript Upload Progress"
-                      className={cn(
-                        'w-full overflow-hidden rounded-full bg-slate-100',
-                        progressBarSize === 'sm' && 'h-1.5',
-                        progressBarSize === 'md' && 'h-2.5',
-                        progressBarSize === 'lg' && 'h-4',
-                      )}
-                    >
-                      <div
-                        className="h-full rounded-full bg-[#0056FF] transition-all duration-300"
-                        style={{ width: `${progressBarVal}%` }}
-                      />
-                    </div>
-
-                    <div className="flex items-center justify-between font-mono text-[10px] text-slate-400">
-                      <span>File size: 4.2 MB / 6.1 MB</span>
-                      <div className="flex items-center gap-2">
-                        <button
-                          type="button"
-                          onClick={() => setProgressBarVal((v) => Math.max(10, v - 15))}
-                          className="cursor-pointer hover:text-[#0056FF]"
-                        >
-                          -15%
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => setProgressBarVal((v) => Math.min(100, v + 15))}
-                          className="cursor-pointer hover:text-[#0056FF]"
-                        >
-                          +15%
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {spec.id === 'comp-radio' && (
-                  <div className="space-y-3 font-sans">
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs font-bold text-[#0A1A4A]">
-                        Tuition Payment Frequency
-                      </span>
-                      <button
-                        type="button"
-                        onClick={() => setRadioHasError(!radioHasError)}
-                        className={cn(
-                          'cursor-pointer rounded px-1.5 py-0.5 font-mono text-[10px] font-bold transition-colors',
-                          radioHasError
-                            ? 'border border-red-200 bg-red-50 text-red-600'
-                            : 'bg-slate-100 text-slate-600',
-                        )}
-                      >
-                        {radioHasError ? 'Clear Error' : 'Simulate Error'}
-                      </button>
-                    </div>
-
-                    <div
-                      role="radiogroup"
-                      aria-label="Payment Frequency"
-                      aria-invalid={radioHasError}
-                      className="space-y-2"
-                    >
-                      {[
-                        {
-                          id: 'term-semester',
-                          label: 'Semester Payment',
-                          desc: 'Two installment billing cycles per academic year',
-                        },
-                        {
-                          id: 'term-annual',
-                          label: 'Annual Advance',
-                          desc: '5% tuition discount paid upfront before term orientation',
-                        },
-                        {
-                          id: 'term-monthly',
-                          label: 'Monthly Direct Debit',
-                          desc: '10 recurring debit schedules via Bakong KHQR',
-                        },
-                      ].map((opt) => {
-                        const isChecked = radioSelected === opt.id;
-                        return (
-                          <label
-                            key={opt.id}
-                            htmlFor={`radio-${opt.id}`}
-                            className={cn(
-                              'flex cursor-pointer items-start gap-3 rounded-xl border p-2.5 transition-all',
-                              isChecked
-                                ? 'border-[#0056FF] bg-[#EFF5FF]/40'
-                                : 'border-[#CAD3F5] bg-white hover:bg-slate-50',
-                              radioHasError && 'border-red-300 bg-red-50/20',
-                            )}
-                          >
-                            <input
-                              type="radio"
-                              id={`radio-${opt.id}`}
-                              name="paymentFrequency"
-                              value={opt.id}
-                              checked={isChecked}
-                              onChange={() => setRadioSelected(opt.id)}
-                              className="mt-0.5 size-4 text-[#0056FF] focus:ring-[#0056FF]"
-                            />
-                            <div className="space-y-0.5">
-                              <span className="block font-sans text-xs font-bold text-[#0A1A4A]">
-                                {opt.label}
-                              </span>
-                              <span className="block font-sans text-[11px] text-slate-500">
-                                {opt.desc}
-                              </span>
-                            </div>
-                          </label>
-                        );
-                      })}
-                    </div>
-
-                    {radioHasError && (
-                      <p className="flex items-center gap-1 font-sans text-xs text-red-600">
-                        <AlertTriangle className="size-3.5" />
-                        <span>
-                          Please select an active tuition payment option to continue registration.
-                        </span>
-                      </p>
-                    )}
-                  </div>
-                )}
-
-                {spec.id === 'comp-select' && (
-                  <div className="space-y-3 font-sans">
-                    <div className="flex items-center justify-between">
-                      <label htmlFor="campus-select" className="text-xs font-bold text-[#0A1A4A]">
-                        Campus Branch Location
-                      </label>
-                      <button
-                        type="button"
-                        onClick={() => setSelectHasError(!selectHasError)}
-                        className={cn(
-                          'cursor-pointer rounded px-1.5 py-0.5 font-mono text-[10px] font-bold transition-colors',
-                          selectHasError
-                            ? 'border border-red-200 bg-red-50 text-red-600'
-                            : 'bg-slate-100 text-slate-600',
-                        )}
-                      >
-                        {selectHasError ? 'Clear Error' : 'Simulate Error'}
-                      </button>
-                    </div>
-
-                    <div className="relative">
-                      <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                        <span className="rounded bg-slate-100 px-1.5 py-0.5 font-mono text-[10px] font-bold text-[#0056FF]">
-                          KH-01
-                        </span>
-                      </div>
-                      <select
-                        id="campus-select"
-                        value={selectValue}
-                        onChange={(e) => setSelectValue(e.target.value)}
-                        aria-invalid={selectHasError}
-                        className={cn(
-                          'w-full appearance-none rounded-xl border bg-white py-2.5 pr-10 pl-18 font-sans text-xs font-medium text-[#0A1A4A] shadow-2xs transition-all focus:border-[#0056FF] focus:ring-2 focus:ring-[#0056FF]/20 focus:outline-hidden',
-                          selectHasError
-                            ? 'border-red-400 bg-red-50/20 text-red-900 focus:border-red-500 focus:ring-red-200'
-                            : 'border-[#CAD3F5] hover:border-[#0056FF]/50',
-                        )}
-                      >
-                        <option value="">Choose campus location...</option>
-                        <option value="pp-central">Phnom Penh Central Campus (Sen Sok)</option>
-                        <option value="siem-reap">Siem Reap Regional Campus (Wat Bo)</option>
-                        <option value="battambang">Battambang Innovation Hub</option>
-                      </select>
-                      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 text-slate-400">
-                        {selectHasError ? (
-                          <AlertTriangle className="size-4 text-red-500" />
-                        ) : (
-                          <ChevronDown className="size-4" />
-                        )}
-                      </div>
-                    </div>
-
-                    {selectHasError ? (
-                      <p className="flex items-center gap-1 font-sans text-xs text-red-600">
-                        <AlertTriangle className="size-3.5" />
-                        <span>Valid campus branch is required for faculty allocation.</span>
-                      </p>
-                    ) : (
-                      <p className="font-sans text-[11px] text-slate-500">
-                        Determines localized classroom scheduling, faculty advisors, and regional
-                        fee adjustments.
-                      </p>
-                    )}
-                  </div>
-                )}
-
-                {spec.id === 'comp-skeleton' && (
-                  <div className="space-y-3 font-sans">
-                    <div className="flex items-center justify-between text-xs">
-                      <span className="font-bold text-[#0A1A4A]">Content Card Loading State</span>
-                      <span className="font-mono text-[10px] text-slate-400">
-                        Avoids Cumulative Layout Shift (CLS)
-                      </span>
-                    </div>
-
-                    <div className="space-y-3 rounded-xl border border-slate-200 bg-white p-3.5 shadow-2xs">
-                      <div className="flex items-center gap-3">
-                        <div className="size-10 shrink-0 animate-pulse rounded-full bg-slate-200" />
-                        <div className="min-w-0 flex-1 space-y-1.5">
-                          <div className="h-3.5 w-1/3 animate-pulse rounded-md bg-slate-200" />
-                          <div className="h-2.5 w-1/2 animate-pulse rounded-md bg-slate-100" />
-                        </div>
-                      </div>
-
-                      <div className="space-y-2 pt-1">
-                        <div className="h-2.5 w-full animate-pulse rounded-md bg-slate-100" />
-                        <div className="h-2.5 w-5/6 animate-pulse rounded-md bg-slate-100" />
-                        <div className="h-2.5 w-2/3 animate-pulse rounded-md bg-slate-100" />
-                      </div>
-
-                      <div className="flex items-center justify-between border-t border-slate-100 pt-2">
-                        <div className="h-6 w-20 animate-pulse rounded-lg bg-slate-200" />
-                        <div className="h-6 w-14 animate-pulse rounded-lg bg-slate-100" />
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {spec.id === 'comp-switch' && (
-                  <div className="space-y-3 font-sans">
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs font-bold text-[#0A1A4A]">
-                        Immediate State Toggle
-                      </span>
-                      <span
-                        className={cn(
-                          'rounded-md px-1.5 py-0.5 font-mono text-[10px] font-bold',
-                          switchActive
-                            ? 'border border-emerald-200 bg-emerald-50 text-emerald-700'
-                            : 'bg-slate-100 text-slate-500',
-                        )}
-                      >
-                        {switchActive ? 'Enabled · Auto-Save' : 'Disabled · Standby'}
-                      </span>
-                    </div>
-
-                    <div className="space-y-2.5">
-                      <label className="flex cursor-pointer items-center justify-between rounded-xl border border-[#CAD3F5] bg-white p-3 transition-colors hover:bg-slate-50">
-                        <div className="space-y-0.5 pr-4">
-                          <span className="block font-sans text-xs font-bold text-[#0A1A4A]">
-                            Automated SMS Grade Notification
-                          </span>
-                          <span className="block font-sans text-[11px] text-slate-500">
-                            Dispatches instant SMS to registered guardians upon exam score
-                            publication
-                          </span>
-                        </div>
-                        <button
-                          type="button"
-                          role="switch"
-                          aria-checked={switchActive}
-                          onClick={() => setSwitchActive(!switchActive)}
+                        <div
                           className={cn(
-                            'relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:ring-2 focus:ring-[#0056FF] focus:ring-offset-2 focus:outline-hidden',
-                            switchActive ? 'bg-[#0056FF]' : 'bg-slate-200',
+                            'flex items-center gap-1.5',
+                            tabsVariant === 'underlined' && 'border-b border-[#CAD3F5]',
                           )}
                         >
-                          <span
-                            aria-hidden="true"
+                          {[
+                            { id: 'overview', label: 'Overview' },
+                            { id: 'curriculum', label: 'Curriculum' },
+                            { id: 'faculty', label: 'Faculty' },
+                          ].map((t) => {
+                            const isTabActive = tabsActive === t.id;
+                            return (
+                              <button
+                                key={t.id}
+                                type="button"
+                                role="tab"
+                                aria-selected={isTabActive}
+                                onClick={() => setTabsActive(t.id)}
+                                className={cn(
+                                  'cursor-pointer px-3 py-1.5 font-sans text-xs font-bold transition-all',
+                                  tabsVariant === 'pills' &&
+                                    (isTabActive
+                                      ? 'rounded-lg bg-[#0056FF] text-white shadow-xs'
+                                      : 'rounded-lg text-slate-600 hover:bg-slate-100'),
+                                  tabsVariant === 'underlined' &&
+                                    (isTabActive
+                                      ? '-mb-px border-b-2 border-[#0056FF] text-[#0056FF]'
+                                      : 'text-slate-600 hover:text-slate-900'),
+                                )}
+                              >
+                                {t.label}
+                              </button>
+                            );
+                          })}
+                          <button
+                            type="button"
+                            disabled
+                            className="cursor-not-allowed px-3 py-1.5 font-sans text-xs font-medium text-slate-300"
+                          >
+                            Archives
+                          </button>
+                        </div>
+
+                        <div className="rounded-xl border border-slate-100 bg-[#F8FAFC] p-3 text-xs leading-relaxed text-slate-600">
+                          {tabsActive === 'overview' &&
+                            'Overview panel: Core institutional degree accreditation, academic requirements, and department governance details.'}
+                          {tabsActive === 'curriculum' &&
+                            'Curriculum panel: 8 semester course syllabi, prerequisite course matrix, and laboratory credit allocations.'}
+                          {tabsActive === 'faculty' &&
+                            'Faculty panel: 24 active professors, department research groups, and scheduled consultation office hours.'}
+                        </div>
+                      </div>
+                    )}
+
+                    {spec.id === 'comp-textarea' && (
+                      <div className="space-y-3 font-sans">
+                        <div className="flex items-center justify-between">
+                          <label
+                            htmlFor="comp-textarea-input"
+                            className="text-xs font-bold text-[#0A1A4A]"
+                          >
+                            Academic Performance Evaluation
+                          </label>
+                          <button
+                            type="button"
+                            onClick={() => setTextareaError(!textareaError)}
                             className={cn(
-                              'pointer-events-none inline-block size-5 transform rounded-full bg-white shadow-sm ring-0 transition duration-200 ease-in-out',
-                              switchActive ? 'translate-x-5' : 'translate-x-0',
+                              'cursor-pointer rounded px-1.5 py-0.5 font-mono text-[10px] font-bold transition-colors',
+                              textareaError
+                                ? 'border border-red-200 bg-red-50 text-red-600'
+                                : 'bg-slate-100 text-slate-600',
+                            )}
+                          >
+                            {textareaError ? 'Clear Error' : 'Simulate Error'}
+                          </button>
+                        </div>
+
+                        <textarea
+                          id="comp-textarea-input"
+                          rows={3}
+                          value={textareaValue}
+                          onChange={(e) => setTextareaValue(e.target.value)}
+                          placeholder="Enter detailed semester commentary..."
+                          aria-invalid={textareaError}
+                          className={cn(
+                            'w-full rounded-xl border bg-white p-3 font-sans text-xs font-medium text-[#0A1A4A] shadow-2xs transition-all placeholder:text-slate-400 focus:border-[#0056FF] focus:ring-2 focus:ring-[#0056FF]/20 focus:outline-hidden',
+                            textareaError
+                              ? 'border-red-400 bg-red-50/20 text-red-900 focus:border-red-500 focus:ring-red-200'
+                              : 'border-[#CAD3F5] hover:border-[#0056FF]/50',
+                          )}
+                        />
+
+                        <div className="flex items-center justify-between font-mono text-[10px]">
+                          {textareaError ? (
+                            <span className="flex items-center gap-1 font-sans text-xs text-red-600">
+                              <AlertTriangle className="size-3.5" />
+                              Commentary must be at least 40 characters for formal report card
+                              export.
+                            </span>
+                          ) : (
+                            <span className="font-sans text-[11px] text-slate-500">
+                              Printed directly onto official end-of-term transcript card.
+                            </span>
+                          )}
+                          <span className="shrink-0 text-slate-400">
+                            {textareaValue.length} / 500
+                          </span>
+                        </div>
+                      </div>
+                    )}
+
+                    {spec.id === 'comp-textfield' && (
+                      <div className="space-y-3 font-sans">
+                        <div className="flex items-center justify-between">
+                          <label
+                            htmlFor="comp-textfield-input"
+                            className="text-xs font-bold text-[#0A1A4A]"
+                          >
+                            Student Full Name (Latin)
+                          </label>
+                          <button
+                            type="button"
+                            onClick={() => setTextFieldError(!textFieldError)}
+                            className={cn(
+                              'cursor-pointer rounded px-1.5 py-0.5 font-mono text-[10px] font-bold transition-colors',
+                              textFieldError
+                                ? 'border border-red-200 bg-red-50 text-red-600'
+                                : 'bg-slate-100 text-slate-600',
+                            )}
+                          >
+                            {textFieldError ? 'Clear Error' : 'Simulate Error'}
+                          </button>
+                        </div>
+
+                        <div className="relative">
+                          <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
+                            <User className="size-4" />
+                          </div>
+                          <input
+                            id="comp-textfield-input"
+                            type="text"
+                            value={textFieldValue}
+                            onChange={(e) => setTextFieldValue(e.target.value)}
+                            placeholder="Enter full legal name..."
+                            aria-invalid={textFieldError}
+                            className={cn(
+                              'w-full rounded-xl border bg-white py-2.5 pr-20 pl-9.5 font-sans text-xs font-medium text-[#0A1A4A] shadow-2xs transition-all placeholder:text-slate-400 focus:border-[#0056FF] focus:ring-2 focus:ring-[#0056FF]/20 focus:outline-hidden',
+                              textFieldError
+                                ? 'border-red-400 bg-red-50/20 text-red-900 focus:border-red-500 focus:ring-red-200'
+                                : 'border-[#CAD3F5] hover:border-[#0056FF]/50',
                             )}
                           />
-                        </button>
-                      </label>
-
-                      <label className="flex cursor-not-allowed items-center justify-between rounded-xl border border-slate-200 bg-slate-50 p-3 opacity-60">
-                        <div className="space-y-0.5 pr-4">
-                          <span className="block font-sans text-xs font-bold text-slate-500">
-                            Enterprise Ledger Sync (Locked)
-                          </span>
-                          <span className="block font-sans text-[11px] text-slate-400">
-                            Requires Super Administrator elevated access permissions to reconfigure
-                          </span>
-                        </div>
-                        <div className="relative inline-flex h-6 w-11 shrink-0 rounded-full border-2 border-transparent bg-slate-300">
-                          <span className="inline-block size-5 rounded-full bg-white shadow-sm" />
-                        </div>
-                      </label>
-                    </div>
-                  </div>
-                )}
-
-                {spec.id === 'comp-tabs' && (
-                  <div className="space-y-3 font-sans">
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs font-bold text-[#0A1A4A]">Section Navigation</span>
-                      <div className="flex rounded border border-[#CAD3F5] p-0.5 font-mono text-[10px]">
-                        <button
-                          type="button"
-                          onClick={() => setTabsVariant('pills')}
-                          className={cn(
-                            'cursor-pointer rounded px-2 py-0.5 font-bold transition-colors',
-                            tabsVariant === 'pills'
-                              ? 'bg-[#0056FF] text-white'
-                              : 'text-slate-500 hover:text-slate-900',
-                          )}
-                        >
-                          Pills
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => setTabsVariant('underlined')}
-                          className={cn(
-                            'cursor-pointer rounded px-2 py-0.5 font-bold transition-colors',
-                            tabsVariant === 'underlined'
-                              ? 'bg-[#0056FF] text-white'
-                              : 'text-slate-500 hover:text-slate-900',
-                          )}
-                        >
-                          Underlined
-                        </button>
-                      </div>
-                    </div>
-
-                    <div
-                      className={cn(
-                        'flex items-center gap-1.5',
-                        tabsVariant === 'underlined' && 'border-b border-[#CAD3F5]',
-                      )}
-                    >
-                      {[
-                        { id: 'overview', label: 'Overview' },
-                        { id: 'curriculum', label: 'Curriculum' },
-                        { id: 'faculty', label: 'Faculty' },
-                      ].map((t) => {
-                        const isTabActive = tabsActive === t.id;
-                        return (
-                          <button
-                            key={t.id}
-                            type="button"
-                            role="tab"
-                            aria-selected={isTabActive}
-                            onClick={() => setTabsActive(t.id)}
-                            className={cn(
-                              'cursor-pointer px-3 py-1.5 font-sans text-xs font-bold transition-all',
-                              tabsVariant === 'pills' &&
-                                (isTabActive
-                                  ? 'rounded-lg bg-[#0056FF] text-white shadow-xs'
-                                  : 'rounded-lg text-slate-600 hover:bg-slate-100'),
-                              tabsVariant === 'underlined' &&
-                                (isTabActive
-                                  ? '-mb-px border-b-2 border-[#0056FF] text-[#0056FF]'
-                                  : 'text-slate-600 hover:text-slate-900'),
-                            )}
-                          >
-                            {t.label}
-                          </button>
-                        );
-                      })}
-                      <button
-                        type="button"
-                        disabled
-                        className="cursor-not-allowed px-3 py-1.5 font-sans text-xs font-medium text-slate-300"
-                      >
-                        Archives
-                      </button>
-                    </div>
-
-                    <div className="rounded-xl border border-slate-100 bg-[#F8FAFC] p-3 text-xs leading-relaxed text-slate-600">
-                      {tabsActive === 'overview' &&
-                        'Overview panel: Core institutional degree accreditation, academic requirements, and department governance details.'}
-                      {tabsActive === 'curriculum' &&
-                        'Curriculum panel: 8 semester course syllabi, prerequisite course matrix, and laboratory credit allocations.'}
-                      {tabsActive === 'faculty' &&
-                        'Faculty panel: 24 active professors, department research groups, and scheduled consultation office hours.'}
-                    </div>
-                  </div>
-                )}
-
-                {spec.id === 'comp-textarea' && (
-                  <div className="space-y-3 font-sans">
-                    <div className="flex items-center justify-between">
-                      <label
-                        htmlFor="comp-textarea-input"
-                        className="text-xs font-bold text-[#0A1A4A]"
-                      >
-                        Academic Performance Evaluation
-                      </label>
-                      <button
-                        type="button"
-                        onClick={() => setTextareaError(!textareaError)}
-                        className={cn(
-                          'cursor-pointer rounded px-1.5 py-0.5 font-mono text-[10px] font-bold transition-colors',
-                          textareaError
-                            ? 'border border-red-200 bg-red-50 text-red-600'
-                            : 'bg-slate-100 text-slate-600',
-                        )}
-                      >
-                        {textareaError ? 'Clear Error' : 'Simulate Error'}
-                      </button>
-                    </div>
-
-                    <textarea
-                      id="comp-textarea-input"
-                      rows={3}
-                      value={textareaValue}
-                      onChange={(e) => setTextareaValue(e.target.value)}
-                      placeholder="Enter detailed semester commentary..."
-                      aria-invalid={textareaError}
-                      className={cn(
-                        'w-full rounded-xl border bg-white p-3 font-sans text-xs font-medium text-[#0A1A4A] shadow-2xs transition-all placeholder:text-slate-400 focus:border-[#0056FF] focus:ring-2 focus:ring-[#0056FF]/20 focus:outline-hidden',
-                        textareaError
-                          ? 'border-red-400 bg-red-50/20 text-red-900 focus:border-red-500 focus:ring-red-200'
-                          : 'border-[#CAD3F5] hover:border-[#0056FF]/50',
-                      )}
-                    />
-
-                    <div className="flex items-center justify-between font-mono text-[10px]">
-                      {textareaError ? (
-                        <span className="flex items-center gap-1 font-sans text-xs text-red-600">
-                          <AlertTriangle className="size-3.5" />
-                          Commentary must be at least 40 characters for formal report card export.
-                        </span>
-                      ) : (
-                        <span className="font-sans text-[11px] text-slate-500">
-                          Printed directly onto official end-of-term transcript card.
-                        </span>
-                      )}
-                      <span className="shrink-0 text-slate-400">{textareaValue.length} / 500</span>
-                    </div>
-                  </div>
-                )}
-
-                {spec.id === 'comp-textfield' && (
-                  <div className="space-y-3 font-sans">
-                    <div className="flex items-center justify-between">
-                      <label
-                        htmlFor="comp-textfield-input"
-                        className="text-xs font-bold text-[#0A1A4A]"
-                      >
-                        Student Full Name (Latin)
-                      </label>
-                      <button
-                        type="button"
-                        onClick={() => setTextFieldError(!textFieldError)}
-                        className={cn(
-                          'cursor-pointer rounded px-1.5 py-0.5 font-mono text-[10px] font-bold transition-colors',
-                          textFieldError
-                            ? 'border border-red-200 bg-red-50 text-red-600'
-                            : 'bg-slate-100 text-slate-600',
-                        )}
-                      >
-                        {textFieldError ? 'Clear Error' : 'Simulate Error'}
-                      </button>
-                    </div>
-
-                    <div className="relative">
-                      <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
-                        <User className="size-4" />
-                      </div>
-                      <input
-                        id="comp-textfield-input"
-                        type="text"
-                        value={textFieldValue}
-                        onChange={(e) => setTextFieldValue(e.target.value)}
-                        placeholder="Enter full legal name..."
-                        aria-invalid={textFieldError}
-                        className={cn(
-                          'w-full rounded-xl border bg-white py-2.5 pr-20 pl-9.5 font-sans text-xs font-medium text-[#0A1A4A] shadow-2xs transition-all placeholder:text-slate-400 focus:border-[#0056FF] focus:ring-2 focus:ring-[#0056FF]/20 focus:outline-hidden',
-                          textFieldError
-                            ? 'border-red-400 bg-red-50/20 text-red-900 focus:border-red-500 focus:ring-red-200'
-                            : 'border-[#CAD3F5] hover:border-[#0056FF]/50',
-                        )}
-                      />
-                      <div className="absolute inset-y-0 right-0 flex items-center pr-2">
-                        <span className="rounded bg-slate-100 px-2 py-1 font-mono text-[10px] font-bold text-slate-500">
-                          ID: 8092
-                        </span>
-                      </div>
-                    </div>
-
-                    {textFieldError ? (
-                      <p className="flex items-center gap-1 font-sans text-xs text-red-600">
-                        <AlertTriangle className="size-3.5" />
-                        <span>Name must match passport or national identification document.</span>
-                      </p>
-                    ) : (
-                      <p className="font-sans text-[11px] text-slate-500">
-                        Primary identification field synchronized with Ministry accreditation
-                        database.
-                      </p>
-                    )}
-                  </div>
-                )}
-
-                {spec.id === 'comp-toast' && (
-                  <div className="space-y-3 font-sans">
-                    <div className="flex items-center justify-between text-xs">
-                      <span className="font-bold text-[#0A1A4A]">
-                        Stacked Toast Notification Layer
-                      </span>
-                      <div className="flex items-center gap-1.5 font-mono text-[10px]">
-                        <button
-                          type="button"
-                          onClick={() => setToastRole('success')}
-                          className={cn(
-                            'cursor-pointer rounded px-1.5 py-0.5 font-bold transition-colors',
-                            toastRole === 'success'
-                              ? 'bg-emerald-600 text-white'
-                              : 'bg-slate-100 text-slate-600',
-                          )}
-                        >
-                          Success
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => setToastRole('error')}
-                          className={cn(
-                            'cursor-pointer rounded px-1.5 py-0.5 font-bold transition-colors',
-                            toastRole === 'error'
-                              ? 'bg-red-600 text-white'
-                              : 'bg-slate-100 text-slate-600',
-                          )}
-                        >
-                          Error
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => setToastVisible(!toastVisible)}
-                          className="cursor-pointer rounded border border-slate-200 px-1.5 py-0.5 font-bold text-slate-500 hover:bg-slate-50"
-                        >
-                          {toastVisible ? 'Dismiss' : 'Show'}
-                        </button>
-                      </div>
-                    </div>
-
-                    {toastVisible && (
-                      <div
-                        role="status"
-                        aria-live="polite"
-                        className={cn(
-                          'flex items-center justify-between gap-3 rounded-xl border p-3 shadow-md transition-all',
-                          toastRole === 'success' &&
-                            'border-emerald-200 bg-emerald-50/90 text-emerald-950',
-                          toastRole === 'error' && 'border-red-200 bg-red-50/90 text-red-950',
-                        )}
-                      >
-                        <div className="flex min-w-0 items-center gap-2.5">
-                          {toastRole === 'success' ? (
-                            <CheckCircle2 className="size-4 shrink-0 text-emerald-600" />
-                          ) : (
-                            <XCircle className="size-4 shrink-0 text-red-600" />
-                          )}
-                          <div className="space-y-0.5 text-xs">
-                            <span className="block font-bold">
-                              {toastRole === 'success'
-                                ? 'Student Enrollment Confirmed'
-                                : 'Payment Transaction Declined'}
-                            </span>
-                            <span className="block text-[11px] opacity-80">
-                              {toastRole === 'success'
-                                ? 'Invoice #9042 created and guardian notified'
-                                : 'Bakong KHQR gateway returned timeout code E401'}
+                          <div className="absolute inset-y-0 right-0 flex items-center pr-2">
+                            <span className="rounded bg-slate-100 px-2 py-1 font-mono text-[10px] font-bold text-slate-500">
+                              ID: 8092
                             </span>
                           </div>
                         </div>
 
-                        <div className="flex shrink-0 items-center gap-2">
-                          <button
-                            type="button"
+                        {textFieldError ? (
+                          <p className="flex items-center gap-1 font-sans text-xs text-red-600">
+                            <AlertTriangle className="size-3.5" />
+                            <span>
+                              Name must match passport or national identification document.
+                            </span>
+                          </p>
+                        ) : (
+                          <p className="font-sans text-[11px] text-slate-500">
+                            Primary identification field synchronized with Ministry accreditation
+                            database.
+                          </p>
+                        )}
+                      </div>
+                    )}
+
+                    {spec.id === 'comp-toast' && (
+                      <div className="space-y-3 font-sans">
+                        <div className="flex items-center justify-between text-xs">
+                          <span className="font-bold text-[#0A1A4A]">
+                            Stacked Toast Notification Layer
+                          </span>
+                          <div className="flex items-center gap-1.5 font-mono text-[10px]">
+                            <button
+                              type="button"
+                              onClick={() => setToastRole('success')}
+                              className={cn(
+                                'cursor-pointer rounded px-1.5 py-0.5 font-bold transition-colors',
+                                toastRole === 'success'
+                                  ? 'bg-emerald-600 text-white'
+                                  : 'bg-slate-100 text-slate-600',
+                              )}
+                            >
+                              Success
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => setToastRole('error')}
+                              className={cn(
+                                'cursor-pointer rounded px-1.5 py-0.5 font-bold transition-colors',
+                                toastRole === 'error'
+                                  ? 'bg-red-600 text-white'
+                                  : 'bg-slate-100 text-slate-600',
+                              )}
+                            >
+                              Error
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => setToastVisible(!toastVisible)}
+                              className="cursor-pointer rounded border border-slate-200 px-1.5 py-0.5 font-bold text-slate-500 hover:bg-slate-50"
+                            >
+                              {toastVisible ? 'Dismiss' : 'Show'}
+                            </button>
+                          </div>
+                        </div>
+
+                        {toastVisible && (
+                          <div
+                            role="status"
+                            aria-live="polite"
                             className={cn(
-                              'cursor-pointer rounded-lg px-2 py-1 font-sans text-xs font-bold transition-colors',
-                              toastRole === 'success'
-                                ? 'bg-emerald-600 text-white hover:bg-emerald-700'
-                                : 'bg-red-600 text-white hover:bg-red-700',
+                              'flex items-center justify-between gap-3 rounded-xl border p-3 shadow-md transition-all',
+                              toastRole === 'success' &&
+                                'border-emerald-200 bg-emerald-50/90 text-emerald-950',
+                              toastRole === 'error' && 'border-red-200 bg-red-50/90 text-red-950',
                             )}
                           >
-                            {toastRole === 'success' ? 'Undo' : 'Retry'}
+                            <div className="flex min-w-0 items-center gap-2.5">
+                              {toastRole === 'success' ? (
+                                <CheckCircle2 className="size-4 shrink-0 text-emerald-600" />
+                              ) : (
+                                <XCircle className="size-4 shrink-0 text-red-600" />
+                              )}
+                              <div className="space-y-0.5 text-xs">
+                                <span className="block font-bold">
+                                  {toastRole === 'success'
+                                    ? 'Student Enrollment Confirmed'
+                                    : 'Payment Transaction Declined'}
+                                </span>
+                                <span className="block text-[11px] opacity-80">
+                                  {toastRole === 'success'
+                                    ? 'Invoice #9042 created and guardian notified'
+                                    : 'Bakong KHQR gateway returned timeout code E401'}
+                                </span>
+                              </div>
+                            </div>
+
+                            <div className="flex shrink-0 items-center gap-2">
+                              <button
+                                type="button"
+                                className={cn(
+                                  'cursor-pointer rounded-lg px-2 py-1 font-sans text-xs font-bold transition-colors',
+                                  toastRole === 'success'
+                                    ? 'bg-emerald-600 text-white hover:bg-emerald-700'
+                                    : 'bg-red-600 text-white hover:bg-red-700',
+                                )}
+                              >
+                                {toastRole === 'success' ? 'Undo' : 'Retry'}
+                              </button>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    )}
+
+                    {spec.id === 'comp-tooltip' && (
+                      <div className="space-y-3 font-sans">
+                        <div className="flex items-center justify-between text-xs">
+                          <span className="font-bold text-[#0A1A4A]">
+                            Contextual Positioning &amp; Delay
+                          </span>
+                          <div className="flex rounded border border-[#CAD3F5] p-0.5 font-mono text-[10px]">
+                            <button
+                              type="button"
+                              onClick={() => setTooltipPos('top')}
+                              className={cn(
+                                'cursor-pointer rounded px-2 py-0.5 font-bold transition-colors',
+                                tooltipPos === 'top'
+                                  ? 'bg-[#0056FF] text-white'
+                                  : 'text-slate-500 hover:text-slate-900',
+                              )}
+                            >
+                              Top
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => setTooltipPos('bottom')}
+                              className={cn(
+                                'cursor-pointer rounded px-2 py-0.5 font-bold transition-colors',
+                                tooltipPos === 'bottom'
+                                  ? 'bg-[#0056FF] text-white'
+                                  : 'text-slate-500 hover:text-slate-900',
+                              )}
+                            >
+                              Bottom
+                            </button>
+                          </div>
+                        </div>
+
+                        <div className="relative flex flex-col items-center justify-center rounded-xl border border-slate-100 bg-[#F8FAFC] py-6">
+                          {tooltipPos === 'top' && (
+                            <div
+                              role="tooltip"
+                              className="animate-in fade-in zoom-in-95 mb-2 flex items-center gap-1.5 rounded-lg bg-[#0A1A4A] px-2.5 py-1 font-sans text-[11px] font-semibold text-white shadow-md duration-150"
+                            >
+                              <Info className="size-3 text-cyan-400" />
+                              <span>Calculated based on 8 semester credit weights (GPA 3.85)</span>
+                              <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-[#0A1A4A]" />
+                            </div>
+                          )}
+
+                          <button
+                            type="button"
+                            aria-describedby="gpa-tooltip"
+                            className="cursor-pointer rounded-xl border border-[#CAD3F5] bg-white px-4 py-2 font-sans text-xs font-bold text-[#0A1A4A] shadow-2xs hover:border-[#0056FF] hover:bg-[#EFF5FF] focus:border-[#0056FF] focus:ring-2 focus:ring-[#0056FF]/20 focus:outline-hidden"
+                          >
+                            Cumulative Academic GPA: 3.85
                           </button>
+
+                          {tooltipPos === 'bottom' && (
+                            <div
+                              role="tooltip"
+                              className="animate-in fade-in zoom-in-95 mt-2 flex items-center gap-1.5 rounded-lg bg-[#0A1A4A] px-2.5 py-1 font-sans text-[11px] font-semibold text-white shadow-md duration-150"
+                            >
+                              <Info className="size-3 text-cyan-400" />
+                              <span>Calculated based on 8 semester credit weights (GPA 3.85)</span>
+                              <div className="absolute bottom-full left-1/2 -translate-x-1/2 border-4 border-transparent border-b-[#0A1A4A]" />
+                            </div>
+                          )}
                         </div>
                       </div>
                     )}
-                  </div>
-                )}
-
-                {spec.id === 'comp-tooltip' && (
-                  <div className="space-y-3 font-sans">
-                    <div className="flex items-center justify-between text-xs">
-                      <span className="font-bold text-[#0A1A4A]">
-                        Contextual Positioning &amp; Delay
-                      </span>
-                      <div className="flex rounded border border-[#CAD3F5] p-0.5 font-mono text-[10px]">
-                        <button
-                          type="button"
-                          onClick={() => setTooltipPos('top')}
-                          className={cn(
-                            'cursor-pointer rounded px-2 py-0.5 font-bold transition-colors',
-                            tooltipPos === 'top'
-                              ? 'bg-[#0056FF] text-white'
-                              : 'text-slate-500 hover:text-slate-900',
-                          )}
-                        >
-                          Top
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => setTooltipPos('bottom')}
-                          className={cn(
-                            'cursor-pointer rounded px-2 py-0.5 font-bold transition-colors',
-                            tooltipPos === 'bottom'
-                              ? 'bg-[#0056FF] text-white'
-                              : 'text-slate-500 hover:text-slate-900',
-                          )}
-                        >
-                          Bottom
-                        </button>
-                      </div>
-                    </div>
-
-                    <div className="relative flex flex-col items-center justify-center rounded-xl border border-slate-100 bg-[#F8FAFC] py-6">
-                      {tooltipPos === 'top' && (
-                        <div
-                          role="tooltip"
-                          className="animate-in fade-in zoom-in-95 mb-2 flex items-center gap-1.5 rounded-lg bg-[#0A1A4A] px-2.5 py-1 font-sans text-[11px] font-semibold text-white shadow-md duration-150"
-                        >
-                          <Info className="size-3 text-cyan-400" />
-                          <span>Calculated based on 8 semester credit weights (GPA 3.85)</span>
-                          <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-[#0A1A4A]" />
-                        </div>
-                      )}
-
-                      <button
-                        type="button"
-                        aria-describedby="gpa-tooltip"
-                        className="cursor-pointer rounded-xl border border-[#CAD3F5] bg-white px-4 py-2 font-sans text-xs font-bold text-[#0A1A4A] shadow-2xs hover:border-[#0056FF] hover:bg-[#EFF5FF] focus:border-[#0056FF] focus:ring-2 focus:ring-[#0056FF]/20 focus:outline-hidden"
-                      >
-                        Cumulative Academic GPA: 3.85
-                      </button>
-
-                      {tooltipPos === 'bottom' && (
-                        <div
-                          role="tooltip"
-                          className="animate-in fade-in zoom-in-95 mt-2 flex items-center gap-1.5 rounded-lg bg-[#0A1A4A] px-2.5 py-1 font-sans text-[11px] font-semibold text-white shadow-md duration-150"
-                        >
-                          <Info className="size-3 text-cyan-400" />
-                          <span>Calculated based on 8 semester credit weights (GPA 3.85)</span>
-                          <div className="absolute bottom-full left-1/2 -translate-x-1/2 border-4 border-transparent border-b-[#0A1A4A]" />
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                )}
                   </div>
                 </div>
               </div>

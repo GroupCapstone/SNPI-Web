@@ -204,9 +204,9 @@ export function BrandConceptBlueprint() {
               Asterisk Logo Glyph (*) — Unified Bold Master Mark
             </h3>
             <p className="max-w-2xl text-xs leading-relaxed text-slate-600 sm:text-sm">
-              The official SNPI asterisk mark features unified wing geometry framing the iconic central
-              negative space. Weighted with bold vector stroke expansion to command optical prominence over
-              every surface canvas across three canonical editions:
+              The official SNPI asterisk mark features unified wing geometry framing the iconic
+              central negative space. Weighted with bold vector stroke expansion to command optical
+              prominence over every surface canvas across three canonical editions:
             </p>
           </div>
 
@@ -232,7 +232,9 @@ export function BrandConceptBlueprint() {
                 <div className="font-mono text-[10px] font-bold text-[#0056FF] uppercase">
                   Edition 01 (Core Base)
                 </div>
-                <div className="font-sans text-xs font-extrabold text-[#0A1A4A]">Blue Brand on Light</div>
+                <div className="font-sans text-xs font-extrabold text-[#0A1A4A]">
+                  Blue Brand on Light
+                </div>
               </div>
             </div>
             <span className="font-mono text-xs font-bold text-[#0056FF]">
@@ -256,7 +258,9 @@ export function BrandConceptBlueprint() {
                 <div className="font-mono text-[10px] font-bold text-blue-100 uppercase">
                   Edition 02 (Reversed)
                 </div>
-                <div className="font-sans text-xs font-extrabold text-white">White on Blue / Dark</div>
+                <div className="font-sans text-xs font-extrabold text-white">
+                  White on Blue / Dark
+                </div>
               </div>
             </div>
             <span className="font-mono text-xs font-bold text-white">
@@ -293,7 +297,7 @@ export function BrandConceptBlueprint() {
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
           {/* Main Hero Card (Large Bold Display) */}
           <div className="flex flex-col items-center justify-center gap-5 rounded-2xl border-2 border-[#CAD3F5] bg-gradient-to-b from-white to-[#EFF5FF] p-8 text-center shadow-xs lg:col-span-5">
-            <div className="relative flex size-44 items-center justify-center rounded-[2.5rem] border-2 border-[#CAD3F5] bg-white p-7 shadow-xl shadow-[#0056FF]/10 ring-4 ring-[#0056FF]/10">
+            <div className="relative flex size-44 items-center justify-center rounded-[2.5rem] border-2 border-[#CAD3F5] bg-white p-7 shadow-xl ring-4 shadow-[#0056FF]/10 ring-[#0056FF]/10">
               <AsteriskVectorGlyph
                 color="#0056FF"
                 strokeWidth={2.5}
@@ -312,7 +316,7 @@ export function BrandConceptBlueprint() {
               <SaveLogoButton
                 variant="blue"
                 label="Save 1024px PNG"
-                className="rounded-xl px-4 py-2 font-sans text-xs font-bold text-white bg-[#0056FF] border-[#0048D9] hover:bg-[#0048D9]"
+                className="rounded-xl border-[#0048D9] bg-[#0056FF] px-4 py-2 font-sans text-xs font-bold text-white hover:bg-[#0048D9]"
               />
             </div>
           </div>
@@ -326,7 +330,9 @@ export function BrandConceptBlueprint() {
                   <AsteriskLogo size="lg" variant="blue" mode="light" />
                 </div>
                 <div className="space-y-0.5">
-                  <div className="font-sans text-xs font-bold text-slate-950">Blue on White Canvas</div>
+                  <div className="font-sans text-xs font-bold text-slate-950">
+                    Blue on White Canvas
+                  </div>
                   <div className="font-mono text-[10px] text-slate-500">
                     bg-[#FFFFFF] · Blue Mark #0056FF
                   </div>
@@ -372,7 +378,9 @@ export function BrandConceptBlueprint() {
                   <AsteriskLogo size="lg" variant="dark" mode="dark" />
                 </div>
                 <div className="space-y-0.5">
-                  <div className="font-sans text-xs font-bold text-white">White on Obsidian Black</div>
+                  <div className="font-sans text-xs font-bold text-white">
+                    White on Obsidian Black
+                  </div>
                   <div className="font-mono text-[10px] text-slate-400">
                     bg-[#020617] · White Mark #FFFFFF
                   </div>
@@ -395,7 +403,9 @@ export function BrandConceptBlueprint() {
                   <AsteriskLogo size="lg" variant="dark" mode="light" />
                 </div>
                 <div className="space-y-0.5">
-                  <div className="font-sans text-xs font-bold text-slate-950">Dark on White Canvas</div>
+                  <div className="font-sans text-xs font-bold text-slate-950">
+                    Dark on White Canvas
+                  </div>
                   <div className="font-mono text-[10px] text-slate-500">
                     bg-[#FFFFFF] · Dark Mark #020617
                   </div>

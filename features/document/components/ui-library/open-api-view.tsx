@@ -111,7 +111,6 @@ export const ALL_SCROLLABLE_SECTIONS: string[] = [
   'api-payments-create',
 ];
 
-
 const CHANGE_LOGS_DATA = [
   {
     version: '1.1.0',
@@ -383,9 +382,13 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
           if (scrollPosition >= top) {
             setActiveSection(sectionId);
             // Ensure parent group is expanded if section belongs to one
-            const parent = API_NAV_GROUPS.find((g) => g.items.some((item) => item.id === sectionId));
+            const parent = API_NAV_GROUPS.find((g) =>
+              g.items.some((item) => item.id === sectionId),
+            );
             if (parent) {
-              setExpandedGroups((prev) => (prev[parent.id] ? prev : { ...prev, [parent.id]: true }));
+              setExpandedGroups((prev) =>
+                prev[parent.id] ? prev : { ...prev, [parent.id]: true },
+              );
             }
             break;
           }
@@ -429,26 +432,26 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
 
             {/* TikTok-Style Quick Filter / Search */}
             <div className="relative mb-3 px-0.5">
-              <Search className="pointer-events-none absolute left-3 top-1/2 size-3.5 -translate-y-1/2 stroke-[2] text-slate-400" />
+              <Search className="pointer-events-none absolute top-1/2 left-3 size-3.5 -translate-y-1/2 stroke-[2] text-slate-400" />
               <input
                 ref={searchInputRef}
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search endpoints... ⌘K"
-                className="w-full rounded-lg border border-[#CAD3F5] bg-[#EFF5FF]/40 py-1.5 pl-8 pr-8 text-xs text-[#0A1A4A] placeholder-slate-400 transition-all focus:border-[#0056FF] focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#0056FF]"
+                className="w-full rounded-lg border border-[#CAD3F5] bg-[#EFF5FF]/40 py-1.5 pr-8 pl-8 text-xs text-[#0A1A4A] placeholder-slate-400 transition-all focus:border-[#0056FF] focus:bg-white focus:ring-1 focus:ring-[#0056FF] focus:outline-none"
               />
               {searchQuery ? (
                 <button
                   type="button"
                   onClick={() => setSearchQuery('')}
                   aria-label="Clear search"
-                  className="absolute right-2.5 top-1/2 -translate-y-1/2 cursor-pointer text-slate-400 transition-colors hover:text-slate-600"
+                  className="absolute top-1/2 right-2.5 -translate-y-1/2 cursor-pointer text-slate-400 transition-colors hover:text-slate-600"
                 >
                   <X className="size-3.5" />
                 </button>
               ) : (
-                <kbd className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 rounded border border-[#CAD3F5] bg-white px-1 font-mono text-[9px] font-semibold text-slate-400">
+                <kbd className="pointer-events-none absolute top-1/2 right-2.5 -translate-y-1/2 rounded border border-[#CAD3F5] bg-white px-1 font-mono text-[9px] font-semibold text-slate-400">
                   ⌘K
                 </kbd>
               )}
@@ -470,8 +473,8 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                       className={cn(
                         'group flex w-full cursor-pointer items-center justify-between rounded-lg px-2.5 py-1.5 text-left transition-all duration-150 active:scale-[0.98]',
                         hasActiveChild
-                          ? 'bg-[#EFF5FF]/70 text-[#0056FF] font-bold'
-                          : 'text-slate-800 hover:bg-[#EFF5FF]/50 hover:text-[#0056FF] font-bold',
+                          ? 'bg-[#EFF5FF]/70 font-bold text-[#0056FF]'
+                          : 'font-bold text-slate-800 hover:bg-[#EFF5FF]/50 hover:text-[#0056FF]',
                       )}
                     >
                       <div className="flex items-center gap-2 truncate">
@@ -590,7 +593,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                   <button
                     type="button"
                     onClick={() => setSearchQuery('')}
-                    className="mt-2 rounded-[2px] bg-[#EFF5FF] px-2 py-0.5 font-mono text-[10px] font-bold text-[#0056FF] hover:bg-[#E3E7FC] cursor-pointer"
+                    className="mt-2 cursor-pointer rounded-[2px] bg-[#EFF5FF] px-2 py-0.5 font-mono text-[10px] font-bold text-[#0056FF] hover:bg-[#E3E7FC]"
                   >
                     Clear search
                   </button>
@@ -608,9 +611,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                   <div className="font-sans text-xs font-extrabold text-[#0A1A4A]">
                     Enterprise Gateway
                   </div>
-                  <div className="font-mono text-[10px] text-slate-500">
-                    TLS 1.3 · Bearer Token
-                  </div>
+                  <div className="font-mono text-[10px] text-slate-500">TLS 1.3 · Bearer Token</div>
                 </div>
               </div>
               <span
@@ -951,9 +952,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                   >
                     [PUBLIC]
                   </span>
-                  <h3 className="text-xl font-black text-[#0A1A4A]">
-                    1. Public Endpoints
-                  </h3>
+                  <h3 className="text-xl font-black text-[#0A1A4A]">1. Public Endpoints</h3>
                 </div>
               </div>
 

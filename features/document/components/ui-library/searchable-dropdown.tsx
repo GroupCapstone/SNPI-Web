@@ -268,7 +268,7 @@ export function SearchableDropdown({
         aria-controls={listboxId}
         onClick={() => setIsOpen(!isOpen)}
         className={cn(
-          'flex min-h-[42px] w-full items-center justify-between gap-2 rounded-[4px] border px-3 py-1.5 font-sans text-xs transition-all duration-150 active:scale-[0.97] outline-none',
+          'flex min-h-[42px] w-full items-center justify-between gap-2 rounded-[4px] border px-3 py-1.5 font-sans text-xs transition-all duration-150 outline-none active:scale-[0.97]',
           'focus-visible:ring-2 focus-visible:ring-[#0056FF]',
           isOpen
             ? 'border-[#0056FF] ring-1 ring-[#0056FF]'
@@ -340,137 +340,137 @@ export function SearchableDropdown({
               'absolute left-0 z-50 mt-1.5 w-full min-w-[280px] overflow-hidden rounded-[4px] border border-[#CAD3F5] bg-white text-slate-900 shadow-md',
             )}
           >
-          {/* 03 Auto-Focused Search Input */}
-          <div className="relative border-b border-slate-100 p-2.5 dark:border-slate-800">
-            <Search className="absolute top-1/2 left-5 size-3.5 -translate-y-1/2 text-slate-400" />
-            <input
-              id={searchInputId}
-              ref={searchInputRef}
-              type="text"
-              role="combobox"
-              aria-autocomplete="list"
-              aria-expanded="true"
-              aria-controls={listboxId}
-              // 06 Active Descendant wiring
-              aria-activedescendant={activeDescendantId}
-              value={searchQuery}
-              onChange={(e) => {
-                setSearchQuery(e.target.value);
-                setHighlightedIndex(0);
-              }}
-              onKeyDown={handleSearchKeyDown}
-              placeholder={searchPlaceholder}
-              className={cn(
-                'w-full rounded-[4px] border py-1.5 pr-3 pl-8 font-sans text-xs transition-colors outline-none',
-                isDark
-                  ? 'border-slate-700 bg-slate-900 text-white placeholder-slate-500 focus:border-[#38BDF8]'
-                  : 'border-slate-200 bg-slate-50 text-slate-900 placeholder-slate-400 focus:border-[#0056FF] focus:bg-white',
-              )}
-            />
-          </div>
+            {/* 03 Auto-Focused Search Input */}
+            <div className="relative border-b border-slate-100 p-2.5 dark:border-slate-800">
+              <Search className="absolute top-1/2 left-5 size-3.5 -translate-y-1/2 text-slate-400" />
+              <input
+                id={searchInputId}
+                ref={searchInputRef}
+                type="text"
+                role="combobox"
+                aria-autocomplete="list"
+                aria-expanded="true"
+                aria-controls={listboxId}
+                // 06 Active Descendant wiring
+                aria-activedescendant={activeDescendantId}
+                value={searchQuery}
+                onChange={(e) => {
+                  setSearchQuery(e.target.value);
+                  setHighlightedIndex(0);
+                }}
+                onKeyDown={handleSearchKeyDown}
+                placeholder={searchPlaceholder}
+                className={cn(
+                  'w-full rounded-[4px] border py-1.5 pr-3 pl-8 font-sans text-xs transition-colors outline-none',
+                  isDark
+                    ? 'border-slate-700 bg-slate-900 text-white placeholder-slate-500 focus:border-[#38BDF8]'
+                    : 'border-slate-200 bg-slate-50 text-slate-900 placeholder-slate-400 focus:border-[#0056FF] focus:bg-white',
+                )}
+              />
+            </div>
 
-          {/* ======================================================== */}
-          {/* 05 GROUPED OPTIONS & 06 ACTIVE DESCENDANT LISTBOX        */}
-          {/* ======================================================== */}
-          <div
-            id={listboxId}
-            ref={listboxRef}
-            role="listbox"
-            aria-multiselectable={multiple}
-            className="max-h-60 space-y-1 overflow-y-auto p-1.5"
-          >
-            {flattenedFiltered.length === 0 ? (
-              <div className="p-4 text-center font-mono text-xs text-slate-400">
-                No matching options found.
-              </div>
-            ) : (
-              Object.entries(groupedOptions).map(([groupName, groupOpts]) => {
-                if (groupOpts.length === 0) return null;
+            {/* ======================================================== */}
+            {/* 05 GROUPED OPTIONS & 06 ACTIVE DESCENDANT LISTBOX        */}
+            {/* ======================================================== */}
+            <div
+              id={listboxId}
+              ref={listboxRef}
+              role="listbox"
+              aria-multiselectable={multiple}
+              className="max-h-60 space-y-1 overflow-y-auto p-1.5"
+            >
+              {flattenedFiltered.length === 0 ? (
+                <div className="p-4 text-center font-mono text-xs text-slate-400">
+                  No matching options found.
+                </div>
+              ) : (
+                Object.entries(groupedOptions).map(([groupName, groupOpts]) => {
+                  if (groupOpts.length === 0) return null;
 
-                return (
-                  <div key={groupName} className="space-y-0.5">
-                    {/* Section Label */}
-                    <div className="px-2.5 py-1 font-mono text-[10px] font-bold tracking-wider text-slate-400 uppercase">
-                      {groupName}
-                    </div>
+                  return (
+                    <div key={groupName} className="space-y-0.5">
+                      {/* Section Label */}
+                      <div className="px-2.5 py-1 font-mono text-[10px] font-bold tracking-wider text-slate-400 uppercase">
+                        {groupName}
+                      </div>
 
-                    {groupOpts.map((opt) => {
-                      const isSelected = selectedValues.includes(opt.value);
-                      const optIndex = flattenedFiltered.findIndex((o) => o.value === opt.value);
-                      const isHighlighted = optIndex === highlightedIndex;
+                      {groupOpts.map((opt) => {
+                        const isSelected = selectedValues.includes(opt.value);
+                        const optIndex = flattenedFiltered.findIndex((o) => o.value === opt.value);
+                        const isHighlighted = optIndex === highlightedIndex;
 
-                      return (
-                        <div
-                          key={opt.value}
-                          id={`opt-${id}-${opt.value}`}
-                          role="option"
-                          aria-selected={isSelected}
-                          aria-disabled={opt.disabled}
-                          onClick={() => !opt.disabled && handleSelectOption(opt.value)}
-                          onMouseEnter={() => setHighlightedIndex(optIndex)}
-                          className={cn(
-                            'flex cursor-pointer items-center justify-between gap-2 rounded-[4px] px-2.5 py-1.5 font-sans text-xs transition-colors',
-                            // 06 Active Descendant highlight state
-                            isHighlighted &&
-                              (isDark
-                                ? 'bg-slate-800/80 text-white'
-                                : 'bg-slate-100 text-slate-950'),
-                            isSelected &&
-                              (isDark
-                                ? 'bg-cyan-500/15 font-semibold text-cyan-300'
-                                : 'bg-[#E3E7FC]/60 font-semibold text-[#0056FF]'),
-                            opt.disabled && 'cursor-not-allowed opacity-40',
-                          )}
-                        >
-                          <div className="flex items-center gap-2 truncate">
-                            {/* Checkbox square in multiple mode */}
-                            {multiple && (
-                              <div
-                                className={cn(
-                                  'flex size-3.5 items-center justify-center rounded border transition-colors',
-                                  isSelected
-                                    ? 'border-[#0056FF] bg-[#0056FF] text-white dark:border-cyan-500 dark:bg-cyan-500'
-                                    : isDark
-                                      ? 'border-slate-700 bg-slate-800'
-                                      : 'border-slate-300 bg-white',
-                                )}
-                              >
-                                {isSelected && <Check className="size-2.5 stroke-[3]" />}
-                              </div>
+                        return (
+                          <div
+                            key={opt.value}
+                            id={`opt-${id}-${opt.value}`}
+                            role="option"
+                            aria-selected={isSelected}
+                            aria-disabled={opt.disabled}
+                            onClick={() => !opt.disabled && handleSelectOption(opt.value)}
+                            onMouseEnter={() => setHighlightedIndex(optIndex)}
+                            className={cn(
+                              'flex cursor-pointer items-center justify-between gap-2 rounded-[4px] px-2.5 py-1.5 font-sans text-xs transition-colors',
+                              // 06 Active Descendant highlight state
+                              isHighlighted &&
+                                (isDark
+                                  ? 'bg-slate-800/80 text-white'
+                                  : 'bg-slate-100 text-slate-950'),
+                              isSelected &&
+                                (isDark
+                                  ? 'bg-cyan-500/15 font-semibold text-cyan-300'
+                                  : 'bg-[#E3E7FC]/60 font-semibold text-[#0056FF]'),
+                              opt.disabled && 'cursor-not-allowed opacity-40',
                             )}
+                          >
+                            <div className="flex items-center gap-2 truncate">
+                              {/* Checkbox square in multiple mode */}
+                              {multiple && (
+                                <div
+                                  className={cn(
+                                    'flex size-3.5 items-center justify-center rounded border transition-colors',
+                                    isSelected
+                                      ? 'border-[#0056FF] bg-[#0056FF] text-white dark:border-cyan-500 dark:bg-cyan-500'
+                                      : isDark
+                                        ? 'border-slate-700 bg-slate-800'
+                                        : 'border-slate-300 bg-white',
+                                  )}
+                                >
+                                  {isSelected && <Check className="size-2.5 stroke-[3]" />}
+                                </div>
+                              )}
 
-                            {/* 04 Highlighted Matches */}
-                            <span className="truncate">
-                              {renderHighlightedLabel(opt.label, searchQuery)}
-                            </span>
+                              {/* 04 Highlighted Matches */}
+                              <span className="truncate">
+                                {renderHighlightedLabel(opt.label, searchQuery)}
+                              </span>
+                            </div>
+
+                            {/* Selected checkmark in single mode */}
+                            {!multiple && isSelected && (
+                              <Check className="size-3.5 text-[#0056FF] dark:text-[#38BDF8]" />
+                            )}
                           </div>
+                        );
+                      })}
+                    </div>
+                  );
+                })
+              )}
+            </div>
 
-                          {/* Selected checkmark in single mode */}
-                          {!multiple && isSelected && (
-                            <Check className="size-3.5 text-[#0056FF] dark:text-[#38BDF8]" />
-                          )}
-                        </div>
-                      );
-                    })}
-                  </div>
-                );
-              })
-            )}
-          </div>
-
-          {/* Footer Instruction */}
-          <div
-            className={cn(
-              'flex items-center justify-between border-t px-3 py-1.5 font-mono text-[10px] text-slate-400',
-              isDark ? 'border-slate-800 bg-slate-900/40' : 'border-slate-100 bg-slate-50/60',
-            )}
-          >
-            <span>Navigate with &uarr;&darr; &bull; Enter to select</span>
-            {multiple && <span>Backspace removes tag</span>}
-          </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+            {/* Footer Instruction */}
+            <div
+              className={cn(
+                'flex items-center justify-between border-t px-3 py-1.5 font-mono text-[10px] text-slate-400',
+                isDark ? 'border-slate-800 bg-slate-900/40' : 'border-slate-100 bg-slate-50/60',
+              )}
+            >
+              <span>Navigate with &uarr;&darr; &bull; Enter to select</span>
+              {multiple && <span>Backspace removes tag</span>}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

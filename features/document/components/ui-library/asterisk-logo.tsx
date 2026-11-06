@@ -14,7 +14,17 @@ export interface AsteriskLogoProps {
    *
    * Also supports legacy aliases: standard, brand, solid, tint, outline, bare
    */
-  variant?: 'blue' | 'white' | 'dark' | 'standard' | 'brand' | 'solid' | 'tint' | 'outline' | 'bare' | 'tricolor';
+  variant?:
+    | 'blue'
+    | 'white'
+    | 'dark'
+    | 'standard'
+    | 'brand'
+    | 'solid'
+    | 'tint'
+    | 'outline'
+    | 'bare'
+    | 'tricolor';
   mode?: 'light' | 'dark';
   colorVariant?: 'brand' | 'white' | 'dark' | 'blue' | 'current' | 'monochrome';
   color?: string;
@@ -105,13 +115,7 @@ export function AsteriskTricolorGlyph({
   const isUnified = colorTop === colorRight && colorRight === colorBottom;
 
   if (isUnified) {
-    return (
-      <AsteriskVectorGlyph
-        color={colorTop}
-        className={className}
-        ariaLabel={ariaLabel}
-      />
-    );
+    return <AsteriskVectorGlyph color={colorTop} className={className} ariaLabel={ariaLabel} />;
   }
 
   return (
@@ -173,7 +177,7 @@ const BOX_SIZE_CLASSES: Record<NonNullable<AsteriskLogoProps['size']>, string> =
  * Official SNPI Star / Asterisk Brand Logo
  * Rendered using the iconic Sora Bold geometric asterisk mark with all wings styled uniformly.
  * STRICT POLICY: Motionless and stable. Zero hover scaling, zero jumping, zero animation events.
- * 
+ *
  * Strictly 3 Canonical Versions:
  *   1. Blue Brand: Royal Blue (#0056FF) on Pure White / Light Canvas
  *   2. White: Pure White (#FFFFFF) on Royal Blue (#0056FF) or Dark Obsidian (#020617) Canvas
@@ -240,11 +244,7 @@ export function AsteriskLogo({
           className,
         )}
       >
-        <AsteriskVectorGlyph
-          color={glyphColor}
-          strokeWidth={2.5}
-          ariaLabel={ariaLabel}
-        />
+        <AsteriskVectorGlyph color={glyphColor} strokeWidth={2.5} ariaLabel={ariaLabel} />
       </div>
     );
   }
@@ -254,12 +254,15 @@ export function AsteriskLogo({
   // - Blue Version: Pure White container with subtle #CAD3F5 border
   // - White Version: Solid Royal Blue (#0056FF) or Obsidian Slate (#020617) container
   // - Dark Version: Pure White container with crisp slate border
-  let containerStyle = 'bg-white border border-[#CAD3F5] ring-4 ring-[#0056FF]/10 shadow-sm shadow-[#0056FF]/10';
+  let containerStyle =
+    'bg-white border border-[#CAD3F5] ring-4 ring-[#0056FF]/10 shadow-sm shadow-[#0056FF]/10';
 
   if (variant === 'white' || variant === 'brand' || variant === 'solid') {
-    containerStyle = 'bg-[#0056FF] border border-white/20 ring-4 ring-[#0056FF]/20 shadow-md shadow-[#0056FF]/25';
+    containerStyle =
+      'bg-[#0056FF] border border-white/20 ring-4 ring-[#0056FF]/20 shadow-md shadow-[#0056FF]/25';
   } else if (variant === 'dark' && mode === 'dark') {
-    containerStyle = 'bg-[#020617] border border-white/20 ring-4 ring-white/10 shadow-md shadow-black/40';
+    containerStyle =
+      'bg-[#020617] border border-white/20 ring-4 ring-white/10 shadow-md shadow-black/40';
   } else if (variant === 'dark') {
     containerStyle = 'bg-white border border-slate-300 ring-4 ring-slate-900/10 shadow-sm';
   } else if (variant === 'tint') {
@@ -279,11 +282,7 @@ export function AsteriskLogo({
       aria-label={ariaLabel}
       role="img"
     >
-      <AsteriskVectorGlyph
-        color={glyphColor}
-        strokeWidth={2.5}
-        ariaLabel={ariaLabel}
-      />
+      <AsteriskVectorGlyph color={glyphColor} strokeWidth={2.5} ariaLabel={ariaLabel} />
     </div>
   );
 }
@@ -294,7 +293,8 @@ export function AsteriskLogo({
 export interface AsteriskEmblemProps {
   className?: string;
   size?: number | string;
-  colorVariant?: 'brand' | 'white' | 'white-accent' | 'current' | 'gradient' | 'blue' | 'dark' | 'tricolor';
+  colorVariant?:
+    'brand' | 'white' | 'white-accent' | 'current' | 'gradient' | 'blue' | 'dark' | 'tricolor';
   color?: string;
   colorTop?: string;
   colorRight?: string;

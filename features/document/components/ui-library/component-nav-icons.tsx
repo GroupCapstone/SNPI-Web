@@ -311,7 +311,7 @@ export interface ParentCategoryTheme {
  */
 export function getParentCategoryTheme(groupIdOrCategory: string): ParentCategoryTheme {
   const key = groupIdOrCategory.toLowerCase();
-  
+
   // Standard Clean Neutral Icon Container (Zero arbitrary candy colors, 4px border radius)
   // All icons default to Black (#020617 / text-slate-950) on clean white/neutral background
   return {
