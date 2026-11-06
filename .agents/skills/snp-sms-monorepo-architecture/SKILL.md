@@ -133,3 +133,8 @@ Whenever designing, styling, refactoring, or generating UI components, navigatio
 4. **Brand Blueprint Compliance**: Exclusively respect the 5 primary brand tokens (`#0056FF`, `#2277FF`, `#E3E7FC`, `#FFFFFF`, `#EFF5FF`) and high-contrast `#0A1A4A` Deep Navy text.
 5. **Universal Web & Mobile Responsive Device First**: Always engineer for fluid responsive behavior across both mobile viewports and desktop with zero clipping and >=44x44px touch targets.
 6. **Mandatory Zero Links Rule (Never Add Links)**: Under no circumstances should AI agents add markdown links, URL hyperlinks, file scheme links (`file://`), or unnecessary anchor links in responses or generated UI components unless explicitly requested by the user. Use plain text or code font.
+7. **Mandatory In-Skill Documentation & Zero Root Markdown / README Files (Absolute Rule)**:
+   - Under no circumstances should any AI agent, contributor, or tool create, write, or drop arbitrary README files, documentation summaries, feature breakdowns, or markdown notes in the repository root folder.
+   - The root directory is strictly reserved for canonical repository manifests only (`AGENTS.md`, `CHANGELOG.md`, `CODE_OF_CONDUCT.md`, `CONTRIBUTING.md`, `README.md`, `SECURITY.md`).
+   - All architecture guides, design documents, implementation summaries, and technical references MUST be placed inside the relevant skill folder under `.agents/skills/<skill-folder>/`.
+   - If any unapproved markdown files are detected in the repository root, they must immediately be relocated into `.agents/skills/<skill-folder>/` without delay.

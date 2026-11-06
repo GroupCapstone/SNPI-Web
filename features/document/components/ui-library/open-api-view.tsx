@@ -1,72 +1,137 @@
 'use client';
 
 import * as React from 'react';
-import { Check, Copy, Server, ShieldCheck, Lock, Terminal, FileText } from '@/components/icons';
+import {
+  Compass,
+  BookOpen,
+  Globe,
+  Server,
+  ShieldCheck,
+  Lock,
+  Terminal,
+  FileText,
+  Layers,
+  Search,
+  ChevronRight,
+  X,
+} from '@/components/icons';
+import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '@/lib/utils';
+import { MOTION_EASE_OUT } from '@/lib/motion';
 import { ApiSpecTable } from './api-spec-table';
 import { ParamTable, type ApiParameter } from './param-table';
 import { CodeBlock } from './code-block';
-import { AsteriskLogo } from './asterisk-logo';
-import { DocumentLogo } from './document-logo';
 
 // ============================================================================
 // DATA STRUCTURES & DEFINITIONS (SANITIZED PUBLIC DISPLAY STANDARD)
 // ============================================================================
 
-interface NavItem {
+export interface ApiNavItem {
   id: string;
   label: string;
-  isHeader?: boolean;
-  indent?: boolean;
-  badge?: string;
+  badge?: 'GET' | 'POST';
+  description?: string;
 }
 
-const ON_THIS_PAGE_NAV: NavItem[] = [
-  { id: 'changelogs', label: 'Change Logs' },
-  { id: 'toc', label: 'Table of contents' },
-  { id: 'introduction', label: 'Introduction', isHeader: true },
-  { id: 'purpose', label: '1. Purpose', indent: true },
-  { id: 'scope', label: '2. Scope', indent: true },
-  { id: 'overall-api', label: '3. Overall API', indent: true },
-  { id: 'security', label: '4. Security & Access Control', indent: true },
-  { id: 'status-codes', label: '5. HTTP Status Codes', indent: true },
-  { id: 'api-documentation', label: 'API Documentation', isHeader: true },
-  { id: 'public-apis', label: 'Public Services', isHeader: true, indent: true },
-  { id: 'api-health', label: '1.1 System Health Probe', indent: true, badge: 'GET' },
-  { id: 'api-cert-verify', label: '1.2 Certificate Verification', indent: true, badge: 'GET' },
-  { id: 'protected-apis', label: 'Protected Services', isHeader: true, indent: true },
-  { id: 'api-auth-login', label: '2.1 User Authentication', indent: true, badge: 'POST' },
-  { id: 'api-auth-refresh', label: '2.2 Renew Session Token', indent: true, badge: 'POST' },
-  { id: 'api-auth-me', label: '2.3 User Profile & Permissions', indent: true, badge: 'GET' },
-  { id: 'api-students-list', label: '2.4 Student Directory', indent: true, badge: 'GET' },
-  { id: 'api-students-create', label: '2.5 Student Registration', indent: true, badge: 'POST' },
-  { id: 'api-attendance-create', label: '2.6 Session Attendance', indent: true, badge: 'POST' },
-  { id: 'api-payments-create', label: '2.7 Payment Records', indent: true, badge: 'POST' },
+export interface ApiNavGroup {
+  id: string;
+  title: string;
+  icon: React.ComponentType<{ className?: string }>;
+  items: ApiNavItem[];
+}
+
+export const API_ROOT_NAV: ApiNavItem[] = [
+  { id: 'changelogs', label: 'Change Logs', description: 'Version history & updates' },
+  { id: 'toc', label: 'Table of contents', description: 'Jump navigation index' },
 ];
+
+export const API_NAV_GROUPS: ApiNavGroup[] = [
+  {
+    id: 'grp-introduction',
+    title: 'Introduction',
+    icon: BookOpen,
+    items: [
+      { id: 'introduction', label: 'Welcome & Overview' },
+      { id: 'purpose', label: '1. Purpose' },
+      { id: 'scope', label: '2. Scope' },
+      { id: 'overall-api', label: '3. Overall API' },
+    ],
+  },
+  {
+    id: 'grp-security',
+    title: 'Security & Access',
+    icon: ShieldCheck,
+    items: [
+      { id: 'security', label: '4. Security & Access Control' },
+      { id: 'status-codes', label: '5. HTTP Status Codes' },
+    ],
+  },
+  {
+    id: 'grp-public',
+    title: 'Public Services',
+    icon: Globe,
+    items: [
+      { id: 'api-health', label: '1.1 System Health Probe', badge: 'GET' },
+      { id: 'api-cert-verify', label: '1.2 Verify Certificate', badge: 'GET' },
+    ],
+  },
+  {
+    id: 'grp-protected',
+    title: 'Protected Services',
+    icon: Lock,
+    items: [
+      { id: 'api-auth-login', label: '2.1 User Authentication', badge: 'POST' },
+      { id: 'api-auth-refresh', label: '2.2 Renew Session Token', badge: 'POST' },
+      { id: 'api-auth-me', label: '2.3 Profile & Permissions', badge: 'GET' },
+      { id: 'api-students-list', label: '2.4 Student Directory', badge: 'GET' },
+      { id: 'api-students-create', label: '2.5 Student Registration', badge: 'POST' },
+      { id: 'api-attendance-create', label: '2.6 Session Attendance', badge: 'POST' },
+      { id: 'api-payments-create', label: '2.7 Payment Records', badge: 'POST' },
+    ],
+  },
+];
+
+export const ALL_SCROLLABLE_SECTIONS: string[] = [
+  'changelogs',
+  'toc',
+  'introduction',
+  'purpose',
+  'scope',
+  'overall-api',
+  'security',
+  'status-codes',
+  'api-health',
+  'api-cert-verify',
+  'api-auth-login',
+  'api-auth-refresh',
+  'api-auth-me',
+  'api-students-list',
+  'api-students-create',
+  'api-attendance-create',
+  'api-payments-create',
+];
+
 
 const CHANGE_LOGS_DATA = [
   {
     version: '1.1.0',
     date: '05.11.2026',
-    description:
-      'Official REST API release for headless integration with hardened token-based authentication.',
+    description: 'Official REST API release with token authentication.',
   },
   {
     version: '1.0.4',
     date: '24.10.2026',
-    description:
-      'Add student enrollment lifecycle, daily class roster attendance, and multi-currency payment endpoints.',
+    description: 'Student lifecycle, attendance, and payment endpoints.',
   },
   {
     version: '1.0.2',
     date: '10.10.2026',
-    description: 'Add public certificate ledger SHA-256 hash tamper-proof verification endpoint.',
+    description: 'Public certificate verification endpoint.',
   },
   {
     version: '1.0.0',
     date: '01.09.2026',
-    description:
-      'Initial official SNPI Open REST API specification release with role-based access control.',
+    description: 'Initial SNPI Open REST API specification.',
   },
 ];
 
@@ -219,54 +284,44 @@ const STANDARD_GET_PROTECTED_HEADERS: ApiParameter[] = [
   },
 ];
 
-// Single Authorized Production Endpoint
-const PRODUCTION_GATEWAY_URL = 'https://snpis.kesararamwithdigital.tech/api/v1';
-
 // ============================================================================
 // MAIN COMPONENT: OPEN API DOCUMENTATION PORTAL
 // ============================================================================
 
 export function OpenApiView({ initialSection }: { initialSection?: string } = {}) {
   const rootRef = React.useRef<HTMLDivElement>(null);
+  const searchInputRef = React.useRef<HTMLInputElement>(null);
   const isManualScrollRef = React.useRef<boolean>(false);
   const scrollTimerRef = React.useRef<NodeJS.Timeout | null>(null);
 
   const [activeSection, setActiveSection] = React.useState<string>(initialSection || 'changelogs');
-  const [copiedId, setCopiedId] = React.useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = React.useState<string>('');
+  const [expandedGroups, setExpandedGroups] = React.useState<Record<string, boolean>>({
+    'grp-introduction': true,
+    'grp-security': true,
+    'grp-public': true,
+    'grp-protected': true,
+  });
 
-  // Clipboard copy helper
-  const handleCopy = async (text: string, id: string) => {
-    if (typeof window === 'undefined') return;
-    try {
-      if (navigator?.clipboard?.writeText) {
-        await navigator.clipboard.writeText(text);
-        setCopiedId(id);
-        setTimeout(() => setCopiedId(null), 2000);
-        return;
-      }
-    } catch {
-      // Fallback
-    }
-
-    try {
-      const textArea = document.createElement('textarea');
-      textArea.value = text;
-      textArea.style.position = 'fixed';
-      textArea.style.top = '0';
-      textArea.style.left = '0';
-      textArea.style.opacity = '0';
-      textArea.setAttribute('readonly', '');
-      document.body.appendChild(textArea);
-      textArea.focus();
-      textArea.select();
-      document.execCommand('copy');
-      document.body.removeChild(textArea);
-      setCopiedId(id);
-      setTimeout(() => setCopiedId(null), 2000);
-    } catch {
-      // Ignore
-    }
+  // Toggle group accordion
+  const toggleGroup = (groupId: string) => {
+    setExpandedGroups((prev) => ({
+      ...prev,
+      [groupId]: !prev[groupId],
+    }));
   };
+
+  // Keyboard shortcut: Cmd+K / Ctrl+K to focus search input
+  React.useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        searchInputRef.current?.focus();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   // Smooth scroll handler
   const scrollToSection = (id: string) => {
@@ -285,6 +340,34 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
     });
   };
 
+  // Filtered groups & items matching search query
+  const q = searchQuery.trim().toLowerCase();
+  const displayGroups = React.useMemo(() => {
+    if (!q) return API_NAV_GROUPS;
+    return API_NAV_GROUPS.map((group) => {
+      const groupMatches = group.title.toLowerCase().includes(q);
+      const matchedItems = group.items.filter(
+        (item) =>
+          item.label.toLowerCase().includes(q) ||
+          (item.badge && item.badge.toLowerCase().includes(q)),
+      );
+      return {
+        ...group,
+        items: groupMatches ? group.items : matchedItems,
+        isMatched: groupMatches || matchedItems.length > 0,
+      };
+    }).filter((group) => group.isMatched);
+  }, [q]);
+
+  const displayRootItems = React.useMemo(() => {
+    if (!q) return API_ROOT_NAV;
+    return API_ROOT_NAV.filter(
+      (item) =>
+        item.label.toLowerCase().includes(q) ||
+        (item.description && item.description.toLowerCase().includes(q)),
+    );
+  }, [q]);
+
   // Scroll listener for sticky active anchor
   React.useEffect(() => {
     const handleScroll = () => {
@@ -292,13 +375,18 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
         return;
       }
       const scrollPosition = window.scrollY + 160;
-      for (let i = ON_THIS_PAGE_NAV.length - 1; i >= 0; i--) {
-        const item = ON_THIS_PAGE_NAV[i];
-        const el = document.getElementById(item.id);
+      for (let i = ALL_SCROLLABLE_SECTIONS.length - 1; i >= 0; i--) {
+        const sectionId = ALL_SCROLLABLE_SECTIONS[i];
+        const el = document.getElementById(sectionId);
         if (el) {
           const top = el.getBoundingClientRect().top + window.scrollY;
           if (scrollPosition >= top) {
-            setActiveSection(item.id);
+            setActiveSection(sectionId);
+            // Ensure parent group is expanded if section belongs to one
+            const parent = API_NAV_GROUPS.find((g) => g.items.some((item) => item.id === sectionId));
+            if (parent) {
+              setExpandedGroups((prev) => (prev[parent.id] ? prev : { ...prev, [parent.id]: true }));
+            }
             break;
           }
         }
@@ -317,86 +405,221 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
     <div ref={rootRef} className="min-h-screen w-full bg-[#FFFFFF] text-[#0A1A4A]">
       <div className="mx-auto flex max-w-[1520px] items-start gap-8 px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
         {/* =================================================================== */}
-        {/* LEFT-HAND STICKY TABLE OF CONTENTS ("ON THIS PAGE")                */}
+        {/* TIKTOK-STYLE DEVELOPER DOCS SIDEBAR NAVIGATION                     */}
         {/* =================================================================== */}
-        <aside className="sticky top-24 hidden w-72 shrink-0 space-y-4 self-start lg:block">
+        <aside className="sticky top-24 hidden w-80 shrink-0 space-y-3.5 self-start lg:block">
           <div className="rounded-2xl border border-[#CAD3F5] bg-[#FFFFFF] p-3.5 shadow-2xs">
-            <div className="mb-2 border-b border-[#CAD3F5]/80 px-2.5 pb-2">
-              <span className="text-[11px] font-black tracking-widest text-slate-500 uppercase">
-                ON THIS PAGE
-              </span>
+            {/* Top Identity Header */}
+            <div className="mb-3 px-1">
+              <div className="flex items-center justify-between">
+                <h2 className="text-base font-black tracking-tight text-[#0A1A4A]">
+                  Developer Docs
+                </h2>
+                <span
+                  className="rounded-[2px] bg-[#EFF5FF] px-2 py-0.5 font-mono text-[9px] font-bold text-[#0056FF]"
+                  style={{ borderRadius: '2px' }}
+                >
+                  v1.1.0 · OpenAPI
+                </span>
+              </div>
+              <p className="mt-0.5 text-[11px] font-medium text-slate-500">
+                SNPI REST Engine & Endpoints
+              </p>
             </div>
 
-            <nav className="max-h-[calc(100vh-180px)] space-y-0.5 overflow-y-auto pr-1">
-              {ON_THIS_PAGE_NAV.map((item) => {
-                const isActive = activeSection === item.id;
+            {/* TikTok-Style Quick Filter / Search */}
+            <div className="relative mb-3 px-0.5">
+              <Search className="pointer-events-none absolute left-3 top-1/2 size-3.5 -translate-y-1/2 stroke-[2] text-slate-400" />
+              <input
+                ref={searchInputRef}
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search endpoints... ⌘K"
+                className="w-full rounded-lg border border-[#CAD3F5] bg-[#EFF5FF]/40 py-1.5 pl-8 pr-8 text-xs text-[#0A1A4A] placeholder-slate-400 transition-all focus:border-[#0056FF] focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#0056FF]"
+              />
+              {searchQuery ? (
+                <button
+                  type="button"
+                  onClick={() => setSearchQuery('')}
+                  aria-label="Clear search"
+                  className="absolute right-2.5 top-1/2 -translate-y-1/2 cursor-pointer text-slate-400 transition-colors hover:text-slate-600"
+                >
+                  <X className="size-3.5" />
+                </button>
+              ) : (
+                <kbd className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 rounded border border-[#CAD3F5] bg-white px-1 font-mono text-[9px] font-semibold text-slate-400">
+                  ⌘K
+                </kbd>
+              )}
+            </div>
 
-                if (item.isHeader && !item.indent) {
-                  return (
-                    <div
-                      key={item.id}
-                      className="mt-5 mb-2 flex items-center gap-2 px-2.5 font-sans text-xs font-black tracking-wider text-[#0A1A4A] uppercase"
-                    >
-                      <AsteriskLogo size="xs" variant="standard" className="shrink-0" />
-                      <span>{item.label}</span>
-                    </div>
-                  );
-                }
-
-                if (item.isHeader && item.indent) {
-                  return (
-                    <div
-                      key={item.id}
-                      className="mt-3 mb-1.5 flex items-center gap-2 px-4 font-mono text-[10px] font-black tracking-wider text-[#0056FF] uppercase"
-                    >
-                      <AsteriskLogo size="xs" variant="tint" className="shrink-0" />
-                      <span>{item.label}</span>
-                    </div>
-                  );
-                }
+            {/* Hierarchical Accordion Navigation */}
+            <nav className="max-h-[calc(100vh-270px)] space-y-1 overflow-y-auto pr-1">
+              {displayGroups.map((group) => {
+                const isExpanded = q ? true : !!expandedGroups[group.id];
+                const GroupIcon = group.icon;
+                const hasActiveChild = group.items.some((item) => item.id === activeSection);
 
                 return (
-                  <button
-                    key={item.id}
-                    type="button"
-                    onClick={() => scrollToSection(item.id)}
-                    className={cn(
-                      'group flex w-full cursor-pointer items-center justify-between rounded-lg px-2.5 py-1.5 text-left text-xs transition-all',
-                      item.indent ? 'pl-4.5' : 'pl-2.5',
-                      isActive
-                        ? 'border border-[#0056FF]/25 bg-[#EFF5FF] font-bold text-[#0056FF]'
-                        : 'font-medium text-slate-700 hover:bg-[#EFF5FF]/70 hover:text-[#0056FF]',
-                    )}
-                  >
-                    <span className="truncate">{item.label}</span>
-                    {item.badge && (
-                      <span
-                        className={cn(
-                          'py-0.2 shrink-0 rounded px-1.5 font-mono text-[9px] font-bold',
-                          item.badge === 'GET'
-                            ? 'bg-[#E3E7FC] text-[#0056FF]'
-                            : 'bg-emerald-100 text-emerald-800',
-                        )}
-                      >
-                        {item.badge}
-                      </span>
-                    )}
-                  </button>
+                  <div key={group.id} className="space-y-0.5">
+                    {/* Collapsible Group Header Button */}
+                    <button
+                      type="button"
+                      onClick={() => toggleGroup(group.id)}
+                      className={cn(
+                        'group flex w-full cursor-pointer items-center justify-between rounded-lg px-2.5 py-1.5 text-left transition-all duration-150 active:scale-[0.98]',
+                        hasActiveChild
+                          ? 'bg-[#EFF5FF]/70 text-[#0056FF] font-bold'
+                          : 'text-slate-800 hover:bg-[#EFF5FF]/50 hover:text-[#0056FF] font-bold',
+                      )}
+                    >
+                      <div className="flex items-center gap-2 truncate">
+                        <GroupIcon className="size-3.5 shrink-0 stroke-[2.2] text-[#020617]" />
+                        <span className="truncate text-xs tracking-tight">{group.title}</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <span className="font-mono text-[10px] font-bold text-slate-400">
+                          {group.items.length}
+                        </span>
+                        <ChevronRight
+                          className={cn(
+                            'size-3.5 shrink-0 text-slate-400 transition-transform duration-200 ease-out',
+                            isExpanded && 'rotate-90 text-[#0056FF]',
+                          )}
+                        />
+                      </div>
+                    </button>
+
+                    {/* Group Children Drawer */}
+                    <AnimatePresence initial={false}>
+                      {isExpanded && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{
+                            height: 'auto',
+                            opacity: 1,
+                            transition: {
+                              height: { duration: 0.2, ease: MOTION_EASE_OUT },
+                              opacity: { duration: 0.18, ease: MOTION_EASE_OUT },
+                            },
+                          }}
+                          exit={{
+                            height: 0,
+                            opacity: 0,
+                            transition: {
+                              height: { duration: 0.16, ease: [0.7, 0, 0.84, 0] },
+                              opacity: { duration: 0.12 },
+                            },
+                          }}
+                          className="overflow-hidden"
+                        >
+                          <div className="ml-3.5 space-y-0.5 border-l border-[#CAD3F5]/80 py-0.5 pl-2">
+                            {group.items.map((item) => {
+                              const isActive = activeSection === item.id;
+                              return (
+                                <button
+                                  key={item.id}
+                                  type="button"
+                                  onClick={() => scrollToSection(item.id)}
+                                  className={cn(
+                                    'group flex w-full cursor-pointer items-center justify-between rounded-md px-2.5 py-1.5 text-left text-xs transition-all duration-150 active:scale-[0.97]',
+                                    isActive
+                                      ? 'border-l-[3px] border-[#0056FF] bg-[#EFF5FF] font-bold text-[#0056FF] shadow-2xs'
+                                      : 'border-l-[3px] border-transparent font-medium text-slate-600 hover:bg-[#EFF5FF]/60 hover:text-[#0056FF]',
+                                  )}
+                                >
+                                  <span className="truncate pr-1">{item.label}</span>
+                                  {item.badge && (
+                                    <span
+                                      className={cn(
+                                        'w-9 shrink-0 rounded-[2px] py-0.5 text-center font-mono text-[9px] font-bold',
+                                        item.badge === 'GET'
+                                          ? 'bg-[#E3E7FC] text-[#0056FF]'
+                                          : 'bg-emerald-100 text-emerald-800',
+                                      )}
+                                      style={{ borderRadius: '2px' }}
+                                    >
+                                      {item.badge}
+                                    </span>
+                                  )}
+                                </button>
+                              );
+                            })}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
                 );
               })}
+
+              {/* Root Standalone Links (matching TikTok Changelog style at bottom) */}
+              <div className="mt-3 space-y-0.5 border-t border-[#CAD3F5]/80 pt-2.5">
+                {displayRootItems.map((item) => {
+                  const isActive = activeSection === item.id;
+                  const Icon = item.id === 'changelogs' ? FileText : Compass;
+                  return (
+                    <button
+                      key={item.id}
+                      type="button"
+                      onClick={() => scrollToSection(item.id)}
+                      className={cn(
+                        'group flex w-full cursor-pointer items-center justify-between rounded-lg px-2.5 py-1.5 text-left text-xs transition-all duration-150 active:scale-[0.98]',
+                        isActive
+                          ? 'border-l-[3px] border-[#0056FF] bg-[#EFF5FF] font-bold text-[#0056FF] shadow-2xs'
+                          : 'border-l-[3px] border-transparent font-bold text-slate-700 hover:bg-[#EFF5FF]/60 hover:text-[#0056FF]',
+                      )}
+                    >
+                      <div className="flex items-center gap-2 truncate">
+                        <Icon className="size-3.5 shrink-0 stroke-[2.2] text-[#020617]" />
+                        <span className="truncate">{item.label}</span>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Empty Search Feedback */}
+              {q && displayGroups.length === 0 && displayRootItems.length === 0 && (
+                <div className="rounded-lg border border-dashed border-[#CAD3F5] p-3 text-center">
+                  <p className="text-xs font-bold text-slate-700">No endpoints found</p>
+                  <p className="mt-0.5 text-[10px] text-slate-400">
+                    Try searching for &quot;health&quot;, &quot;student&quot;, or &quot;auth&quot;
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => setSearchQuery('')}
+                    className="mt-2 rounded-[2px] bg-[#EFF5FF] px-2 py-0.5 font-mono text-[10px] font-bold text-[#0056FF] hover:bg-[#E3E7FC] cursor-pointer"
+                  >
+                    Clear search
+                  </button>
+                </div>
+              )}
             </nav>
           </div>
 
-          {/* Clean Security Badge Box (Zero internal header leaks) */}
-          <div className="space-y-1.5 rounded-xl border border-[#CAD3F5] bg-[#EFF5FF] p-3.5">
-            <div className="flex items-center gap-1.5 text-xs font-bold text-[#0056FF]">
-              <ShieldCheck className="size-3.5 text-[#0056FF]" />
-              <span>Enterprise Access Control</span>
+          {/* Clean Enterprise Gateway Card */}
+          <div className="rounded-xl border border-[#CAD3F5] bg-white p-3 shadow-2xs transition-colors hover:border-[#0056FF]/40">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2.5">
+                <ShieldCheck className="size-5 shrink-0 stroke-[2] text-[#020617]" />
+                <div className="space-y-0.5">
+                  <div className="font-sans text-xs font-extrabold text-[#0A1A4A]">
+                    Enterprise Gateway
+                  </div>
+                  <div className="font-mono text-[10px] text-slate-500">
+                    TLS 1.3 · Bearer Token
+                  </div>
+                </div>
+              </div>
+              <span
+                className="rounded-[2px] bg-emerald-100 px-1.5 py-0.5 font-mono text-[9px] font-extrabold text-emerald-800 uppercase"
+                style={{ borderRadius: '2px' }}
+              >
+                ACTIVE
+              </span>
             </div>
-            <p className="text-[11px] leading-relaxed text-slate-700">
-              Protected endpoints require authorized institutional credentials. Public services are
-              accessible without authentication.
-            </p>
           </div>
         </aside>
 
@@ -407,80 +630,25 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
           {/* ----------------------------------------------------------------- */}
           {/* HEADER SECTION                                                    */}
           {/* ----------------------------------------------------------------- */}
-          <header className="flex flex-col items-center justify-center space-y-6 border-b border-[#CAD3F5] pt-6 pb-12 text-center">
-            {/* Centered SNPI Logo (Large Hero Variant) */}
-            <DocumentLogo
-              variant="hero"
-              mode="light"
-              showLabel={true}
-              label="SNPI-SMS"
-              subtitle="API Documentation"
-              centered={true}
-              className="select-none"
-            />
-
-            {/* Title & Subtitle */}
-            <div className="flex max-w-2xl flex-col items-center space-y-3">
-              <div className="inline-flex items-center gap-2 rounded-full border border-[#CAD3F5] bg-[#EFF5FF] px-3.5 py-1 text-xs font-bold text-[#0056FF]">
-                <AsteriskLogo size="xs" variant="bare" />
-                <span>REST API Specification · Open API 3.0</span>
-                <AsteriskLogo size="xs" variant="bare" />
-              </div>
-              <h1 className="text-3xl font-black tracking-tight text-[#0A1A4A] sm:text-4xl md:text-5xl">
-                SNPI Open API Documentation
+          <div className="border-b border-[#CAD3F5] pb-4">
+            <div className="flex items-center gap-3">
+              <Terminal className="size-6 shrink-0 stroke-[2] text-[#020617]" />
+              <h1 className="text-2xl font-black tracking-tight text-[#0A1A4A] sm:text-3xl">
+                API Documentation
               </h1>
-              <p className="text-sm leading-relaxed font-medium text-slate-600 sm:text-base">
-                Official REST API Integration Specification for the SNPI School Management System
-              </p>
             </div>
-
-            {/* Centered Base URL Card (Production Gateway Only — No Local Dev Exposed) */}
-            <div className="flex flex-col items-center gap-3 rounded-2xl border border-[#CAD3F5] bg-[#EFF5FF] px-5 py-3.5 shadow-2xs sm:flex-row">
-              <div className="flex items-center gap-2 text-slate-700">
-                <Terminal className="size-4 shrink-0 text-[#0056FF]" />
-                <span className="font-mono text-xs font-bold text-[#0056FF] uppercase">
-                  Production Gateway:
-                </span>
-                <code className="font-mono text-xs font-bold text-[#0A1A4A] sm:text-sm">
-                  {PRODUCTION_GATEWAY_URL}
-                </code>
-              </div>
-
-              <div>
-                <button
-                  type="button"
-                  onClick={() => handleCopy(PRODUCTION_GATEWAY_URL, 'main-base-url')}
-                  className={cn(
-                    'flex cursor-pointer items-center gap-1.5 rounded-xl border border-[#CAD3F5] px-3.5 py-1.5 font-mono text-xs font-bold shadow-2xs transition-all',
-                    copiedId === 'main-base-url'
-                      ? 'border-emerald-300 bg-emerald-50 text-emerald-800'
-                      : 'bg-white text-[#0056FF] hover:bg-[#E3E7FC]',
-                  )}
-                >
-                  {copiedId === 'main-base-url' ? (
-                    <>
-                      <Check className="size-3.5 text-emerald-600" />
-                      <span>Copied Base URL</span>
-                    </>
-                  ) : (
-                    <>
-                      <Copy className="size-3.5" />
-                      <span>Copy Base URL</span>
-                    </>
-                  )}
-                </button>
-              </div>
-            </div>
-          </header>
+          </div>
 
           {/* ----------------------------------------------------------------- */}
           {/* SECTION 1: CHANGE LOGS                                            */}
           {/* ----------------------------------------------------------------- */}
           <section id="changelogs" className="scroll-mt-28 space-y-3">
-            <h2 className="flex items-center gap-2 text-xl font-bold tracking-tight text-[#0A1A4A]">
-              <AsteriskLogo size="sm" variant="standard" />
-              <span>Change Logs</span>
-            </h2>
+            <div className="flex items-center gap-3">
+              <FileText className="size-6 shrink-0 stroke-[2] text-[#020617]" />
+              <h2 className="text-xl font-bold tracking-tight text-[#0A1A4A] sm:text-2xl">
+                Change Logs
+              </h2>
+            </div>
 
             <div className="overflow-hidden rounded-xl border border-[#CAD3F5] bg-white shadow-2xs">
               <div className="overflow-x-auto">
@@ -512,10 +680,12 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
           {/* SECTION 2: TABLE OF CONTENTS                                      */}
           {/* ----------------------------------------------------------------- */}
           <section id="toc" className="scroll-mt-28 space-y-3">
-            <h2 className="flex items-center gap-2 text-xl font-bold tracking-tight text-[#0A1A4A]">
-              <AsteriskLogo size="sm" variant="standard" />
-              <span>Table of contents</span>
-            </h2>
+            <div className="flex items-center gap-3">
+              <Layers className="size-6 shrink-0 stroke-[2] text-[#020617]" />
+              <h2 className="text-xl font-bold tracking-tight text-[#0A1A4A] sm:text-2xl">
+                Table of contents
+              </h2>
+            </div>
 
             <div className="rounded-xl border border-[#CAD3F5] bg-[#EFF5FF]/40 p-4 font-mono text-xs">
               <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
@@ -601,35 +771,35 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
           {/* SECTION 3: INTRODUCTION                                           */}
           {/* ----------------------------------------------------------------- */}
           <section id="introduction" className="scroll-mt-28 space-y-6">
-            <h2 className="flex items-center gap-2.5 text-2xl font-black tracking-tight text-[#0A1A4A]">
-              <AsteriskLogo size="md" variant="standard" />
-              <span>Introduction</span>
-            </h2>
+            <div className="flex items-center gap-3">
+              <FileText className="size-6 shrink-0 stroke-[2] text-[#020617]" />
+              <h2 className="text-2xl font-black tracking-tight text-[#0A1A4A] sm:text-3xl">
+                Introduction
+              </h2>
+            </div>
 
             {/* 1. Purpose */}
-            <div id="purpose" className="scroll-mt-28 space-y-2">
+            <div id="purpose" className="scroll-mt-28 space-y-1">
               <h3 className="text-base font-bold text-[#0A1A4A]">1. Purpose</h3>
-              <p className="text-xs leading-relaxed text-slate-700 sm:text-sm">
-                This document describes the detailed specification of the SNPI Open API offered by
-                the SNPI School Management System. The expected readers are internal frontend
-                engineers, system integrators, and institutional partners. This can be used as
-                reference for any interest related to the API mentioned in this document.
+              <p className="text-xs text-slate-700">
+                Technical specification for SNPI Open API integration.
               </p>
             </div>
 
             {/* 2. Scope */}
-            <div id="scope" className="scroll-mt-28 space-y-2">
+            <div id="scope" className="scroll-mt-28 space-y-1">
               <h3 className="text-base font-bold text-[#0A1A4A]">2. Scope</h3>
-              <p className="text-xs leading-relaxed text-slate-700 sm:text-sm">
-                This document contains the complete description of the API specification including:
-                gateway base URL, authentication model, HTTP status codes, query and body parameter
-                matrices, and request/response samples for all public and protected services.
+              <p className="text-xs text-slate-700">
+                Contracts, authentication, endpoints, parameters, and response schemas.
               </p>
             </div>
 
             {/* 3. Overall API */}
             <div id="overall-api" className="scroll-mt-28 space-y-3">
-              <h3 className="text-base font-bold text-[#0A1A4A]">3. Overall API</h3>
+              <div className="flex items-center gap-3">
+                <Server className="size-5 shrink-0 stroke-[2] text-[#020617]" />
+                <h3 className="text-base font-bold text-[#0A1A4A]">3. Overall API</h3>
+              </div>
               <div className="overflow-hidden rounded-xl border border-[#CAD3F5] bg-white shadow-2xs">
                 <div className="overflow-x-auto">
                   <table className="w-full border-collapse text-left text-xs">
@@ -654,11 +824,12 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                           <td className="px-4 py-2.5">
                             <span
                               className={cn(
-                                'rounded px-1.5 py-0.5 font-mono text-[10px] font-bold',
+                                'rounded-[2px] px-1.5 py-0.5 font-mono text-[10px] font-bold',
                                 row.method === 'GET'
                                   ? 'bg-[#0056FF] text-white'
                                   : 'bg-emerald-600 text-white',
                               )}
+                              style={{ borderRadius: '2px' }}
                             >
                               [{row.method}]
                             </span>
@@ -667,7 +838,10 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                             <code className="font-mono text-[11px] text-[#0056FF]">{row.url}</code>
                           </td>
                           <td className="px-4 py-2.5 text-slate-700">
-                            <span className="rounded bg-[#E3E7FC] px-1.5 py-0.5 font-mono text-[10px] font-bold text-[#0056FF]">
+                            <span
+                              className="rounded-[2px] bg-[#E3E7FC] px-1.5 py-0.5 font-mono text-[10px] font-bold text-[#0056FF]"
+                              style={{ borderRadius: '2px' }}
+                            >
                               {row.auth}
                             </span>
                           </td>
@@ -681,37 +855,38 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
 
             {/* 4. Security & Access Control */}
             <div id="security" className="scroll-mt-28 space-y-4">
-              <h3 className="text-base font-bold text-[#0A1A4A]">
-                4. Security & Institutional Access Control
-              </h3>
+              <div className="flex items-center gap-3">
+                <ShieldCheck className="size-5 shrink-0 stroke-[2] text-[#020617]" />
+                <h3 className="text-base font-bold text-[#0A1A4A]">
+                  4. Security &amp; Institutional Access Control
+                </h3>
+              </div>
 
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 {/* Public Tier */}
                 <div className="space-y-2 rounded-xl border border-[#CAD3F5] bg-[#FFFFFF] p-4 shadow-2xs">
-                  <div className="flex items-center gap-2 text-xs font-bold text-[#0056FF]">
-                    <Server className="size-4" />
+                  <div className="flex items-center gap-2.5 text-xs font-bold text-[#0A1A4A]">
+                    <Server className="size-4 shrink-0 stroke-[2] text-[#020617]" />
                     <span>Public Inquiry Tier (Open)</span>
                   </div>
-                  <p className="text-xs text-slate-700">
-                    Public verification and monitoring endpoints can be accessed by any consumer
-                    without authentication headers or token requirements:
-                  </p>
-                  <code className="block rounded bg-[#EFF5FF] p-2 font-mono text-[11px] text-[#0A1A4A]">
+                  <code
+                    className="block rounded-[2px] bg-[#EFF5FF] p-2 font-mono text-[11px] text-[#0A1A4A]"
+                    style={{ borderRadius: '2px' }}
+                  >
                     GET /health, GET /certificates/verify/:hash
                   </code>
                 </div>
 
                 {/* Protected Tier */}
                 <div className="space-y-2 rounded-xl border border-[#CAD3F5] bg-[#FFFFFF] p-4 shadow-2xs">
-                  <div className="flex items-center gap-2 text-xs font-bold text-emerald-700">
-                    <Lock className="size-4" />
+                  <div className="flex items-center gap-2.5 text-xs font-bold text-[#0A1A4A]">
+                    <Lock className="size-4 shrink-0 stroke-[2] text-[#020617]" />
                     <span>Institutional Partner Tier (Restricted)</span>
                   </div>
-                  <p className="text-xs text-slate-700">
-                    Administrative data, student records, and operational mutations require
-                    authenticated Bearer token credentials issued upon verified login:
-                  </p>
-                  <code className="block rounded bg-[#EFF5FF] p-2 font-mono text-[11px] text-[#0A1A4A]">
+                  <code
+                    className="block rounded-[2px] bg-[#EFF5FF] p-2 font-mono text-[11px] text-[#0A1A4A]"
+                    style={{ borderRadius: '2px' }}
+                  >
                     Authorization: Bearer &lt;AUTHENTICATION_TOKEN&gt;
                   </code>
                 </div>
@@ -720,7 +895,10 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
 
             {/* 5. HTTP Status Codes */}
             <div id="status-codes" className="scroll-mt-28 space-y-3">
-              <h3 className="text-base font-bold text-[#0A1A4A]">5. HTTP Status Codes</h3>
+              <div className="flex items-center gap-3">
+                <Terminal className="size-5 shrink-0 stroke-[2] text-[#020617]" />
+                <h3 className="text-base font-bold text-[#0A1A4A]">5. HTTP Status Codes</h3>
+              </div>
 
               <div className="overflow-hidden rounded-xl border border-[#CAD3F5] bg-white shadow-2xs">
                 <div className="overflow-x-auto">
@@ -753,14 +931,10 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
           {/* SECTION 4: API DOCUMENTATION                                      */}
           {/* ----------------------------------------------------------------- */}
           <section id="api-documentation" className="scroll-mt-28 space-y-12">
-            <div>
-              <div className="inline-flex items-center gap-1.5 rounded-full border border-[#CAD3F5] bg-[#E3E7FC] px-3 py-0.5 text-xs font-bold text-[#0056FF]">
-                <FileText className="size-3.5" />
-                <span>API Endpoint Specifications</span>
-              </div>
-              <h2 className="mt-2 flex items-center gap-2.5 text-2xl font-black tracking-tight text-[#0A1A4A]">
-                <AsteriskLogo size="md" variant="standard" />
-                <span>Detailed API Documentation</span>
+            <div className="flex items-center gap-3">
+              <FileText className="size-6 shrink-0 stroke-[2] text-[#020617]" />
+              <h2 className="text-2xl font-black tracking-tight text-[#0A1A4A] sm:text-3xl">
+                API Documentation
               </h2>
             </div>
 
@@ -768,18 +942,19 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
             {/* PUBLIC APIS                                                     */}
             {/* =============================================================== */}
             <div id="public-apis" className="scroll-mt-28 space-y-8 border-t border-[#CAD3F5] pt-6">
-              <div className="space-y-1">
+              <div className="flex items-center gap-3">
+                <Server className="size-5 shrink-0 stroke-[2] text-[#020617]" />
                 <div className="flex items-center gap-2">
-                  <span className="rounded bg-emerald-100 px-2 py-0.5 font-mono text-[10px] font-bold text-emerald-800">
+                  <span
+                    className="rounded-[2px] bg-emerald-100 px-2 py-0.5 font-mono text-[10px] font-bold text-emerald-800"
+                    style={{ borderRadius: '2px' }}
+                  >
                     [PUBLIC]
                   </span>
                   <h3 className="text-xl font-black text-[#0A1A4A]">
-                    1. Public Endpoints (Open Access)
+                    1. Public Endpoints
                   </h3>
                 </div>
-                <p className="text-xs text-slate-600">
-                  These endpoints provide public inquiries and do not require user credentials.
-                </p>
               </div>
 
               {/* 1.1 System Health Probe */}
@@ -796,8 +971,8 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                 <ApiSpecTable
                   method="GET"
                   endpoint="{{baseUrl}}/health"
-                  name="System Health & Status Probe"
-                  description="Public microservices health inspection endpoint returning service operational status and server timestamp."
+                  name="System Health Probe"
+                  description="System health inspection probe."
                   authRequirement="Public (Open Access)"
                 />
 
@@ -885,7 +1060,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                   method="GET"
                   endpoint="{{baseUrl}}/certificates/verify/:hash"
                   name="Certificate Ledger Verification"
-                  description="Public SHA-256 cryptographic proof verification for academic diplomas and completion credentials issued by SNPI."
+                  description="Public cryptographic proof verification."
                   authRequirement="Public (Open Access)"
                 />
 
@@ -962,19 +1137,18 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
               id="protected-apis"
               className="scroll-mt-28 space-y-8 border-t border-[#CAD3F5] pt-6"
             >
-              <div className="space-y-2">
+              <div className="flex items-center gap-3">
+                <Lock className="size-5 shrink-0 stroke-[2] text-[#020617]" />
                 <div className="flex items-center gap-2">
-                  <span className="rounded bg-[#E3E7FC] px-2 py-0.5 font-mono text-[10px] font-bold text-[#0056FF]">
+                  <span
+                    className="rounded-[2px] bg-[#E3E7FC] px-2 py-0.5 font-mono text-[10px] font-bold text-[#0056FF]"
+                    style={{ borderRadius: '2px' }}
+                  >
                     [RESTRICTED]
                   </span>
                   <h3 className="text-xl font-black text-[#0A1A4A]">
                     2. Institutional Protected Services
                   </h3>
-                </div>
-                <div className="rounded-xl border border-amber-200 bg-amber-50/70 p-3 text-xs text-amber-900">
-                  <span className="font-bold">Access Control Notice:</span> Protected endpoints
-                  require an authorized Bearer session token. Unauthenticated inquiries will be
-                  rejected with <code className="font-mono font-bold">401 Unauthorized</code>.
                 </div>
               </div>
 
@@ -993,7 +1167,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                   method="POST"
                   endpoint="{{baseUrl}}/auth/login"
                   name="User Authentication"
-                  description="Authenticates staff or administrator credentials and returns Bearer access and refresh tokens with branch tenancy context."
+                  description="Authenticates staff credentials and returns tokens."
                   authRequirement="Account Credentials"
                 />
 
@@ -1110,7 +1284,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                   method="POST"
                   endpoint="{{baseUrl}}/auth/refresh"
                   name="Renew Session Token"
-                  description="Rotates an existing refresh token and generates a new 15-minute Bearer access token without credential re-entry."
+                  description="Rotates refresh token for new access token."
                   authRequirement="Valid Refresh Token"
                 />
 
@@ -1209,7 +1383,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                   method="GET"
                   endpoint="{{baseUrl}}/auth/me"
                   name="User Profile & Permissions"
-                  description="Returns authenticated user profile, resolved RBAC permissions matrix, branch access scopes, and institution tenancy."
+                  description="Returns authenticated profile and permissions."
                   authRequirement="Institutional Authorization (Bearer Token)"
                 />
 
@@ -1275,7 +1449,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                   method="GET"
                   endpoint="{{baseUrl}}/students"
                   name="List Students"
-                  description="Retrieves a paginated list of students filtered by branch, status, or search keyword."
+                  description="Paginated student directory."
                   authRequirement="Institutional Authorization (Bearer Token)"
                 />
 
@@ -1390,7 +1564,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                   method="POST"
                   endpoint="{{baseUrl}}/students"
                   name="Create Student"
-                  description="Enrolls a new student into the school system under the caller branch scope with input validation."
+                  description="Enrolls new student with branch tenancy."
                   authRequirement="Institutional Authorization (Bearer Token)"
                 />
 
@@ -1530,7 +1704,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                   method="POST"
                   endpoint="{{baseUrl}}/attendance"
                   name="Record Daily Attendance"
-                  description="Submits daily session attendance records for a class cohort with present, absent, late, or excused statuses."
+                  description="Submits daily session attendance records."
                   authRequirement="Institutional Authorization (Bearer Token)"
                 />
 
@@ -1660,7 +1834,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                   method="POST"
                   endpoint="{{baseUrl}}/payments"
                   name="Record Payment Transaction"
-                  description="Records tuition fee or administrative payments with dual currency support (USD / KHR) and auto-generated receipt numbers."
+                  description="Records tuition fee payment transaction."
                   authRequirement="Institutional Authorization (Bearer Token)"
                 />
 

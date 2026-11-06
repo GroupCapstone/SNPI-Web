@@ -216,7 +216,7 @@ export const AppSidebar = ({ onClose, className }: AppSidebarProps) => {
                 aria-expanded={isOpen}
                 onClick={() => toggleGroup(groupKey)}
                 className={cn(
-                  'group flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200',
+                  'group flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200 active:scale-[0.97]',
                   isGroupActive
                     ? 'bg-slate-900/90 font-semibold text-white'
                     : 'text-slate-300 hover:bg-white/5 hover:text-white',
@@ -224,16 +224,14 @@ export const AppSidebar = ({ onClose, className }: AppSidebarProps) => {
               >
                 <div className="flex min-w-0 items-center gap-2.5">
                   {GroupIcon && (
-                    <div
+                    <GroupIcon
                       className={cn(
-                        'flex size-8 shrink-0 items-center justify-center rounded-lg border transition-colors',
+                        'size-4.5 shrink-0 transition-colors',
                         isGroupActive
-                          ? 'border-blue-500/30 bg-blue-500/10 text-[#ffd60a]'
-                          : 'border-slate-800 bg-slate-900/60 text-slate-400 group-hover:border-slate-700 group-hover:text-slate-200',
+                          ? 'text-white'
+                          : 'text-slate-400 group-hover:text-slate-200',
                       )}
-                    >
-                      <GroupIcon className="size-4 shrink-0" />
-                    </div>
+                    />
                   )}
                   <span className="truncate text-left text-sm leading-5">{groupTitle}</span>
                 </div>
@@ -270,7 +268,7 @@ export const AppSidebar = ({ onClose, className }: AppSidebarProps) => {
                     return (
                       <Link
                         className={cn(
-                          'group flex items-center gap-2.5 rounded-md px-2.5 py-1.5 text-xs leading-5 font-medium transition-all duration-150',
+                          'group flex items-center gap-2.5 rounded-md px-2.5 py-1.5 text-xs leading-5 font-medium transition-all duration-150 active:scale-[0.97]',
                           isCurrent
                             ? 'bg-[#00509d] font-semibold text-white shadow-sm'
                             : 'text-slate-400 hover:bg-white/5 hover:text-white',

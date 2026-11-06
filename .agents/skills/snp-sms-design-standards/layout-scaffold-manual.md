@@ -132,3 +132,107 @@ Rulers establish global alignment lines coordinating elements across disparate p
 | **Trailing Rail** | Auxiliary tools & actions | Docked bottom sheet | 360dp supporting rail | Only present when tied to primary pane |
 | **Panes** | Core content & data views | 1 pane full screen | 2–3 co-planar panes | Reflows; reading order follows DOM |
 | **Safety Insets**| Prevents hardware clipping | 24–48dp notch/gesture | Standard window borders | Zero text/button overlap with cutouts |
+
+---
+
+## 8. The 6-Stage Design System Progression Hierarchy
+
+Material 3 Layout Scaffold operates as Level 4 (Templates) within the 6-stage architectural hierarchy:
+
+```
+[Level 1: Ingredients] Tokens & Atoms (Color, Typography, Spacing, Elevation, Motion)
+       |
+[Level 2: Recipes]     UI Primitives (Buttons, Inputs, Badges, Chips, Switches)
+       |
+[Level 3: Entrees]     Composite Components (Top App Bars, Navigation Rails, Cards, Modals)
+       |
+[Level 4: Templates]   LAYOUT SCAFFOLD (Bars + Rails + Fluid Multi-Panes + Safety Insets)
+       |
+[Level 5: Pages]       Feature Screens (Dashboard, Student Roster, Gradebook, Settings)
+       |
+[Level 6: Cookbook]    Design System Governance (Guidelines, Semver Cadence, Contribution)
+```
+
+### Architectural Principles:
+1. **Never skip layers**: Pages must always be constructed by assembling Entrees inside a Level 4 Layout Scaffold.
+2. **Scaffold decoupling**: Layout Scaffold manages viewports, panes, and rails; it never dictates the domain business logic of content panes.
+3. **Standby readiness**: Every future screen (portal, sub-dashboard, inspection view) must inherit this scaffold model.
+
+---
+
+## 9. 5-Breakpoint Adaptive Layout Matrix
+
+| Breakpoint Tier | Width Range | Viewport Target | Columns | Margin | Gutter | Primary Layout Structure |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Compact** | `<600dp` | Mobile Handheld | 4 | 16dp | 16dp | 1-Pane Fullscreen + 80dp Bottom Nav + 56dp Top Bar |
+| **Medium** | `600–839dp` | Tablet / Foldable | 8 | 24dp | 24dp | 1-Pane (dense) or Split Sheet + 80dp Collapsed Vertical Rail |
+| **Expanded** | `840–1199dp` | Small Desktop / Tablet Landscape | 12 | 24dp | 24dp | 2-Pane Co-Planar (List-Detail) + 80dp Navigation Rail |
+| **Large** | `1200–1599dp` | Desktop / Monitor | 12 | 32dp | 24dp | 2-3 Panes Co-Planar + 280dp Expanded Navigation Drawer |
+| **Extra-Large** | `≥1600dp` | Ultra-Wide / Workstation | 12 | 32dp+ | 32dp | 3 Panes Co-Planar + Max 800px Centered Content Containers |
+
+---
+
+## 10. Production Scaffold Architecture Code Pattern (React 19 / Tailwind CSS)
+
+Use this canonical scaffold pattern whenever designing new platform screens:
+
+```tsx
+export function PlatformScaffold({
+  topBar,
+  navigationRail,
+  primaryPane,
+  supportingPane,
+}: {
+  topBar?: React.ReactNode;
+  navigationRail?: React.ReactNode;
+  primaryPane: React.ReactNode;
+  supportingPane?: React.ReactNode;
+}) {
+  return (
+    <div className="flex min-h-screen w-full flex-col bg-[#FFFFFF] text-[#0A1A4A]">
+      {/* System Top Safety Region */}
+      <div className="h-[env(safe-area-inset-top,0px)] bg-white" />
+
+      {/* Top App Bar Region */}
+      {topBar && (
+        <header className="sticky top-0 z-20 h-14 border-b border-[#CAD3F5] bg-white/95 px-4 backdrop-blur-md sm:h-16 sm:px-6">
+          {topBar}
+        </header>
+      )}
+
+      {/* Main Structural Frame: Rails + Panes */}
+      <div className="flex flex-1 overflow-hidden">
+        {/* Navigation Rail (Hidden on Compact, 80dp on Medium/Expanded, 280dp on Large) */}
+        {navigationRail && (
+          <aside className="hidden border-r border-[#CAD3F5] bg-[#FFFFFF] md:block md:w-20 lg:w-72 shrink-0">
+            {navigationRail}
+          </aside>
+        )}
+
+        {/* Panes Container */}
+        <main className="flex flex-1 min-w-0 overflow-y-auto">
+          {/* Primary Content Pane */}
+          <section className="flex-1 min-w-0 p-4 sm:p-6 lg:p-8">
+            {primaryPane}
+          </section>
+
+          {/* Supporting Pane (Shown on Expanded & Large screens) */}
+          {supportingPane && (
+            <aside className="hidden w-80 border-l border-[#CAD3F5] bg-[#EFF5FF]/40 p-4 xl:block shrink-0">
+              {supportingPane}
+            </aside>
+          )}
+        </main>
+      </div>
+
+      {/* Mobile Bottom Navigation (Shown only on Compact <md) */}
+      <nav className="sticky bottom-0 z-20 h-16 border-t border-[#CAD3F5] bg-white md:hidden">
+        {/* Mobile destinations */}
+      </nav>
+
+      {/* System Bottom Safety Region */}
+      <div className="h-[env(safe-area-inset-bottom,0px)] bg-white" />
+    </div>
+  );
+}
+```

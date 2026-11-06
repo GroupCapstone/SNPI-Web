@@ -1,7 +1,9 @@
 'use client';
 
 import * as React from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '@/lib/utils';
+import { MOTION_EASE_OUT, POPOVER_INITIAL_SCALE } from '@/lib/motion';
 
 export interface LibraryTooltipProps {
   content: React.ReactNode;
@@ -48,6 +50,13 @@ export function LibraryTooltip({
     right: 'left-full top-1/2 -translate-y-1/2 ml-2',
   };
 
+  const transformOrigins = {
+    top: 'bottom center',
+    bottom: 'top center',
+    left: 'right center',
+    right: 'left center',
+  };
+
   const childWithProps = React.cloneElement(children, {
     onMouseEnter: (e: React.MouseEvent) => {
       showTooltip();
@@ -70,23 +79,43 @@ export function LibraryTooltip({
   return (
     <div className="relative inline-flex items-center justify-center">
       {childWithProps}
-      {isVisible && (
-        <div
-          role="tooltip"
-          className={cn(
-            'animate-in fade-in zoom-in-95 pointer-events-none absolute z-50 flex items-center gap-1.5 rounded-[4px] border border-[#CAD3F5] bg-white px-2.5 py-1 text-xs font-semibold whitespace-nowrap text-slate-800 shadow-none duration-100',
-            positionStyles[position],
-            className,
-          )}
-        >
-          <span>{content}</span>
-          {shortcut && (
-            <kbd className="rounded-[2px] border border-slate-200 bg-slate-100 px-1 py-0.5 font-mono text-[10px] text-slate-600 uppercase">
-              {shortcut}
-            </kbd>
-          )}
-        </div>
-      )}
+      <AnimatePresence>
+        {isVisible && (
+          <motion.div
+            role="tooltip"
+            initial={{ opacity: 0, scale: POPOVER_INITIAL_SCALE }}
+            animate={{
+              opacity: 1,
+              scale: 1,
+              transition: {
+                duration: 0.15,
+                ease: MOTION_EASE_OUT,
+              },
+            }}
+            exit={{
+              opacity: 0,
+              scale: POPOVER_INITIAL_SCALE,
+              transition: {
+                duration: 0.12, // Law 15: 20% shorter exit
+                ease: [0.7, 0, 0.84, 0],
+              },
+            }}
+            style={{ transformOrigin: transformOrigins[position] }}
+            className={cn(
+              'pointer-events-none absolute z-50 flex items-center gap-1.5 rounded-[4px] border border-[#CAD3F5] bg-white px-2.5 py-1 text-xs font-semibold whitespace-nowrap text-slate-800 shadow-sm',
+              positionStyles[position],
+              className,
+            )}
+          >
+            <span>{content}</span>
+            {shortcut && (
+              <kbd className="rounded-[2px] border border-slate-200 bg-slate-100 px-1 py-0.5 font-mono text-[10px] text-slate-600 uppercase">
+                {shortcut}
+              </kbd>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

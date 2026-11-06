@@ -26,7 +26,7 @@ export function LibraryChip({
         type="button"
         onClick={onClick}
         className={cn(
-          'inline-flex h-8 items-center gap-1.5 rounded-[4px] px-3 text-xs font-bold transition-all select-none focus-visible:outline-none',
+          'inline-flex h-8 items-center gap-1.5 rounded-[4px] px-3 text-xs font-bold transition-all duration-150 ease-out active:scale-[0.97] select-none focus-visible:outline-none',
           active
             ? 'border-0 bg-[#0056FF] text-white shadow-none'
             : 'border border-slate-300 bg-slate-50/80 text-slate-700 hover:border-[#0056FF] hover:bg-blue-50/40 hover:text-[#0056FF]',

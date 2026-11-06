@@ -114,11 +114,12 @@ th {
 }
 
 /* Keyline Two-Tone Icons - Standardized Icon Style Specification
-   Color: text-slate-600 default (currentColor)
+   Color: Default Black (#020617 / text-slate-950) on light surfaces; White (#FFFFFF) on dark/blue surfaces
    Two-Tone Accent: fill="currentColor" fill-opacity="0.4" stroke="none"
    Primary Outline: stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
    Background: transparent (100% transparent surface, zero box-shadow, zero backdrop-filter)
    Motionless & Stable: Zero animations, zero hover movement, zero translation/scaling
+   Border Radius of Containers: 4px strictly enforced across all icon backgrounds (rounded-[4px])
 */
 svg[class*='keyline'],
 .keyline-two-tone-icon,
@@ -168,7 +169,93 @@ svg:where([data-slot='icon'], [class*='size-'], [class*='h-'][class*='w-']) {
   animation: none !important;
 }
 
-/* Dark mode contrast preservation */
+/* Universal Default Black / Dark Fill Standard for All Icons:
+   1. Default: Strictly Black / Dark Obsidian (#020617 / Slate-950) fill & stroke
+   2. On Brand Blue (#0056FF) / primary surfaces: Pure White (#FFFFFF)
+   3. On Dark Mode surfaces: Pure White (#FFFFFF)
+   4. Semantic Status: Colors only apply when explicitly defined (e.g. text-emerald-600)
+*/
+
+/* Universal Default icon color: Black / Dark Obsidian (#020617) */
+.keyline-two-tone-icon,
+.keyline-two-tone-icon:not([class*='text-']) {
+  color: #020617;
+}
+
+/* Explicit title and heading icons: Black / Dark Obsidian (#020617) */
+.title-icon,
+[data-title-icon],
+h1 .keyline-two-tone-icon,
+h2 .keyline-two-tone-icon,
+h3 .keyline-two-tone-icon,
+h4 .keyline-two-tone-icon,
+h5 .keyline-two-tone-icon,
+h6 .keyline-two-tone-icon,
+button:not([class*='bg-[#0056FF]']):not([class*='bg-primary']) .keyline-two-tone-icon,
+a:not([class*='bg-[#0056FF]']) .keyline-two-tone-icon,
+header:not([class*='bg-[#0056FF]']) .keyline-two-tone-icon {
+  color: #020617;
+}
+
+/* In blue surfaces (e.g. primary buttons, headers, blue cards), icons are Pure White (#FFFFFF) */
+[class*='bg-[#0056FF]'] .keyline-two-tone-icon,
+[class*='bg-primary'] .keyline-two-tone-icon,
+[class*='bg-[#0048D9]'] .keyline-two-tone-icon,
 .dark .keyline-two-tone-icon:not([class*='text-']) {
-  color: #94a3b8;
+  color: #ffffff;
+}
+
+/* Icon size proportionality with titles (1:1 visual ratio, never oversized) */
+h1 .keyline-two-tone-icon,
+.text-2xl .keyline-two-tone-icon,
+.text-3xl .keyline-two-tone-icon {
+  width: 1.5rem !important;
+  height: 1.5rem !important;
+}
+
+h2 .keyline-two-tone-icon,
+.text-xl .keyline-two-tone-icon {
+  width: 1.25rem !important;
+  height: 1.25rem !important;
+}
+
+h3 .keyline-two-tone-icon,
+h4 .keyline-two-tone-icon,
+.text-lg .keyline-two-tone-icon,
+.text-base .keyline-two-tone-icon {
+  width: 1.125rem !important;
+  height: 1.125rem !important;
+}
+
+h5 .keyline-two-tone-icon,
+h6 .keyline-two-tone-icon,
+.text-sm .keyline-two-tone-icon,
+.text-xs .keyline-two-tone-icon {
+  width: 1rem !important;
+  height: 1rem !important;
+}
+
+/* Prohibition: Never use icons inline within normal paragraph descriptions or plain body text */
+p > .keyline-two-tone-icon,
+p > svg:where([data-slot='icon']) {
+  display: none !important;
+}
+
+/* Mandatory Prohibition of Borders Around Icons: Strictly zero border and zero box-shadow on icon containers */
+.icon-box,
+.icon-container,
+.icon-tile,
+[data-icon-wrapper],
+[class*='rounded-']:has(> .keyline-two-tone-icon),
+[class*='size-']:has(> .keyline-two-tone-icon),
+[class*='rounded-']:has(> svg[data-slot='icon']) {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Single-Color Container Rule: Strictly prohibit colored shapes or multi-color fills behind icons */
+[class*='rounded-[4px]']:has(> .keyline-two-tone-icon),
+.icon-container {
+  background-image: none !important;
+  box-shadow: none !important;
 }

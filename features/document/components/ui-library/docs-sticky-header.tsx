@@ -109,10 +109,10 @@ export function DocsStickyHeader({
     }));
   };
 
-  const [collapsedGroups, setCollapsedGroups] = React.useState<Record<string, boolean>>({});
+  const [openGroups, setOpenGroups] = React.useState<Record<string, boolean>>({});
 
   const toggleCategoryGroup = (groupId: string) => {
-    setCollapsedGroups((prev) => ({
+    setOpenGroups((prev) => ({
       ...prev,
       [groupId]: !prev[groupId],
     }));
@@ -387,7 +387,8 @@ export function DocsStickyHeader({
                       ) : (
                         filteredComponentGroups.map((group) => {
                           const ParentGroupIcon = getParentGroupIcon(group.groupId);
-                          const isGroupCollapsed = Boolean(collapsedGroups[group.groupId]);
+                          const parentTheme = getParentCategoryTheme(group.groupId);
+                          const isGroupOpen = Boolean(openGroups[group.groupId]);
 
                           return (
                             <div key={group.groupId} className="space-y-0.5">
@@ -398,9 +399,7 @@ export function DocsStickyHeader({
                                 className="group flex w-full cursor-pointer items-center justify-between rounded-xl px-2.5 py-2 text-left font-sans text-xs font-bold text-black transition-colors select-none hover:bg-slate-50"
                               >
                                 <div className="flex min-w-0 items-center gap-2.5">
-                                  <div className="flex size-8 shrink-0 items-center justify-center rounded-lg border border-slate-200/90 bg-white text-black shadow-2xs transition-colors group-hover:border-slate-300 group-hover:bg-slate-50/80">
-                                    <ParentGroupIcon className="size-4 stroke-[2] text-black" />
-                                  </div>
+                                  <ParentGroupIcon className="size-4.5 shrink-0 stroke-[2] text-[#020617]" />
                                   <span className="truncate text-xs font-bold text-black sm:text-[13px]">
                                     {group.group}
                                   </span>
@@ -408,13 +407,13 @@ export function DocsStickyHeader({
                                 <ChevronRight
                                   className={cn(
                                     'size-3.5 stroke-[2.2] text-black transition-transform duration-200',
-                                    !isGroupCollapsed && 'rotate-90',
+                                    isGroupOpen && 'rotate-90',
                                   )}
                                 />
                               </button>
 
-                              {/* Group Items (Pure Clean Typography - Icons on Parent Only, Zero Coming Tags) */}
-                              {!isGroupCollapsed && (
+                              {/* Group Items: Drop down when user taps */}
+                              {isGroupOpen && (
                                 <div className="space-y-0.5 pt-0.5 pl-1">
                                   {group.items.map((item) => {
                                     if (item.isParent && item.children) {

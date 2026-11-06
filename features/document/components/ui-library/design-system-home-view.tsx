@@ -3,24 +3,16 @@
 import * as React from 'react';
 import { BrandConceptBlueprint } from './brand-concept-blueprint';
 import { ColorRampsTokens } from './color-ramps-tokens';
-import { AccessibleDesignPrinciples } from './accessible-design-principles';
-import { MaterialGlossarySection } from './material-glossary-section';
-import { ScaffoldArchitectureSection } from './scaffold-architecture-section';
-import { CoreComponentsManual } from './core-components-manual';
-import { MaintenanceManual } from './maintenance-manual';
-import { OpenSourceChecklistSection } from './open-source-checklist-section';
+import { CoreComponentsMaintenanceStudio } from './core-components-maintenance-studio';
 import {
   Search,
   ChevronDown,
   ChevronRight,
   ShieldKey,
   Sliders,
-  Accessibility,
-  BookOpen,
   AppWindow,
   X,
   Layers,
-  Sparkles,
   Settings,
 } from '@/components/icons';
 import { cn } from '@/lib/utils';
@@ -58,54 +50,16 @@ const SIDEBAR_TREE: NavTreeItem[] = [
         label: 'Brand Blueprint & Assets',
         index: '01',
       },
+      {
+        id: 'brand-logo-design',
+        label: 'Asterisk Logo Design (3-Shape)',
+        index: '01.1',
+      },
       { id: 'brand-vision', label: 'Vision', index: 'B1' },
       { id: 'brand-principles', label: 'Design Principles', index: 'B2' },
       { id: 'brand-tone-of-voice', label: 'Tone of Voice', index: 'B3' },
       { id: 'brand-terminology', label: 'Terminology', index: 'B4' },
       { id: 'brand-assets', label: 'Brand Assets', index: 'B5' },
-    ],
-  },
-  {
-    id: 'guidelines-group',
-    label: 'Guidelines',
-    description:
-      'Understanding how to approach common UX patterns will allow your organization to establish a consistent approach.',
-    children: [
-      {
-        id: 'accessible-design-principles',
-        label: 'Accessibility Guidelines',
-        index: '03',
-        badge: '0/1',
-        badgeColor: 'blue',
-      },
-      {
-        id: 'guidelines-writing',
-        label: 'Writing Guidelines',
-        index: 'G1',
-        badge: '0/1',
-        badgeColor: 'blue',
-      },
-      {
-        id: 'guidelines-microcopy',
-        label: 'Microcopy Guidelines',
-        index: 'G2',
-        badge: '0/1',
-        badgeColor: 'blue',
-      },
-      {
-        id: 'material-a-z-glossary',
-        label: 'Terminology & Material Lexicon',
-        index: '04',
-        badge: '0/1',
-        badgeColor: 'blue',
-      },
-      {
-        id: 'guidelines-i18n',
-        label: 'Internationalisation (Khmer & English)',
-        index: 'G3',
-        badge: '0/1',
-        badgeColor: 'blue',
-      },
     ],
   },
   {
@@ -118,13 +72,6 @@ const SIDEBAR_TREE: NavTreeItem[] = [
         id: 'color-ramps-tokens',
         label: 'Color Ramps & Semantic Tokens',
         index: '02',
-        badge: '0/4',
-        badgeColor: 'blue',
-      },
-      {
-        id: 'layout-scaffold-architecture',
-        label: 'Layout & Scaffold Architecture',
-        index: '05',
         badge: '0/4',
         badgeColor: 'blue',
       },
@@ -262,58 +209,18 @@ const SIDEBAR_TREE: NavTreeItem[] = [
       },
     ],
   },
-  {
-    id: 'open-source-checklist-group',
-    label: 'Open-Source Checklist',
-    description:
-      'Unified macro-phases tracking (230 total checks): Design language (5/10), Foundations (0/26), Core components (0/166), and Maintenance (0/28).',
-    children: [
-      {
-        id: 'open-source-checklist-macro-phases',
-        label: 'All 230 Macro-Phase Checks',
-        index: 'CK',
-        badge: '5/230',
-        badgeColor: 'emerald',
-      },
-      {
-        id: 'color-ramps-tokens',
-        label: '2. Foundations',
-        index: 'P2',
-        badge: '0/26',
-        badgeColor: 'blue',
-      },
-      {
-        id: 'core-components-section',
-        label: '3. Core Components',
-        index: 'P3',
-        badge: '0/166',
-        badgeColor: 'blue',
-      },
-      {
-        id: 'maintenance-manual-section',
-        label: '4. Maintenance Strategy',
-        index: 'P4',
-        badge: '0/28',
-        badgeColor: 'blue',
-      },
-    ],
-  },
 ];
 
 function getSidebarGroupIcon(id: string) {
   switch (id) {
     case 'brand-group':
       return ShieldKey;
-    case 'guidelines-group':
-      return BookOpen;
     case 'foundations-group':
       return Sliders;
     case 'core-components-group':
       return AppWindow;
     case 'maintenance-group':
       return Settings;
-    case 'open-source-checklist-group':
-      return Sparkles;
     default:
       return Layers;
   }
@@ -321,14 +228,7 @@ function getSidebarGroupIcon(id: string) {
 
 export function DesignSystemHomeView() {
   const [searchQuery, setSearchQuery] = React.useState<string>('');
-  const [expandedNodes, setExpandedNodes] = React.useState<Record<string, boolean>>({
-    'brand-group': true,
-    'guidelines-group': true,
-    'foundations-group': true,
-    'core-components-group': true,
-    'maintenance-group': true,
-    'open-source-checklist-group': true,
-  });
+  const [expandedNodes, setExpandedNodes] = React.useState<Record<string, boolean>>({});
   const [selectedNode, setSelectedNode] = React.useState<string>('brand-blueprint');
   const searchInputRef = React.useRef<HTMLInputElement>(null);
 
@@ -357,13 +257,10 @@ export function DesignSystemHomeView() {
   }, []);
 
   const toggleNode = (nodeId: string) => {
-    setExpandedNodes((prev) => {
-      const current = prev[nodeId] ?? true;
-      return {
-        ...prev,
-        [nodeId]: !current,
-      };
-    });
+    setExpandedNodes((prev) => ({
+      ...prev,
+      [nodeId]: !Boolean(prev[nodeId]),
+    }));
   };
 
   const filteredTree = React.useMemo(() => {
@@ -471,7 +368,7 @@ export function DesignSystemHomeView() {
             <nav aria-label="Foundations Outline" className="space-y-1 pt-1">
               {filteredTree.map((item) => {
                 const hasChildren = Boolean(item.children && item.children.length > 0);
-                const isExpanded = (expandedNodes[item.id] ?? true) || searchQuery.length > 0;
+                const isExpanded = Boolean(expandedNodes[item.id]) || searchQuery.length > 0;
                 const isSelected = selectedNode === item.id;
                 const GroupIcon = getSidebarGroupIcon(item.id);
 
@@ -482,29 +379,19 @@ export function DesignSystemHomeView() {
                       onClick={() => {
                         if (hasChildren) {
                           toggleNode(item.id);
-                        } else {
-                          scrollToSection(item.id);
                         }
+                        scrollToSection(item.id);
                       }}
                       className={cn(
                         'group flex w-full cursor-pointer items-center justify-between rounded-lg px-2.5 py-2 text-left font-sans text-xs font-bold transition-all',
                         isSelected
-                          ? 'bg-[#EFF5FF] text-[#0056FF]'
-                          : 'text-[#0A1A4A] hover:bg-slate-100/70 hover:text-[#0056FF]',
+                          ? 'bg-[#EFF5FF] text-[#0A1A4A]'
+                          : 'text-[#0A1A4A] hover:bg-slate-100/70',
                       )}
                       title={item.label}
                     >
                       <div className="flex min-w-0 flex-1 items-center gap-2.5 pr-2">
-                        <div
-                          className={cn(
-                            'flex size-8 shrink-0 items-center justify-center rounded-lg border bg-white shadow-2xs transition-colors',
-                            isSelected
-                              ? 'border-[#0056FF]/30 text-[#0056FF] ring-2 ring-[#0056FF]/10'
-                              : 'border-slate-200/90 text-slate-800 group-hover:border-slate-300',
-                          )}
-                        >
-                          <GroupIcon className="size-4 stroke-[2]" />
-                        </div>
+                        <GroupIcon className="size-4.5 shrink-0 stroke-[2] text-[#020617]" />
                         <span className="min-w-0 flex-1 leading-snug font-bold tracking-tight break-words text-slate-900">
                           {item.label}
                         </span>
@@ -512,14 +399,14 @@ export function DesignSystemHomeView() {
                       <div className="flex shrink-0 items-center gap-1.5">
                         {hasChildren &&
                           (isExpanded ? (
-                            <ChevronDown className="size-3.5 text-slate-400 transition-colors group-hover:text-[#0056FF]" />
+                            <ChevronDown className="size-3.5 text-slate-400 transition-colors group-hover:text-slate-700" />
                           ) : (
-                            <ChevronRight className="size-3.5 text-slate-400 transition-colors group-hover:text-[#0056FF]" />
+                            <ChevronRight className="size-3.5 text-slate-400 transition-colors group-hover:text-slate-700" />
                           ))}
                       </div>
                     </button>
 
-                    {/* Submenu Children: Auto Drop-Down List Menu */}
+                    {/* Submenu Children: Drop-Down List on tap */}
                     {hasChildren && isExpanded && (
                       <div className="ml-3.5 space-y-0.5 border-l-2 border-[#CAD3F5] py-0.5 pl-2.5">
                         {item.children?.map((child) => {
@@ -542,9 +429,7 @@ export function DesignSystemHomeView() {
                                   <span className="mt-0.5 shrink-0 font-mono text-[10px] font-bold text-[#0056FF]">
                                     {child.index}
                                   </span>
-                                ) : (
-                                  <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-[#0056FF]" />
-                                )}
+                                ) : null}
                                 <span className="min-w-0 flex-1 leading-snug break-words">
                                   {child.label}
                                 </span>
@@ -588,10 +473,8 @@ export function DesignSystemHomeView() {
               className="scroll-mt-24 space-y-8 rounded-2xl border border-[#CAD3F5] bg-white p-6 sm:p-8 lg:p-10"
             >
               {/* Section Header Title */}
-              <div className="flex items-center gap-3.5 border-b border-slate-100 pb-4">
-                <div className="flex size-9.5 shrink-0 items-center justify-center rounded-xl border border-[#CAD3F5] bg-[#EFF5FF] text-[#0056FF] shadow-2xs">
-                  <ShieldKey className="size-5 stroke-[2]" />
-                </div>
+              <div className="flex items-center gap-3 border-b border-slate-100 pb-4">
+                <ShieldKey className="size-6 shrink-0 stroke-[2] text-[#020617]" />
                 <h1 className="font-sans text-2xl font-black tracking-tight text-[#0A1A4A] sm:text-3xl">
                   Brand Blueprint &amp; Assets
                 </h1>
@@ -610,10 +493,8 @@ export function DesignSystemHomeView() {
             >
               {/* Section Header */}
               <div className="space-y-1 border-b border-slate-100 pb-4">
-                <div className="flex items-center gap-3.5">
-                  <div className="flex size-9.5 shrink-0 items-center justify-center rounded-xl border border-[#CAD3F5] bg-[#EFF5FF] text-[#0056FF] shadow-2xs">
-                    <Sliders className="size-5 stroke-[2]" />
-                  </div>
+                <div className="flex items-center gap-3">
+                  <Sliders className="size-6 shrink-0 stroke-[2] text-[#020617]" />
                   <h2 className="font-sans text-2xl font-black tracking-tight text-[#0A1A4A] sm:text-3xl">
                     Color Ramps &amp; Semantic Tokens
                   </h2>
@@ -629,115 +510,9 @@ export function DesignSystemHomeView() {
             </section>
 
             {/* ------------------------------------------------------- */}
-            {/* PRINCIPLES FOR ACCESSIBLE DESIGN (SECTION 03)           */}
+            {/* CORE COMPONENTS • MAINTENANCE STUDIO (PHASES 03 & 04)   */}
             {/* ------------------------------------------------------- */}
-            <section
-              id="accessible-design-principles"
-              className="scroll-mt-24 space-y-6 rounded-2xl border border-[#CAD3F5] bg-white p-6 sm:p-8 lg:p-10"
-            >
-              {/* Section Header */}
-              <div className="space-y-1 border-b border-slate-100 pb-4">
-                <div className="flex items-center gap-3.5">
-                  <div className="flex size-9.5 shrink-0 items-center justify-center rounded-xl border border-[#CAD3F5] bg-[#EFF5FF] text-[#0056FF] shadow-2xs">
-                    <Accessibility className="size-5 stroke-[2]" />
-                  </div>
-                  <h2 className="font-sans text-2xl font-black tracking-tight text-[#0A1A4A] sm:text-3xl">
-                    Principles for Accessible Design
-                  </h2>
-                </div>
-                <p className="max-w-3xl font-sans text-xs leading-relaxed text-slate-500 sm:text-sm">
-                  Anticipate, include, and respond to the needs of individuals across visual, motor,
-                  and cognitive domains for inclusive, equitable outcomes.
-                </p>
-              </div>
-
-              {/* Accessible Design Principles Engine */}
-              <AccessibleDesignPrinciples />
-            </section>
-
-            {/* ------------------------------------------------------- */}
-            {/* MATERIAL DESIGN 3 A-Z ARCHITECTURAL LEXICON (SECTION 04)*/}
-            {/* ------------------------------------------------------- */}
-            <section
-              id="material-a-z-glossary"
-              className="scroll-mt-24 space-y-6 rounded-2xl border border-[#CAD3F5] bg-white p-6 sm:p-8 lg:p-10"
-            >
-              {/* Section Header */}
-              <div className="space-y-1 border-b border-slate-100 pb-4">
-                <div className="flex items-center gap-3.5">
-                  <div className="flex size-9.5 shrink-0 items-center justify-center rounded-xl border border-[#CAD3F5] bg-[#EFF5FF] text-[#0056FF] shadow-2xs">
-                    <BookOpen className="size-5 stroke-[2]" />
-                  </div>
-                  <h2 className="font-sans text-2xl font-black tracking-tight text-[#0A1A4A] sm:text-3xl">
-                    Material Design A-Z Lexicon
-                  </h2>
-                </div>
-                <p className="max-w-3xl font-sans text-xs leading-relaxed text-slate-500 sm:text-sm">
-                  Authoritative engineering reference covering all core Material Design 3 concepts,
-                  components, HCT color science, and design token hierarchies.
-                </p>
-              </div>
-
-              {/* Material A-Z Interactive Glossary Engine */}
-              <MaterialGlossarySection />
-            </section>
-
-            {/* ------------------------------------------------------- */}
-            {/* MATERIAL DESIGN 3 LAYOUT SCAFFOLD ARCHITECTURE (SEC 05) */}
-            {/* ------------------------------------------------------- */}
-            <section
-              id="layout-scaffold-architecture"
-              className="scroll-mt-24 space-y-6 rounded-2xl border border-[#CAD3F5] bg-white p-6 sm:p-8 lg:p-10"
-            >
-              {/* Section Header */}
-              <div className="space-y-1 border-b border-slate-100 pb-4">
-                <div className="flex items-center gap-3.5">
-                  <div className="flex size-9.5 shrink-0 items-center justify-center rounded-xl border border-[#CAD3F5] bg-[#EFF5FF] text-[#0056FF] shadow-2xs">
-                    <AppWindow className="size-5 stroke-[2]" />
-                  </div>
-                  <h2 className="font-sans text-2xl font-black tracking-tight text-[#0A1A4A] sm:text-3xl">
-                    Layout Scaffold Architecture
-                  </h2>
-                </div>
-                <p className="max-w-3xl font-sans text-xs leading-relaxed text-slate-500 sm:text-sm">
-                  A fundamental UI design structure that provides a standard platform for assembling
-                  key components into Bars, Rails, Panes, and Safety Regions.
-                </p>
-              </div>
-
-              {/* Layout Scaffold Interactive Engine */}
-              <ScaffoldArchitectureSection />
-            </section>
-
-            {/* ------------------------------------------------------- */}
-            {/* CORE COMPONENTS MANUAL (29 PRIMITIVES & VERIFICATION)   */}
-            {/* ------------------------------------------------------- */}
-            <section
-              id="core-components-section"
-              className="scroll-mt-24 space-y-6 rounded-2xl border border-[#CAD3F5] bg-white p-6 sm:p-8 lg:p-10"
-            >
-              <CoreComponentsManual />
-            </section>
-
-            {/* ------------------------------------------------------- */}
-            {/* MAINTENANCE STRATEGY MANUAL (5 PILLARS & 28 CHECKS)     */}
-            {/* ------------------------------------------------------- */}
-            <section
-              id="maintenance-manual-section"
-              className="scroll-mt-24 space-y-6 rounded-2xl border border-[#CAD3F5] bg-white p-6 sm:p-8 lg:p-10"
-            >
-              <MaintenanceManual />
-            </section>
-
-            {/* ------------------------------------------------------- */}
-            {/* OPEN-SOURCE CHECKLIST MACRO-PHASES (230 TOTAL CHECKS)   */}
-            {/* ------------------------------------------------------- */}
-            <section
-              id="open-source-checklist-macro-phases"
-              className="scroll-mt-24 space-y-6 rounded-2xl border border-[#CAD3F5] bg-white p-6 sm:p-8 lg:p-10"
-            >
-              <OpenSourceChecklistSection />
-            </section>
+            <CoreComponentsMaintenanceStudio />
           </div>
         </main>
       </div>

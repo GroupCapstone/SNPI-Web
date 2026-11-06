@@ -1,7 +1,13 @@
 'use client';
 
 import * as React from 'react';
+import { motion, AnimatePresence, type HTMLMotionProps } from 'motion/react';
 import { cn } from '@/lib/utils';
+import {
+  popoverMotionVariants,
+  WHILE_TAP_SCALE,
+  MOTION_EASE_OUT,
+} from '@/lib/motion';
 import {
   ChevronDown,
   Layers,
@@ -23,7 +29,6 @@ import {
 interface NavigationMenuContextValue {
   activeItem: string | null;
   setActiveItem: (id: string | null) => void;
-  closeTimerRef: React.MutableRefObject<NodeJS.Timeout | null>;
 }
 
 const NavigationMenuContext = React.createContext<NavigationMenuContextValue | null>(null);
@@ -49,16 +54,26 @@ export function NavigationMenu({
   ...props
 }: NavigationMenuProps) {
   const [activeItem, setActiveItem] = React.useState<string | null>(null);
-  const closeTimerRef = React.useRef<NodeJS.Timeout | null>(null);
+  const navRef = React.useRef<HTMLElement>(null);
+
+  React.useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (navRef.current && !navRef.current.contains(event.target as Node)) {
+        setActiveItem(null);
+      }
+    }
+    if (activeItem) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [activeItem]);
 
   const contextValue = React.useMemo(
     () => ({
       activeItem,
-      setActiveItem: (id: string | null) => {
-        if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
-        setActiveItem(id);
-      },
-      closeTimerRef,
+      setActiveItem,
     }),
     [activeItem],
   );
@@ -66,12 +81,8 @@ export function NavigationMenu({
   return (
     <NavigationMenuContext.Provider value={contextValue}>
       <nav
+        ref={navRef}
         className={cn('relative z-50 flex max-w-max flex-1 items-center justify-center', className)}
-        onMouseLeave={() => {
-          closeTimerRef.current = setTimeout(() => {
-            setActiveItem(null);
-          }, 200);
-        }}
         {...props}
       >
         {children}
@@ -107,7 +118,8 @@ export function NavigationMenuItem({
   );
 }
 
-export interface NavigationMenuTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface NavigationMenuTriggerProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   value: string;
 }
 
@@ -117,24 +129,20 @@ export function NavigationMenuTrigger({
   children,
   ...props
 }: NavigationMenuTriggerProps) {
-  const { activeItem, setActiveItem, closeTimerRef } = useNavigationMenu();
+  const { activeItem, setActiveItem } = useNavigationMenu();
   const isOpen = activeItem === value;
 
   return (
     <button
       type="button"
       className={cn(
-        'group inline-flex h-9 w-max items-center justify-center rounded-[4px] px-3.5 py-1.5 font-sans text-xs font-semibold transition-all focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50',
+        'group inline-flex h-9 w-max items-center justify-center rounded-[4px] px-3.5 py-1.5 font-sans text-xs font-semibold transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 active:scale-[0.97]',
         isOpen
           ? 'bg-white/10 text-white shadow-inner'
           : 'text-slate-300 hover:bg-white/5 hover:text-white',
         className,
       )}
       onClick={() => setActiveItem(isOpen ? null : value)}
-      onMouseEnter={() => {
-        if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
-        setActiveItem(value);
-      }}
       aria-expanded={isOpen}
       {...props}
     >
@@ -188,23 +196,15 @@ export function NavigationMenuContent({
   children,
   ...props
 }: NavigationMenuContentProps) {
-  const { activeItem, setActiveItem, closeTimerRef } = useNavigationMenu();
+  const { activeItem } = useNavigationMenu();
   const isOpen = activeItem === value;
 
   if (!isOpen) return null;
 
   return (
     <div
-      onMouseEnter={() => {
-        if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
-      }}
-      onMouseLeave={() => {
-        closeTimerRef.current = setTimeout(() => {
-          setActiveItem(null);
-        }, 200);
-      }}
       className={cn(
-        'animate-in fade-in zoom-in-95 absolute top-full left-1/2 z-50 mt-3 -translate-x-1/2 overflow-hidden rounded-2xl border border-[#CAD3F5] bg-white p-4 text-slate-900 shadow-none transition-all duration-200',
+        'animate-in fade-in zoom-in-95 absolute top-full left-1/2 z-50 mt-3 -translate-x-1/2 overflow-hidden rounded-2xl border border-[#CAD3F5] bg-white p-4 text-slate-900 shadow-md',
         'w-[min(calc(100vw-2rem),520px)]',
         className,
       )}
@@ -315,9 +315,7 @@ export function RareUiNavigationMenu({ className }: { className?: string }) {
                       href="#cat-forms"
                       className="group/item flex items-start gap-2.5 rounded-xl border border-transparent p-2 transition-colors hover:border-[#CAD3F5] hover:bg-[#EFF5FF]"
                     >
-                      <div className="flex size-8 shrink-0 items-center justify-center rounded-lg border border-slate-200/90 bg-white text-black shadow-2xs transition-colors group-hover/item:border-slate-300">
-                        <SquarePen className="size-4 stroke-[2]" />
-                      </div>
+                      <SquarePen className="mt-0.5 size-4.5 shrink-0 stroke-[2] text-[#020617]" />
                       <div>
                         <div className="flex items-center gap-1.5">
                           <span className="font-sans text-xs font-bold text-[#0A1A4A] group-hover/item:text-[#0056FF]">
@@ -337,9 +335,7 @@ export function RareUiNavigationMenu({ className }: { className?: string }) {
                       href="#cat-feedback"
                       className="group/item flex items-start gap-2.5 rounded-xl border border-transparent p-2 transition-colors hover:border-[#CAD3F5] hover:bg-[#EFF5FF]"
                     >
-                      <div className="flex size-8 shrink-0 items-center justify-center rounded-lg border border-slate-200/90 bg-white text-black shadow-2xs transition-colors group-hover/item:border-slate-300">
-                        <Bell className="size-4 stroke-[2]" />
-                      </div>
+                      <Bell className="mt-0.5 size-4.5 shrink-0 stroke-[2] text-[#020617]" />
                       <div>
                         <span className="font-sans text-xs font-bold text-[#0A1A4A] group-hover/item:text-[#0056FF]">
                           Toast Stack & Alerts
@@ -354,9 +350,7 @@ export function RareUiNavigationMenu({ className }: { className?: string }) {
                       href="#interactive-feed"
                       className="group/item flex items-start gap-2.5 rounded-xl border border-transparent p-2 transition-colors hover:border-[#CAD3F5] hover:bg-[#EFF5FF]"
                     >
-                      <div className="flex size-8 shrink-0 items-center justify-center rounded-lg border border-slate-200/90 bg-white text-black shadow-2xs transition-colors group-hover/item:border-slate-300">
-                        <Layers className="size-4 stroke-[2]" />
-                      </div>
+                      <Layers className="mt-0.5 size-4.5 shrink-0 stroke-[2] text-[#020617]" />
                       <div>
                         <span className="font-sans text-xs font-bold text-[#0A1A4A] group-hover/item:text-[#0056FF]">
                           73 Design Primitives

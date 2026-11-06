@@ -82,7 +82,36 @@ Every AI agent must classify and organize components strictly according to the 6
 
 ---
 
-## 3. Checklist-Specific Component Invariants
+## 3. Kinetic-First Design Thinking Protocol: The 20 Motion Laws Mandate
+
+Whenever an AI coding agent or developer designs, plans, or implements ANY user interface component, button, modal, card, menu, or interaction, they MUST actively think through the 20 Motion Laws before writing code:
+
+1. **What is the entrance easing curve?** -> Use Law 01 Ease-Out (`MOTION_EASE_OUT = [0.16, 1, 0.3, 1]`) for prompt entry and gentle settling.
+2. **How long is the dropdown/select reveal?** -> Use Law 02 Dropdowns at 150-250ms (canonical 200ms `DROPDOWN_ENTRANCE_DURATION = 0.20`).
+3. **How are sequential rows/items staggered?** -> Use Law 03 Stagger list rows by 30ms (`STAGGER_LIST_ROW_DELAY = 0.03`).
+4. **Does the element compress on press?** -> Use Law 04 Scale to 0.97 on press (`whileTap={{ scale: 0.97 }}` or `active:scale-[0.97]`).
+5. **Does the translating knob stretch 12%?** -> Use Law 05 Stretch moving knobs 12% (`scaleX: 1.12` on toggle/translation).
+6. **Do secondary details settle after expansion?** -> Use Law 06 Stagger as details settle (`STAGGER_DETAILS_SETTLE_DELAY = 0.04`).
+7. **Does spatial movement follow an arc?** -> Use Law 07 Arcs for object movement (subtle curved trajectory peak).
+8. **How is operation success confirmed?** -> Use Law 08 Pulse to confirm success (`scale: [1, 1.06, 1]` within 280ms).
+9. **What curve handles lateral repositioning?** -> Use Law 09 Ease-in-out for moves (`MOTION_EASE_IN_OUT = [0.65, 0, 0.35, 1]`).
+10. **Does the popover/tooltip mount at 0.95 scale?** -> Use Law 10 Start popovers at 0.95 (`POPOVER_INITIAL_SCALE = 0.95`).
+11. **Does the overlay expand from the trigger anchor?** -> Use Law 11 Enter from the trigger (`transformOrigin` matched to trigger).
+12. **Does it collapse back to the trigger on exit?** -> Use Law 12 Exit to the trigger (`transformOrigin` collapse).
+13. **Is everyday bounce eliminated?** -> Use Law 13 No bounce on everyday UI (critically damped spring, `damping: 30, stiffness: 400`).
+14. **Is tween lag bypassed while actively held?** -> Use Law 14 Don't tween while held (`duration: 0` for 1:1 tactile response).
+15. **Is the exit animation 20% shorter than entrance?** -> Use Law 15 Make exits 20% shorter (`EXIT_DURATION_RATIO = 0.80`, 160ms vs 200ms).
+16. **Do old and new views overlap during transition?** -> Use Law 16 Overlap old & new states (`mode="sync"` in `AnimatePresence`).
+17. **Are hardware masks used for reveals?** -> Use Law 17 Masks for reveals & colour (CSS `clip-path` masks).
+18. **Do icon swaps crossfade with 4px optical blur?** -> Use Law 18 Crossfade icons + blur (`blur(4px)` to `blur(0px)`).
+19. **Does boundary dragging yield spring resistance?** -> Use Law 19 Rubber band past bounds (`dragElastic: 0.15`).
+20. **Do shared active indicators reuse the same tag?** -> Use Law 20 Reuse the same layoutId (`layoutId="snp-active-pill"`).
+
+All constants, presets, and variant factories MUST be imported directly from `@/lib/motion`.
+
+---
+
+## 4. Checklist-Specific Component Invariants
 
 When implementing any of the 29 core components, the agent must ensure:
 1. **Accordion**: Active state icon distinct, smooth grid toggle transition, trigger focus announces content context via `aria-controls` and `aria-expanded`.
@@ -97,7 +126,32 @@ When implementing any of the 29 core components, the agent must ensure:
 
 ---
 
-## 4. AI Agent Pre-Implementation Quality Checklist
+## 5. Cognitive Psychology of the Dual-Theme System: Day & Moon Visual Spectrum
+
+Every AI agent and contributor MUST strictly restrict theme preferences to exactly TWO canonical themes: **Day (White Default)** and **Moon (Dark Mode)**:
+
+### 5.1 Day Theme (White Default)
+- **Canvas Base**: Pure White (`#FFFFFF`) with Ice Tint (`#EFF5FF`) subsurface card fills and Soft Lavender (`#CAD3F5`) borders.
+- **Photopic Contrast**: High-contrast Deep Navy (`#0A1A4A`) primary text and Slate-700 (`#334155`) secondary text (WCAG AAA $\ge 7:1$).
+- **Icon Chromatic Rule**: Keyline Two-Tone icons in Black or Dark Obsidian (`#020617`) alongside headings, with Royal Blue (`#0056FF`) or Emerald Green (`#10B981`) semantic accents.
+
+### 5.2 Moon Theme (Dark Mode / Nocturnal Cognitive Psychology)
+- **Why Moon Avoids Pitch Black (`#000000`)**:
+  - OLED `#000000` pitch black forces the human pupil into extreme dilation shock when scanning bright content, causing astigmatic halation (optical light bleeding in ~50% of users) and severe ocular fatigue.
+  - Moon Theme uses Moonlit Midnight Slate (**Neutral 900 `#0F172A`**) for canvas and Moon Charcoal (**Neutral 800 `#1E293B`**) for cards with Precision Slate borders (**Neutral 700 `#334155`**).
+- **Pure White Typography (`#FFFFFF`)**:
+  - In Moon mode, all primary headings, body text, and code snippets are strictly **Pure White (`#FFFFFF`)**, achieving $15.8:1$ contrast matching modern code IDEs (VS Code, JetBrains, Cursor), GitHub dark mode, and Antigravity Skills.
+  - Secondary text uses Moon Dust (`#94A3B8`, WCAG AAA $\ge 7.2:1$).
+- **Pure White Keyline Icons (`#FFFFFF`)**:
+  - Gestalt Law of Similarity dictates that heading text and its accompanying icon form a single semantic chunk. Mismatched muddy or colored icons alongside white text introduce visual noise and chromatic aberration.
+  - In Moon mode, all heading icons, navigation icons, and control symbols render with **Pure White strokes (`#FFFFFF`)**.
+  - In-card status icons use pure white or high-luminance accents (`#34D399` Emerald, `#60A5FA` Azure).
+- **Geometric 2px Corner Radius Container**:
+  - All icon backing containers maintain single-color fills with strict 2px corner radius (`rounded-[2px]`, `style={{ borderRadius: '2px' }}`) across both Day (`#EFF5FF` fill) and Moon (`#1E293B` fill).
+
+---
+
+## 6. AI Agent Pre-Implementation Quality Checklist
 
 Before writing any new component or view, verify:
 - [ ] Is the touch target $\ge 44\times 44\text{px}$? (Fitts's Law)
@@ -107,4 +161,8 @@ Before writing any new component or view, verify:
 - [ ] Does the input tolerate loose user formatting? (Postel's Law)
 - [ ] Does the component respect one-way downward import rules? (Culinary Invariant)
 - [ ] Are all 5 primary brand tokens respected (`#0056FF`, `#0A1A4A`, `#CAD3F5`, `#FFFFFF`, `#EFF5FF`)?
+- [ ] Are theme preferences strictly restricted to Day (White Default) and Moon (Dark Mode)?
+- [ ] In Moon mode, are headings, code, and UI icons strictly Pure White (`#FFFFFF`)?
+- [ ] Do icon containers enforce strict 2px corner radius (`rounded-[2px]`)?
+- [ ] Have all applicable 20 Motion Laws been actively considered and implemented via `@/lib/motion`?
 - [ ] Strictly ZERO EMOJIS in code, comments, and copy?

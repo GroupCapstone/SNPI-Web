@@ -979,9 +979,7 @@ export function BentoHeroGrid({
               transition={{
                 duration: activeMood === 'sleepy' ? 3.2 : 0.45,
                 repeat: activeMood === 'sleepy' ? Infinity : 0,
-                type: 'spring',
-                stiffness: 300,
-                damping: 18,
+                ease: 'easeInOut',
               }}
               className="relative mx-auto flex w-full max-w-[270px] flex-col items-center"
             >

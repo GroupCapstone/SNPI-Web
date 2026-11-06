@@ -25,6 +25,7 @@ All design standards, specifications, and component guides must strictly reside 
 - **Core Components Design System Manual**: `.agents/skills/snp-sms-design-standards/core-components-design-system-manual.md` (29 core primitives, 166 verification checkpoints across Structure, Feedback, Media, Action, Navigation, and Form categories)
 - **Design System Maintenance Strategy Manual**: `.agents/skills/snp-sms-design-standards/design-system-maintenance-manual.md` (5 maintenance pillars, 28 operational checkpoints covering Documentation, Local Libraries, Team Processes, Community Support, and Contribution)
 - **Living Interface Animation Manual**: `.agents/skills/snp-sms-design-standards/living-interface-animation-manual.md` (The 12 Principles of Animation, <300ms timing rule, and Motion standards)
+- **The 20 Universal Laws of Interface Motion & Micro-Interaction Engineering**: `.agents/skills/snp-sms-design-standards/twenty-universal-motion-laws.md` (Ease-out entrances, 150-250ms dropdowns, 30ms stagger, 0.97 press scale, 12% knob stretch, details settle, motion arcs, success pulse, ease-in-out moves, 0.95 popovers, trigger origin, zero bounce, direct held response, 20% shorter exits, overlap sync, clip-path masks, icon blur crossfade, rubber-band drag, shared layoutId)
 - **Modern CSS Pseudo-Elements Manual**: `.agents/skills/snp-sms-design-standards/modern-css-pseudo-elements-manual.md` (::before/::after hit targets, View Transitions API, native dialog ::backdrop)
 - **Easing Curves vs. Springs Guide**: `.agents/skills/snp-sms-design-standards/eases-vs-springs-guide.md` (User Reacting vs System Speaking, Interaction Roles, Bézier vs Spring Physics, <300ms timing rule)
 - **Interface Sound Design Manual**: `.agents/skills/snp-sms-design-standards/interface-sound-design-manual.md` (Auditory speed advantage 25ms vs 250ms, complementary accessibility, interaction audio matrix, Web Audio API synthesis)
@@ -60,6 +61,7 @@ All design standards, specifications, and component guides must strictly reside 
 - **Material 3 Adaptive Breakpoints & 5-Vector Transformation Manual**: `.agents/skills/snp-sms-design-standards/adaptive-breakpoints-manual.md` (5 standard breakpoints: Compact <600dp, Medium 600-839dp, Expanded 840-1199dp, Large 1200-1599dp, Extra-Large >=1600dp; 5 Vectors: Reveal, Divide, Resize, Reposition, Swap; component swapping matrix)
 - **Material 3 Canonical Layout Archetypes Manual**: `.agents/skills/snp-sms-design-standards/canonical-layouts-manual.md` (Feed 1-4 cols, List-Detail 1-pane vs 2-pane co-planar with selection persistence, Supporting Pane 2/3 + 1/3 at 360dp min-width, Levitate layering strategy)
 - **Material 3 Usability & Expressive Architecture Manual**: `.agents/skills/snp-sms-design-standards/usability-expressive-manual.md` (Nielsen Norman 5 pillars: Efficiency, Error reduction, Learnability, Memorability, Satisfaction; 6 Expressive tactics: Size, Containment, Shape, Color, Motion, Typography; Aura breathing case study; V1 Cluttered vs V2 Calm; Primary goal hierarchy)
+- **Open-Source Design System Checklist (4 Macro-Phases & 230 Checks)**: `.agents/skills/snp-sms-design-standards/open-source-checklist-macro-phases.md` (Authoritative 230-point system checklist across Design Language, Foundations, 29 Core Components, and Maintenance Strategy to build better design systems)
 
 Do not fragment design rules across multiple folders. Maintain all design documentation in this single location.
 
@@ -159,6 +161,20 @@ Practice-based optical balancing: asymmetrical icons (e.g. play arrows, right ch
 ### 3.7 Color Contrast Formula
 $$\text{Contrast Ratio} = \frac{L_1 + 0.05}{L_2 + 0.05} \ge 4.5:1 \quad (\text{WCAG AA})$$
 Where $L_1$ is the relative luminance of the lighter color and $L_2$ is the relative luminance of the darker color.
+
+### 3.8 Keyline Two-Tone Icons, Universal Default Black / Dark Fill, Sizing, and Menu List Standards
+All icons and menu lists across SNP-SMS must strictly comply with the [Keyline Two-Tone Icons Specification](file://.agents/skills/snp-sms-design-standards/keyline-two-tone-icons-specification.md):
+- **Universal Default Black / Dark Fill Rule (CRITICAL RULE)**:
+  - **Universal Default Black / Dark**: ALL icons across every component, card, button, header, and screen strictly default to **Black or Dark Obsidian** (`#020617` / `text-[#020617]` / `text-slate-950`) fill and stroke. The two-tone accent layer produces a crisp 40% black accent fill (`fill-opacity="0.4"`).
+  - **Zero Unprompted Colored Inversion**: Never force icons into green (`#10B981`) or arbitrary colors across general cards or containers. Colors are strictly reserved for explicit semantic statuses (e.g. positive success badge, error alert, active tab pill) when explicitly designated.
+  - **In Blue Surfaces** (Solid Royal Blue `#0056FF`, primary buttons, active blue segments): Icons MUST strictly render in **Pure White** (`#FFFFFF` / `text-white`) with 40% white accent fill opacity for WCAG AAA contrast.
+  - **Dark Obsidian Canvas** (`#020617`, dark mode): Icons render in **Pure White** (`#FFFFFF` / `text-white`).
+- **Icon Size Proportionality to Title**: Icon sizes must match or scale proportionally to their adjacent text title (1:1 visual ratio, e.g. `size-4` / 16px with `text-xs`/`text-sm` titles, `size-4.5` / 18px with `text-base`). Never use oversized icons dominating titles.
+- **Prohibition of Icons on Normal Text or Descriptions (ABSOLUTE RULE)**: Never use icons inline within normal paragraph descriptions (`<p>`) or plain body text. Icons belong strictly on titles, headers, actions, buttons, and card feature indicators.
+- **Mandatory Prohibition of Borders Around Icons (ABSOLUTE RULE)**: Under no circumstances should icons be enclosed in bordered boxes, bordered squares, bordered chips, or bordered squircle wrappers (`border border-slate-200`, `border-[#CAD3F5]`, `border`). All navigation trees, sidebars, headers, cards, and dropdown triggers must render icons cleanly and borderless directly alongside labels and titles.
+- **Single-Color Background or Borderless Placement**: Do NOT add shapes or multiple colors behind the background of icons. Icons sit either borderless directly on the canvas or on a clean transparent surface, keeping the visual presentation sleek, flat, and uncluttered.
+- **Menu List & Sidebar Tap-to-Drop Standard (Zero Auto-Drop)**: Sidebar menu lists and dropdown navigation must NEVER auto-drop or auto-expand on load or hover. Lists must remain collapsed by default until the user explicitly selects or taps to drop down the submenu list.
+- **Motionless Stability**: Zero animations, zero hover scaling, translation, or rotation (`transform: none !important; transition: none !important; animation: none !important;`).
 
 ---
 

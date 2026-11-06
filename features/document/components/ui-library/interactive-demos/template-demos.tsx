@@ -353,9 +353,7 @@ export function FloatingLabelFormDemo() {
       {/* Form Dossier Header */}
       <div className="flex items-center justify-between border-b border-[#CAD3F5] pb-4">
         <div className="flex items-center gap-3">
-          <div className="flex size-10 shrink-0 items-center justify-center rounded-xl border border-[#CAD3F5] bg-[#EFF5FF] text-[#0056FF]">
-            <FileText className="size-5 stroke-[2]" />
-          </div>
+          <FileText className="size-5 shrink-0 stroke-[2] text-[#020617]" />
           <div>
             <h4 className="font-sans text-sm font-bold text-[#0A1A4A] sm:text-base">
               Candidate Registration Dossier
@@ -484,14 +482,14 @@ export function FloatingLabelFormDemo() {
             <button
               type="button"
               onClick={formData.fullName ? handleReset : handleFillSample}
-              className="cursor-pointer rounded-xl border border-[#CAD3F5] bg-white px-3.5 py-2 font-sans text-xs font-bold text-[#0A1A4A] transition-colors hover:border-[#0056FF] hover:bg-[#EFF5FF] hover:text-[#0056FF] active:scale-95"
+              className="cursor-pointer rounded-xl border border-[#CAD3F5] bg-white px-3.5 py-2 font-sans text-xs font-bold text-[#0A1A4A] transition-colors hover:border-[#0056FF] hover:bg-[#EFF5FF] hover:text-[#0056FF] active:scale-[0.97]"
             >
               {formData.fullName ? 'Clear' : 'Fill Sample'}
             </button>
             <button
               type="submit"
               disabled={!isFormValid}
-              className="cursor-pointer rounded-xl border border-[#0056FF] bg-[#0056FF] px-5 py-2 font-sans text-xs font-bold text-white shadow-xs transition-all hover:bg-[#2277FF] active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
+              className="cursor-pointer rounded-xl border border-[#0056FF] bg-[#0056FF] px-5 py-2 font-sans text-xs font-bold text-white shadow-xs transition-all hover:bg-[#2277FF] active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-50"
             >
               {submitted ? 'Record Registered' : 'Register Candidate'}
             </button>

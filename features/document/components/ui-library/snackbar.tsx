@@ -1,8 +1,15 @@
 'use client';
 
 import * as React from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { X, Check, Info, Alert } from '@/components/icons';
 import { cn } from '@/lib/utils';
+import {
+  MOTION_EASE_OUT,
+  WHILE_TAP_SCALE,
+  DROPDOWN_ENTRANCE_DURATION,
+  DROPDOWN_EXIT_DURATION,
+} from '@/lib/motion';
 
 export type SnackbarVariant = 'default' | 'success' | 'info' | 'warning' | 'error';
 
@@ -77,88 +84,111 @@ export function LibrarySnackbar({
     return () => clearInterval(interval);
   }, [open, duration, isPaused, onClose]);
 
-  if (!open) return null;
-
   const progressPercent = duration > 0 ? (remainingTime / duration) * 100 : 0;
 
   return (
-    <div
-      role="status"
-      aria-live="polite"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
-      className={cn(
-        'z-50 flex flex-col overflow-hidden border border-[#CAD3F5] bg-white text-[#09172B] shadow-none transition-all duration-200 select-none max-sm:fixed max-sm:inset-x-0 max-sm:bottom-0 max-sm:w-full max-sm:rounded-t-2xl max-sm:rounded-b-none max-sm:border-x-0 max-sm:border-t max-sm:border-b-0 sm:fixed sm:bottom-6 sm:left-1/2 sm:w-[calc(100%-2rem)] sm:max-w-lg sm:-translate-x-1/2 sm:rounded-2xl',
-        className,
-      )}
-    >
-      <div className="flex items-center justify-between gap-3 px-4 py-3 sm:px-5">
-        {/* Status Indicator Icon (Zero Background Color Behind Icon) */}
-        <div className="flex shrink-0 items-center">
-          {variant === 'success' && <Check className="size-4 stroke-[2.5] text-emerald-600" />}
-          {variant === 'info' && <Info className="size-4 stroke-[2.5] text-sky-600" />}
-          {variant === 'warning' && <Alert className="size-4 stroke-[2.5] text-amber-600" />}
-          {variant === 'error' && <Alert className="size-4 stroke-[2.5] text-rose-600" />}
-          {variant === 'default' && <Info className="size-4 stroke-[2.5] text-[#0056FF]" />}
-        </div>
-
-        {/* Primary Message */}
-        <p className="flex-1 font-sans text-xs leading-relaxed font-semibold text-[#09172B] sm:text-sm">
-          {message}
-        </p>
-
-        {/* Action Button (e.g. Undo, Retry, View) */}
-        {actionLabel && (
-          <button
-            type="button"
-            onClick={() => {
-              onAction?.();
-              onClose();
-            }}
-            className={cn(
-              'flex min-h-[44px] min-w-[44px] items-center justify-center rounded-[4px] px-3 font-mono text-xs font-bold tracking-wider uppercase transition-colors focus-visible:ring-2 focus-visible:outline-none',
-              variant === 'success' &&
-                'text-emerald-700 hover:bg-emerald-50 focus-visible:ring-emerald-500',
-              variant === 'info' && 'text-sky-700 hover:bg-sky-50 focus-visible:ring-sky-500',
-              variant === 'warning' &&
-                'text-amber-700 hover:bg-amber-50 focus-visible:ring-amber-500',
-              variant === 'error' && 'text-rose-700 hover:bg-rose-50 focus-visible:ring-rose-500',
-              variant === 'default' &&
-                'text-[#0056FF] hover:bg-[#E3E7FC] focus-visible:ring-[#0056FF]',
-            )}
-          >
-            {actionLabel}
-          </button>
-        )}
-
-        {/* Dismiss Button */}
-        <button
-          type="button"
-          onClick={onClose}
-          aria-label="Dismiss message"
-          className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-[4px] text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-900 focus-visible:outline-none"
+    <AnimatePresence>
+      {open && (
+        <motion.div
+          role="status"
+          aria-live="polite"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          initial={{ opacity: 0, y: 16, scale: 0.96 }}
+          animate={{
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            transition: {
+              duration: DROPDOWN_ENTRANCE_DURATION,
+              ease: MOTION_EASE_OUT,
+            },
+          }}
+          exit={{
+            opacity: 0,
+            y: 12,
+            scale: 0.96,
+            transition: {
+              duration: DROPDOWN_EXIT_DURATION,
+              ease: [0.7, 0, 0.84, 0],
+            },
+          }}
+          className={cn(
+            'z-50 flex flex-col overflow-hidden border border-[#CAD3F5] bg-white text-[#09172B] shadow-lg select-none max-sm:fixed max-sm:inset-x-0 max-sm:bottom-0 max-sm:w-full max-sm:rounded-t-2xl max-sm:rounded-b-none max-sm:border-x-0 max-sm:border-t max-sm:border-b-0 sm:fixed sm:bottom-6 sm:left-1/2 sm:w-[calc(100%-2rem)] sm:max-w-lg sm:-translate-x-1/2 sm:rounded-2xl',
+            className,
+          )}
         >
-          <X className="size-4" />
-        </button>
-      </div>
+          <div className="flex items-center justify-between gap-3 px-4 py-3 sm:px-5">
+            {/* Status Indicator Icon (Zero Background Color Behind Icon) */}
+            <div className="flex shrink-0 items-center">
+              {variant === 'success' && <Check className="size-4 stroke-[2.5] text-emerald-600" />}
+              {variant === 'info' && <Info className="size-4 stroke-[2.5] text-sky-600" />}
+              {variant === 'warning' && <Alert className="size-4 stroke-[2.5] text-amber-600" />}
+              {variant === 'error' && <Alert className="size-4 stroke-[2.5] text-rose-600" />}
+              {variant === 'default' && <Info className="size-4 stroke-[2.5] text-[#0056FF]" />}
+            </div>
 
-      {/* Auto-Dismiss Progress Indicator Strip */}
-      {showProgress && duration > 0 && (
-        <div className="h-1 w-full bg-slate-100">
-          <div
-            className={cn(
-              'h-full transition-all duration-75 ease-linear',
-              variant === 'success' && 'bg-emerald-500',
-              variant === 'info' && 'bg-sky-500',
-              variant === 'warning' && 'bg-amber-500',
-              variant === 'error' && 'bg-rose-500',
-              variant === 'default' && 'bg-[#0056FF]',
+            {/* Primary Message */}
+            <p className="flex-1 font-sans text-xs leading-relaxed font-semibold text-[#09172B] sm:text-sm">
+              {message}
+            </p>
+
+            {/* Action Button (e.g. Undo, Retry, View) - Law 4: Scale 0.97 on press */}
+            {actionLabel && (
+              <motion.button
+                type="button"
+                whileTap={{ scale: WHILE_TAP_SCALE }}
+                onClick={() => {
+                  onAction?.();
+                  onClose();
+                }}
+                className={cn(
+                  'flex min-h-[44px] min-w-[44px] items-center justify-center rounded-[4px] px-3 font-mono text-xs font-bold tracking-wider uppercase transition-colors focus-visible:ring-2 focus-visible:outline-none',
+                  variant === 'success' &&
+                    'text-emerald-700 hover:bg-emerald-50 focus-visible:ring-emerald-500',
+                  variant === 'info' && 'text-sky-700 hover:bg-sky-50 focus-visible:ring-sky-500',
+                  variant === 'warning' &&
+                    'text-amber-700 hover:bg-amber-50 focus-visible:ring-amber-500',
+                  variant === 'error' && 'text-rose-700 hover:bg-rose-50 focus-visible:ring-rose-500',
+                  variant === 'default' &&
+                    'text-[#0056FF] hover:bg-[#E3E7FC] focus-visible:ring-[#0056FF]',
+                )}
+              >
+                {actionLabel}
+              </motion.button>
             )}
-            style={{ width: `${progressPercent}%` }}
-          />
-        </div>
+
+            {/* Dismiss Button - Law 4: Scale 0.97 on press */}
+            <motion.button
+              type="button"
+              whileTap={{ scale: WHILE_TAP_SCALE }}
+              onClick={onClose}
+              aria-label="Dismiss message"
+              className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-[4px] text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-900 focus-visible:outline-none"
+            >
+              <X className="size-4" />
+            </motion.button>
+          </div>
+
+          {/* Auto-Dismiss Progress Indicator Strip */}
+          {showProgress && duration > 0 && (
+            <div className="h-1 w-full bg-slate-100">
+              <div
+                className={cn(
+                  'h-full transition-all duration-75 ease-linear',
+                  variant === 'success' && 'bg-emerald-500',
+                  variant === 'info' && 'bg-sky-500',
+                  variant === 'warning' && 'bg-amber-500',
+                  variant === 'error' && 'bg-rose-500',
+                  variant === 'default' && 'bg-[#0056FF]',
+                )}
+                style={{ width: `${progressPercent}%` }}
+              />
+            </div>
+          )}
+        </motion.div>
       )}
-    </div>
+    </AnimatePresence>
   );
 }
 

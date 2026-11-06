@@ -262,7 +262,7 @@ export const MAINTENANCE_SPECS: MaintenanceSectionSpec[] = [
   },
 ];
 
-export function MaintenanceManual() {
+export function MaintenanceManual({ hideHeader = false }: { hideHeader?: boolean } = {}) {
   const [checkedItems, setCheckedItems] = React.useState<Record<string, boolean>>({});
   const [activeTab, setActiveTab] = React.useState<string>('maint-documentation');
   const [copiedToken, setCopiedToken] = React.useState<string | null>(null);
@@ -295,71 +295,119 @@ export function MaintenanceManual() {
       {/* ------------------------------------------------------------- */}
       {/* 1. HEADER & STRATEGY MANIFESTO BANNER                         */}
       {/* ------------------------------------------------------------- */}
-      <div className="space-y-4 rounded-3xl border border-[#CAD3F5] bg-gradient-to-br from-[#EFF5FF] via-white to-[#F8FAFC] p-6 sm:p-8">
-        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-4">
-          <div className="space-y-1">
-            <div className="inline-flex items-center gap-2 rounded-lg border border-[#0056FF]/30 bg-[#0056FF]/10 px-3 py-1 font-mono text-[11px] font-bold text-[#0056FF]">
-              <Sparkles className="size-3.5" />
-              <span>DESIGN SYSTEM LIFECYCLE &amp; GOVERNANCE</span>
+      {!hideHeader ? (
+        <div className="space-y-4 rounded-3xl border border-[#CAD3F5] bg-gradient-to-br from-[#EFF5FF] via-white to-[#F8FAFC] p-6 sm:p-8">
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-4">
+            <div className="space-y-1">
+              <div className="inline-flex items-center gap-2 rounded-lg border border-[#0056FF]/30 bg-[#0056FF]/10 px-3 py-1 font-mono text-[11px] font-bold text-[#0056FF]">
+                <Sparkles className="size-3.5" />
+                <span>DESIGN SYSTEM LIFECYCLE &amp; GOVERNANCE</span>
+              </div>
+              <h2 className="font-sans text-2xl font-black tracking-tight text-[#0A1A4A] sm:text-3xl">
+                Maintenance Strategy Manual
+              </h2>
+              <p className="max-w-3xl font-sans text-xs leading-relaxed text-slate-600 sm:text-sm">
+                &ldquo;Design systems are no different than any other project your team might take on.
+                In order to successfully build and maintain one, you need a clear strategy that&apos;s
+                well executed daily, and you&apos;ll need to create opportunities for your colleagues
+                to give feedback to help shape your design system together.&rdquo;
+              </p>
             </div>
-            <h2 className="font-sans text-2xl font-black tracking-tight text-[#0A1A4A] sm:text-3xl">
-              Maintenance Strategy Manual
-            </h2>
-            <p className="max-w-3xl font-sans text-xs leading-relaxed text-slate-600 sm:text-sm">
-              &ldquo;Design systems are no different than any other project your team might take on.
-              In order to successfully build and maintain one, you need a clear strategy that&apos;s
-              well executed daily, and you&apos;ll need to create opportunities for your colleagues
-              to give feedback to help shape your design system together.&rdquo;
-            </p>
+
+            <div className="flex flex-col items-end gap-1.5 font-mono text-xs">
+              <span className="rounded-lg border border-[#CAD3F5] bg-white px-3 py-1.5 font-bold text-[#0056FF]">
+                MAINTENANCE AUDIT: {currentCheckedCount} of {totalPossibleChecks} Checks
+              </span>
+              <span className="text-[10px] text-slate-500">
+                5 Core Pillars &middot; 28 Operational Invariants
+              </span>
+            </div>
           </div>
 
-          <div className="flex flex-col items-end gap-1.5 font-mono text-xs">
-            <span className="rounded-lg border border-[#CAD3F5] bg-white px-3 py-1.5 font-bold text-[#0056FF]">
-              MAINTENANCE AUDIT: {currentCheckedCount} of {totalPossibleChecks} Checks
-            </span>
-            <span className="text-[10px] text-slate-500">
-              5 Core Pillars &middot; 28 Operational Invariants
-            </span>
-          </div>
-        </div>
-
-        {/* Pillar Switcher Navigation */}
-        <div className="flex flex-wrap items-center gap-2">
-          {MAINTENANCE_SPECS.map((spec) => {
-            const isActive = activeTab === spec.id;
-            const completedCount = spec.items.filter((i) => checkedItems[i.id]).length;
-            return (
-              <button
-                key={spec.id}
-                type="button"
-                onClick={() => {
-                  setActiveTab(spec.id);
-                  const el = document.getElementById(spec.id);
-                  if (el) {
-                    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                  }
-                }}
-                className={cn(
-                  'flex cursor-pointer items-center gap-2 rounded-xl border px-3 py-2 font-sans text-xs font-bold transition-all',
-                  isActive
-                    ? 'border-[#0056FF] bg-[#0056FF] text-white shadow-xs'
-                    : 'border-[#CAD3F5] bg-white text-[#0A1A4A] hover:border-[#0056FF]/40 hover:bg-[#EFF5FF]',
-                )}
-              >
-                <span>{spec.name}</span>
-                <span
+          {/* Pillar Switcher Navigation */}
+          <div className="flex flex-wrap items-center gap-2">
+            {MAINTENANCE_SPECS.map((spec) => {
+              const isActive = activeTab === spec.id;
+              const completedCount = spec.items.filter((i) => checkedItems[i.id]).length;
+              return (
+                <button
+                  key={spec.id}
+                  type="button"
+                  onClick={() => {
+                    setActiveTab(spec.id);
+                    const el = document.getElementById(spec.id);
+                    if (el) {
+                      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                  }}
                   className={cn(
-                    'py-0.2 rounded-md px-1.5 font-mono text-[10px] font-bold',
-                    isActive ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-600',
+                    'flex cursor-pointer items-center gap-2 rounded-xl border px-3 py-2 font-sans text-xs font-bold transition-all',
+                    isActive
+                      ? 'border-[#0056FF] bg-[#0056FF] text-white shadow-xs'
+                      : 'border-[#CAD3F5] bg-white text-[#0A1A4A] hover:border-[#0056FF]/40 hover:bg-[#EFF5FF]',
                   )}
                 >
-                  {completedCount}/{spec.totalChecks}
-                </span>
-              </button>
-            );
-          })}
+                  <span>{spec.name}</span>
+                  <span
+                    className={cn(
+                      'py-0.2 rounded-md px-1.5 font-mono text-[10px] font-bold',
+                      isActive ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-600',
+                    )}
+                  >
+                    {completedCount}/{spec.totalChecks}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
         </div>
-      </div>
+      ) : (
+        /* COMPACT PILLAR SWITCHER FOR STUDIO MODE */
+        <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-[#CAD3F5] bg-[#EFF5FF]/60 p-3.5">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="mr-1 flex items-center gap-1.5 font-mono text-[11px] font-bold text-slate-600 uppercase">
+              <Filter className="size-3.5 text-[#0056FF]" />
+              Strategic Pillar:
+            </span>
+            {MAINTENANCE_SPECS.map((spec) => {
+              const isActive = activeTab === spec.id;
+              const completedCount = spec.items.filter((i) => checkedItems[i.id]).length;
+              return (
+                <button
+                  key={spec.id}
+                  type="button"
+                  onClick={() => {
+                    setActiveTab(spec.id);
+                    const el = document.getElementById(spec.id);
+                    if (el) {
+                      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                  }}
+                  className={cn(
+                    'flex cursor-pointer items-center gap-2 rounded-lg border px-3 py-1.5 font-sans text-xs font-bold transition-all active:scale-[0.97]',
+                    isActive
+                      ? 'border-[#0056FF] bg-[#0056FF] text-white shadow-xs'
+                      : 'border-[#CAD3F5] bg-white text-[#0A1A4A] hover:bg-[#EFF5FF]',
+                  )}
+                >
+                  <span>{spec.name}</span>
+                  <span
+                    className={cn(
+                      'rounded-[2px] px-1.5 py-0.2 font-mono text-[10px] font-bold',
+                      isActive ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-600',
+                    )}
+                  >
+                    {completedCount}/{spec.totalChecks}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+          <div className="inline-flex items-center gap-2 rounded-lg border border-[#CAD3F5] bg-white px-3 py-1.5 font-mono text-xs font-bold text-[#0056FF]">
+            <span>{currentCheckedCount} of {totalPossibleChecks} Verified</span>
+          </div>
+        </div>
+      )}
 
       {/* ------------------------------------------------------------- */}
       {/* 2. PILLARS & OPERATIONAL CHECKLIST SECTIONS                    */}

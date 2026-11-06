@@ -1,9 +1,11 @@
 'use client';
 
 import * as React from 'react';
+import { motion, type HTMLMotionProps } from 'motion/react';
 import { cn } from '@/lib/utils';
+import { WHILE_TAP_SCALE } from '@/lib/motion';
 
-export interface LibraryCardProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface LibraryCardProps extends HTMLMotionProps<'div'> {
   interactive?: boolean;
 }
 
@@ -14,17 +16,19 @@ export function LibraryCard({
   ...props
 }: LibraryCardProps) {
   return (
-    <div
+    <motion.div
+      whileTap={interactive ? { scale: WHILE_TAP_SCALE } : undefined}
+      transition={{ type: 'spring', damping: 25, stiffness: 450 }}
       className={cn(
-        'w-full rounded-[4px] border border-[#CAD3F5] bg-white p-5 text-[#0A1A4A] shadow-none transition-all duration-200',
-        interactive && 'cursor-pointer hover:border-[#0056FF]/40 hover:bg-white',
+        'w-full rounded-[4px] bg-white p-5 text-[#0A1A4A] shadow-none transition-colors duration-150',
+        interactive && 'cursor-pointer hover:bg-slate-50/50',
         className,
       )}
       style={{ borderRadius: '4px' }}
       {...props}
     >
       {children}
-    </div>
+    </motion.div>
   );
 }
 
@@ -58,23 +62,19 @@ export function LibraryCardDescription({
   ...props
 }: React.HTMLAttributes<HTMLParagraphElement>) {
   return (
-    <p className={cn('text-xs leading-relaxed text-slate-600', className)} {...props}>
+    <p className={cn('text-xs text-slate-500', className)} {...props}>
       {children}
     </p>
   );
 }
 
-export function LibraryCardMedia({
+export function LibraryCardContent({
   className,
   children,
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) {
   return (
-    <div
-      className={cn('mb-4 overflow-hidden rounded-[4px]', className)}
-      style={{ borderRadius: '4px' }}
-      {...props}
-    >
+    <div className={cn('pt-0', className)} {...props}>
       {children}
     </div>
   );
@@ -86,7 +86,7 @@ export function LibraryCardFooter({
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) {
   return (
-    <div className={cn('mt-4 flex items-center justify-between gap-3', className)} {...props}>
+    <div className={cn('mt-4 flex items-center justify-between pt-3', className)} {...props}>
       {children}
     </div>
   );

@@ -2,8 +2,10 @@
 /* eslint-disable react-hooks/refs */
 
 import * as React from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '@/lib/utils';
 import { Search, ChevronDown, Check, X } from '@/components/icons';
+import { popoverMotionVariants } from '@/lib/motion';
 
 export interface DropdownOption {
   value: string;
@@ -266,7 +268,7 @@ export function SearchableDropdown({
         aria-controls={listboxId}
         onClick={() => setIsOpen(!isOpen)}
         className={cn(
-          'flex min-h-[42px] w-full items-center justify-between gap-2 rounded-[4px] border px-3 py-1.5 font-sans text-xs transition-all duration-150 outline-none',
+          'flex min-h-[42px] w-full items-center justify-between gap-2 rounded-[4px] border px-3 py-1.5 font-sans text-xs transition-all duration-150 active:scale-[0.97] outline-none',
           'focus-visible:ring-2 focus-visible:ring-[#0056FF]',
           isOpen
             ? 'border-[#0056FF] ring-1 ring-[#0056FF]'
@@ -327,12 +329,17 @@ export function SearchableDropdown({
       {/* ======================================================== */}
       {/* COMBOBOX POPOVER PANEL                                   */}
       {/* ======================================================== */}
-      {isOpen && (
-        <div
-          className={cn(
-            'absolute left-0 z-50 mt-1.5 w-full min-w-[280px] overflow-hidden rounded-[4px] border border-[#CAD3F5] bg-white text-slate-900 shadow-none transition-all duration-150',
-          )}
-        >
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            variants={popoverMotionVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            className={cn(
+              'absolute left-0 z-50 mt-1.5 w-full min-w-[280px] overflow-hidden rounded-[4px] border border-[#CAD3F5] bg-white text-slate-900 shadow-md',
+            )}
+          >
           {/* 03 Auto-Focused Search Input */}
           <div className="relative border-b border-slate-100 p-2.5 dark:border-slate-800">
             <Search className="absolute top-1/2 left-5 size-3.5 -translate-y-1/2 text-slate-400" />
@@ -461,8 +468,9 @@ export function SearchableDropdown({
             <span>Navigate with &uarr;&darr; &bull; Enter to select</span>
             {multiple && <span>Backspace removes tag</span>}
           </div>
-        </div>
+        </motion.div>
       )}
+    </AnimatePresence>
     </div>
   );
 }

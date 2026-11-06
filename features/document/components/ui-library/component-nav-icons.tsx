@@ -148,9 +148,9 @@ export function MenuIconTile({
   size?: 'sm' | 'md' | 'lg';
 }) {
   const sizeClasses = {
-    sm: 'size-8 rounded-lg',
-    md: 'size-10 rounded-xl',
-    lg: 'size-11 rounded-2xl',
+    sm: 'size-8 rounded-[4px]',
+    md: 'size-10 rounded-[4px]',
+    lg: 'size-11 rounded-[4px]',
   }[size];
 
   const iconSizes = {
@@ -162,15 +162,16 @@ export function MenuIconTile({
   return (
     <div
       className={cn(
-        'flex shrink-0 items-center justify-center border bg-white text-black shadow-2xs transition-colors',
+        'flex shrink-0 items-center justify-center rounded-[4px] border bg-white text-[#020617] shadow-2xs transition-colors',
         sizeClasses,
         active
           ? 'border-slate-300 shadow-xs ring-2 ring-slate-200/80'
           : 'border-slate-200/90 group-hover:border-slate-300 group-hover:bg-slate-50/80',
         className,
       )}
+      style={{ borderRadius: '4px' }}
     >
-      <Icon className={cn(iconSizes, 'stroke-[2] text-black')} />
+      <Icon className={cn(iconSizes, 'stroke-[2] text-[#020617]')} />
     </div>
   );
 }
@@ -310,126 +311,17 @@ export interface ParentCategoryTheme {
  */
 export function getParentCategoryTheme(groupIdOrCategory: string): ParentCategoryTheme {
   const key = groupIdOrCategory.toLowerCase();
-  if (key.includes('nav')) {
-    // 01 Navigation - Interactive Azure Blue
-    return {
-      accent: '#2277FF',
-      badgeBg: 'bg-[#EFF6FF]',
-      badgeBorder: 'border-[#BAE6FD]',
-      badgeText: 'text-[#1D4ED8]',
-      iconColor: 'text-[#2277FF]',
-      borderColor: 'border-[#2277FF]/40',
-      glowColor: 'rgba(34, 119, 255, 0.08)',
-      cardBg: 'bg-white',
-      cardBorder: 'border-[#CAD3F5]',
-    };
-  }
-  if (key.includes('feedback')) {
-    // 02 Feedback - Solid Royal Blue
-    return {
-      accent: '#0056FF',
-      badgeBg: 'bg-[#EFF5FF]',
-      badgeBorder: 'border-[#CAD3F5]',
-      badgeText: 'text-[#0056FF]',
-      iconColor: 'text-[#0056FF]',
-      borderColor: 'border-[#0056FF]/40',
-      glowColor: 'rgba(0, 86, 255, 0.08)',
-      cardBg: 'bg-white',
-      cardBorder: 'border-[#CAD3F5]',
-    };
-  }
-  if (key.includes('input')) {
-    // 03 Inputs - Signal / Sunny Yellow
-    return {
-      accent: '#EAB308',
-      badgeBg: 'bg-[#FEFCE8]',
-      badgeBorder: 'border-[#FEF08A]',
-      badgeText: 'text-[#A16207]',
-      iconColor: 'text-[#CA8A04]',
-      borderColor: 'border-[#EAB308]/40',
-      glowColor: 'rgba(250, 204, 21, 0.12)',
-      cardBg: 'bg-white',
-      cardBorder: 'border-[#CAD3F5]',
-    };
-  }
-  if (key.includes('display') || key.includes('container')) {
-    // 04 Containers / Display - Soft Lavender
-    return {
-      accent: '#8B5CF6',
-      badgeBg: 'bg-[#F5F3FF]',
-      badgeBorder: 'border-[#DDD6FE]',
-      badgeText: 'text-[#7C3AED]',
-      iconColor: 'text-[#8B5CF6]',
-      borderColor: 'border-[#8B5CF6]/40',
-      glowColor: 'rgba(139, 92, 246, 0.08)',
-      cardBg: 'bg-white',
-      cardBorder: 'border-[#CAD3F5]',
-    };
-  }
-  if (key.includes('action') || key.includes('button')) {
-    // 05 Actions - Mint Emerald Green
-    return {
-      accent: '#10B981',
-      badgeBg: 'bg-[#F0FDF4]',
-      badgeBorder: 'border-[#BBF7D0]',
-      badgeText: 'text-[#059669]',
-      iconColor: 'text-[#10B981]',
-      borderColor: 'border-[#10B981]/40',
-      glowColor: 'rgba(16, 185, 129, 0.10)',
-      cardBg: 'bg-white',
-      cardBorder: 'border-[#CAD3F5]',
-    };
-  }
-  if (key.includes('ai') || key.includes('prompt')) {
-    // 06 AI Prompts / AI Kit - Pearl Slate Mesh
-    return {
-      accent: '#475569',
-      badgeBg: 'bg-[#F8FAFC]',
-      badgeBorder: 'border-[#CBD5E1]',
-      badgeText: 'text-[#334155]',
-      iconColor: 'text-[#475569]',
-      borderColor: 'border-[#475569]/40',
-      glowColor: 'rgba(100, 116, 139, 0.06)',
-      cardBg: 'bg-white',
-      cardBorder: 'border-[#CAD3F5]',
-    };
-  }
-  if (key.includes('form')) {
-    // Forms - Warm Honey Amber
-    return {
-      accent: '#F59E0B',
-      badgeBg: 'bg-[#FFFBEB]',
-      badgeBorder: 'border-[#FDE68A]',
-      badgeText: 'text-[#B45309]',
-      iconColor: 'text-[#F59E0B]',
-      borderColor: 'border-[#F59E0B]/40',
-      glowColor: 'rgba(245, 158, 11, 0.09)',
-      cardBg: 'bg-white',
-      cardBorder: 'border-[#CAD3F5]',
-    };
-  }
-  if (key.includes('section')) {
-    // Sections - Deep Azure Blue
-    return {
-      accent: '#0284C7',
-      badgeBg: 'bg-[#F0F9FF]',
-      badgeBorder: 'border-[#BAE6FD]',
-      badgeText: 'text-[#0369A1]',
-      iconColor: 'text-[#0284C7]',
-      borderColor: 'border-[#0284C7]/40',
-      glowColor: 'rgba(2, 132, 199, 0.08)',
-      cardBg: 'bg-white',
-      cardBorder: 'border-[#CAD3F5]',
-    };
-  }
+  
+  // Standard Clean Neutral Icon Container (Zero arbitrary candy colors, 4px border radius)
+  // All icons default to Black (#020617 / text-slate-950) on clean white/neutral background
   return {
     accent: '#0056FF',
-    badgeBg: 'bg-[#EFF5FF]',
-    badgeBorder: 'border-[#CAD3F5]',
-    badgeText: 'text-[#0056FF]',
-    iconColor: 'text-[#0056FF]',
-    borderColor: 'border-[#0056FF]/40',
-    glowColor: 'rgba(0, 86, 255, 0.08)',
+    badgeBg: 'bg-white',
+    badgeBorder: 'border-slate-200/90',
+    badgeText: 'text-[#020617]',
+    iconColor: 'text-[#020617]',
+    borderColor: 'border-slate-200/80',
+    glowColor: 'rgba(2, 6, 23, 0.04)',
     cardBg: 'bg-white',
     cardBorder: 'border-[#CAD3F5]',
   };

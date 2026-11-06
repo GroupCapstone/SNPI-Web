@@ -28,9 +28,10 @@ describe('GitHub Appearance Color Roles Engine (computeActiveColorRoles)', () =>
 
     expect(roles.isDark).toBe(true);
     expect(roles.themeName).toBe('Dark dimmed (Moon)');
-    expect(roles.canvasBg).toBe('#1E293B');
-    expect(roles.subsurfaceBg).toBe('#24334D');
-    expect(roles.textPrimary).toBe('#F8FAFC');
+    expect(roles.canvasBg).toBe('#0F172A');
+    expect(roles.subsurfaceBg).toBe('#1E293B');
+    expect(roles.textPrimary).toBe('#FFFFFF');
+    expect(roles.iconPrimary).toBe('#FFFFFF');
     expect(roles.primary.fill).toBe('#60A5FA');
     expect(roles.primary.on).toBe('#002A8C');
     expect(roles.primary.contrastGrade).toBe('AAA');
@@ -73,9 +74,11 @@ describe('GitHub Appearance Color Roles Engine (computeActiveColorRoles)', () =>
     ]);
   });
 
-  it('exposes exactly 4 light theme variants and 4 dark theme variants', () => {
-    expect(LIGHT_THEMES).toHaveLength(4);
-    expect(DARK_THEMES).toHaveLength(4);
-    expect(DARK_THEMES.some((t) => t.id === 'dark-dimmed')).toBe(true);
+  it('exposes exactly 2 canonical theme specifications (Day and Moon)', () => {
+    expect(LIGHT_THEMES).toHaveLength(1);
+    expect(DARK_THEMES).toHaveLength(1);
+    expect(DARK_THEMES[0].id).toBe('dark-dimmed');
+    expect(DARK_THEMES[0].label).toContain('Moon');
+    expect(LIGHT_THEMES[0].label).toContain('Day');
   });
 });
