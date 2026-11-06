@@ -254,7 +254,7 @@ export function PrettyCodeBlock({
           {statusBadge && (
             <span
               className={cn(
-                'rounded-md px-2 py-0.5 font-mono text-[10px] font-bold uppercase',
+                'rounded-[2px] px-2 py-0.5 font-mono text-[10px] font-bold uppercase',
                 statusType === 'success' &&
                   'border border-emerald-500/30 bg-emerald-500/15 text-emerald-400',
                 statusType === 'error' && 'border border-rose-500/30 bg-rose-500/15 text-rose-400',
@@ -262,6 +262,7 @@ export function PrettyCodeBlock({
                   'border border-amber-500/30 bg-amber-500/15 text-amber-400',
                 statusType === 'info' && 'border border-sky-500/30 bg-sky-500/15 text-sky-400',
               )}
+              style={{ borderRadius: '2px' }}
             >
               {statusBadge}
             </span>
@@ -269,7 +270,8 @@ export function PrettyCodeBlock({
 
           <button
             onClick={handleCopy}
-            className="flex items-center gap-1.5 rounded-md border border-slate-700/80 bg-slate-800/80 px-2.5 py-1 font-mono text-[11px] font-medium text-slate-300 transition-all hover:border-[#0056FF] hover:bg-[#0056FF] hover:text-white active:scale-95"
+            className="flex items-center gap-1.5 rounded-[2px] border border-slate-700/80 bg-slate-800/80 px-2.5 py-1 font-mono text-[11px] font-medium text-slate-300 transition-all hover:border-[#0056FF] hover:bg-[#0056FF] hover:text-white active:scale-95"
+            style={{ borderRadius: '2px' }}
             title="Copy Code"
           >
             {copied ? (

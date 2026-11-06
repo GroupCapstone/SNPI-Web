@@ -40,7 +40,7 @@ export function ToastDemo() {
   };
 
   return (
-    <div className="w-full max-w-md space-y-4 rounded-2xl border border-[#CAD3F5] bg-white p-5 shadow-none">
+    <div className="w-full max-w-md space-y-4 rounded-2xl border border-[#CAD3F5] bg-white p-5 shadow-xs">
       <div className="flex items-center justify-end border-b border-slate-100 pb-2.5">
         <div className="flex gap-1.5">
           <button
@@ -99,7 +99,7 @@ export function ToastDemo() {
 
 // 3. Notification Bell with Tap-to-Drop Floating Notification Center
 export function NotificationBellDemo() {
-  const [isOpen, setIsOpen] = React.useState(true);
+  const [isOpen, setIsOpen] = React.useState(false);
   const [filter, setFilter] = React.useState<
     'all' | 'academic' | 'security' | 'finance' | 'system'
   >('all');
@@ -224,7 +224,7 @@ export function NotificationBellDemo() {
       },
     ]);
     setFilter('all');
-    setIsOpen(true);
+    setIsOpen(false);
   };
 
   const triggerNewNotification = (cat: 'academic' | 'security' | 'finance') => {
@@ -260,7 +260,6 @@ export function NotificationBellDemo() {
       read: false,
     };
     setItems((prev) => [newItem, ...prev]);
-    setIsOpen(true);
   };
 
   const filteredItems = items.filter((item) =>
@@ -312,21 +311,21 @@ export function NotificationBellDemo() {
             <button
               type="button"
               onClick={() => triggerNewNotification('academic')}
-              className="flex cursor-pointer items-center gap-1 rounded-xl border border-[#CAD3F5] bg-[#EFF5FF] px-2.5 py-1.5 font-mono text-[11px] font-bold text-[#0056FF] transition-all hover:bg-[#E3E7FC] active:scale-95"
+              className="flex cursor-pointer items-center gap-1 rounded-xl border border-[#CAD3F5] bg-[#EFF5FF] px-2.5 py-1.5 font-mono text-[11px] font-bold text-[#0056FF] transition-all hover:bg-[#E3E7FC] active:scale-[0.97]"
             >
               <span>+ Academic</span>
             </button>
             <button
               type="button"
               onClick={() => triggerNewNotification('security')}
-              className="flex cursor-pointer items-center gap-1 rounded-xl border border-violet-200 bg-violet-50/70 px-2.5 py-1.5 font-mono text-[11px] font-bold text-violet-700 transition-all hover:bg-violet-100 active:scale-95"
+              className="flex cursor-pointer items-center gap-1 rounded-xl border border-violet-200 bg-violet-50/70 px-2.5 py-1.5 font-mono text-[11px] font-bold text-violet-700 transition-all hover:bg-violet-100 active:scale-[0.97]"
             >
               <span>+ Security</span>
             </button>
             <button
               type="button"
               onClick={() => triggerNewNotification('finance')}
-              className="flex cursor-pointer items-center gap-1 rounded-xl border border-emerald-200 bg-emerald-50/70 px-2.5 py-1.5 font-mono text-[11px] font-bold text-emerald-700 transition-all hover:bg-emerald-100 active:scale-95"
+              className="flex cursor-pointer items-center gap-1 rounded-xl border border-emerald-200 bg-emerald-50/70 px-2.5 py-1.5 font-mono text-[11px] font-bold text-emerald-700 transition-all hover:bg-emerald-100 active:scale-[0.97]"
             >
               <span>+ Finance</span>
             </button>
@@ -334,7 +333,7 @@ export function NotificationBellDemo() {
               type="button"
               onClick={resetSampleData}
               title="Reset Sample Data"
-              className="flex size-7.5 cursor-pointer items-center justify-center rounded-xl border border-[#CAD3F5] text-slate-500 hover:border-[#0056FF] hover:bg-slate-50 hover:text-[#0056FF] active:scale-95"
+              className="flex size-7.5 cursor-pointer items-center justify-center rounded-xl border border-[#CAD3F5] text-slate-500 hover:border-[#0056FF] hover:bg-slate-50 hover:text-[#0056FF] active:scale-[0.97]"
             >
               <RotateCw className="size-3.5" />
             </button>
@@ -389,14 +388,20 @@ export function NotificationBellDemo() {
               aria-label="Toggle notifications dropdown list"
               title={isOpen ? 'Close Notification List' : 'Tap to drop down notifications'}
               className={cn(
-                'group relative flex size-11 cursor-pointer items-center justify-center rounded-2xl border-2 transition-all select-none active:scale-95',
+                'group relative flex size-11 cursor-pointer items-center justify-center rounded-2xl border-2 transition-all select-none active:scale-[0.97]',
                 isOpen
                   ? 'border-[#0056FF] bg-[#EFF5FF] text-[#0056FF] shadow-xs ring-4 ring-[#0056FF]/15'
-                  : 'border-[#CAD3F5] bg-white text-slate-700 hover:border-[#0056FF] hover:bg-[#EFF5FF]/50 hover:text-[#0056FF]',
+                  : 'border-[#CAD3F5] bg-white text-[#0A1A4A] hover:border-[#0056FF] hover:bg-[#EFF5FF]/50 hover:text-[#0056FF]',
                 hasNewAlert && 'scale-105 ring-4 ring-[#0056FF]/30',
               )}
             >
-              <Bell className={cn('size-5 stroke-[2.2]', hasNewAlert && 'text-[#0056FF]')} />
+              <Bell
+                className={cn(
+                  'size-5 stroke-[2.2]',
+                  isOpen ? 'text-[#0056FF]' : 'text-[#0A1A4A]',
+                  hasNewAlert && 'text-[#0056FF]',
+                )}
+              />
               {unreadCount > 0 && (
                 <span className="absolute -top-1.5 -right-1.5 flex size-5.5 items-center justify-center rounded-full bg-[#0056FF] font-mono text-[10px] font-black text-white shadow-xs ring-2 ring-white">
                   {unreadCount > 9 ? '9+' : unreadCount}
@@ -546,9 +551,11 @@ export function NotificationBellDemo() {
                                 <span>{n.time}</span>
                                 {!n.read && (
                                   <span
-                                    className="size-1.5 rounded-full bg-[#0056FF] ring-3 ring-[#EFF5FF]"
+                                    className="rounded bg-[#0056FF] px-1 py-0.2 font-mono text-[8px] font-bold text-white uppercase"
                                     title="Unread Notification"
-                                  />
+                                  >
+                                    NEW
+                                  </span>
                                 )}
                               </div>
                             </div>
@@ -582,8 +589,10 @@ export function NotificationBellDemo() {
 
                 {/* 4. Popover Footer Row */}
                 <div className="mt-3 flex items-center justify-between border-t border-[#CAD3F5]/80 pt-2.5 font-mono text-[11px]">
-                  <span className="flex items-center gap-1.5 text-[10px] text-slate-400">
-                    <span className="size-1.5 rounded-full bg-emerald-500" />
+                  <span className="flex items-center gap-1.5 text-[10px] text-slate-500">
+                    <span className="rounded border border-emerald-300 bg-emerald-50 px-1 py-0.2 font-mono text-[8px] font-bold text-emerald-700 uppercase">
+                      LIVE
+                    </span>
                     WebSocket Connected
                   </span>
                   {items.length > 0 && (
@@ -671,7 +680,7 @@ export function StatusPage404Demo() {
               onClick={() => setSelectedCode(sc.code)}
               title={`Simulate HTTP ${sc.code} error state`}
               className={cn(
-                'cursor-pointer rounded-[2px] border px-2.5 py-1 font-mono text-xs font-bold transition-colors select-none active:scale-95',
+                'cursor-pointer rounded-[2px] border px-2.5 py-1 font-mono text-xs font-bold transition-colors select-none active:scale-[0.97]',
                 selectedCode === sc.code
                   ? 'border-[#0056FF] bg-[#0056FF] text-white'
                   : 'border-[#CAD3F5] bg-white text-[#0A1A4A] hover:bg-[#EFF5FF] hover:text-[#0056FF]',

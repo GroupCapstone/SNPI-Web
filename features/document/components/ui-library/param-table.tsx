@@ -73,18 +73,22 @@ export function ParamTable({
                       {param.parameter}
                     </td>
                     <td className="px-4 py-2.5">
-                      <span className="rounded bg-[#E3E7FC] px-1.5 py-0.5 font-mono text-[10px] font-semibold text-[#0056FF]">
+                      <span
+                        className="rounded-[2px] bg-[#E3E7FC] px-1.5 py-0.5 font-mono text-[10px] font-semibold text-[#0056FF]"
+                        style={{ borderRadius: '2px' }}
+                      >
                         {param.type}
                       </span>
                     </td>
                     <td className="px-4 py-2.5">
                       <span
                         className={cn(
-                          'inline-flex items-center rounded px-1.5 py-0.5 font-mono text-[10px] font-bold tracking-wider',
+                          'inline-flex items-center rounded-[2px] px-1.5 py-0.5 font-mono text-[10px] font-bold tracking-wider',
                           req
                             ? 'border border-rose-200 bg-rose-50 text-rose-700'
                             : 'border border-slate-200 bg-slate-50 text-slate-600',
                         )}
+                        style={{ borderRadius: '2px' }}
                       >
                         {req ? '[REQUIRED]' : '[OPTIONAL]'}
                       </span>

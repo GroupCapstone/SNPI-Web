@@ -9,9 +9,11 @@
 
 Standardized the official SNPI brand logo across the `/document` portal and all its navigation menus using the original **Sora typeface bold asterisk glyph (`*`)**. 
 
-The brand identity adheres strictly to the primary blue palette:
-- **Light Mode**: Royal Blue (`#0056FF`) bold Sora asterisk on Pure White (`#FFFFFF`) canvas with Soft Lavender (`#CAD3F5`) border and `#0056FF`/10 ring glow.
-- **Dark Mode**: Crisp White (`#FFFFFF`) bold Sora asterisk on Deep Navy (`#0A1A4A`) / Royal Blue (`#0056FF`) squircle tile with `white/20` border.
+The brand identity adheres strictly to the 3 canonical logo editions with unified bold geometry:
+- **01. Blue Brand Edition**: Royal Blue (`#0056FF`) bold Sora asterisk on Pure White (`#FFFFFF`) / Ice Tint (`#EFF5FF`) canvas with Soft Lavender (`#CAD3F5`) border and `#0056FF`/10 ring glow.
+- **02. White Reversed Edition**: Pure White (`#FFFFFF`) bold Sora asterisk on Royal Blue (`#0056FF`) or Dark Obsidian (`#020617`) canvas with `white/20` border.
+- **03. Dark Monochromatic Edition**: Obsidian Black (`#020617`) bold Sora asterisk on Pure White (`#FFFFFF`) canvas for editorial print and official documentation.
+- **Bold Optical Dominance**: Asterisk vector glyph rendered with `strokeWidth={2.5}` expansion and solid fill, ensuring the mark is bold, authoritative, and dominant over the background canvas.
 - **Typography Standard**: Always rendered in `Sora` (`'Sora Variable', 'Sora', sans-serif`) with `fontWeight: 800` (bold/extrabold).
 
 ---

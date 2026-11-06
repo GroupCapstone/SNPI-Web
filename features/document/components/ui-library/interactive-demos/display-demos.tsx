@@ -657,7 +657,7 @@ export function AnimatedCounterDemo() {
   const [count, setCount] = React.useState(12840);
 
   return (
-    <div className="w-full max-w-md space-y-4 rounded-2xl border border-[#CAD3F5] bg-white p-5 text-center shadow-none">
+    <div className="w-full max-w-md space-y-4 rounded-2xl border border-[#CAD3F5] bg-white p-5 text-center shadow-xs">
       <div className="py-2">
         <span className="font-mono text-4xl font-black tracking-tight text-[#0056FF] sm:text-5xl">
           {count.toLocaleString()}

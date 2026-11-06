@@ -1,7 +1,9 @@
 'use client';
 
 import * as React from 'react';
+import { motion } from 'motion/react';
 import { cn } from '@/lib/utils';
+import { WHILE_TAP_SCALE, KNOB_STRETCH_RATIO, switchKnobTransition } from '@/lib/motion';
 
 export interface LibrarySwitchProps {
   checked: boolean;
@@ -23,7 +25,7 @@ export function LibrarySwitch({
   className,
 }: LibrarySwitchProps) {
   return (
-    <button
+    <motion.button
       type="button"
       role="switch"
       aria-checked={checked}
@@ -31,6 +33,7 @@ export function LibrarySwitch({
       disabled={disabled}
       id={id}
       name={name}
+      whileTap={{ scale: disabled ? 1 : WHILE_TAP_SCALE }}
       onClick={() => {
         if (!disabled) onCheckedChange(!checked);
       }}
@@ -39,7 +42,7 @@ export function LibrarySwitch({
         className,
       )}
     >
-      {/* Track */}
+      {/* Track - Law 9: Ease-in-out for moves */}
       <span
         className={cn(
           'inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-500/50',
@@ -47,14 +50,16 @@ export function LibrarySwitch({
           disabled && 'cursor-not-allowed opacity-50',
         )}
       >
-        {/* Thumb */}
-        <span
-          className={cn(
-            'pointer-events-none inline-block size-5 transform rounded-full bg-white shadow-xs transition duration-200 ease-in-out',
-            checked ? 'translate-x-5' : 'translate-x-0',
-          )}
+        {/* Thumb - Law 5: Stretch moving knobs 12% & Law 13: Zero bounce on everyday UI */}
+        <motion.span
+          animate={{
+            x: checked ? 20 : 0,
+            scaleX: [1, KNOB_STRETCH_RATIO, 1],
+          }}
+          transition={switchKnobTransition}
+          className="pointer-events-none inline-block size-5 origin-center rounded-full bg-white shadow-xs"
         />
       </span>
-    </button>
+    </motion.button>
   );
 }

@@ -1,10 +1,19 @@
 'use client';
 
 import * as React from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '@/lib/utils';
-import { Clock, Key, Eye, EyeOff, Check, Plus } from '@/components/icons';
+import { Clock, Eye, EyeOff, Check, Plus } from '@/components/icons';
+import {
+  WHILE_TAP_SCALE,
+  MOTION_EASE_OUT,
+  successPulseVariants,
+  listRowVariants,
+  listContainerVariants,
+  iconCrossfadeBlurVariants,
+} from '@/lib/motion';
 
-// 1. Duration Picker
+// 1. Duration Picker with Motion Law 4: Scale 0.97 on press & Ease-out
 export function DurationPickerDemo() {
   const [minutes, setMinutes] = React.useState(45);
   const presets = [15, 30, 45, 60, 90, 120];
@@ -23,53 +32,56 @@ export function DurationPickerDemo() {
         </span>
       </div>
 
-      {/* Preset Pills */}
+      {/* Preset Pills with Motion Law 4: Scale 0.97 on press */}
       <div className="flex flex-wrap gap-1.5">
         {presets.map((p) => (
-          <button
+          <motion.button
             key={p}
             type="button"
+            whileTap={{ scale: WHILE_TAP_SCALE }}
             onClick={() => setMinutes(p)}
             className={cn(
-              'rounded-full border px-3 py-1 font-mono text-xs font-bold transition-all',
+              'rounded-full border px-3 py-1 font-mono text-xs font-bold transition-colors',
               minutes === p
                 ? 'border-[#0056FF] bg-[#0056FF] text-white shadow-xs'
                 : 'border-slate-200 bg-slate-50 text-slate-700 hover:border-slate-300',
             )}
           >
             {p < 60 ? `${p}m` : `${p / 60}h`}
-          </button>
+          </motion.button>
         ))}
       </div>
 
-      {/* Fine-Tuning Stepper */}
+      {/* Fine-Tuning Stepper with Motion Law 4 */}
       <div className="flex items-center justify-between rounded-xl border border-slate-200 bg-slate-50 p-2.5">
         <span className="font-sans text-xs text-slate-600">Custom Adjustment:</span>
         <div className="flex items-center gap-2">
-          <button
+          <motion.button
             type="button"
+            whileTap={{ scale: WHILE_TAP_SCALE }}
             onClick={() => setMinutes(Math.max(5, minutes - 5))}
             className="flex size-7 items-center justify-center rounded-lg border border-slate-200 bg-white font-mono font-bold text-slate-700 hover:bg-slate-100"
           >
             -
-          </button>
+          </motion.button>
           <span className="min-w-[40px] text-center font-mono text-xs font-bold text-slate-900">
             {minutes}m
           </span>
-          <button
+          <motion.button
             type="button"
+            whileTap={{ scale: WHILE_TAP_SCALE }}
             onClick={() => setMinutes(minutes + 5)}
             className="flex size-7 items-center justify-center rounded-lg border border-slate-200 bg-white font-mono font-bold text-slate-700 hover:bg-slate-100"
           >
             +
-          </button>
+          </motion.button>
         </div>
       </div>
     </div>
   );
 }
 
-// 2. Password Input with Live Strength Meter
+// 2. Password Input with Live Strength Meter & Motion Law 18: Icon Blur Crossfade
 export function PasswordInputDemo() {
   const [password, setPassword] = React.useState('SNPI@SecPass2026');
   const [show, setShow] = React.useState(false);
@@ -98,15 +110,39 @@ export function PasswordInputDemo() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Enter password..."
-          className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5 pr-10 font-mono text-xs font-semibold text-slate-900 transition-all focus:border-[#0056FF] focus:bg-white focus:outline-none"
+          className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5 pr-10 font-mono text-xs font-semibold text-slate-900 transition-colors focus:border-[#0056FF] focus:bg-white focus:outline-none"
         />
-        <button
+        {/* Motion Law 18: Crossfade Icons + Blur */}
+        <motion.button
           type="button"
+          whileTap={{ scale: WHILE_TAP_SCALE }}
           onClick={() => setShow(!show)}
           className="absolute top-1/2 right-3 -translate-y-1/2 text-slate-400 hover:text-slate-600"
         >
-          {show ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
-        </button>
+          <AnimatePresence mode="wait">
+            {show ? (
+              <motion.div
+                key="eye-off"
+                variants={iconCrossfadeBlurVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+              >
+                <EyeOff className="size-4" />
+              </motion.div>
+            ) : (
+              <motion.div
+                key="eye-on"
+                variants={iconCrossfadeBlurVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+              >
+                <Eye className="size-4" />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.button>
       </div>
 
       {/* Strength Bar */}
@@ -120,7 +156,7 @@ export function PasswordInputDemo() {
             <div
               key={step}
               className={cn(
-                'h-1.5 rounded-full transition-all',
+                'h-1.5 rounded-full transition-all duration-200',
                 score >= step ? strengthColor : 'bg-slate-100',
               )}
             />
@@ -139,7 +175,7 @@ export function PasswordInputDemo() {
           <div
             key={i}
             className={cn(
-              'flex items-center gap-1.5 font-medium',
+              'flex items-center gap-1.5 font-medium transition-colors duration-150',
               c.met ? 'text-emerald-700' : 'text-slate-400',
             )}
           >
@@ -152,7 +188,7 @@ export function PasswordInputDemo() {
   );
 }
 
-// 6. Task List (Interactive Checklist with Animations)
+// 6. Task List (Interactive Checklist with Animations applying Laws 1, 3, 4, 8, 15)
 export function TaskListDemo() {
   const [tasks, setTasks] = React.useState([
     { id: 1, title: 'Verify semester roster checksums', done: true },
@@ -161,8 +197,10 @@ export function TaskListDemo() {
     { id: 4, title: 'Synchronize RFID campus gate logs', done: false },
   ]);
   const [newTitle, setNewTitle] = React.useState('');
+  const [lastToggledId, setLastToggledId] = React.useState<number | null>(null);
 
   const toggleTask = (id: number) => {
+    setLastToggledId(id);
     setTasks(tasks.map((t) => (t.id === id ? { ...t, done: !t.done } : t)));
   };
 
@@ -186,37 +224,51 @@ export function TaskListDemo() {
         </span>
       </div>
 
-      <div className="space-y-1.5">
-        {tasks.map((task) => (
-          <button
-            key={task.id}
-            type="button"
-            onClick={() => toggleTask(task.id)}
-            className={cn(
-              'flex w-full items-center gap-3 rounded-xl border p-2.5 text-left transition-all',
-              task.done
-                ? 'border-slate-100 bg-slate-50 text-slate-400'
-                : 'border-slate-200 bg-white text-slate-800 hover:border-slate-300',
-            )}
-          >
-            <div
+      {/* Motion Law 3: Stagger list rows by 30ms */}
+      <motion.div
+        variants={listContainerVariants}
+        initial="hidden"
+        animate="visible"
+        className="space-y-1.5"
+      >
+        <AnimatePresence>
+          {tasks.map((task) => (
+            <motion.button
+              key={task.id}
+              type="button"
+              layout
+              variants={listRowVariants}
+              whileTap={{ scale: WHILE_TAP_SCALE }}
+              onClick={() => toggleTask(task.id)}
               className={cn(
-                'flex size-5 shrink-0 items-center justify-center rounded-md border transition-all',
+                'flex w-full items-center gap-3 rounded-xl border p-2.5 text-left transition-colors select-none',
                 task.done
-                  ? 'border-[#0056FF] bg-[#0056FF] text-white'
-                  : 'border-slate-300 bg-white',
+                  ? 'border-slate-100 bg-slate-50 text-slate-400'
+                  : 'border-slate-200 bg-white text-slate-800 hover:border-slate-300',
               )}
             >
-              {task.done && <Check className="size-3.5" />}
-            </div>
-            <span
-              className={cn('flex-1 font-sans text-xs font-medium', task.done && 'line-through')}
-            >
-              {task.title}
-            </span>
-          </button>
-        ))}
-      </div>
+              {/* Motion Law 8: Pulse to confirm success */}
+              <motion.div
+                variants={successPulseVariants}
+                animate={task.done && lastToggledId === task.id ? 'success' : 'idle'}
+                className={cn(
+                  'flex size-5 shrink-0 items-center justify-center rounded-md border transition-colors',
+                  task.done
+                    ? 'border-[#0056FF] bg-[#0056FF] text-white'
+                    : 'border-slate-300 bg-white',
+                )}
+              >
+                {task.done && <Check className="size-3.5" />}
+              </motion.div>
+              <span
+                className={cn('flex-1 font-sans text-xs font-medium', task.done && 'line-through')}
+              >
+                {task.title}
+              </span>
+            </motion.button>
+          ))}
+        </AnimatePresence>
+      </motion.div>
 
       <form onSubmit={addTask} className="flex gap-2 pt-1">
         <input
@@ -226,13 +278,15 @@ export function TaskListDemo() {
           placeholder="Add next operational task..."
           className="flex-1 rounded-xl border border-slate-200 bg-slate-50 px-3 py-1.5 font-sans text-xs text-slate-900 focus:border-[#0056FF] focus:bg-white focus:outline-none"
         />
-        <button
+        {/* Motion Law 4: Scale 0.97 on press */}
+        <motion.button
           type="submit"
+          whileTap={{ scale: WHILE_TAP_SCALE }}
           className="flex items-center gap-1 rounded-xl bg-[#0056FF] px-3 py-1.5 font-sans text-xs font-bold text-white hover:bg-blue-700"
         >
           <Plus className="size-3.5" />
           <span>Add</span>
-        </button>
+        </motion.button>
       </form>
     </div>
   );

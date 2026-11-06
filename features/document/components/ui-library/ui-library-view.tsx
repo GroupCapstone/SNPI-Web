@@ -35,6 +35,7 @@ import {
   StatusPage404Demo,
   SkeletonLoadingScreenDemo,
   RichTextEditorDemo,
+  TwentyMotionLawsShowcase,
   HookSidebar,
   type HookSidebarItem,
   generateAiAgentPrompt,
@@ -642,6 +643,7 @@ export function UiLibraryView() {
                 ) : (
                   filteredComponentGroups.map((group) => {
                     const ParentGroupIcon = getParentGroupIcon(group.groupId);
+                    const parentTheme = getParentCategoryTheme(group.groupId);
                     const isGroupCollapsed = Boolean(collapsedGroups[group.groupId]);
                     const groupCatSlug = `cat-${group.group.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
                     const isGroupActive =
@@ -677,17 +679,7 @@ export function UiLibraryView() {
                           )}
                         >
                           <div className="flex min-w-0 items-center gap-2.5">
-                            {/* Standardized Squircle Icon Tile (Refined Compact Keyline Two-Tone Standard) */}
-                            <div
-                              className={cn(
-                                'flex size-8 shrink-0 items-center justify-center rounded-lg border bg-white shadow-2xs transition-colors',
-                                isGroupActive
-                                  ? 'border-slate-300 text-black shadow-xs ring-2 ring-slate-200/80'
-                                  : 'border-slate-200/90 text-black group-hover:border-slate-300 group-hover:bg-slate-50/80',
-                              )}
-                            >
-                              <ParentGroupIcon className="size-4 stroke-[2] text-black" />
-                            </div>
+                            <ParentGroupIcon className="size-4.5 shrink-0 stroke-[2] text-[#020617]" />
                             <span className="truncate text-xs font-bold text-black sm:text-[13px]">
                               {group.group}
                             </span>
@@ -826,7 +818,7 @@ export function UiLibraryView() {
 
           {/* COLUMN 2: Center Main Interactive Component Feed (1-Column Continuous Scroll Feed) */}
           <main className="min-w-0 flex-1 space-y-10">
-            {/* COMPONENT DEMOS FEED (Clean Open Feed with Signature Parent Colors & Pseudo-Random Stage Canvas) */}
+            {/* COMPONENT DEMOS FEED (Clean Open Feed with Signature Parent Colors & Unified Category Cards) */}
             <div className="w-full space-y-16">
               {feedCategories.map((group) => {
                 const parentTheme = getParentCategoryTheme(group.category);
@@ -835,7 +827,7 @@ export function UiLibraryView() {
                   <div
                     key={group.category}
                     id={group.categoryId}
-                    className="scroll-mt-36 space-y-12"
+                    className="scroll-mt-36 space-y-4"
                   >
                     {/* Category Header Divider with Signature Parent Accent */}
                     <div
@@ -852,88 +844,99 @@ export function UiLibraryView() {
                       </h3>
                     </div>
 
-                    {/* Demos Inside This Category (Single-Layer 4px Radius Card Feed Grouped by Parent Category Theme) */}
-                    <div className="space-y-8 sm:space-y-10">
-                      {group.components.map((comp) => {
-                        const sectionId = `comp-${comp.id}`;
-                        const freshness = getComponentFreshness(comp);
-                        const isActive = activeSectionId === sectionId;
+                    {/* ONLY ONE CARD: Groups all components in this category in a single card */}
+                    <div className="w-full rounded-2xl border border-[#CAD3F5] bg-white p-6 shadow-xs sm:p-8">
+                      <div className="space-y-10 divide-y divide-slate-100">
+                        {group.components.map((comp, idx) => {
+                          const sectionId = `comp-${comp.id}`;
+                          const freshness = getComponentFreshness(comp);
+                          const isActive = activeSectionId === sectionId;
 
-                        return (
-                          <section
-                            key={comp.id}
-                            id={sectionId}
-                            className="group relative flex w-full scroll-mt-28 flex-col rounded-[4px] border border-[#CAD3F5] bg-white p-6 shadow-2xs transition-all sm:p-8"
-                            style={{ borderRadius: '4px' }}
-                          >
-                            {/* Top Title inside the Card */}
-                            <div className="mb-6 flex items-center justify-between gap-3">
-                              <div className="flex items-center gap-3">
-                                <h2
-                                  className={cn(
-                                    'font-sans text-xl font-black transition-colors sm:text-2xl',
-                                    isActive ? 'text-[#0056FF]' : 'text-[#0A1A4A]',
-                                  )}
-                                >
-                                  {comp.name}
-                                </h2>
-                                {freshness && (
-                                  <span
+                          return (
+                            <section
+                              key={comp.id}
+                              id={sectionId}
+                              className={cn(
+                                'group relative flex w-full scroll-mt-28 flex-col',
+                                idx > 0 && 'pt-10',
+                              )}
+                            >
+                              {/* Top Title inside the Card */}
+                              <div className="mb-6 flex items-center justify-between gap-3 border-b border-slate-100 pb-4">
+                                <div className="flex items-center gap-3">
+                                  <h2
                                     className={cn(
-                                      'rounded-[4px] px-2 py-0.5 font-mono text-[9px] font-bold tracking-wider uppercase',
-                                      freshness === 'new' &&
-                                        'border border-emerald-300/80 bg-emerald-50 text-emerald-700',
-                                      freshness === 'updated' &&
-                                        'border border-amber-300/80 bg-amber-50 text-amber-700',
+                                      'font-sans text-xl font-black transition-colors sm:text-2xl',
+                                      isActive ? 'text-[#0056FF]' : 'text-[#0A1A4A]',
                                     )}
-                                    style={{ borderRadius: '4px' }}
                                   >
-                                    {freshness === 'new' ? 'NEW' : 'UPDATED'}
-                                  </span>
-                                )}
-                              </div>
-                            </div>
-
-                            {/* Component Demo Stage (Single-Layer Direct Surface) */}
-                            <div className="relative z-10 flex min-h-[220px] w-full items-center justify-center overflow-x-auto py-2 sm:min-h-[280px]">
-                              {renderFeedComponentDemo(comp.id, stateBundle, comp)}
-                            </div>
-
-                            {/* Bottom-Left Install Command UI Button */}
-                            <div className="mt-6 flex items-center justify-start border-t border-black/[0.06] pt-4">
-                              <div
-                                className="flex items-center gap-2 rounded-[4px] border border-black/10 bg-white/90 px-3 py-1.5 shadow-2xs backdrop-blur-xs transition-all hover:border-[#0056FF]/40"
-                                style={{ borderRadius: '4px' }}
-                              >
-                                <Terminal className="size-3.5 shrink-0 text-[#0056FF]" />
-                                <code className="font-mono text-xs font-bold text-[#0056FF]">
-                                  npx snpi-ui@latest add {comp.id}
-                                </code>
-                                <button
-                                  type="button"
-                                  title="Copy install command"
-                                  onClick={() =>
-                                    handleCopyInstall(comp.id, `npx snpi-ui@latest add ${comp.id}`)
-                                  }
-                                  className="ml-1 cursor-pointer text-[#0A1A4A]/60 transition-colors hover:text-[#0056FF]"
-                                  aria-label={`Copy install command for ${comp.name}`}
-                                >
-                                  {copiedInstallId === comp.id ? (
-                                    <Check className="size-3.5 stroke-[2.5] text-emerald-600" />
-                                  ) : (
-                                    <Copy className="size-3.5 stroke-[2]" />
+                                    {comp.name}
+                                  </h2>
+                                  {freshness && (
+                                    <span
+                                      className={cn(
+                                        'rounded-[4px] px-2 py-0.5 font-mono text-[9px] font-bold tracking-wider uppercase',
+                                        freshness === 'new' &&
+                                          'border border-emerald-300/80 bg-emerald-50 text-emerald-700',
+                                        freshness === 'updated' &&
+                                          'border border-amber-300/80 bg-amber-50 text-amber-700',
+                                      )}
+                                      style={{ borderRadius: '4px' }}
+                                    >
+                                      {freshness === 'new' ? 'NEW' : 'UPDATED'}
+                                    </span>
                                   )}
-                                </button>
+                                </div>
                               </div>
-                            </div>
-                          </section>
-                        );
-                      })}
+
+                              {/* Component Demo Stage (Dedicated Preview Canvas: Centered & Fit Full) */}
+                              <div className="relative z-10 flex min-h-[220px] w-full items-center justify-center overflow-x-auto rounded-xl bg-[#EFF5FF]/30 p-4 sm:min-h-[260px] sm:p-6">
+                                <div className="flex w-full max-w-full items-center justify-center">
+                                  {renderFeedComponentDemo(comp.id, stateBundle, comp)}
+                                </div>
+                              </div>
+
+                              {/* Bottom-Left Install Command UI Button */}
+                              <div className="mt-6 flex items-center justify-start border-t border-slate-100 pt-4">
+                                <div
+                                  className="flex items-center gap-2 rounded-[4px] bg-slate-50 px-3 py-1.5 shadow-2xs backdrop-blur-xs transition-all"
+                                  style={{ borderRadius: '4px' }}
+                                >
+                                  <Terminal className="size-3.5 shrink-0 text-[#020617]" />
+                                  <code className="font-mono text-xs font-bold text-[#0056FF]">
+                                    npx snpi-ui@latest add {comp.id}
+                                  </code>
+                                  <button
+                                    type="button"
+                                    title="Copy install command"
+                                    onClick={() =>
+                                      handleCopyInstall(comp.id, `npx snpi-ui@latest add ${comp.id}`)
+                                    }
+                                    className="ml-1 cursor-pointer text-[#0A1A4A]/60 transition-colors hover:text-[#0056FF]"
+                                    aria-label={`Copy install command for ${comp.name}`}
+                                  >
+                                    {copiedInstallId === comp.id ? (
+                                      <Check className="size-3.5 stroke-[2.5] text-emerald-600" />
+                                    ) : (
+                                      <Copy className="size-3.5 stroke-[2]" />
+                                    )}
+                                  </button>
+                                </div>
+                              </div>
+                            </section>
+                          );
+                        })}
+                      </div>
                     </div>
                   </div>
                 );
               })}
             </div>
+
+            {/* SECTION: 20 Universal Motion Laws Interactive Showcase */}
+            <section id="motion-laws-twenty" className="scroll-mt-24 border-t border-slate-200/80 pt-8">
+              <TwentyMotionLawsShowcase />
+            </section>
 
             {/* SECTION: Design Standards Relocation Callout */}
             <section id="brand-identity" className="scroll-mt-24 border-t border-slate-200/80 pt-8">
@@ -1036,69 +1039,93 @@ function renderFeedComponentDemo(
   switch (id) {
     case 'chip':
       return (
-        <div className="flex w-full flex-wrap items-center justify-center gap-2 py-4">
-          {[
-            'All Disciplines',
-            'Software Engineering',
-            'Cybersecurity',
-            'Computer Science',
-            'Information Systems',
-            'Data Science',
-            'Artificial Intelligence',
-          ].map((label) => {
-            const isActive = state.selectedChips.includes(label);
-            return (
-              <LibraryChip
-                key={label}
-                active={isActive}
-                onClick={() => {
-                  if (label === 'All Disciplines') {
-                    state.setSelectedChips(['All Disciplines']);
-                  } else {
-                    const next = state.selectedChips.filter((c) => c !== 'All Disciplines');
-                    if (next.includes(label)) {
-                      const filtered = next.filter((c) => c !== label);
-                      state.setSelectedChips(
-                        filtered.length === 0 ? ['All Disciplines'] : filtered,
-                      );
+        <div className="w-full max-w-2xl rounded-2xl border border-[#CAD3F5] bg-white p-5 shadow-xs sm:p-6">
+          <div className="mb-4 flex items-center justify-between border-b border-[#CAD3F5]/60 pb-3">
+            <div className="flex items-center gap-2">
+              <span className="font-sans text-xs font-bold text-[#0A1A4A]">Interactive Filter Chips</span>
+              <span className="rounded border border-[#CAD3F5] bg-[#EFF5FF] px-2 py-0.5 font-mono text-[10px] font-bold text-[#0056FF]">
+                Multi-Select
+              </span>
+            </div>
+            <span className="font-mono text-[10px] font-bold text-slate-500">
+              {state.selectedChips.length} Selected
+            </span>
+          </div>
+          <div className="flex w-full flex-wrap items-center justify-center gap-2 py-2">
+            {[
+              'All Disciplines',
+              'Software Engineering',
+              'Cybersecurity',
+              'Computer Science',
+              'Information Systems',
+              'Data Science',
+              'Artificial Intelligence',
+            ].map((label) => {
+              const isActive = state.selectedChips.includes(label);
+              return (
+                <LibraryChip
+                  key={label}
+                  active={isActive}
+                  onClick={() => {
+                    if (label === 'All Disciplines') {
+                      state.setSelectedChips(['All Disciplines']);
                     } else {
-                      state.setSelectedChips([...next, label]);
+                      const next = state.selectedChips.filter((c) => c !== 'All Disciplines');
+                      if (next.includes(label)) {
+                        const filtered = next.filter((c) => c !== label);
+                        state.setSelectedChips(
+                          filtered.length === 0 ? ['All Disciplines'] : filtered,
+                        );
+                      } else {
+                        state.setSelectedChips([...next, label]);
+                      }
                     }
-                  }
-                }}
-              >
-                {label}
-              </LibraryChip>
-            );
-          })}
+                  }}
+                >
+                  {label}
+                </LibraryChip>
+              );
+            })}
+          </div>
         </div>
       );
 
     case 'switch':
       return (
-        <div className="w-full max-w-xl space-y-3 py-4 font-sans">
-          {[
-            {
-              id: 'sync',
-              title: 'Auto Sync Telemetry',
-              checked: state.switchAutoSync,
-              setter: state.setSwitchAutoSync,
-            },
-            {
-              id: 'biometric',
-              title: 'Biometric Terminal Active',
-              checked: state.switchBiometric,
-              setter: state.setSwitchBiometric,
-            },
-          ].map((item) => (
-            <div
-              key={item.id}
-              className="flex items-center justify-between rounded-xl border border-[#CAD3F5] bg-white p-3.5 shadow-2xs transition-all hover:border-[#0056FF]"
-            >
-              <span className="text-xs font-bold text-[#0A1A4A]">{item.title}</span>
-              <LibrarySwitch checked={item.checked} onCheckedChange={item.setter} />
+        <div className="w-full max-w-md space-y-4 rounded-2xl border border-[#CAD3F5] bg-white p-5 shadow-xs sm:p-6">
+          <div className="flex items-center justify-between border-b border-[#CAD3F5]/60 pb-3">
+            <div className="flex items-center gap-2">
+              <span className="font-sans text-xs font-bold text-[#0A1A4A]">Telemetry Switches</span>
+              <span className="rounded border border-[#CAD3F5] bg-[#EFF5FF] px-2 py-0.5 font-mono text-[10px] font-bold text-[#0056FF]">
+                Stateful
+              </span>
             </div>
-          ))}
+            <span className="font-mono text-[10px] font-bold text-emerald-600 uppercase">Live Synced</span>
+          </div>
+          <div className="space-y-3 font-sans">
+            {[
+              {
+                id: 'sync',
+                title: 'Auto Sync Telemetry',
+                checked: state.switchAutoSync,
+                setter: state.setSwitchAutoSync,
+              },
+              {
+                id: 'biometric',
+                title: 'Biometric Terminal Active',
+                checked: state.switchBiometric,
+                setter: state.setSwitchBiometric,
+              },
+            ].map((item) => (
+              <div
+                key={item.id}
+                className="flex items-center justify-between rounded-xl border border-slate-200 bg-slate-50/70 p-3.5 transition-all hover:border-[#0056FF]"
+              >
+                <span className="text-xs font-bold text-[#0A1A4A]">{item.title}</span>
+                <LibrarySwitch checked={item.checked} onCheckedChange={item.setter} />
+              </div>
+            ))}
+          </div>
         </div>
       );
 
@@ -1144,10 +1171,8 @@ function renderFeedComponentDemo(
           <div className="w-full max-w-lg space-y-4 rounded-2xl border border-[#CAD3F5] bg-white p-5 shadow-xs sm:p-6">
             {/* Header */}
             <div className="flex items-center justify-between border-b border-[#CAD3F5]/60 pb-3">
-              <div className="flex items-center gap-2.5">
-                <div className="flex size-8 shrink-0 items-center justify-center rounded-lg border border-[#CAD3F5] bg-[#EFF5FF] text-[#0056FF]">
-                  <Building2 className="size-4 stroke-[2]" />
-                </div>
+              <div className="flex items-center gap-2">
+                <Building2 className="size-4.5 shrink-0 stroke-[2] text-[#020617]" />
                 <h4 className="font-sans text-xs font-bold text-[#0A1A4A] sm:text-sm">
                   Campus Branch Selector
                 </h4>

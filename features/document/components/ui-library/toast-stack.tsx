@@ -229,8 +229,10 @@ function ToastCard({
 
   React.useEffect(() => {
     lastTickRef.current = Date.now();
+    let hasDismissed = false;
+
     const interval = setInterval(() => {
-      if (isPaused) {
+      if (isPaused || hasDismissed) {
         lastTickRef.current = Date.now();
         return;
       }
@@ -242,7 +244,13 @@ function ToastCard({
       setRemainingTime((prev) => {
         const next = prev - delta;
         if (next <= 0) {
-          onDismiss(item.id);
+          if (!hasDismissed) {
+            hasDismissed = true;
+            clearInterval(interval);
+            setTimeout(() => {
+              onDismiss(item.id);
+            }, 0);
+          }
           return 0;
         }
         return next;

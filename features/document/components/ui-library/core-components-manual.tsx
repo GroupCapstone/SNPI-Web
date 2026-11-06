@@ -1249,9 +1249,11 @@ export const CORE_COMPONENTS_SPECS: CoreComponentSpec[] = [
   },
 ];
 
-export function CoreComponentsManual() {
+export function CoreComponentsManual({ hideHeader = false }: { hideHeader?: boolean } = {}) {
   const [selectedCategory, setSelectedCategory] = React.useState<string>('All');
   const [checkedItems, setCheckedItems] = React.useState<Record<string, boolean>>({});
+  const [expandedDrawers, setExpandedDrawers] = React.useState<Record<string, boolean>>({});
+  const [expandAllDrawers, setExpandAllDrawers] = React.useState<boolean>(false);
   const [activePreview, setActivePreview] = React.useState<string>('comp-accordion');
   const [accordionOpen, setAccordionOpen] = React.useState<boolean>(false);
   const [checkboxState, setCheckboxState] = React.useState<
@@ -1283,7 +1285,18 @@ export function CoreComponentsManual() {
     }));
   };
 
-  const categories = ['All', 'Structure', 'Feedback', 'Media', 'Action', 'Navigation', 'Form'];
+  const categories = React.useMemo(
+    () => [
+      { id: 'All', label: 'All', count: CORE_COMPONENTS_SPECS.length },
+      { id: 'Form', label: 'Form', count: CORE_COMPONENTS_SPECS.filter((s) => s.category === 'Form').length },
+      { id: 'Navigation', label: 'Navigation', count: CORE_COMPONENTS_SPECS.filter((s) => s.category === 'Navigation').length },
+      { id: 'Structure', label: 'Structure', count: CORE_COMPONENTS_SPECS.filter((s) => s.category === 'Structure').length },
+      { id: 'Feedback', label: 'Feedback', count: CORE_COMPONENTS_SPECS.filter((s) => s.category === 'Feedback').length },
+      { id: 'Media', label: 'Media', count: CORE_COMPONENTS_SPECS.filter((s) => s.category === 'Media').length },
+      { id: 'Action', label: 'Action', count: CORE_COMPONENTS_SPECS.filter((s) => s.category === 'Action').length },
+    ],
+    [],
+  );
 
   const filteredSpecs = React.useMemo(() => {
     if (selectedCategory === 'All') return CORE_COMPONENTS_SPECS;
@@ -1298,61 +1311,111 @@ export function CoreComponentsManual() {
       {/* ------------------------------------------------------------- */}
       {/* 1. HEADER & DEFINITION BANNER                                  */}
       {/* ------------------------------------------------------------- */}
-      <div className="space-y-4 rounded-3xl border border-[#CAD3F5] bg-gradient-to-br from-[#EFF5FF] via-white to-[#F8FAFC] p-6 sm:p-8">
-        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-4">
-          <div className="space-y-1">
-            <div className="inline-flex items-center gap-2 rounded-lg border border-[#0056FF]/30 bg-[#0056FF]/10 px-3 py-1 font-mono text-[11px] font-bold text-[#0056FF]">
-              <Sparkles className="size-3.5" />
-              <span>CORE REUSABLE COMPONENT SPECIFICATIONS</span>
+      {!hideHeader ? (
+        <div className="space-y-4 rounded-3xl border border-[#CAD3F5] bg-gradient-to-br from-[#EFF5FF] via-white to-[#F8FAFC] p-6 sm:p-8">
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-4">
+            <div className="space-y-1">
+              <div className="inline-flex items-center gap-2 rounded-lg border border-[#0056FF]/30 bg-[#0056FF]/10 px-3 py-1 font-mono text-[11px] font-bold text-[#0056FF]">
+                <Sparkles className="size-3.5" />
+                <span>CORE REUSABLE COMPONENT SPECIFICATIONS</span>
+              </div>
+              <h2 className="font-sans text-2xl font-black tracking-tight text-[#0A1A4A] sm:text-3xl">
+                Core Components Manual
+              </h2>
+              <p className="max-w-3xl font-sans text-xs leading-relaxed text-slate-600 sm:text-sm">
+                Components are the main building blocks for user interfaces. Building a reusable
+                component library enhances your product development workflow by reducing design and
+                tech debt and speeding up the process. Core components can&apos;t be broken down into
+                granular pieces without losing their meaning.
+              </p>
             </div>
-            <h2 className="font-sans text-2xl font-black tracking-tight text-[#0A1A4A] sm:text-3xl">
-              Core Components Manual
-            </h2>
-            <p className="max-w-3xl font-sans text-xs leading-relaxed text-slate-600 sm:text-sm">
-              Components are the main building blocks for user interfaces. Building a reusable
-              component library enhances your product development workflow by reducing design and
-              tech debt and speeding up the process. Core components can&apos;t be broken down into
-              granular pieces without losing their meaning.
-            </p>
+
+            <div className="flex flex-col items-end gap-1.5 font-mono text-xs">
+              <span className="rounded-lg border border-[#CAD3F5] bg-white px-3 py-1.5 font-bold text-[#0056FF]">
+                VERIFICATION: {currentCheckedCount} of {totalPossibleChecks} Checks
+              </span>
+              <span className="text-[10px] text-slate-500">
+                {CORE_COMPONENTS_SPECS.length} Core Primitives &middot; {totalPossibleChecks} Audit
+                Invariants
+              </span>
+            </div>
           </div>
 
-          <div className="flex flex-col items-end gap-1.5 font-mono text-xs">
-            <span className="rounded-lg border border-[#CAD3F5] bg-white px-3 py-1.5 font-bold text-[#0056FF]">
-              VERIFICATION: {currentCheckedCount} of {totalPossibleChecks} Checks
+          {/* Category Filters */}
+          <div className="flex flex-wrap items-center gap-1.5">
+            <span className="mr-1 flex items-center gap-1 font-mono text-[11px] font-bold text-slate-500 uppercase">
+              <Filter className="size-3" />
+              Category:
             </span>
-            <span className="text-[10px] text-slate-500">
-              {CORE_COMPONENTS_SPECS.length} Core Primitives &middot; {totalPossibleChecks} Audit
-              Invariants
-            </span>
+            {categories.map((cat) => {
+              const isActive = selectedCategory === cat.id;
+              return (
+                <button
+                  key={cat.id}
+                  type="button"
+                  onClick={() => setSelectedCategory(cat.id)}
+                  className={cn(
+                    'cursor-pointer rounded-lg px-2.5 py-1 font-sans text-xs font-semibold transition-all',
+                    isActive
+                      ? 'bg-[#0056FF] text-white shadow-2xs'
+                      : 'border border-[#CAD3F5] bg-white text-[#0A1A4A] hover:bg-[#EFF5FF]',
+                  )}
+                >
+                  <span>{cat.label}</span>
+                  <span className={cn('ml-1 font-mono text-[10px]', isActive ? 'text-white/80' : 'text-slate-400')}>
+                    ({cat.count})
+                  </span>
+                </button>
+              );
+            })}
           </div>
         </div>
+      ) : (
+        /* COMPACT TOOLBAR FOR STUDIO MODE */
+        <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-[#CAD3F5] bg-gradient-to-r from-[#EFF5FF]/80 via-white to-[#EFF5FF]/80 p-3.5 shadow-2xs">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="mr-1 flex items-center gap-1.5 font-mono text-[11px] font-bold text-slate-600 uppercase">
+              <Filter className="size-3.5 text-[#0056FF]" />
+              Cluster:
+            </span>
+            {categories.map((cat) => {
+              const isActive = selectedCategory === cat.id;
+              return (
+                <button
+                  key={cat.id}
+                  type="button"
+                  onClick={() => setSelectedCategory(cat.id)}
+                  className={cn(
+                    'cursor-pointer rounded-lg px-3 py-1.5 font-sans text-xs font-bold transition-all active:scale-[0.97]',
+                    isActive
+                      ? 'border border-[#0056FF] bg-[#0056FF] text-white shadow-xs'
+                      : 'border border-[#CAD3F5] bg-white text-[#0A1A4A] hover:bg-[#EFF5FF]',
+                  )}
+                >
+                  <span>{cat.label}</span>
+                  <span className={cn('ml-1.5 font-mono text-[10px]', isActive ? 'text-white/80' : 'text-slate-400')}>
+                    ({cat.count})
+                  </span>
+                </button>
+              );
+            })}
+          </div>
 
-        {/* Category Filters */}
-        <div className="flex flex-wrap items-center gap-1.5">
-          <span className="mr-1 flex items-center gap-1 font-mono text-[11px] font-bold text-slate-500 uppercase">
-            <Filter className="size-3" />
-            Category:
-          </span>
-          {categories.map((cat) => {
-            const isActive = selectedCategory === cat;
-            return (
-              <button
-                key={cat}
-                type="button"
-                onClick={() => setSelectedCategory(cat)}
-                className={cn(
-                  'cursor-pointer rounded-lg px-2.5 py-1 font-sans text-xs font-semibold transition-all',
-                  isActive
-                    ? 'bg-[#0056FF] text-white shadow-2xs'
-                    : 'border border-[#CAD3F5] bg-white text-[#0A1A4A] hover:bg-[#EFF5FF]',
-                )}
-              >
-                {cat}
-              </button>
-            );
-          })}
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => setExpandAllDrawers((prev) => !prev)}
+              className="inline-flex cursor-pointer items-center gap-1.5 rounded-lg border border-[#CAD3F5] bg-white px-3 py-1.5 font-mono text-xs font-bold text-slate-700 hover:border-[#0056FF] hover:text-[#0056FF] active:scale-[0.97]"
+            >
+              <Sliders className="size-3 text-[#0056FF]" />
+              <span>{expandAllDrawers ? 'Collapse Invariants' : 'Expand All Invariants'}</span>
+            </button>
+            <div className="inline-flex items-center gap-1.5 rounded-lg border border-[#CAD3F5] bg-white px-3 py-1.5 font-mono text-xs font-bold text-[#0056FF]">
+              <span>{currentCheckedCount} of {totalPossibleChecks} Verified</span>
+            </div>
+          </div>
         </div>
-      </div>
+      )}
 
       {/* ------------------------------------------------------------- */}
       {/* 2. CORE COMPONENTS 12-PRIMITIVE SPECIFICATION GRID             */}
@@ -1361,83 +1424,72 @@ export function CoreComponentsManual() {
         {filteredSpecs.map((spec) => {
           const checkedInSpec = spec.items.filter((item) => checkedItems[item.id]).length;
           const isComplete = checkedInSpec === spec.totalChecks;
+          const isDrawerOpen = expandAllDrawers || Boolean(expandedDrawers[spec.id]);
 
           return (
             <div
               key={spec.id}
               id={spec.id}
               className={cn(
-                'scroll-mt-24 space-y-4 rounded-2xl border bg-white p-5 text-left transition-all',
+                'group scroll-mt-24 flex flex-col justify-between overflow-hidden rounded-2xl border bg-white transition-all duration-200 hover:shadow-md',
                 isComplete ? 'border-emerald-300 ring-2 ring-emerald-500/10' : 'border-[#CAD3F5]',
               )}
             >
               {/* Card Header */}
-              <div className="flex items-start justify-between gap-3 border-b border-slate-100 pb-3">
-                <div className="space-y-0.5">
+              <div className="flex items-start justify-between gap-3 border-b border-slate-100 bg-gradient-to-r from-[#EFF5FF]/40 to-white p-5 pb-3.5">
+                <div className="space-y-1">
                   <div className="flex items-center gap-2">
-                    <h3 className="font-sans text-base font-black text-[#0A1A4A]">{spec.name}</h3>
-                    <span className="py-0.2 rounded-md border border-slate-200 bg-slate-50 px-1.5 font-mono text-[10px] text-slate-600">
+                    <span className="rounded-[2px] border border-[#CAD3F5] bg-[#E3E7FC] px-2 py-0.5 font-mono text-[10px] font-bold text-[#0056FF] uppercase">
                       {spec.category}
                     </span>
+                    <h3 className="font-sans text-xl font-black text-[#0A1A4A]">{spec.name}</h3>
                   </div>
-                  <p className="font-sans text-xs text-slate-500">{spec.description}</p>
+                  <p className="font-sans text-xs leading-relaxed text-slate-500">
+                    {spec.description}
+                  </p>
                 </div>
 
-                <div className="flex shrink-0 items-center gap-1.5 font-mono text-[11px]">
-                  <span
-                    className={cn(
-                      'rounded-md px-2 py-0.5 font-bold',
-                      isComplete
-                        ? 'border border-emerald-300 bg-emerald-50 text-emerald-700'
-                        : 'border border-[#CAD3F5] bg-[#EFF5FF] text-[#0056FF]',
-                    )}
-                  >
-                    {checkedInSpec}/{spec.totalChecks}
-                  </span>
-                </div>
+                {/* Batch Verify Component Pill */}
+                <button
+                  type="button"
+                  onClick={() => {
+                    const willCheck = !isComplete;
+                    setCheckedItems((prev) => {
+                      const next = { ...prev };
+                      spec.items.forEach((it) => {
+                        next[it.id] = willCheck;
+                      });
+                      return next;
+                    });
+                  }}
+                  title="Toggle all invariants for this component"
+                  className={cn(
+                    'flex shrink-0 cursor-pointer items-center gap-1.5 rounded-full px-3 py-1 font-mono text-[11px] font-bold transition-all active:scale-[0.97]',
+                    isComplete
+                      ? 'border border-emerald-300 bg-emerald-50 text-emerald-700'
+                      : 'border border-[#CAD3F5] bg-white text-[#0056FF] hover:bg-[#EFF5FF]',
+                  )}
+                >
+                  {isComplete && <Check className="size-3 stroke-[3]" />}
+                  <span>{checkedInSpec}/{spec.totalChecks} Verified</span>
+                </button>
               </div>
 
-              {/* Checklist Items */}
-              <div className="space-y-2">
-                {spec.items.map((item) => {
-                  const isChecked = Boolean(checkedItems[item.id]);
-                  return (
-                    <label
-                      key={item.id}
-                      className={cn(
-                        'flex cursor-pointer items-start gap-2.5 rounded-xl border p-2.5 text-xs transition-colors',
-                        isChecked
-                          ? 'border-emerald-200 bg-emerald-50/40 text-slate-900'
-                          : 'border-slate-100 bg-[#F8FAFC]/50 text-slate-700 hover:bg-[#EFF5FF]/40',
-                      )}
-                    >
-                      <input
-                        type="checkbox"
-                        checked={isChecked}
-                        onChange={() => toggleCheck(item.id)}
-                        className="mt-0.5 size-4 cursor-pointer rounded border-[#CAD3F5] text-[#0056FF] focus:ring-[#0056FF]"
-                      />
-                      <div className="min-w-0 flex-1 space-y-0.5">
-                        <div className="flex items-center gap-1.5 font-sans font-bold text-[#0A1A4A]">
-                          <span>{item.label}</span>
-                          {isChecked && <Check className="size-3.5 stroke-[3] text-emerald-600" />}
-                        </div>
-                        <p className="font-sans text-[11px] leading-relaxed text-slate-500">
-                          {item.description}
-                        </p>
-                      </div>
-                    </label>
-                  );
-                })}
-              </div>
+              {/* 1. HERO LIVE INTERACTIVE PREVIEW STAGE (FRONT & CENTER) */}
+              <div className="p-5 pb-2">
+                <div className="relative flex min-h-[110px] flex-col justify-center rounded-xl border border-[#CAD3F5] bg-gradient-to-b from-[#EFF5FF]/40 to-white p-4">
+                  <div className="mb-2.5 flex items-center justify-between border-b border-[#CAD3F5]/30 pb-2">
+                    <div className="flex items-center gap-1.5 font-mono text-[9px] font-bold text-[#0056FF] uppercase select-none">
+                      <Sparkles className="size-3 text-[#0056FF]" />
+                      <span>Live Interactive Stage</span>
+                    </div>
+                    <span className="font-mono text-[9px] text-slate-400 select-none">
+                      Tactile Operable Preview
+                    </span>
+                  </div>
 
-              {/* Live Interactive UI Snippet Preview */}
-              <div className="rounded-xl border border-slate-100 bg-[#F8FAFC] p-3 text-xs">
-                <span className="mb-2 block font-mono text-[10px] font-bold text-slate-400 uppercase">
-                  Interactive Preview: {spec.name}
-                </span>
-
-                {/* Individual Component Previews */}
+                  {/* Individual Component Previews */}
+                  <div className="py-1">
                 {spec.id === 'comp-accordion' && (
                   <div className="rounded-lg border border-[#CAD3F5] bg-white">
                     <button
@@ -2451,6 +2503,76 @@ export function CoreComponentsManual() {
                         </div>
                       )}
                     </div>
+                  </div>
+                )}
+                  </div>
+                </div>
+              </div>
+
+              {/* 2. SPECIFICATION INVARIANTS ACCORDION DRAWER */}
+              <div className="border-t border-slate-100 bg-white p-5 pt-3.5">
+                <button
+                  type="button"
+                  onClick={() =>
+                    setExpandedDrawers((prev) => ({
+                      ...prev,
+                      [spec.id]: !isDrawerOpen,
+                    }))
+                  }
+                  className="flex w-full cursor-pointer items-center justify-between font-mono text-[11px] font-bold text-slate-700 transition-colors hover:text-[#0056FF]"
+                >
+                  <div className="flex items-center gap-1.5">
+                    <Sliders className="size-3.5 text-[#0056FF]" />
+                    <span>Invariant Criteria &amp; Rules ({spec.totalChecks})</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-[10px]">
+                    <span className={isComplete ? 'font-bold text-emerald-600' : 'text-slate-400'}>
+                      {isComplete ? 'All Verified' : `${spec.totalChecks - checkedInSpec} pending`}
+                    </span>
+                    <ChevronDown
+                      className={cn(
+                        'size-3.5 transition-transform duration-200',
+                        isDrawerOpen && 'rotate-180',
+                      )}
+                    />
+                  </div>
+                </button>
+
+                {/* Checklist Rows */}
+                {isDrawerOpen && (
+                  <div className="mt-3 space-y-2 border-t border-slate-100 pt-3">
+                    {spec.items.map((item) => {
+                      const isChecked = Boolean(checkedItems[item.id]);
+                      return (
+                        <label
+                          key={item.id}
+                          className={cn(
+                            'flex cursor-pointer items-start gap-2.5 rounded-xl border p-2.5 text-xs transition-colors',
+                            isChecked
+                              ? 'border-emerald-200 bg-emerald-50/40 text-slate-900'
+                              : 'border-slate-100 bg-[#F8FAFC]/50 text-slate-700 hover:bg-[#EFF5FF]/40',
+                          )}
+                        >
+                          <input
+                            type="checkbox"
+                            checked={isChecked}
+                            onChange={() => toggleCheck(item.id)}
+                            className="mt-0.5 size-4 cursor-pointer rounded border-[#CAD3F5] text-[#0056FF] focus:ring-[#0056FF]"
+                          />
+                          <div className="min-w-0 flex-1 space-y-0.5">
+                            <div className="flex items-center gap-1.5 font-sans font-bold text-[#0A1A4A]">
+                              <span>{item.label}</span>
+                              {isChecked && (
+                                <Check className="size-3.5 stroke-[3] text-emerald-600" />
+                              )}
+                            </div>
+                            <p className="font-sans text-[11px] leading-relaxed text-slate-500">
+                              {item.description}
+                            </p>
+                          </div>
+                        </label>
+                      );
+                    })}
                   </div>
                 )}
               </div>

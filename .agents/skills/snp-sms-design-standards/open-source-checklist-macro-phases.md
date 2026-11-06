@@ -1,3 +1,8 @@
+---
+name: open-source-design-system-checklist
+description: Authoritative 4 Macro-Phases & 230 Checks Open-Source Design System Checklist to Build Better Design Systems (Design Language, Foundations, 29 Core Components, Maintenance Strategy).
+---
+
 # Open-Source Design System Checklist: 4 Macro-Phases (230 Total Checks)
 
 ## Architectural Principle: Isolated Categorical Grouping

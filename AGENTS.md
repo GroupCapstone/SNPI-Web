@@ -5,6 +5,15 @@ These rules apply to every AI coding agent and human contributor working in the 
 
 ---
 
+## 0. Mandatory Zero-Auto-Commit Workflow Rule (ABSOLUTE RULE)
+
+- **Never auto-commit during a conversation.** Complete all requested code, file, and configuration changes within the conversation turn without staging or committing to git.
+- **Zero unprompted `git add` / `git commit` / `git commit -am` calls.** Never commit at the end of a turn, after completing a task, or for convenience.
+- **Commits are only allowed when the user gives an explicit direct command** such as `commit`, `git commit`, `checkpoint`, `push`, or `release`. Use the push/release workflow in section 5 when commanded.
+- **Local changes accumulate across the conversation and are only committed on explicit user command.**
+
+---
+
 ## 1. Task-Scoped Context and Skill Routing
 
 - Follow these repository rules and the nearest nested `AGENTS.md` for the files being changed.
@@ -63,6 +72,27 @@ These rules apply to every AI coding agent and human contributor working in the 
     5. `05 #EFF5FF` Ice Tint — Subsurface card fills, segment track fills, hover backdrops.
     - Typography Token: Deep Navy `#0A1A4A` (primary headings & text) / Slate-900 `#0F172A` / `#334155` (secondary descriptive copy). Never use light gray on light surfaces.
   - **Zero Accidental Dark Mode Inversion**: Never allow media-query dark styles or `dark:*` Tailwind classes to invert UI components into dark slate/muddy gray boxes or render washed-out white/light gray text on white tables.
+- **Mandatory Dual-Theme Preferences: Day & Moon Visual Spectrum Standard (CRITICAL RULE)**:
+  - **Exactly Two Canonical Themes**: The system strictly supports only two theme choices: **Day (White Default)** and **Moon (Dark Mode)**. All extraneous multi-theme variants are eliminated.
+  - **Day Theme (White Default)**:
+    - Canvas: Pure White (`#FFFFFF`) foundation with Ice Tint (`#EFF5FF`) subsurfaces and Soft Lavender (`#CAD3F5`) borders.
+    - Typography: High-contrast Deep Navy (`#0A1A4A`) primary text and Slate-700 (`#334155`) secondary text.
+    - Icons: Black or Dark Obsidian (`#020617`) and Royal Blue (`#0056FF`) keyline icons with single-color 2px corner containers (`rounded-[2px]`).
+  - **Moon Theme (Dark Mode / Nocturnal Cognitive Psychology)**:
+    - Canvas: Moonlit Midnight Slate (`#0F172A`, Neutral 900) foundation with Moon Charcoal (`#1E293B`, Neutral 800) subsurfaces and Precision Moonlit Slate (`#334155`, Neutral 700) borders.
+    - Why Moon Over Pitch Black (`#000000`): Pure `#000000` forces the iris into extreme dilation shock against bright content, inducing astigmatic halation and ocular fatigue. Neutral 900 (`#0F172A`) absorbs ambient light without glare spikes.
+    - Typography: Strictly **Pure White (`#FFFFFF`)** primary text and headings (15.8:1 contrast), matching modern code IDEs (VS Code, Cursor), GitHub dark mode, and Antigravity Skills. Secondary text uses Moon Dust (`#94A3B8`, 7.2:1 AAA contrast).
+    - **Icons in Moon Mode**: Strictly **Pure White (`#FFFFFF`)**! All heading icons, navigation icons, and UI symbol strokes adapt to pure white (`#FFFFFF`) to achieve 1:1 Gestalt typographic harmony with white text and eliminate chromatic visual noise. In-card status icons use pure white or high-luminance accents (`#34D399` emerald, `#60A5FA` azure).
+    - Icon Containers: Single-color backing fill (`#1E293B` Moon or `#EFF5FF` Day) with strict 2px corner radius (`rounded-[2px]`, `style={{ borderRadius: '2px' }}`).
+- **Mandatory Universal Default Black / Dark Fill Rule for All Icons (CRITICAL RULE)**:
+  - **Universal Default Black / Dark Fill in Day Mode**: All Keyline Two-Tone icons across `SNPI-Web` in Day mode MUST strictly use Black or Dark Obsidian (`#020617` / `text-[#020617]` / Slate-950) fill and stroke by default alongside titles and headings.
+  - **Pure White Icons in Moon Mode and on Blue Surfaces**: On solid Brand Blue (`#0056FF`, `bg-primary`, active blue buttons) or Moon dark mode surfaces (`#0F172A` / `#1E293B`), icons strictly adapt to Pure White (`#FFFFFF`).
+  - **Single-Color Container Background with 2px Corners**: Icon containers must maintain 100% transparent or clean single-color background fills with strict 2px corner radius (`rounded-[2px]`), never multi-color rainbow blocks or distracting shape fills behind icons.
+  - **Proportional Size**: Icons must maintain 1:1 visual proportionality with accompanying titles/headings, never appearing in paragraph text or descriptions.
+- **Mandatory Prohibition of Borders Around Icons (ABSOLUTE RULE)**:
+  - **Zero Bordered Icon Containers**: Under no circumstances should icons be enclosed in bordered boxes, bordered squares, bordered chips, or bordered squircle wrappers (e.g. `border border-slate-200`, `border-[#CAD3F5]`, `border`).
+  - **Pure Borderless Presentation**: All navigation trees, sidebars, headers, cards, and dropdown triggers must render icons cleanly and borderless directly alongside labels and titles.
+  - **Zero Box-Shadows on Icons**: Icon containers must have zero shadows (`shadow-none`) and zero borders (`border-none`).
 - **Mandatory Prohibition of Pulsing Beacons, Status Dots, Ping Rings, and Live Presence Dots (ABSOLUTE RULE)**:
   - **Zero Pulsing Beacons & Status Beacons**: Under no circumstances should icons, buttons, cards, headers, navigation bars, or components feature pulsing beacons, blinking live dots, status beacons, radar pings, or heartbeat indicators (`animate-ping`, `animate-pulse` on green/colored corner dots).
   - **Zero Live Status Dots & Presence Rings**: Never design or place colored corner dots (green, blue, red, or any color), live online presence dots, or expanding ripple rings on icons, avatars, badges, or brand marks.
@@ -81,6 +111,34 @@ These rules apply to every AI coding agent and human contributor working in the 
   - All commits in `SNPI-Web` must strictly use the `(web)` or `(web/<scope>)` prefix (e.g., `feat(web): ...`, `fix(web/nav): ...`, `docs(web): ...`).
   - Never share generic or identical commit messages with `SNPI-API`.
   - Maintain an independent commit history, tag tracking (`web-vX.Y.Z`), and separate changelog.
+- **Mandatory Prohibition of Markdown / README Files in Root Folder & In-Skill Routing Standard (ABSOLUTE RULE)**:
+  - **Zero Unprompted Markdown Files in Repository Root**: Under no circumstances should READMEs, design specifications, icon standards, integration summaries, guides, changelogs, architecture notes, or documentation `.md` files be written, generated, or placed in the root directory (`/Users/Apple16/Desktop/SNPI/SNPI-Web/`).
+  - **Pristine Root Directory**: The root directory is strictly reserved for canonical repository manifests (`README.md`, `CHANGELOG.md`, `LICENSE`, `SECURITY.md`, `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `AGENTS.md`, and project build configurations).
+  - **Mandatory In-Skill Documentation Routing**: Any new documentation, design manuals, architecture notes, icon specifications, API contracts, or technical documentation MUST strictly be written inside the appropriate skill directory under `.agents/skills/<skill-folder>/` and indexed in `.agents/skills/INDEX.md`.
+  - **Auto-Relocation Mandate**: Whenever you encounter any misplaced documentation, summary, or README file in the root folder, immediately move it into the appropriate skill directory under `.agents/skills/`. Never leave documentation files in the repository root folder.
+- **Mandatory 20 Universal Laws of Interface Motion & Micro-Interaction Engineering (ABSOLUTE RULE)**:
+  - All interactive UI components, menus, overlays, dialogs, buttons, list rows, tabs, switches, and cards in `SNPI-Web` MUST strictly implement all 20 Motion Laws without skipping any:
+    1. **Ease-out for entrances**: Use `MOTION_EASE_OUT` (`[0.16, 1, 0.3, 1]`) for prompt entry and gentle deceleration.
+    2. **Dropdowns at 150-250ms**: Dropdowns, select panels, and context menus must transition within 150ms–250ms (canonical 200ms).
+    3. **Stagger list rows by 30ms**: Sequenced lists, table rows, and menu options stagger sequential row reveals by 30ms (`0.03s`).
+    4. **Scale to 0.97 on press**: Clickable buttons, interactive cards, and list triggers scale to 0.97 on active touch/mouse press (`whileTap={{ scale: 0.97 }}`).
+    5. **Stretch moving knobs 12%**: Translating knobs, switch thumbs, or slider handles stretch by 12% (`scaleX: 1.12`) along travel axis during movement and return to 1.0 when settled.
+    6. **Stagger as details settle**: Nested detail rows and secondary panel content settle with staggered micro-delays (`0.04s`).
+    7. **Arcs for object movement**: 2D translations across coordinates follow curved arc paths (`arcKeyframes`) rather than rigid diagonals.
+    8. **Pulse to confirm success**: Successful operations (save, copy, submit, complete) trigger a confirmation pulse (`scale: [1, 1.06, 1]`).
+    9. **Ease-in-out for moves**: Repositioning already-visible elements across screen coordinates uses smooth ease-in-out (`[0.65, 0, 0.35, 1]`).
+    10. **Start popovers at 0.95**: Popovers, tooltips, flyouts, and dialogs mount from an initial scale of 0.95 (`scale: 0.95, opacity: 0`).
+    11. **Enter from the trigger**: Overlays anchor entrance transformOrigin directly to the trigger position.
+    12. **Exit to the trigger**: On close, overlays collapse back toward their originating trigger anchor.
+    13. **No bounce on everyday UI**: Everyday standard UI controls (buttons, forms, selects) have zero bounce or cartoonish overshoot (critically damped springs, `damping: 30, stiffness: 400`).
+    14. **Don't tween while held**: While an element is actively dragged, pressed, or held, tween interpolation lag is bypassed (`duration: 0`) for instantaneous 1:1 tactile response.
+    15. **Make exits 20% shorter**: Exit animations run 20% faster than entrance animations (entrance 200ms -> exit 160ms; ratio 0.80).
+    16. **Overlap old & new states**: State transitions (e.g. view swaps, tabs) overlap crossfading (`mode="sync"`) to eliminate blank pauses.
+    17. **Masks for reveals & colour**: Progressive reveals, progress sweeps, and color shifts execute via CSS `clip-path` masks.
+    18. **Crossfade icons + blur**: Icon state swaps (e.g., checkmark/copy, chevron/close) crossfade with 4px optical blur to eliminate edge jitter.
+    19. **Rubber band past bounds**: Draggable surfaces or pull trays pulled beyond boundaries enforce spring rubber-band resistance (`dragElastic: 0.15`).
+    20. **Reuse the same layoutId**: Shared indicators (active nav pills, sliding tab underline) preserve identical `layoutId` tags for continuous layout morphing.
+  - **Mandatory Kinetic-First Design Thinking Mandate**: Whenever designing, architecting, or modifying ANY UI component, modal, sheet, dropdown, card, button, tab, or screen, AI agents and contributors MUST actively think through all 20 Motion Laws beforehand. Every interactive component must import and implement its kinetic behaviors from `@/lib/motion`. Never create static or arbitrarily animated components without checking against the 20 laws.
 
 ---
 

@@ -14,7 +14,7 @@ export type LucideProps = IconProps;
 /**
  * Keyline Two-Tone Standardized Icon Component Wrapper
  * Follows the official Keyline Two-Tone Icon Style Specification:
- * - Color: text-slate-600 default (currentColor)
+ * - Color: text-[#020617] default black on light surfaces, text-white on dark/blue surfaces
  * - Stroke: stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
  * - Two-Tone Accent: fill="currentColor" fill-opacity="0.4" stroke="none" (preserved across all icons)
  * - Outline: stroke defines visible lines (stroke-width: 2)
@@ -22,14 +22,15 @@ export type LucideProps = IconProps;
  * - Background: 100% transparent surface (zero canvas blocks, zero box-shadow, zero backdrop-filter)
  * - Accessibility: aria-hidden="true" focusable="false"
  * - Motionless Integrity: strictly motionless, zero animations, zero hover movement, perfectly stable
+ * - Container Border Radius: 4px strictly enforced on icon containers (rounded-[4px])
  */
 function wrapIcon(Component: React.ComponentType<IconProps>, name: string): IconComponent {
   const IconWrapper = React.forwardRef<SVGSVGElement, IconProps>(function KeylineTwoToneIcon(
-    { className, style, size = 24, ...props },
+    { className, style, size, ...props },
     ref,
   ) {
     const combinedClassName = cn(
-      'keyline-two-tone-icon inline-block shrink-0 bg-transparent size-6 text-slate-600',
+      'keyline-two-tone-icon inline-block shrink-0 bg-transparent size-4.5 text-[#020617]',
       className,
     );
 
@@ -38,8 +39,8 @@ function wrapIcon(Component: React.ComponentType<IconProps>, name: string): Icon
         ref={ref}
         aria-hidden="true"
         focusable="false"
-        width={size}
-        height={size}
+        width={size ?? 18}
+        height={size ?? 18}
         className={combinedClassName}
         style={{ backgroundColor: 'transparent', ...style }}
         {...props}

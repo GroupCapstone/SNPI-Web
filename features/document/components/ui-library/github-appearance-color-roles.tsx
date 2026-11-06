@@ -27,69 +27,22 @@ export interface ThemeOption<T extends string = string> {
 export const LIGHT_THEMES: ThemeOption<LightThemeId>[] = [
   {
     id: 'light-default',
-    label: 'Light default',
-    description: 'Crisp white canvas with royal blue accents and deep slate navy typography.',
+    label: 'Day (White Default)',
+    description:
+      'Crisp pure white canvas (#FFFFFF) with soft lavender borders (#CAD3F5), royal blue accents (#0056FF), and deep navy typography (#0A1A4A).',
     swatchFill: '#FFFFFF',
-    swatchBorder: '#CAD3F5',
-  },
-  {
-    id: 'light-high-contrast',
-    label: 'Light high contrast',
-    description: 'Maximum luminance separation with deep black typography and bold borders.',
-    swatchFill: '#FFFFFF',
-    swatchBorder: '#0F172A',
-  },
-  {
-    id: 'light-colorblind',
-    label: 'Light colorblind',
-    description: 'Accessible palette optimized for deuteranopia, protanopia, and tritanopia.',
-    swatchFill: '#FFFFFF',
-    swatchBorder: '#CAD3F5',
-    isSplit: true,
-    splitColors: ['#0056FF', '#D97706'],
-  },
-  {
-    id: 'light-lavender',
-    label: 'Light soft lavender',
-    description: 'Gentle ice tint canvas with soft lavender surfaces and subdued glare.',
-    swatchFill: '#EFF5FF',
     swatchBorder: '#CAD3F5',
   },
 ];
 
 export const DARK_THEMES: ThemeOption<DarkThemeId>[] = [
   {
-    id: 'dark-default',
-    label: 'Dark default',
-    description:
-      'Deep midnight obsidian canvas (Primary 950) with luminous azure accents and pure white text.',
-    swatchFill: '#050E28',
-    swatchBorder: '#2277FF',
-  },
-  {
     id: 'dark-dimmed',
-    label: 'Dark dimmed (Moon)',
+    label: 'Moon (Dark Mode)',
     description:
-      'Nocturnal charcoal and moonlit slate (Neutral 800) for reduced eye fatigue in low light.',
-    swatchFill: '#1E293B',
+      'Psychologically calibrated nocturnal moonlit slate canvas (#0F172A) with pure white typography (#FFFFFF), pure white keyline icons (#FFFFFF), and luminous azure accents (#60A5FA).',
+    swatchFill: '#0F172A',
     swatchBorder: '#60A5FA',
-  },
-  {
-    id: 'dark-high-contrast',
-    label: 'Dark high contrast',
-    description:
-      'Pitch black canvas (Neutral 950 #020617) with bright cyan-blue highlights and stark white borders.',
-    swatchFill: '#020617',
-    swatchBorder: '#FFFFFF',
-  },
-  {
-    id: 'dark-colorblind',
-    label: 'Dark colorblind',
-    description: 'High-visibility dual-tone nocturnal theme with separated colorblind bands.',
-    swatchFill: '#050E28',
-    swatchBorder: '#60A5FA',
-    isSplit: true,
-    splitColors: ['#60A5FA', '#FBBF24'],
   },
 ];
 
@@ -114,6 +67,10 @@ export interface ActiveRolesSystem {
   cardBorder: string;
   textPrimary: string;
   textSecondary: string;
+  iconPrimary: string;
+  iconSecondary: string;
+  iconContainerBg: string;
+  iconContainerBorder: string;
   primary: RoleDefinition;
   primaryContainer: RoleDefinition;
   secondary: RoleDefinition;
@@ -185,6 +142,10 @@ export function computeActiveColorRoles(
       cardBorder,
       textPrimary,
       textSecondary,
+      iconPrimary: isHC ? '#000000' : '#020617',
+      iconSecondary: isHC ? '#1E293B' : '#475569',
+      iconContainerBg: isLavender ? '#E3E7FC' : '#EFF5FF',
+      iconContainerBorder: isHC ? '#0F172A' : '#CAD3F5',
       primary: {
         role: 'primary',
         fill: primaryFill,
@@ -372,14 +333,18 @@ export function computeActiveColorRoles(
 
   // DARK MODE / MOON THEME
   const isHC = highContrastDark || darkSub === 'dark-high-contrast';
-  const isMoon = darkSub === 'dark-dimmed';
+  const isMoon = darkSub === 'dark-dimmed' || (darkSub as string) === 'dark-moon';
   const isColorblind = darkSub === 'dark-colorblind';
 
-  const canvasBg = isHC ? '#020617' : isMoon ? '#1E293B' : '#050E28';
-  const subsurfaceBg = isHC ? '#0B132B' : isMoon ? '#24334D' : '#0F172A';
-  const cardBorder = isHC ? '#CBD5E1' : isMoon ? '#334155' : '#334155';
-  const textPrimary = isHC ? '#FFFFFF' : isMoon ? '#F8FAFC' : '#FFFFFF';
-  const textSecondary = isHC ? '#F1F5F9' : isMoon ? '#94A3B8' : '#94A3B8';
+  const canvasBg = isHC ? '#020617' : isMoon ? '#0F172A' : '#050E28';
+  const subsurfaceBg = isHC ? '#0B132B' : isMoon ? '#1E293B' : '#0F172A';
+  const cardBorder = isHC ? '#CBD5E1' : '#334155';
+  const textPrimary = '#FFFFFF';
+  const textSecondary = isHC ? '#F1F5F9' : '#94A3B8';
+  const iconPrimary = '#FFFFFF'; // Strict Pure White Icons in Moon Mode
+  const iconSecondary = '#94A3B8';
+  const iconContainerBg = '#1E293B';
+  const iconContainerBorder = '#334155';
 
   const primaryFill = isHC ? '#BFDBFE' : isMoon ? '#60A5FA' : '#93C5FD';
   const primaryOn = '#002A8C';
@@ -415,6 +380,10 @@ export function computeActiveColorRoles(
     cardBorder,
     textPrimary,
     textSecondary,
+    iconPrimary,
+    iconSecondary,
+    iconContainerBg,
+    iconContainerBorder,
     primary: {
       role: 'primary',
       fill: primaryFill,
@@ -604,10 +573,10 @@ export function computeActiveColorRoles(
 // GitHub-Style Appearance & Color Roles System Component
 // ---------------------------------------------------------------------------
 export function GithubAppearanceColorRoles() {
-  const [themeMode, setThemeMode] = React.useState<ThemeMode>('sync');
-  const [activeTheme, setActiveTheme] = React.useState<'light' | 'dark'>('dark');
+  const [themeMode, setThemeMode] = React.useState<ThemeMode>('light');
+  const [activeTheme, setActiveTheme] = React.useState<'light' | 'dark'>('light');
   const [lightSubTheme, setLightSubTheme] = React.useState<LightThemeId>('light-default');
-  const [darkSubTheme, setDarkSubTheme] = React.useState<DarkThemeId>('dark-default');
+  const [darkSubTheme, setDarkSubTheme] = React.useState<DarkThemeId>('dark-dimmed');
   const [highContrastLight, setHighContrastLight] = React.useState<boolean>(false);
   const [highContrastDark, setHighContrastDark] = React.useState<boolean>(false);
   const [copiedToken, setCopiedToken] = React.useState<string | null>(null);
@@ -711,15 +680,19 @@ export function GithubAppearanceColorRoles() {
             <h3 className="font-sans text-xl font-bold tracking-tight text-[#0A1A4A] sm:text-2xl">
               Theme preferences
             </h3>
-            <p className="max-w-2xl font-sans text-xs leading-relaxed text-slate-500 sm:text-sm">
-              Choose how SNPI looks to you. Select a single theme, or sync with your system and
-              automatically switch between day and night themes. Selections are applied immediately
-              and saved automatically.
+            <p className="max-w-2xl font-sans text-xs leading-relaxed text-slate-600 sm:text-sm">
+              Standardized dual-theme preferences: <strong>Day (White Default)</strong> and{' '}
+              <strong>Moon (Dark Mode)</strong>. Engineered on visual cognitive psychology to ensure
+              zero eye fatigue, photopic focus by day, and scotopic pure-white typography with white
+              keyline icons at night.
             </p>
           </div>
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-[#CAD3F5] bg-[#EFF5FF] px-3 py-1 font-mono text-xs font-bold text-[#0056FF]">
+          <span
+            className="inline-flex items-center gap-1.5 rounded-[2px] border border-[#CAD3F5] bg-[#EFF5FF] px-3 py-1 font-mono text-xs font-bold text-[#0056FF]"
+            style={{ borderRadius: '2px' }}
+          >
             <Layers className="size-3.5" />
-            <span>Color Roles System</span>
+            <span>2-Theme Cognitive Standard</span>
           </span>
         </div>
 
@@ -727,66 +700,79 @@ export function GithubAppearanceColorRoles() {
         <div className="pt-3">
           <label
             htmlFor="theme-mode-select"
-            className="block font-sans text-xs font-bold text-slate-700"
+            className="block font-sans text-xs font-bold text-[#0A1A4A]"
           >
-            Theme mode
+            Active Theme Selection
           </label>
           <div className="mt-1.5 flex flex-wrap items-center gap-3">
             <select
               id="theme-mode-select"
-              value={themeMode}
+              value={activeTheme}
               onChange={(e) => {
-                const val = e.target.value as ThemeMode;
-                setThemeMode(val);
-                if (val === 'light') setActiveTheme('light');
-                if (val === 'dark') setActiveTheme('dark');
+                const val = e.target.value as 'light' | 'dark';
+                setActiveTheme(val);
+                setThemeMode(val === 'light' ? 'light' : 'dark');
               }}
-              className="rounded-lg border border-[#CAD3F5] bg-white px-3 py-2 font-sans text-xs font-medium text-[#0A1A4A] transition-colors focus:border-[#0056FF] focus:outline-none"
+              className="rounded-[2px] border border-[#CAD3F5] bg-white px-3 py-2 font-sans text-xs font-bold text-[#0A1A4A] transition-colors focus:border-[#0056FF] focus:outline-none"
+              style={{ borderRadius: '2px' }}
             >
-              <option value="sync">Sync with system</option>
-              <option value="single">Single theme</option>
+              <option value="light">Day (White Default) — Active</option>
+              <option value="dark">Moon (Dark Mode)</option>
             </select>
-            <span className="font-sans text-xs text-slate-500">
-              {themeMode === 'sync'
-                ? 'SNPI theme will match your system active settings'
-                : 'Using single persistent theme specification'}
+            <span className="font-mono text-xs text-slate-500">
+              {activeTheme === 'light'
+                ? 'Day mode active (Pure White #FFFFFF canvas · Deep Navy typography)'
+                : 'Moon mode active (Obsidian Slate #0F172A canvas · Pure White typography)'}
             </span>
           </div>
         </div>
       </div>
 
       {/* ------------------------------------------------------------- */}
-      {/* 2. DUAL THEME PREVIEW CARDS (LIGHT & DARK / MOON)             */}
+      {/* 2. DUAL THEME PREVIEW CARDS (DAY & MOON)                      */}
       {/* ------------------------------------------------------------- */}
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-        {/* LIGHT THEME CARD */}
+        {/* DAY THEME CARD (WHITE DEFAULT) */}
         <div
           onClick={() => setActiveTheme('light')}
           className={cn(
-            'group relative cursor-pointer rounded-2xl border p-4 transition-all sm:p-5',
+            'group relative cursor-pointer rounded-2xl border p-4 transition-all duration-150 ease-out active:scale-[0.97] sm:p-5',
             activeTheme === 'light'
-              ? 'border-[#0056FF] bg-[#F8FAFC] ring-2 ring-[#0056FF]/15'
+              ? 'border-[#0056FF] bg-[#F8FAFC] ring-2 ring-[#0056FF]/20 shadow-xs'
               : 'border-[#CAD3F5] bg-white hover:border-[#0056FF]/50',
           )}
         >
           {/* Card Header */}
           <div className="flex items-center justify-between pb-3">
-            <div className="flex items-center gap-2">
-              <Sun className="size-4 text-[#0056FF]" />
-              <span className="font-sans text-sm font-bold text-[#0A1A4A]">Light theme</span>
+            <div className="flex items-center gap-2.5">
+              <Sun className="size-5 shrink-0 stroke-[2] text-[#020617]" />
+              <div>
+                <span className="font-sans text-sm font-extrabold text-[#0A1A4A]">
+                  Day (White Default)
+                </span>
+                <span
+                  className="ml-2 rounded-[2px] bg-[#EFF5FF] px-1.5 py-0.5 font-mono text-[9px] font-bold text-[#0056FF]"
+                  style={{ borderRadius: '2px' }}
+                >
+                  DEFAULT
+                </span>
+              </div>
             </div>
             {activeTheme === 'light' && (
-              <span className="rounded-full border border-[#0056FF]/30 bg-[#EFF5FF] px-2.5 py-0.5 font-mono text-[10px] font-bold text-[#0056FF]">
-                [Active]
+              <span
+                className="rounded-[2px] border border-[#0056FF]/30 bg-[#0056FF] px-2 py-0.5 font-mono text-[10px] font-bold text-white uppercase"
+                style={{ borderRadius: '2px' }}
+              >
+                ACTIVE
               </span>
             )}
           </div>
-          <p className="font-sans text-xs text-slate-500">
-            This theme will be active when your system is set to &ldquo;light mode&rdquo;
+          <p className="font-sans text-xs text-slate-600">
+            Crisp pure white canvas with soft lavender borders and deep navy typography. Photopic focus for high ambient light.
           </p>
 
           {/* Light Theme Mockup Illustration */}
-          <div className="mt-3.5 overflow-hidden rounded-xl border border-[#D0D7DE] bg-white p-3 shadow-xs">
+          <div className="mt-3.5 overflow-hidden rounded-xl border border-[#CAD3F5] bg-white p-3 shadow-2xs">
             {/* Top Bar */}
             <div className="flex items-center justify-between border-b border-slate-100 pb-2">
               <div className="flex items-center gap-1.5">
@@ -809,7 +795,6 @@ export function GithubAppearanceColorRoles() {
               </div>
               <div className="col-span-3 space-y-2">
                 <div className="h-3 w-full rounded bg-[#F1F5F9]" />
-                {/* Green Activity Bar */}
                 <div className="h-4 w-full rounded bg-[#10B981]/25 p-0.5">
                   <div className="h-full w-2/3 rounded bg-[#10B981]" />
                 </div>
@@ -821,77 +806,74 @@ export function GithubAppearanceColorRoles() {
             </div>
           </div>
 
-          {/* Theme Variant Label */}
-          <div className="mt-3.5 flex items-center justify-between">
-            <span className="font-sans text-xs font-bold text-[#0A1A4A]">
-              {LIGHT_THEMES.find((t) => t.id === lightSubTheme)?.label}
+          {/* Day Specs Pill Footer */}
+          <div className="mt-3.5 flex flex-wrap items-center gap-1.5 pt-1">
+            <span
+              className="rounded-[2px] bg-[#EFF5FF] px-2 py-0.5 font-mono text-[9px] font-bold text-[#0056FF]"
+              style={{ borderRadius: '2px' }}
+            >
+              CANVAS: #FFFFFF
             </span>
-          </div>
-
-          {/* Circular Swatches Picker */}
-          <div className="mt-2 flex items-center gap-2">
-            {LIGHT_THEMES.map((sub) => {
-              const isSelected = lightSubTheme === sub.id;
-              return (
-                <button
-                  key={sub.id}
-                  type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setLightSubTheme(sub.id);
-                    setActiveTheme('light');
-                  }}
-                  title={sub.label}
-                  className={cn(
-                    'relative size-6 rounded-full border transition-transform hover:scale-110 focus:outline-none',
-                    isSelected
-                      ? 'border-[#0056FF] ring-2 ring-[#0056FF] ring-offset-2'
-                      : 'border-slate-300',
-                  )}
-                  style={{
-                    backgroundColor: sub.isSplit ? undefined : sub.swatchFill,
-                    background: sub.isSplit
-                      ? `linear-gradient(135deg, ${sub.splitColors?.[0]} 50%, ${sub.splitColors?.[1]} 50%)`
-                      : undefined,
-                  }}
-                />
-              );
-            })}
+            <span
+              className="rounded-[2px] bg-slate-100 px-2 py-0.5 font-mono text-[9px] font-bold text-[#0A1A4A]"
+              style={{ borderRadius: '2px' }}
+            >
+              TEXT: #0A1A4A
+            </span>
+            <span
+              className="rounded-[2px] bg-slate-100 px-2 py-0.5 font-mono text-[9px] font-bold text-slate-800"
+              style={{ borderRadius: '2px' }}
+            >
+              ICONS: #020617 (BLACK)
+            </span>
           </div>
         </div>
 
-        {/* DARK THEME CARD (DARK / MOON) */}
+        {/* MOON THEME CARD (DARK MODE) */}
         <div
           onClick={() => setActiveTheme('dark')}
           className={cn(
-            'group relative cursor-pointer rounded-2xl border p-4 transition-all sm:p-5',
+            'group relative cursor-pointer rounded-2xl border p-4 transition-all duration-150 ease-out active:scale-[0.97] sm:p-5',
             activeTheme === 'dark'
-              ? 'border-[#0056FF] bg-[#050E28] text-white ring-2 ring-[#0056FF]/20'
-              : 'border-[#334155] bg-[#050E28] text-white hover:border-[#2277FF]',
+              ? 'border-[#60A5FA] bg-[#0F172A] text-white ring-2 ring-[#60A5FA]/20 shadow-xs'
+              : 'border-[#334155] bg-[#0F172A] text-white hover:border-[#60A5FA]',
           )}
         >
           {/* Card Header */}
           <div className="flex items-center justify-between pb-3">
-            <div className="flex items-center gap-2">
-              <Moon className="size-4 text-[#60A5FA]" />
-              <span className="font-sans text-sm font-bold text-white">Dark theme</span>
+            <div className="flex items-center gap-2.5">
+              <Moon className="size-5 shrink-0 stroke-[2] text-white" />
+              <div>
+                <span className="font-sans text-sm font-extrabold text-white">
+                  Moon (Dark Mode)
+                </span>
+                <span
+                  className="ml-2 rounded-[2px] bg-blue-900/60 px-1.5 py-0.5 font-mono text-[9px] font-bold text-blue-300"
+                  style={{ borderRadius: '2px' }}
+                >
+                  NOCTURNAL
+                </span>
+              </div>
             </div>
             {activeTheme === 'dark' && (
-              <span className="rounded-full border border-[#60A5FA]/40 bg-[#0056FF]/30 px-2.5 py-0.5 font-mono text-[10px] font-bold text-[#93C5FD]">
-                [Active]
+              <span
+                className="rounded-[2px] border border-[#60A5FA]/40 bg-[#0056FF] px-2 py-0.5 font-mono text-[10px] font-bold text-white uppercase"
+                style={{ borderRadius: '2px' }}
+              >
+                ACTIVE
               </span>
             )}
           </div>
           <p className="font-sans text-xs text-slate-300">
-            This theme will be active when your system is set to &ldquo;dark mode&rdquo;
+            Psychologically optimized nocturnal moonlit slate canvas (#0F172A) with pure white typography (#FFFFFF) and pure white keyline icons (#FFFFFF).
           </p>
 
           {/* Dark Theme Mockup Illustration */}
           <div
-            className="mt-3.5 overflow-hidden rounded-xl border p-3 shadow-xs"
+            className="mt-3.5 overflow-hidden rounded-xl border p-3 shadow-2xs"
             style={{
-              backgroundColor: roles.isDark ? roles.canvasBg : '#050E28',
-              borderColor: roles.isDark ? roles.cardBorder : '#334155',
+              backgroundColor: '#0F172A',
+              borderColor: '#334155',
             }}
           >
             {/* Top Bar */}
@@ -916,55 +898,95 @@ export function GithubAppearanceColorRoles() {
               </div>
               <div className="col-span-3 space-y-2">
                 <div className="h-3 w-full rounded bg-[#1E293B]" />
-                {/* Green Activity Bar */}
                 <div className="h-4 w-full rounded bg-[#10B981]/25 p-0.5">
                   <div className="h-full w-2/3 rounded bg-[#34D399]" />
                 </div>
                 <div className="flex gap-1.5">
-                  <div className="h-6 flex-1 rounded border border-[#334155] bg-[#0F172A]" />
-                  <div className="h-6 flex-1 rounded border border-slate-700 bg-[#1E293B]" />
+                  <div className="h-6 flex-1 rounded border border-[#334155] bg-[#1E293B]" />
+                  <div className="h-6 flex-1 rounded border border-slate-700 bg-[#0F172A]" />
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Theme Variant Label */}
-          <div className="mt-3.5 flex items-center justify-between">
-            <span className="font-sans text-xs font-bold text-white">
-              {DARK_THEMES.find((t) => t.id === darkSubTheme)?.label}
+          {/* Moon Specs Pill Footer */}
+          <div className="mt-3.5 flex flex-wrap items-center gap-1.5 pt-1">
+            <span
+              className="rounded-[2px] bg-[#1E293B] px-2 py-0.5 font-mono text-[9px] font-bold text-blue-300"
+              style={{ borderRadius: '2px' }}
+            >
+              CANVAS: #0F172A
+            </span>
+            <span
+              className="rounded-[2px] bg-white/10 px-2 py-0.5 font-mono text-[9px] font-bold text-white"
+              style={{ borderRadius: '2px' }}
+            >
+              TEXT: #FFFFFF (WHITE)
+            </span>
+            <span
+              className="rounded-[2px] bg-white/10 px-2 py-0.5 font-mono text-[9px] font-bold text-white"
+              style={{ borderRadius: '2px' }}
+            >
+              ICONS: #FFFFFF (PURE WHITE)
             </span>
           </div>
+        </div>
+      </div>
 
-          {/* Circular Swatches Picker */}
-          <div className="mt-2 flex items-center gap-2">
-            {DARK_THEMES.map((sub) => {
-              const isSelected = darkSubTheme === sub.id;
-              return (
-                <button
-                  key={sub.id}
-                  type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setDarkSubTheme(sub.id);
-                    setActiveTheme('dark');
-                  }}
-                  title={sub.label}
-                  className={cn(
-                    'relative size-6 rounded-full border transition-transform hover:scale-110 focus:outline-none',
-                    isSelected
-                      ? 'border-white ring-2 ring-[#60A5FA] ring-offset-2 ring-offset-[#050E28]'
-                      : 'border-slate-500',
-                  )}
-                  style={{
-                    backgroundColor: sub.isSplit ? undefined : sub.swatchFill,
-                    borderColor: sub.swatchBorder,
-                    background: sub.isSplit
-                      ? `linear-gradient(135deg, ${sub.splitColors?.[0]} 50%, ${sub.splitColors?.[1]} 50%)`
-                      : undefined,
-                  }}
-                />
-              );
-            })}
+      {/* ------------------------------------------------------------- */}
+      {/* 3. PSYCHOLOGICAL FOUNDATIONS: DAY & MOON VISUAL SPECTRUM      */}
+      {/* ------------------------------------------------------------- */}
+      <div className="space-y-3 rounded-2xl border border-[#CAD3F5] bg-[#F8FAFC] p-4 text-xs sm:p-5">
+        <div className="flex items-center justify-between border-b border-slate-200 pb-2.5">
+          <div className="flex items-center gap-2">
+            <ShieldCheck className="size-4.5 shrink-0 stroke-[2] text-[#020617]" />
+            <h4 className="font-sans text-sm font-extrabold text-[#0A1A4A]">
+              Psychological Foundations: Day &amp; Moon Visual Spectrum
+            </h4>
+          </div>
+          <span
+            className="rounded-[2px] border border-[#CAD3F5] bg-white px-2 py-0.5 font-mono text-[10px] font-bold text-[#0056FF]"
+            style={{ borderRadius: '2px' }}
+          >
+            HCI INVARIANTS
+          </span>
+        </div>
+
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
+          <div className="space-y-1.5 rounded-xl border border-slate-200 bg-white p-3.5 shadow-2xs">
+            <span className="font-mono text-[10px] font-bold uppercase text-[#0056FF]">
+              01. Scotopic Glare Mitigation
+            </span>
+            <p className="font-sans text-xs font-extrabold text-[#0A1A4A]">
+              Why Moon Uses Slate (#0F172A) Over Pitch Black
+            </p>
+            <p className="font-sans text-[11px] leading-relaxed text-slate-600">
+              Pitch black (#000000) causes extreme pupillary dilation shock against bright text, inducing astigmatic halation and light bleed. Neutral 900 (#0F172A) cushions retinal light intake while maintaining 15.8:1 contrast.
+            </p>
+          </div>
+
+          <div className="space-y-1.5 rounded-xl border border-slate-200 bg-white p-3.5 shadow-2xs">
+            <span className="font-mono text-[10px] font-bold uppercase text-[#0056FF]">
+              02. 1:1 Vector &amp; Typographic Luminescence
+            </span>
+            <p className="font-sans text-xs font-extrabold text-[#0A1A4A]">
+              Pure White (#FFFFFF) Icons in Moon Mode
+            </p>
+            <p className="font-sans text-[11px] leading-relaxed text-slate-600">
+              In Moon mode, headings and icons form a single Gestalt unit. UI icons render in pure white (#FFFFFF), matching code editors (VS Code, Cursor), GitHub dark mode, and Antigravity Skills for zero visual noise.
+            </p>
+          </div>
+
+          <div className="space-y-1.5 rounded-xl border border-slate-200 bg-white p-3.5 shadow-2xs">
+            <span className="font-mono text-[10px] font-bold uppercase text-[#0056FF]">
+              03. Geometric Container Invariant
+            </span>
+            <p className="font-sans text-xs font-extrabold text-[#0A1A4A]">
+              Strict 2px Corner Radius Containers
+            </p>
+            <p className="font-sans text-[11px] leading-relaxed text-slate-600">
+              All icon backing containers strictly enforce rounded-[2px] across both Day (#EFF5FF fill) and Moon (#1E293B fill), preserving mathematical geometric consistency and preventing circular distortion.
+            </p>
           </div>
         </div>
       </div>

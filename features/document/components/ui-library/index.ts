@@ -53,6 +53,7 @@ export * from './component-nav-icons';
 export * from './design-language-manual';
 export * from './core-components-manual';
 export * from './maintenance-manual';
+export * from './core-components-maintenance-studio';
 export * from './culinary-taxonomy-section';
 export * from './logo-marquee';
 export * from './psychological-rule-inspector';

@@ -70,9 +70,10 @@ export function ApiSpecTable({
               <td className="px-4 py-3">
                 <span
                   className={cn(
-                    'inline-flex items-center rounded-md px-2 py-0.5 font-mono text-[11px] font-bold tracking-wider',
+                    'inline-flex items-center rounded-[2px] px-2 py-0.5 font-mono text-[11px] font-bold tracking-wider',
                     methodBadgeClass,
                   )}
+                  style={{ borderRadius: '2px' }}
                 >
                   [{method}]
                 </span>
@@ -90,13 +91,17 @@ export function ApiSpecTable({
               </td>
               <td className="px-4 py-3">
                 <div className="flex items-center gap-2">
-                  <code className="rounded bg-[#E3E7FC] px-2 py-1 font-mono text-[11px] font-bold text-[#0056FF]">
+                  <code
+                    className="rounded-[2px] bg-[#E3E7FC] px-2 py-1 font-mono text-[11px] font-bold text-[#0056FF]"
+                    style={{ borderRadius: '2px' }}
+                  >
                     {endpoint}
                   </code>
                   <button
                     type="button"
                     onClick={handleCopyEndpoint}
-                    className="inline-flex items-center gap-1 rounded border border-[#CAD3F5] bg-white px-2 py-0.5 font-mono text-[10px] text-slate-600 transition-colors hover:border-[#0056FF] hover:text-[#0056FF]"
+                    className="inline-flex items-center gap-1 rounded-[2px] border border-[#CAD3F5] bg-white px-2 py-0.5 font-mono text-[10px] text-slate-600 transition-colors hover:border-[#0056FF] hover:text-[#0056FF]"
+                    style={{ borderRadius: '2px' }}
                     title="Copy Endpoint"
                   >
                     {copied ? (
@@ -129,11 +134,12 @@ export function ApiSpecTable({
               <td className="px-4 py-3">
                 <span
                   className={cn(
-                    'inline-flex items-center rounded-md px-2 py-0.5 font-mono text-[10px] font-bold',
+                    'inline-flex items-center rounded-[2px] px-2 py-0.5 font-mono text-[10px] font-bold',
                     isPublic
                       ? 'border border-emerald-200 bg-emerald-50 text-emerald-800'
                       : 'border border-[#CAD3F5] bg-[#E3E7FC] text-[#0056FF]',
                   )}
+                  style={{ borderRadius: '2px' }}
                 >
                   {isPublic ? '[PUBLIC]' : '[PROTECTED]'} {authRequirement}
                 </span>

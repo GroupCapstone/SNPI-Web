@@ -79,6 +79,10 @@ export interface StatusPage404Props {
   homeHref?: string;
   /** Primary action button label. Default: 'Return to Dashboard' */
   homeLabel?: string;
+  /** Secondary retry action callback for error boundaries */
+  onReset?: () => void;
+  /** Secondary retry action label. Default: 'Try Again' */
+  resetLabel?: string;
   /** Container className */
   className?: string;
   /** Allow inline mode switching. Default: false */
@@ -92,6 +96,8 @@ export function StatusPage404({
   description: customDesc,
   homeHref = '/document/design-system',
   homeLabel,
+  onReset,
+  resetLabel,
   className,
   showControls = false,
 }: StatusPage404Props) {
@@ -119,7 +125,7 @@ export function StatusPage404({
     <div
       data-slot="status-page-404"
       className={cn(
-        'relative flex w-full flex-col overflow-hidden rounded-[4px] border border-[#CAD3F5] bg-white shadow-xs',
+        'relative flex w-full flex-col overflow-hidden rounded-2xl border border-[#CAD3F5] bg-white shadow-xs',
         className,
       )}
     >
@@ -186,16 +192,28 @@ export function StatusPage404({
         {/* ========================================================= */}
         {activeMode === 'radar' && (
           <div className="relative flex flex-col items-center justify-center bg-white p-8 text-center sm:p-12">
-            {/* Top Capsule CTA Navigation */}
-            {resolvedHomeLabel && (
-              <Link
-                href={homeHref}
-                className="inline-flex cursor-pointer items-center gap-2 rounded-full bg-[#0056FF] px-6 py-2.5 font-sans text-xs font-bold text-white transition-all hover:bg-[#2277FF] active:scale-[0.98]"
-              >
-                <span>{resolvedHomeLabel}</span>
-                <ChevronRight className="size-3.5 stroke-[2.5]" />
-              </Link>
-            )}
+            {/* Top Navigation & Recovery Actions */}
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              {onReset && (
+                <button
+                  type="button"
+                  onClick={onReset}
+                  className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-[#CAD3F5] bg-[#EFF5FF] px-5 py-2.5 font-sans text-xs font-bold text-[#0056FF] transition-all hover:bg-[#E3E7FC] active:scale-[0.97]"
+                >
+                  <RotateCw className="size-3.5" />
+                  <span>{resetLabel || 'Try Again'}</span>
+                </button>
+              )}
+              {resolvedHomeLabel && (
+                <Link
+                  href={homeHref}
+                  className="inline-flex cursor-pointer items-center gap-2 rounded-full bg-[#0056FF] px-6 py-2.5 font-sans text-xs font-bold text-white transition-all hover:bg-[#2277FF] active:scale-[0.97]"
+                >
+                  <span>{resolvedHomeLabel}</span>
+                  <ChevronRight className="size-3.5 stroke-[2.5]" />
+                </Link>
+              )}
+            </div>
 
             {/* Radar Canvas with Floating Extruded Status Digits */}
             <div className="relative mt-6 flex size-64 items-center justify-center sm:size-72">
@@ -313,15 +331,27 @@ export function StatusPage404({
               <p className="font-mono text-xs text-slate-500">{meta.tagline}</p>
             </div>
 
-            {/* CTA Button */}
-            {resolvedHomeLabel && (
-              <Link
-                href={homeHref}
-                className="mt-8 inline-flex cursor-pointer items-center gap-2 rounded-full bg-[#0056FF] px-6 py-2.5 font-sans text-xs font-bold tracking-wider text-white uppercase transition-all hover:bg-[#2277FF] active:scale-[0.98]"
-              >
-                <span>{resolvedHomeLabel}</span>
-              </Link>
-            )}
+            {/* CTA Buttons */}
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+              {onReset && (
+                <button
+                  type="button"
+                  onClick={onReset}
+                  className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-[#CAD3F5] bg-[#EFF5FF] px-5 py-2.5 font-sans text-xs font-bold text-[#0056FF] uppercase transition-all hover:bg-[#E3E7FC] active:scale-[0.97]"
+                >
+                  <RotateCw className="size-3.5" />
+                  <span>{resetLabel || 'Try Again'}</span>
+                </button>
+              )}
+              {resolvedHomeLabel && (
+                <Link
+                  href={homeHref}
+                  className="inline-flex cursor-pointer items-center gap-2 rounded-full bg-[#0056FF] px-6 py-2.5 font-sans text-xs font-bold tracking-wider text-white uppercase transition-all hover:bg-[#2277FF] active:scale-[0.97]"
+                >
+                  <span>{resolvedHomeLabel}</span>
+                </Link>
+              )}
+            </div>
           </div>
         )}
 
@@ -357,16 +387,26 @@ export function StatusPage404({
                 </p>
               ) : null}
 
-              {resolvedHomeLabel && (
-                <div className="pt-5">
+              <div className="flex flex-wrap items-center justify-center gap-3 pt-5">
+                {onReset && (
+                  <button
+                    type="button"
+                    onClick={onReset}
+                    className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-[#CAD3F5] bg-[#EFF5FF] px-5 py-2.5 font-sans text-xs font-bold text-[#0056FF] transition-all hover:bg-[#E3E7FC] active:scale-[0.97]"
+                  >
+                    <RotateCw className="size-3.5" />
+                    <span>{resetLabel || 'Try Again'}</span>
+                  </button>
+                )}
+                {resolvedHomeLabel && (
                   <Link
                     href={homeHref}
-                    className="inline-flex cursor-pointer items-center gap-2 rounded-full bg-[#0056FF] px-6 py-2.5 font-sans text-xs font-bold text-white transition-all hover:bg-[#2277FF]"
+                    className="inline-flex cursor-pointer items-center gap-2 rounded-full bg-[#0056FF] px-6 py-2.5 font-sans text-xs font-bold text-white transition-all hover:bg-[#2277FF] active:scale-[0.97]"
                   >
                     <span>{resolvedHomeLabel}</span>
                   </Link>
-                </div>
-              )}
+                )}
+              </div>
             </div>
           </div>
         )}
@@ -381,11 +421,22 @@ export function StatusPage404({
               <h2 className="font-sans text-2xl font-black tracking-tight text-[#0A1A4A] sm:text-3xl">
                 {resolvedTitle}
               </h2>
-              <div className="flex items-center justify-center gap-3">
+              <div className="flex flex-wrap items-center justify-center gap-3">
+                {onReset && (
+                  <button
+                    type="button"
+                    onClick={onReset}
+                    className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-[#CAD3F5] bg-[#EFF5FF] px-4 py-2 font-sans text-xs font-bold text-[#0056FF] hover:bg-[#E3E7FC] active:scale-[0.97]"
+                  >
+                    <RotateCw className="size-3.5" />
+                    <span>{resetLabel || 'Try Again'}</span>
+                  </button>
+                )}
+
                 {resolvedHomeLabel && (
                   <Link
                     href={homeHref}
-                    className="inline-flex cursor-pointer items-center gap-2 rounded-full bg-[#0056FF] px-6 py-2 font-sans text-xs font-bold text-white transition-all hover:bg-[#2277FF]"
+                    className="inline-flex cursor-pointer items-center gap-2 rounded-full bg-[#0056FF] px-6 py-2 font-sans text-xs font-bold text-white transition-all hover:bg-[#2277FF] active:scale-[0.97]"
                   >
                     <span>{resolvedHomeLabel}</span>
                   </Link>
@@ -394,7 +445,7 @@ export function StatusPage404({
                 <button
                   type="button"
                   onClick={() => setGravityTumbled(!gravityTumbled)}
-                  className="inline-flex cursor-pointer items-center gap-1.5 rounded-full border border-[#CAD3F5] bg-[#EFF5FF] px-4 py-2 font-sans text-xs font-bold text-[#0056FF] hover:bg-[#E3E7FC]"
+                  className="inline-flex cursor-pointer items-center gap-1.5 rounded-full border border-[#CAD3F5] bg-[#EFF5FF] px-4 py-2 font-sans text-xs font-bold text-[#0056FF] hover:bg-[#E3E7FC] active:scale-[0.97]"
                 >
                   <RotateCw className="size-3.5" />
                   <span>{gravityTumbled ? 'Align Modules' : 'Tumble Modules'}</span>

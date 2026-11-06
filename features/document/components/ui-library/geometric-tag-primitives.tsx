@@ -204,7 +204,7 @@ export const GeometricButton = React.forwardRef<HTMLButtonElement, GeometricButt
     );
 
     const commonClasses = cn(
-      'group relative inline-flex items-center justify-center font-sans tracking-tight transition-all duration-200 select-none cursor-pointer',
+      'group relative inline-flex items-center justify-center font-sans tracking-tight transition-all duration-150 active:scale-[0.97] ease-out select-none cursor-pointer',
       sizeClasses,
       variantStyles.button,
       disabled && 'pointer-events-none cursor-not-allowed opacity-50',
