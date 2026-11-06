@@ -1,5 +1,6 @@
 'use client';
 
+import DOMPurify from 'dompurify';
 import * as React from 'react';
 import { cn } from '@/lib/utils';
 import {
@@ -31,7 +32,7 @@ import {
 // 04 ALLOWLIST SANITIZER & 05 URL SCHEME GUARD
 // ============================================================================
 
-const ALLOWED_TAGS = new Set([
+const ALLOWED_TAGS_LIST = [
   'B',
   'STRONG',
   'I',
@@ -53,106 +54,35 @@ const ALLOWED_TAGS = new Set([
   'PRE',
   'HR',
   'A',
-]);
+];
 
-const ALLOWED_ATTRS: Record<string, Set<string>> = {
-  A: new Set(['href', 'title', 'target', 'rel']),
-};
+/**
+ * Sanitizes rich-text HTML with DOMPurify using the project's tag/attribute
+ * allowlist. DOMPurify also enforces the URL-scheme guard (javascript:,
+ * data:, vbscript: and other dangerous schemes are stripped from href).
+ */
+let linkHookInstalled = false;
+function installLinkHook(): void {
+  if (linkHookInstalled || typeof window === 'undefined') return;
+  linkHookInstalled = true;
+  // Match the previous sanitizer: external links always open safely.
+  DOMPurify.addHook('afterSanitizeAttributes', (node) => {
+    if (node.tagName === 'A' && node.hasAttribute('href')) {
+      node.setAttribute('rel', 'noopener nofollow');
+      node.setAttribute('target', '_blank');
+    }
+  });
+}
 
 export function sanitizeHtmlAllowlist(rawHtml: string): string {
+  installLinkHook();
   if (typeof window === 'undefined') return rawHtml;
   if (!rawHtml || !rawHtml.trim()) return '';
-
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(rawHtml, 'text/html');
-
-  function cleanNode(node: Node): Node | null {
-    if (node.nodeType === Node.TEXT_NODE) {
-      return node.cloneNode(true);
-    }
-    if (node.nodeType !== Node.ELEMENT_NODE) {
-      return null;
-    }
-
-    const el = node as HTMLElement;
-    const tagName = el.tagName.toUpperCase();
-
-    // Strip dangerous tags completely including their children (scripts, styles, iframes, etc.)
-    if (
-      [
-        'SCRIPT',
-        'STYLE',
-        'IFRAME',
-        'OBJECT',
-        'EMBED',
-        'NOSCRIPT',
-        'SVG',
-        'FORM',
-        'INPUT',
-        'BUTTON',
-      ].includes(tagName)
-    ) {
-      return null;
-    }
-
-    // If tag is not in allowlist, flatten children into a fragment
-    if (!ALLOWED_TAGS.has(tagName)) {
-      const fragment = document.createDocumentFragment();
-      el.childNodes.forEach((child) => {
-        const cleaned = cleanNode(child);
-        if (cleaned) fragment.appendChild(cleaned);
-      });
-      return fragment;
-    }
-
-    // Tag is allowed: create clean element
-    const cleanEl = document.createElement(tagName.toLowerCase());
-
-    // Filter attributes
-    const allowedAttrSet = ALLOWED_ATTRS[tagName];
-    if (allowedAttrSet) {
-      Array.from(el.attributes).forEach((attr) => {
-        const attrName = attr.name.toLowerCase();
-        if (allowedAttrSet.has(attrName)) {
-          const val = attr.value;
-          if (attrName === 'href') {
-            // URL Scheme Guard: reject javascript:, data:, vbscript:
-            const cleanVal = val.trim().toLowerCase();
-            if (
-              cleanVal.startsWith('javascript:') ||
-              cleanVal.startsWith('data:') ||
-              cleanVal.startsWith('vbscript:')
-            ) {
-              return; // drop dangerous URL scheme
-            }
-            cleanEl.setAttribute('href', val);
-            cleanEl.setAttribute('rel', 'noopener nofollow');
-            cleanEl.setAttribute('target', '_blank');
-          } else {
-            cleanEl.setAttribute(attrName, val);
-          }
-        }
-      });
-    }
-
-    // Recursively clean children
-    el.childNodes.forEach((child) => {
-      const cleaned = cleanNode(child);
-      if (cleaned) cleanEl.appendChild(cleaned);
-    });
-
-    return cleanEl;
-  }
-
-  const fragment = document.createDocumentFragment();
-  doc.body.childNodes.forEach((child) => {
-    const cleaned = cleanNode(child);
-    if (cleaned) fragment.appendChild(cleaned);
+  return DOMPurify.sanitize(rawHtml, {
+    ALLOWED_TAGS: ALLOWED_TAGS_LIST.map((tag) => tag.toLowerCase()),
+    ALLOWED_ATTR: ['href', 'title', 'target', 'rel'],
+    ALLOW_DATA_ATTR: false,
   });
-
-  const tempDiv = document.createElement('div');
-  tempDiv.appendChild(fragment);
-  return tempDiv.innerHTML;
 }
 
 // ============================================================================

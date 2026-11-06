@@ -132,7 +132,7 @@ export async function checkDeployPushGreen(): Promise<void> {
     ) {
       commitMsg = `feat(web): ${commitMsg}`;
     }
-    run(`git commit -m "${commitMsg.replace(/"/g, '\\"')}"`);
+    run(`git commit -m "${commitMsg.replace(/\\/g, '\\\\').replace(/"/g, '\\"')}"`);
     console.log(`      [PASS] Committed: "${commitMsg}"`);
   } else {
     console.log('      Working tree clean. No uncommitted modifications.');

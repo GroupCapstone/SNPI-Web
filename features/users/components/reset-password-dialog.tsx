@@ -39,11 +39,22 @@ const generateClientPassword = () => {
   const specials = '!@#$%&*';
   const all = uppers + lowers + numbers + specials;
 
-  const pick = (str: string) => str[Math.floor(Math.random() * str.length)];
+  // Cryptographically secure randomness: this generates a real password.
+  const randomIndex = (max: number) => {
+    const buffer = new Uint32Array(1);
+    const limit = Math.floor(0x100000000 / max) * max;
+    let value = 0;
+    do {
+      crypto.getRandomValues(buffer);
+      value = buffer[0];
+    } while (value >= limit);
+    return value % max;
+  };
+  const pick = (str: string) => str[randomIndex(str.length)];
   const chars = [pick(uppers), pick(lowers), pick(numbers), pick(specials)];
   for (let i = 0; i < 8; i++) chars.push(pick(all));
   for (let i = chars.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
+    const j = randomIndex(i + 1);
     [chars[i], chars[j]] = [chars[j], chars[i]];
   }
   return chars.join('');

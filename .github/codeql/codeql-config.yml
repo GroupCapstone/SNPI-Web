@@ -1,0 +1,7 @@
+name: 'SNPI-Web CodeQL configuration'
+
+# One-off developer/operations scripts in scripts/ are not part of the shipped
+# web application (they run locally with trusted inputs), so code scanning
+# focuses on the application code.
+paths-ignore:
+  - 'scripts/**'
