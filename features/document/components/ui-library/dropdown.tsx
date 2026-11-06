@@ -344,7 +344,7 @@ export function LibraryDropdown({
                             {option.label}
                           </span>
                           {option.badge && (
-                            <span className="rounded-[2px] border border-[#CAD3F5] bg-[#E3E7FC] px-1 py-0.2 font-mono text-[9px] font-bold text-[#0056FF]">
+                            <span className="py-0.2 rounded-[2px] border border-[#CAD3F5] bg-[#E3E7FC] px-1 font-mono text-[9px] font-bold text-[#0056FF]">
                               {option.badge}
                             </span>
                           )}

@@ -149,7 +149,8 @@ export function LibrarySnackbar({
                   variant === 'info' && 'text-sky-700 hover:bg-sky-50 focus-visible:ring-sky-500',
                   variant === 'warning' &&
                     'text-amber-700 hover:bg-amber-50 focus-visible:ring-amber-500',
-                  variant === 'error' && 'text-rose-700 hover:bg-rose-50 focus-visible:ring-rose-500',
+                  variant === 'error' &&
+                    'text-rose-700 hover:bg-rose-50 focus-visible:ring-rose-500',
                   variant === 'default' &&
                     'text-[#0056FF] hover:bg-[#E3E7FC] focus-visible:ring-[#0056FF]',
                 )}

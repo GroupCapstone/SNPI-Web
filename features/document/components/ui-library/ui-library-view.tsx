@@ -910,7 +910,10 @@ export function UiLibraryView() {
                                     type="button"
                                     title="Copy install command"
                                     onClick={() =>
-                                      handleCopyInstall(comp.id, `npx snpi-ui@latest add ${comp.id}`)
+                                      handleCopyInstall(
+                                        comp.id,
+                                        `npx snpi-ui@latest add ${comp.id}`,
+                                      )
                                     }
                                     className="ml-1 cursor-pointer text-[#0A1A4A]/60 transition-colors hover:text-[#0056FF]"
                                     aria-label={`Copy install command for ${comp.name}`}
@@ -934,7 +937,10 @@ export function UiLibraryView() {
             </div>
 
             {/* SECTION: 20 Universal Motion Laws Interactive Showcase */}
-            <section id="motion-laws-twenty" className="scroll-mt-24 border-t border-slate-200/80 pt-8">
+            <section
+              id="motion-laws-twenty"
+              className="scroll-mt-24 border-t border-slate-200/80 pt-8"
+            >
               <TwentyMotionLawsShowcase />
             </section>
 
@@ -1042,7 +1048,9 @@ function renderFeedComponentDemo(
         <div className="w-full max-w-2xl rounded-2xl border border-[#CAD3F5] bg-white p-5 shadow-xs sm:p-6">
           <div className="mb-4 flex items-center justify-between border-b border-[#CAD3F5]/60 pb-3">
             <div className="flex items-center gap-2">
-              <span className="font-sans text-xs font-bold text-[#0A1A4A]">Interactive Filter Chips</span>
+              <span className="font-sans text-xs font-bold text-[#0A1A4A]">
+                Interactive Filter Chips
+              </span>
               <span className="rounded border border-[#CAD3F5] bg-[#EFF5FF] px-2 py-0.5 font-mono text-[10px] font-bold text-[#0056FF]">
                 Multi-Select
               </span>
@@ -1100,7 +1108,9 @@ function renderFeedComponentDemo(
                 Stateful
               </span>
             </div>
-            <span className="font-mono text-[10px] font-bold text-emerald-600 uppercase">Live Synced</span>
+            <span className="font-mono text-[10px] font-bold text-emerald-600 uppercase">
+              Live Synced
+            </span>
           </div>
           <div className="space-y-3 font-sans">
             {[

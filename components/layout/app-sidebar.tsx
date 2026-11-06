@@ -227,9 +227,7 @@ export const AppSidebar = ({ onClose, className }: AppSidebarProps) => {
                     <GroupIcon
                       className={cn(
                         'size-4.5 shrink-0 transition-colors',
-                        isGroupActive
-                          ? 'text-white'
-                          : 'text-slate-400 group-hover:text-slate-200',
+                        isGroupActive ? 'text-white' : 'text-slate-400 group-hover:text-slate-200',
                       )}
                     />
                   )}

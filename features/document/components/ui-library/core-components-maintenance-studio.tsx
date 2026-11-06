@@ -145,7 +145,9 @@ export function CoreComponentsMaintenanceStudio() {
                 <span className="font-sans text-2xl font-black text-[#0A1A4A]">
                   {totalComponentChecks}
                 </span>
-                <span className="font-mono text-[11px] font-bold text-emerald-600">A11y &bull; Motion</span>
+                <span className="font-mono text-[11px] font-bold text-emerald-600">
+                  A11y &bull; Motion
+                </span>
               </div>
               <div className="mt-1 font-sans text-[11px] text-slate-500">
                 100% Verified Checkpoints
@@ -173,7 +175,9 @@ export function CoreComponentsMaintenanceStudio() {
                 <span className="font-sans text-2xl font-black text-[#0A1A4A]">
                   {totalMaintenanceChecks}
                 </span>
-                <span className="font-mono text-[11px] font-bold text-emerald-600">CI / CD Gate</span>
+                <span className="font-mono text-[11px] font-bold text-emerald-600">
+                  CI / CD Gate
+                </span>
               </div>
               <div className="mt-1 font-sans text-[11px] text-slate-500">
                 Monorepo Isolation Rules
@@ -236,16 +240,11 @@ export function CoreComponentsMaintenanceStudio() {
                   />
                 )}
                 <span className="relative z-10 flex items-center gap-2">
-                  <Icon
-                    className={cn(
-                      'size-3.5',
-                      isSelected ? 'text-white' : 'text-[#020617]',
-                    )}
-                  />
+                  <Icon className={cn('size-3.5', isSelected ? 'text-white' : 'text-[#020617]')} />
                   <span>{tab.label}</span>
                   <span
                     className={cn(
-                      'rounded-[2px] px-1.5 py-0.2 font-mono text-[10px] font-bold',
+                      'py-0.2 rounded-[2px] px-1.5 font-mono text-[10px] font-bold',
                       isSelected
                         ? 'bg-white/20 text-white'
                         : 'border border-[#CAD3F5] bg-white text-slate-600',

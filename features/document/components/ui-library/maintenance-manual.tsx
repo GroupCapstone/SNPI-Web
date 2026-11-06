@@ -307,10 +307,10 @@ export function MaintenanceManual({ hideHeader = false }: { hideHeader?: boolean
                 Maintenance Strategy Manual
               </h2>
               <p className="max-w-3xl font-sans text-xs leading-relaxed text-slate-600 sm:text-sm">
-                &ldquo;Design systems are no different than any other project your team might take on.
-                In order to successfully build and maintain one, you need a clear strategy that&apos;s
-                well executed daily, and you&apos;ll need to create opportunities for your colleagues
-                to give feedback to help shape your design system together.&rdquo;
+                &ldquo;Design systems are no different than any other project your team might take
+                on. In order to successfully build and maintain one, you need a clear strategy
+                that&apos;s well executed daily, and you&apos;ll need to create opportunities for
+                your colleagues to give feedback to help shape your design system together.&rdquo;
               </p>
             </div>
 
@@ -393,7 +393,7 @@ export function MaintenanceManual({ hideHeader = false }: { hideHeader?: boolean
                   <span>{spec.name}</span>
                   <span
                     className={cn(
-                      'rounded-[2px] px-1.5 py-0.2 font-mono text-[10px] font-bold',
+                      'py-0.2 rounded-[2px] px-1.5 font-mono text-[10px] font-bold',
                       isActive ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-600',
                     )}
                   >
@@ -404,7 +404,9 @@ export function MaintenanceManual({ hideHeader = false }: { hideHeader?: boolean
             })}
           </div>
           <div className="inline-flex items-center gap-2 rounded-lg border border-[#CAD3F5] bg-white px-3 py-1.5 font-mono text-xs font-bold text-[#0056FF]">
-            <span>{currentCheckedCount} of {totalPossibleChecks} Verified</span>
+            <span>
+              {currentCheckedCount} of {totalPossibleChecks} Verified
+            </span>
           </div>
         </div>
       )}

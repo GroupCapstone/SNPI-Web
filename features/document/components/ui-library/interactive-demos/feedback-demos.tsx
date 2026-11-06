@@ -551,7 +551,7 @@ export function NotificationBellDemo() {
                                 <span>{n.time}</span>
                                 {!n.read && (
                                   <span
-                                    className="rounded bg-[#0056FF] px-1 py-0.2 font-mono text-[8px] font-bold text-white uppercase"
+                                    className="py-0.2 rounded bg-[#0056FF] px-1 font-mono text-[8px] font-bold text-white uppercase"
                                     title="Unread Notification"
                                   >
                                     NEW
@@ -590,7 +590,7 @@ export function NotificationBellDemo() {
                 {/* 4. Popover Footer Row */}
                 <div className="mt-3 flex items-center justify-between border-t border-[#CAD3F5]/80 pt-2.5 font-mono text-[11px]">
                   <span className="flex items-center gap-1.5 text-[10px] text-slate-500">
-                    <span className="rounded border border-emerald-300 bg-emerald-50 px-1 py-0.2 font-mono text-[8px] font-bold text-emerald-700 uppercase">
+                    <span className="py-0.2 rounded border border-emerald-300 bg-emerald-50 px-1 font-mono text-[8px] font-bold text-emerald-700 uppercase">
                       LIVE
                     </span>
                     WebSocket Connected

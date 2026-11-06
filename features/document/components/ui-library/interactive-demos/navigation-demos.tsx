@@ -591,7 +591,9 @@ export function CyberArmorNavDemo() {
     <div className="w-full max-w-4xl space-y-4 rounded-2xl border border-[#CAD3F5] bg-white p-5 shadow-xs sm:p-6">
       <div className="flex items-center justify-between border-b border-[#CAD3F5]/60 pb-3">
         <div className="flex items-center gap-2">
-          <span className="font-sans text-xs font-bold text-[#0A1A4A]">Aerospace Mecha HUD Console</span>
+          <span className="font-sans text-xs font-bold text-[#0A1A4A]">
+            Aerospace Mecha HUD Console
+          </span>
           <span className="rounded border border-[#CAD3F5] bg-[#EFF5FF] px-2 py-0.5 font-mono text-[10px] font-bold text-[#0056FF]">
             8-Tab Precision
           </span>
