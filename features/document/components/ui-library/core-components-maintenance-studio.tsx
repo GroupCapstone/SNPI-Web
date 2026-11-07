@@ -192,7 +192,7 @@ export function CoreComponentsMaintenanceStudio() {
       {/* ============================================================= */}
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-3">
         {/* Segmented Pill Tabs with Motion Law 20 layoutId */}
-        <div className="inline-flex rounded-xl border border-[#CAD3F5] bg-[#EFF5FF] p-1 shadow-2xs">
+        <div className="inline-flex max-w-full min-w-0 overflow-x-auto rounded-xl border border-[#CAD3F5] bg-[#EFF5FF] p-1 shadow-2xs">
           {(
             [
               {
@@ -224,7 +224,7 @@ export function CoreComponentsMaintenanceStudio() {
                 whileTap={{ scale: WHILE_TAP_SCALE }}
                 onClick={() => setActiveTab(tab.id)}
                 className={cn(
-                  'relative flex cursor-pointer items-center gap-2 rounded-lg px-4 py-2 font-sans text-xs font-bold transition-colors select-none',
+                  'relative flex shrink-0 cursor-pointer items-center gap-2 rounded-lg px-4 py-2 font-sans text-xs font-bold whitespace-nowrap transition-colors select-none',
                   isSelected ? 'text-white' : 'text-[#0A1A4A] hover:text-[#0056FF]',
                 )}
               >

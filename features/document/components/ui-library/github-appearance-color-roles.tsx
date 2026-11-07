@@ -1096,7 +1096,7 @@ export function GithubAppearanceColorRoles() {
 
           {/* Sub-view navigation tabs */}
           <div
-            className="inline-flex items-center gap-1 rounded-xl border p-1"
+            className="inline-flex max-w-full min-w-0 items-center gap-1 overflow-x-auto rounded-xl border p-1"
             style={{
               backgroundColor: roles.isDark ? roles.subsurfaceBg : '#F8FAFC',
               borderColor: roles.cardBorder,
@@ -1113,7 +1113,7 @@ export function GithubAppearanceColorRoles() {
                 type="button"
                 onClick={() => setRolesTab(tab.id)}
                 className={cn(
-                  'rounded-lg px-2.5 py-1.5 font-mono text-xs font-bold transition-all',
+                  'shrink-0 rounded-lg px-2.5 py-1.5 font-mono text-xs font-bold whitespace-nowrap transition-all',
                   rolesTab === tab.id
                     ? 'bg-[#0056FF] text-white shadow-none'
                     : 'opacity-70 hover:opacity-100',
