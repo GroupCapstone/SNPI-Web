@@ -821,7 +821,7 @@ export function RichTextEditorDemo() {
       <RichTextEditor
         value={editorContent}
         onChange={setEditorContent}
-        placeholder="Draft your institutional report or policy document..."
+        placeholder="Write report"
         minHeight={260}
       />
     </div>

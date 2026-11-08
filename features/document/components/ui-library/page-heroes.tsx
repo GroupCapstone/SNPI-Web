@@ -2,7 +2,7 @@
 
 /**
  * Page Heroes: one creative interactive hero per documentation page.
- * - LibraryHero (COMPONENT): one open profile section, not cards. Real photo, name, live controls. No 3D, no mouse tracking, no drag.
+ * - LibraryHero (COMPONENT): one realistic SNPI student ID card, liquid glass brand style, front and back with QR code, mouse tilt with shine, flip button, plus promotion and merchandise cards.
  * - ApiHero (API): simulated request runner with real interaction states.
  * - BlueprintHero (BLUEPRINT): interactive brand token color lab.
  * All follow the Royal Blue brand system: flat surfaces, #CAD3F5 keylines,
@@ -15,6 +15,7 @@ import {
   Check,
   ChevronDown,
   Copy,
+  Download,
   Globe,
   Lock,
   RefreshCw,
@@ -31,16 +32,46 @@ import { LibrarySwitch } from './switch';
 // COMPONENT PAGE HERO
 // ==========================================
 
-export function LibraryHero() {
-  const [following, setFollowing] = React.useState(false);
-  const [autoSync, setAutoSync] = React.useState(true);
-  const [volume, setVolume] = React.useState(64);
-  const [interests, setInterests] = React.useState<string[]>(['Design', 'Code']);
+const QR_PATTERN = [
+  1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1,
+  0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 0, 0,
+  0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 1, 1, 1, 0, 1,
+  0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1,
+  0, 1, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 1,
+  1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0,
+  0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1,
+  0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0,
+  0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1,
+  1, 0, 1, 0, 1, 1, 1,
+];
 
-  const toggleInterest = (label: string) =>
-    setInterests((prev) =>
-      prev.includes(label) ? prev.filter((i) => i !== label) : [...prev, label],
-    );
+function QrCode({ className }: { className?: string }) {
+  return (
+    <div
+      className={cn('grid shrink-0 grid-cols-[repeat(21,1fr)] gap-0 bg-white p-1', className)}
+      aria-hidden="true"
+    >
+      {QR_PATTERN.slice(0, 441).map((bit, i) => (
+        <span key={i} className={bit ? 'bg-[#020617]' : 'bg-white'} style={{ aspectRatio: '1' }} />
+      ))}
+    </div>
+  );
+}
+
+export function LibraryHero() {
+  const [flipped, setFlipped] = React.useState(false);
+  const [tilt, setTilt] = React.useState({ rx: 0, ry: 0 });
+  const [shine, setShine] = React.useState({ x: 50, y: 50 });
+  const [following, setFollowing] = React.useState(false);
+  const [applied, setApplied] = React.useState(false);
+
+  const handleMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const px = (e.clientX - rect.left) / rect.width;
+    const py = (e.clientY - rect.top) / rect.height;
+    setTilt({ rx: Math.round((0.5 - py) * 14), ry: Math.round((px - 0.5) * 18) });
+    setShine({ x: Math.round(px * 100), y: Math.round(py * 100) });
+  };
 
   return (
     <section className="space-y-8 rounded-2xl border border-[#CAD3F5] bg-white p-6 shadow-xs sm:p-8">
@@ -48,89 +79,186 @@ export function LibraryHero() {
         Component Library
       </h1>
 
-      <div className="flex flex-col items-center gap-6 text-center">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="https://github.com/shiliaiwei.png"
-          alt="shiliaiwei profile photo"
-          className="size-28 rounded-full border-2 border-[#CAD3F5]"
-        />
-        <div className="space-y-2">
-          <p className="font-sans text-2xl font-black text-[#020617]">shiliaiwei</p>
-          <p className="font-sans text-sm font-medium text-[#334155]">
-            Software Engineer · Phnom Penh, Cambodia
-          </p>
+      <div className="flex flex-col items-center gap-6">
+        <div
+          className="w-full max-w-[420px]"
+          style={{ perspective: '1200px' }}
+          onPointerMove={handleMove}
+          onPointerLeave={() => setTilt({ rx: 0, ry: 0 })}
+        >
+          <div
+            className="relative aspect-[1.586] w-full transition-transform duration-300"
+            style={{
+              transformStyle: 'preserve-3d',
+              transform: `rotateX(${tilt.rx}deg) rotateY(${tilt.ry + (flipped ? 180 : 0)}deg)`,
+            }}
+          >
+            {/* Front */}
+            <div
+              className="absolute inset-0 overflow-hidden rounded-2xl border border-white/50 bg-[#0056FF]/95 p-5 shadow-lg ring-1 ring-white/30 backdrop-blur-xl"
+              style={{ backfaceVisibility: 'hidden' }}
+            >
+              <div className="pointer-events-none absolute -top-10 -right-10 size-36 rounded-full bg-white/10" />
+              <div className="pointer-events-none absolute -bottom-14 -left-8 size-40 rounded-full bg-[#2277FF]/40" />
+              <div
+                className="pointer-events-none absolute size-28 rounded-full bg-white/25 blur-2xl"
+                style={{
+                  left: `${shine.x}%`,
+                  top: `${shine.y}%`,
+                  transform: 'translate(-50%, -50%)',
+                }}
+              />
+              <div className="relative flex items-center justify-between">
+                <span className="font-sans text-base font-black tracking-wider text-white">
+                  SNPI
+                </span>
+                <span className="font-sans text-[10px] font-bold tracking-widest text-white/80 uppercase">
+                  Student Card
+                </span>
+              </div>
+              <div className="relative mt-4 flex items-center gap-4">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="https://avatars.githubusercontent.com/u/70220432?v=4"
+                  alt="shiliaiwei profile photo"
+                  className="size-16 rounded-[4px] border-2 border-white/60"
+                />
+                <div className="min-w-0">
+                  <p className="truncate font-sans text-lg font-black text-white">shiliaiwei</p>
+                  <p className="font-sans text-xs font-medium text-white/80">@shiliaiwei</p>
+                  <p className="font-sans text-xs font-medium text-white/80">
+                    Senior Software Engineer
+                  </p>
+                  <div className="mt-2 flex flex-wrap gap-1">
+                    {['React', 'TypeScript', 'Node.js'].map((skill) => (
+                      <span
+                        key={skill}
+                        className="rounded-[4px] bg-white/15 px-2 py-0.5 font-sans text-[10px] font-bold text-white"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <QrCode className="ml-auto w-14 rounded-[4px]" />
+              </div>
+              <div className="relative mt-4">
+                <div className="mb-1 flex items-center justify-between">
+                  <span className="font-sans text-[10px] font-bold text-white/80">
+                    Profile strength
+                  </span>
+                  <span className="font-sans text-[10px] font-bold text-white">86%</span>
+                </div>
+                <div className="h-1.5 overflow-hidden rounded-full border border-white/40 bg-white/20">
+                  <div className="h-full w-[86%] rounded-full bg-white" />
+                </div>
+              </div>
+              <div className="relative mt-3 flex items-end justify-between">
+                <div className="flex gap-4">
+                  <span className="font-sans text-xs font-bold text-white">
+                    312 <span className="font-medium text-white/80">Followers</span>
+                  </span>
+                  <span className="font-sans text-xs font-bold text-white">
+                    86 <span className="font-medium text-white/80">Following</span>
+                  </span>
+                </div>
+                <span className="font-mono text-[10px] font-bold text-white/80">STU-2026-0891</span>
+              </div>
+            </div>
+
+            {/* Back */}
+            <div
+              className="absolute inset-0 overflow-hidden rounded-2xl border border-white/60 bg-white/90 shadow-lg ring-1 ring-[#CAD3F5] backdrop-blur-xl"
+              style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
+            >
+              <div className="h-10 bg-[#020617]" />
+              <div className="flex items-center gap-4 p-5">
+                <QrCode className="w-24 rounded-[4px] border border-[#CAD3F5]" />
+                <div className="min-w-0 space-y-2">
+                  <p className="font-sans text-sm font-black text-[#020617]">shiliaiwei</p>
+                  <p className="font-mono text-xs font-bold text-[#334155]">5399 2026 0891 0042</p>
+                  <p className="font-sans text-xs font-medium text-[#334155]">
+                    SNPI International School
+                  </p>
+                  <p className="font-sans text-xs font-medium text-[#334155]">Valid thru 12/28</p>
+                  <p className="font-sans text-xs font-bold text-[#020617]">
+                    React · TypeScript · Node.js · MongoDB
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+
         <div className="flex flex-wrap items-center justify-center gap-2">
+          <button
+            type="button"
+            onClick={() => setFlipped((f) => !f)}
+            className="inline-flex min-h-11 items-center gap-2 rounded-[4px] bg-[#0056FF] px-6 font-sans text-sm font-bold text-white transition-all hover:bg-[#2277FF] active:scale-[0.97]"
+          >
+            <RefreshCw className="size-4" /> Flip card
+          </button>
+          <button
+            type="button"
+            title="Download CV"
+            className="inline-flex min-h-11 items-center gap-2 rounded-[4px] border border-[#CAD3F5] bg-white px-6 font-sans text-sm font-bold text-[#020617] transition-all hover:bg-[#EFF5FF] active:scale-[0.97]"
+          >
+            <Download className="size-4" /> CV
+          </button>
           <button
             type="button"
             onClick={() => setFollowing((f) => !f)}
             className={cn(
-              'inline-flex min-h-11 items-center justify-center gap-2 rounded-[4px] px-6 font-sans text-sm font-bold transition-all active:scale-[0.97]',
+              'inline-flex min-h-11 items-center gap-2 rounded-[4px] px-6 font-sans text-sm font-bold transition-all active:scale-[0.97]',
               following
                 ? 'border border-[#CAD3F5] bg-white text-[#0056FF]'
-                : 'bg-[#0056FF] text-white hover:bg-[#2277FF]',
+                : 'border border-[#CAD3F5] bg-white text-[#020617] hover:bg-[#EFF5FF]',
             )}
           >
             {following && <Check className="size-4" />}
             {following ? 'Following' : 'Follow'}
           </button>
-          <button
-            type="button"
-            title="Send message"
-            className="inline-flex size-11 items-center justify-center rounded-[4px] border border-[#CAD3F5] bg-white text-[#020617] transition-colors hover:bg-[#EFF5FF]"
-          >
-            <Send className="size-5" />
-          </button>
-          <button
-            type="button"
-            title="Share profile"
-            className="inline-flex size-11 items-center justify-center rounded-[4px] border border-[#CAD3F5] bg-white text-[#020617] transition-colors hover:bg-[#EFF5FF]"
-          >
-            <Globe className="size-5" />
-          </button>
         </div>
-        <div className="flex w-full max-w-md flex-col gap-4">
-          <div className="flex items-center justify-between gap-3">
-            <span className="flex items-center gap-2 font-sans text-xs font-bold text-[#020617]">
-              <Bell className="size-4" /> Auto sync
-            </span>
-            <LibrarySwitch checked={autoSync} onCheckedChange={setAutoSync} />
-          </div>
-          <div>
-            <label
-              htmlFor="hero-alert-volume"
-              className="mb-2 flex items-center gap-2 font-sans text-xs font-bold text-[#020617]"
+
+        <div className="grid w-full gap-4 md:grid-cols-2">
+          <div className="rounded-2xl border border-[#CAD3F5] bg-[#EFF5FF] p-5">
+            <div className="flex items-center justify-between gap-3">
+              <span className="font-sans text-xs font-black tracking-wider text-[#0056FF] uppercase">
+                Promotion
+              </span>
+              <Zap className="size-5 text-[#020617]" />
+            </div>
+            <p className="mt-3 font-sans text-2xl font-black text-[#020617]">20% off tuition</p>
+            <button
+              type="button"
+              onClick={() => setApplied((a) => !a)}
+              className={cn(
+                'mt-4 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-[4px] px-4 font-sans text-sm font-bold transition-all active:scale-[0.97]',
+                applied
+                  ? 'border border-[#CAD3F5] bg-white text-[#0056FF]'
+                  : 'bg-[#0056FF] text-white hover:bg-[#2277FF]',
+              )}
             >
-              <Zap className="size-4" /> Alert volume
-            </label>
-            <input
-              id="hero-alert-volume"
-              type="range"
-              min={0}
-              max={100}
-              value={volume}
-              onChange={(e) => setVolume(Number(e.target.value))}
-              aria-label="Alert volume"
-              className="h-11 w-full cursor-pointer accent-[#0056FF]"
-            />
+              {applied && <Check className="size-4" />}
+              {applied ? 'Applied' : 'Apply'}
+            </button>
           </div>
-          <div className="flex flex-wrap justify-center gap-2">
-            {['Design', 'Code', 'Music'].map((label) => (
-              <button
-                key={label}
-                type="button"
-                onClick={() => toggleInterest(label)}
-                className={cn(
-                  'min-h-11 rounded-[4px] px-4 font-sans text-xs font-bold transition-all active:scale-[0.97]',
-                  interests.includes(label)
-                    ? 'bg-[#0056FF] text-white'
-                    : 'border border-[#CAD3F5] bg-white text-[#020617] hover:bg-[#EFF5FF]',
-                )}
-              >
-                {label}
-              </button>
-            ))}
+          <div className="rounded-2xl border border-[#CAD3F5] bg-white p-5">
+            <div className="flex items-center justify-between gap-3">
+              <span className="font-sans text-xs font-black tracking-wider text-[#0056FF] uppercase">
+                Merchandise
+              </span>
+              <Sparkles className="size-5 text-[#020617]" />
+            </div>
+            <p className="mt-3 font-sans text-2xl font-black text-[#020617]">SNPI Hoodie</p>
+            <p className="mt-1 font-sans text-xs font-medium text-[#334155]">Student store · $25</p>
+            <button
+              type="button"
+              title="Open the student store"
+              className="mt-4 inline-flex min-h-11 w-full items-center justify-center rounded-[4px] border border-[#CAD3F5] bg-white px-4 font-sans text-sm font-bold text-[#020617] transition-all hover:bg-[#EFF5FF] active:scale-[0.97]"
+            >
+              View item
+            </button>
           </div>
         </div>
       </div>

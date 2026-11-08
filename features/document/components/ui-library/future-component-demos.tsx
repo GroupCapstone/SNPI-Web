@@ -1771,7 +1771,7 @@ export function TextFieldsDemo() {
             id="demo-guardian-email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="guardian@example.com"
+            placeholder="Email address"
             icon={<Mail className="size-4.5" />}
           />
           {!emailValid && (
@@ -1793,7 +1793,7 @@ export function TextFieldsDemo() {
             onChange={(e) => setNote(e.target.value)}
             rows={3}
             maxLength={140}
-            placeholder="Short note, maximum 140 characters"
+            placeholder="Short note"
             className="w-full rounded-[4px] border-2 border-[#CAD3F5] bg-[#EFF5FF] px-4 py-3 font-sans text-sm font-medium text-[#020617] transition-colors outline-none placeholder:text-[#0056FF]/50 hover:border-[#2277FF] focus:border-[#0056FF] focus:bg-white focus:ring-2 focus:ring-[#0056FF]/20"
           />
           <p className="mt-1 text-right font-mono text-[10px] font-bold text-[#334155]">
@@ -1910,51 +1910,6 @@ export function ColorHandleLoupeDemo() {
         </div>
       </div>
       <StatusLine>{selected.name}</StatusLine>
-    </DemoStage>
-  );
-}
-
-export function ColorWheelDemo() {
-  const wheel = [
-    '#0056FF',
-    '#2277FF',
-    '#38BDF8',
-    '#10B981',
-    '#FBBF24',
-    '#F97316',
-    '#F43F5E',
-    '#A855F7',
-    '#6366F1',
-    '#0EA5E9',
-    '#14B8A6',
-    '#84CC16',
-  ];
-  const [selected, setSelected] = React.useState(wheel[0]);
-  return (
-    <DemoStage>
-      <div className="relative mx-auto size-44">
-        {wheel.map((hex, i) => (
-          <button
-            key={hex}
-            type="button"
-            title={hex}
-            onClick={() => setSelected(hex)}
-            className={cn(
-              'absolute top-1/2 left-1/2 size-11 cursor-pointer rounded-full border-2 transition-all active:scale-[0.97]',
-              selected === hex ? 'border-[#020617]' : 'border-white',
-            )}
-            style={{
-              backgroundColor: hex,
-              transform: `translate(-50%, -50%) rotate(${i * 30}deg) translateY(-64px) rotate(${-i * 30}deg)`,
-            }}
-          />
-        ))}
-        <span
-          className="absolute top-1/2 left-1/2 flex size-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-[#CAD3F5]"
-          style={{ backgroundColor: selected }}
-        />
-      </div>
-      <StatusLine>{selected}</StatusLine>
     </DemoStage>
   );
 }
@@ -2369,7 +2324,6 @@ export const FUTURE_COMPONENT_DEMOS: Record<string, React.ComponentType> = {
   rating: RatingDemo,
   'color-area': ColorAreaDemo,
   'color-handle-loupe': ColorHandleLoupeDemo,
-  'color-wheel': ColorWheelDemo,
   swatch: SwatchDemo,
   'swatch-group': SwatchGroupDemo,
   'progress-circle': ProgressCircleDemo,
@@ -2719,7 +2673,7 @@ export function ComboBoxDemo() {
               setQuery('');
               setOpen(true);
             }}
-            placeholder="Type or pick a campus"
+            placeholder="Pick campus"
             aria-label="Campus combo box"
             className="min-w-0 flex-1 bg-transparent font-sans text-sm font-bold text-[#020617] outline-none placeholder:font-medium placeholder:text-[#0056FF]/60"
           />

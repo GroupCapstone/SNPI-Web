@@ -376,7 +376,7 @@ export function CommandPalette({
                   setSearchQuery(e.target.value);
                   setSelectedIndex(0);
                 }}
-                placeholder="Type a command or search routes..."
+                placeholder="Search routes"
                 className={cn(
                   'w-full bg-transparent font-sans text-sm placeholder-slate-400 outline-none dark:placeholder-slate-500',
                   isDark ? 'text-white' : 'text-slate-950',

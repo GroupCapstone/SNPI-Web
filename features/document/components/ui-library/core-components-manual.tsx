@@ -2315,7 +2315,7 @@ export function CoreComponentsManual({ hideHeader = false }: { hideHeader?: bool
                           rows={3}
                           value={textareaValue}
                           onChange={(e) => setTextareaValue(e.target.value)}
-                          placeholder="Enter detailed semester commentary..."
+                          placeholder="Semester comment"
                           aria-invalid={textareaError}
                           className={cn(
                             'w-full rounded-xl border bg-white p-3 font-sans text-xs font-medium text-[#020617] shadow-2xs transition-all placeholder:text-slate-400 focus:border-[#0056FF] focus:ring-2 focus:ring-[#0056FF]/20 focus:outline-hidden',
@@ -2376,7 +2376,7 @@ export function CoreComponentsManual({ hideHeader = false }: { hideHeader?: bool
                             type="text"
                             value={textFieldValue}
                             onChange={(e) => setTextFieldValue(e.target.value)}
-                            placeholder="Enter full legal name..."
+                            placeholder="Full name"
                             aria-invalid={textFieldError}
                             className={cn(
                               'w-full rounded-xl border bg-white py-2.5 pr-20 pl-9.5 font-sans text-xs font-medium text-[#020617] shadow-2xs transition-all placeholder:text-slate-400 focus:border-[#0056FF] focus:ring-2 focus:ring-[#0056FF]/20 focus:outline-hidden',

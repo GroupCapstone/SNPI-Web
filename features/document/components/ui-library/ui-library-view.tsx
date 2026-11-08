@@ -610,14 +610,16 @@ export function UiLibraryView() {
             >
               {/* Brand Search Bar */}
               <div className="group relative flex items-center">
-                <Search className="pointer-events-none absolute left-3 size-5 stroke-[2.5] text-[#0056FF]" />
+                <span className="pointer-events-none absolute top-0 left-0 flex h-11 w-11 items-center justify-center rounded-l-[4px] bg-[#0056FF]">
+                  <Search className="size-5 stroke-[2.5] text-white" />
+                </span>
                 <input
                   ref={searchInputRef}
                   type="text"
                   placeholder="Search components..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="h-11 w-full rounded-[4px] border border-[#CAD3F5] bg-[#EFF5FF] py-2 pr-12 pl-10 font-sans text-sm font-medium text-[#020617] transition-colors placeholder:font-normal placeholder:text-[#0056FF]/60 hover:border-[#2277FF] focus:border-[#0056FF] focus:bg-white focus:ring-2 focus:ring-[#0056FF]/20 focus:outline-none"
+                  className="h-11 w-full rounded-[4px] border border-[#CAD3F5] bg-[#EFF5FF] py-2 pr-12 pl-14 font-sans text-sm font-medium text-[#020617] transition-colors placeholder:font-normal placeholder:text-[#0056FF]/60 hover:border-[#2277FF] focus:border-[#0056FF] focus:bg-white focus:ring-2 focus:ring-[#0056FF]/20 focus:outline-none"
                   style={{ outline: 'none' }}
                 />
                 {searchQuery ? (

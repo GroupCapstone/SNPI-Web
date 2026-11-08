@@ -285,7 +285,6 @@ export const COMPONENT_GROUPS_NAV: ComponentGroupNav[] = [
         name: 'Color handle and loupe',
         builtAt: '2026-11-08T00:00:00.000Z',
       },
-      { id: 'color-wheel', name: 'Color wheel', builtAt: '2026-11-08T00:00:00.000Z' },
       { id: 'swatch', name: 'Swatch', builtAt: '2026-11-08T00:00:00.000Z' },
       { id: 'swatch-group', name: 'Swatch group', builtAt: '2026-11-08T00:00:00.000Z' },
     ],
@@ -4017,34 +4016,6 @@ const FUTURE_M3_COMPONENTS: ComponentItemDoc[] = [
     explanation: 'Color handles with a loupe preview of the picked hex.',
     props: [{ name: 'value', type: 'string', description: 'Current value.' }],
     codeSnippet: `import { Colorhandleandloupe } from '@/components/ui';\n\n<Colorhandleandloupe />`,
-    realWorldExamples: [
-      {
-        title: 'SNPI console',
-        scenario: 'Used in the school management console.',
-        impact: 'Clear and fast.',
-      },
-    ],
-    uxPsychology: [
-      { principle: 'Direct feedback', detail: 'Every tap answers at once with a visible state.' },
-    ],
-    usageGuidelines: [
-      { doItem: 'Keep targets at 44px or more.', dontItem: 'Use white icons on light surfaces.' },
-    ],
-    implementationNotes: [
-      'Flat surfaces, #CAD3F5 keylines, 4px radius, zero gradients, zero dots.',
-    ],
-    supportedStates: ['Resting', 'Pressed', 'Selected'],
-    builtAt: '2026-11-08T00:00:00.000Z',
-  },
-  {
-    id: 'color-wheel',
-    name: 'Color wheel',
-    category: 'Inputs',
-    paradigm: 'SNPI Royal Blue Flat Standard',
-    description: 'Circular wheel of flat color segments.',
-    explanation: 'Circular wheel of flat color segments.',
-    props: [{ name: 'value', type: 'string', description: 'Current value.' }],
-    codeSnippet: `import { Colorwheel } from '@/components/ui';\n\n<Colorwheel />`,
     realWorldExamples: [
       {
         title: 'SNPI console',

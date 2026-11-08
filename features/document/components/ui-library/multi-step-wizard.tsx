@@ -751,7 +751,7 @@ export function MultiStepWizard({ theme = 'light', className, onComplete }: Mult
                     aria-describedby={
                       touchedFields.email && errors.email ? 'email-error' : undefined
                     }
-                    placeholder="e.g. applicant@campus.snpi.edu.kh"
+                    placeholder="Email address"
                     className={cn(
                       'h-10 w-full rounded-[4px] border px-3 font-sans text-xs transition-colors focus:outline-none',
                       touchedFields.email && errors.email
@@ -844,7 +844,7 @@ export function MultiStepWizard({ theme = 'light', className, onComplete }: Mult
                     aria-describedby={
                       touchedFields.phone && errors.phone ? 'phone-error' : undefined
                     }
-                    placeholder="e.g. +855 12 345 678"
+                    placeholder="Phone number"
                     className={cn(
                       'h-10 w-full rounded-[4px] border px-3 font-sans text-xs transition-colors focus:outline-none',
                       touchedFields.phone && errors.phone

@@ -542,7 +542,7 @@ export function SearchableDropdownDemo() {
             options={SAMPLE_INSTITUTIONAL_OPTIONS}
             value={multiValue}
             onChange={(val) => setMultiValue(val as string[])}
-            placeholder="Select specializations..."
+            placeholder="Specializations"
             theme="light"
           />
 

@@ -109,7 +109,7 @@ export function PasswordInputDemo() {
           type={show ? 'text' : 'password'}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          placeholder="Enter password..."
+          placeholder="Password"
           className="h-11 w-full rounded-[4px] border border-[#CAD3F5] bg-[#EFF5FF] px-4 pr-12 font-sans text-sm font-medium text-[#020617] transition-colors focus:border-[#0056FF] focus:bg-white focus:outline-none"
         />
         {/* Motion Law 18: Crossfade Icons + Blur */}
@@ -275,7 +275,7 @@ export function TaskListDemo() {
           type="text"
           value={newTitle}
           onChange={(e) => setNewTitle(e.target.value)}
-          placeholder="Add next operational task..."
+          placeholder="Add task"
           className="flex-1 rounded-xl border border-slate-200 bg-slate-50 px-3 py-1.5 font-sans text-xs text-slate-900 focus:border-[#0056FF] focus:bg-white focus:outline-none"
         />
         {/* Motion Law 4: Scale 0.97 on press */}

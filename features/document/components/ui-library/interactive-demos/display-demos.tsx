@@ -1044,7 +1044,7 @@ export function FaqDemo() {
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search architectural questions or security rules..."
+            placeholder="Search rules"
             className="h-11 w-full rounded-[4px] border border-[#CAD3F5] bg-[#EFF5FF] py-2 pr-3 pl-10 font-sans text-sm text-[#020617] transition-colors outline-none placeholder:text-[#0056FF]/60 hover:border-[#2277FF] focus:border-[#0056FF] focus:bg-white focus:ring-2 focus:ring-[#0056FF]/20"
           />
         </div>
