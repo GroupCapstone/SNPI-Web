@@ -291,7 +291,7 @@ function IconBtn({
 
 export function LibraryHero() {
   return (
-    <section className="space-y-8 rounded-2xl border border-[#CAD3F5] bg-white p-4 shadow-xs sm:p-8">
+    <section className="space-y-8 overflow-hidden rounded-2xl border border-[#CAD3F5] bg-white p-4 shadow-xs sm:p-8">
       <h1 className="font-sans text-3xl font-black tracking-tight text-[#020617] sm:text-4xl">
         Component Library
       </h1>
@@ -332,7 +332,7 @@ export function LibraryHero() {
                   <InfoRow label="Valid" value="01/2026 to 12/2028" />
                 </div>
                 <div className="mt-4 flex justify-center">
-                  <QrGrid rows={QR_EMP} />
+                  <QrGrid rows={QR_EMP} size="w-24" />
                 </div>
                 <FollowBlock followers={312} following={86} />
                 <div className="mt-3 flex items-center justify-center gap-2">
@@ -399,7 +399,7 @@ export function LibraryHero() {
                 <div className="mt-4 flex flex-nowrap items-end justify-between gap-3 border-t border-[#CAD3F5] pt-4">
                   <FollowBlock followers={128} following={64} />
                   <div className="w-14 shrink-0">
-                    <QrGrid rows={QR_STU} />
+                    <QrGrid rows={QR_STU} size="w-14" />
                   </div>
                 </div>
                 <div className="mt-3 flex flex-nowrap gap-2">
@@ -463,7 +463,7 @@ export function LibraryHero() {
                   </div>
                 </div>
                 <div className="mx-auto mt-4 w-28">
-                  <QrGrid rows={QR_EVT} />
+                  <QrGrid rows={QR_EVT} size="w-24" />
                 </div>
                 <p className="mt-2 text-center font-sans text-[9px] font-bold tracking-widest text-[#334155] uppercase">
                   Admit one · Scan at gate
