@@ -322,7 +322,7 @@ export function DesignSystemHomeView() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search design manual..."
-                className="h-9.5 w-full rounded-xl border border-[#CAD3F5] bg-[#F8FAFC] py-2 pr-12 pl-9 font-sans text-xs font-medium text-[#020617] shadow-2xs transition-all placeholder:font-normal placeholder:text-slate-400 hover:border-slate-300 hover:bg-white focus:border-[#0056FF] focus:bg-white focus:shadow-xs focus:ring-2 focus:ring-[#0056FF]/15 focus:outline-none focus-visible:outline-none"
+                className="h-11 w-full rounded-[4px] border border-[#CAD3F5] bg-[#EFF5FF] py-2 pr-12 pl-10 font-sans text-sm font-medium text-[#020617] transition-colors placeholder:font-normal placeholder:text-[#0056FF]/60 hover:border-[#2277FF] focus:border-[#0056FF] focus:bg-white focus:ring-2 focus:ring-[#0056FF]/20 focus:outline-none focus-visible:outline-none"
                 style={{ outline: 'none' }}
               />
               {searchQuery ? (

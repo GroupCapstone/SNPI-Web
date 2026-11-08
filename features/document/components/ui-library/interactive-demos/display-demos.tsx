@@ -1039,13 +1039,13 @@ export function FaqDemo() {
 
         {/* Search Input Bar */}
         <div className="relative">
-          <Search className="absolute top-2.5 left-3 size-4 text-slate-400" />
+          <Search className="absolute top-3.5 left-3 size-4 text-[#0056FF]" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search architectural questions or security rules..."
-            className="w-full rounded-xl border border-slate-200 bg-slate-50/70 py-2 pr-3 pl-9 font-sans text-xs text-slate-900 transition-all outline-none placeholder:text-slate-400 focus:border-[#0056FF] focus:bg-white"
+            className="h-11 w-full rounded-[4px] border border-[#CAD3F5] bg-[#EFF5FF] py-2 pr-3 pl-10 font-sans text-sm text-[#020617] transition-colors outline-none placeholder:text-[#0056FF]/60 hover:border-[#2277FF] focus:border-[#0056FF] focus:bg-white focus:ring-2 focus:ring-[#0056FF]/20"
           />
         </div>
 

@@ -28,7 +28,12 @@ export function FontSwitch({ variant = 'header' }: { variant?: 'header' | 'panel
   const active = DOCS_FONTS.find((f) => f.id === font) ?? DOCS_FONTS[0];
 
   return (
-    <div ref={rootRef} className={cn('relative', variant === 'panel' && 'w-full')}>
+    <div
+      ref={rootRef}
+      className={cn('relative', variant === 'panel' && 'w-full')}
+      onMouseEnter={() => variant !== 'panel' && setOpen(true)}
+      onMouseLeave={() => variant !== 'panel' && setOpen(false)}
+    >
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}

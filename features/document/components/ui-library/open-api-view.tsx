@@ -433,14 +433,14 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
 
             {/* TikTok-Style Quick Filter / Search */}
             <div className="relative mb-3 px-0.5">
-              <Search className="pointer-events-none absolute top-1/2 left-3 size-3.5 -translate-y-1/2 stroke-[2] text-slate-400" />
+              <Search className="pointer-events-none absolute top-1/2 left-3 size-3.5 -translate-y-1/2 stroke-[2] text-[#0056FF]" />
               <input
                 ref={searchInputRef}
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search endpoints... ⌘K"
-                className="w-full rounded-lg border border-[#CAD3F5] bg-[#EFF5FF]/40 py-1.5 pr-8 pl-8 text-xs text-[#020617] placeholder-slate-400 transition-all focus:border-[#0056FF] focus:bg-white focus:ring-1 focus:ring-[#0056FF] focus:outline-none"
+                className="h-11 w-full rounded-[4px] border border-[#CAD3F5] bg-[#EFF5FF] pr-8 pl-10 text-sm text-[#020617] transition-colors placeholder:text-[#0056FF]/60 hover:border-[#2277FF] focus:border-[#0056FF] focus:bg-white focus:ring-2 focus:ring-[#0056FF]/20 focus:outline-none"
               />
               {searchQuery ? (
                 <button

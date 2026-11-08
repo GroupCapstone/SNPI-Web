@@ -279,30 +279,30 @@ export const GeometricInput = React.forwardRef<HTMLInputElement, GeometricInputP
   ) => {
     const sizeClasses = {
       sm: 'h-8 px-3 text-xs gap-2 rounded-[4px]',
-      md: 'h-10 px-3.5 text-xs gap-2.5 rounded-[4px]',
+      md: 'h-11 px-4 text-sm gap-2 rounded-[4px]',
       lg: 'h-12 px-4 text-sm gap-3 rounded-[4px]',
     }[inputSize];
 
     const variantStyles = {
       outline:
-        'border-2 border-slate-200 bg-white text-slate-900 placeholder-slate-400 focus-within:border-[#0056FF] hover:border-slate-300',
-      blue: 'border-2 border-[#0056FF] bg-blue-50/40 text-slate-900 placeholder-slate-400 focus-within:border-[#0056FF] focus-within:bg-white',
+        'border-2 border-[#CAD3F5] bg-[#EFF5FF] text-[#020617] placeholder-[#0056FF]/50 focus-within:border-[#0056FF] focus-within:bg-white focus-within:ring-2 focus-within:ring-[#0056FF]/20 hover:border-[#2277FF]',
+      blue: 'border-2 border-[#0056FF] bg-[#EFF5FF] text-[#020617] placeholder-[#0056FF]/50 focus-within:border-[#0056FF] focus-within:bg-white focus-within:ring-2 focus-within:ring-[#0056FF]/20',
       azure:
-        'border-2 border-[#2277FF] bg-[#2277FF]/5 text-slate-900 placeholder-slate-400 focus-within:border-[#2277FF] focus-within:bg-white',
+        'border-2 border-[#2277FF] bg-[#EFF5FF] text-[#020617] placeholder-[#2277FF]/60 focus-within:border-[#2277FF] focus-within:bg-white focus-within:ring-2 focus-within:ring-[#2277FF]/20',
       'soft-lavender':
-        'border-2 border-[#CAD3F5] bg-[#E3E7FC] text-[#000B26] placeholder-[#000B26]/50 focus-within:border-[#0056FF] focus-within:bg-white',
+        'border-2 border-[#CAD3F5] bg-[#E3E7FC] text-[#020617] placeholder-[#0056FF]/50 focus-within:border-[#0056FF] focus-within:bg-white focus-within:ring-2 focus-within:ring-[#0056FF]/20',
       black:
-        'border-2 border-slate-900 bg-slate-100/80 text-slate-900 placeholder-slate-400 focus-within:border-black focus-within:bg-white',
+        'border-2 border-[#020617] bg-white text-[#020617] placeholder-[#020617]/40 focus-within:border-[#020617] focus-within:bg-white',
       error:
         'border-2 border-rose-500 bg-rose-50/50 text-rose-950 placeholder-rose-300 focus-within:border-rose-600 focus-within:bg-white',
     }[variant];
 
     const iconColor = {
-      outline: 'text-slate-400 group-focus-within:text-[#0056FF]',
+      outline: 'text-[#0056FF]',
       blue: 'text-[#0056FF]',
       azure: 'text-[#2277FF]',
       'soft-lavender': 'text-[#0056FF]',
-      black: 'text-slate-900',
+      black: 'text-[#020617]',
       error: 'text-rose-500',
     }[variant];
 
@@ -334,7 +334,7 @@ export const GeometricInput = React.forwardRef<HTMLInputElement, GeometricInputP
           value={value}
           data-geometric="true"
           style={{ outline: 'none', border: 'none', boxShadow: 'none' }}
-          className="geometric-input-field w-full min-w-0 border-0 bg-transparent font-sans text-xs font-semibold text-slate-900 placeholder-slate-400 ring-0 outline-none focus:border-0 focus:ring-0 focus:outline-none focus-visible:border-0 focus-visible:ring-0 focus-visible:outline-none"
+          className="geometric-input-field w-full min-w-0 border-0 bg-transparent font-sans text-sm font-medium text-[#020617] ring-0 outline-none placeholder:text-[#0056FF]/50 focus:border-0 focus:ring-0 focus:outline-none focus-visible:border-0 focus-visible:ring-0 focus-visible:outline-none"
           {...props}
         />
         {isLoading && (

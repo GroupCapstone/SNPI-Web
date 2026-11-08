@@ -202,7 +202,6 @@ export const COMPONENT_GROUPS_NAV: ComponentGroupNav[] = [
       { id: 'tabs', name: 'Tabs', builtAt: '2026-11-08T00:00:00.000Z' },
       { id: 'toolbars', name: 'Toolbars', builtAt: '2026-11-08T00:00:00.000Z' },
       { id: 'tree-view', name: 'Tree view', builtAt: '2026-11-08T00:00:00.000Z' },
-      { id: 'search', name: 'Search', builtAt: '2026-11-08T00:00:00.000Z' },
     ],
   },
   {
@@ -219,7 +218,6 @@ export const COMPONENT_GROUPS_NAV: ComponentGroupNav[] = [
           { id: 'action-bar', name: 'Action bar', builtAt: '2026-11-08T00:00:00.000Z' },
           { id: 'all-buttons', name: 'All buttons', builtAt: '2026-11-08T00:00:00.000Z' },
           { id: 'button-groups', name: 'Button groups', builtAt: '2026-11-08T00:00:00.000Z' },
-          { id: 'buttons-item', name: 'Buttons', builtAt: '2026-11-08T00:00:00.000Z' },
           { id: 'close-button', name: 'Close button', builtAt: '2026-11-08T00:00:00.000Z' },
           { id: 'extended-fabs', name: 'Extended FABs', builtAt: '2026-11-08T00:00:00.000Z' },
           { id: 'fab-menu', name: 'FAB menu', builtAt: '2026-11-08T00:00:00.000Z' },
@@ -278,7 +276,6 @@ export const COMPONENT_GROUPS_NAV: ComponentGroupNav[] = [
         builtAt: '2026-11-01T00:00:00.000Z',
       },
       { id: 'checkbox', name: 'Checkbox', builtAt: '2026-11-08T00:00:00.000Z' },
-      { id: 'checkbox-group', name: 'Checkbox group', builtAt: '2026-11-08T00:00:00.000Z' },
       { id: 'combo-box', name: 'Combo box', builtAt: '2026-11-08T00:00:00.000Z' },
       { id: 'field-label', name: 'Field label', isFuture: true },
       { id: 'picker', name: 'Picker', isFuture: true },
@@ -479,7 +476,6 @@ export const M3_COMPONENTS_NAV: M3NavItem[] = [
     children: [
       { id: 'all-buttons', name: 'All buttons', builtAt: '2026-11-08T00:00:00.000Z' },
       { id: 'button-groups', name: 'Button groups', builtAt: '2026-11-08T00:00:00.000Z' },
-      { id: 'buttons-item', name: 'Buttons', builtAt: '2026-11-08T00:00:00.000Z' },
       { id: 'extended-fabs', name: 'Extended FABs', builtAt: '2026-11-08T00:00:00.000Z' },
       { id: 'fab-menu', name: 'FAB menu', builtAt: '2026-11-08T00:00:00.000Z' },
       { id: 'fabs', name: 'FABs', builtAt: '2026-11-08T00:00:00.000Z' },
@@ -529,7 +525,6 @@ export const M3_COMPONENTS_NAV: M3NavItem[] = [
     ],
   },
   { id: 'radio-button', name: 'Radio button', builtAt: '2026-11-08T00:00:00.000Z' },
-  { id: 'search', name: 'Search', builtAt: '2026-11-08T00:00:00.000Z' },
   {
     id: 'sheets',
     name: 'Sheets',
@@ -3138,40 +3133,6 @@ const FUTURE_M3_COMPONENTS: ComponentItemDoc[] = [
     supportedStates: ['Resting', 'Dragging (Value Bubble Active)', 'Discrete Steps'],
     builtAt: '2026-11-08T00:00:00.000Z',
   },
-  {
-    id: 'search',
-    name: 'Search',
-    category: 'Inputs',
-    paradigm: 'Material 3 Search Bar & View Standard',
-    description:
-      'Full-featured search input transforming smoothly into an expanded search view with live autocomplete suggestions.',
-    explanation:
-      'Search bars provide direct, high-speed access to records, students, and documents without menu hunting.',
-    props: [{ name: 'query', type: 'string', description: 'Search query.' }],
-    codeSnippet: `import { SearchBar } from '@/components/ui';\n\n<SearchBar />`,
-    realWorldExamples: [
-      {
-        title: 'Global Campus Lookup',
-        scenario: 'Admin searches student ID, phone number, or guardian name.',
-        impact: '<200ms lookup.',
-      },
-    ],
-    uxPsychology: [
-      {
-        principle: 'Doherty Threshold (<400ms)',
-        detail: 'Real-time debounced results keep the operator in continuous productive flow.',
-      },
-    ],
-    usageGuidelines: [
-      {
-        doItem: 'Include clear (X) icon when text is entered.',
-        dontItem: 'Force users to press Enter for basic filtering.',
-      },
-    ],
-    implementationNotes: ['Rounded-full 48px height with search glyph prefix.'],
-    supportedStates: ['Collapsed Bar', 'Focused (Expanded View)', 'With Query'],
-    builtAt: '2026-11-08T00:00:00.000Z',
-  },
 
   // ==========================================
   // FEEDBACK (Material 3 Standards)
@@ -3916,70 +3877,6 @@ const FUTURE_M3_COMPONENTS: ComponentItemDoc[] = [
     ],
     implementationNotes: ['Minimum 44px touch target with title label.'],
     supportedStates: ['Default', 'Hover', 'Pressed'],
-    builtAt: '2026-11-08T00:00:00.000Z',
-  },
-  {
-    id: 'buttons-item',
-    name: 'Buttons',
-    category: 'Inputs',
-    paradigm: 'Button Family Standard',
-    description: 'The complete button family: primary, tonal, outline and text variants.',
-    explanation: 'Buttons are the primary action language of the system and share one geometry.',
-    props: [
-      {
-        name: 'variant',
-        type: "'primary' | 'tonal' | 'outline' | 'text'",
-        description: 'Visual variant.',
-      },
-    ],
-    codeSnippet: `import { Button } from '@/components/ui';\n\n<Button variant="primary">Save</Button>`,
-    realWorldExamples: [
-      {
-        title: 'Form Submit Actions',
-        scenario: 'Every form ends with the same primary button.',
-        impact: 'Clear, fast task completion.',
-      },
-    ],
-    uxPsychology: [
-      { principle: 'Consistency', detail: 'One action style builds trust across modules.' },
-    ],
-    usageGuidelines: [
-      {
-        doItem: 'One primary button per surface.',
-        dontItem: 'Do not stack several primary buttons together.',
-      },
-    ],
-    implementationNotes: ['Shares the Buttons demo stage.'],
-    supportedStates: ['Enabled', 'Hover', 'Pressed', 'Disabled'],
-    builtAt: '2026-11-08T00:00:00.000Z',
-  },
-  {
-    id: 'checkbox-group',
-    name: 'Checkbox group',
-    category: 'Inputs',
-    paradigm: 'Grouped Checkbox Standard',
-    description: 'A labeled group of checkboxes managed as one multi select field.',
-    explanation: 'Checkbox groups collect related optional settings under one clear field label.',
-    props: [{ name: 'options', type: 'CheckboxOption[]', description: 'Group options.' }],
-    codeSnippet: `import { CheckboxGroup } from '@/components/ui';\n\n<CheckboxGroup />`,
-    realWorldExamples: [
-      {
-        title: 'Notification Channels Group',
-        scenario: 'School toggles SMS, Telegram and print channels.',
-        impact: 'Clear, fast task completion.',
-      },
-    ],
-    uxPsychology: [
-      { principle: 'Chunking', detail: 'Grouped options are scanned as one decision.' },
-    ],
-    usageGuidelines: [
-      {
-        doItem: 'Order options by frequency of use.',
-        dontItem: 'Do not use a checkbox group for a single choice.',
-      },
-    ],
-    implementationNotes: ['Shares the Checkbox demo stage.'],
-    supportedStates: ['Checked', 'Unchecked', 'Mixed', 'Focused'],
     builtAt: '2026-11-08T00:00:00.000Z',
   },
   {

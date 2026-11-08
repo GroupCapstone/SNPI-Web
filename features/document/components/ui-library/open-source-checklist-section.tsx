@@ -1310,13 +1310,13 @@ export function OpenSourceChecklistSection() {
 
         {/* Quick Search Input */}
         <div className="relative w-full sm:w-64">
-          <Search className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-slate-400" />
+          <Search className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-[#0056FF]" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search 230 checks..."
-            className="h-9 w-full rounded-xl border border-[#CAD3F5] bg-[#F8FAFC] pr-3 pl-9 font-sans text-xs text-[#020617] placeholder:text-slate-400 focus:border-[#0056FF] focus:bg-white focus:outline-none"
+            className="h-11 w-full rounded-[4px] border border-[#CAD3F5] bg-[#EFF5FF] pr-3 pl-10 font-sans text-sm text-[#020617] transition-colors placeholder:text-[#0056FF]/60 hover:border-[#2277FF] focus:border-[#0056FF] focus:bg-white focus:ring-2 focus:ring-[#0056FF]/20 focus:outline-none"
           />
         </div>
       </div>

@@ -1188,7 +1188,7 @@ export function SearchDemo() {
   return (
     <DemoStage title="Search" badge="Live Filter">
       <label className="flex min-h-11 items-center gap-2.5 rounded-[4px] border border-[#CAD3F5] bg-white px-3.5 transition-colors focus-within:border-[#0056FF]">
-        <Search className="size-5 shrink-0 text-[#020617]" />
+        <Search className="size-5 shrink-0 text-[#0056FF]" />
         <input
           value={query}
           onChange={(e) => setQuery(e.target.value)}
@@ -1747,7 +1747,7 @@ export function TextFieldsDemo() {
         <div>
           <label
             htmlFor="demo-student-name"
-            className="mb-1.5 block font-sans text-xs font-bold text-[#020617]"
+            className="mb-2 block font-sans text-xs font-bold text-[#020617]"
           >
             Student full name
           </label>
@@ -1763,7 +1763,7 @@ export function TextFieldsDemo() {
         <div>
           <label
             htmlFor="demo-guardian-email"
-            className="mb-1.5 block font-sans text-xs font-bold text-[#020617]"
+            className="mb-2 block font-sans text-xs font-bold text-[#020617]"
           >
             Guardian email
           </label>
@@ -1775,7 +1775,7 @@ export function TextFieldsDemo() {
             icon={<Mail className="size-4.5" />}
           />
           {!emailValid && (
-            <p className="mt-1.5 font-sans text-xs font-bold text-rose-600">
+            <p className="mt-2 font-sans text-xs font-bold text-rose-600">
               Enter a valid email address.
             </p>
           )}
@@ -1783,7 +1783,7 @@ export function TextFieldsDemo() {
         <div>
           <label
             htmlFor="demo-note"
-            className="mb-1.5 block font-sans text-xs font-bold text-[#020617]"
+            className="mb-2 block font-sans text-xs font-bold text-[#020617]"
           >
             Counselor note
           </label>
@@ -1794,7 +1794,7 @@ export function TextFieldsDemo() {
             rows={3}
             maxLength={140}
             placeholder="Short note, maximum 140 characters"
-            className="w-full rounded-[4px] border border-[#CAD3F5] bg-white px-3.5 py-3 font-sans text-sm font-medium text-[#020617] transition-colors outline-none placeholder:text-[#334155]/60 focus:border-[#0056FF]"
+            className="w-full rounded-[4px] border-2 border-[#CAD3F5] bg-[#EFF5FF] px-4 py-3 font-sans text-sm font-medium text-[#020617] transition-colors outline-none placeholder:text-[#0056FF]/50 hover:border-[#2277FF] focus:border-[#0056FF] focus:bg-white focus:ring-2 focus:ring-[#0056FF]/20"
           />
           <p className="mt-1 text-right font-mono text-[10px] font-bold text-[#334155]">
             {note.length} / 140
@@ -2130,8 +2130,15 @@ export function ComboBoxDemo() {
   return (
     <DemoStage title="Combo Box" badge="Input + Listbox">
       <div className="relative">
-        <label className="flex min-h-11 items-center gap-2.5 rounded-[4px] border border-[#CAD3F5] bg-white px-3.5 transition-colors focus-within:border-[#0056FF]">
-          <Building2 className="size-5 shrink-0 text-[#020617]" />
+        <label
+          className={cn(
+            'flex min-h-12 items-center gap-2 overflow-hidden rounded-[4px] border-2 bg-[#EFF5FF] transition-colors',
+            open ? 'border-[#0056FF]' : 'border-[#CAD3F5]',
+          )}
+        >
+          <span className="flex size-12 shrink-0 items-center justify-center bg-[#0056FF]">
+            <Building2 className="size-5 text-white" />
+          </span>
           <input
             value={open ? query : value}
             onChange={(e) => {
@@ -2144,12 +2151,14 @@ export function ComboBoxDemo() {
             }}
             placeholder="Type or pick a campus"
             aria-label="Campus combo box"
-            className="min-w-0 flex-1 bg-transparent font-sans text-sm font-medium text-[#020617] outline-none placeholder:text-[#334155]/60"
+            className="min-w-0 flex-1 bg-transparent font-sans text-sm font-bold text-[#020617] outline-none placeholder:font-medium placeholder:text-[#0056FF]/60"
           />
-          <ChevronDown className="size-5 shrink-0 text-[#020617]" />
+          <span className="flex size-12 shrink-0 items-center justify-center bg-[#0056FF]">
+            <ChevronDown className="size-5 text-white" />
+          </span>
         </label>
         {open && (
-          <div className="absolute inset-x-0 top-full z-10 mt-2 rounded-xl border border-[#CAD3F5] bg-white p-1.5 shadow-xs">
+          <div className="absolute inset-x-0 top-full z-10 mt-2 rounded-[4px] border-2 border-[#0056FF] bg-white p-1 shadow-xs">
             {results.map((opt) => (
               <button
                 key={opt}
@@ -2158,14 +2167,17 @@ export function ComboBoxDemo() {
                   setValue(opt);
                   setOpen(false);
                 }}
-                className="flex min-h-11 w-full items-center justify-between gap-2 rounded-[4px] px-3 font-sans text-xs font-bold text-[#020617] transition-colors hover:bg-[#EFF5FF]"
+                className={cn(
+                  'flex min-h-11 w-full items-center justify-between gap-2 rounded-[4px] px-3 font-sans text-xs font-bold transition-colors',
+                  value === opt ? 'bg-[#0056FF] text-white' : 'text-[#020617] hover:bg-[#EFF5FF]',
+                )}
               >
                 {opt}
-                {value === opt && <Check className="size-4.5 shrink-0 text-[#0056FF]" />}
+                {value === opt && <Check className="size-4 shrink-0 text-white" />}
               </button>
             ))}
             {results.length === 0 && (
-              <p className="px-3 py-2.5 font-sans text-xs font-medium text-[#334155]">
+              <p className="px-3 py-2 font-sans text-xs font-medium text-[#334155]">
                 No campus matches.
               </p>
             )}

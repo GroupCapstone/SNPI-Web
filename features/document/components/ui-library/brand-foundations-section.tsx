@@ -447,13 +447,13 @@ export function BrandFoundationsSection() {
 
           {/* Real-time search filter */}
           <div className="relative w-full sm:w-64">
-            <Search className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-slate-400" />
+            <Search className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-[#0056FF]" />
             <input
               type="text"
               value={termSearch}
               onChange={(e) => setTermSearch(e.target.value)}
               placeholder="Search terms or codes..."
-              className="w-full rounded-xl border border-slate-200 bg-slate-50/70 py-2 pr-3 pl-9 font-sans text-xs text-slate-900 placeholder:text-slate-400 focus:border-[#0056FF] focus:bg-white focus:outline-hidden"
+              className="h-11 w-full rounded-[4px] border border-[#CAD3F5] bg-[#EFF5FF] py-2 pr-3 pl-10 font-sans text-sm text-[#020617] transition-colors placeholder:text-[#0056FF]/60 hover:border-[#2277FF] focus:border-[#0056FF] focus:bg-white focus:ring-2 focus:ring-[#0056FF]/20 focus:outline-hidden"
             />
           </div>
         </div>
@@ -486,7 +486,7 @@ export function BrandFoundationsSection() {
                         {copiedCode === term.code ? (
                           <Check className="size-3 text-emerald-600" />
                         ) : (
-                          <Copy className="size-3 text-slate-400" />
+                          <Copy className="size-3 text-[#0056FF]" />
                         )}
                       </button>
                     </td>
