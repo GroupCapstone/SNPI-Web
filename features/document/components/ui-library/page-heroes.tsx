@@ -298,32 +298,31 @@ export function LibraryHero() {
 
       <div className="grid items-start gap-6 lg:grid-cols-3">
         {/* EMPLOYEE ID */}
-        <div className="mx-auto w-full max-w-[320px]">
-          <TiltCard>
-            <div className="rounded-2xl border border-white/60 bg-white/95 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.9)] ring-1 ring-[#CAD3F5] backdrop-blur-xl">
-              <div className="flex items-center justify-between rounded-t-2xl bg-[#0056FF] px-5 py-4">
-                <span className="font-sans text-base font-black tracking-wider text-white">
-                  SNPI
-                </span>
-                <span className="font-sans text-[9px] font-bold tracking-widest text-white/85 uppercase">
+        <div className="w-full max-w-[430px] justify-self-center lg:col-start-2">
+          <TiltCard className="overflow-hidden rounded-2xl border border-[#CAD3F5] bg-white shadow-md">
+            <div className="relative overflow-hidden rounded-2xl">
+              <div className="flex h-24 items-start justify-between bg-[#0056FF] px-5 pt-4">
+                <span className="font-sans text-lg font-black tracking-wide text-white">SNPI</span>
+                <span className="font-sans text-[10px] font-bold tracking-widest text-white/80 uppercase">
                   Employee ID
                 </span>
               </div>
-              <div className="p-5">
-                <div className="mx-auto h-2 w-16 rounded-full border border-[#CAD3F5]" />
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="https://avatars.githubusercontent.com/u/70220432?v=4"
-                  alt="shiliaiwei profile photo"
-                  className="mt-4 aspect-square w-full rounded-[4px] border border-[#CAD3F5] object-cover"
-                />
-                <p className="mt-4 font-sans text-lg font-black tracking-wide text-[#020617] uppercase">
-                  Shiliaiwei
+              <div className="px-5 pb-5">
+                <div className="-mt-12 flex justify-center">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="https://avatars.githubusercontent.com/u/70220432?v=4"
+                    alt="Employee profile photo"
+                    className="size-24 rounded-full border-4 border-white object-cover shadow-md ring-1 ring-[#CAD3F5]"
+                  />
+                </div>
+                <p className="mt-3 text-center font-sans text-lg font-black tracking-wide text-[#020617]">
+                  SHILIAIWEI
                 </p>
-                <p className="font-sans text-[11px] font-medium text-[#334155]">
+                <p className="text-center font-sans text-xs font-semibold text-[#334155]">
                   @shiliaiwei · GroupCapstone
                 </p>
-                <div className="mt-4 space-y-2 border-t border-[#CAD3F5] pt-4">
+                <div className="mt-4 space-y-1.5">
                   <InfoRow label="Title" value="Senior Software Engineer" />
                   <InfoRow label="Department" value="Software Engineering" />
                   <InfoRow label="ID No" value="EMP-2026-001" />
@@ -332,13 +331,11 @@ export function LibraryHero() {
                   <InfoRow label="Work type" value="Full-time" />
                   <InfoRow label="Valid" value="01/2026 to 12/2028" />
                 </div>
-                <div className="mt-4 w-20">
+                <div className="mt-4 flex justify-center">
                   <QrGrid rows={QR_EMP} />
                 </div>
-                <div className="mt-4 border-t border-[#CAD3F5] pt-4">
-                  <FollowBlock followers={312} following={86} />
-                </div>
-                <div className="mt-3 flex flex-nowrap gap-2">
+                <FollowBlock followers={312} following={86} />
+                <div className="mt-3 flex items-center justify-center gap-2">
                   <IconBtn label="Call">
                     <Phone className="size-5" />
                   </IconBtn>
