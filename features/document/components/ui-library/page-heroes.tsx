@@ -17,6 +17,7 @@ import {
   Copy,
   Download,
   Globe,
+  Mail,
   Lock,
   RefreshCw,
   Send,
@@ -298,7 +299,7 @@ export function LibraryHero() {
 
       <div className="grid items-start gap-6 lg:grid-cols-3">
         {/* EMPLOYEE ID */}
-        <div className="w-full max-w-[430px] justify-self-center lg:col-start-2">
+        <div className="w-full max-w-[430px] min-w-0 justify-self-center">
           <TiltCard className="overflow-hidden rounded-2xl border border-[#CAD3F5] bg-white shadow-md">
             <div className="relative overflow-hidden rounded-2xl">
               <div className="flex h-24 items-start justify-between bg-[#0056FF] px-5 pt-4">
@@ -320,7 +321,27 @@ export function LibraryHero() {
                   SHILIAIWEI
                 </p>
                 <p className="text-center font-sans text-xs font-semibold text-[#334155]">
-                  @shiliaiwei · GroupCapstone
+                  Senior Software Engineer, GroupCapstone
+                </p>
+                <p className="mt-0.5 flex items-center justify-center gap-1 text-center font-sans text-xs font-medium text-[#334155]">
+                  <MapPin className="size-3.5 text-[#0056FF]" /> Phnom Penh
+                </p>
+                <div className="mt-3 flex items-center justify-center gap-2">
+                  <IconBtn label="Website">
+                    <Globe className="size-5" />
+                  </IconBtn>
+                  <IconBtn label="Telegram">
+                    <Send className="size-5" />
+                  </IconBtn>
+                  <IconBtn label="Email">
+                    <Mail className="size-5" />
+                  </IconBtn>
+                  <IconBtn label="Share profile">
+                    <Share2 className="size-5" />
+                  </IconBtn>
+                </div>
+                <p className="mt-3 text-center font-sans text-xs text-[#334155]">
+                  Building the SNPI school system with the GroupCapstone team.
                 </p>
                 <div className="mt-4 space-y-1.5">
                   <InfoRow label="Title" value="Senior Software Engineer" />
@@ -342,9 +363,6 @@ export function LibraryHero() {
                   <IconBtn label="Send message">
                     <Send className="size-5" />
                   </IconBtn>
-                  <IconBtn label="Share profile">
-                    <Share2 className="size-5" />
-                  </IconBtn>
                 </div>
               </div>
             </div>
@@ -352,7 +370,7 @@ export function LibraryHero() {
         </div>
 
         {/* STUDENT ID */}
-        <div className="mx-auto w-full max-w-[430px]">
+        <div className="mx-auto w-full max-w-[430px] min-w-0">
           <TiltCard>
             <div className="rounded-2xl border border-white/60 bg-white/95 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.9)] ring-1 ring-[#CAD3F5] backdrop-blur-xl">
               <div className="flex items-center justify-between rounded-t-2xl bg-[#0056FF] px-5 py-3">
@@ -396,19 +414,21 @@ export function LibraryHero() {
                   <InfoRow label="Library access" value="Enabled" />
                   <InfoRow label="Issued" value="01 Sep 2026" />
                 </div>
-                <div className="mt-4 flex flex-nowrap items-end justify-between gap-3 border-t border-[#CAD3F5] pt-4">
+                <div className="mt-4 border-t border-[#CAD3F5] pt-4">
                   <FollowBlock followers={128} following={64} />
+                </div>
+                <div className="mt-3 flex items-center justify-between gap-2">
+                  <div className="flex gap-2">
+                    <IconBtn label="Class schedule">
+                      <Calendar className="size-5" />
+                    </IconBtn>
+                    <IconBtn label="Send message">
+                      <Send className="size-5" />
+                    </IconBtn>
+                  </div>
                   <div className="w-14 shrink-0">
                     <QrGrid rows={QR_STU} size="w-14" />
                   </div>
-                </div>
-                <div className="mt-3 flex flex-nowrap gap-2">
-                  <IconBtn label="Class schedule">
-                    <Calendar className="size-5" />
-                  </IconBtn>
-                  <IconBtn label="Send message">
-                    <Send className="size-5" />
-                  </IconBtn>
                 </div>
               </div>
             </div>
@@ -416,7 +436,7 @@ export function LibraryHero() {
         </div>
 
         {/* EVENT PASS */}
-        <div className="mx-auto w-full max-w-[320px]">
+        <div className="mx-auto w-full max-w-[320px] min-w-0">
           <TiltCard>
             <div className="rounded-2xl border border-white/60 bg-white/95 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.9)] ring-1 ring-[#CAD3F5] backdrop-blur-xl">
               <div className="rounded-t-2xl bg-[#2277FF] px-5 py-4">
