@@ -197,27 +197,9 @@ function InfoRow({
 }
 
 function TiltCard({ children, className = '' }: { children: React.ReactNode; className?: string }) {
-  const [tilt, setTilt] = React.useState({ rx: 0, ry: 0 });
-  const [shine, setShine] = React.useState({ x: 50, y: 50 });
-  const handleMove = (e: React.PointerEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const px = (e.clientX - rect.left) / rect.width;
-    const py = (e.clientY - rect.top) / rect.height;
-    setTilt({ rx: Math.round((0.5 - py) * 8), ry: Math.round((px - 0.5) * 10) });
-    setShine({ x: Math.round(px * 100), y: Math.round(py * 100) });
-  };
   return (
-    <div style={{ perspective: '900px' }} className={className}>
-      <div
-        onPointerMove={handleMove}
-        onPointerLeave={() => setTilt({ rx: 0, ry: 0 })}
-        className="relative overflow-hidden rounded-2xl shadow-xl ring-1 ring-[#CAD3F5] transition-transform duration-200"
-        style={{ transform: `rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg)` }}
-      >
-        <div
-          className="pointer-events-none absolute z-10 size-24 rounded-full bg-white/20 blur-2xl"
-          style={{ left: `${shine.x}%`, top: `${shine.y}%`, transform: 'translate(-50%, -50%)' }}
-        />
+    <div className={className}>
+      <div className="relative overflow-hidden rounded-2xl shadow-md ring-1 ring-[#CAD3F5]">
         {children}
       </div>
     </div>
@@ -290,12 +272,298 @@ function IconBtn({
   );
 }
 
+function HeroCrest() {
+  return (
+    <div className="flex justify-center" aria-hidden="true">
+      <svg viewBox="0 0 200 120" className="h-36 w-auto sm:h-44" role="presentation">
+        <defs>
+          <pattern id="heroDots" width="4.2" height="4.2" patternUnits="userSpaceOnUse">
+            <circle cx="2.1" cy="2.1" r="1.05" fill="#2277FF" />
+          </pattern>
+        </defs>
+        <g opacity="0.55">
+          <ellipse
+            cx="109.8"
+            cy="14.0"
+            rx="6.4"
+            ry="2.6"
+            transform="rotate(12 109.8 14.0)"
+            fill="url(#heroDots)"
+          />
+          <ellipse
+            cx="118.8"
+            cy="16.9"
+            rx="6.4"
+            ry="2.6"
+            transform="rotate(24 118.8 16.9)"
+            fill="url(#heroDots)"
+          />
+          <ellipse
+            cx="127.1"
+            cy="21.6"
+            rx="6.4"
+            ry="2.6"
+            transform="rotate(35 127.1 21.6)"
+            fill="url(#heroDots)"
+          />
+          <ellipse
+            cx="134.2"
+            cy="27.8"
+            rx="6.4"
+            ry="2.6"
+            transform="rotate(47 134.2 27.8)"
+            fill="url(#heroDots)"
+          />
+          <ellipse
+            cx="140.0"
+            cy="35.3"
+            rx="6.4"
+            ry="2.6"
+            transform="rotate(58 140.0 35.3)"
+            fill="url(#heroDots)"
+          />
+          <ellipse
+            cx="144.1"
+            cy="43.9"
+            rx="6.4"
+            ry="2.6"
+            transform="rotate(70 144.1 43.9)"
+            fill="url(#heroDots)"
+          />
+          <ellipse
+            cx="146.5"
+            cy="53.1"
+            rx="6.4"
+            ry="2.6"
+            transform="rotate(82 146.5 53.1)"
+            fill="url(#heroDots)"
+          />
+          <ellipse
+            cx="146.9"
+            cy="62.5"
+            rx="6.4"
+            ry="2.6"
+            transform="rotate(93 146.9 62.5)"
+            fill="url(#heroDots)"
+          />
+          <ellipse
+            cx="145.5"
+            cy="71.9"
+            rx="6.4"
+            ry="2.6"
+            transform="rotate(105 145.5 71.9)"
+            fill="url(#heroDots)"
+          />
+          <ellipse
+            cx="142.1"
+            cy="80.8"
+            rx="6.4"
+            ry="2.6"
+            transform="rotate(116 142.1 80.8)"
+            fill="url(#heroDots)"
+          />
+          <ellipse
+            cx="137.1"
+            cy="88.8"
+            rx="6.4"
+            ry="2.6"
+            transform="rotate(128 137.1 88.8)"
+            fill="url(#heroDots)"
+          />
+          <ellipse
+            cx="130.6"
+            cy="95.7"
+            rx="6.4"
+            ry="2.6"
+            transform="rotate(139 130.6 95.7)"
+            fill="url(#heroDots)"
+          />
+          <ellipse
+            cx="122.8"
+            cy="101.1"
+            rx="6.4"
+            ry="2.6"
+            transform="rotate(151 122.8 101.1)"
+            fill="url(#heroDots)"
+          />
+          <ellipse
+            cx="114.0"
+            cy="104.9"
+            rx="6.4"
+            ry="2.6"
+            transform="rotate(163 114.0 104.9)"
+            fill="url(#heroDots)"
+          />
+          <ellipse
+            cx="104.7"
+            cy="106.8"
+            rx="6.4"
+            ry="2.6"
+            transform="rotate(174 104.7 106.8)"
+            fill="url(#heroDots)"
+          />
+          <ellipse
+            cx="95.3"
+            cy="106.8"
+            rx="6.4"
+            ry="2.6"
+            transform="rotate(186 95.3 106.8)"
+            fill="url(#heroDots)"
+          />
+          <ellipse
+            cx="86.0"
+            cy="104.9"
+            rx="6.4"
+            ry="2.6"
+            transform="rotate(197 86.0 104.9)"
+            fill="url(#heroDots)"
+          />
+          <ellipse
+            cx="77.2"
+            cy="101.1"
+            rx="6.4"
+            ry="2.6"
+            transform="rotate(209 77.2 101.1)"
+            fill="url(#heroDots)"
+          />
+          <ellipse
+            cx="69.4"
+            cy="95.7"
+            rx="6.4"
+            ry="2.6"
+            transform="rotate(221 69.4 95.7)"
+            fill="url(#heroDots)"
+          />
+          <ellipse
+            cx="62.9"
+            cy="88.8"
+            rx="6.4"
+            ry="2.6"
+            transform="rotate(232 62.9 88.8)"
+            fill="url(#heroDots)"
+          />
+          <ellipse
+            cx="57.9"
+            cy="80.8"
+            rx="6.4"
+            ry="2.6"
+            transform="rotate(244 57.9 80.8)"
+            fill="url(#heroDots)"
+          />
+          <ellipse
+            cx="54.5"
+            cy="71.9"
+            rx="6.4"
+            ry="2.6"
+            transform="rotate(255 54.5 71.9)"
+            fill="url(#heroDots)"
+          />
+          <ellipse
+            cx="53.1"
+            cy="62.5"
+            rx="6.4"
+            ry="2.6"
+            transform="rotate(267 53.1 62.5)"
+            fill="url(#heroDots)"
+          />
+          <ellipse
+            cx="53.5"
+            cy="53.1"
+            rx="6.4"
+            ry="2.6"
+            transform="rotate(278 53.5 53.1)"
+            fill="url(#heroDots)"
+          />
+          <ellipse
+            cx="55.9"
+            cy="43.9"
+            rx="6.4"
+            ry="2.6"
+            transform="rotate(290 55.9 43.9)"
+            fill="url(#heroDots)"
+          />
+          <ellipse
+            cx="60.0"
+            cy="35.3"
+            rx="6.4"
+            ry="2.6"
+            transform="rotate(302 60.0 35.3)"
+            fill="url(#heroDots)"
+          />
+          <ellipse
+            cx="65.8"
+            cy="27.8"
+            rx="6.4"
+            ry="2.6"
+            transform="rotate(313 65.8 27.8)"
+            fill="url(#heroDots)"
+          />
+          <ellipse
+            cx="72.9"
+            cy="21.6"
+            rx="6.4"
+            ry="2.6"
+            transform="rotate(325 72.9 21.6)"
+            fill="url(#heroDots)"
+          />
+          <ellipse
+            cx="81.2"
+            cy="16.9"
+            rx="6.4"
+            ry="2.6"
+            transform="rotate(336 81.2 16.9)"
+            fill="url(#heroDots)"
+          />
+          <ellipse
+            cx="90.2"
+            cy="14.0"
+            rx="6.4"
+            ry="2.6"
+            transform="rotate(348 90.2 14.0)"
+            fill="url(#heroDots)"
+          />
+          <path d="M92 104 L100 110 L108 104 L104 116 H96 Z" fill="url(#heroDots)" />
+          <path
+            d="M100 22 L126 31 V56 C126 76 114 88 100 94 C86 88 74 76 74 56 V31 Z"
+            fill="url(#heroDots)"
+          />
+          <path
+            d="M100 29 L119 36 V56 C119 72 110 82 100 87 C90 82 81 72 81 56 V36 Z"
+            fill="none"
+            stroke="#EFF5FF"
+            strokeWidth="2"
+          />
+          <rect
+            x="86"
+            y="42"
+            width="28"
+            height="28"
+            fill="none"
+            stroke="#EFF5FF"
+            strokeWidth="2.5"
+          />
+          <rect x="91" y="47" width="18" height="18" fill="none" stroke="#EFF5FF" strokeWidth="2" />
+          <path
+            d="M107 51 H93 L107 62 H93"
+            fill="none"
+            stroke="#EFF5FF"
+            strokeWidth="3"
+            strokeLinejoin="round"
+            strokeLinecap="round"
+          />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
 export function LibraryHero() {
   return (
     <section className="space-y-8 overflow-hidden rounded-2xl border border-[#CAD3F5] bg-white p-4 shadow-xs sm:p-8">
       <h1 className="font-sans text-3xl font-black tracking-tight text-[#020617] sm:text-4xl">
         Component Library
       </h1>
+      <HeroCrest />
 
       <div className="grid items-start gap-6 md:grid-cols-2 xl:grid-cols-3">
         {/* EMPLOYEE ID */}
@@ -371,48 +639,44 @@ export function LibraryHero() {
 
         {/* STUDENT ID */}
         <div className="mx-auto w-full max-w-[430px] min-w-0">
-          <TiltCard>
-            <div className="rounded-2xl border border-white/60 bg-white/95 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.9)] ring-1 ring-[#CAD3F5] backdrop-blur-xl">
-              <div className="flex items-center justify-between rounded-t-2xl bg-[#0056FF] px-5 py-3">
-                <span className="font-sans text-sm font-black tracking-wider text-white">
+          <TiltCard className="overflow-hidden rounded-2xl border border-[#CAD3F5] bg-white shadow-md">
+            <div className="relative overflow-hidden rounded-2xl">
+              <div className="flex items-center justify-between bg-[#0056FF] px-5 py-3">
+                <span className="font-sans text-[13px] font-black tracking-wide text-white">
                   SNPI INTERNATIONAL SCHOOL
                 </span>
-                <span className="flex items-center gap-2">
-                  <span className="hidden h-5 w-8 rounded-[4px] border border-white/70 sm:block" />
-                  <span className="font-sans text-[9px] font-bold tracking-widest text-white/85 uppercase">
-                    Student ID
-                  </span>
+                <span className="flex items-center gap-1.5 font-sans text-[9px] font-bold tracking-widest text-white/80 uppercase">
+                  <span className="inline-block size-4 rounded-[3px] border-2 border-white/70" />
+                  Student ID
                 </span>
               </div>
-              <div className="p-5">
-                <div className="flex gap-4">
+              <div className="px-5 py-4">
+                <div className="flex items-center gap-4">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src="https://avatars.githubusercontent.com/u/233213854?v=4"
-                    alt="Sok Dara profile photo"
-                    className="aspect-square w-28 shrink-0 self-start rounded-[4px] border border-[#CAD3F5] object-cover"
+                    alt="Student photo"
+                    className="size-20 shrink-0 rounded object-cover"
                   />
-                  <div className="min-w-0 flex-1">
+                  <div className="min-w-0">
                     <p className="font-sans text-lg font-black text-[#020617] uppercase">
                       Sok Dara
                     </p>
                     <p className="font-mono text-[11px] font-bold text-[#0056FF]">STU-2026-0891</p>
-                    <div className="mt-3 grid grid-cols-2 gap-x-4 gap-y-2">
-                      <div className="col-span-2">
-                        <InfoRow label="Program" value="Software Engineering" />
-                      </div>
-                      <InfoRow label="Batch" value="2026" />
-                      <InfoRow label="Born" value="14 Mar 2004" />
-                      <InfoRow label="Blood" value="O+" />
-                      <InfoRow label="Campus" value="Phnom Penh" />
-                      <InfoRow label="Expires" value="31 Aug 2030" />
-                    </div>
+                    <p className="mt-1 font-sans text-xs font-semibold text-[#334155]">
+                      Software Engineering
+                    </p>
                   </div>
                 </div>
-                <div className="mt-4 space-y-2 border-t border-[#CAD3F5] pt-4">
+                <div className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2">
+                  <InfoRow label="Batch" value="2026" />
+                  <InfoRow label="Born" value="14 Mar 2004" />
+                  <InfoRow label="Blood" value="O+" />
+                  <InfoRow label="Campus" value="Phnom Penh" />
                   <InfoRow label="Status" value="Active student" />
                   <InfoRow label="Library access" value="Enabled" />
                   <InfoRow label="Issued" value="01 Sep 2026" />
+                  <InfoRow label="Expires" value="31 Aug 2030" />
                 </div>
                 <div className="mt-4 border-t border-[#CAD3F5] pt-4">
                   <FollowBlock followers={128} following={64} />
