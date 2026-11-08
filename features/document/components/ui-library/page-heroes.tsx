@@ -297,7 +297,7 @@ export function LibraryHero() {
         Component Library
       </h1>
 
-      <div className="grid items-start gap-6 lg:grid-cols-3">
+      <div className="grid items-start gap-6 md:grid-cols-2 xl:grid-cols-3">
         {/* EMPLOYEE ID */}
         <div className="w-full max-w-[430px] min-w-0 justify-self-center">
           <TiltCard className="overflow-hidden rounded-2xl border border-[#CAD3F5] bg-white shadow-md">
