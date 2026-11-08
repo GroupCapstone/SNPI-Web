@@ -182,12 +182,12 @@ function InfoRow({
   return (
     <div className="flex items-baseline justify-between gap-3">
       <span
-        className={`font-sans text-[9px] font-bold tracking-widest uppercase ${light ? 'text-white/50' : 'text-[#334155]/70'}`}
+        className={`shrink-0 font-sans text-[9px] font-bold tracking-widest uppercase ${light ? 'text-white/50' : 'text-[#334155]/70'}`}
       >
         {label}
       </span>
       <span
-        className={`text-right font-sans text-[11px] font-bold ${light ? 'text-white' : 'text-[#020617]'}`}
+        className={`text-right font-sans text-[11px] font-bold whitespace-nowrap ${light ? 'text-white' : 'text-[#020617]'}`}
       >
         {value}
       </span>
@@ -291,7 +291,7 @@ function IconBtn({
 
 export function LibraryHero() {
   return (
-    <section className="space-y-8 rounded-2xl border border-[#CAD3F5] bg-white p-6 shadow-xs sm:p-8">
+    <section className="space-y-8 rounded-2xl border border-[#CAD3F5] bg-white p-4 shadow-xs sm:p-8">
       <h1 className="font-sans text-3xl font-black tracking-tight text-[#020617] sm:text-4xl">
         Component Library
       </h1>
@@ -328,8 +328,8 @@ export function LibraryHero() {
                   <InfoRow label="Department" value="Software Engineering" />
                   <InfoRow label="ID No" value="EMP-2026-001" />
                   <InfoRow label="Access level" value="All Areas" />
-                  <InfoRow label="Email" value="shiliaiwei@snpi.edu.kh" />
-                  <InfoRow label="Phone" value="+855 12 345 678" />
+                  <InfoRow label="Office" value="HQ Building A" />
+                  <InfoRow label="Work type" value="Full-time" />
                   <InfoRow label="Valid" value="01/2026 to 12/2028" />
                 </div>
                 <div className="mt-4 w-20">
@@ -383,7 +383,9 @@ export function LibraryHero() {
                     </p>
                     <p className="font-mono text-[11px] font-bold text-[#0056FF]">STU-2026-0891</p>
                     <div className="mt-3 grid grid-cols-2 gap-x-4 gap-y-2">
-                      <InfoRow label="Program" value="Software Eng." />
+                      <div className="col-span-2">
+                        <InfoRow label="Program" value="Software Engineering" />
+                      </div>
                       <InfoRow label="Batch" value="2026" />
                       <InfoRow label="Born" value="14 Mar 2004" />
                       <InfoRow label="Blood" value="O+" />
@@ -393,8 +395,8 @@ export function LibraryHero() {
                   </div>
                 </div>
                 <div className="mt-4 space-y-2 border-t border-[#CAD3F5] pt-4">
-                  <InfoRow label="Email" value="sok.dara@student.snpi.edu.kh" />
-                  <InfoRow label="Emergency" value="+855 96 765 432" />
+                  <InfoRow label="Status" value="Active student" />
+                  <InfoRow label="Library access" value="Enabled" />
                   <InfoRow label="Issued" value="01 Sep 2026" />
                 </div>
                 <div className="mt-4 flex flex-nowrap items-end justify-between gap-3 border-t border-[#CAD3F5] pt-4">
@@ -412,11 +414,6 @@ export function LibraryHero() {
                   </IconBtn>
                 </div>
               </div>
-              <div className="rounded-b-2xl bg-[#EFF5FF] px-5 py-2">
-                <p className="font-mono text-[11px] font-bold tracking-widest text-[#334155]">
-                  5399 2026 0891 0042
-                </p>
-              </div>
             </div>
           </TiltCard>
         </div>
@@ -425,9 +422,9 @@ export function LibraryHero() {
         <div className="mx-auto w-full max-w-[320px]">
           <TiltCard>
             <div className="rounded-2xl border border-white/60 bg-white/95 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.9)] ring-1 ring-[#CAD3F5] backdrop-blur-xl">
-              <div className="rounded-t-2xl bg-[#032EA1] px-5 py-4">
+              <div className="rounded-t-2xl bg-[#2277FF] px-5 py-4">
                 <div className="mx-auto mb-3 h-2 w-16 rounded-full border border-white/40" />
-                <span className="inline-block rounded-[4px] bg-white px-2 py-1 font-sans text-[10px] font-black tracking-widest text-[#032EA1] uppercase">
+                <span className="inline-block rounded-[4px] bg-white px-2 py-1 font-sans text-[10px] font-black tracking-widest text-[#2277FF] uppercase">
                   All-Access Pass
                 </span>
                 <p className="mt-2 font-sans text-2xl font-black text-white">SNPI Tech Day</p>

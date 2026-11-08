@@ -18,9 +18,9 @@ export type DocsFont =
   | 'roboto-mono';
 
 export const DOCS_FONTS: { id: DocsFont; label: string; family: string }[] = [
+  { id: 'google-sans', label: 'Google Sans', family: "'GoogleSans'" },
   { id: 'inter', label: 'Inter', family: "'Inter'" },
   { id: 'sora', label: 'Sora', family: "'Sora'" },
-  { id: 'google-sans', label: 'Google Sans', family: "'GoogleSans'" },
   { id: 'mona-sans', label: 'Mona Sans', family: "'MonaSans'" },
   { id: 'nunito', label: 'Nunito', family: "'Nunito'" },
   { id: 'tt-firs-neue', label: 'TT Firs Neue', family: "'TTFirsNeue'" },
@@ -69,7 +69,7 @@ export function DocsNavProvider({
       const saved = window.localStorage.getItem('snpi-docs-font');
       if (saved && DOCS_FONTS.some((f) => f.id === saved)) return saved as DocsFont;
     }
-    return 'inter';
+    return 'google-sans';
   });
 
   const setFont = React.useCallback((next: DocsFont) => {
