@@ -437,13 +437,14 @@ export function ColorRampsTokens() {
             >
               <div className="flex items-center justify-between">
                 <span className="font-mono text-[10px] font-bold">{step.step}</span>
+                {/* micro badge hidden on phones, swatch columns are too narrow */}
                 {step.isBase && (
-                  <span className="py-0.2 rounded-[3px] border border-white/60 bg-white/20 px-1 font-mono text-[8px] font-black tracking-wider uppercase">
+                  <span className="py-0.2 hidden rounded-[3px] border border-white/60 bg-white/20 px-1 font-mono text-[8px] font-black tracking-wider uppercase sm:inline-block">
                     BASE
                   </span>
                 )}
               </div>
-              <div className="flex items-center justify-between">
+              <div className="hidden items-center justify-between sm:flex">
                 <span
                   className={cn(
                     'font-mono text-[8px] font-bold',

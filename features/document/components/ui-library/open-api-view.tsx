@@ -19,6 +19,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '@/lib/utils';
 import { MOTION_EASE_OUT } from '@/lib/motion';
 import { ApiSpecTable } from './api-spec-table';
+import { ApiHero } from './page-heroes';
 import { ParamTable, type ApiParameter } from './param-table';
 import { CodeBlock } from './code-block';
 
@@ -631,13 +632,8 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
           {/* ----------------------------------------------------------------- */}
           {/* HEADER SECTION                                                    */}
           {/* ----------------------------------------------------------------- */}
-          <div className="border-b border-[#CAD3F5] pb-4">
-            <div className="flex items-center gap-3">
-              <Terminal className="size-6 shrink-0 stroke-[2] text-[#020617]" />
-              <h1 className="text-2xl font-black tracking-tight text-[#0A1A4A] sm:text-3xl">
-                API Documentation
-              </h1>
-            </div>
+          <div className="border-b border-[#CAD3F5] pb-6">
+            <ApiHero />
           </div>
 
           {/* ----------------------------------------------------------------- */}
@@ -653,7 +649,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
 
             <div className="overflow-hidden rounded-xl border border-[#CAD3F5] bg-white shadow-2xs">
               <div className="overflow-x-auto">
-                <table className="w-full border-collapse text-left text-xs">
+                <table className="w-full min-w-[620px] border-collapse text-left text-xs">
                   <thead>
                     <tr className="border-b border-[#CAD3F5] bg-[#EFF5FF] text-[11px] font-bold text-[#0A1A4A]">
                       <th className="w-28 px-4 py-2.5">Version</th>

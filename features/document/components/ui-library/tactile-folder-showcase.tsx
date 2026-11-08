@@ -69,14 +69,14 @@ export function TactileFolderShowcase({
               } else if (idx === 0) {
                 // Tilted left
                 transformClasses = '-translate-y-4 -rotate-4 sm:-rotate-6 scale-95 opacity-85';
-                zIndexClass = 'z-10 hover:-translate-y-6 hover:opacity-100';
+                zIndexClass = 'z-10 hover:opacity-100';
               } else if (idx === 1) {
                 // Tilted right
                 transformClasses = '-translate-y-4 rotate-4 sm:rotate-6 scale-95 opacity-85';
-                zIndexClass = 'z-10 hover:-translate-y-6 hover:opacity-100';
+                zIndexClass = 'z-10 hover:opacity-100';
               } else {
                 transformClasses = '-translate-y-6 rotate-1 scale-90 opacity-75';
-                zIndexClass = 'z-0 hover:-translate-y-8 hover:opacity-100';
+                zIndexClass = 'z-0 hover:opacity-100';
               }
 
               return (

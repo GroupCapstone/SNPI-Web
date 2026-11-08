@@ -152,6 +152,7 @@ export function ScaffoldArchitectureSection() {
             <a
               key={stage.id}
               href="#layout-scaffold-architecture"
+              onClick={(e) => e.preventDefault()}
               title={`View ${stage.title} Taxonomy & Invariants`}
               className={cn(
                 'group relative flex cursor-pointer flex-col items-center justify-between rounded-xl border p-3.5 text-center transition-all',

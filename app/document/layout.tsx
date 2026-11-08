@@ -36,7 +36,17 @@ export default function DocumentLayout({
             __html: `
               .docs-root,
               .docs-root * {
-                font-family: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
+                font-family: var(--docs-font, 'Inter'), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
+              }
+
+              /* Rule: no hover animation. Icons never animate on hover. */
+              .docs-root *:hover {
+                animation: none !important;
+              }
+              .docs-root *:hover svg,
+              .docs-root svg:hover {
+                animation: none !important;
+                transform: none !important;
               }
 
               /* Base Font Scale - Increased for Higher Legibility */

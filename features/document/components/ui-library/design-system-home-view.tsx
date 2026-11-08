@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { BrandConceptBlueprint } from './brand-concept-blueprint';
+import { BlueprintHero } from './page-heroes';
 import { ColorRampsTokens } from './color-ramps-tokens';
 import { CoreComponentsMaintenanceStudio } from './core-components-maintenance-studio';
 import {
@@ -302,7 +303,7 @@ export function DesignSystemHomeView() {
         {/* ========================================================= */}
         <aside
           aria-label="Design System Navigation"
-          className="w-full shrink-0 border-b border-[#CAD3F5] bg-white lg:sticky lg:top-[68px] lg:h-[calc(100vh-68px)] lg:w-[320px] lg:overflow-y-auto lg:border-r lg:border-b-0 xl:w-[340px]"
+          className="hidden w-full shrink-0 border-b border-[#CAD3F5] bg-white lg:sticky lg:top-[68px] lg:block lg:h-[calc(100vh-68px)] lg:w-[320px] lg:overflow-y-auto lg:border-r lg:border-b-0 xl:w-[340px]"
         >
           <div className="space-y-4 p-4 lg:p-5">
             {/* Header Identity: Brand Title */}
@@ -479,6 +480,8 @@ export function DesignSystemHomeView() {
                   Brand Blueprint &amp; Assets
                 </h1>
               </div>
+
+              <BlueprintHero />
 
               {/* Core Brand Blueprint Components */}
               <BrandConceptBlueprint />

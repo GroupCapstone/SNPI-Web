@@ -40,6 +40,7 @@ import {
   type HookSidebarItem,
   generateAiAgentPrompt,
   LibraryTooltip,
+  FUTURE_COMPONENT_DEMOS,
   BlankFutureComponent,
   type ComponentItemDoc,
   type ComponentFreshness,
@@ -79,6 +80,7 @@ import {
   GraduationCap,
 } from '@/components/icons';
 import { useDocsNav } from './docs-nav-context';
+import { LibraryHero } from './page-heroes';
 import { cn } from '@/lib/utils';
 
 /**
@@ -818,6 +820,7 @@ export function UiLibraryView() {
 
           {/* COLUMN 2: Center Main Interactive Component Feed (1-Column Continuous Scroll Feed) */}
           <main className="min-w-0 flex-1 space-y-10">
+            <LibraryHero />
             {/* COMPONENT DEMOS FEED (Clean Open Feed with Signature Parent Colors & Unified Category Cards) */}
             <div className="w-full space-y-16">
               {feedCategories.map((group) => {
@@ -1030,6 +1033,11 @@ function renderFeedComponentDemo(
   },
   comp?: ComponentItemDoc,
 ) {
+  const FutureDemo = FUTURE_COMPONENT_DEMOS[id];
+  if (FutureDemo) {
+    return <FutureDemo />;
+  }
+
   if (comp?.isFuture) {
     return (
       <BlankFutureComponent

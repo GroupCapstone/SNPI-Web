@@ -21,7 +21,7 @@ export function FluidOrbDemo() {
         <button
           type="button"
           onClick={() => setPulse(!pulse)}
-          className="group relative flex size-28 items-center justify-center rounded-full transition-transform hover:scale-105 focus:outline-none active:scale-95"
+          className="group relative flex size-28 items-center justify-center rounded-full focus:outline-none active:scale-95"
         >
           {/* Outer Luminous Glow */}
           <div

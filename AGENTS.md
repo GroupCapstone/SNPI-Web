@@ -97,6 +97,11 @@ These rules apply to every AI coding agent and human contributor working in the 
   - **Zero Pulsing Beacons & Status Beacons**: Under no circumstances should icons, buttons, cards, headers, navigation bars, or components feature pulsing beacons, blinking live dots, status beacons, radar pings, or heartbeat indicators (`animate-ping`, `animate-pulse` on green/colored corner dots).
   - **Zero Live Status Dots & Presence Rings**: Never design or place colored corner dots (green, blue, red, or any color), live online presence dots, or expanding ripple rings on icons, avatars, badges, or brand marks.
   - **Clean Static Typography & Structured Pills Only**: State must strictly be communicated via clean, high-contrast textual badges or static pills adhering to the 5 brand tokens (e.g. `LIVE`, `NEW`, `ACTIVE`, `READY`), never via distracting pulsing animations or corner beacon dots.
+- **Mandatory Document Pages Rules (ABSOLUTE RULE, set by the user 2026-11-08)**:
+  - **Default font is Inter**: The font switch on the three document pages (`/document`, `/document/design`, `/document/design-system`) defaults to **Inter**, English fonts only. No language switch. Language stays English.
+  - **No links or jump ids inside demos**: Component demos must never contain real links, anchors, or jump ids. Tapping or clicking anything inside a demo must stay inside that section.
+  - **No hover animation**: Never add hover animation anywhere. Icons must never animate on hover. No hover scale, translate, rotate, or transform. Hover may only change color or background, with no animation. This rule overrides the motion laws below for all hover states.
+  - **Standards**: Every design must follow this project skill and recognised global design standards, not one alone.
 - **Mandatory Local-Only Commits & Zero Push Without Explicit Command — ABSOLUTE RULE**:
   - In every conversation, session, and task, AI agents and contributors are **strictly permitted to make local git commits only**.
   - **NEVER execute `git push`**, push release tags, publish release checkpoints, or perform remote publishing actions under any circumstances unless the user gives an explicit, direct command (e.g., `git push`, `push now`, `push to github`).

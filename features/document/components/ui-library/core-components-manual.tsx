@@ -1743,6 +1743,7 @@ export function CoreComponentsManual({ hideHeader = false }: { hideHeader?: bool
                         View institutional governance details in the{' '}
                         <a
                           href="#brand-blueprint"
+                          onClick={(e) => e.preventDefault()}
                           className="inline-flex items-center gap-1 font-bold text-[#0056FF] underline decoration-[#0056FF]/40 underline-offset-2 hover:decoration-[#0056FF]"
                         >
                           <span>Academic Charter</span>

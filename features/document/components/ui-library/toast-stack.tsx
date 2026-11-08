@@ -315,8 +315,8 @@ function ToastCard({
 
             {/* Message Body (No text truncation - 100% visible) */}
             <div className="min-w-0 flex-1 space-y-1">
-              <div className="flex items-center gap-2">
-                <h4 className="font-sans text-sm leading-snug font-bold tracking-tight text-[#0A1A4A]">
+              <div className="flex flex-wrap items-center gap-2">
+                <h4 className="min-w-0 font-sans text-sm leading-snug font-bold tracking-tight break-words text-[#0A1A4A]">
                   {item.title || (item.type === 'info' ? 'Notification' : config.label)}
                 </h4>
                 <span

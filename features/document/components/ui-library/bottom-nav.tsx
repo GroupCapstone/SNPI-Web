@@ -37,7 +37,7 @@ export function LibraryBottomNav({ items, activeId, onSelect, className }: Libra
             type="button"
             onClick={() => onSelect(item.id)}
             className={cn(
-              'group relative flex min-h-[44px] min-w-[44px] flex-col items-center justify-center gap-1 rounded-[4px] border-0 px-3.5 py-1 text-xs font-semibold transition-all select-none focus-visible:outline-none',
+              'group relative flex min-h-[44px] min-w-[44px] flex-col items-center justify-center gap-1 rounded-[4px] border-0 px-1.5 py-1 text-xs font-semibold transition-all select-none focus-visible:outline-none sm:px-3.5',
               isActive
                 ? 'bg-[#0056FF] text-white shadow-none'
                 : 'text-slate-600 hover:bg-slate-100/60 hover:text-slate-900',
@@ -51,7 +51,9 @@ export function LibraryBottomNav({ items, activeId, onSelect, className }: Libra
                 </span>
               )}
             </div>
-            <span className="max-w-[64px] truncate text-[11px] leading-tight">{item.label}</span>
+            <span className="max-w-[52px] truncate text-[11px] leading-tight sm:max-w-[64px]">
+              {item.label}
+            </span>
           </button>
         );
       })}

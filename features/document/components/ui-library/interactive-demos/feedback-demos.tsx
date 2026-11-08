@@ -726,6 +726,7 @@ export function StatusPage404Demo() {
           statusCode={selectedCode}
           homeLabel="Return to Dashboard"
           showControls={false}
+          onHomeClick={() => setSelectedCode(404)}
         />
       </div>
     </div>

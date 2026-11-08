@@ -239,7 +239,7 @@ export function RareUiNavigationMenu({ className }: { className?: string }) {
       {/* Floating 3-Island Header Row */}
       <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
         {/* ISLAND 1: Brand Capsule Pill [ ✦ SNPI UI ] */}
-        <div className="flex h-11 items-center gap-2 rounded-full border border-[#CAD3F5] bg-white px-4 py-2 text-slate-900 shadow-none transition-transform hover:scale-[1.02]">
+        <div className="flex h-11 items-center gap-2 rounded-full border border-[#CAD3F5] bg-white px-4 py-2 text-slate-900 shadow-none">
           <span className="flex size-5 items-center justify-center rounded-full bg-[#E3E7FC] text-[#0056FF]">
             ✦
           </span>
@@ -256,7 +256,10 @@ export function RareUiNavigationMenu({ className }: { className?: string }) {
               <NavigationMenuLink
                 href="#home"
                 active={activeTab === 'home'}
-                onClick={() => setActiveTab('home')}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setActiveTab('home');
+                }}
                 className="text-slate-600 hover:text-[#0056FF]"
               >
                 Home
@@ -297,6 +300,7 @@ export function RareUiNavigationMenu({ className }: { className?: string }) {
 
                     <a
                       href="#cat-navigation"
+                      onClick={(e) => e.preventDefault()}
                       className="group/cta mt-4 inline-flex items-center gap-1.5 font-mono text-xs font-bold text-[#0056FF] hover:underline"
                     >
                       <span>Explore Docks</span>
@@ -308,6 +312,7 @@ export function RareUiNavigationMenu({ className }: { className?: string }) {
                   <div className="flex flex-col justify-between gap-2 sm:col-span-7">
                     <a
                       href="#cat-forms"
+                      onClick={(e) => e.preventDefault()}
                       className="group/item flex items-start gap-2.5 rounded-xl border border-transparent p-2 transition-colors hover:border-[#CAD3F5] hover:bg-[#EFF5FF]"
                     >
                       <SquarePen className="mt-0.5 size-4.5 shrink-0 stroke-[2] text-[#020617]" />
@@ -328,6 +333,7 @@ export function RareUiNavigationMenu({ className }: { className?: string }) {
 
                     <a
                       href="#cat-feedback"
+                      onClick={(e) => e.preventDefault()}
                       className="group/item flex items-start gap-2.5 rounded-xl border border-transparent p-2 transition-colors hover:border-[#CAD3F5] hover:bg-[#EFF5FF]"
                     >
                       <Bell className="mt-0.5 size-4.5 shrink-0 stroke-[2] text-[#020617]" />
@@ -343,6 +349,7 @@ export function RareUiNavigationMenu({ className }: { className?: string }) {
 
                     <a
                       href="#interactive-feed"
+                      onClick={(e) => e.preventDefault()}
                       className="group/item flex items-start gap-2.5 rounded-xl border border-transparent p-2 transition-colors hover:border-[#CAD3F5] hover:bg-[#EFF5FF]"
                     >
                       <Layers className="mt-0.5 size-4.5 shrink-0 stroke-[2] text-[#020617]" />
@@ -367,7 +374,10 @@ export function RareUiNavigationMenu({ className }: { className?: string }) {
               <NavigationMenuLink
                 href="/document"
                 active={activeTab === 'docs'}
-                onClick={() => setActiveTab('docs')}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setActiveTab('docs');
+                }}
                 className="text-slate-600 hover:text-[#0056FF]"
               >
                 Open API

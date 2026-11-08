@@ -21,6 +21,7 @@ import { getNavIcon, getParentGroupIcon, getParentCategoryTheme } from './compon
 import { HangingTabsNav, type HangingTabItem } from './hanging-tabs-nav';
 import { HookSidebar } from './hook-sidebar';
 import { useDocsNav } from './docs-nav-context';
+import { FontSwitch } from './font-switch';
 import {
   COMPONENT_CATEGORIES,
   COMPONENT_LIBRARY_REGISTRY,
@@ -241,6 +242,11 @@ export function DocsStickyHeader({
           <HangingTabsNav items={navTabs} activeId={currentTab} size="md" />
         </div>
 
+        {/* Right Side (Desktop): Font Switch */}
+        <div className="relative z-20 hidden items-center md:flex">
+          <FontSwitch variant="header" />
+        </div>
+
         {/* Right Side: Mobile Controls (Search, Theme, Hamburger Dropdown) */}
         <div ref={menuRef} className="relative z-20 flex items-center gap-1.5 md:hidden">
           {/* 1. Mobile Search Trigger */}
@@ -251,18 +257,18 @@ export function DocsStickyHeader({
               setTimeout(() => searchInputRef.current?.focus(), 100);
             }}
             aria-label="Search Documentation"
-            className="flex size-9 items-center justify-center rounded-xl border border-white/20 bg-white/10 text-white transition-colors hover:bg-white/20 active:scale-95"
+            className="flex size-11 items-center justify-center rounded-xl border border-white/20 bg-white/10 text-white transition-colors hover:bg-white/20 active:scale-95"
           >
-            <Search className="size-4 stroke-[2]" />
+            <Search className="size-5 stroke-[2]" />
           </button>
 
           {/* 2. Theme / Mode Indicator */}
           <button
             type="button"
             aria-label="Toggle Theme Mode"
-            className="flex size-9 items-center justify-center rounded-xl border border-white/20 bg-white/10 text-white transition-colors hover:bg-white/20 active:scale-95"
+            className="flex size-11 items-center justify-center rounded-xl border border-white/20 bg-white/10 text-white transition-colors hover:bg-white/20 active:scale-95"
           >
-            <Moon className="size-4 stroke-[2]" />
+            <Moon className="size-5 stroke-[2]" />
           </button>
 
           {/* 3. Mobile Hamburger Menu Toggle */}
@@ -272,22 +278,22 @@ export function DocsStickyHeader({
             aria-expanded={mobileMenuOpen}
             aria-label="Toggle Navigation Menu"
             className={cn(
-              'flex size-9 items-center justify-center rounded-xl border transition-all active:scale-95',
+              'flex size-11 items-center justify-center rounded-xl border transition-all active:scale-95',
               mobileMenuOpen
                 ? 'border-white bg-white text-[#0056FF]'
                 : 'border-white/20 bg-white/10 text-white hover:bg-white/20',
             )}
           >
             {mobileMenuOpen ? (
-              <X className="size-4 stroke-[2.2]" />
+              <X className="size-5 stroke-[2.2]" />
             ) : (
-              <Menu className="size-4 stroke-[2.2]" />
+              <Menu className="size-5 stroke-[2.2]" />
             )}
           </button>
 
           {/* Mobile Dropdown Panel (Right Side) */}
           {mobileMenuOpen && (
-            <div className="animate-in fade-in zoom-in-95 absolute top-[calc(100%+8px)] right-0 w-[min(calc(100vw-32px),360px)] overflow-hidden rounded-2xl border border-[#CAD3F5] bg-white p-4 shadow-none duration-150">
+            <div className="animate-in fade-in zoom-in-95 absolute top-[calc(100%+8px)] right-0 w-[min(calc(100vw-24px),380px)] overflow-hidden rounded-2xl border border-[#CAD3F5] bg-white p-3.5 shadow-none duration-150">
               {/* Top Primary Page Switcher Tabs (3 Distinct Views: Component, API, Design) */}
               <div className="mb-4">
                 <span className="mb-2 block font-mono text-[10px] font-bold tracking-wider text-slate-400 uppercase sm:text-[11px]">
@@ -298,14 +304,14 @@ export function DocsStickyHeader({
                     type="button"
                     onClick={() => handleMobileNavigate('library')}
                     className={cn(
-                      'flex items-center justify-center gap-1 rounded-lg py-2 font-sans text-[11px] font-bold transition-all select-none active:scale-95 sm:text-xs',
+                      'flex min-h-[52px] flex-col items-center justify-center gap-1 rounded-lg px-1 py-2 font-sans text-[11px] leading-tight font-bold transition-all select-none active:scale-95 sm:text-xs',
                       currentTab === 'library'
                         ? 'bg-[#0056FF] text-white shadow-xs'
-                        : 'text-slate-600 hover:text-slate-900',
+                        : 'text-[#334155] hover:text-[#0A1A4A]',
                     )}
                   >
-                    <Layers className="size-3.5 shrink-0 stroke-[2]" />
-                    <span className="truncate">Component</span>
+                    <Layers className="size-4.5 shrink-0 stroke-[2]" />
+                    <span>Component</span>
                   </button>
                   <button
                     type="button"
@@ -317,8 +323,8 @@ export function DocsStickyHeader({
                         : 'text-slate-600 hover:text-slate-900',
                     )}
                   >
-                    <FileText className="size-3.5 shrink-0 stroke-[2]" />
-                    <span className="truncate">API</span>
+                    <FileText className="size-4.5 shrink-0 stroke-[2]" />
+                    <span>API</span>
                   </button>
                   <button
                     type="button"
@@ -330,10 +336,12 @@ export function DocsStickyHeader({
                         : 'text-slate-600 hover:text-slate-900',
                     )}
                   >
-                    <ShieldKey className="size-3.5 shrink-0 stroke-[2]" />
-                    <span className="truncate">Blueprint</span>
+                    <ShieldKey className="size-4.5 shrink-0 stroke-[2]" />
+                    <span>Blueprint</span>
                   </button>
                 </div>
+
+                <FontSwitch variant="panel" />
               </div>
 
               {/* Modern Minimalist Search Bar (Clean Blueprint Standard) */}
@@ -345,7 +353,7 @@ export function DocsStickyHeader({
                   value={mobileSearch}
                   onChange={(e) => setMobileSearch(e.target.value)}
                   placeholder="Search components..."
-                  className="h-9.5 w-full rounded-xl border border-slate-200 bg-[#F8FAFC] py-2 pr-10 pl-9 font-sans text-xs font-medium text-black shadow-2xs transition-all placeholder:font-normal placeholder:text-slate-400 hover:border-slate-300 hover:bg-white focus:border-black focus:bg-white focus:shadow-xs focus:ring-2 focus:ring-black/10 focus:outline-none focus-visible:outline-none"
+                  className="h-11 w-full rounded-[4px] border border-[#CAD3F5] bg-[#EFF5FF]/50 py-2 pr-10 pl-9 font-sans text-xs font-medium text-[#0A1A4A] shadow-2xs transition-all placeholder:font-normal placeholder:text-[#334155]/70 hover:border-[#0056FF]/50 hover:bg-white focus:border-[#0056FF] focus:bg-white focus:shadow-xs focus:ring-2 focus:ring-[#0056FF]/15 focus:outline-none focus-visible:outline-none"
                   style={{ outline: 'none' }}
                 />
                 {mobileSearch && (
@@ -396,7 +404,7 @@ export function DocsStickyHeader({
                               <button
                                 type="button"
                                 onClick={() => toggleCategoryGroup(group.groupId)}
-                                className="group flex w-full cursor-pointer items-center justify-between rounded-xl px-2.5 py-2 text-left font-sans text-xs font-bold text-black transition-colors select-none hover:bg-slate-50"
+                                className="group flex min-h-11 w-full cursor-pointer items-center justify-between rounded-xl px-2.5 py-2 text-left font-sans text-xs font-bold text-[#0A1A4A] transition-colors select-none hover:bg-[#EFF5FF]"
                               >
                                 <div className="flex min-w-0 items-center gap-2.5">
                                   <ParentGroupIcon className="size-4.5 shrink-0 stroke-[2] text-[#020617]" />
@@ -424,7 +432,7 @@ export function DocsStickyHeader({
                                           <button
                                             type="button"
                                             onClick={() => toggleParentGroup(item.id)}
-                                            className="group flex w-full cursor-pointer items-center justify-between rounded-md py-1.5 pr-2 pl-3 text-left font-sans text-xs font-semibold text-black transition-colors select-none hover:bg-slate-50"
+                                            className="group flex min-h-11 w-full cursor-pointer items-center justify-between rounded-md py-1.5 pr-2 pl-3 text-left font-sans text-xs font-semibold text-[#0A1A4A] transition-colors select-none hover:bg-[#EFF5FF]"
                                           >
                                             <span className="text-left leading-snug break-words whitespace-normal">
                                               {item.name}
@@ -449,7 +457,7 @@ export function DocsStickyHeader({
                                                         child.targetId || `comp-${child.id}`;
                                                       handleMobileNavigate('library', target);
                                                     }}
-                                                    className="group relative flex w-full cursor-pointer items-center justify-between rounded-md py-1.5 pr-2 pl-3.5 text-left font-normal text-black/80 transition-colors select-none hover:bg-slate-50 hover:text-black"
+                                                    className="group relative flex min-h-11 w-full cursor-pointer items-center justify-between rounded-md py-1.5 pr-2 pl-3.5 text-left font-normal text-[#0A1A4A]/80 transition-colors select-none hover:bg-[#EFF5FF] hover:text-[#0A1A4A]"
                                                   >
                                                     <span className="text-left font-sans text-xs leading-snug break-words whitespace-normal">
                                                       {child.name}
@@ -483,7 +491,7 @@ export function DocsStickyHeader({
                                           const target = item.targetId || `comp-${item.id}`;
                                           handleMobileNavigate('library', target);
                                         }}
-                                        className="group relative flex w-full cursor-pointer items-center justify-between rounded-md py-1.5 pr-2 pl-3.5 text-left font-normal text-black/80 transition-colors select-none hover:bg-slate-50 hover:text-black"
+                                        className="group relative flex min-h-11 w-full cursor-pointer items-center justify-between rounded-md py-1.5 pr-2 pl-3.5 text-left font-normal text-[#0A1A4A]/80 transition-colors select-none hover:bg-[#EFF5FF] hover:text-[#0A1A4A]"
                                       >
                                         <span className="text-left font-sans text-xs leading-snug break-words whitespace-normal">
                                           {item.name}
@@ -520,7 +528,7 @@ export function DocsStickyHeader({
                         key={sec.id}
                         type="button"
                         onClick={() => handleMobileNavigate('release', sec.id)}
-                        className="flex w-full items-center justify-between rounded-md px-2.5 py-2 text-left font-sans text-xs font-medium text-slate-700 hover:bg-[#EFF5FF] hover:text-[#0056FF]"
+                        className="flex min-h-11 w-full items-center justify-between rounded-md px-2.5 py-2 text-left font-sans text-xs font-medium text-[#334155] hover:bg-[#EFF5FF] hover:text-[#0056FF]"
                       >
                         <span className="flex-1 leading-snug break-words">{sec.label}</span>
                         <ChevronRight className="size-3 text-slate-400" />
@@ -538,7 +546,7 @@ export function DocsStickyHeader({
                         key={sec.id}
                         type="button"
                         onClick={() => handleMobileNavigate('openapi', sec.id)}
-                        className="flex w-full items-center justify-between rounded-md px-2.5 py-2 text-left font-sans text-xs font-medium text-slate-700 hover:bg-[#EFF5FF] hover:text-[#0056FF]"
+                        className="flex min-h-11 w-full items-center justify-between rounded-md px-2.5 py-2 text-left font-sans text-xs font-medium text-[#334155] hover:bg-[#EFF5FF] hover:text-[#0056FF]"
                       >
                         <span className="flex-1 leading-snug break-words">{sec.label}</span>
                         <ChevronRight className="size-3 text-slate-400" />

@@ -351,19 +351,19 @@ export function FloatingLabelFormDemo() {
   return (
     <div className="w-full max-w-xl space-y-5 rounded-2xl border border-[#CAD3F5] bg-white p-5 shadow-xs sm:p-7">
       {/* Form Dossier Header */}
-      <div className="flex items-center justify-between border-b border-[#CAD3F5] pb-4">
+      <div className="flex flex-col items-start gap-3 border-b border-[#CAD3F5] pb-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-3">
           <FileText className="size-5 shrink-0 stroke-[2] text-[#020617]" />
           <div>
             <h4 className="font-sans text-sm font-bold text-[#0A1A4A] sm:text-base">
               Candidate Registration Dossier
             </h4>
-            <p className="font-sans text-xs text-[#334155]">
+            <div className="font-sans text-xs text-[#334155]">
               Standard Form Inputs &middot; High-Contrast Precision
-            </p>
+            </div>
           </div>
         </div>
-        <span className="rounded-md border border-[#CAD3F5] bg-[#EFF5FF] px-2.5 py-1 font-mono text-[10px] font-bold text-[#0056FF]">
+        <span className="shrink-0 rounded-md border border-[#CAD3F5] bg-[#EFF5FF] px-2.5 py-1 font-mono text-[10px] font-bold whitespace-nowrap text-[#0056FF]">
           Verified Form
         </span>
       </div>
@@ -371,7 +371,7 @@ export function FloatingLabelFormDemo() {
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Field 1: Candidate Full Legal Name */}
         <div className="space-y-1.5">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between gap-3">
             <label
               htmlFor="std-full-name"
               className="block font-sans text-xs font-bold text-[#0A1A4A]"
@@ -379,7 +379,7 @@ export function FloatingLabelFormDemo() {
               Candidate Full Legal Name <span className="text-[#0056FF]">*</span>
             </label>
             {formData.fullName.trim().length >= 3 && (
-              <span className="inline-flex items-center gap-1 font-mono text-[10px] font-bold text-emerald-600">
+              <span className="inline-flex shrink-0 items-center gap-1 font-mono text-[10px] font-bold whitespace-nowrap text-emerald-600">
                 <Check className="size-3 stroke-[2.5]" />
                 <span>Valid Name</span>
               </span>
@@ -399,19 +399,19 @@ export function FloatingLabelFormDemo() {
               className="h-11 w-full rounded-xl border-2 border-[#CAD3F5] bg-[#EFF5FF]/40 pr-3 pl-10 font-sans text-xs font-semibold text-[#0A1A4A] transition-all placeholder:text-slate-400 hover:border-[#0056FF]/50 hover:bg-white focus:border-[#0056FF] focus:bg-white focus:ring-3 focus:ring-[#0056FF]/15 focus:outline-none"
             />
           </div>
-          <p className="font-sans text-[11px] text-slate-500">
+          <div className="font-sans text-[11px] text-slate-500">
             Official legal name matching civil registration identity records.
-          </p>
+          </div>
         </div>
 
         {/* Field 2: Institutional Campus Email Address */}
         <div className="space-y-1.5">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between gap-3">
             <label htmlFor="std-email" className="block font-sans text-xs font-bold text-[#0A1A4A]">
               Institutional Campus Email Address <span className="text-[#0056FF]">*</span>
             </label>
             {formData.email.includes('@') && (
-              <span className="inline-flex items-center gap-1 font-mono text-[10px] font-bold text-emerald-600">
+              <span className="inline-flex shrink-0 items-center gap-1 font-mono text-[10px] font-bold whitespace-nowrap text-emerald-600">
                 <Check className="size-3 stroke-[2.5]" />
                 <span>Verified Domain</span>
               </span>
@@ -428,17 +428,17 @@ export function FloatingLabelFormDemo() {
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               placeholder="e.g. dara.sok@student.snpi.edu.kh"
-              className="h-11 w-full rounded-xl border-2 border-[#CAD3F5] bg-[#EFF5FF]/40 pr-3 pl-10 font-sans text-xs font-semibold text-[#0A1A4A] transition-all placeholder:text-slate-400 hover:border-[#0056FF]/50 hover:bg-white focus:border-[#0056FF] focus:bg-white focus:ring-3 focus:ring-[#0056FF]/15 focus:outline-none"
+              className="h-11 w-full rounded-xl border-2 border-[#CAD3F5] bg-[#EFF5FF]/40 pr-3 pl-10 font-mono text-[11px] font-semibold text-[#0A1A4A] transition-all placeholder:font-sans placeholder:text-slate-400 hover:border-[#0056FF]/50 hover:bg-white focus:border-[#0056FF] focus:bg-white focus:ring-3 focus:ring-[#0056FF]/15 focus:outline-none"
             />
           </div>
-          <p className="font-sans text-[11px] text-slate-500">
+          <div className="font-sans text-[11px] text-slate-500">
             Official campus single sign-on address (@student.snpi.edu.kh).
-          </p>
+          </div>
         </div>
 
         {/* Field 3: National Student ID */}
         <div className="space-y-1.5">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between gap-3">
             <label
               htmlFor="std-student-id"
               className="block font-sans text-xs font-bold text-[#0A1A4A]"
@@ -446,7 +446,7 @@ export function FloatingLabelFormDemo() {
               National Student ID (STU-XXXX-XXXX) <span className="text-[#0056FF]">*</span>
             </label>
             {formData.studentId.trim().length >= 6 && (
-              <span className="inline-flex items-center gap-1 font-mono text-[10px] font-bold text-emerald-600">
+              <span className="inline-flex shrink-0 items-center gap-1 font-mono text-[10px] font-bold whitespace-nowrap text-emerald-600">
                 <Check className="size-3 stroke-[2.5]" />
                 <span>ID Standard</span>
               </span>
@@ -466,9 +466,9 @@ export function FloatingLabelFormDemo() {
               className="h-11 w-full rounded-xl border-2 border-[#CAD3F5] bg-[#EFF5FF]/40 pr-3 pl-10 font-mono text-xs font-bold text-[#0A1A4A] transition-all placeholder:font-sans placeholder:font-normal placeholder:text-slate-400 hover:border-[#0056FF]/50 hover:bg-white focus:border-[#0056FF] focus:bg-white focus:ring-3 focus:ring-[#0056FF]/15 focus:outline-none"
             />
           </div>
-          <p className="font-sans text-[11px] text-slate-500">
+          <div className="font-sans text-[11px] text-slate-500">
             Standard format: STU-YYYY-XXXX institutional identifier.
-          </p>
+          </div>
         </div>
 
         {/* Action Buttons & Verification Note */}

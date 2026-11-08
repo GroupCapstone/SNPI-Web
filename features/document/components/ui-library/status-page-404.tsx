@@ -77,6 +77,8 @@ export interface StatusPage404Props {
   description?: string;
   /** Primary action button link href. Default: '/document/design-system' */
   homeHref?: string;
+  /** Demo mode: when set, the primary action renders as a button and never navigates */
+  onHomeClick?: () => void;
   /** Primary action button label. Default: 'Return to Dashboard' */
   homeLabel?: string;
   /** Secondary retry action callback for error boundaries */
@@ -89,6 +91,33 @@ export interface StatusPage404Props {
   showControls?: boolean;
 }
 
+// Renders the primary action as a plain button in demo mode so a tap
+// inside a documentation stage never navigates away from the section.
+function StatusHomeAction({
+  onHomeClick,
+  homeHref,
+  className,
+  children,
+}: {
+  onHomeClick?: () => void;
+  homeHref: string;
+  className?: string;
+  children: React.ReactNode;
+}) {
+  if (onHomeClick) {
+    return (
+      <button type="button" onClick={onHomeClick} className={className}>
+        {children}
+      </button>
+    );
+  }
+  return (
+    <Link href={homeHref} className={className}>
+      {children}
+    </Link>
+  );
+}
+
 export function StatusPage404({
   mode: initialMode = 'radar',
   statusCode: initialCode = 404,
@@ -96,6 +125,7 @@ export function StatusPage404({
   description: customDesc,
   homeHref = '/document/design-system',
   homeLabel,
+  onHomeClick,
   onReset,
   resetLabel,
   className,
@@ -205,13 +235,14 @@ export function StatusPage404({
                 </button>
               )}
               {resolvedHomeLabel && (
-                <Link
-                  href={homeHref}
+                <StatusHomeAction
+                  onHomeClick={onHomeClick}
+                  homeHref={homeHref}
                   className="inline-flex cursor-pointer items-center gap-2 rounded-full bg-[#0056FF] px-6 py-2.5 font-sans text-xs font-bold text-white transition-all hover:bg-[#2277FF] active:scale-[0.97]"
                 >
                   <span>{resolvedHomeLabel}</span>
                   <ChevronRight className="size-3.5 stroke-[2.5]" />
-                </Link>
+                </StatusHomeAction>
               )}
             </div>
 
@@ -344,12 +375,13 @@ export function StatusPage404({
                 </button>
               )}
               {resolvedHomeLabel && (
-                <Link
-                  href={homeHref}
+                <StatusHomeAction
+                  onHomeClick={onHomeClick}
+                  homeHref={homeHref}
                   className="inline-flex cursor-pointer items-center gap-2 rounded-full bg-[#0056FF] px-6 py-2.5 font-sans text-xs font-bold tracking-wider text-white uppercase transition-all hover:bg-[#2277FF] active:scale-[0.97]"
                 >
                   <span>{resolvedHomeLabel}</span>
-                </Link>
+                </StatusHomeAction>
               )}
             </div>
           </div>
@@ -399,12 +431,13 @@ export function StatusPage404({
                   </button>
                 )}
                 {resolvedHomeLabel && (
-                  <Link
-                    href={homeHref}
+                  <StatusHomeAction
+                    onHomeClick={onHomeClick}
+                    homeHref={homeHref}
                     className="inline-flex cursor-pointer items-center gap-2 rounded-full bg-[#0056FF] px-6 py-2.5 font-sans text-xs font-bold text-white transition-all hover:bg-[#2277FF] active:scale-[0.97]"
                   >
                     <span>{resolvedHomeLabel}</span>
-                  </Link>
+                  </StatusHomeAction>
                 )}
               </div>
             </div>
@@ -434,12 +467,13 @@ export function StatusPage404({
                 )}
 
                 {resolvedHomeLabel && (
-                  <Link
-                    href={homeHref}
+                  <StatusHomeAction
+                    onHomeClick={onHomeClick}
+                    homeHref={homeHref}
                     className="inline-flex cursor-pointer items-center gap-2 rounded-full bg-[#0056FF] px-6 py-2 font-sans text-xs font-bold text-white transition-all hover:bg-[#2277FF] active:scale-[0.97]"
                   >
                     <span>{resolvedHomeLabel}</span>
-                  </Link>
+                  </StatusHomeAction>
                 )}
 
                 <button

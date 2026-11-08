@@ -629,7 +629,7 @@ export function GithubAppearanceColorRoles() {
     return (
       <div
         key={r.role}
-        className="group relative flex flex-col justify-between rounded-xl border p-3 transition-all hover:scale-[1.01] active:scale-[0.99]"
+        className="group relative flex flex-col justify-between rounded-xl border p-3 transition-colors active:scale-[0.99]"
         style={{
           backgroundColor: r.fill,
           color: r.on,
@@ -1339,7 +1339,7 @@ export function GithubAppearanceColorRoles() {
               <button
                 type="button"
                 onClick={handleRunVerification}
-                className="inline-flex items-center gap-1.5 rounded-lg border border-[#0056FF] bg-[#0056FF] px-3.5 py-1.5 font-mono text-xs font-bold text-white transition-transform hover:scale-[1.02] active:scale-95"
+                className="inline-flex items-center gap-1.5 rounded-lg border border-[#0056FF] bg-[#0056FF] px-3.5 py-1.5 font-mono text-xs font-bold text-white active:scale-95"
               >
                 <ShieldCheck className="size-3.5" />
                 <span>Run Color Roles Verification</span>

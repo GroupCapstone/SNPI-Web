@@ -297,7 +297,7 @@ export function DualModeSystemUI({ className }: DualModeSystemUIProps) {
                       type="button"
                       onClick={() => setProgressPercent(Math.round(((idx + 1) / totalDots) * 100))}
                       title={`Progress step ${idx + 1}/${totalDots}`}
-                      className="flex h-5 w-5 items-center justify-center transition-transform select-none hover:scale-125"
+                      className="flex h-5 w-5 items-center justify-center select-none"
                     >
                       <span
                         className={cn(
@@ -426,7 +426,7 @@ export function DualModeSystemUI({ className }: DualModeSystemUIProps) {
                       type="button"
                       onClick={() => setProgressPercent(Math.round(((idx + 1) / totalDots) * 100))}
                       title={`Progress step ${idx + 1}/${totalDots}`}
-                      className="flex h-5 w-5 items-center justify-center transition-transform select-none hover:scale-125"
+                      className="flex h-5 w-5 items-center justify-center select-none"
                     >
                       <span
                         className={cn(

@@ -22,9 +22,9 @@ export default function HomePage() {
   }, [isAuthenticated, isLoading, router]);
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-slate-50 p-4">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-[#EFF5FF]/40 p-4">
       <div className="flex flex-col items-center space-y-4 text-center">
-        <div className="relative flex size-20 items-center justify-center rounded-2xl border border-slate-200 bg-white p-2">
+        <div className="relative flex size-20 items-center justify-center rounded-2xl border border-[#CAD3F5] bg-white p-2">
           <Image
             src="/images/logo.png"
             alt="SNPI International School Logo"
@@ -35,10 +35,10 @@ export default function HomePage() {
           />
         </div>
         <div className="space-y-1">
-          <h2 className="text-base font-bold tracking-tight text-[#023e8a]">SNP-SMS</h2>
+          <h2 className="text-base font-bold tracking-tight text-[#0A1A4A]">SNP-SMS</h2>
           <p className="text-xs text-slate-500">Checking system session...</p>
         </div>
-        <Loader2 className="size-5 animate-spin text-[#00509d]" />
+        <Loader2 className="size-5 animate-spin text-[#0056FF]" />
       </div>
     </div>
   );

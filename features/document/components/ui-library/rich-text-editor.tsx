@@ -760,7 +760,13 @@ export function RichTextEditorDemo() {
   };
 
   return (
-    <div className="w-full space-y-4">
+    <div
+      className="w-full space-y-4"
+      onClickCapture={(e) => {
+        // Demo guard: links inside sample content never navigate away.
+        if ((e.target as HTMLElement).closest('a')) e.preventDefault();
+      }}
+    >
       {/* Action Controls Bar */}
       <div className="flex flex-wrap items-center justify-between gap-2.5 rounded-xl border border-[#CAD3F5] bg-white p-2.5 shadow-2xs sm:px-3.5">
         <div className="flex flex-wrap items-center gap-1.5">

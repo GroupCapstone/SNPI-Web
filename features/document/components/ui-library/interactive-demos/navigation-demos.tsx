@@ -409,7 +409,7 @@ export function HookSidebarDemo() {
                     'size-7 cursor-pointer rounded-full transition-transform select-none',
                     accentColor.toLowerCase() === preset.value.toLowerCase()
                       ? 'scale-115 ring-2 ring-[#0056FF] ring-offset-2'
-                      : 'opacity-75 hover:scale-105 hover:opacity-100',
+                      : 'opacity-75 hover:opacity-100',
                   )}
                 />
               ))}

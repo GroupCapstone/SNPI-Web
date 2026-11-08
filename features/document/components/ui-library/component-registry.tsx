@@ -171,10 +171,14 @@ export const COMPONENT_GROUPS_NAV: ComponentGroupNav[] = [
             targetId: 'comp-hook-sidebar',
             builtAt: '2026-11-01T00:00:00.000Z',
           },
-          { id: 'navigation-bar', name: 'Navigation bar', isFuture: true },
-          { id: 'navigation-drawer', name: 'Navigation drawer', isFuture: true },
-          { id: 'navigation-rail', name: 'Navigation rail', isFuture: true },
-          { id: 'side-navigation', name: 'Side navigation', isFuture: true },
+          { id: 'navigation-bar', name: 'Navigation bar', builtAt: '2026-11-08T00:00:00.000Z' },
+          {
+            id: 'navigation-drawer',
+            name: 'Navigation drawer',
+            builtAt: '2026-11-08T00:00:00.000Z',
+          },
+          { id: 'navigation-rail', name: 'Navigation rail', builtAt: '2026-11-08T00:00:00.000Z' },
+          { id: 'side-navigation', name: 'Side navigation', builtAt: '2026-11-08T00:00:00.000Z' },
         ],
       },
       {
@@ -188,17 +192,17 @@ export const COMPONENT_GROUPS_NAV: ComponentGroupNav[] = [
             targetId: 'comp-dropdown',
             builtAt: '2026-11-01T00:00:00.000Z',
           },
-          { id: 'menus', name: 'Menus', isFuture: true },
+          { id: 'menus', name: 'Menus', builtAt: '2026-11-08T00:00:00.000Z' },
         ],
       },
-      { id: 'accordion', name: 'Accordion', isFuture: true },
-      { id: 'app-bars', name: 'App bars', isFuture: true },
-      { id: 'breadcrumbs', name: 'Breadcrumbs', isFuture: true },
-      { id: 'link', name: 'Link', isFuture: true },
-      { id: 'tabs', name: 'Tabs', isFuture: true },
-      { id: 'toolbars', name: 'Toolbars', isFuture: true },
-      { id: 'tree-view', name: 'Tree view', isFuture: true },
-      { id: 'search', name: 'Search', isFuture: true },
+      { id: 'accordion', name: 'Accordion', builtAt: '2026-11-08T00:00:00.000Z' },
+      { id: 'app-bars', name: 'App bars', builtAt: '2026-11-08T00:00:00.000Z' },
+      { id: 'breadcrumbs', name: 'Breadcrumbs', builtAt: '2026-11-08T00:00:00.000Z' },
+      { id: 'link', name: 'Link', builtAt: '2026-11-08T00:00:00.000Z' },
+      { id: 'tabs', name: 'Tabs', builtAt: '2026-11-08T00:00:00.000Z' },
+      { id: 'toolbars', name: 'Toolbars', builtAt: '2026-11-08T00:00:00.000Z' },
+      { id: 'tree-view', name: 'Tree view', builtAt: '2026-11-08T00:00:00.000Z' },
+      { id: 'search', name: 'Search', builtAt: '2026-11-08T00:00:00.000Z' },
     ],
   },
   {
@@ -210,19 +214,23 @@ export const COMPONENT_GROUPS_NAV: ComponentGroupNav[] = [
         name: 'Buttons',
         isParent: true,
         children: [
-          { id: 'action-button', name: 'Action button', isFuture: true },
-          { id: 'action-group', name: 'Action group', isFuture: true },
-          { id: 'action-bar', name: 'Action bar', isFuture: true },
-          { id: 'all-buttons', name: 'All buttons', isFuture: true },
-          { id: 'button-groups', name: 'Button groups', isFuture: true },
-          { id: 'buttons-item', name: 'Buttons', isFuture: true },
-          { id: 'close-button', name: 'Close button', isFuture: true },
-          { id: 'extended-fabs', name: 'Extended FABs', isFuture: true },
-          { id: 'fab-menu', name: 'FAB menu', isFuture: true },
-          { id: 'fabs', name: 'FABs', isFuture: true },
-          { id: 'icon-buttons', name: 'Icon buttons', isFuture: true },
-          { id: 'segmented-buttons', name: 'Segmented buttons', isFuture: true },
-          { id: 'split-button', name: 'Split button', isFuture: true },
+          { id: 'action-button', name: 'Action button', builtAt: '2026-11-08T00:00:00.000Z' },
+          { id: 'action-group', name: 'Action group', builtAt: '2026-11-08T00:00:00.000Z' },
+          { id: 'action-bar', name: 'Action bar', builtAt: '2026-11-08T00:00:00.000Z' },
+          { id: 'all-buttons', name: 'All buttons', builtAt: '2026-11-08T00:00:00.000Z' },
+          { id: 'button-groups', name: 'Button groups', builtAt: '2026-11-08T00:00:00.000Z' },
+          { id: 'buttons-item', name: 'Buttons', builtAt: '2026-11-08T00:00:00.000Z' },
+          { id: 'close-button', name: 'Close button', builtAt: '2026-11-08T00:00:00.000Z' },
+          { id: 'extended-fabs', name: 'Extended FABs', builtAt: '2026-11-08T00:00:00.000Z' },
+          { id: 'fab-menu', name: 'FAB menu', builtAt: '2026-11-08T00:00:00.000Z' },
+          { id: 'fabs', name: 'FABs', builtAt: '2026-11-08T00:00:00.000Z' },
+          { id: 'icon-buttons', name: 'Icon buttons', builtAt: '2026-11-08T00:00:00.000Z' },
+          {
+            id: 'segmented-buttons',
+            name: 'Segmented buttons',
+            builtAt: '2026-11-08T00:00:00.000Z',
+          },
+          { id: 'split-button', name: 'Split button', builtAt: '2026-11-08T00:00:00.000Z' },
         ],
       },
       {
@@ -236,8 +244,8 @@ export const COMPONENT_GROUPS_NAV: ComponentGroupNav[] = [
             targetId: 'comp-duration-picker',
             builtAt: '2026-11-01T00:00:00.000Z',
           },
-          { id: 'date-pickers', name: 'Date pickers', isFuture: true },
-          { id: 'time-pickers', name: 'Time pickers', isFuture: true },
+          { id: 'date-pickers', name: 'Date pickers', builtAt: '2026-11-08T00:00:00.000Z' },
+          { id: 'time-pickers', name: 'Time pickers', builtAt: '2026-11-08T00:00:00.000Z' },
         ],
       },
       {
@@ -251,10 +259,10 @@ export const COMPONENT_GROUPS_NAV: ComponentGroupNav[] = [
             targetId: 'comp-password-input',
             builtAt: '2026-11-01T00:00:00.000Z',
           },
-          { id: 'text-fields', name: 'Text fields', isFuture: true },
-          { id: 'text-area', name: 'Text area', isFuture: true },
-          { id: 'number-field', name: 'Number field', isFuture: true },
-          { id: 'search-field', name: 'Search field', isFuture: true },
+          { id: 'text-fields', name: 'Text fields', builtAt: '2026-11-08T00:00:00.000Z' },
+          { id: 'text-area', name: 'Text area', builtAt: '2026-11-08T00:00:00.000Z' },
+          { id: 'number-field', name: 'Number field', builtAt: '2026-11-08T00:00:00.000Z' },
+          { id: 'search-field', name: 'Search field', builtAt: '2026-11-08T00:00:00.000Z' },
         ],
       },
       {
@@ -269,17 +277,17 @@ export const COMPONENT_GROUPS_NAV: ComponentGroupNav[] = [
         targetId: 'comp-switch',
         builtAt: '2026-11-01T00:00:00.000Z',
       },
-      { id: 'checkbox', name: 'Checkbox', isFuture: true },
-      { id: 'checkbox-group', name: 'Checkbox group', isFuture: true },
-      { id: 'combo-box', name: 'Combo box', isFuture: true },
+      { id: 'checkbox', name: 'Checkbox', builtAt: '2026-11-08T00:00:00.000Z' },
+      { id: 'checkbox-group', name: 'Checkbox group', builtAt: '2026-11-08T00:00:00.000Z' },
+      { id: 'combo-box', name: 'Combo box', builtAt: '2026-11-08T00:00:00.000Z' },
       { id: 'field-label', name: 'Field label', isFuture: true },
       { id: 'picker', name: 'Picker', isFuture: true },
-      { id: 'radio-button', name: 'Radio button', isFuture: true },
+      { id: 'radio-button', name: 'Radio button', builtAt: '2026-11-08T00:00:00.000Z' },
       { id: 'radio-group', name: 'Radio group', isFuture: true },
       { id: 'rating', name: 'Rating', isFuture: true },
       { id: 'segmented-control', name: 'Segmented control', isFuture: true },
       { id: 'select-box', name: 'Select box', isFuture: true },
-      { id: 'sliders', name: 'Sliders', isFuture: true },
+      { id: 'sliders', name: 'Sliders', builtAt: '2026-11-08T00:00:00.000Z' },
       { id: 'color-area', name: 'Color area', isFuture: true },
       { id: 'color-handle-loupe', name: 'Color handle and loupe', isFuture: true },
       { id: 'color-slider', name: 'Color slider', isFuture: true },
@@ -304,8 +312,16 @@ export const COMPONENT_GROUPS_NAV: ComponentGroupNav[] = [
             targetId: 'comp-skeleton-loading-screen',
             builtAt: '2026-11-01T00:00:00.000Z',
           },
-          { id: 'loading-indicator', name: 'Loading indicator', isFuture: true },
-          { id: 'progress-indicators', name: 'Progress indicators', isFuture: true },
+          {
+            id: 'loading-indicator',
+            name: 'Loading indicator',
+            builtAt: '2026-11-08T00:00:00.000Z',
+          },
+          {
+            id: 'progress-indicators',
+            name: 'Progress indicators',
+            builtAt: '2026-11-08T00:00:00.000Z',
+          },
           { id: 'progress-bar', name: 'Progress bar', isFuture: true },
           { id: 'progress-circle', name: 'Progress circle', isFuture: true },
           { id: 'meter', name: 'Meter', isFuture: true },
@@ -316,8 +332,8 @@ export const COMPONENT_GROUPS_NAV: ComponentGroupNav[] = [
         name: 'Sheets',
         isParent: true,
         children: [
-          { id: 'bottom-sheets', name: 'Bottom sheets', isFuture: true },
-          { id: 'side-sheets', name: 'Side sheets', isFuture: true },
+          { id: 'bottom-sheets', name: 'Bottom sheets', builtAt: '2026-11-08T00:00:00.000Z' },
+          { id: 'side-sheets', name: 'Side sheets', builtAt: '2026-11-08T00:00:00.000Z' },
         ],
       },
       {
@@ -331,7 +347,7 @@ export const COMPONENT_GROUPS_NAV: ComponentGroupNav[] = [
             targetId: 'comp-toast-stack',
             builtAt: '2026-11-01T00:00:00.000Z',
           },
-          { id: 'snackbar', name: 'Snackbar', isFuture: true },
+          { id: 'snackbar', name: 'Snackbar', builtAt: '2026-11-08T00:00:00.000Z' },
           { id: 'toast', name: 'Toast', isFuture: true },
         ],
       },
@@ -341,7 +357,7 @@ export const COMPONENT_GROUPS_NAV: ComponentGroupNav[] = [
         targetId: 'comp-notification-bell',
         builtAt: '2026-11-01T00:00:00.000Z',
       },
-      { id: 'dialogs', name: 'Dialogs', isFuture: true },
+      { id: 'dialogs', name: 'Dialogs', builtAt: '2026-11-08T00:00:00.000Z' },
       { id: 'alert-dialog', name: 'Alert dialog', isFuture: true },
       { id: 'alert-banner', name: 'Alert banner', isFuture: true },
       { id: 'standard-dialog', name: 'Standard dialog', isFuture: true },
@@ -354,7 +370,7 @@ export const COMPONENT_GROUPS_NAV: ComponentGroupNav[] = [
       { id: 'coach-indicator', name: 'Coach indicator', isFuture: true },
       { id: 'coach-mark', name: 'Coach mark', isFuture: true },
       { id: 'popover', name: 'Popover', isFuture: true },
-      { id: 'tooltips', name: 'Tooltips', isFuture: true },
+      { id: 'tooltips', name: 'Tooltips', builtAt: '2026-11-08T00:00:00.000Z' },
       {
         id: 'status-404',
         name: 'Status 404 Console',
@@ -393,13 +409,13 @@ export const COMPONENT_GROUPS_NAV: ComponentGroupNav[] = [
       },
       { id: 'avatar', name: 'Avatar', isFuture: true },
       { id: 'avatar-group', name: 'Avatar group', isFuture: true },
-      { id: 'badges', name: 'Badges', isFuture: true },
+      { id: 'badges', name: 'Badges', builtAt: '2026-11-08T00:00:00.000Z' },
       { id: 'calendar', name: 'Calendar', isFuture: true },
-      { id: 'cards', name: 'Cards', isFuture: true },
-      { id: 'carousel', name: 'Carousel', isFuture: true },
-      { id: 'divider', name: 'Divider', isFuture: true },
+      { id: 'cards', name: 'Cards', builtAt: '2026-11-08T00:00:00.000Z' },
+      { id: 'carousel', name: 'Carousel', builtAt: '2026-11-08T00:00:00.000Z' },
+      { id: 'divider', name: 'Divider', builtAt: '2026-11-08T00:00:00.000Z' },
       { id: 'drop-zone', name: 'Drop zone', isFuture: true },
-      { id: 'lists', name: 'Lists', isFuture: true },
+      { id: 'lists', name: 'Lists', builtAt: '2026-11-08T00:00:00.000Z' },
       { id: 'list-view', name: 'List view', isFuture: true },
       { id: 'standard-panel', name: 'Standard panel', isFuture: true },
       { id: 'steplist', name: 'Steplist', isFuture: true },
@@ -454,78 +470,82 @@ export const COMPONENT_GROUPS_NAV: ComponentGroupNav[] = [
 ];
 
 export const M3_COMPONENTS_NAV: M3NavItem[] = [
-  { id: 'app-bars', name: 'App bars', isFuture: true },
-  { id: 'badges', name: 'Badges', isFuture: true },
+  { id: 'app-bars', name: 'App bars', builtAt: '2026-11-08T00:00:00.000Z' },
+  { id: 'badges', name: 'Badges', builtAt: '2026-11-08T00:00:00.000Z' },
   {
     id: 'buttons',
     name: 'Buttons',
     isParent: true,
     children: [
-      { id: 'all-buttons', name: 'All buttons', isFuture: true },
-      { id: 'button-groups', name: 'Button groups', isFuture: true },
-      { id: 'buttons-item', name: 'Buttons', isFuture: true },
-      { id: 'extended-fabs', name: 'Extended FABs', isFuture: true },
-      { id: 'fab-menu', name: 'FAB menu', isFuture: true },
-      { id: 'fabs', name: 'FABs', isFuture: true },
-      { id: 'icon-buttons', name: 'Icon buttons', isFuture: true },
-      { id: 'segmented-buttons', name: 'Segmented buttons', isFuture: true },
-      { id: 'split-button', name: 'Split button', isFuture: true },
+      { id: 'all-buttons', name: 'All buttons', builtAt: '2026-11-08T00:00:00.000Z' },
+      { id: 'button-groups', name: 'Button groups', builtAt: '2026-11-08T00:00:00.000Z' },
+      { id: 'buttons-item', name: 'Buttons', builtAt: '2026-11-08T00:00:00.000Z' },
+      { id: 'extended-fabs', name: 'Extended FABs', builtAt: '2026-11-08T00:00:00.000Z' },
+      { id: 'fab-menu', name: 'FAB menu', builtAt: '2026-11-08T00:00:00.000Z' },
+      { id: 'fabs', name: 'FABs', builtAt: '2026-11-08T00:00:00.000Z' },
+      { id: 'icon-buttons', name: 'Icon buttons', builtAt: '2026-11-08T00:00:00.000Z' },
+      { id: 'segmented-buttons', name: 'Segmented buttons', builtAt: '2026-11-08T00:00:00.000Z' },
+      { id: 'split-button', name: 'Split button', builtAt: '2026-11-08T00:00:00.000Z' },
     ],
   },
-  { id: 'cards', name: 'Cards', isFuture: true },
-  { id: 'carousel', name: 'Carousel', isFuture: true },
-  { id: 'checkbox', name: 'Checkbox', isFuture: true },
+  { id: 'cards', name: 'Cards', builtAt: '2026-11-08T00:00:00.000Z' },
+  { id: 'carousel', name: 'Carousel', builtAt: '2026-11-08T00:00:00.000Z' },
+  { id: 'checkbox', name: 'Checkbox', builtAt: '2026-11-08T00:00:00.000Z' },
   { id: 'chip', name: 'Chips', targetId: 'comp-chip', builtAt: '2026-11-01T00:00:00.000Z' },
   {
     id: 'date-time-pickers',
     name: 'Date & time pickers',
     isParent: true,
     children: [
-      { id: 'date-pickers', name: 'Date pickers', isFuture: true },
-      { id: 'time-pickers', name: 'Time pickers', isFuture: true },
+      { id: 'date-pickers', name: 'Date pickers', builtAt: '2026-11-08T00:00:00.000Z' },
+      { id: 'time-pickers', name: 'Time pickers', builtAt: '2026-11-08T00:00:00.000Z' },
     ],
   },
-  { id: 'dialogs', name: 'Dialogs', isFuture: true },
-  { id: 'divider', name: 'Divider', isFuture: true },
-  { id: 'lists', name: 'Lists', isFuture: true },
+  { id: 'dialogs', name: 'Dialogs', builtAt: '2026-11-08T00:00:00.000Z' },
+  { id: 'divider', name: 'Divider', builtAt: '2026-11-08T00:00:00.000Z' },
+  { id: 'lists', name: 'Lists', builtAt: '2026-11-08T00:00:00.000Z' },
   {
     id: 'loading-progress',
     name: 'Loading & progress',
     isParent: true,
     children: [
-      { id: 'loading-indicator', name: 'Loading indicator', isFuture: true },
-      { id: 'progress-indicators', name: 'Progress indicators', isFuture: true },
+      { id: 'loading-indicator', name: 'Loading indicator', builtAt: '2026-11-08T00:00:00.000Z' },
+      {
+        id: 'progress-indicators',
+        name: 'Progress indicators',
+        builtAt: '2026-11-08T00:00:00.000Z',
+      },
     ],
   },
-  { id: 'menus', name: 'Menus', isFuture: true },
+  { id: 'menus', name: 'Menus', builtAt: '2026-11-08T00:00:00.000Z' },
   {
     id: 'navigation',
     name: 'Navigation',
     isParent: true,
     children: [
-      { id: 'navigation-bar', name: 'Navigation bar', isFuture: true },
-      { id: 'navigation-drawer', name: 'Navigation drawer', isFuture: true },
-      { id: 'navigation-rail', name: 'Navigation rail', isFuture: true },
+      { id: 'navigation-bar', name: 'Navigation bar', builtAt: '2026-11-08T00:00:00.000Z' },
+      { id: 'navigation-drawer', name: 'Navigation drawer', builtAt: '2026-11-08T00:00:00.000Z' },
+      { id: 'navigation-rail', name: 'Navigation rail', builtAt: '2026-11-08T00:00:00.000Z' },
     ],
   },
-  { id: 'radio-button', name: 'Radio button', isFuture: true },
-  { id: 'search', name: 'Search', isFuture: true },
+  { id: 'radio-button', name: 'Radio button', builtAt: '2026-11-08T00:00:00.000Z' },
+  { id: 'search', name: 'Search', builtAt: '2026-11-08T00:00:00.000Z' },
   {
     id: 'sheets',
     name: 'Sheets',
     isParent: true,
     children: [
-      { id: 'bottom-sheets', name: 'Bottom sheets', isFuture: true },
-      { id: 'side-sheets', name: 'Side sheets', isFuture: true },
+      { id: 'bottom-sheets', name: 'Bottom sheets', builtAt: '2026-11-08T00:00:00.000Z' },
+      { id: 'side-sheets', name: 'Side sheets', builtAt: '2026-11-08T00:00:00.000Z' },
     ],
   },
-  { id: 'sliders', name: 'Sliders', isFuture: true },
-  { id: 'snackbar', name: 'Snackbar', isFuture: true },
+  { id: 'sliders', name: 'Sliders', builtAt: '2026-11-08T00:00:00.000Z' },
+  { id: 'snackbar', name: 'Snackbar', builtAt: '2026-11-08T00:00:00.000Z' },
   { id: 'switch', name: 'Switch', targetId: 'comp-switch', builtAt: '2026-11-01T00:00:00.000Z' },
-  { id: 'tabs', name: 'Tabs', isFuture: true },
-  { id: 'text-fields', name: 'Text fields', isFuture: true },
-  { id: 'toolbars', name: 'Toolbars', isFuture: true },
-  { id: 'tooltips', name: 'Tooltips', isFuture: true },
+  { id: 'tabs', name: 'Tabs', builtAt: '2026-11-08T00:00:00.000Z' },
+  { id: 'text-fields', name: 'Text fields', builtAt: '2026-11-08T00:00:00.000Z' },
+  { id: 'toolbars', name: 'Toolbars', builtAt: '2026-11-08T00:00:00.000Z' },
+  { id: 'tooltips', name: 'Tooltips', builtAt: '2026-11-08T00:00:00.000Z' },
 ];
 
 export const PLATFORM_COMPONENTS_NAV: M3NavItem[] = [
@@ -2410,7 +2430,7 @@ const FUTURE_M3_COMPONENTS: ComponentItemDoc[] = [
     ],
     implementationNotes: ['Level 0 (flat) or Level 2 scrolled surface tint.'],
     supportedStates: ['Flat (Top of Page)', 'Scrolled (Elevated Surface)', 'Focused'],
-    isFuture: true,
+    builtAt: '2026-11-08T00:00:00.000Z',
   },
   {
     id: 'navigation-bar',
@@ -2445,7 +2465,7 @@ const FUTURE_M3_COMPONENTS: ComponentItemDoc[] = [
     ],
     implementationNotes: ['Pill-shaped active indicator with smooth scale transition.'],
     supportedStates: ['Active Pill', 'Inactive Icon', 'With Badge Count'],
-    isFuture: true,
+    builtAt: '2026-11-08T00:00:00.000Z',
   },
   {
     id: 'navigation-drawer',
@@ -2480,7 +2500,7 @@ const FUTURE_M3_COMPONENTS: ComponentItemDoc[] = [
     ],
     implementationNotes: ['Dismissable via swipe gesture or backdrop click.'],
     supportedStates: ['Collapsed', 'Expanded (Modal)', 'Standard (Permanent)'],
-    isFuture: true,
+    builtAt: '2026-11-08T00:00:00.000Z',
   },
   {
     id: 'navigation-rail',
@@ -2517,7 +2537,7 @@ const FUTURE_M3_COMPONENTS: ComponentItemDoc[] = [
     ],
     implementationNotes: ['Active pill background with 44px hit bounds.'],
     supportedStates: ['Compact Rail', 'Expanded Rail', 'Active Destination'],
-    isFuture: true,
+    builtAt: '2026-11-08T00:00:00.000Z',
   },
   {
     id: 'tabs',
@@ -2551,7 +2571,7 @@ const FUTURE_M3_COMPONENTS: ComponentItemDoc[] = [
     ],
     implementationNotes: ['Sliding indicator bar with spring physics.'],
     supportedStates: ['Active Tab', 'Hovered Tab', 'Disabled Tab'],
-    isFuture: true,
+    builtAt: '2026-11-08T00:00:00.000Z',
   },
   {
     id: 'toolbars',
@@ -2585,7 +2605,7 @@ const FUTURE_M3_COMPONENTS: ComponentItemDoc[] = [
     ],
     implementationNotes: ['Role="toolbar" with left/right keyboard arrow navigation.'],
     supportedStates: ['Idle', 'Active Tool', 'Disabled Action'],
-    isFuture: true,
+    builtAt: '2026-11-08T00:00:00.000Z',
   },
   {
     id: 'menus',
@@ -2619,7 +2639,7 @@ const FUTURE_M3_COMPONENTS: ComponentItemDoc[] = [
     ],
     implementationNotes: ['Level 2 Surface Elevation with Escape key dismiss.'],
     supportedStates: ['Closed', 'Open (Elevated)', 'Focused Item'],
-    isFuture: true,
+    builtAt: '2026-11-08T00:00:00.000Z',
   },
 
   // ==========================================
@@ -2665,7 +2685,7 @@ const FUTURE_M3_COMPONENTS: ComponentItemDoc[] = [
     ],
     implementationNotes: ['Rounded-full shape token with brand focus ring.'],
     supportedStates: ['Default', 'Hover', 'Focused', 'Pressed', 'Disabled'],
-    isFuture: true,
+    builtAt: '2026-11-08T00:00:00.000Z',
   },
   {
     id: 'all-buttons',
@@ -2700,7 +2720,7 @@ const FUTURE_M3_COMPONENTS: ComponentItemDoc[] = [
     ],
     implementationNotes: ['Full AAA contrast ratios on every button tier.'],
     supportedStates: ['All Variants Active', 'High Contrast Matrix'],
-    isFuture: true,
+    builtAt: '2026-11-08T00:00:00.000Z',
   },
   {
     id: 'button-groups',
@@ -2734,7 +2754,7 @@ const FUTURE_M3_COMPONENTS: ComponentItemDoc[] = [
     ],
     implementationNotes: ['Seamless internal borders with rounded outer corners.'],
     supportedStates: ['Default', 'Active Option', 'Hovered'],
-    isFuture: true,
+    builtAt: '2026-11-08T00:00:00.000Z',
   },
   {
     id: 'segmented-buttons',
@@ -2769,7 +2789,7 @@ const FUTURE_M3_COMPONENTS: ComponentItemDoc[] = [
     ],
     implementationNotes: ['Active segment filled with brand Ice Tint and checkmark.'],
     supportedStates: ['Unselected', 'Selected with Checkmark', 'Focused'],
-    isFuture: true,
+    builtAt: '2026-11-08T00:00:00.000Z',
   },
   {
     id: 'split-button',
@@ -2804,7 +2824,7 @@ const FUTURE_M3_COMPONENTS: ComponentItemDoc[] = [
     ],
     implementationNotes: ['Divider seam between primary button and chevron anchor.'],
     supportedStates: ['Default', 'Primary Active', 'Dropdown Open'],
-    isFuture: true,
+    builtAt: '2026-11-08T00:00:00.000Z',
   },
   {
     id: 'fabs',
@@ -2839,7 +2859,7 @@ const FUTURE_M3_COMPONENTS: ComponentItemDoc[] = [
     ],
     implementationNotes: ['Level 3 elevation with smooth scale-down on press.'],
     supportedStates: ['Resting', 'Hovered (Elevated)', 'Pressed'],
-    isFuture: true,
+    builtAt: '2026-11-08T00:00:00.000Z',
   },
   {
     id: 'extended-fabs',
@@ -2874,7 +2894,7 @@ const FUTURE_M3_COMPONENTS: ComponentItemDoc[] = [
     ],
     implementationNotes: ['Animated width transition between extended and collapsed.'],
     supportedStates: ['Extended with Label', 'Collapsed (Icon-Only)', 'Pressed'],
-    isFuture: true,
+    builtAt: '2026-11-08T00:00:00.000Z',
   },
   {
     id: 'fab-menu',
@@ -2909,7 +2929,7 @@ const FUTURE_M3_COMPONENTS: ComponentItemDoc[] = [
     ],
     implementationNotes: ['Backdrop blur with staggered spring entrance.'],
     supportedStates: ['Closed FAB', 'Expanded Radial Speed Dial'],
-    isFuture: true,
+    builtAt: '2026-11-08T00:00:00.000Z',
   },
   {
     id: 'icon-buttons',
@@ -2944,7 +2964,7 @@ const FUTURE_M3_COMPONENTS: ComponentItemDoc[] = [
     ],
     implementationNotes: ['::before pseudo-element expanding hit target to 44px.'],
     supportedStates: ['Default', 'Hover Pill', 'Pressed', 'Disabled'],
-    isFuture: true,
+    builtAt: '2026-11-08T00:00:00.000Z',
   },
   {
     id: 'checkbox',
@@ -2978,7 +2998,7 @@ const FUTURE_M3_COMPONENTS: ComponentItemDoc[] = [
     ],
     implementationNotes: ['SVG check and minus paths with spring interpolation.'],
     supportedStates: ['Unchecked', 'Checked', 'Indeterminate', 'Focused', 'Disabled'],
-    isFuture: true,
+    builtAt: '2026-11-08T00:00:00.000Z',
   },
   {
     id: 'radio-button',
@@ -3012,7 +3032,7 @@ const FUTURE_M3_COMPONENTS: ComponentItemDoc[] = [
     ],
     implementationNotes: ['Inner dot scales up smoothly with 150ms cubic ease.'],
     supportedStates: ['Unselected', 'Selected (Inner Dot)', 'Disabled'],
-    isFuture: true,
+    builtAt: '2026-11-08T00:00:00.000Z',
   },
   {
     id: 'date-pickers',
@@ -3047,7 +3067,7 @@ const FUTURE_M3_COMPONENTS: ComponentItemDoc[] = [
     ],
     implementationNotes: ['WCAG accessible arrow key calendar cell navigation.'],
     supportedStates: ['Docked Input', 'Modal Calendar Open', 'Date Selected'],
-    isFuture: true,
+    builtAt: '2026-11-08T00:00:00.000Z',
   },
   {
     id: 'time-pickers',
@@ -3082,7 +3102,7 @@ const FUTURE_M3_COMPONENTS: ComponentItemDoc[] = [
     ],
     implementationNotes: ['Radial clock face with angle calculations.'],
     supportedStates: ['Hour Selection', 'Minute Selection', 'AM/PM Active'],
-    isFuture: true,
+    builtAt: '2026-11-08T00:00:00.000Z',
   },
   {
     id: 'sliders',
@@ -3116,7 +3136,7 @@ const FUTURE_M3_COMPONENTS: ComponentItemDoc[] = [
     ],
     implementationNotes: ['Touch-friendly 44px thumb bounding box.'],
     supportedStates: ['Resting', 'Dragging (Value Bubble Active)', 'Discrete Steps'],
-    isFuture: true,
+    builtAt: '2026-11-08T00:00:00.000Z',
   },
   {
     id: 'search',
@@ -3150,7 +3170,7 @@ const FUTURE_M3_COMPONENTS: ComponentItemDoc[] = [
     ],
     implementationNotes: ['Rounded-full 48px height with search glyph prefix.'],
     supportedStates: ['Collapsed Bar', 'Focused (Expanded View)', 'With Query'],
-    isFuture: true,
+    builtAt: '2026-11-08T00:00:00.000Z',
   },
 
   // ==========================================
@@ -3188,7 +3208,7 @@ const FUTURE_M3_COMPONENTS: ComponentItemDoc[] = [
     ],
     implementationNotes: ['Native ::backdrop with blur and Focus Trap.'],
     supportedStates: ['Open Modal', 'Closed', 'Confirming (Spinner)'],
-    isFuture: true,
+    builtAt: '2026-11-08T00:00:00.000Z',
   },
   {
     id: 'bottom-sheets',
@@ -3223,7 +3243,7 @@ const FUTURE_M3_COMPONENTS: ComponentItemDoc[] = [
     ],
     implementationNotes: ['Touch drag listener with snap points.'],
     supportedStates: ['Hidden', 'Peek (Half Height)', 'Expanded (Full Height)'],
-    isFuture: true,
+    builtAt: '2026-11-08T00:00:00.000Z',
   },
   {
     id: 'side-sheets',
@@ -3258,7 +3278,7 @@ const FUTURE_M3_COMPONENTS: ComponentItemDoc[] = [
     ],
     implementationNotes: ['Smooth slide-in transition from right boundary.'],
     supportedStates: ['Closed', 'Open Coplanar', 'Open Modal'],
-    isFuture: true,
+    builtAt: '2026-11-08T00:00:00.000Z',
   },
   {
     id: 'loading-indicator',
@@ -3293,7 +3313,7 @@ const FUTURE_M3_COMPONENTS: ComponentItemDoc[] = [
     ],
     implementationNotes: ['SVG stroke-dasharray keyframe animation.'],
     supportedStates: ['Spinning Indeterminate', 'Determinate Progress'],
-    isFuture: true,
+    builtAt: '2026-11-08T00:00:00.000Z',
   },
   {
     id: 'progress-indicators',
@@ -3329,7 +3349,7 @@ const FUTURE_M3_COMPONENTS: ComponentItemDoc[] = [
     ],
     implementationNotes: ['Smooth CSS transition on track width fill.'],
     supportedStates: ['Determinate (0-100%)', 'Indeterminate Pulse'],
-    isFuture: true,
+    builtAt: '2026-11-08T00:00:00.000Z',
   },
   {
     id: 'tooltips',
@@ -3363,7 +3383,7 @@ const FUTURE_M3_COMPONENTS: ComponentItemDoc[] = [
     ],
     implementationNotes: ['Floating UI with collision detection and focus trigger.'],
     supportedStates: ['Hidden', 'Revealed on Hover', 'Keyboard Focused'],
-    isFuture: true,
+    builtAt: '2026-11-08T00:00:00.000Z',
   },
   {
     id: 'snackbar',
@@ -3400,7 +3420,7 @@ const FUTURE_M3_COMPONENTS: ComponentItemDoc[] = [
     ],
     implementationNotes: ['Self-dismissing after 4-7 seconds or upon user interaction.'],
     supportedStates: ['Resting', 'Action Hover', 'Dismissing'],
-    isFuture: true,
+    builtAt: '2026-11-08T00:00:00.000Z',
   },
 
   // ==========================================
@@ -3438,7 +3458,7 @@ const FUTURE_M3_COMPONENTS: ComponentItemDoc[] = [
     ],
     implementationNotes: ['Positioned absolutely at top-right corner of host element.'],
     supportedStates: ['Dot Badge (Uncounted)', 'Count Badge (1-99+)', 'Brand Tonal'],
-    isFuture: true,
+    builtAt: '2026-11-08T00:00:00.000Z',
   },
   {
     id: 'cards',
@@ -3478,7 +3498,7 @@ const FUTURE_M3_COMPONENTS: ComponentItemDoc[] = [
     ],
     implementationNotes: ['1px Soft Lavender border (#CAD3F5) with zero box-shadows.'],
     supportedStates: ['Elevated', 'Filled', 'Outlined', 'Interactive Hover'],
-    isFuture: true,
+    builtAt: '2026-11-08T00:00:00.000Z',
   },
   {
     id: 'carousel',
@@ -3512,7 +3532,7 @@ const FUTURE_M3_COMPONENTS: ComponentItemDoc[] = [
     ],
     implementationNotes: ['CSS scroll-snap with inertia momentum.'],
     supportedStates: ['Idle', 'Dragging / Swiping', 'End of Carousel'],
-    isFuture: true,
+    builtAt: '2026-11-08T00:00:00.000Z',
   },
   {
     id: 'divider',
@@ -3546,7 +3566,7 @@ const FUTURE_M3_COMPONENTS: ComponentItemDoc[] = [
     ],
     implementationNotes: ['1px solid hairline with optional left inset.'],
     supportedStates: ['Full-bleed', 'Inset', 'Vertical Divider'],
-    isFuture: true,
+    builtAt: '2026-11-08T00:00:00.000Z',
   },
   {
     id: 'lists',
@@ -3580,7 +3600,7 @@ const FUTURE_M3_COMPONENTS: ComponentItemDoc[] = [
     ],
     implementationNotes: ['Semantic ul and li tags with accessible row keyboard navigation.'],
     supportedStates: ['Single-Line', 'Two-Line (with Subtitle)', 'Selected Row'],
-    isFuture: true,
+    builtAt: '2026-11-08T00:00:00.000Z',
   },
 
   // ==========================================
@@ -3621,7 +3641,468 @@ const FUTURE_M3_COMPONENTS: ComponentItemDoc[] = [
     ],
     implementationNotes: ['Focus ring in brand Royal Blue (#0056FF) with 2px stroke.'],
     supportedStates: ['Resting', 'Hovered', 'Focused (Floating Label)', 'Error State'],
-    isFuture: true,
+    builtAt: '2026-11-08T00:00:00.000Z',
+  },
+  {
+    id: 'accordion',
+    name: 'Accordion',
+    category: 'Navigation',
+    paradigm: 'Expandable Section Standard',
+    description: 'Vertically stacked sections that expand to reveal related content in place.',
+    explanation:
+      'Accordions compress long structured content into scannable headers while keeping the reader on one page.',
+    props: [
+      { name: 'allowMultiple', type: 'boolean', description: 'Allow several open sections.' },
+    ],
+    codeSnippet: `import { Accordion } from '@/components/ui';\n\n<Accordion />`,
+    realWorldExamples: [
+      {
+        title: 'Academic Year Plan',
+        scenario: 'Terms expand to show their milestones.',
+        impact: 'Clear, fast task completion.',
+      },
+    ],
+    uxPsychology: [
+      {
+        principle: 'Progressive Disclosure',
+        detail: 'Reveal detail only when the reader asks for it.',
+      },
+    ],
+    usageGuidelines: [
+      {
+        doItem: 'Keep one section open by default.',
+        dontItem: 'Do not hide critical actions inside closed sections.',
+      },
+    ],
+    implementationNotes: ['Chevron rotates 180 degrees on expansion.'],
+    supportedStates: ['Collapsed', 'Expanded', 'Focused'],
+    builtAt: '2026-11-08T00:00:00.000Z',
+  },
+  {
+    id: 'breadcrumbs',
+    name: 'Breadcrumbs',
+    category: 'Navigation',
+    paradigm: 'Path Trail Standard',
+    description:
+      'Ordered trail of links showing the current page location inside the site hierarchy.',
+    explanation:
+      'Breadcrumbs give readers a stable map of where they are and a one tap route back up the hierarchy.',
+    props: [{ name: 'trail', type: 'string[]', description: 'Ordered ancestor labels.' }],
+    codeSnippet: `import { Breadcrumbs } from '@/components/ui';\n\n<Breadcrumbs />`,
+    realWorldExamples: [
+      {
+        title: 'Student Record Path',
+        scenario: 'Registrar walks from Home to one student record.',
+        impact: 'Clear, fast task completion.',
+      },
+    ],
+    uxPsychology: [
+      { principle: 'Spatial Orientation', detail: 'A visible path lowers wayfinding effort.' },
+    ],
+    usageGuidelines: [
+      {
+        doItem: 'Show the full path on desktop, last levels on mobile.',
+        dontItem: 'Do not use breadcrumbs as primary navigation.',
+      },
+    ],
+    implementationNotes: ['Current page uses aria-current and Royal Blue text.'],
+    supportedStates: ['Default', 'Hover', 'Current Page'],
+    builtAt: '2026-11-08T00:00:00.000Z',
+  },
+  {
+    id: 'link',
+    name: 'Link',
+    category: 'Navigation',
+    paradigm: 'Hyperlink Standard',
+    description: 'Inline or standalone text link that navigates to related content.',
+    explanation:
+      'Links connect related documentation and records with a predictable, scannable text pattern.',
+    props: [{ name: 'href', type: 'string', description: 'Destination route.' }],
+    codeSnippet: `import { Link } from '@/components/ui';\n\n<Link href="/document">Policy</Link>`,
+    realWorldExamples: [
+      {
+        title: 'Enrollment Policy Reference',
+        scenario: 'Form guidance links to the policy page.',
+        impact: 'Clear, fast task completion.',
+      },
+    ],
+    uxPsychology: [
+      {
+        principle: 'Predictability',
+        detail: 'Underlined Royal Blue text is recognized instantly as a link.',
+      },
+    ],
+    usageGuidelines: [
+      {
+        doItem: 'Write link text that names the destination.',
+        dontItem: 'Do not use vague text such as click here.',
+      },
+    ],
+    implementationNotes: ['Underline with 2px Azure decoration and offset.'],
+    supportedStates: ['Default', 'Hover', 'Focus', 'Visited'],
+    builtAt: '2026-11-08T00:00:00.000Z',
+  },
+  {
+    id: 'tree-view',
+    name: 'Tree view',
+    category: 'Navigation',
+    paradigm: 'Hierarchy Tree Standard',
+    description: 'Expandable tree of parent and child nodes for deep structured content.',
+    explanation:
+      'Tree views expose deep hierarchies such as faculties, grades and classes without leaving the page.',
+    props: [{ name: 'nodes', type: 'TreeNode[]', description: 'Nested node data.' }],
+    codeSnippet: `import { TreeView } from '@/components/ui';\n\n<TreeView />`,
+    realWorldExamples: [
+      {
+        title: 'Faculty Hierarchy Browser',
+        scenario: 'Admin expands Academics to reach Grade 10 A.',
+        impact: 'Clear, fast task completion.',
+      },
+    ],
+    uxPsychology: [{ principle: 'Chunking', detail: 'Grouped nodes keep deep lists manageable.' }],
+    usageGuidelines: [
+      {
+        doItem: 'Indent children consistently by one level.',
+        dontItem: 'Do not exceed three visible levels without search.',
+      },
+    ],
+    implementationNotes: ['Selected node uses Soft Lavender fill.'],
+    supportedStates: ['Collapsed', 'Expanded', 'Selected', 'Focused'],
+    builtAt: '2026-11-08T00:00:00.000Z',
+  },
+  {
+    id: 'side-navigation',
+    name: 'Side navigation',
+    category: 'Navigation',
+    paradigm: 'Persistent Section Navigation Standard',
+    description: 'Persistent vertical navigation for the sections of one product area.',
+    explanation:
+      'Side navigation keeps section switching visible and stable on medium and expanded windows.',
+    props: [{ name: 'items', type: 'NavItem[]', description: 'Section items.' }],
+    codeSnippet: `import { SideNavigation } from '@/components/ui';\n\n<SideNavigation />`,
+    realWorldExamples: [
+      {
+        title: 'Program Section Menu',
+        scenario: 'Program detail page switches between five sections.',
+        impact: 'Clear, fast task completion.',
+      },
+    ],
+    uxPsychology: [
+      { principle: 'Recognition Over Recall', detail: 'Visible sections beat hidden menus.' },
+    ],
+    usageGuidelines: [
+      {
+        doItem: 'Collapse to a horizontal scroll row on compact windows.',
+        dontItem: 'Do not mix global and section links in one rail.',
+      },
+    ],
+    implementationNotes: ['Active item is a solid Royal Blue block.'],
+    supportedStates: ['Active', 'Hover', 'Compact Row'],
+    builtAt: '2026-11-08T00:00:00.000Z',
+  },
+  {
+    id: 'action-button',
+    name: 'Action button',
+    category: 'Inputs',
+    paradigm: 'Single Action Trigger Standard',
+    description: 'One clear button that performs a single named action.',
+    explanation:
+      'Action buttons convert intent into one immediate, reversible where possible, operation.',
+    props: [{ name: 'onPress', type: '() => void', description: 'Action handler.' }],
+    codeSnippet: `import { ActionButton } from '@/components/ui';\n\n<ActionButton>Add student</ActionButton>`,
+    realWorldExamples: [
+      {
+        title: 'Add Student Trigger',
+        scenario: 'Registrar starts a new enrollment.',
+        impact: 'Clear, fast task completion.',
+      },
+    ],
+    uxPsychology: [
+      { principle: "Fitts's Law", detail: 'Large target, short travel, fast action.' },
+    ],
+    usageGuidelines: [
+      {
+        doItem: 'Use a verb first label.',
+        dontItem: 'Do not use one button for two different actions.',
+      },
+    ],
+    implementationNotes: ['Shares the Buttons demo stage.'],
+    supportedStates: ['Enabled', 'Hover', 'Pressed', 'Disabled'],
+    builtAt: '2026-11-08T00:00:00.000Z',
+  },
+  {
+    id: 'action-group',
+    name: 'Action group',
+    category: 'Inputs',
+    paradigm: 'Grouped Actions Standard',
+    description: 'A connected group of related action buttons presented as one control.',
+    explanation: 'Action groups keep sibling view and paging controls visually unified.',
+    props: [{ name: 'items', type: 'string[]', description: 'Grouped action labels.' }],
+    codeSnippet: `import { ActionGroup } from '@/components/ui';\n\n<ActionGroup />`,
+    realWorldExamples: [
+      {
+        title: 'List View Switcher',
+        scenario: 'Staff switch between List, Grid and Board.',
+        impact: 'Clear, fast task completion.',
+      },
+    ],
+    uxPsychology: [
+      { principle: 'Gestalt Grouping', detail: 'Shared borders read as one control.' },
+    ],
+    usageGuidelines: [
+      {
+        doItem: 'Keep groups to five actions or fewer.',
+        dontItem: 'Do not mix unrelated actions in one group.',
+      },
+    ],
+    implementationNotes: ['Shares the Button groups demo stage.'],
+    supportedStates: ['Selected', 'Hover', 'Pressed'],
+    builtAt: '2026-11-08T00:00:00.000Z',
+  },
+  {
+    id: 'action-bar',
+    name: 'Action bar',
+    category: 'Inputs',
+    paradigm: 'Contextual Action Bar Standard',
+    description: 'A horizontal bar of icon actions bound to the current editor or record context.',
+    explanation:
+      'Action bars place the frequent tools of the current surface in one predictable strip.',
+    props: [{ name: 'tools', type: 'ToolItem[]', description: 'Toolbar tools.' }],
+    codeSnippet: `import { ActionBar } from '@/components/ui';\n\n<ActionBar />`,
+    realWorldExamples: [
+      {
+        title: 'Document Editor Bar',
+        scenario: 'Formatting and export tools above the editor.',
+        impact: 'Clear, fast task completion.',
+      },
+    ],
+    uxPsychology: [
+      { principle: 'Proximity', detail: 'Tools sit next to the content they change.' },
+    ],
+    usageGuidelines: [
+      {
+        doItem: 'Group tools by task with dividers.',
+        dontItem: 'Do not overflow the bar without a scroll row.',
+      },
+    ],
+    implementationNotes: ['Shares the Toolbars demo stage.'],
+    supportedStates: ['Active Tool', 'Hover', 'Disabled'],
+    builtAt: '2026-11-08T00:00:00.000Z',
+  },
+  {
+    id: 'close-button',
+    name: 'Close button',
+    category: 'Inputs',
+    paradigm: 'Dismiss Action Standard',
+    description: 'A compact icon button that dismisses a surface, banner or notice.',
+    explanation: 'Close buttons give every dismissible surface a consistent, discoverable exit.',
+    props: [{ name: 'onClose', type: '() => void', description: 'Dismiss handler.' }],
+    codeSnippet: `import { CloseButton } from '@/components/ui';\n\n<CloseButton />`,
+    realWorldExamples: [
+      {
+        title: 'Notice Dismissal',
+        scenario: 'Staff dismiss the holiday notice banner.',
+        impact: 'Clear, fast task completion.',
+      },
+    ],
+    uxPsychology: [
+      { principle: 'User Control', detail: 'A visible exit keeps surfaces trustworthy.' },
+    ],
+    usageGuidelines: [
+      {
+        doItem: 'Place at the top right of the surface.',
+        dontItem: 'Do not use close to delete data without confirmation.',
+      },
+    ],
+    implementationNotes: ['Minimum 44px touch target with title label.'],
+    supportedStates: ['Default', 'Hover', 'Pressed'],
+    builtAt: '2026-11-08T00:00:00.000Z',
+  },
+  {
+    id: 'buttons-item',
+    name: 'Buttons',
+    category: 'Inputs',
+    paradigm: 'Button Family Standard',
+    description: 'The complete button family: primary, tonal, outline and text variants.',
+    explanation: 'Buttons are the primary action language of the system and share one geometry.',
+    props: [
+      {
+        name: 'variant',
+        type: "'primary' | 'tonal' | 'outline' | 'text'",
+        description: 'Visual variant.',
+      },
+    ],
+    codeSnippet: `import { Button } from '@/components/ui';\n\n<Button variant="primary">Save</Button>`,
+    realWorldExamples: [
+      {
+        title: 'Form Submit Actions',
+        scenario: 'Every form ends with the same primary button.',
+        impact: 'Clear, fast task completion.',
+      },
+    ],
+    uxPsychology: [
+      { principle: 'Consistency', detail: 'One action style builds trust across modules.' },
+    ],
+    usageGuidelines: [
+      {
+        doItem: 'One primary button per surface.',
+        dontItem: 'Do not stack several primary buttons together.',
+      },
+    ],
+    implementationNotes: ['Shares the Buttons demo stage.'],
+    supportedStates: ['Enabled', 'Hover', 'Pressed', 'Disabled'],
+    builtAt: '2026-11-08T00:00:00.000Z',
+  },
+  {
+    id: 'checkbox-group',
+    name: 'Checkbox group',
+    category: 'Inputs',
+    paradigm: 'Grouped Checkbox Standard',
+    description: 'A labeled group of checkboxes managed as one multi select field.',
+    explanation: 'Checkbox groups collect related optional settings under one clear field label.',
+    props: [{ name: 'options', type: 'CheckboxOption[]', description: 'Group options.' }],
+    codeSnippet: `import { CheckboxGroup } from '@/components/ui';\n\n<CheckboxGroup />`,
+    realWorldExamples: [
+      {
+        title: 'Notification Channels Group',
+        scenario: 'School toggles SMS, Telegram and print channels.',
+        impact: 'Clear, fast task completion.',
+      },
+    ],
+    uxPsychology: [
+      { principle: 'Chunking', detail: 'Grouped options are scanned as one decision.' },
+    ],
+    usageGuidelines: [
+      {
+        doItem: 'Order options by frequency of use.',
+        dontItem: 'Do not use a checkbox group for a single choice.',
+      },
+    ],
+    implementationNotes: ['Shares the Checkbox demo stage.'],
+    supportedStates: ['Checked', 'Unchecked', 'Mixed', 'Focused'],
+    builtAt: '2026-11-08T00:00:00.000Z',
+  },
+  {
+    id: 'combo-box',
+    name: 'Combo box',
+    category: 'Inputs',
+    paradigm: 'Input Listbox Standard',
+    description: 'A text input combined with a filterable listbox of options.',
+    explanation: 'Combo boxes merge fast typing with safe selection from a known option list.',
+    props: [{ name: 'options', type: 'string[]', description: 'Selectable options.' }],
+    codeSnippet: `import { ComboBox } from '@/components/ui';\n\n<ComboBox />`,
+    realWorldExamples: [
+      {
+        title: 'Campus Picker',
+        scenario: 'Registrar types to filter five campuses.',
+        impact: 'Clear, fast task completion.',
+      },
+    ],
+    uxPsychology: [{ principle: "Postel's Law", detail: 'Accept typing, filter strictly.' }],
+    usageGuidelines: [
+      {
+        doItem: 'Filter options as the user types.',
+        dontItem: 'Do not accept free text outside the option list.',
+      },
+    ],
+    implementationNotes: ['Selected option carries a Royal Blue check.'],
+    supportedStates: ['Closed', 'Open', 'Filtering', 'Selected'],
+    builtAt: '2026-11-08T00:00:00.000Z',
+  },
+  {
+    id: 'number-field',
+    name: 'Number field',
+    category: 'Inputs',
+    paradigm: 'Stepper Number Standard',
+    description: 'Numeric input with stepper buttons for precise quantity entry.',
+    explanation:
+      'Number fields prevent invalid quantities while staying fast for small adjustments.',
+    props: [
+      { name: 'min', type: 'number', description: 'Minimum value.' },
+      { name: 'max', type: 'number', description: 'Maximum value.' },
+    ],
+    codeSnippet: `import { NumberField } from '@/components/ui';\n\n<NumberField />`,
+    realWorldExamples: [
+      {
+        title: 'Classroom Seat Count',
+        scenario: 'Admin sets the seat capacity of a room.',
+        impact: 'Clear, fast task completion.',
+      },
+    ],
+    uxPsychology: [
+      { principle: 'Error Prevention', detail: 'Steppers clamp values to the valid range.' },
+    ],
+    usageGuidelines: [
+      {
+        doItem: 'Always show the unit and the maximum.',
+        dontItem: 'Do not use for long identifiers such as phone numbers.',
+      },
+    ],
+    implementationNotes: ['Steppers keep 44px touch targets.'],
+    supportedStates: ['Default', 'Focused', 'Stepped', 'Clamped'],
+    builtAt: '2026-11-08T00:00:00.000Z',
+  },
+  {
+    id: 'search-field',
+    name: 'Search field',
+    category: 'Inputs',
+    paradigm: 'Search Input Standard',
+    description: 'A dedicated input field for searching and filtering content.',
+    explanation: 'Search fields pair a clear icon, live filtering and an instant clear action.',
+    props: [{ name: 'value', type: 'string', description: 'Current query.' }],
+    codeSnippet: `import { SearchField } from '@/components/ui';\n\n<SearchField />`,
+    realWorldExamples: [
+      {
+        title: 'Module Search',
+        scenario: 'Staff filter the module directory by typing.',
+        impact: 'Clear, fast task completion.',
+      },
+    ],
+    uxPsychology: [
+      { principle: 'Recognition', detail: 'The search icon signals the field purpose instantly.' },
+    ],
+    usageGuidelines: [
+      {
+        doItem: 'Filter results live as the user types.',
+        dontItem: 'Do not hide the clear action once text exists.',
+      },
+    ],
+    implementationNotes: ['Shares the Search demo stage.'],
+    supportedStates: ['Empty', 'Typing', 'Results', 'No Results'],
+    builtAt: '2026-11-08T00:00:00.000Z',
+  },
+  {
+    id: 'text-area',
+    name: 'Text area',
+    category: 'Forms',
+    paradigm: 'Multi Line Input Standard',
+    description: 'Multi line text input for notes and longer free text with a character budget.',
+    explanation:
+      'Text areas give long input room to breathe while a counter keeps writers inside the limit.',
+    props: [{ name: 'maxLength', type: 'number', description: 'Character budget.' }],
+    codeSnippet: `import { TextArea } from '@/components/ui';\n\n<TextArea maxLength={140} />`,
+    realWorldExamples: [
+      {
+        title: 'Counselor Note Field',
+        scenario: 'Counselor writes a short student note.',
+        impact: 'Clear, fast task completion.',
+      },
+    ],
+    uxPsychology: [
+      {
+        principle: 'Visibility of System Status',
+        detail: 'The live counter shows remaining budget.',
+      },
+    ],
+    usageGuidelines: [
+      {
+        doItem: 'Show the character counter for limited fields.',
+        dontItem: 'Do not use a text area for one line answers.',
+      },
+    ],
+    implementationNotes: ['Shares the Text fields demo stage.'],
+    supportedStates: ['Empty', 'Typing', 'Near Limit', 'Over Limit'],
+    builtAt: '2026-11-08T00:00:00.000Z',
   },
 ];
 
