@@ -2,7 +2,7 @@
 
 /**
  * Page Heroes: one creative interactive hero per documentation page.
- * - LibraryHero (COMPONENT): live mini playground + scrolling component marquee.
+ * - LibraryHero (COMPONENT): one interactive user profile card. Drag it, tilt it with the mouse, play with its live controls.
  * - ApiHero (API): simulated request runner with real interaction states.
  * - BlueprintHero (BLUEPRINT): interactive brand token color lab.
  * All follow the Royal Blue brand system: flat surfaces, #CAD3F5 keylines,
@@ -31,239 +31,197 @@ import { LibrarySwitch } from './switch';
 // COMPONENT PAGE HERO
 // ==========================================
 
-const MARQUEE_COMPONENTS = [
-  'App bars',
-  'Tabs',
-  'Buttons',
-  'Dialogs',
-  'Cards',
-  'Sliders',
-  'Menus',
-  'Badges',
-  'Search',
-  'Snackbar',
-  'Carousel',
-  'Tooltips',
-  'Date pickers',
-  'Navigation rail',
-  'Bottom sheets',
-  'Checkboxes',
-];
-
-const CHART_SETS: Record<string, { label: string; bars: number[]; total: string }> = {
-  Overview: {
-    label: 'Active students this week',
-    bars: [42, 58, 50, 72, 66, 88, 79],
-    total: '1,284 students',
-  },
-  Attendance: {
-    label: 'Daily attendance rate',
-    bars: [88, 92, 85, 95, 90, 78, 93],
-    total: '91% average',
-  },
-  Finance: {
-    label: 'Fee collection progress',
-    bars: [30, 44, 52, 61, 70, 82, 96],
-    total: '$48,250 collected',
-  },
-};
-
 export function LibraryHero() {
-  const [segment, setSegment] = React.useState<keyof typeof CHART_SETS>('Overview');
+  const stageRef = React.useRef<HTMLDivElement>(null);
+  const dragRef = React.useRef<{ dx: number; dy: number } | null>(null);
+  const [pos, setPos] = React.useState({ x: 0, y: 0 });
+  const [tilt, setTilt] = React.useState({ rx: 0, ry: 0 });
+  const [dragging, setDragging] = React.useState(false);
+  const [following, setFollowing] = React.useState(false);
   const [autoSync, setAutoSync] = React.useState(true);
   const [volume, setVolume] = React.useState(64);
-  const [enrolled, setEnrolled] = React.useState(0);
-  const chart = CHART_SETS[segment];
+  const [interests, setInterests] = React.useState<string[]>(['Design', 'Code']);
 
-  const scrollToFeed = () => {
-    const el = document.querySelector('[id^="comp-"]');
-    el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  const toggleInterest = (label: string) =>
+    setInterests((prev) =>
+      prev.includes(label) ? prev.filter((i) => i !== label) : [...prev, label],
+    );
+
+  const handleStageMove = (e: React.PointerEvent) => {
+    const stage = stageRef.current;
+    if (!stage) return;
+    if (dragRef.current) {
+      const rect = stage.getBoundingClientRect();
+      const x = e.clientX - rect.left - dragRef.current.dx;
+      const y = e.clientY - rect.top - dragRef.current.dy;
+      setPos({
+        x: Math.max(-160, Math.min(160, x)),
+        y: Math.max(-70, Math.min(70, y)),
+      });
+      return;
+    }
+    const rect = stage.getBoundingClientRect();
+    const px = (e.clientX - rect.left) / rect.width - 0.5;
+    const py = (e.clientY - rect.top) / rect.height - 0.5;
+    setTilt({ rx: Math.round(-py * 8), ry: Math.round(px * 10) });
   };
 
   return (
     <section className="space-y-6 rounded-2xl border border-[#CAD3F5] bg-white p-6 shadow-xs sm:p-8">
-      <style>{`
-        @keyframes library-hero-drift {
-          from { transform: translateX(0); }
-          to { transform: translateX(-50%); }
-        }
-        .library-hero-marquee {
-          animation: library-hero-drift 36s linear infinite;
-        }
-        .library-hero-marquee:hover {
-          animation-play-state: paused;
-        }
-      `}</style>
-
-      <div className="space-y-3">
-        <span className="inline-flex min-h-8 items-center gap-2 rounded-[4px] bg-[#EFF5FF] px-3 font-mono text-[10px] font-bold tracking-wider text-[#0056FF] uppercase">
-          <Sparkles className="size-4" /> SNPI Design System · Live Library
-        </span>
+      <div className="space-y-2">
         <h1 className="font-sans text-3xl font-black tracking-tight text-[#020617] sm:text-4xl">
-          Components that feel alive.
+          Component Library
         </h1>
-        <p className="max-w-2xl font-sans text-sm leading-relaxed font-medium text-[#334155]">
-          Working demos. Touch the controls and run the states.
+        <p className="max-w-2xl font-sans text-sm font-medium text-[#334155]">
+          One profile. Every control on it is live. Drag it, tilt it, play with it.
         </p>
-        <div className="flex flex-wrap gap-2 pt-1">
-          {[
-            ['71', 'components live'],
-            ['6', 'families'],
-            ['50', 'activated this release'],
-            ['44px', 'touch standard'],
-          ].map(([value, label]) => (
-            <span
-              key={label}
-              className="inline-flex min-h-9 items-center gap-2 rounded-[4px] border border-[#CAD3F5] bg-white px-3 font-sans text-xs font-bold text-[#020617]"
-            >
-              <span className="font-mono text-[#0056FF]">{value}</span> {label}
-            </span>
-          ))}
-        </div>
       </div>
 
-      {/* Interactive playground */}
-      <div className="grid gap-5 rounded-xl border border-[#CAD3F5] bg-[#EFF5FF]/50 p-4 sm:p-5 lg:grid-cols-[1fr_290px]">
-        <div className="min-w-0">
+      <div
+        ref={stageRef}
+        onPointerMove={handleStageMove}
+        onPointerLeave={() => {
+          setTilt({ rx: 0, ry: 0 });
+          dragRef.current = null;
+          setDragging(false);
+        }}
+        className="relative flex min-h-[380px] items-center justify-center overflow-hidden rounded-[4px] border border-[#CAD3F5] bg-[#EFF5FF] p-6"
+        style={{ perspective: '900px' }}
+      >
+        <div
+          className="w-full max-w-72 rounded-2xl border border-[#CAD3F5] bg-white p-6 shadow-sm"
+          style={{
+            transform: `translate(${pos.x}px, ${pos.y}px) rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg)`,
+            transition: dragging ? 'none' : 'transform 200ms cubic-bezier(0.16, 1, 0.3, 1)',
+          }}
+        >
           <div
-            className="flex max-w-full gap-1 overflow-x-auto rounded-[4px] bg-white p-1"
-            role="tablist"
-            aria-label="Playground data sets"
+            className="flex cursor-grab touch-none flex-col items-center gap-2 select-none active:cursor-grabbing"
+            onPointerDown={(e) => {
+              const stage = stageRef.current;
+              if (!stage) return;
+              const rect = stage.getBoundingClientRect();
+              dragRef.current = {
+                dx: e.clientX - rect.left - pos.x,
+                dy: e.clientY - rect.top - pos.y,
+              };
+              setDragging(true);
+            }}
+            onPointerUp={() => {
+              dragRef.current = null;
+              setDragging(false);
+            }}
           >
-            {(Object.keys(CHART_SETS) as (keyof typeof CHART_SETS)[]).map((key) => (
-              <button
-                key={key}
-                type="button"
-                role="tab"
-                aria-selected={segment === key}
-                onClick={() => setSegment(key)}
-                className={cn(
-                  'min-h-11 shrink-0 rounded-[4px] px-4 font-sans text-xs font-bold whitespace-nowrap transition-colors',
-                  segment === key ? 'bg-[#0056FF] text-white' : 'text-[#020617] hover:bg-[#EFF5FF]',
-                )}
-              >
-                {key}
-              </button>
-            ))}
-          </div>
-          <div className="mt-5 flex h-36 items-end gap-2 sm:gap-3" aria-hidden="true">
-            {chart.bars.map((h, i) => (
-              <div
-                key={`${segment}-${i}`}
-                className="flex h-full min-w-0 flex-1 flex-col items-center gap-2"
-              >
-                <div className="flex w-full flex-1 items-end justify-center">
-                  <div
-                    className={cn(
-                      'w-full max-w-10 rounded-t-[4px] transition-all duration-500',
-                      i === chart.bars.length - 1 ? 'bg-[#2277FF]' : 'bg-[#0056FF]',
-                    )}
-                    style={{ height: `${h}%` }}
-                  />
-                </div>
-                <span className="font-mono text-[9px] font-bold text-[#334155]">
-                  {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'][i]}
-                </span>
-              </div>
-            ))}
-          </div>
-          <p className="mt-3 font-sans text-xs font-medium text-[#334155]">
-            {chart.label}: <span className="font-bold text-[#020617]">{chart.total}</span>
-          </p>
-        </div>
-
-        <div className="flex min-w-0 flex-col justify-center gap-4 rounded-xl border border-[#CAD3F5] bg-white p-4">
-          <div className="flex min-h-11 items-center justify-between gap-3">
-            <span className="flex items-center gap-2 font-sans text-xs font-bold text-[#020617]">
-              <RefreshCw className="size-4.5 shrink-0" /> Auto sync
+            <span className="flex size-16 items-center justify-center rounded-full bg-[#0056FF] font-sans text-lg font-black text-white">
+              SD
             </span>
-            <LibrarySwitch checked={autoSync} onCheckedChange={setAutoSync} />
+            <span className="font-sans text-lg font-black text-[#020617]">Sok Dara</span>
+            <span className="font-sans text-xs font-medium text-[#334155]">
+              Student · Software Engineering
+            </span>
           </div>
-          <div>
-            <div className="mb-2 flex items-center justify-between font-sans text-xs font-bold text-[#020617]">
-              <span className="flex items-center gap-2">
-                <Bell className="size-4.5 shrink-0" /> Alert volume
-              </span>
-              <span className="font-mono text-[#0056FF]">{volume}%</span>
-            </div>
-            <input
-              type="range"
-              min={0}
-              max={100}
-              value={volume}
-              onChange={(e) => setVolume(Number(e.target.value))}
-              aria-label="Alert volume"
-              className="h-11 w-full cursor-pointer accent-[#0056FF]"
-            />
-          </div>
-          <button
-            type="button"
-            onClick={() => setEnrolled((n) => n + 1)}
-            className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-[4px] bg-[#0056FF] px-4 font-sans text-sm font-bold text-white transition-all hover:bg-[#2277FF] active:scale-[0.97]"
-          >
-            <Zap className="size-4.5" /> Enroll student
-            {enrolled > 0 && (
-              <span className="rounded-[4px] bg-white px-1.5 font-mono text-[10px] font-bold text-[#0056FF]">
-                {enrolled}
-              </span>
-            )}
-          </button>
-          <p className="text-center font-sans text-[11px] font-medium text-[#334155]">
-            Real controls from this library. Try them.
-          </p>
-        </div>
-      </div>
 
-      {/* Scrolling component marquee */}
-      <div className="overflow-hidden" aria-hidden="true">
-        <div className="library-hero-marquee flex w-max gap-2">
-          {[...MARQUEE_COMPONENTS, ...MARQUEE_COMPONENTS].map((name, i) => (
-            <span
-              key={`${name}-${i}`}
-              className="inline-flex min-h-9 shrink-0 items-center rounded-[4px] border border-[#CAD3F5] bg-[#EFF5FF]/60 px-3 font-mono text-[11px] font-bold whitespace-nowrap text-[#020617]"
+          <div className="mt-4 flex gap-2">
+            <button
+              type="button"
+              onClick={() => setFollowing((f) => !f)}
+              className={cn(
+                'inline-flex min-h-11 flex-1 items-center justify-center gap-2 rounded-[4px] px-4 font-sans text-sm font-bold transition-all active:scale-[0.97]',
+                following
+                  ? 'border border-[#CAD3F5] bg-white text-[#0056FF]'
+                  : 'bg-[#0056FF] text-white hover:bg-[#2277FF]',
+              )}
             >
-              {name}
-            </span>
-          ))}
-        </div>
-      </div>
+              {following && <Check className="size-4" />}
+              {following ? 'Following' : 'Follow'}
+            </button>
+            <button
+              type="button"
+              title="Send message"
+              className="inline-flex size-11 shrink-0 items-center justify-center rounded-[4px] border border-[#CAD3F5] bg-white text-[#020617] transition-colors hover:bg-[#EFF5FF]"
+            >
+              <Send className="size-5" />
+            </button>
+          </div>
 
-      <div className="flex justify-center">
+          <div className="mt-4 space-y-4">
+            <div className="flex items-center justify-between gap-3">
+              <span className="flex items-center gap-2 font-sans text-xs font-bold text-[#020617]">
+                <Bell className="size-4" /> Auto sync
+              </span>
+              <LibrarySwitch checked={autoSync} onCheckedChange={setAutoSync} />
+            </div>
+            <div>
+              <label
+                htmlFor="hero-alert-volume"
+                className="mb-2 flex items-center gap-2 font-sans text-xs font-bold text-[#020617]"
+              >
+                <Zap className="size-4" /> Alert volume
+              </label>
+              <input
+                id="hero-alert-volume"
+                type="range"
+                min={0}
+                max={100}
+                value={volume}
+                onChange={(e) => setVolume(Number(e.target.value))}
+                aria-label="Alert volume"
+                className="h-11 w-full cursor-pointer accent-[#0056FF]"
+              />
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {['Design', 'Code', 'Music'].map((label) => (
+                <button
+                  key={label}
+                  type="button"
+                  onClick={() => toggleInterest(label)}
+                  className={cn(
+                    'min-h-11 rounded-[4px] px-4 font-sans text-xs font-bold transition-all active:scale-[0.97]',
+                    interests.includes(label)
+                      ? 'bg-[#0056FF] text-white'
+                      : 'border border-[#CAD3F5] bg-white text-[#020617] hover:bg-[#EFF5FF]',
+                  )}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+
         <button
           type="button"
-          onClick={scrollToFeed}
-          className="inline-flex min-h-11 items-center gap-2 rounded-[4px] px-4 font-sans text-xs font-bold text-[#0056FF] transition-colors hover:bg-[#EFF5FF]"
+          onClick={() => {
+            setPos({ x: 0, y: 0 });
+            setTilt({ rx: 0, ry: 0 });
+          }}
+          className="absolute right-4 bottom-4 inline-flex min-h-11 items-center gap-2 rounded-[4px] bg-white px-4 font-sans text-xs font-bold text-[#0056FF] transition-colors hover:bg-[#E3E7FC]"
         >
-          Scroll to explore the library
-          <ChevronDown className="size-4.5 animate-bounce" />
+          <RefreshCw className="size-4" /> Reset position
         </button>
       </div>
     </section>
   );
 }
 
-// ==========================================
-// API PAGE HERO
-// ==========================================
-
-const API_ENDPOINTS = [
+const API_ENDPOINTS: { method: string; path: string; latency: number; body: string }[] = [
   {
     method: 'GET',
     path: '/health',
     latency: 42,
-    body: '{\n  "status": "ok",\n  "service": "snpi-api",\n  "version": "1.1.0"\n}',
+    body: '{\n  "status": "ok",\n  "service": "snpi-api",\n  "uptime": "99.99%"\n}',
   },
   {
     method: 'GET',
     path: '/students/STU-2026-0891',
-    latency: 96,
-    body: '{\n  "code": "STU-2026-0891",\n  "name": "Dara Sok",\n  "campus": "Phnom Penh Innovation Hub",\n  "status": "active"\n}',
+    latency: 87,
+    body: '{\n  "id": "STU-2026-0891",\n  "name": "Sok Dara",\n  "program": "Software Engineering",\n  "status": "active"\n}',
   },
   {
     method: 'POST',
     path: '/auth/login',
-    latency: 128,
-    body: '{\n  "tokenType": "Bearer",\n  "expiresIn": 3600,\n  "role": "registrar"\n}',
+    latency: 120,
+    body: '{\n  "token": "<JWT_ACCESS_TOKEN_SAMPLE>",\n  "expiresIn": 3600\n}',
   },
 ];
 

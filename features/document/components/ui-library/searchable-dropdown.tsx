@@ -342,7 +342,7 @@ export function SearchableDropdown({
           >
             {/* 03 Auto-Focused Search Input */}
             <div className="relative border-b border-slate-100 p-2.5 dark:border-slate-800">
-              <Search className="absolute top-1/2 left-5 size-3.5 -translate-y-1/2 text-slate-400" />
+              <Search className="absolute top-1/2 left-5 size-3.5 -translate-y-1/2 stroke-[2.5] text-[#0056FF]" />
               <input
                 id={searchInputId}
                 ref={searchInputRef}

@@ -893,77 +893,69 @@ export function UiLibraryView() {
                       </span>
                     </div>
 
-                    {/* ONLY ONE CARD: Groups all components in this category in a single card */}
-                    <div className="w-full rounded-2xl border border-[#CAD3F5] bg-white p-6 shadow-xs sm:p-8">
-                      <div className="space-y-10 divide-y divide-slate-100">
-                        {group.components.map((comp, idx) => {
-                          const sectionId = `comp-${comp.id}`;
-                          const isActive = activeSectionId === sectionId;
+                    {/* News feed: one card per component, scroll one by one */}
+                    <div className="space-y-8">
+                      {group.components.map((comp) => {
+                        const sectionId = `comp-${comp.id}`;
+                        const isActive = activeSectionId === sectionId;
 
-                          return (
-                            <section
-                              key={comp.id}
-                              id={sectionId}
-                              className={cn(
-                                'group relative flex w-full scroll-mt-28 flex-col',
-                                idx > 0 && 'pt-10',
-                              )}
-                            >
-                              {/* Top Title inside the Card */}
-                              <div className="mb-6 flex items-center justify-between gap-3">
-                                <h2
-                                  onClick={() => scrollToSection(sectionId)}
-                                  title={`Go to ${comp.name}`}
-                                  className={cn(
-                                    'cursor-pointer font-sans text-xl font-black transition-colors sm:text-2xl',
-                                    isActive ? 'text-[#0056FF]' : 'text-[#020617]',
+                        return (
+                          <section
+                            key={comp.id}
+                            id={sectionId}
+                            className="group relative flex w-full scroll-mt-28 flex-col rounded-2xl border border-[#CAD3F5] bg-white p-6 shadow-xs sm:p-8"
+                          >
+                            {/* Top Title inside the Card */}
+                            <div className="mb-6 flex items-center justify-between gap-3">
+                              <h2
+                                onClick={() => scrollToSection(sectionId)}
+                                title={`Go to ${comp.name}`}
+                                className={cn(
+                                  'cursor-pointer font-sans text-xl font-black transition-colors sm:text-2xl',
+                                  isActive ? 'text-[#0056FF]' : 'text-[#020617]',
+                                )}
+                              >
+                                {comp.name}
+                              </h2>
+                            </div>
+
+                            {/* Component Demo Stage (Dedicated Preview Canvas: Centered & Fit Full) */}
+                            <div className="relative z-10 flex min-h-[220px] w-full items-center justify-center overflow-x-auto rounded-xl bg-[#EFF5FF]/30 p-4 sm:min-h-[260px] sm:p-6">
+                              <div className="flex w-full max-w-full items-center justify-center">
+                                {renderFeedComponentDemo(comp.id, stateBundle, comp)}
+                              </div>
+                            </div>
+
+                            {/* Bottom-Left Install Command UI Button */}
+                            <div className="mt-6 flex items-center justify-start">
+                              <div
+                                className="flex items-center gap-2 rounded-[4px] bg-slate-50 px-3 py-1.5 shadow-2xs backdrop-blur-xs transition-all"
+                                style={{ borderRadius: '4px' }}
+                              >
+                                <Terminal className="size-3.5 shrink-0 text-[#020617]" />
+                                <code className="font-mono text-xs font-bold text-[#0056FF]">
+                                  npx snpi-ui@latest add {comp.id}
+                                </code>
+                                <button
+                                  type="button"
+                                  title="Copy install command"
+                                  onClick={() =>
+                                    handleCopyInstall(comp.id, `npx snpi-ui@latest add ${comp.id}`)
+                                  }
+                                  className="ml-1 cursor-pointer text-[#020617]/60 transition-colors hover:text-[#0056FF]"
+                                  aria-label={`Copy install command for ${comp.name}`}
+                                >
+                                  {copiedInstallId === comp.id ? (
+                                    <Check className="size-3.5 stroke-[2.5] text-emerald-600" />
+                                  ) : (
+                                    <Copy className="size-3.5 stroke-[2]" />
                                   )}
-                                >
-                                  {comp.name}
-                                </h2>
+                                </button>
                               </div>
-
-                              {/* Component Demo Stage (Dedicated Preview Canvas: Centered & Fit Full) */}
-                              <div className="relative z-10 flex min-h-[220px] w-full items-center justify-center overflow-x-auto rounded-xl bg-[#EFF5FF]/30 p-4 sm:min-h-[260px] sm:p-6">
-                                <div className="flex w-full max-w-full items-center justify-center">
-                                  {renderFeedComponentDemo(comp.id, stateBundle, comp)}
-                                </div>
-                              </div>
-
-                              {/* Bottom-Left Install Command UI Button */}
-                              <div className="mt-6 flex items-center justify-start border-t border-slate-100 pt-4">
-                                <div
-                                  className="flex items-center gap-2 rounded-[4px] bg-slate-50 px-3 py-1.5 shadow-2xs backdrop-blur-xs transition-all"
-                                  style={{ borderRadius: '4px' }}
-                                >
-                                  <Terminal className="size-3.5 shrink-0 text-[#020617]" />
-                                  <code className="font-mono text-xs font-bold text-[#0056FF]">
-                                    npx snpi-ui@latest add {comp.id}
-                                  </code>
-                                  <button
-                                    type="button"
-                                    title="Copy install command"
-                                    onClick={() =>
-                                      handleCopyInstall(
-                                        comp.id,
-                                        `npx snpi-ui@latest add ${comp.id}`,
-                                      )
-                                    }
-                                    className="ml-1 cursor-pointer text-[#020617]/60 transition-colors hover:text-[#0056FF]"
-                                    aria-label={`Copy install command for ${comp.name}`}
-                                  >
-                                    {copiedInstallId === comp.id ? (
-                                      <Check className="size-3.5 stroke-[2.5] text-emerald-600" />
-                                    ) : (
-                                      <Copy className="size-3.5 stroke-[2]" />
-                                    )}
-                                  </button>
-                                </div>
-                              </div>
-                            </section>
-                          );
-                        })}
-                      </div>
+                            </div>
+                          </section>
+                        );
+                      })}
                     </div>
                   </div>
                 );

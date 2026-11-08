@@ -1183,12 +1183,12 @@ export function SearchDemo() {
     'Certificate printing',
     'Telegram broadcasts',
   ];
-  const [query, setQuery] = React.useState('t');
+  const [query, setQuery] = React.useState('');
   const results = modules.filter((m) => m.toLowerCase().includes(query.toLowerCase()));
   return (
     <DemoStage title="Search" badge="Live Filter">
-      <label className="flex min-h-11 items-center gap-2.5 rounded-[4px] border border-[#CAD3F5] bg-white px-3.5 transition-colors focus-within:border-[#0056FF]">
-        <Search className="size-5 shrink-0 text-[#0056FF]" />
+      <label className="flex min-h-11 items-center gap-2 rounded-[4px] border border-[#CAD3F5] bg-[#EFF5FF] px-4 transition-colors focus-within:border-[#0056FF] focus-within:bg-white">
+        <Search className="size-5 shrink-0 stroke-[2.5] text-[#0056FF]" />
         <input
           value={query}
           onChange={(e) => setQuery(e.target.value)}
@@ -2158,7 +2158,7 @@ export function ComboBoxDemo() {
           </span>
         </label>
         {open && (
-          <div className="absolute inset-x-0 top-full z-10 mt-2 rounded-[4px] border-2 border-[#0056FF] bg-white p-1 shadow-xs">
+          <div className="animate-in fade-in zoom-in-95 absolute inset-x-0 top-full z-10 mt-2 origin-top rounded-[4px] border-2 border-[#0056FF] bg-white p-1 shadow-xs duration-200">
             {results.map((opt) => (
               <button
                 key={opt}
@@ -2248,5 +2248,4 @@ Object.assign(FUTURE_COMPONENT_DEMOS, {
   'combo-box': ComboBoxDemo,
   'number-field': NumberFieldDemo,
   'search-field': SearchDemo,
-  'text-area': TextFieldsDemo,
 });

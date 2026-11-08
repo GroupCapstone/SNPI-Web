@@ -36,32 +36,39 @@ export function FontSwitch({ variant = 'header' }: { variant?: 'header' | 'panel
     >
       <button
         type="button"
-        onClick={() => setOpen((v) => !v)}
+        onClick={() => {
+          if (variant !== 'panel' && window.matchMedia('(hover: hover)').matches) {
+            setOpen(true);
+          } else {
+            setOpen((v) => !v);
+          }
+        }}
         aria-haspopup="listbox"
         aria-expanded={open}
         aria-label="Switch font"
         title="Switch font"
         className={cn(
-          'flex min-h-11 cursor-pointer items-center gap-2 rounded-[4px] font-sans text-sm font-bold transition-all active:scale-95',
+          'flex min-h-11 cursor-pointer items-center gap-2 rounded-[4px] font-sans text-sm font-bold transition-all active:scale-[0.97]',
           variant === 'header' &&
-            'max-w-44 border border-white/20 bg-white/10 px-3 text-white hover:bg-white/20',
+            'max-w-52 border border-[#CAD3F5] bg-white px-3 text-[#020617] hover:bg-[#EFF5FF]',
           variant === 'panel' &&
             'w-full justify-between border border-[#CAD3F5] bg-white px-3 text-[#020617] hover:bg-[#EFF5FF]',
           variant === 'icon' &&
-            'size-11 justify-center border border-white/20 bg-white/10 px-0 text-white hover:bg-white/20',
+            'size-11 justify-center border border-[#CAD3F5] bg-white px-0 text-[#020617] hover:bg-[#EFF5FF]',
         )}
       >
         {variant === 'icon' ? (
-          <CaseSensitive className="size-5 shrink-0 stroke-[2]" />
+          <CaseSensitive className="size-5 shrink-0 stroke-[2.5]" />
         ) : (
           <>
             <span className="flex min-w-0 items-center gap-2">
-              <CaseSensitive className="size-5 shrink-0 stroke-[2]" />
-              <span className="truncate">{active.label}</span>
+              <CaseSensitive className="size-5 shrink-0 stroke-[2.5]" />
+              <span className="shrink-0">Font</span>
+              <span className="truncate font-medium text-[#0056FF]">{active.label}</span>
             </span>
             <ChevronDown
               className={cn(
-                'size-4 shrink-0 stroke-[2.5] transition-transform',
+                'size-4 shrink-0 stroke-[2.5] transition-transform duration-200',
                 open && 'rotate-180',
               )}
             />

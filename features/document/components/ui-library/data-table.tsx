@@ -255,7 +255,7 @@ export function DataTable<T extends Record<string, any>>({
 
           {/* 01 Search Input */}
           <div className="relative w-full">
-            <Search className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-slate-400" />
+            <Search className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 stroke-[2.5] text-[#0056FF]" />
             <input
               type="text"
               value={searchInput}
@@ -431,7 +431,7 @@ export function DataTable<T extends Record<string, any>>({
         {/* 10 Empty State */}
         {paginatedData.length === 0 && (
           <div className="flex flex-col items-center justify-center px-4 py-16 text-center">
-            <Search className="size-8 text-slate-400" />
+            <Search className="size-8 stroke-[2.5] text-[#0056FF]" />
             <h4 className="mt-3 font-sans text-sm font-bold text-slate-900">No records found</h4>
             <p className="mt-1 max-w-sm font-sans text-xs text-slate-500">
               No matching results found for{' '}
