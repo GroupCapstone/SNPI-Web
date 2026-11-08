@@ -36,20 +36,166 @@ import { LibrarySwitch } from './switch';
 // COMPONENT PAGE HERO
 // ==========================================
 
-const KH_BLUE = '#032EA1';
-const KH_RED = '#E00025';
-
-const QR_MINI = [
-  [1, 1, 1, 0, 1, 1, 1],
-  [1, 0, 1, 0, 0, 1, 0],
-  [1, 1, 1, 0, 1, 0, 1],
-  [0, 0, 0, 1, 0, 1, 0],
-  [1, 1, 1, 0, 1, 1, 1],
-  [1, 0, 1, 1, 0, 0, 1],
-  [1, 1, 1, 0, 1, 0, 1],
+const QR_EMP: string[] = [
+  '111111101110010101100110101111111',
+  '100000101100011001110000101000001',
+  '101110101100111100110111001011101',
+  '101110100110001110110000101011101',
+  '101110101111000110110000101011101',
+  '100000100111010111001001001000001',
+  '111111101010101010101010101111111',
+  '000000000101010110110010000000000',
+  '100111111010101001010010010010111',
+  '110111011100011101110001111111000',
+  '001101110101010110001111111001011',
+  '110100010001010010100000101100110',
+  '011000111010110001001001101100110',
+  '100111001001111001100001000101011',
+  '001110111001110100111110110001000',
+  '001001011101101010000011101101110',
+  '100111101001000100001001001100001',
+  '111001001011000101111100101111101',
+  '011111111011110101110001101011101',
+  '000010010110111010001000111101110',
+  '110110101101001110110000000100101',
+  '101101000101011000010011010110111',
+  '100110100101111001101101010011011',
+  '101110011001110101011011110011110',
+  '110101111001111010000011111111001',
+  '000000001111010111100011100010010',
+  '111111101011011101010001101011100',
+  '100000101101010101100000100011111',
+  '101110101011111111011011111110011',
+  '101110101100100010111011000011111',
+  '101110100001101101110111100011111',
+  '100000100001100000011010001001111',
+  '111111101011100101001001101001100',
 ];
 
-function TiltCard({ rotate, children }: { rotate: string; children: React.ReactNode }) {
+const QR_STU: string[] = [
+  '111111101111110011111101101111111',
+  '100000101110010010100101001000001',
+  '101110100000000111001011101011101',
+  '101110101000001110011010001011101',
+  '101110100110011000001100101011101',
+  '100000100101101001011000101000001',
+  '111111101010101010101010101111111',
+  '000000001000100001101011100000000',
+  '101101110100101001010110101001011',
+  '011100010110100110111011110001001',
+  '110110100100101001000001010001111',
+  '101101001010011000100001011111001',
+  '001001101101000000100010110111110',
+  '101100001101110011100000100101001',
+  '111100110011001110000010100111000',
+  '010110011110010010111100010001111',
+  '111101111011100111110101101100101',
+  '010010011110011101011101011110001',
+  '011011110010000111000010110010110',
+  '111001010000011000000001010000001',
+  '001100111010000000101100000010000',
+  '110001001000101100100001001000110',
+  '001100101000000011100001010001111',
+  '011010010111110010010011100011010',
+  '100100101111101101001001111110000',
+  '000000001011001111010010100011110',
+  '111111101101110010011101101011000',
+  '100000101110100000000110100011101',
+  '101110100101101001001001111110111',
+  '101110101010111000111110110111001',
+  '101110101101000000110100111001100',
+  '100000100101010111110011100001001',
+  '111111101000100101101111000100100',
+];
+
+const QR_EVT: string[] = [
+  '11111110111001001110101111111',
+  '10000010110100101100101000001',
+  '10111010010011100011001011101',
+  '10111010101011100110101011101',
+  '10111010010110011100001011101',
+  '10000010001001101001001000001',
+  '11111110101010101010101111111',
+  '00000000111110101101000000000',
+  '10110111001110001010001001011',
+  '10100001001100001000101010110',
+  '01011011101100101110010111110',
+  '00111000010011001000000000001',
+  '10010110001000110100110101110',
+  '01011101000101101100001101010',
+  '01100011010110101011010001011',
+  '10001101101000111000100011011',
+  '11010011100111011011000010111',
+  '01110001011110010000110000001',
+  '10100111110001111110010001000',
+  '00101100011010100110110101111',
+  '01010011111000110111111110001',
+  '00000000101000001111100011000',
+  '11111110111000001101101010010',
+  '10000010111101101001100010000',
+  '10111010000000010110111111011',
+  '10111010100000111100000011101',
+  '10111010100100101001010001001',
+  '10000010001011111011110110010',
+  '11111110110011000110110010010',
+];
+
+function QrGrid({
+  rows,
+  dark = '#020617',
+  size = 'w-full',
+}: {
+  rows: string[];
+  dark?: string;
+  size?: string;
+}) {
+  const n = rows.length;
+  return (
+    <div
+      className={`grid aspect-square ${size}`}
+      style={{ gridTemplateColumns: `repeat(${n}, 1fr)` }}
+      aria-hidden="true"
+    >
+      {rows.flatMap((row, y) =>
+        row
+          .split('')
+          .map((cell, x) => (
+            <span
+              key={`${x}-${y}`}
+              style={{ backgroundColor: cell === '1' ? dark : 'transparent' }}
+            />
+          )),
+      )}
+    </div>
+  );
+}
+
+function InfoRow({
+  label,
+  value,
+  light = false,
+}: {
+  label: string;
+  value: string;
+  light?: boolean;
+}) {
+  return (
+    <div className="flex items-baseline justify-between gap-3">
+      <span
+        className={`font-sans text-[9px] font-bold tracking-widest uppercase ${light ? 'text-white/50' : 'text-[#334155]/70'}`}
+      >
+        {label}
+      </span>
+      <span
+        className={`text-right font-sans text-[11px] font-bold ${light ? 'text-white' : 'text-[#020617]'}`}
+      >
+        {value}
+      </span>
+    </div>
+  );
+}
+
+function TiltCard({ children, className = '' }: { children: React.ReactNode; className?: string }) {
   const [tilt, setTilt] = React.useState({ rx: 0, ry: 0 });
   const [shine, setShine] = React.useState({ x: 50, y: 50 });
   const handleMove = (e: React.PointerEvent<HTMLDivElement>) => {
@@ -60,15 +206,15 @@ function TiltCard({ rotate, children }: { rotate: string; children: React.ReactN
     setShine({ x: Math.round(px * 100), y: Math.round(py * 100) });
   };
   return (
-    <div className={rotate} style={{ perspective: '900px' }}>
+    <div style={{ perspective: '900px' }} className={className}>
       <div
         onPointerMove={handleMove}
         onPointerLeave={() => setTilt({ rx: 0, ry: 0 })}
-        className="relative h-full overflow-hidden rounded-2xl border border-white/50 bg-white shadow-lg ring-1 ring-[#CAD3F5] backdrop-blur-xl transition-transform duration-200"
+        className="relative overflow-hidden shadow-xl ring-1 ring-[#CAD3F5] transition-transform duration-200"
         style={{ transform: `rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg)` }}
       >
         <div
-          className="pointer-events-none absolute z-10 size-24 rounded-full bg-white/25 blur-2xl"
+          className="pointer-events-none absolute z-10 size-24 rounded-full bg-white/20 blur-2xl"
           style={{ left: `${shine.x}%`, top: `${shine.y}%`, transform: 'translate(-50%, -50%)' }}
         />
         {children}
@@ -77,7 +223,7 @@ function TiltCard({ rotate, children }: { rotate: string; children: React.ReactN
   );
 }
 
-function FollowBtn({ label = 'Follow' }: { label?: string }) {
+function FollowBtn({ dark = false, label = 'Follow' }: { dark?: boolean; label?: string }) {
   const [followed, setFollowed] = React.useState(false);
   return (
     <button
@@ -85,9 +231,14 @@ function FollowBtn({ label = 'Follow' }: { label?: string }) {
       onClick={() => setFollowed((f) => !f)}
       className={cn(
         'inline-flex min-h-11 flex-1 items-center justify-center gap-2 rounded-[4px] px-4 font-sans text-sm font-bold transition-all active:scale-[0.97]',
-        followed ? 'border border-[#CAD3F5] bg-white text-[#0056FF]' : 'text-white',
+        followed
+          ? dark
+            ? 'border border-white/40 bg-transparent text-white'
+            : 'border border-[#CAD3F5] bg-white text-[#0056FF]'
+          : dark
+            ? 'bg-white text-[#020617]'
+            : 'bg-[#0056FF] text-white hover:bg-[#2277FF]',
       )}
-      style={followed ? undefined : { backgroundColor: KH_BLUE }}
     >
       {followed && <Check className="size-4" />}
       {followed ? 'Following' : label}
@@ -95,201 +246,204 @@ function FollowBtn({ label = 'Follow' }: { label?: string }) {
   );
 }
 
-function IconBtn({ label, children }: { label: string; children: React.ReactNode }) {
+function IconBtn({
+  label,
+  dark = false,
+  children,
+}: {
+  label: string;
+  dark?: boolean;
+  children: React.ReactNode;
+}) {
   return (
     <button
       type="button"
       title={label}
-      className="inline-flex size-11 shrink-0 items-center justify-center rounded-[4px] border border-[#CAD3F5] bg-white text-[#020617] transition-colors hover:bg-[#EFF5FF]"
+      className={cn(
+        'inline-flex size-11 shrink-0 items-center justify-center rounded-[4px] border transition-colors',
+        dark
+          ? 'border-white/30 bg-transparent text-white hover:bg-white/10'
+          : 'border-[#CAD3F5] bg-white text-[#020617] hover:bg-[#EFF5FF]',
+      )}
     >
       {children}
     </button>
   );
 }
 
-function Stats({ followers, following }: { followers: number; following: number }) {
-  return (
-    <div className="flex gap-4">
-      <span className="font-sans text-xs font-bold text-[#020617]">
-        {followers} <span className="font-medium text-[#334155]">Followers</span>
-      </span>
-      <span className="font-sans text-xs font-bold text-[#020617]">
-        {following} <span className="font-medium text-[#334155]">Following</span>
-      </span>
-    </div>
-  );
-}
-
 export function LibraryHero() {
   return (
-    <section className="space-y-8 rounded-2xl border border-[#CAD3F5] bg-white p-6 shadow-xs sm:p-8">
+    <section className="space-y-8 rounded-2xl border border-[#CAD3F5] bg-[#EFF5FF]/60 p-6 shadow-xs sm:p-8">
       <h1 className="font-sans text-3xl font-black tracking-tight text-[#020617] sm:text-4xl">
         Component Library
       </h1>
 
-      <div className="grid gap-6 lg:grid-cols-3">
-        {/* BUSINESS: horizontal badge */}
-        <TiltCard rotate="-rotate-2">
-          <div
-            className="flex items-center justify-between px-5 py-3"
-            style={{ backgroundColor: KH_BLUE }}
-          >
-            <span className="font-sans text-sm font-black tracking-wider text-white">SNPI</span>
-            <span className="font-sans text-[10px] font-bold tracking-widest text-white/85 uppercase">
-              Business
-            </span>
-          </div>
-          <div className="h-1" style={{ backgroundColor: KH_RED }} />
-          <div className="p-5">
-            <div className="flex items-center gap-4">
+      <div className="grid items-center gap-8 lg:grid-cols-3">
+        {/* EMPLOYEE BADGE: portrait 54 x 86 mm, black */}
+        <div className="mx-auto w-full max-w-[300px] -rotate-2">
+          <TiltCard>
+            <div className="bg-[#020617] p-5">
+              <div className="mx-auto h-2 w-16 rounded-full border border-white/40" />
+              <div className="mt-4 flex items-start justify-between">
+                <span className="font-sans text-base font-black tracking-wider text-white">
+                  SNPI
+                </span>
+                <span className="font-sans text-[9px] font-bold tracking-widest text-white/60 uppercase">
+                  Employee ID
+                </span>
+              </div>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="https://avatars.githubusercontent.com/u/70220432?v=4"
                 alt="shiliaiwei profile photo"
-                className="size-24 shrink-0 rounded-[4px] border border-[#CAD3F5]"
+                className="mt-4 aspect-square w-full rounded-[4px] object-cover"
               />
-              <div className="min-w-0">
-                <p className="font-sans text-lg font-black text-[#020617]">shiliaiwei</p>
-                <p className="font-sans text-xs font-medium text-[#334155]">
-                  Senior Software Engineer
-                </p>
-                <p className="font-sans text-xs font-medium text-[#334155]">GroupCapstone</p>
-                <p className="mt-1 font-mono text-[11px] font-bold text-[#0056FF]">
-                  ID EMP-2026-001
-                </p>
+              <p className="mt-4 font-sans text-lg font-black tracking-wide text-white uppercase">
+                Shiliaiwei
+              </p>
+              <p className="font-sans text-[11px] font-medium text-white/60">@shiliaiwei</p>
+              <div className="mt-4 space-y-2 border-t border-white/15 pt-4">
+                <InfoRow light label="Title" value="Senior Software Engineer" />
+                <InfoRow light label="Department" value="Software Engineering" />
+                <InfoRow light label="ID No" value="EMP-2026-001" />
+                <InfoRow light label="Access" value="All Areas" />
+                <InfoRow light label="Valid" value="01/2026 to 12/2028" />
+              </div>
+              <div className="mt-4 flex items-end justify-between gap-4">
+                <div className="w-20 rounded-[4px] bg-white p-1">
+                  <QrGrid rows={QR_EMP} />
+                </div>
+                <div className="text-right">
+                  <p className="font-sans text-xs font-bold text-white">312 Followers</p>
+                  <p className="font-sans text-xs font-medium text-white/60">86 Following</p>
+                </div>
+              </div>
+              <div className="mt-4 flex gap-2">
+                <FollowBtn dark />
+                <IconBtn dark label="Call">
+                  <Phone className="size-5" />
+                </IconBtn>
+                <IconBtn dark label="Send message">
+                  <Send className="size-5" />
+                </IconBtn>
+                <IconBtn dark label="Share profile">
+                  <Share2 className="size-5" />
+                </IconBtn>
               </div>
             </div>
-            <div className="mt-4">
-              <Stats followers={312} following={86} />
-            </div>
-            <div className="mt-4 flex gap-2">
-              <FollowBtn />
-              <IconBtn label="Call">
-                <Phone className="size-5" />
-              </IconBtn>
-              <IconBtn label="Send message">
-                <Send className="size-5" />
-              </IconBtn>
-              <IconBtn label="Share profile">
-                <Share2 className="size-5" />
-              </IconBtn>
-            </div>
-          </div>
-        </TiltCard>
+          </TiltCard>
+          <p className="mt-3 text-center font-mono text-[10px] font-bold text-[#334155]">
+            BADGE 54 x 86 MM
+          </p>
+        </div>
 
-        {/* STUDENT: vertical card, red band */}
-        <TiltCard rotate="rotate-1">
-          <div
-            className="flex items-center justify-between px-5 py-3"
-            style={{ backgroundColor: KH_RED }}
-          >
-            <span className="font-sans text-sm font-black tracking-wider text-white">SNPI</span>
-            <span className="font-sans text-[10px] font-bold tracking-widest text-white/85 uppercase">
-              Student
-            </span>
-          </div>
-          <div className="h-1" style={{ backgroundColor: KH_BLUE }} />
-          <div className="flex flex-col items-center p-5 text-center">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="https://avatars.githubusercontent.com/u/233213854?v=4"
-              alt="Sok Dara profile photo"
-              className="size-24 rounded-full border-2"
-              style={{ borderColor: KH_RED }}
-            />
-            <p className="mt-3 font-sans text-lg font-black text-[#020617]">Sok Dara</p>
-            <p className="font-sans text-xs font-medium text-[#334155]">Software Engineering</p>
-            <p className="font-mono text-[11px] font-bold text-[#0056FF]">STU-2026-0891</p>
-            <div className="mt-3 w-full space-y-1 text-left">
-              <div className="flex justify-between font-sans text-xs">
-                <span className="font-medium text-[#334155]">Campus</span>
-                <span className="font-bold text-[#020617]">Phnom Penh</span>
+        {/* STUDENT ID: landscape credit card 86 x 54 mm, brand blue */}
+        <div className="mx-auto w-full max-w-[430px] rotate-1">
+          <TiltCard>
+            <div className="bg-white">
+              <div className="flex items-center justify-between bg-[#0056FF] px-5 py-3">
+                <span className="font-sans text-sm font-black tracking-wider text-white">
+                  SNPI INTERNATIONAL SCHOOL
+                </span>
+                <span className="font-sans text-[9px] font-bold tracking-widest text-white/85 uppercase">
+                  Student ID Card
+                </span>
               </div>
-              <div className="flex justify-between font-sans text-xs">
-                <span className="font-medium text-[#334155]">Study progress</span>
-                <span className="font-bold text-[#020617]">86%</span>
-              </div>
-              <div className="h-2 w-full overflow-hidden rounded-full bg-[#EFF5FF]">
-                <div
-                  className="h-full rounded-full"
-                  style={{ width: '86%', backgroundColor: KH_RED }}
+              <div className="flex gap-4 p-5">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="https://avatars.githubusercontent.com/u/233213854?v=4"
+                  alt="Sok Dara profile photo"
+                  className="aspect-[3/4] w-24 shrink-0 rounded-[4px] border border-[#CAD3F5] object-cover"
                 />
+                <div className="min-w-0 flex-1 space-y-1.5">
+                  <p className="font-sans text-base font-black text-[#020617] uppercase">
+                    Sok Dara
+                  </p>
+                  <InfoRow label="Student ID" value="STU-2026-0891" />
+                  <InfoRow label="Program" value="Software Engineering" />
+                  <InfoRow label="Batch" value="2026" />
+                  <InfoRow label="Date of birth" value="14 Mar 2004" />
+                  <InfoRow label="Blood group" value="O+" />
+                  <InfoRow label="Campus" value="Phnom Penh" />
+                  <InfoRow label="Issued" value="01 Sep 2026" />
+                  <InfoRow label="Expires" value="31 Aug 2030" />
+                </div>
+                <div className="w-16 shrink-0 self-end">
+                  <QrGrid rows={QR_STU} />
+                </div>
+              </div>
+              <div className="flex items-center gap-2 border-t border-[#CAD3F5] px-5 py-4">
+                <FollowBtn />
+                <IconBtn label="Class schedule">
+                  <Calendar className="size-5" />
+                </IconBtn>
+                <IconBtn label="Send message">
+                  <Send className="size-5" />
+                </IconBtn>
+                <span className="ml-auto font-sans text-xs font-bold text-[#020617]">
+                  128 <span className="font-medium text-[#334155]">Followers</span>
+                </span>
               </div>
             </div>
-            <div className="mt-4">
-              <Stats followers={128} following={64} />
-            </div>
-            <div className="mt-4 flex w-full gap-2">
-              <FollowBtn />
-              <IconBtn label="Class schedule">
-                <Calendar className="size-5" />
-              </IconBtn>
-              <IconBtn label="Send message">
-                <Send className="size-5" />
-              </IconBtn>
-            </div>
-          </div>
-        </TiltCard>
+          </TiltCard>
+          <p className="mt-3 text-center font-mono text-[10px] font-bold text-[#334155]">
+            CARD 86 x 54 MM
+          </p>
+        </div>
 
-        {/* EVENT: ticket with stub */}
-        <TiltCard rotate="-rotate-1">
-          <div className="flex h-full">
-            <div className="min-w-0 flex-1 p-5" style={{ backgroundColor: '#020617' }}>
-              <span
-                className="inline-block rounded-[4px] px-2 py-1 font-sans text-[10px] font-black tracking-widest text-white uppercase"
-                style={{ backgroundColor: KH_RED }}
-              >
-                Event
+        {/* EVENT PASS: portrait 70 x 120 mm, white and blue */}
+        <div className="mx-auto w-full max-w-[320px] -rotate-1">
+          <TiltCard>
+            <div className="bg-white p-5">
+              <div className="mx-auto h-2 w-16 rounded-full border border-[#CAD3F5]" />
+              <span className="mt-4 inline-block rounded-[4px] bg-[#032EA1] px-2 py-1 font-sans text-[10px] font-black tracking-widest text-white uppercase">
+                All-Access Pass
               </span>
-              <p className="mt-3 font-sans text-xl font-black text-white">SNPI Tech Day</p>
-              <p className="font-sans text-xs font-medium text-white/70">Nov 20, 2026 · 8:00 AM</p>
-              <p className="font-sans text-xs font-medium text-white/70">SNPI Hall, Phnom Penh</p>
-              <div className="mt-3 flex items-center gap-2">
+              <p className="mt-3 font-sans text-2xl font-black text-[#020617]">SNPI Tech Day</p>
+              <div className="mt-3 space-y-2">
+                <InfoRow label="Date" value="20 Nov 2026" />
+                <InfoRow label="Time" value="8:00 AM to 5:00 PM" />
+                <InfoRow label="Venue" value="SNPI Hall, Phnom Penh" />
+                <InfoRow label="Gate" value="A" />
+                <InfoRow label="Ticket No" value="EVT-2026-1120" />
+                <InfoRow label="Price" value="$10" />
+              </div>
+              <div className="mt-4 flex items-center gap-3 border-t border-[#CAD3F5] pt-4">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="https://avatars.githubusercontent.com/u/216975960?v=4"
                   alt="Kimheng Ly profile photo"
-                  className="size-8 rounded-full border border-white/40"
+                  className="size-11 rounded-full border border-[#CAD3F5]"
                 />
-                <span className="font-sans text-xs font-medium text-white/85">Host Kimheng Ly</span>
+                <div>
+                  <p className="font-sans text-[9px] font-bold tracking-widest text-[#334155]/70 uppercase">
+                    Attendee
+                  </p>
+                  <p className="font-sans text-sm font-bold text-[#020617]">Kimheng Ly</p>
+                </div>
+                <span className="ml-auto font-sans text-xs font-bold text-[#020617]">
+                  542 <span className="font-medium text-[#334155]">Going</span>
+                </span>
               </div>
-              <p className="mt-3 font-sans text-xs font-bold text-white">
-                542 <span className="font-medium text-white/70">Going</span>
-              </p>
+              <div className="mx-auto mt-4 w-28">
+                <QrGrid rows={QR_EVT} />
+              </div>
               <div className="mt-4 flex gap-2">
                 <FollowBtn label="Join" />
-                <span className="[&_button]:border-white/30 [&_button]:bg-transparent [&_button]:text-white [&_button]:hover:bg-white/10">
-                  <IconBtn label="Event location">
-                    <MapPin className="size-5" />
-                  </IconBtn>
-                </span>
-                <span className="[&_button]:border-white/30 [&_button]:bg-transparent [&_button]:text-white [&_button]:hover:bg-white/10">
-                  <IconBtn label="Share event">
-                    <Share2 className="size-5" />
-                  </IconBtn>
-                </span>
+                <IconBtn label="Event location">
+                  <MapPin className="size-5" />
+                </IconBtn>
+                <IconBtn label="Share event">
+                  <Share2 className="size-5" />
+                </IconBtn>
               </div>
             </div>
-            <div className="flex w-24 shrink-0 flex-col items-center justify-center gap-2 border-l-2 border-dashed border-[#CAD3F5] bg-white p-3">
-              <div className="grid grid-cols-7 gap-px" aria-hidden="true">
-                {QR_MINI.flatMap((row, y) =>
-                  row.map((cell, x) => (
-                    <span
-                      key={`${x}-${y}`}
-                      className={cell ? 'size-2 bg-[#020617]' : 'size-2 bg-white'}
-                    />
-                  )),
-                )}
-              </div>
-              <span className="font-sans text-[10px] font-black tracking-widest text-[#020617] uppercase">
-                Admit one
-              </span>
-              <span className="font-sans text-sm font-black" style={{ color: KH_RED }}>
-                $10
-              </span>
-            </div>
-          </div>
-        </TiltCard>
+          </TiltCard>
+          <p className="mt-3 text-center font-mono text-[10px] font-bold text-[#334155]">
+            PASS 70 x 120 MM
+          </p>
+        </div>
       </div>
     </section>
   );
