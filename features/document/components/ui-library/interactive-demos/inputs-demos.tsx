@@ -19,7 +19,7 @@ export function DurationPickerDemo() {
   const presets = [15, 30, 45, 60, 90, 120];
 
   return (
-    <div className="w-full max-w-md space-y-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-xs">
+    <div className="w-full max-w-md space-y-4 rounded-2xl border border-[#CAD3F5] bg-white p-5 shadow-xs">
       <div className="flex items-center justify-between border-b border-slate-100 pb-3">
         <div className="flex items-center gap-2 text-slate-600">
           <Clock className="size-4 text-[#0056FF]" />
@@ -103,21 +103,21 @@ export function PasswordInputDemo() {
           : 'bg-emerald-500';
 
   return (
-    <div className="w-full max-w-md space-y-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-xs">
+    <div className="w-full max-w-md space-y-4 rounded-2xl border border-[#CAD3F5] bg-white p-5 shadow-xs">
       <div className="relative">
         <input
           type={show ? 'text' : 'password'}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Enter password..."
-          className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5 pr-10 font-mono text-xs font-semibold text-slate-900 transition-colors focus:border-[#0056FF] focus:bg-white focus:outline-none"
+          className="h-11 w-full rounded-[4px] border border-[#CAD3F5] bg-[#EFF5FF] px-4 pr-12 font-sans text-sm font-medium text-[#020617] transition-colors focus:border-[#0056FF] focus:bg-white focus:outline-none"
         />
         {/* Motion Law 18: Crossfade Icons + Blur */}
         <motion.button
           type="button"
           whileTap={{ scale: WHILE_TAP_SCALE }}
           onClick={() => setShow(!show)}
-          className="absolute top-1/2 right-3 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+          className="absolute top-1/2 right-1 flex size-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-[4px] text-[#020617] transition-colors hover:bg-[#E3E7FC]"
         >
           <AnimatePresence mode="wait">
             {show ? (
@@ -128,7 +128,7 @@ export function PasswordInputDemo() {
                 animate="visible"
                 exit="exit"
               >
-                <EyeOff className="size-4" />
+                <EyeOff className="size-5" />
               </motion.div>
             ) : (
               <motion.div
@@ -138,7 +138,7 @@ export function PasswordInputDemo() {
                 animate="visible"
                 exit="exit"
               >
-                <Eye className="size-4" />
+                <Eye className="size-5" />
               </motion.div>
             )}
           </AnimatePresence>
@@ -214,7 +214,7 @@ export function TaskListDemo() {
   const doneCount = tasks.filter((t) => t.done).length;
 
   return (
-    <div className="w-full max-w-md space-y-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-xs">
+    <div className="w-full max-w-md space-y-4 rounded-2xl border border-[#CAD3F5] bg-white p-5 shadow-xs">
       <div className="flex items-center justify-between border-b border-slate-100 pb-3">
         <span className="font-sans text-xs font-bold tracking-wider text-slate-800 uppercase">
           Interactive Task List

@@ -310,7 +310,7 @@ function renderRealMiniDemo(
       return (
         <div className="relative w-full">
           <div className="flex items-center rounded-full border-2 border-[#0056FF] bg-white px-3 py-1.5 shadow-xs">
-            <Search className="size-3.5 text-[#0056FF]" />
+            <Search className="size-4 stroke-[2.5] text-[#0056FF]" />
             <input
               type="text"
               readOnly

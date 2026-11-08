@@ -2,7 +2,7 @@
 
 /**
  * Page Heroes: one creative interactive hero per documentation page.
- * - LibraryHero (COMPONENT): one interactive user profile card. Drag it, tilt it with the mouse, play with its live controls.
+ * - LibraryHero (COMPONENT): one open profile section, not cards. Real photo, name, live controls. No 3D, no mouse tracking, no drag.
  * - ApiHero (API): simulated request runner with real interaction states.
  * - BlueprintHero (BLUEPRINT): interactive brand token color lab.
  * All follow the Royal Blue brand system: flat surfaces, #CAD3F5 keylines,
@@ -32,11 +32,6 @@ import { LibrarySwitch } from './switch';
 // ==========================================
 
 export function LibraryHero() {
-  const stageRef = React.useRef<HTMLDivElement>(null);
-  const dragRef = React.useRef<{ dx: number; dy: number } | null>(null);
-  const [pos, setPos] = React.useState({ x: 0, y: 0 });
-  const [tilt, setTilt] = React.useState({ rx: 0, ry: 0 });
-  const [dragging, setDragging] = React.useState(false);
   const [following, setFollowing] = React.useState(false);
   const [autoSync, setAutoSync] = React.useState(true);
   const [volume, setVolume] = React.useState(64);
@@ -47,158 +42,97 @@ export function LibraryHero() {
       prev.includes(label) ? prev.filter((i) => i !== label) : [...prev, label],
     );
 
-  const handleStageMove = (e: React.PointerEvent) => {
-    const stage = stageRef.current;
-    if (!stage) return;
-    if (dragRef.current) {
-      const rect = stage.getBoundingClientRect();
-      const x = e.clientX - rect.left - dragRef.current.dx;
-      const y = e.clientY - rect.top - dragRef.current.dy;
-      setPos({
-        x: Math.max(-160, Math.min(160, x)),
-        y: Math.max(-70, Math.min(70, y)),
-      });
-      return;
-    }
-    const rect = stage.getBoundingClientRect();
-    const px = (e.clientX - rect.left) / rect.width - 0.5;
-    const py = (e.clientY - rect.top) / rect.height - 0.5;
-    setTilt({ rx: Math.round(-py * 8), ry: Math.round(px * 10) });
-  };
-
   return (
-    <section className="space-y-6 rounded-2xl border border-[#CAD3F5] bg-white p-6 shadow-xs sm:p-8">
-      <div className="space-y-2">
-        <h1 className="font-sans text-3xl font-black tracking-tight text-[#020617] sm:text-4xl">
-          Component Library
-        </h1>
-        <p className="max-w-2xl font-sans text-sm font-medium text-[#334155]">
-          One profile. Every control on it is live. Drag it, tilt it, play with it.
-        </p>
-      </div>
+    <section className="space-y-8 rounded-2xl border border-[#CAD3F5] bg-white p-6 shadow-xs sm:p-8">
+      <h1 className="font-sans text-3xl font-black tracking-tight text-[#020617] sm:text-4xl">
+        Component Library
+      </h1>
 
-      <div
-        ref={stageRef}
-        onPointerMove={handleStageMove}
-        onPointerLeave={() => {
-          setTilt({ rx: 0, ry: 0 });
-          dragRef.current = null;
-          setDragging(false);
-        }}
-        className="relative flex min-h-[380px] items-center justify-center overflow-hidden rounded-[4px] border border-[#CAD3F5] bg-[#EFF5FF] p-6"
-        style={{ perspective: '900px' }}
-      >
-        <div
-          className="w-full max-w-72 rounded-2xl border border-[#CAD3F5] bg-white p-6 shadow-sm"
-          style={{
-            transform: `translate(${pos.x}px, ${pos.y}px) rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg)`,
-            transition: dragging ? 'none' : 'transform 200ms cubic-bezier(0.16, 1, 0.3, 1)',
-          }}
-        >
-          <div
-            className="flex cursor-grab touch-none flex-col items-center gap-2 select-none active:cursor-grabbing"
-            onPointerDown={(e) => {
-              const stage = stageRef.current;
-              if (!stage) return;
-              const rect = stage.getBoundingClientRect();
-              dragRef.current = {
-                dx: e.clientX - rect.left - pos.x,
-                dy: e.clientY - rect.top - pos.y,
-              };
-              setDragging(true);
-            }}
-            onPointerUp={() => {
-              dragRef.current = null;
-              setDragging(false);
-            }}
+      <div className="flex flex-col items-center gap-6 text-center">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="https://github.com/shiliaiwei.png"
+          alt="shiliaiwei profile photo"
+          className="size-28 rounded-full border-2 border-[#CAD3F5]"
+        />
+        <div className="space-y-2">
+          <p className="font-sans text-2xl font-black text-[#020617]">shiliaiwei</p>
+          <p className="font-sans text-sm font-medium text-[#334155]">
+            Software Engineer · Phnom Penh, Cambodia
+          </p>
+        </div>
+        <div className="flex flex-wrap items-center justify-center gap-2">
+          <button
+            type="button"
+            onClick={() => setFollowing((f) => !f)}
+            className={cn(
+              'inline-flex min-h-11 items-center justify-center gap-2 rounded-[4px] px-6 font-sans text-sm font-bold transition-all active:scale-[0.97]',
+              following
+                ? 'border border-[#CAD3F5] bg-white text-[#0056FF]'
+                : 'bg-[#0056FF] text-white hover:bg-[#2277FF]',
+            )}
           >
-            <span className="flex size-16 items-center justify-center rounded-full bg-[#0056FF] font-sans text-lg font-black text-white">
-              SD
+            {following && <Check className="size-4" />}
+            {following ? 'Following' : 'Follow'}
+          </button>
+          <button
+            type="button"
+            title="Send message"
+            className="inline-flex size-11 items-center justify-center rounded-[4px] border border-[#CAD3F5] bg-white text-[#020617] transition-colors hover:bg-[#EFF5FF]"
+          >
+            <Send className="size-5" />
+          </button>
+          <button
+            type="button"
+            title="Share profile"
+            className="inline-flex size-11 items-center justify-center rounded-[4px] border border-[#CAD3F5] bg-white text-[#020617] transition-colors hover:bg-[#EFF5FF]"
+          >
+            <Globe className="size-5" />
+          </button>
+        </div>
+        <div className="flex w-full max-w-md flex-col gap-4">
+          <div className="flex items-center justify-between gap-3">
+            <span className="flex items-center gap-2 font-sans text-xs font-bold text-[#020617]">
+              <Bell className="size-4" /> Auto sync
             </span>
-            <span className="font-sans text-lg font-black text-[#020617]">Sok Dara</span>
-            <span className="font-sans text-xs font-medium text-[#334155]">
-              Student · Software Engineering
-            </span>
+            <LibrarySwitch checked={autoSync} onCheckedChange={setAutoSync} />
           </div>
-
-          <div className="mt-4 flex gap-2">
-            <button
-              type="button"
-              onClick={() => setFollowing((f) => !f)}
-              className={cn(
-                'inline-flex min-h-11 flex-1 items-center justify-center gap-2 rounded-[4px] px-4 font-sans text-sm font-bold transition-all active:scale-[0.97]',
-                following
-                  ? 'border border-[#CAD3F5] bg-white text-[#0056FF]'
-                  : 'bg-[#0056FF] text-white hover:bg-[#2277FF]',
-              )}
+          <div>
+            <label
+              htmlFor="hero-alert-volume"
+              className="mb-2 flex items-center gap-2 font-sans text-xs font-bold text-[#020617]"
             >
-              {following && <Check className="size-4" />}
-              {following ? 'Following' : 'Follow'}
-            </button>
-            <button
-              type="button"
-              title="Send message"
-              className="inline-flex size-11 shrink-0 items-center justify-center rounded-[4px] border border-[#CAD3F5] bg-white text-[#020617] transition-colors hover:bg-[#EFF5FF]"
-            >
-              <Send className="size-5" />
-            </button>
+              <Zap className="size-4" /> Alert volume
+            </label>
+            <input
+              id="hero-alert-volume"
+              type="range"
+              min={0}
+              max={100}
+              value={volume}
+              onChange={(e) => setVolume(Number(e.target.value))}
+              aria-label="Alert volume"
+              className="h-11 w-full cursor-pointer accent-[#0056FF]"
+            />
           </div>
-
-          <div className="mt-4 space-y-4">
-            <div className="flex items-center justify-between gap-3">
-              <span className="flex items-center gap-2 font-sans text-xs font-bold text-[#020617]">
-                <Bell className="size-4" /> Auto sync
-              </span>
-              <LibrarySwitch checked={autoSync} onCheckedChange={setAutoSync} />
-            </div>
-            <div>
-              <label
-                htmlFor="hero-alert-volume"
-                className="mb-2 flex items-center gap-2 font-sans text-xs font-bold text-[#020617]"
+          <div className="flex flex-wrap justify-center gap-2">
+            {['Design', 'Code', 'Music'].map((label) => (
+              <button
+                key={label}
+                type="button"
+                onClick={() => toggleInterest(label)}
+                className={cn(
+                  'min-h-11 rounded-[4px] px-4 font-sans text-xs font-bold transition-all active:scale-[0.97]',
+                  interests.includes(label)
+                    ? 'bg-[#0056FF] text-white'
+                    : 'border border-[#CAD3F5] bg-white text-[#020617] hover:bg-[#EFF5FF]',
+                )}
               >
-                <Zap className="size-4" /> Alert volume
-              </label>
-              <input
-                id="hero-alert-volume"
-                type="range"
-                min={0}
-                max={100}
-                value={volume}
-                onChange={(e) => setVolume(Number(e.target.value))}
-                aria-label="Alert volume"
-                className="h-11 w-full cursor-pointer accent-[#0056FF]"
-              />
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {['Design', 'Code', 'Music'].map((label) => (
-                <button
-                  key={label}
-                  type="button"
-                  onClick={() => toggleInterest(label)}
-                  className={cn(
-                    'min-h-11 rounded-[4px] px-4 font-sans text-xs font-bold transition-all active:scale-[0.97]',
-                    interests.includes(label)
-                      ? 'bg-[#0056FF] text-white'
-                      : 'border border-[#CAD3F5] bg-white text-[#020617] hover:bg-[#EFF5FF]',
-                  )}
-                >
-                  {label}
-                </button>
-              ))}
-            </div>
+                {label}
+              </button>
+            ))}
           </div>
         </div>
-
-        <button
-          type="button"
-          onClick={() => {
-            setPos({ x: 0, y: 0 });
-            setTilt({ rx: 0, ry: 0 });
-          }}
-          className="absolute right-4 bottom-4 inline-flex min-h-11 items-center gap-2 rounded-[4px] bg-white px-4 font-sans text-xs font-bold text-[#0056FF] transition-colors hover:bg-[#E3E7FC]"
-        >
-          <RefreshCw className="size-4" /> Reset position
-        </button>
       </div>
     </section>
   );

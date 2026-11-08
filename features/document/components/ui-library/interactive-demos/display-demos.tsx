@@ -1039,7 +1039,7 @@ export function FaqDemo() {
 
         {/* Search Input Bar */}
         <div className="relative">
-          <Search className="absolute top-3.5 left-3 size-4 text-[#0056FF]" />
+          <Search className="absolute top-3.5 left-3 size-4 stroke-[2.5] text-[#0056FF]" />
           <input
             type="text"
             value={searchQuery}

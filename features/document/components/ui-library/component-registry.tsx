@@ -277,13 +277,17 @@ export const COMPONENT_GROUPS_NAV: ComponentGroupNav[] = [
       { id: 'checkbox', name: 'Checkbox', builtAt: '2026-11-08T00:00:00.000Z' },
       { id: 'combo-box', name: 'Combo box', builtAt: '2026-11-08T00:00:00.000Z' },
       { id: 'radio-button', name: 'Radio button', builtAt: '2026-11-08T00:00:00.000Z' },
-      { id: 'rating', name: 'Rating', isFuture: true },
+      { id: 'rating', name: 'Rating', builtAt: '2026-11-08T00:00:00.000Z' },
       { id: 'sliders', name: 'Sliders', builtAt: '2026-11-08T00:00:00.000Z' },
-      { id: 'color-area', name: 'Color area', isFuture: true },
-      { id: 'color-handle-loupe', name: 'Color handle and loupe', isFuture: true },
-      { id: 'color-wheel', name: 'Color wheel', isFuture: true },
-      { id: 'swatch', name: 'Swatch', isFuture: true },
-      { id: 'swatch-group', name: 'Swatch group', isFuture: true },
+      { id: 'color-area', name: 'Color area', builtAt: '2026-11-08T00:00:00.000Z' },
+      {
+        id: 'color-handle-loupe',
+        name: 'Color handle and loupe',
+        builtAt: '2026-11-08T00:00:00.000Z',
+      },
+      { id: 'color-wheel', name: 'Color wheel', builtAt: '2026-11-08T00:00:00.000Z' },
+      { id: 'swatch', name: 'Swatch', builtAt: '2026-11-08T00:00:00.000Z' },
+      { id: 'swatch-group', name: 'Swatch group', builtAt: '2026-11-08T00:00:00.000Z' },
     ],
   },
   {
@@ -311,8 +315,8 @@ export const COMPONENT_GROUPS_NAV: ComponentGroupNav[] = [
             name: 'Progress indicators',
             builtAt: '2026-11-08T00:00:00.000Z',
           },
-          { id: 'progress-circle', name: 'Progress circle', isFuture: true },
-          { id: 'meter', name: 'Meter', isFuture: true },
+          { id: 'progress-circle', name: 'Progress circle', builtAt: '2026-11-08T00:00:00.000Z' },
+          { id: 'meter', name: 'Meter', builtAt: '2026-11-08T00:00:00.000Z' },
         ],
       },
       {
@@ -345,12 +349,16 @@ export const COMPONENT_GROUPS_NAV: ComponentGroupNav[] = [
         builtAt: '2026-11-01T00:00:00.000Z',
       },
       { id: 'dialogs', name: 'Dialogs', builtAt: '2026-11-08T00:00:00.000Z' },
-      { id: 'alert-banner', name: 'Alert banner', isFuture: true },
-      { id: 'help-text', name: 'Help text', isFuture: true },
-      { id: 'illustrated-message', name: 'Illustrated message', isFuture: true },
-      { id: 'status-light', name: 'Status light', isFuture: true },
-      { id: 'coach-mark', name: 'Coach mark', isFuture: true },
-      { id: 'popover', name: 'Popover', isFuture: true },
+      { id: 'alert-banner', name: 'Alert banner', builtAt: '2026-11-08T00:00:00.000Z' },
+      { id: 'help-text', name: 'Help text', builtAt: '2026-11-08T00:00:00.000Z' },
+      {
+        id: 'illustrated-message',
+        name: 'Illustrated message',
+        builtAt: '2026-11-08T00:00:00.000Z',
+      },
+      { id: 'status-light', name: 'Status light', builtAt: '2026-11-08T00:00:00.000Z' },
+      { id: 'coach-mark', name: 'Coach mark', builtAt: '2026-11-08T00:00:00.000Z' },
+      { id: 'popover', name: 'Popover', builtAt: '2026-11-08T00:00:00.000Z' },
       { id: 'tooltips', name: 'Tooltips', builtAt: '2026-11-08T00:00:00.000Z' },
       {
         id: 'status-404',
@@ -388,14 +396,14 @@ export const COMPONENT_GROUPS_NAV: ComponentGroupNav[] = [
         targetId: 'comp-voice-note',
         builtAt: '2026-11-01T00:00:00.000Z',
       },
-      { id: 'avatar', name: 'Avatar', isFuture: true },
+      { id: 'avatar', name: 'Avatar', builtAt: '2026-11-08T00:00:00.000Z' },
       { id: 'badges', name: 'Badges', builtAt: '2026-11-08T00:00:00.000Z' },
-      { id: 'calendar', name: 'Calendar', isFuture: true },
+      { id: 'calendar', name: 'Calendar', builtAt: '2026-11-08T00:00:00.000Z' },
       { id: 'cards', name: 'Cards', builtAt: '2026-11-08T00:00:00.000Z' },
       { id: 'carousel', name: 'Carousel', builtAt: '2026-11-08T00:00:00.000Z' },
       { id: 'divider', name: 'Divider', builtAt: '2026-11-08T00:00:00.000Z' },
       { id: 'lists', name: 'Lists', builtAt: '2026-11-08T00:00:00.000Z' },
-      { id: 'thumbnail', name: 'Thumbnail', isFuture: true },
+      { id: 'thumbnail', name: 'Thumbnail', builtAt: '2026-11-08T00:00:00.000Z' },
     ],
   },
   {
@@ -3942,6 +3950,482 @@ const FUTURE_M3_COMPONENTS: ComponentItemDoc[] = [
     ],
     implementationNotes: ['Shares the Search demo stage.'],
     supportedStates: ['Empty', 'Typing', 'Results', 'No Results'],
+    builtAt: '2026-11-08T00:00:00.000Z',
+  },
+  {
+    id: 'rating',
+    name: 'Rating',
+    category: 'Inputs',
+    paradigm: 'SNPI Royal Blue Flat Standard',
+    description: 'Star rating input for quick quality scoring.',
+    explanation: 'Star rating input for quick quality scoring.',
+    props: [{ name: 'value', type: 'string', description: 'Current value.' }],
+    codeSnippet: `import { Rating } from '@/components/ui';\n\n<Rating />`,
+    realWorldExamples: [
+      {
+        title: 'SNPI console',
+        scenario: 'Used in the school management console.',
+        impact: 'Clear and fast.',
+      },
+    ],
+    uxPsychology: [
+      { principle: 'Direct feedback', detail: 'Every tap answers at once with a visible state.' },
+    ],
+    usageGuidelines: [
+      { doItem: 'Keep targets at 44px or more.', dontItem: 'Use white icons on light surfaces.' },
+    ],
+    implementationNotes: [
+      'Flat surfaces, #CAD3F5 keylines, 4px radius, zero gradients, zero dots.',
+    ],
+    supportedStates: ['Resting', 'Pressed', 'Selected'],
+    builtAt: '2026-11-08T00:00:00.000Z',
+  },
+  {
+    id: 'color-area',
+    name: 'Color area',
+    category: 'Inputs',
+    paradigm: 'SNPI Royal Blue Flat Standard',
+    description: 'Flat palette area for picking a brand color.',
+    explanation: 'Flat palette area for picking a brand color.',
+    props: [{ name: 'value', type: 'string', description: 'Current value.' }],
+    codeSnippet: `import { Colorarea } from '@/components/ui';\n\n<Colorarea />`,
+    realWorldExamples: [
+      {
+        title: 'SNPI console',
+        scenario: 'Used in the school management console.',
+        impact: 'Clear and fast.',
+      },
+    ],
+    uxPsychology: [
+      { principle: 'Direct feedback', detail: 'Every tap answers at once with a visible state.' },
+    ],
+    usageGuidelines: [
+      { doItem: 'Keep targets at 44px or more.', dontItem: 'Use white icons on light surfaces.' },
+    ],
+    implementationNotes: [
+      'Flat surfaces, #CAD3F5 keylines, 4px radius, zero gradients, zero dots.',
+    ],
+    supportedStates: ['Resting', 'Pressed', 'Selected'],
+    builtAt: '2026-11-08T00:00:00.000Z',
+  },
+  {
+    id: 'color-handle-loupe',
+    name: 'Color handle and loupe',
+    category: 'Inputs',
+    paradigm: 'SNPI Royal Blue Flat Standard',
+    description: 'Color handles with a loupe preview of the picked hex.',
+    explanation: 'Color handles with a loupe preview of the picked hex.',
+    props: [{ name: 'value', type: 'string', description: 'Current value.' }],
+    codeSnippet: `import { Colorhandleandloupe } from '@/components/ui';\n\n<Colorhandleandloupe />`,
+    realWorldExamples: [
+      {
+        title: 'SNPI console',
+        scenario: 'Used in the school management console.',
+        impact: 'Clear and fast.',
+      },
+    ],
+    uxPsychology: [
+      { principle: 'Direct feedback', detail: 'Every tap answers at once with a visible state.' },
+    ],
+    usageGuidelines: [
+      { doItem: 'Keep targets at 44px or more.', dontItem: 'Use white icons on light surfaces.' },
+    ],
+    implementationNotes: [
+      'Flat surfaces, #CAD3F5 keylines, 4px radius, zero gradients, zero dots.',
+    ],
+    supportedStates: ['Resting', 'Pressed', 'Selected'],
+    builtAt: '2026-11-08T00:00:00.000Z',
+  },
+  {
+    id: 'color-wheel',
+    name: 'Color wheel',
+    category: 'Inputs',
+    paradigm: 'SNPI Royal Blue Flat Standard',
+    description: 'Circular wheel of flat color segments.',
+    explanation: 'Circular wheel of flat color segments.',
+    props: [{ name: 'value', type: 'string', description: 'Current value.' }],
+    codeSnippet: `import { Colorwheel } from '@/components/ui';\n\n<Colorwheel />`,
+    realWorldExamples: [
+      {
+        title: 'SNPI console',
+        scenario: 'Used in the school management console.',
+        impact: 'Clear and fast.',
+      },
+    ],
+    uxPsychology: [
+      { principle: 'Direct feedback', detail: 'Every tap answers at once with a visible state.' },
+    ],
+    usageGuidelines: [
+      { doItem: 'Keep targets at 44px or more.', dontItem: 'Use white icons on light surfaces.' },
+    ],
+    implementationNotes: [
+      'Flat surfaces, #CAD3F5 keylines, 4px radius, zero gradients, zero dots.',
+    ],
+    supportedStates: ['Resting', 'Pressed', 'Selected'],
+    builtAt: '2026-11-08T00:00:00.000Z',
+  },
+  {
+    id: 'swatch',
+    name: 'Swatch',
+    category: 'Inputs',
+    paradigm: 'SNPI Royal Blue Flat Standard',
+    description: 'Single color swatch card with hex and copy action.',
+    explanation: 'Single color swatch card with hex and copy action.',
+    props: [{ name: 'value', type: 'string', description: 'Current value.' }],
+    codeSnippet: `import { Swatch } from '@/components/ui';\n\n<Swatch />`,
+    realWorldExamples: [
+      {
+        title: 'SNPI console',
+        scenario: 'Used in the school management console.',
+        impact: 'Clear and fast.',
+      },
+    ],
+    uxPsychology: [
+      { principle: 'Direct feedback', detail: 'Every tap answers at once with a visible state.' },
+    ],
+    usageGuidelines: [
+      { doItem: 'Keep targets at 44px or more.', dontItem: 'Use white icons on light surfaces.' },
+    ],
+    implementationNotes: [
+      'Flat surfaces, #CAD3F5 keylines, 4px radius, zero gradients, zero dots.',
+    ],
+    supportedStates: ['Resting', 'Pressed', 'Selected'],
+    builtAt: '2026-11-08T00:00:00.000Z',
+  },
+  {
+    id: 'swatch-group',
+    name: 'Swatch group',
+    category: 'Inputs',
+    paradigm: 'SNPI Royal Blue Flat Standard',
+    description: 'Group of selectable color swatches.',
+    explanation: 'Group of selectable color swatches.',
+    props: [{ name: 'value', type: 'string', description: 'Current value.' }],
+    codeSnippet: `import { Swatchgroup } from '@/components/ui';\n\n<Swatchgroup />`,
+    realWorldExamples: [
+      {
+        title: 'SNPI console',
+        scenario: 'Used in the school management console.',
+        impact: 'Clear and fast.',
+      },
+    ],
+    uxPsychology: [
+      { principle: 'Direct feedback', detail: 'Every tap answers at once with a visible state.' },
+    ],
+    usageGuidelines: [
+      { doItem: 'Keep targets at 44px or more.', dontItem: 'Use white icons on light surfaces.' },
+    ],
+    implementationNotes: [
+      'Flat surfaces, #CAD3F5 keylines, 4px radius, zero gradients, zero dots.',
+    ],
+    supportedStates: ['Resting', 'Pressed', 'Selected'],
+    builtAt: '2026-11-08T00:00:00.000Z',
+  },
+  {
+    id: 'progress-circle',
+    name: 'Progress circle',
+    category: 'Feedback',
+    paradigm: 'SNPI Royal Blue Flat Standard',
+    description: 'Circular progress ring with a percentage label.',
+    explanation: 'Circular progress ring with a percentage label.',
+    props: [{ name: 'value', type: 'string', description: 'Current value.' }],
+    codeSnippet: `import { Progresscircle } from '@/components/ui';\n\n<Progresscircle />`,
+    realWorldExamples: [
+      {
+        title: 'SNPI console',
+        scenario: 'Used in the school management console.',
+        impact: 'Clear and fast.',
+      },
+    ],
+    uxPsychology: [
+      { principle: 'Direct feedback', detail: 'Every tap answers at once with a visible state.' },
+    ],
+    usageGuidelines: [
+      { doItem: 'Keep targets at 44px or more.', dontItem: 'Use white icons on light surfaces.' },
+    ],
+    implementationNotes: [
+      'Flat surfaces, #CAD3F5 keylines, 4px radius, zero gradients, zero dots.',
+    ],
+    supportedStates: ['Resting', 'Pressed', 'Selected'],
+    builtAt: '2026-11-08T00:00:00.000Z',
+  },
+  {
+    id: 'meter',
+    name: 'Meter',
+    category: 'Feedback',
+    paradigm: 'SNPI Royal Blue Flat Standard',
+    description: 'Segmented meter showing a level within a range.',
+    explanation: 'Segmented meter showing a level within a range.',
+    props: [{ name: 'value', type: 'string', description: 'Current value.' }],
+    codeSnippet: `import { Meter } from '@/components/ui';\n\n<Meter />`,
+    realWorldExamples: [
+      {
+        title: 'SNPI console',
+        scenario: 'Used in the school management console.',
+        impact: 'Clear and fast.',
+      },
+    ],
+    uxPsychology: [
+      { principle: 'Direct feedback', detail: 'Every tap answers at once with a visible state.' },
+    ],
+    usageGuidelines: [
+      { doItem: 'Keep targets at 44px or more.', dontItem: 'Use white icons on light surfaces.' },
+    ],
+    implementationNotes: [
+      'Flat surfaces, #CAD3F5 keylines, 4px radius, zero gradients, zero dots.',
+    ],
+    supportedStates: ['Resting', 'Pressed', 'Selected'],
+    builtAt: '2026-11-08T00:00:00.000Z',
+  },
+  {
+    id: 'alert-banner',
+    name: 'Alert banner',
+    category: 'Feedback',
+    paradigm: 'SNPI Royal Blue Flat Standard',
+    description: 'Full width banner announcing one important message.',
+    explanation: 'Full width banner announcing one important message.',
+    props: [{ name: 'value', type: 'string', description: 'Current value.' }],
+    codeSnippet: `import { Alertbanner } from '@/components/ui';\n\n<Alertbanner />`,
+    realWorldExamples: [
+      {
+        title: 'SNPI console',
+        scenario: 'Used in the school management console.',
+        impact: 'Clear and fast.',
+      },
+    ],
+    uxPsychology: [
+      { principle: 'Direct feedback', detail: 'Every tap answers at once with a visible state.' },
+    ],
+    usageGuidelines: [
+      { doItem: 'Keep targets at 44px or more.', dontItem: 'Use white icons on light surfaces.' },
+    ],
+    implementationNotes: [
+      'Flat surfaces, #CAD3F5 keylines, 4px radius, zero gradients, zero dots.',
+    ],
+    supportedStates: ['Resting', 'Pressed', 'Selected'],
+    builtAt: '2026-11-08T00:00:00.000Z',
+  },
+  {
+    id: 'help-text',
+    name: 'Help text',
+    category: 'Feedback',
+    paradigm: 'SNPI Royal Blue Flat Standard',
+    description: 'Short guidance text under a form field.',
+    explanation: 'Short guidance text under a form field.',
+    props: [{ name: 'value', type: 'string', description: 'Current value.' }],
+    codeSnippet: `import { Helptext } from '@/components/ui';\n\n<Helptext />`,
+    realWorldExamples: [
+      {
+        title: 'SNPI console',
+        scenario: 'Used in the school management console.',
+        impact: 'Clear and fast.',
+      },
+    ],
+    uxPsychology: [
+      { principle: 'Direct feedback', detail: 'Every tap answers at once with a visible state.' },
+    ],
+    usageGuidelines: [
+      { doItem: 'Keep targets at 44px or more.', dontItem: 'Use white icons on light surfaces.' },
+    ],
+    implementationNotes: [
+      'Flat surfaces, #CAD3F5 keylines, 4px radius, zero gradients, zero dots.',
+    ],
+    supportedStates: ['Resting', 'Pressed', 'Selected'],
+    builtAt: '2026-11-08T00:00:00.000Z',
+  },
+  {
+    id: 'illustrated-message',
+    name: 'Illustrated message',
+    category: 'Feedback',
+    paradigm: 'SNPI Royal Blue Flat Standard',
+    description: 'Empty state with one icon, one line, one action.',
+    explanation: 'Empty state with one icon, one line, one action.',
+    props: [{ name: 'value', type: 'string', description: 'Current value.' }],
+    codeSnippet: `import { Illustratedmessage } from '@/components/ui';\n\n<Illustratedmessage />`,
+    realWorldExamples: [
+      {
+        title: 'SNPI console',
+        scenario: 'Used in the school management console.',
+        impact: 'Clear and fast.',
+      },
+    ],
+    uxPsychology: [
+      { principle: 'Direct feedback', detail: 'Every tap answers at once with a visible state.' },
+    ],
+    usageGuidelines: [
+      { doItem: 'Keep targets at 44px or more.', dontItem: 'Use white icons on light surfaces.' },
+    ],
+    implementationNotes: [
+      'Flat surfaces, #CAD3F5 keylines, 4px radius, zero gradients, zero dots.',
+    ],
+    supportedStates: ['Resting', 'Pressed', 'Selected'],
+    builtAt: '2026-11-08T00:00:00.000Z',
+  },
+  {
+    id: 'status-light',
+    name: 'Status light',
+    category: 'Feedback',
+    paradigm: 'SNPI Royal Blue Flat Standard',
+    description: 'Status rows with text state pills.',
+    explanation: 'Status rows with text state pills.',
+    props: [{ name: 'value', type: 'string', description: 'Current value.' }],
+    codeSnippet: `import { Statuslight } from '@/components/ui';\n\n<Statuslight />`,
+    realWorldExamples: [
+      {
+        title: 'SNPI console',
+        scenario: 'Used in the school management console.',
+        impact: 'Clear and fast.',
+      },
+    ],
+    uxPsychology: [
+      { principle: 'Direct feedback', detail: 'Every tap answers at once with a visible state.' },
+    ],
+    usageGuidelines: [
+      { doItem: 'Keep targets at 44px or more.', dontItem: 'Use white icons on light surfaces.' },
+    ],
+    implementationNotes: [
+      'Flat surfaces, #CAD3F5 keylines, 4px radius, zero gradients, zero dots.',
+    ],
+    supportedStates: ['Resting', 'Pressed', 'Selected'],
+    builtAt: '2026-11-08T00:00:00.000Z',
+  },
+  {
+    id: 'coach-mark',
+    name: 'Coach mark',
+    category: 'Feedback',
+    paradigm: 'SNPI Royal Blue Flat Standard',
+    description: 'Step by step tip anchored to a control.',
+    explanation: 'Step by step tip anchored to a control.',
+    props: [{ name: 'value', type: 'string', description: 'Current value.' }],
+    codeSnippet: `import { Coachmark } from '@/components/ui';\n\n<Coachmark />`,
+    realWorldExamples: [
+      {
+        title: 'SNPI console',
+        scenario: 'Used in the school management console.',
+        impact: 'Clear and fast.',
+      },
+    ],
+    uxPsychology: [
+      { principle: 'Direct feedback', detail: 'Every tap answers at once with a visible state.' },
+    ],
+    usageGuidelines: [
+      { doItem: 'Keep targets at 44px or more.', dontItem: 'Use white icons on light surfaces.' },
+    ],
+    implementationNotes: [
+      'Flat surfaces, #CAD3F5 keylines, 4px radius, zero gradients, zero dots.',
+    ],
+    supportedStates: ['Resting', 'Pressed', 'Selected'],
+    builtAt: '2026-11-08T00:00:00.000Z',
+  },
+  {
+    id: 'popover',
+    name: 'Popover',
+    category: 'Feedback',
+    paradigm: 'SNPI Royal Blue Flat Standard',
+    description: 'Small anchored panel with quick actions.',
+    explanation: 'Small anchored panel with quick actions.',
+    props: [{ name: 'value', type: 'string', description: 'Current value.' }],
+    codeSnippet: `import { Popover } from '@/components/ui';\n\n<Popover />`,
+    realWorldExamples: [
+      {
+        title: 'SNPI console',
+        scenario: 'Used in the school management console.',
+        impact: 'Clear and fast.',
+      },
+    ],
+    uxPsychology: [
+      { principle: 'Direct feedback', detail: 'Every tap answers at once with a visible state.' },
+    ],
+    usageGuidelines: [
+      { doItem: 'Keep targets at 44px or more.', dontItem: 'Use white icons on light surfaces.' },
+    ],
+    implementationNotes: [
+      'Flat surfaces, #CAD3F5 keylines, 4px radius, zero gradients, zero dots.',
+    ],
+    supportedStates: ['Resting', 'Pressed', 'Selected'],
+    builtAt: '2026-11-08T00:00:00.000Z',
+  },
+  {
+    id: 'avatar',
+    name: 'Avatar',
+    category: 'Display',
+    paradigm: 'SNPI Royal Blue Flat Standard',
+    description: 'Initial avatars in three sizes.',
+    explanation: 'Initial avatars in three sizes.',
+    props: [{ name: 'value', type: 'string', description: 'Current value.' }],
+    codeSnippet: `import { Avatar } from '@/components/ui';\n\n<Avatar />`,
+    realWorldExamples: [
+      {
+        title: 'SNPI console',
+        scenario: 'Used in the school management console.',
+        impact: 'Clear and fast.',
+      },
+    ],
+    uxPsychology: [
+      { principle: 'Direct feedback', detail: 'Every tap answers at once with a visible state.' },
+    ],
+    usageGuidelines: [
+      { doItem: 'Keep targets at 44px or more.', dontItem: 'Use white icons on light surfaces.' },
+    ],
+    implementationNotes: [
+      'Flat surfaces, #CAD3F5 keylines, 4px radius, zero gradients, zero dots.',
+    ],
+    supportedStates: ['Resting', 'Pressed', 'Selected'],
+    builtAt: '2026-11-08T00:00:00.000Z',
+  },
+  {
+    id: 'calendar',
+    name: 'Calendar',
+    category: 'Display',
+    paradigm: 'SNPI Royal Blue Flat Standard',
+    description: 'Month grid with a selectable day.',
+    explanation: 'Month grid with a selectable day.',
+    props: [{ name: 'value', type: 'string', description: 'Current value.' }],
+    codeSnippet: `import { Calendar } from '@/components/ui';\n\n<Calendar />`,
+    realWorldExamples: [
+      {
+        title: 'SNPI console',
+        scenario: 'Used in the school management console.',
+        impact: 'Clear and fast.',
+      },
+    ],
+    uxPsychology: [
+      { principle: 'Direct feedback', detail: 'Every tap answers at once with a visible state.' },
+    ],
+    usageGuidelines: [
+      { doItem: 'Keep targets at 44px or more.', dontItem: 'Use white icons on light surfaces.' },
+    ],
+    implementationNotes: [
+      'Flat surfaces, #CAD3F5 keylines, 4px radius, zero gradients, zero dots.',
+    ],
+    supportedStates: ['Resting', 'Pressed', 'Selected'],
+    builtAt: '2026-11-08T00:00:00.000Z',
+  },
+  {
+    id: 'thumbnail',
+    name: 'Thumbnail',
+    category: 'Display',
+    paradigm: 'SNPI Royal Blue Flat Standard',
+    description: 'Selectable thumbnail tiles for media.',
+    explanation: 'Selectable thumbnail tiles for media.',
+    props: [{ name: 'value', type: 'string', description: 'Current value.' }],
+    codeSnippet: `import { Thumbnail } from '@/components/ui';\n\n<Thumbnail />`,
+    realWorldExamples: [
+      {
+        title: 'SNPI console',
+        scenario: 'Used in the school management console.',
+        impact: 'Clear and fast.',
+      },
+    ],
+    uxPsychology: [
+      { principle: 'Direct feedback', detail: 'Every tap answers at once with a visible state.' },
+    ],
+    usageGuidelines: [
+      { doItem: 'Keep targets at 44px or more.', dontItem: 'Use white icons on light surfaces.' },
+    ],
+    implementationNotes: [
+      'Flat surfaces, #CAD3F5 keylines, 4px radius, zero gradients, zero dots.',
+    ],
+    supportedStates: ['Resting', 'Pressed', 'Selected'],
     builtAt: '2026-11-08T00:00:00.000Z',
   },
 ];

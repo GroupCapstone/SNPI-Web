@@ -610,7 +610,7 @@ export function UiLibraryView() {
             >
               {/* Brand Search Bar */}
               <div className="group relative flex items-center">
-                <Search className="pointer-events-none absolute left-3 size-5 text-[#0056FF]" />
+                <Search className="pointer-events-none absolute left-3 size-5 stroke-[2.5] text-[#0056FF]" />
                 <input
                   ref={searchInputRef}
                   type="text"
@@ -729,8 +729,16 @@ export function UiLibraryView() {
                         </button>
 
                         {/* Group Items (Indented Hierarchy with Continuous Guide Rail, Zero Numbers) */}
-                        {!isGroupCollapsed && (
-                          <div className="relative mt-1 ml-3.5 space-y-0.5 border-l-2 border-slate-200 py-1 pl-3">
+                        <div
+                          className={cn(
+                            'grid transition-all ease-out',
+                            isGroupCollapsed
+                              ? 'grid-rows-[0fr] opacity-0'
+                              : 'grid-rows-[1fr] opacity-100',
+                          )}
+                          style={{ transitionDuration: isGroupCollapsed ? '160ms' : '200ms' }}
+                        >
+                          <div className="relative mt-1 ml-3.5 space-y-0.5 overflow-hidden border-l-2 border-slate-200 py-1 pl-3">
                             {group.items.map((item) => {
                               if (item.isParent && item.children) {
                                 const isExpanded = Boolean(expandedParents[item.id]);
@@ -773,8 +781,18 @@ export function UiLibraryView() {
                                     </button>
 
                                     {/* Sub-Group Child Items */}
-                                    {isExpanded && (
-                                      <div className="space-y-0.5 pl-2">
+                                    <div
+                                      className={cn(
+                                        'grid transition-all ease-out',
+                                        isExpanded
+                                          ? 'grid-rows-[1fr] opacity-100'
+                                          : 'grid-rows-[0fr] opacity-0',
+                                      )}
+                                      style={{
+                                        transitionDuration: isExpanded ? '200ms' : '160ms',
+                                      }}
+                                    >
+                                      <div className="space-y-0.5 overflow-hidden pl-2">
                                         {item.children.map((child: M3NavItem) => {
                                           const freshness = getComponentFreshness(child);
                                           const target = child.targetId || `comp-${child.id}`;
@@ -810,7 +828,7 @@ export function UiLibraryView() {
                                           );
                                         })}
                                       </div>
-                                    )}
+                                    </div>
                                   </div>
                                 );
                               }
@@ -850,7 +868,7 @@ export function UiLibraryView() {
                               );
                             })}
                           </div>
-                        )}
+                        </div>
                       </div>
                     );
                   })

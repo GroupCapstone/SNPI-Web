@@ -1812,7 +1812,577 @@ export function TextFieldsDemo() {
 // DEMO MAP: component id -> live demo
 // ==========================================
 
+// ==========================================
+// FINAL BATCH (built 2026-11-08, user order: no Coming labels left)
+// Icon color law: black or Royal Blue icons on white and Ice Tint,
+// white icons only on Royal Blue. No dots, no gradients.
+// ==========================================
+
+const BRAND_SWATCHES = [
+  { name: 'Royal Blue', hex: '#0056FF' },
+  { name: 'Azure Blue', hex: '#2277FF' },
+  { name: 'Soft Lavender', hex: '#E3E7FC' },
+  { name: 'Ice Tint', hex: '#EFF5FF' },
+  { name: 'Deep Navy', hex: '#020617' },
+  { name: 'Pure White', hex: '#FFFFFF' },
+];
+
+export function RatingDemo() {
+  const [value, setValue] = React.useState(4);
+  return (
+    <DemoStage>
+      <div className="flex items-center justify-center gap-2 py-2">
+        {[1, 2, 3, 4, 5].map((n) => (
+          <button
+            key={n}
+            type="button"
+            title={`Rate ${n} of 5`}
+            onClick={() => setValue(n)}
+            className="flex size-11 cursor-pointer items-center justify-center rounded-[4px] transition-all active:scale-[0.97]"
+          >
+            <Star
+              className={cn(
+                'size-7',
+                n <= value ? 'fill-[#0056FF] text-[#0056FF]' : 'fill-[#E3E7FC] text-[#020617]',
+              )}
+            />
+          </button>
+        ))}
+      </div>
+      <StatusLine>Rating: {value} of 5</StatusLine>
+    </DemoStage>
+  );
+}
+
+export function ColorAreaDemo() {
+  const [selected, setSelected] = React.useState(BRAND_SWATCHES[0]);
+  return (
+    <DemoStage>
+      <div className="grid grid-cols-3 gap-2">
+        {BRAND_SWATCHES.map((c) => (
+          <button
+            key={c.hex}
+            type="button"
+            title={c.name}
+            onClick={() => setSelected(c)}
+            className={cn(
+              'h-11 cursor-pointer rounded-[4px] border-2 transition-all active:scale-[0.97]',
+              selected.hex === c.hex ? 'border-[#0056FF]' : 'border-[#CAD3F5]',
+            )}
+            style={{ backgroundColor: c.hex }}
+          />
+        ))}
+      </div>
+      <StatusLine>
+        {selected.name} {selected.hex}
+      </StatusLine>
+    </DemoStage>
+  );
+}
+
+export function ColorHandleLoupeDemo() {
+  const [selected, setSelected] = React.useState(BRAND_SWATCHES[0]);
+  return (
+    <DemoStage>
+      <div className="flex flex-col items-center gap-4 py-2">
+        <span
+          className="flex size-20 items-end justify-center rounded-full border-2 border-[#CAD3F5] pb-1"
+          style={{ backgroundColor: selected.hex }}
+        >
+          <span className="rounded-[4px] bg-white px-1 font-mono text-[9px] font-bold text-[#020617]">
+            {selected.hex}
+          </span>
+        </span>
+        <div className="flex gap-2">
+          {BRAND_SWATCHES.slice(0, 5).map((c) => (
+            <button
+              key={c.hex}
+              type="button"
+              title={c.name}
+              onClick={() => setSelected(c)}
+              className={cn(
+                'size-11 cursor-pointer rounded-full border-2 transition-all active:scale-[0.97]',
+                selected.hex === c.hex ? 'border-[#0056FF]' : 'border-[#CAD3F5]',
+              )}
+              style={{ backgroundColor: c.hex }}
+            />
+          ))}
+        </div>
+      </div>
+      <StatusLine>{selected.name}</StatusLine>
+    </DemoStage>
+  );
+}
+
+export function ColorWheelDemo() {
+  const wheel = [
+    '#0056FF',
+    '#2277FF',
+    '#38BDF8',
+    '#10B981',
+    '#FBBF24',
+    '#F97316',
+    '#F43F5E',
+    '#A855F7',
+    '#6366F1',
+    '#0EA5E9',
+    '#14B8A6',
+    '#84CC16',
+  ];
+  const [selected, setSelected] = React.useState(wheel[0]);
+  return (
+    <DemoStage>
+      <div className="relative mx-auto size-44">
+        {wheel.map((hex, i) => (
+          <button
+            key={hex}
+            type="button"
+            title={hex}
+            onClick={() => setSelected(hex)}
+            className={cn(
+              'absolute top-1/2 left-1/2 size-11 cursor-pointer rounded-full border-2 transition-all active:scale-[0.97]',
+              selected === hex ? 'border-[#020617]' : 'border-white',
+            )}
+            style={{
+              backgroundColor: hex,
+              transform: `translate(-50%, -50%) rotate(${i * 30}deg) translateY(-64px) rotate(${-i * 30}deg)`,
+            }}
+          />
+        ))}
+        <span
+          className="absolute top-1/2 left-1/2 flex size-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-[#CAD3F5]"
+          style={{ backgroundColor: selected }}
+        />
+      </div>
+      <StatusLine>{selected}</StatusLine>
+    </DemoStage>
+  );
+}
+
+export function SwatchDemo() {
+  const [copied, setCopied] = React.useState(false);
+  return (
+    <DemoStage>
+      <div className="overflow-hidden rounded-[4px] border border-[#CAD3F5]">
+        <div className="h-20 bg-[#0056FF]" />
+        <div className="flex min-h-11 items-center justify-between bg-white px-4 py-2">
+          <span className="font-sans text-sm font-bold text-[#020617]">
+            Royal Blue <span className="font-mono text-xs text-[#334155]">#0056FF</span>
+          </span>
+          <button
+            type="button"
+            title="Copy hex"
+            onClick={() => setCopied(true)}
+            className="flex size-11 cursor-pointer items-center justify-center rounded-[4px] text-[#020617] transition-colors hover:bg-[#EFF5FF]"
+          >
+            {copied ? <Check className="size-5 text-[#0056FF]" /> : <Copy className="size-5" />}
+          </button>
+        </div>
+      </div>
+      <StatusLine>{copied ? 'Copied #0056FF' : 'Tap copy to copy the hex'}</StatusLine>
+    </DemoStage>
+  );
+}
+
+export function SwatchGroupDemo() {
+  const [selected, setSelected] = React.useState(BRAND_SWATCHES[0]);
+  return (
+    <DemoStage>
+      <div className="flex flex-wrap justify-center gap-2 py-2">
+        {BRAND_SWATCHES.map((c) => (
+          <button
+            key={c.hex}
+            type="button"
+            title={c.name}
+            onClick={() => setSelected(c)}
+            className={cn(
+              'flex h-11 cursor-pointer items-center gap-2 rounded-[4px] border-2 px-3 font-sans text-xs font-bold text-[#020617] transition-all active:scale-[0.97]',
+              selected.hex === c.hex
+                ? 'border-[#0056FF] bg-[#EFF5FF]'
+                : 'border-[#CAD3F5] bg-white',
+            )}
+          >
+            <span
+              className="size-4 rounded-[4px] border border-[#CAD3F5]"
+              style={{ backgroundColor: c.hex }}
+            />
+            {c.name}
+          </button>
+        ))}
+      </div>
+      <StatusLine>
+        {selected.name} {selected.hex}
+      </StatusLine>
+    </DemoStage>
+  );
+}
+
+export function ProgressCircleDemo() {
+  const [value, setValue] = React.useState(70);
+  const circumference = 2 * Math.PI * 30;
+  return (
+    <DemoStage>
+      <div className="flex flex-col items-center gap-4 py-2">
+        <div className="relative size-24">
+          <svg viewBox="0 0 80 80" className="size-24 -rotate-90">
+            <circle cx="40" cy="40" r="30" fill="none" stroke="#E3E7FC" strokeWidth="8" />
+            <circle
+              cx="40"
+              cy="40"
+              r="30"
+              fill="none"
+              stroke="#0056FF"
+              strokeWidth="8"
+              strokeLinecap="round"
+              strokeDasharray={circumference}
+              strokeDashoffset={circumference - (value / 100) * circumference}
+              className="transition-all duration-200"
+            />
+          </svg>
+          <span className="absolute inset-0 flex items-center justify-center font-sans text-lg font-black text-[#020617]">
+            {value}%
+          </span>
+        </div>
+        <div className="flex gap-2">
+          <button
+            type="button"
+            title="Minus 10 percent"
+            onClick={() => setValue((v) => Math.max(0, v - 10))}
+            className="flex size-11 cursor-pointer items-center justify-center rounded-[4px] border border-[#CAD3F5] bg-white text-[#020617] transition-all hover:bg-[#EFF5FF] active:scale-[0.97]"
+          >
+            <Minus className="size-5" />
+          </button>
+          <button
+            type="button"
+            title="Plus 10 percent"
+            onClick={() => setValue((v) => Math.min(100, v + 10))}
+            className="flex size-11 cursor-pointer items-center justify-center rounded-[4px] bg-[#0056FF] text-white transition-all hover:bg-[#2277FF] active:scale-[0.97]"
+          >
+            <Plus className="size-5" />
+          </button>
+        </div>
+      </div>
+    </DemoStage>
+  );
+}
+
+export function MeterDemo() {
+  const [value, setValue] = React.useState(3);
+  return (
+    <DemoStage>
+      <div className="space-y-4 py-2">
+        <div className="flex gap-2" role="img" aria-label={`Signal level ${value} of 5`}>
+          {[1, 2, 3, 4, 5].map((n) => (
+            <span
+              key={n}
+              className={cn(
+                'h-8 flex-1 rounded-[4px]',
+                n <= value ? 'bg-[#0056FF]' : 'bg-[#E3E7FC]',
+              )}
+            />
+          ))}
+        </div>
+        <input
+          type="range"
+          min={0}
+          max={5}
+          step={1}
+          value={value}
+          onChange={(e) => setValue(Number(e.target.value))}
+          aria-label="Meter level"
+          className="h-11 w-full cursor-pointer accent-[#0056FF]"
+        />
+      </div>
+      <StatusLine>Level {value} of 5</StatusLine>
+    </DemoStage>
+  );
+}
+
+export function AlertBannerDemo() {
+  const [visible, setVisible] = React.useState(true);
+  return (
+    <DemoStage>
+      {visible ? (
+        <div className="flex min-h-11 items-center gap-2 rounded-[4px] bg-[#0056FF] px-4 py-2">
+          <Bell className="size-5 shrink-0 text-white" />
+          <span className="flex-1 font-sans text-sm font-bold text-white">
+            Term 2 enrollment is open
+          </span>
+          <button
+            type="button"
+            title="Dismiss banner"
+            onClick={() => setVisible(false)}
+            className="flex size-11 shrink-0 cursor-pointer items-center justify-center rounded-[4px] text-white transition-all active:scale-[0.97]"
+          >
+            <X className="size-5" />
+          </button>
+        </div>
+      ) : (
+        <button
+          type="button"
+          onClick={() => setVisible(true)}
+          className="min-h-11 w-full cursor-pointer rounded-[4px] border border-[#CAD3F5] bg-white px-4 font-sans text-sm font-bold text-[#0056FF] transition-all hover:bg-[#EFF5FF] active:scale-[0.97]"
+        >
+          Show banner again
+        </button>
+      )}
+    </DemoStage>
+  );
+}
+
+export function HelpTextDemo() {
+  const [name, setName] = React.useState('');
+  return (
+    <DemoStage>
+      <div>
+        <label
+          htmlFor="help-text-name"
+          className="mb-2 block font-sans text-xs font-bold text-[#020617]"
+        >
+          Student name
+        </label>
+        <input
+          id="help-text-name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Full name"
+          className="h-11 w-full rounded-[4px] border border-[#CAD3F5] bg-[#EFF5FF] px-4 font-sans text-sm font-medium text-[#020617] outline-none placeholder:text-[#334155]/60 focus:border-[#0056FF] focus:bg-white"
+        />
+        <p className="mt-2 flex items-center gap-2 font-sans text-xs font-medium text-[#334155]">
+          <ShieldCheck className="size-4 shrink-0 text-[#020617]" />
+          Use the name on the national ID card.
+        </p>
+      </div>
+    </DemoStage>
+  );
+}
+
+export function IllustratedMessageDemo() {
+  const [cleared, setCleared] = React.useState(false);
+  return (
+    <DemoStage>
+      <div className="flex flex-col items-center gap-3 py-4 text-center">
+        <Mail className="size-10 text-[#020617]" />
+        <p className="font-sans text-sm font-bold text-[#020617]">
+          {cleared ? 'All caught up' : 'No new messages'}
+        </p>
+        {!cleared && (
+          <button
+            type="button"
+            onClick={() => setCleared(true)}
+            className="min-h-11 cursor-pointer rounded-[4px] bg-[#0056FF] px-4 font-sans text-sm font-bold text-white transition-all hover:bg-[#2277FF] active:scale-[0.97]"
+          >
+            Mark all read
+          </button>
+        )}
+      </div>
+    </DemoStage>
+  );
+}
+
+export function StatusLightDemo() {
+  const rows: { label: string; state: string; ok: boolean }[] = [
+    { label: 'API server', state: 'Active', ok: true },
+    { label: 'Telegram bot', state: 'Active', ok: true },
+    { label: 'Backup job', state: 'Paused', ok: false },
+  ];
+  return (
+    <DemoStage>
+      <div className="space-y-2">
+        {rows.map((r) => (
+          <div
+            key={r.label}
+            className="flex min-h-11 items-center justify-between rounded-[4px] border border-[#CAD3F5] bg-white px-4"
+          >
+            <span className="font-sans text-sm font-bold text-[#020617]">{r.label}</span>
+            <span
+              className={cn(
+                'inline-flex items-center gap-2 rounded-[4px] px-2 py-1 font-sans text-xs font-bold',
+                r.ok ? 'bg-[#0056FF] text-white' : 'bg-[#E3E7FC] text-[#020617]',
+              )}
+            >
+              {r.ok ? <Check className="size-4" /> : <Clock className="size-4" />}
+              {r.state}
+            </span>
+          </div>
+        ))}
+      </div>
+    </DemoStage>
+  );
+}
+
+export function CoachMarkDemo() {
+  const [step, setStep] = React.useState(0);
+  const tips = ['Tap here to open the student list.', 'Now pick a class to continue.'];
+  return (
+    <DemoStage>
+      <div className="relative py-2">
+        <button
+          type="button"
+          onClick={() => setStep(0)}
+          className="inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-[4px] bg-[#0056FF] px-4 font-sans text-sm font-bold text-white transition-all hover:bg-[#2277FF] active:scale-[0.97]"
+        >
+          <Users className="size-5 text-white" /> Students
+        </button>
+        {step < tips.length && (
+          <div className="animate-in fade-in zoom-in-95 mt-3 max-w-64 origin-top-left rounded-[4px] border-2 border-[#0056FF] bg-white p-4 duration-200">
+            <p className="font-sans text-sm font-medium text-[#020617]">{tips[step]}</p>
+            <button
+              type="button"
+              onClick={() => setStep((s) => s + 1)}
+              className="mt-3 min-h-11 cursor-pointer rounded-[4px] bg-[#0056FF] px-4 font-sans text-xs font-bold text-white transition-all hover:bg-[#2277FF] active:scale-[0.97]"
+            >
+              {step === tips.length - 1 ? 'Done' : 'Next'}
+            </button>
+          </div>
+        )}
+      </div>
+    </DemoStage>
+  );
+}
+
+export function PopoverDemo() {
+  const [open, setOpen] = React.useState(false);
+  const [picked, setPicked] = React.useState('Nothing picked');
+  return (
+    <DemoStage>
+      <div className="relative py-2">
+        <button
+          type="button"
+          onClick={() => setOpen((o) => !o)}
+          className="inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-[4px] border border-[#CAD3F5] bg-white px-4 font-sans text-sm font-bold text-[#020617] transition-all hover:bg-[#EFF5FF] active:scale-[0.97]"
+        >
+          <User className="size-5" /> Sok Dara
+          <ChevronDown
+            className={cn('size-4 transition-transform duration-200', open && 'rotate-180')}
+          />
+        </button>
+        {open && (
+          <div className="animate-in fade-in zoom-in-95 absolute top-full left-0 z-10 mt-2 w-52 origin-top-left rounded-[4px] border border-[#CAD3F5] bg-white py-1 duration-200">
+            {['View profile', 'Edit student', 'Send message'].map((label) => (
+              <button
+                key={label}
+                type="button"
+                onClick={() => {
+                  setPicked(label);
+                  setOpen(false);
+                }}
+                className="flex min-h-11 w-full cursor-pointer items-center px-4 font-sans text-sm font-medium text-[#020617] transition-colors hover:bg-[#EFF5FF]"
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+      <StatusLine>{picked}</StatusLine>
+    </DemoStage>
+  );
+}
+
+export function AvatarDemo() {
+  const people = [
+    { initials: 'SD', name: 'Sok Dara', blue: true },
+    { initials: 'KM', name: 'Kimheng', blue: false },
+    { initials: 'VR', name: 'Virak', blue: false },
+  ];
+  return (
+    <DemoStage>
+      <div className="flex items-end justify-center gap-4 py-2">
+        {people.map((p, i) => (
+          <span key={p.name} className="flex flex-col items-center gap-2">
+            <span
+              className={cn(
+                'flex items-center justify-center rounded-full font-sans font-black',
+                i === 1 ? 'size-16 text-lg' : 'size-11 text-xs',
+                p.blue ? 'bg-[#0056FF] text-white' : 'bg-[#E3E7FC] text-[#020617]',
+              )}
+            >
+              {p.initials}
+            </span>
+            <span className="font-sans text-xs font-bold text-[#020617]">{p.name}</span>
+          </span>
+        ))}
+      </div>
+    </DemoStage>
+  );
+}
+
+export function CalendarDemo() {
+  const [day, setDay] = React.useState(8);
+  const days = Array.from({ length: 30 }, (_, i) => i + 1);
+  return (
+    <DemoStage>
+      <div className="mx-auto max-w-64">
+        <p className="mb-2 flex items-center gap-2 font-sans text-sm font-black text-[#020617]">
+          <CalendarDays className="size-5" /> November 2026
+        </p>
+        <div className="grid grid-cols-7 gap-1">
+          {days.map((d) => (
+            <button
+              key={d}
+              type="button"
+              onClick={() => setDay(d)}
+              className={cn(
+                'flex h-11 cursor-pointer items-center justify-center rounded-[4px] font-sans text-xs font-bold transition-all active:scale-[0.97]',
+                d === day ? 'bg-[#0056FF] text-white' : 'text-[#020617] hover:bg-[#EFF5FF]',
+              )}
+            >
+              {d}
+            </button>
+          ))}
+        </div>
+      </div>
+      <StatusLine>Selected: November {day}, 2026</StatusLine>
+    </DemoStage>
+  );
+}
+
+export function ThumbnailDemo() {
+  const tiles = ['Campus', 'Library', 'Lab', 'Hall'];
+  const [selected, setSelected] = React.useState(tiles[0]);
+  return (
+    <DemoStage>
+      <div className="grid grid-cols-4 gap-2">
+        {tiles.map((t) => (
+          <button
+            key={t}
+            type="button"
+            title={t}
+            onClick={() => setSelected(t)}
+            className={cn(
+              'flex h-16 cursor-pointer flex-col items-center justify-center gap-1 rounded-[4px] border-2 transition-all active:scale-[0.97]',
+              selected === t ? 'border-[#0056FF] bg-[#EFF5FF]' : 'border-[#CAD3F5] bg-white',
+            )}
+          >
+            <FileText className="size-5 text-[#020617]" />
+            <span className="font-sans text-[10px] font-bold text-[#020617]">{t}</span>
+          </button>
+        ))}
+      </div>
+      <StatusLine>{selected}</StatusLine>
+    </DemoStage>
+  );
+}
+
 export const FUTURE_COMPONENT_DEMOS: Record<string, React.ComponentType> = {
+  rating: RatingDemo,
+  'color-area': ColorAreaDemo,
+  'color-handle-loupe': ColorHandleLoupeDemo,
+  'color-wheel': ColorWheelDemo,
+  swatch: SwatchDemo,
+  'swatch-group': SwatchGroupDemo,
+  'progress-circle': ProgressCircleDemo,
+  meter: MeterDemo,
+  'alert-banner': AlertBannerDemo,
+  'help-text': HelpTextDemo,
+  'illustrated-message': IllustratedMessageDemo,
+  'status-light': StatusLightDemo,
+  'coach-mark': CoachMarkDemo,
+  popover: PopoverDemo,
+  avatar: AvatarDemo,
+  calendar: CalendarDemo,
+  thumbnail: ThumbnailDemo,
   'app-bars': AppBarsDemo,
   'navigation-bar': NavigationBarDemo,
   'navigation-drawer': NavigationDrawerDemo,

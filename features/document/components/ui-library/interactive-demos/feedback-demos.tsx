@@ -85,7 +85,7 @@ export function ToastDemo() {
               <button
                 type="button"
                 onClick={() => removeToast(toast.id)}
-                className="text-slate-400 hover:text-slate-700"
+                className="text-[#020617] hover:text-[#0056FF]"
               >
                 <X className="size-3.5" />
               </button>
