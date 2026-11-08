@@ -511,7 +511,7 @@ export default function SecuritySettingsPage() {
               onSubmit={handleEnable2Fa}
               className="rounded-xl border border-[#CAD3F5] bg-[#EFF5FF]/40 p-5"
             >
-              <h3 className="text-xs font-bold text-[#0A1A4A]">
+              <h3 className="text-xs font-bold text-[#020617]">
                 3. {isKhmer ? 'បញ្ចូលកូដដើម្បីផ្ទៀងផ្ទាត់ & បើកដំណើរការ' : 'Verify & Activate 2FA'}
               </h3>
               <p className="mt-0.5 text-xs text-slate-600">

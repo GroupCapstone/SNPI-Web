@@ -59,24 +59,24 @@ These rules apply to every AI coding agent and human contributor working in the 
   - **Zero Credential Headers or Inspection Code**: Never display, instruct, or include credential headers (`X-Subscription-Key`, auth tokens, secret keys) or credential flags (`withCredentials: true`) in client-side code snippets or documentation. Endpoints must be presented purely as standard public display feeds without user credential inspection.
 - **Mandatory Prohibition of Dark Navy / Black Terminal Box Aesthetics in Documentation (CRITICAL RULE)**:
   - **Never Design Dark Terminal Containers**: Under no circumstances should logs, telemetry monitors, event stream cards, or inspection boxes be designed with solid dark navy (`#0A1A4A`), black, or dark terminal background styles.
-  - **Light-Day-First Modern UI**: All telemetry monitors, packet streams, and documentation cards must strictly use **Pure White (`#FFFFFF`)** or **Ice Tint (`#EFF5FF`)** backgrounds with Soft Lavender borders (`#CAD3F5`), Deep Navy (`#0A1A4A`) high-contrast text, and Royal Blue (`#0056FF`) accent pills.
+  - **Light-Day-First Modern UI**: All telemetry monitors, packet streams, and documentation cards must strictly use **Pure White (`#FFFFFF`)** or **Ice Tint (`#EFF5FF`)** backgrounds with Soft Lavender borders (`#CAD3F5`), Deep Navy (`#020617`) high-contrast text, and Royal Blue (`#0056FF`) accent pills.
   - **Zero Dark Hacker Inversion**: Never invert page sections into high-contrast dark terminal boxes or hacker consoles in documentation views.
 - **Mandatory Brand Color Tokens & Anti-Muddy Gray / Anti-Blur / High-Contrast Typography Rule (CRITICAL RULE)**:
   - **Zero Muddy Gray, Slate Containers, or Blur Styles**: Under no circumstances should components, cards, tables, or callouts be styled with muddy gray (`#64748B`, `#475569`), dark slate blocks, or blur backgrounds. Never use solid black or dark slate (`bg-slate-900`, `bg-black`) for buttons or badges in UI library components.
-  - **Zero Washed-Out, Pale Gray, or Hidden Text**: Never design components where text fades, washes out, or lacks sufficient contrast. All body text, data table rows, headers, and values on light surfaces (`#FFFFFF`, `#EFF5FF`, `#E3E7FC`) must maintain high contrast (WCAG AAA >= 7:1) using **Deep Navy (`#0A1A4A`)** or **Slate-900 (`#0F172A`)**. Text color must NEVER match or blend into the background.
+  - **Zero Washed-Out, Pale Gray, or Hidden Text**: Never design components where text fades, washes out, or lacks sufficient contrast. All body text, data table rows, headers, and values on light surfaces (`#FFFFFF`, `#EFF5FF`, `#E3E7FC`) must maintain high contrast (WCAG AAA >= 7:1) using **Deep Navy (`#020617`)** or **Slate-900 (`#0F172A`)**. Text color must NEVER match or blend into the background.
   - **Exclusively Use the 5 Primary Brand Tokens**:
     1. `01 #0056FF` Royal Blue — Primary brand base, active pills, core CTAs, active highlights.
     2. `02 #2277FF` Azure Blue — Interactive accents, illuminated hover states, secondary highlights.
     3. `03 #E3E7FC` Soft Lavender — Surface micro-tints, subtle borders (`#CAD3F5`), badge fills.
     4. `04 #FFFFFF` White — Document canvas base, card foundations, clean backgrounds.
     5. `05 #EFF5FF` Ice Tint — Subsurface card fills, segment track fills, hover backdrops.
-    - Typography Token: Deep Navy `#0A1A4A` (primary headings & text) / Slate-900 `#0F172A` / `#334155` (secondary descriptive copy). Never use light gray on light surfaces.
+    - Typography Token: Deep Navy `#020617` (primary headings & text) / Slate-900 `#0F172A` / `#334155` (secondary descriptive copy). Never use light gray on light surfaces.
   - **Zero Accidental Dark Mode Inversion**: Never allow media-query dark styles or `dark:*` Tailwind classes to invert UI components into dark slate/muddy gray boxes or render washed-out white/light gray text on white tables.
 - **Mandatory Dual-Theme Preferences: Day & Moon Visual Spectrum Standard (CRITICAL RULE)**:
   - **Exactly Two Canonical Themes**: The system strictly supports only two theme choices: **Day (White Default)** and **Moon (Dark Mode)**. All extraneous multi-theme variants are eliminated.
   - **Day Theme (White Default)**:
     - Canvas: Pure White (`#FFFFFF`) foundation with Ice Tint (`#EFF5FF`) subsurfaces and Soft Lavender (`#CAD3F5`) borders.
-    - Typography: High-contrast Deep Navy (`#0A1A4A`) primary text and Slate-700 (`#334155`) secondary text.
+    - Typography: High-contrast Deep Navy (`#020617`) primary text and Slate-700 (`#334155`) secondary text.
     - Icons: Black or Dark Obsidian (`#020617`) and Royal Blue (`#0056FF`) keyline icons with single-color 2px corner containers (`rounded-[2px]`).
   - **Moon Theme (Dark Mode / Nocturnal Cognitive Psychology)**:
     - Canvas: Moonlit Midnight Slate (`#0F172A`, Neutral 900) foundation with Moon Charcoal (`#1E293B`, Neutral 800) subsurfaces and Precision Moonlit Slate (`#334155`, Neutral 700) borders.

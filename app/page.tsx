@@ -35,7 +35,7 @@ export default function HomePage() {
           />
         </div>
         <div className="space-y-1">
-          <h2 className="text-base font-bold tracking-tight text-[#0A1A4A]">SNP-SMS</h2>
+          <h2 className="text-base font-bold tracking-tight text-[#020617]">SNP-SMS</h2>
           <p className="text-xs text-slate-500">Checking system session...</p>
         </div>
         <Loader2 className="size-5 animate-spin text-[#0056FF]" />
