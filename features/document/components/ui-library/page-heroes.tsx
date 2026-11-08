@@ -210,7 +210,7 @@ function TiltCard({ children, className = '' }: { children: React.ReactNode; cla
       <div
         onPointerMove={handleMove}
         onPointerLeave={() => setTilt({ rx: 0, ry: 0 })}
-        className="relative overflow-hidden shadow-xl ring-1 ring-[#CAD3F5] transition-transform duration-200"
+        className="relative overflow-hidden rounded-2xl shadow-xl ring-1 ring-[#CAD3F5] transition-transform duration-200"
         style={{ transform: `rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg)` }}
       >
         <div
@@ -223,26 +223,44 @@ function TiltCard({ children, className = '' }: { children: React.ReactNode; cla
   );
 }
 
-function FollowBtn({ dark = false, label = 'Follow' }: { dark?: boolean; label?: string }) {
+function FollowBlock({
+  followers,
+  following,
+  label = 'Follow',
+  countWord = 'Followers',
+}: {
+  followers: number;
+  following?: number;
+  label?: string;
+  countWord?: string;
+}) {
   const [followed, setFollowed] = React.useState(false);
   return (
-    <button
-      type="button"
-      onClick={() => setFollowed((f) => !f)}
-      className={cn(
-        'inline-flex min-h-11 flex-1 items-center justify-center gap-2 rounded-[4px] px-4 font-sans text-sm font-bold transition-all active:scale-[0.97]',
-        followed
-          ? dark
-            ? 'border border-white/40 bg-transparent text-white'
-            : 'border border-[#CAD3F5] bg-white text-[#0056FF]'
-          : dark
-            ? 'bg-white text-[#020617]'
+    <div className="flex flex-nowrap items-center gap-3">
+      <button
+        type="button"
+        onClick={() => setFollowed((f) => !f)}
+        className={cn(
+          'inline-flex h-11 w-[128px] shrink-0 items-center justify-center gap-2 rounded-[4px] px-3 font-sans text-sm font-bold whitespace-nowrap transition-all active:scale-[0.97]',
+          followed
+            ? 'border border-[#CAD3F5] bg-white text-[#0056FF]'
             : 'bg-[#0056FF] text-white hover:bg-[#2277FF]',
-      )}
-    >
-      {followed && <Check className="size-4" />}
-      {followed ? 'Following' : label}
-    </button>
+        )}
+      >
+        {followed && <Check className="size-4 shrink-0" />}
+        {followed ? 'Following' : label}
+      </button>
+      <span className="font-sans text-xs font-bold whitespace-nowrap text-[#020617]">
+        {followers + (followed ? 1 : 0)}{' '}
+        <span className="font-medium text-[#334155]">{countWord}</span>
+        {following !== undefined && (
+          <>
+            {' · '}
+            {following} <span className="font-medium text-[#334155]">Following</span>
+          </>
+        )}
+      </span>
+    </div>
   );
 }
 
@@ -273,176 +291,203 @@ function IconBtn({
 
 export function LibraryHero() {
   return (
-    <section className="space-y-8 rounded-2xl border border-[#CAD3F5] bg-[#EFF5FF]/60 p-6 shadow-xs sm:p-8">
+    <section className="space-y-8 rounded-2xl border border-[#CAD3F5] bg-white p-6 shadow-xs sm:p-8">
       <h1 className="font-sans text-3xl font-black tracking-tight text-[#020617] sm:text-4xl">
         Component Library
       </h1>
 
-      <div className="grid items-center gap-8 lg:grid-cols-3">
-        {/* EMPLOYEE BADGE: portrait 54 x 86 mm, black */}
-        <div className="mx-auto w-full max-w-[300px] -rotate-2">
+      <div className="grid items-start gap-6 lg:grid-cols-3">
+        {/* EMPLOYEE ID */}
+        <div className="mx-auto w-full max-w-[320px]">
           <TiltCard>
-            <div className="bg-[#020617] p-5">
-              <div className="mx-auto h-2 w-16 rounded-full border border-white/40" />
-              <div className="mt-4 flex items-start justify-between">
+            <div className="rounded-2xl border border-white/60 bg-white/95 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.9)] ring-1 ring-[#CAD3F5] backdrop-blur-xl">
+              <div className="flex items-center justify-between rounded-t-2xl bg-[#0056FF] px-5 py-4">
                 <span className="font-sans text-base font-black tracking-wider text-white">
                   SNPI
                 </span>
-                <span className="font-sans text-[9px] font-bold tracking-widest text-white/60 uppercase">
+                <span className="font-sans text-[9px] font-bold tracking-widest text-white/85 uppercase">
                   Employee ID
                 </span>
               </div>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="https://avatars.githubusercontent.com/u/70220432?v=4"
-                alt="shiliaiwei profile photo"
-                className="mt-4 aspect-square w-full rounded-[4px] object-cover"
-              />
-              <p className="mt-4 font-sans text-lg font-black tracking-wide text-white uppercase">
-                Shiliaiwei
-              </p>
-              <p className="font-sans text-[11px] font-medium text-white/60">@shiliaiwei</p>
-              <div className="mt-4 space-y-2 border-t border-white/15 pt-4">
-                <InfoRow light label="Title" value="Senior Software Engineer" />
-                <InfoRow light label="Department" value="Software Engineering" />
-                <InfoRow light label="ID No" value="EMP-2026-001" />
-                <InfoRow light label="Access" value="All Areas" />
-                <InfoRow light label="Valid" value="01/2026 to 12/2028" />
-              </div>
-              <div className="mt-4 flex items-end justify-between gap-4">
-                <div className="w-20 rounded-[4px] bg-white p-1">
+              <div className="p-5">
+                <div className="mx-auto h-2 w-16 rounded-full border border-[#CAD3F5]" />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="https://avatars.githubusercontent.com/u/70220432?v=4"
+                  alt="shiliaiwei profile photo"
+                  className="mt-4 aspect-square w-full rounded-[4px] border border-[#CAD3F5] object-cover"
+                />
+                <p className="mt-4 font-sans text-lg font-black tracking-wide text-[#020617] uppercase">
+                  Shiliaiwei
+                </p>
+                <p className="font-sans text-[11px] font-medium text-[#334155]">
+                  @shiliaiwei · GroupCapstone
+                </p>
+                <div className="mt-4 space-y-2 border-t border-[#CAD3F5] pt-4">
+                  <InfoRow label="Title" value="Senior Software Engineer" />
+                  <InfoRow label="Department" value="Software Engineering" />
+                  <InfoRow label="ID No" value="EMP-2026-001" />
+                  <InfoRow label="Access level" value="All Areas" />
+                  <InfoRow label="Email" value="shiliaiwei@snpi.edu.kh" />
+                  <InfoRow label="Phone" value="+855 12 345 678" />
+                  <InfoRow label="Valid" value="01/2026 to 12/2028" />
+                </div>
+                <div className="mt-4 w-20">
                   <QrGrid rows={QR_EMP} />
                 </div>
-                <div className="text-right">
-                  <p className="font-sans text-xs font-bold text-white">312 Followers</p>
-                  <p className="font-sans text-xs font-medium text-white/60">86 Following</p>
+                <div className="mt-4 border-t border-[#CAD3F5] pt-4">
+                  <FollowBlock followers={312} following={86} />
                 </div>
-              </div>
-              <div className="mt-4 flex gap-2">
-                <FollowBtn dark />
-                <IconBtn dark label="Call">
-                  <Phone className="size-5" />
-                </IconBtn>
-                <IconBtn dark label="Send message">
-                  <Send className="size-5" />
-                </IconBtn>
-                <IconBtn dark label="Share profile">
-                  <Share2 className="size-5" />
-                </IconBtn>
+                <div className="mt-3 flex flex-nowrap gap-2">
+                  <IconBtn label="Call">
+                    <Phone className="size-5" />
+                  </IconBtn>
+                  <IconBtn label="Send message">
+                    <Send className="size-5" />
+                  </IconBtn>
+                  <IconBtn label="Share profile">
+                    <Share2 className="size-5" />
+                  </IconBtn>
+                </div>
               </div>
             </div>
           </TiltCard>
-          <p className="mt-3 text-center font-mono text-[10px] font-bold text-[#334155]">
-            BADGE 54 x 86 MM
-          </p>
         </div>
 
-        {/* STUDENT ID: landscape credit card 86 x 54 mm, brand blue */}
-        <div className="mx-auto w-full max-w-[430px] rotate-1">
+        {/* STUDENT ID */}
+        <div className="mx-auto w-full max-w-[430px]">
           <TiltCard>
-            <div className="bg-white">
-              <div className="flex items-center justify-between bg-[#0056FF] px-5 py-3">
+            <div className="rounded-2xl border border-white/60 bg-white/95 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.9)] ring-1 ring-[#CAD3F5] backdrop-blur-xl">
+              <div className="flex items-center justify-between rounded-t-2xl bg-[#0056FF] px-5 py-3">
                 <span className="font-sans text-sm font-black tracking-wider text-white">
                   SNPI INTERNATIONAL SCHOOL
                 </span>
-                <span className="font-sans text-[9px] font-bold tracking-widest text-white/85 uppercase">
-                  Student ID Card
+                <span className="flex items-center gap-2">
+                  <span className="hidden h-5 w-8 rounded-[4px] border border-white/70 sm:block" />
+                  <span className="font-sans text-[9px] font-bold tracking-widest text-white/85 uppercase">
+                    Student ID
+                  </span>
                 </span>
               </div>
-              <div className="flex gap-4 p-5">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="https://avatars.githubusercontent.com/u/233213854?v=4"
-                  alt="Sok Dara profile photo"
-                  className="aspect-[3/4] w-24 shrink-0 rounded-[4px] border border-[#CAD3F5] object-cover"
-                />
-                <div className="min-w-0 flex-1 space-y-1.5">
-                  <p className="font-sans text-base font-black text-[#020617] uppercase">
-                    Sok Dara
-                  </p>
-                  <InfoRow label="Student ID" value="STU-2026-0891" />
-                  <InfoRow label="Program" value="Software Engineering" />
-                  <InfoRow label="Batch" value="2026" />
-                  <InfoRow label="Date of birth" value="14 Mar 2004" />
-                  <InfoRow label="Blood group" value="O+" />
-                  <InfoRow label="Campus" value="Phnom Penh" />
+              <div className="p-5">
+                <div className="flex gap-4">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="https://avatars.githubusercontent.com/u/233213854?v=4"
+                    alt="Sok Dara profile photo"
+                    className="aspect-square w-28 shrink-0 self-start rounded-[4px] border border-[#CAD3F5] object-cover"
+                  />
+                  <div className="min-w-0 flex-1">
+                    <p className="font-sans text-lg font-black text-[#020617] uppercase">
+                      Sok Dara
+                    </p>
+                    <p className="font-mono text-[11px] font-bold text-[#0056FF]">STU-2026-0891</p>
+                    <div className="mt-3 grid grid-cols-2 gap-x-4 gap-y-2">
+                      <InfoRow label="Program" value="Software Eng." />
+                      <InfoRow label="Batch" value="2026" />
+                      <InfoRow label="Born" value="14 Mar 2004" />
+                      <InfoRow label="Blood" value="O+" />
+                      <InfoRow label="Campus" value="Phnom Penh" />
+                      <InfoRow label="Expires" value="31 Aug 2030" />
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-4 space-y-2 border-t border-[#CAD3F5] pt-4">
+                  <InfoRow label="Email" value="sok.dara@student.snpi.edu.kh" />
+                  <InfoRow label="Emergency" value="+855 96 765 432" />
                   <InfoRow label="Issued" value="01 Sep 2026" />
-                  <InfoRow label="Expires" value="31 Aug 2030" />
                 </div>
-                <div className="w-16 shrink-0 self-end">
-                  <QrGrid rows={QR_STU} />
+                <div className="mt-4 flex flex-nowrap items-end justify-between gap-3 border-t border-[#CAD3F5] pt-4">
+                  <FollowBlock followers={128} following={64} />
+                  <div className="w-14 shrink-0">
+                    <QrGrid rows={QR_STU} />
+                  </div>
+                </div>
+                <div className="mt-3 flex flex-nowrap gap-2">
+                  <IconBtn label="Class schedule">
+                    <Calendar className="size-5" />
+                  </IconBtn>
+                  <IconBtn label="Send message">
+                    <Send className="size-5" />
+                  </IconBtn>
                 </div>
               </div>
-              <div className="flex items-center gap-2 border-t border-[#CAD3F5] px-5 py-4">
-                <FollowBtn />
-                <IconBtn label="Class schedule">
-                  <Calendar className="size-5" />
-                </IconBtn>
-                <IconBtn label="Send message">
-                  <Send className="size-5" />
-                </IconBtn>
-                <span className="ml-auto font-sans text-xs font-bold text-[#020617]">
-                  128 <span className="font-medium text-[#334155]">Followers</span>
-                </span>
+              <div className="rounded-b-2xl bg-[#EFF5FF] px-5 py-2">
+                <p className="font-mono text-[11px] font-bold tracking-widest text-[#334155]">
+                  5399 2026 0891 0042
+                </p>
               </div>
             </div>
           </TiltCard>
-          <p className="mt-3 text-center font-mono text-[10px] font-bold text-[#334155]">
-            CARD 86 x 54 MM
-          </p>
         </div>
 
-        {/* EVENT PASS: portrait 70 x 120 mm, white and blue */}
-        <div className="mx-auto w-full max-w-[320px] -rotate-1">
+        {/* EVENT PASS */}
+        <div className="mx-auto w-full max-w-[320px]">
           <TiltCard>
-            <div className="bg-white p-5">
-              <div className="mx-auto h-2 w-16 rounded-full border border-[#CAD3F5]" />
-              <span className="mt-4 inline-block rounded-[4px] bg-[#032EA1] px-2 py-1 font-sans text-[10px] font-black tracking-widest text-white uppercase">
-                All-Access Pass
-              </span>
-              <p className="mt-3 font-sans text-2xl font-black text-[#020617]">SNPI Tech Day</p>
-              <div className="mt-3 space-y-2">
-                <InfoRow label="Date" value="20 Nov 2026" />
-                <InfoRow label="Time" value="8:00 AM to 5:00 PM" />
-                <InfoRow label="Venue" value="SNPI Hall, Phnom Penh" />
-                <InfoRow label="Gate" value="A" />
-                <InfoRow label="Ticket No" value="EVT-2026-1120" />
-                <InfoRow label="Price" value="$10" />
-              </div>
-              <div className="mt-4 flex items-center gap-3 border-t border-[#CAD3F5] pt-4">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="https://avatars.githubusercontent.com/u/216975960?v=4"
-                  alt="Kimheng Ly profile photo"
-                  className="size-11 rounded-full border border-[#CAD3F5]"
-                />
-                <div>
-                  <p className="font-sans text-[9px] font-bold tracking-widest text-[#334155]/70 uppercase">
-                    Attendee
-                  </p>
-                  <p className="font-sans text-sm font-bold text-[#020617]">Kimheng Ly</p>
-                </div>
-                <span className="ml-auto font-sans text-xs font-bold text-[#020617]">
-                  542 <span className="font-medium text-[#334155]">Going</span>
+            <div className="rounded-2xl border border-white/60 bg-white/95 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.9)] ring-1 ring-[#CAD3F5] backdrop-blur-xl">
+              <div className="rounded-t-2xl bg-[#032EA1] px-5 py-4">
+                <div className="mx-auto mb-3 h-2 w-16 rounded-full border border-white/40" />
+                <span className="inline-block rounded-[4px] bg-white px-2 py-1 font-sans text-[10px] font-black tracking-widest text-[#032EA1] uppercase">
+                  All-Access Pass
                 </span>
+                <p className="mt-2 font-sans text-2xl font-black text-white">SNPI Tech Day</p>
               </div>
-              <div className="mx-auto mt-4 w-28">
-                <QrGrid rows={QR_EVT} />
-              </div>
-              <div className="mt-4 flex gap-2">
-                <FollowBtn label="Join" />
-                <IconBtn label="Event location">
-                  <MapPin className="size-5" />
-                </IconBtn>
-                <IconBtn label="Share event">
-                  <Share2 className="size-5" />
-                </IconBtn>
+              <div className="p-5">
+                <div className="flex items-center gap-4">
+                  <div className="shrink-0 rounded-[4px] bg-[#EFF5FF] px-3 py-2 text-center">
+                    <p className="font-sans text-xl font-black text-[#0056FF]">20</p>
+                    <p className="font-sans text-[9px] font-bold tracking-widest text-[#334155] uppercase">
+                      Nov 2026
+                    </p>
+                  </div>
+                  <div className="min-w-0 flex-1 space-y-1.5">
+                    <InfoRow label="Time" value="8:00 AM to 5:00 PM" />
+                    <InfoRow label="Check-in" value="From 7:30 AM" />
+                    <InfoRow label="Venue" value="SNPI Hall, Phnom Penh" />
+                  </div>
+                </div>
+                <div className="mt-4 space-y-2 border-t border-[#CAD3F5] pt-4">
+                  <InfoRow label="Gate" value="A" />
+                  <InfoRow label="Ticket No" value="EVT-2026-1120" />
+                  <InfoRow label="Organizer" value="GroupCapstone" />
+                  <InfoRow label="Price" value="$10" />
+                </div>
+                <div className="mt-4 flex flex-nowrap items-center gap-3 border-t border-dashed border-[#CAD3F5] pt-4">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="https://avatars.githubusercontent.com/u/216975960?v=4"
+                    alt="Kimheng Ly profile photo"
+                    className="size-11 shrink-0 rounded-full border border-[#CAD3F5]"
+                  />
+                  <div className="min-w-0">
+                    <p className="font-sans text-[9px] font-bold tracking-widest text-[#334155]/70 uppercase">
+                      Attendee
+                    </p>
+                    <p className="font-sans text-sm font-bold whitespace-nowrap text-[#020617]">
+                      Kimheng Ly
+                    </p>
+                  </div>
+                </div>
+                <div className="mx-auto mt-4 w-28">
+                  <QrGrid rows={QR_EVT} />
+                </div>
+                <p className="mt-2 text-center font-sans text-[9px] font-bold tracking-widest text-[#334155] uppercase">
+                  Admit one · Scan at gate
+                </p>
+                <div className="mt-4 border-t border-[#CAD3F5] pt-4">
+                  <FollowBlock followers={542} label="Join" countWord="Going" />
+                </div>
+                <div className="mt-3 flex flex-nowrap gap-2">
+                  <IconBtn label="Event location">
+                    <MapPin className="size-5" />
+                  </IconBtn>
+                  <IconBtn label="Share event">
+                    <Share2 className="size-5" />
+                  </IconBtn>
+                </div>
               </div>
             </div>
           </TiltCard>
-          <p className="mt-3 text-center font-mono text-[10px] font-bold text-[#334155]">
-            PASS 70 x 120 MM
-          </p>
         </div>
       </div>
     </section>
