@@ -21,6 +21,10 @@ import {
   RefreshCw,
   Send,
   ShieldCheck,
+  Phone,
+  Share2,
+  Calendar,
+  MapPin,
   Sparkles,
   Terminal,
   Zap,
@@ -32,105 +36,86 @@ import { LibrarySwitch } from './switch';
 // COMPONENT PAGE HERO
 // ==========================================
 
-function HeroProfileCard({
-  band,
-  type,
-  photo,
-  name,
-  line1,
-  line2,
-  followers,
-  following,
-  actionLabel,
-}: {
-  band: string;
-  type: string;
-  photo: string;
-  name: string;
-  line1: string;
-  line2: string;
-  followers: number;
-  following: number;
-  actionLabel: string;
-}) {
-  const [followed, setFollowed] = React.useState(false);
+const KH_BLUE = '#032EA1';
+const KH_RED = '#E00025';
+
+const QR_MINI = [
+  [1, 1, 1, 0, 1, 1, 1],
+  [1, 0, 1, 0, 0, 1, 0],
+  [1, 1, 1, 0, 1, 0, 1],
+  [0, 0, 0, 1, 0, 1, 0],
+  [1, 1, 1, 0, 1, 1, 1],
+  [1, 0, 1, 1, 0, 0, 1],
+  [1, 1, 1, 0, 1, 0, 1],
+];
+
+function TiltCard({ rotate, children }: { rotate: string; children: React.ReactNode }) {
   const [tilt, setTilt] = React.useState({ rx: 0, ry: 0 });
   const [shine, setShine] = React.useState({ x: 50, y: 50 });
-
   const handleMove = (e: React.PointerEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const px = (e.clientX - rect.left) / rect.width;
     const py = (e.clientY - rect.top) / rect.height;
-    setTilt({ rx: Math.round((0.5 - py) * 10), ry: Math.round((px - 0.5) * 12) });
+    setTilt({ rx: Math.round((0.5 - py) * 8), ry: Math.round((px - 0.5) * 10) });
     setShine({ x: Math.round(px * 100), y: Math.round(py * 100) });
   };
-
   return (
-    <div
-      style={{ perspective: '900px' }}
-      onPointerMove={handleMove}
-      onPointerLeave={() => setTilt({ rx: 0, ry: 0 })}
-    >
+    <div className={rotate} style={{ perspective: '900px' }}>
       <div
-        className="relative overflow-hidden rounded-2xl border border-white/50 bg-white shadow-lg ring-1 ring-[#CAD3F5] backdrop-blur-xl transition-transform duration-200"
+        onPointerMove={handleMove}
+        onPointerLeave={() => setTilt({ rx: 0, ry: 0 })}
+        className="relative h-full overflow-hidden rounded-2xl border border-white/50 bg-white shadow-lg ring-1 ring-[#CAD3F5] backdrop-blur-xl transition-transform duration-200"
         style={{ transform: `rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg)` }}
       >
         <div
-          className="pointer-events-none absolute z-10 size-24 rounded-full bg-white/30 blur-2xl"
+          className="pointer-events-none absolute z-10 size-24 rounded-full bg-white/25 blur-2xl"
           style={{ left: `${shine.x}%`, top: `${shine.y}%`, transform: 'translate(-50%, -50%)' }}
         />
-        <div
-          className="relative flex items-center justify-between px-5 py-3"
-          style={{ backgroundColor: band }}
-        >
-          <span className="font-sans text-sm font-black tracking-wider text-white">SNPI</span>
-          <span className="font-sans text-[10px] font-bold tracking-widest text-white/85 uppercase">
-            {type}
-          </span>
-        </div>
-        <div className="relative flex flex-col items-center px-5 pt-5 pb-5 text-center">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={photo}
-            alt={`${name} profile photo`}
-            className="size-20 rounded-full border-2 border-[#CAD3F5]"
-          />
-          <p className="mt-3 font-sans text-base font-black text-[#020617]">{name}</p>
-          <p className="font-sans text-xs font-medium text-[#334155]">{line1}</p>
-          <p className="font-sans text-xs font-medium text-[#334155]">{line2}</p>
-          <div className="mt-3 flex gap-4">
-            <span className="font-sans text-xs font-bold text-[#020617]">
-              {followers + (followed ? 1 : 0)}{' '}
-              <span className="font-medium text-[#334155]">Followers</span>
-            </span>
-            <span className="font-sans text-xs font-bold text-[#020617]">
-              {following} <span className="font-medium text-[#334155]">Following</span>
-            </span>
-          </div>
-          <div className="mt-4 flex w-full gap-2">
-            <button
-              type="button"
-              onClick={() => setFollowed((f) => !f)}
-              className={cn(
-                'inline-flex min-h-11 flex-1 items-center justify-center gap-2 rounded-[4px] px-4 font-sans text-sm font-bold transition-all active:scale-[0.97]',
-                followed
-                  ? 'border border-[#CAD3F5] bg-white text-[#0056FF]'
-                  : 'bg-[#0056FF] text-white hover:bg-[#2277FF]',
-              )}
-            >
-              {followed && <Check className="size-4" />}
-              {followed ? 'Following' : 'Follow'}
-            </button>
-            <button
-              type="button"
-              title={actionLabel}
-              className="inline-flex size-11 shrink-0 items-center justify-center rounded-[4px] border border-[#CAD3F5] bg-white text-[#020617] transition-colors hover:bg-[#EFF5FF]"
-            >
-              <Send className="size-5" />
-            </button>
-          </div>
-        </div>
+        {children}
       </div>
+    </div>
+  );
+}
+
+function FollowBtn({ label = 'Follow' }: { label?: string }) {
+  const [followed, setFollowed] = React.useState(false);
+  return (
+    <button
+      type="button"
+      onClick={() => setFollowed((f) => !f)}
+      className={cn(
+        'inline-flex min-h-11 flex-1 items-center justify-center gap-2 rounded-[4px] px-4 font-sans text-sm font-bold transition-all active:scale-[0.97]',
+        followed ? 'border border-[#CAD3F5] bg-white text-[#0056FF]' : 'text-white',
+      )}
+      style={followed ? undefined : { backgroundColor: KH_BLUE }}
+    >
+      {followed && <Check className="size-4" />}
+      {followed ? 'Following' : label}
+    </button>
+  );
+}
+
+function IconBtn({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <button
+      type="button"
+      title={label}
+      className="inline-flex size-11 shrink-0 items-center justify-center rounded-[4px] border border-[#CAD3F5] bg-white text-[#020617] transition-colors hover:bg-[#EFF5FF]"
+    >
+      {children}
+    </button>
+  );
+}
+
+function Stats({ followers, following }: { followers: number; following: number }) {
+  return (
+    <div className="flex gap-4">
+      <span className="font-sans text-xs font-bold text-[#020617]">
+        {followers} <span className="font-medium text-[#334155]">Followers</span>
+      </span>
+      <span className="font-sans text-xs font-bold text-[#020617]">
+        {following} <span className="font-medium text-[#334155]">Following</span>
+      </span>
     </div>
   );
 }
@@ -142,40 +127,169 @@ export function LibraryHero() {
         Component Library
       </h1>
 
-      <div className="grid gap-4 md:grid-cols-3">
-        <HeroProfileCard
-          band="#0056FF"
-          type="Business"
-          photo="https://avatars.githubusercontent.com/u/70220432?v=4"
-          name="shiliaiwei"
-          line1="Senior Software Engineer"
-          line2="GroupCapstone"
-          followers={312}
-          following={86}
-          actionLabel="Send message"
-        />
-        <HeroProfileCard
-          band="#2277FF"
-          type="Student"
-          photo="https://avatars.githubusercontent.com/u/233213854?v=4"
-          name="Sok Dara"
-          line1="Software Engineering"
-          line2="STU-2026-0891"
-          followers={128}
-          following={64}
-          actionLabel="Send message"
-        />
-        <HeroProfileCard
-          band="#020617"
-          type="Event"
-          photo="https://avatars.githubusercontent.com/u/216975960?v=4"
-          name="SNPI Tech Day"
-          line1="Hosted by Kimheng Ly"
-          line2="Nov 20, 2026 · Phnom Penh"
-          followers={542}
-          following={12}
-          actionLabel="Send message"
-        />
+      <div className="grid gap-6 lg:grid-cols-3">
+        {/* BUSINESS: horizontal badge */}
+        <TiltCard rotate="-rotate-2">
+          <div
+            className="flex items-center justify-between px-5 py-3"
+            style={{ backgroundColor: KH_BLUE }}
+          >
+            <span className="font-sans text-sm font-black tracking-wider text-white">SNPI</span>
+            <span className="font-sans text-[10px] font-bold tracking-widest text-white/85 uppercase">
+              Business
+            </span>
+          </div>
+          <div className="h-1" style={{ backgroundColor: KH_RED }} />
+          <div className="p-5">
+            <div className="flex items-center gap-4">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://avatars.githubusercontent.com/u/70220432?v=4"
+                alt="shiliaiwei profile photo"
+                className="size-24 shrink-0 rounded-[4px] border border-[#CAD3F5]"
+              />
+              <div className="min-w-0">
+                <p className="font-sans text-lg font-black text-[#020617]">shiliaiwei</p>
+                <p className="font-sans text-xs font-medium text-[#334155]">
+                  Senior Software Engineer
+                </p>
+                <p className="font-sans text-xs font-medium text-[#334155]">GroupCapstone</p>
+                <p className="mt-1 font-mono text-[11px] font-bold text-[#0056FF]">
+                  ID EMP-2026-001
+                </p>
+              </div>
+            </div>
+            <div className="mt-4">
+              <Stats followers={312} following={86} />
+            </div>
+            <div className="mt-4 flex gap-2">
+              <FollowBtn />
+              <IconBtn label="Call">
+                <Phone className="size-5" />
+              </IconBtn>
+              <IconBtn label="Send message">
+                <Send className="size-5" />
+              </IconBtn>
+              <IconBtn label="Share profile">
+                <Share2 className="size-5" />
+              </IconBtn>
+            </div>
+          </div>
+        </TiltCard>
+
+        {/* STUDENT: vertical card, red band */}
+        <TiltCard rotate="rotate-1">
+          <div
+            className="flex items-center justify-between px-5 py-3"
+            style={{ backgroundColor: KH_RED }}
+          >
+            <span className="font-sans text-sm font-black tracking-wider text-white">SNPI</span>
+            <span className="font-sans text-[10px] font-bold tracking-widest text-white/85 uppercase">
+              Student
+            </span>
+          </div>
+          <div className="h-1" style={{ backgroundColor: KH_BLUE }} />
+          <div className="flex flex-col items-center p-5 text-center">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="https://avatars.githubusercontent.com/u/233213854?v=4"
+              alt="Sok Dara profile photo"
+              className="size-24 rounded-full border-2"
+              style={{ borderColor: KH_RED }}
+            />
+            <p className="mt-3 font-sans text-lg font-black text-[#020617]">Sok Dara</p>
+            <p className="font-sans text-xs font-medium text-[#334155]">Software Engineering</p>
+            <p className="font-mono text-[11px] font-bold text-[#0056FF]">STU-2026-0891</p>
+            <div className="mt-3 w-full space-y-1 text-left">
+              <div className="flex justify-between font-sans text-xs">
+                <span className="font-medium text-[#334155]">Campus</span>
+                <span className="font-bold text-[#020617]">Phnom Penh</span>
+              </div>
+              <div className="flex justify-between font-sans text-xs">
+                <span className="font-medium text-[#334155]">Study progress</span>
+                <span className="font-bold text-[#020617]">86%</span>
+              </div>
+              <div className="h-2 w-full overflow-hidden rounded-full bg-[#EFF5FF]">
+                <div
+                  className="h-full rounded-full"
+                  style={{ width: '86%', backgroundColor: KH_RED }}
+                />
+              </div>
+            </div>
+            <div className="mt-4">
+              <Stats followers={128} following={64} />
+            </div>
+            <div className="mt-4 flex w-full gap-2">
+              <FollowBtn />
+              <IconBtn label="Class schedule">
+                <Calendar className="size-5" />
+              </IconBtn>
+              <IconBtn label="Send message">
+                <Send className="size-5" />
+              </IconBtn>
+            </div>
+          </div>
+        </TiltCard>
+
+        {/* EVENT: ticket with stub */}
+        <TiltCard rotate="-rotate-1">
+          <div className="flex h-full">
+            <div className="min-w-0 flex-1 p-5" style={{ backgroundColor: '#020617' }}>
+              <span
+                className="inline-block rounded-[4px] px-2 py-1 font-sans text-[10px] font-black tracking-widest text-white uppercase"
+                style={{ backgroundColor: KH_RED }}
+              >
+                Event
+              </span>
+              <p className="mt-3 font-sans text-xl font-black text-white">SNPI Tech Day</p>
+              <p className="font-sans text-xs font-medium text-white/70">Nov 20, 2026 · 8:00 AM</p>
+              <p className="font-sans text-xs font-medium text-white/70">SNPI Hall, Phnom Penh</p>
+              <div className="mt-3 flex items-center gap-2">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="https://avatars.githubusercontent.com/u/216975960?v=4"
+                  alt="Kimheng Ly profile photo"
+                  className="size-8 rounded-full border border-white/40"
+                />
+                <span className="font-sans text-xs font-medium text-white/85">Host Kimheng Ly</span>
+              </div>
+              <p className="mt-3 font-sans text-xs font-bold text-white">
+                542 <span className="font-medium text-white/70">Going</span>
+              </p>
+              <div className="mt-4 flex gap-2">
+                <FollowBtn label="Join" />
+                <span className="[&_button]:border-white/30 [&_button]:bg-transparent [&_button]:text-white [&_button]:hover:bg-white/10">
+                  <IconBtn label="Event location">
+                    <MapPin className="size-5" />
+                  </IconBtn>
+                </span>
+                <span className="[&_button]:border-white/30 [&_button]:bg-transparent [&_button]:text-white [&_button]:hover:bg-white/10">
+                  <IconBtn label="Share event">
+                    <Share2 className="size-5" />
+                  </IconBtn>
+                </span>
+              </div>
+            </div>
+            <div className="flex w-24 shrink-0 flex-col items-center justify-center gap-2 border-l-2 border-dashed border-[#CAD3F5] bg-white p-3">
+              <div className="grid grid-cols-7 gap-px" aria-hidden="true">
+                {QR_MINI.flatMap((row, y) =>
+                  row.map((cell, x) => (
+                    <span
+                      key={`${x}-${y}`}
+                      className={cell ? 'size-2 bg-[#020617]' : 'size-2 bg-white'}
+                    />
+                  )),
+                )}
+              </div>
+              <span className="font-sans text-[10px] font-black tracking-widest text-[#020617] uppercase">
+                Admit one
+              </span>
+              <span className="font-sans text-sm font-black" style={{ color: KH_RED }}>
+                $10
+              </span>
+            </div>
+          </div>
+        </TiltCard>
       </div>
     </section>
   );
