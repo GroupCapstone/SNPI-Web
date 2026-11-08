@@ -406,7 +406,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
   }, []);
 
   return (
-    <div ref={rootRef} className="min-h-screen w-full bg-[#FFFFFF] text-[#0A1A4A]">
+    <div ref={rootRef} className="min-h-screen w-full bg-[#FFFFFF] text-[#020617]">
       <div className="mx-auto flex max-w-[1520px] items-start gap-8 px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
         {/* =================================================================== */}
         {/* TIKTOK-STYLE DEVELOPER DOCS SIDEBAR NAVIGATION                     */}
@@ -416,7 +416,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
             {/* Top Identity Header */}
             <div className="mb-3 px-1">
               <div className="flex items-center justify-between">
-                <h2 className="text-base font-black tracking-tight text-[#0A1A4A]">
+                <h2 className="text-base font-black tracking-tight text-[#020617]">
                   Developer Docs
                 </h2>
                 <span
@@ -440,7 +440,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search endpoints... ⌘K"
-                className="w-full rounded-lg border border-[#CAD3F5] bg-[#EFF5FF]/40 py-1.5 pr-8 pl-8 text-xs text-[#0A1A4A] placeholder-slate-400 transition-all focus:border-[#0056FF] focus:bg-white focus:ring-1 focus:ring-[#0056FF] focus:outline-none"
+                className="w-full rounded-lg border border-[#CAD3F5] bg-[#EFF5FF]/40 py-1.5 pr-8 pl-8 text-xs text-[#020617] placeholder-slate-400 transition-all focus:border-[#0056FF] focus:bg-white focus:ring-1 focus:ring-[#0056FF] focus:outline-none"
               />
               {searchQuery ? (
                 <button
@@ -609,7 +609,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
               <div className="flex items-center gap-2.5">
                 <ShieldCheck className="size-5 shrink-0 stroke-[2] text-[#020617]" />
                 <div className="space-y-0.5">
-                  <div className="font-sans text-xs font-extrabold text-[#0A1A4A]">
+                  <div className="font-sans text-xs font-extrabold text-[#020617]">
                     Enterprise Gateway
                   </div>
                   <div className="font-mono text-[10px] text-slate-500">TLS 1.3 · Bearer Token</div>
@@ -642,7 +642,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
           <section id="changelogs" className="scroll-mt-28 space-y-3">
             <div className="flex items-center gap-3">
               <FileText className="size-6 shrink-0 stroke-[2] text-[#020617]" />
-              <h2 className="text-xl font-bold tracking-tight text-[#0A1A4A] sm:text-2xl">
+              <h2 className="text-xl font-bold tracking-tight text-[#020617] sm:text-2xl">
                 Change Logs
               </h2>
             </div>
@@ -651,7 +651,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
               <div className="overflow-x-auto">
                 <table className="w-full min-w-[620px] border-collapse text-left text-xs">
                   <thead>
-                    <tr className="border-b border-[#CAD3F5] bg-[#EFF5FF] text-[11px] font-bold text-[#0A1A4A]">
+                    <tr className="border-b border-[#CAD3F5] bg-[#EFF5FF] text-[11px] font-bold text-[#020617]">
                       <th className="w-28 px-4 py-2.5">Version</th>
                       <th className="w-32 px-4 py-2.5">Date</th>
                       <th className="px-4 py-2.5">Description</th>
@@ -679,7 +679,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
           <section id="toc" className="scroll-mt-28 space-y-3">
             <div className="flex items-center gap-3">
               <Layers className="size-6 shrink-0 stroke-[2] text-[#020617]" />
-              <h2 className="text-xl font-bold tracking-tight text-[#0A1A4A] sm:text-2xl">
+              <h2 className="text-xl font-bold tracking-tight text-[#020617] sm:text-2xl">
                 Table of contents
               </h2>
             </div>
@@ -770,14 +770,14 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
           <section id="introduction" className="scroll-mt-28 space-y-6">
             <div className="flex items-center gap-3">
               <FileText className="size-6 shrink-0 stroke-[2] text-[#020617]" />
-              <h2 className="text-2xl font-black tracking-tight text-[#0A1A4A] sm:text-3xl">
+              <h2 className="text-2xl font-black tracking-tight text-[#020617] sm:text-3xl">
                 Introduction
               </h2>
             </div>
 
             {/* 1. Purpose */}
             <div id="purpose" className="scroll-mt-28 space-y-1">
-              <h3 className="text-base font-bold text-[#0A1A4A]">1. Purpose</h3>
+              <h3 className="text-base font-bold text-[#020617]">1. Purpose</h3>
               <p className="text-xs text-slate-700">
                 Technical specification for SNPI Open API integration.
               </p>
@@ -785,7 +785,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
 
             {/* 2. Scope */}
             <div id="scope" className="scroll-mt-28 space-y-1">
-              <h3 className="text-base font-bold text-[#0A1A4A]">2. Scope</h3>
+              <h3 className="text-base font-bold text-[#020617]">2. Scope</h3>
               <p className="text-xs text-slate-700">
                 Contracts, authentication, endpoints, parameters, and response schemas.
               </p>
@@ -795,13 +795,13 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
             <div id="overall-api" className="scroll-mt-28 space-y-3">
               <div className="flex items-center gap-3">
                 <Server className="size-5 shrink-0 stroke-[2] text-[#020617]" />
-                <h3 className="text-base font-bold text-[#0A1A4A]">3. Overall API</h3>
+                <h3 className="text-base font-bold text-[#020617]">3. Overall API</h3>
               </div>
               <div className="overflow-hidden rounded-xl border border-[#CAD3F5] bg-white shadow-2xs">
                 <div className="overflow-x-auto">
                   <table className="w-full border-collapse text-left text-xs">
                     <thead>
-                      <tr className="border-b border-[#CAD3F5] bg-[#EFF5FF] text-[11px] font-bold text-[#0A1A4A]">
+                      <tr className="border-b border-[#CAD3F5] bg-[#EFF5FF] text-[11px] font-bold text-[#020617]">
                         <th className="w-12 px-4 py-2.5">No</th>
                         <th className="px-4 py-2.5">Name</th>
                         <th className="w-20 px-4 py-2.5">Method</th>
@@ -817,7 +817,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                           className="cursor-pointer transition-colors hover:bg-[#EFF5FF]/60"
                         >
                           <td className="px-4 py-2.5 font-mono text-slate-500">{row.no}</td>
-                          <td className="px-4 py-2.5 font-bold text-[#0A1A4A]">{row.name}</td>
+                          <td className="px-4 py-2.5 font-bold text-[#020617]">{row.name}</td>
                           <td className="px-4 py-2.5">
                             <span
                               className={cn(
@@ -854,7 +854,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
             <div id="security" className="scroll-mt-28 space-y-4">
               <div className="flex items-center gap-3">
                 <ShieldCheck className="size-5 shrink-0 stroke-[2] text-[#020617]" />
-                <h3 className="text-base font-bold text-[#0A1A4A]">
+                <h3 className="text-base font-bold text-[#020617]">
                   4. Security &amp; Institutional Access Control
                 </h3>
               </div>
@@ -862,12 +862,12 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 {/* Public Tier */}
                 <div className="space-y-2 rounded-xl border border-[#CAD3F5] bg-[#FFFFFF] p-4 shadow-2xs">
-                  <div className="flex items-center gap-2.5 text-xs font-bold text-[#0A1A4A]">
+                  <div className="flex items-center gap-2.5 text-xs font-bold text-[#020617]">
                     <Server className="size-4 shrink-0 stroke-[2] text-[#020617]" />
                     <span>Public Inquiry Tier (Open)</span>
                   </div>
                   <code
-                    className="block rounded-[2px] bg-[#EFF5FF] p-2 font-mono text-[11px] text-[#0A1A4A]"
+                    className="block rounded-[2px] bg-[#EFF5FF] p-2 font-mono text-[11px] text-[#020617]"
                     style={{ borderRadius: '2px' }}
                   >
                     GET /health, GET /certificates/verify/:hash
@@ -876,12 +876,12 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
 
                 {/* Protected Tier */}
                 <div className="space-y-2 rounded-xl border border-[#CAD3F5] bg-[#FFFFFF] p-4 shadow-2xs">
-                  <div className="flex items-center gap-2.5 text-xs font-bold text-[#0A1A4A]">
+                  <div className="flex items-center gap-2.5 text-xs font-bold text-[#020617]">
                     <Lock className="size-4 shrink-0 stroke-[2] text-[#020617]" />
                     <span>Institutional Partner Tier (Restricted)</span>
                   </div>
                   <code
-                    className="block rounded-[2px] bg-[#EFF5FF] p-2 font-mono text-[11px] text-[#0A1A4A]"
+                    className="block rounded-[2px] bg-[#EFF5FF] p-2 font-mono text-[11px] text-[#020617]"
                     style={{ borderRadius: '2px' }}
                   >
                     Authorization: Bearer &lt;AUTHENTICATION_TOKEN&gt;
@@ -894,14 +894,14 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
             <div id="status-codes" className="scroll-mt-28 space-y-3">
               <div className="flex items-center gap-3">
                 <Terminal className="size-5 shrink-0 stroke-[2] text-[#020617]" />
-                <h3 className="text-base font-bold text-[#0A1A4A]">5. HTTP Status Codes</h3>
+                <h3 className="text-base font-bold text-[#020617]">5. HTTP Status Codes</h3>
               </div>
 
               <div className="overflow-hidden rounded-xl border border-[#CAD3F5] bg-white shadow-2xs">
                 <div className="overflow-x-auto">
                   <table className="w-full border-collapse text-left text-xs">
                     <thead>
-                      <tr className="border-b border-[#CAD3F5] bg-[#EFF5FF] text-[11px] font-bold text-[#0A1A4A]">
+                      <tr className="border-b border-[#CAD3F5] bg-[#EFF5FF] text-[11px] font-bold text-[#020617]">
                         <th className="w-24 px-4 py-2.5">Code</th>
                         <th className="px-4 py-2.5">Meaning</th>
                         <th className="px-4 py-2.5">Action & Troubleshooting</th>
@@ -913,7 +913,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                           <td className="px-4 py-2.5 font-mono font-bold text-[#0056FF]">
                             {row.code}
                           </td>
-                          <td className="px-4 py-2.5 font-medium text-[#0A1A4A]">{row.meaning}</td>
+                          <td className="px-4 py-2.5 font-medium text-[#020617]">{row.meaning}</td>
                           <td className="px-4 py-2.5 text-slate-700">{row.action}</td>
                         </tr>
                       ))}
@@ -930,7 +930,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
           <section id="api-documentation" className="scroll-mt-28 space-y-12">
             <div className="flex items-center gap-3">
               <FileText className="size-6 shrink-0 stroke-[2] text-[#020617]" />
-              <h2 className="text-2xl font-black tracking-tight text-[#0A1A4A] sm:text-3xl">
+              <h2 className="text-2xl font-black tracking-tight text-[#020617] sm:text-3xl">
                 API Documentation
               </h2>
             </div>
@@ -948,14 +948,14 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                   >
                     [PUBLIC]
                   </span>
-                  <h3 className="text-xl font-black text-[#0A1A4A]">1. Public Endpoints</h3>
+                  <h3 className="text-xl font-black text-[#020617]">1. Public Endpoints</h3>
                 </div>
               </div>
 
               {/* 1.1 System Health Probe */}
               <article id="api-health" className="scroll-mt-28 space-y-4">
                 <div className="flex items-center justify-between border-b border-[#CAD3F5]/80 pb-2">
-                  <h4 className="text-base font-bold text-[#0A1A4A]">
+                  <h4 className="text-base font-bold text-[#020617]">
                     1.1 System Health Probe (GET /health)
                   </h4>
                   <span className="rounded bg-[#0056FF] px-2 py-0.5 font-mono text-[11px] font-bold text-white">
@@ -1043,7 +1043,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
               {/* 1.2 Certificate Ledger Verification */}
               <article id="api-cert-verify" className="scroll-mt-28 space-y-4 pt-6">
                 <div className="flex items-center justify-between border-b border-[#CAD3F5]/80 pb-2">
-                  <h4 className="text-base font-bold text-[#0A1A4A]">
+                  <h4 className="text-base font-bold text-[#020617]">
                     1.2 Certificate Ledger Verification (GET /certificates/verify/:hash)
                   </h4>
                   <span className="rounded bg-[#0056FF] px-2 py-0.5 font-mono text-[11px] font-bold text-white">
@@ -1141,7 +1141,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
                   >
                     [RESTRICTED]
                   </span>
-                  <h3 className="text-xl font-black text-[#0A1A4A]">
+                  <h3 className="text-xl font-black text-[#020617]">
                     2. Institutional Protected Services
                   </h3>
                 </div>
@@ -1150,7 +1150,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
               {/* 2.1 User Login */}
               <article id="api-auth-login" className="scroll-mt-28 space-y-4">
                 <div className="flex items-center justify-between border-b border-[#CAD3F5]/80 pb-2">
-                  <h4 className="text-base font-bold text-[#0A1A4A]">
+                  <h4 className="text-base font-bold text-[#020617]">
                     2.1 User Authentication (POST /auth/login)
                   </h4>
                   <span className="rounded bg-emerald-600 px-2 py-0.5 font-mono text-[11px] font-bold text-white">
@@ -1267,7 +1267,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
               {/* 2.2 Renew Token */}
               <article id="api-auth-refresh" className="scroll-mt-28 space-y-4 pt-6">
                 <div className="flex items-center justify-between border-b border-[#CAD3F5]/80 pb-2">
-                  <h4 className="text-base font-bold text-[#0A1A4A]">
+                  <h4 className="text-base font-bold text-[#020617]">
                     2.2 Renew Session Token (POST /auth/refresh)
                   </h4>
                   <span className="rounded bg-emerald-600 px-2 py-0.5 font-mono text-[11px] font-bold text-white">
@@ -1366,7 +1366,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
               {/* 2.3 User Profile & Permissions */}
               <article id="api-auth-me" className="scroll-mt-28 space-y-4 pt-6">
                 <div className="flex items-center justify-between border-b border-[#CAD3F5]/80 pb-2">
-                  <h4 className="text-base font-bold text-[#0A1A4A]">
+                  <h4 className="text-base font-bold text-[#020617]">
                     2.3 User Profile & Permissions (GET /auth/me)
                   </h4>
                   <span className="rounded bg-[#0056FF] px-2 py-0.5 font-mono text-[11px] font-bold text-white">
@@ -1432,7 +1432,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
               {/* 2.4 List Students */}
               <article id="api-students-list" className="scroll-mt-28 space-y-4 pt-6">
                 <div className="flex items-center justify-between border-b border-[#CAD3F5]/80 pb-2">
-                  <h4 className="text-base font-bold text-[#0A1A4A]">
+                  <h4 className="text-base font-bold text-[#020617]">
                     2.4 List Students (GET /students)
                   </h4>
                   <span className="rounded bg-[#0056FF] px-2 py-0.5 font-mono text-[11px] font-bold text-white">
@@ -1547,7 +1547,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
               {/* 2.5 Create Student */}
               <article id="api-students-create" className="scroll-mt-28 space-y-4 pt-6">
                 <div className="flex items-center justify-between border-b border-[#CAD3F5]/80 pb-2">
-                  <h4 className="text-base font-bold text-[#0A1A4A]">
+                  <h4 className="text-base font-bold text-[#020617]">
                     2.5 Create Student (POST /students)
                   </h4>
                   <span className="rounded bg-emerald-600 px-2 py-0.5 font-mono text-[11px] font-bold text-white">
@@ -1687,7 +1687,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
               {/* 2.6 Record Daily Attendance */}
               <article id="api-attendance-create" className="scroll-mt-28 space-y-4 pt-6">
                 <div className="flex items-center justify-between border-b border-[#CAD3F5]/80 pb-2">
-                  <h4 className="text-base font-bold text-[#0A1A4A]">
+                  <h4 className="text-base font-bold text-[#020617]">
                     2.6 Record Daily Attendance (POST /attendance)
                   </h4>
                   <span className="rounded bg-emerald-600 px-2 py-0.5 font-mono text-[11px] font-bold text-white">
@@ -1817,7 +1817,7 @@ export function OpenApiView({ initialSection }: { initialSection?: string } = {}
               {/* 2.7 Record Payment Transaction */}
               <article id="api-payments-create" className="scroll-mt-28 space-y-4 pt-6">
                 <div className="flex items-center justify-between border-b border-[#CAD3F5]/80 pb-2">
-                  <h4 className="text-base font-bold text-[#0A1A4A]">
+                  <h4 className="text-base font-bold text-[#020617]">
                     2.7 Record Payment Transaction (POST /payments)
                   </h4>
                   <span className="rounded bg-emerald-600 px-2 py-0.5 font-mono text-[11px] font-bold text-white">

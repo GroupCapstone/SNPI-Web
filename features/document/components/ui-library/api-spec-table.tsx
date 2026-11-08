@@ -64,7 +64,7 @@ export function ApiSpecTable({
         <table className="w-full border-collapse text-left text-xs">
           <tbody>
             <tr className="border-b border-[#CAD3F5]/60 hover:bg-[#EFF5FF]/40">
-              <td className="w-40 bg-[#EFF5FF]/50 px-4 py-3 font-semibold text-[#0A1A4A]">
+              <td className="w-40 bg-[#EFF5FF]/50 px-4 py-3 font-semibold text-[#020617]">
                 Method
               </td>
               <td className="px-4 py-3">
@@ -81,12 +81,12 @@ export function ApiSpecTable({
             </tr>
 
             <tr className="border-b border-[#CAD3F5]/60 hover:bg-[#EFF5FF]/40">
-              <td className="w-40 bg-[#EFF5FF]/50 px-4 py-3 font-semibold text-[#0A1A4A]">Name</td>
-              <td className="px-4 py-3 font-bold text-[#0A1A4A]">{name}</td>
+              <td className="w-40 bg-[#EFF5FF]/50 px-4 py-3 font-semibold text-[#020617]">Name</td>
+              <td className="px-4 py-3 font-bold text-[#020617]">{name}</td>
             </tr>
 
             <tr className="border-b border-[#CAD3F5]/60 hover:bg-[#EFF5FF]/40">
-              <td className="w-40 bg-[#EFF5FF]/50 px-4 py-3 font-semibold text-[#0A1A4A]">
+              <td className="w-40 bg-[#EFF5FF]/50 px-4 py-3 font-semibold text-[#020617]">
                 Endpoint
               </td>
               <td className="px-4 py-3">
@@ -121,14 +121,14 @@ export function ApiSpecTable({
             </tr>
 
             <tr className="border-b border-[#CAD3F5]/60 hover:bg-[#EFF5FF]/40">
-              <td className="w-40 bg-[#EFF5FF]/50 px-4 py-3 font-semibold text-[#0A1A4A]">
+              <td className="w-40 bg-[#EFF5FF]/50 px-4 py-3 font-semibold text-[#020617]">
                 Description
               </td>
               <td className="px-4 py-3 text-slate-700">{description}</td>
             </tr>
 
             <tr className="hover:bg-[#EFF5FF]/40">
-              <td className="w-40 bg-[#EFF5FF]/50 px-4 py-3 font-semibold text-[#0A1A4A]">
+              <td className="w-40 bg-[#EFF5FF]/50 px-4 py-3 font-semibold text-[#020617]">
                 Authentication
               </td>
               <td className="px-4 py-3">

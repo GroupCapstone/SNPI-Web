@@ -119,7 +119,7 @@ function BrandSelect({
         aria-expanded={isOpen}
         onClick={() => setIsOpen((prev) => !prev)}
         className={cn(
-          'flex h-10 w-full cursor-pointer items-center justify-between rounded-[4px] border bg-white px-3 font-sans text-xs text-[#0A1A4A] transition-colors focus:outline-none',
+          'flex h-10 w-full cursor-pointer items-center justify-between rounded-[4px] border bg-white px-3 font-sans text-xs text-[#020617] transition-colors focus:outline-none',
           isOpen
             ? 'border-[#0056FF] ring-1 ring-[#0056FF]/20'
             : 'border-[#CAD3F5] hover:border-[#0056FF]',
@@ -128,7 +128,7 @@ function BrandSelect({
         <span
           className={cn(
             'truncate',
-            selectedOption ? 'font-medium text-[#0A1A4A]' : 'text-slate-400',
+            selectedOption ? 'font-medium text-[#020617]' : 'text-slate-400',
           )}
         >
           {selectedOption ? selectedOption.label : placeholder}
@@ -162,7 +162,7 @@ function BrandSelect({
                   'flex cursor-pointer items-center justify-between rounded-[2px] px-3 py-2 font-sans text-xs transition-colors',
                   isSelected
                     ? 'bg-[#EFF5FF] font-semibold text-[#0056FF]'
-                    : 'text-[#0A1A4A] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
+                    : 'text-[#020617] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
                 )}
               >
                 <div className="flex flex-col">
@@ -494,7 +494,7 @@ export function MultiStepWizard({ theme = 'light', className, onComplete }: Mult
   return (
     <div
       className={cn(
-        'relative w-full overflow-hidden rounded-[4px] border border-[#CAD3F5] bg-white text-[#0A1A4A] shadow-2xs',
+        'relative w-full overflow-hidden rounded-[4px] border border-[#CAD3F5] bg-white text-[#020617] shadow-2xs',
         className,
       )}
     >
@@ -531,7 +531,7 @@ export function MultiStepWizard({ theme = 'light', className, onComplete }: Mult
       {/* Dynamic Step Header Status Bar */}
       <div className="flex items-center justify-between border-b border-[#CAD3F5]/60 bg-[#EFF5FF]/40 px-5 py-2.5 sm:px-8">
         <div className="flex items-center gap-2">
-          <span className="font-mono text-[11px] font-bold text-[#0A1A4A]">STEP 0{step} / 04</span>
+          <span className="font-mono text-[11px] font-bold text-[#020617]">STEP 0{step} / 04</span>
           <span className="text-[#CAD3F5]">·</span>
           <span className="font-sans text-xs font-semibold text-[#334155]">
             {WIZARD_STEPS[step - 1].title}
@@ -592,7 +592,7 @@ export function MultiStepWizard({ theme = 'light', className, onComplete }: Mult
                       isActive
                         ? 'text-[#0056FF]'
                         : isCompleted
-                          ? 'text-[#0A1A4A]'
+                          ? 'text-[#020617]'
                           : 'text-slate-400',
                     )}
                   >
@@ -633,7 +633,7 @@ export function MultiStepWizard({ theme = 'light', className, onComplete }: Mult
           </div>
 
           <div className="space-y-1">
-            <h3 className="font-sans text-xl font-bold tracking-tight text-[#0A1A4A]">
+            <h3 className="font-sans text-xl font-bold tracking-tight text-[#020617]">
               Admissions Dossier Registered
             </h3>
             <p className="max-w-sm font-sans text-xs text-[#334155]">
@@ -687,7 +687,7 @@ export function MultiStepWizard({ theme = 'light', className, onComplete }: Mult
                 )}
               >
                 <legend id="step1-heading" className="space-y-1 pb-2">
-                  <h3 className="font-sans text-base font-bold text-[#0A1A4A]">
+                  <h3 className="font-sans text-base font-bold text-[#020617]">
                     Personal & Applicant Details
                   </h3>
                   <p className="font-sans text-xs text-[#334155]">
@@ -699,7 +699,7 @@ export function MultiStepWizard({ theme = 'light', className, onComplete }: Mult
                 <div className="space-y-1.5">
                   <label
                     htmlFor="fullName"
-                    className="block font-sans text-xs font-semibold text-[#0A1A4A]"
+                    className="block font-sans text-xs font-semibold text-[#020617]"
                   >
                     Full Legal Name *
                   </label>
@@ -718,7 +718,7 @@ export function MultiStepWizard({ theme = 'light', className, onComplete }: Mult
                       'h-10 w-full rounded-[4px] border px-3 font-sans text-xs transition-colors focus:outline-none',
                       touchedFields.fullName && errors.fullName
                         ? 'border-red-500 bg-red-50/15 focus:border-red-500 focus:ring-1 focus:ring-red-500/20'
-                        : 'border-[#CAD3F5] bg-white text-[#0A1A4A] placeholder:text-slate-400 focus:border-[#0056FF] focus:ring-1 focus:ring-[#0056FF]/20',
+                        : 'border-[#CAD3F5] bg-white text-[#020617] placeholder:text-slate-400 focus:border-[#0056FF] focus:ring-1 focus:ring-[#0056FF]/20',
                     )}
                   />
                   {touchedFields.fullName && errors.fullName && (
@@ -737,7 +737,7 @@ export function MultiStepWizard({ theme = 'light', className, onComplete }: Mult
                 <div className="space-y-1.5">
                   <label
                     htmlFor="email"
-                    className="block font-sans text-xs font-semibold text-[#0A1A4A]"
+                    className="block font-sans text-xs font-semibold text-[#020617]"
                   >
                     Institutional Email *
                   </label>
@@ -756,7 +756,7 @@ export function MultiStepWizard({ theme = 'light', className, onComplete }: Mult
                       'h-10 w-full rounded-[4px] border px-3 font-sans text-xs transition-colors focus:outline-none',
                       touchedFields.email && errors.email
                         ? 'border-red-500 bg-red-50/15 focus:border-red-500 focus:ring-1 focus:ring-red-500/20'
-                        : 'border-[#CAD3F5] bg-white text-[#0A1A4A] placeholder:text-slate-400 focus:border-[#0056FF] focus:ring-1 focus:ring-[#0056FF]/20',
+                        : 'border-[#CAD3F5] bg-white text-[#020617] placeholder:text-slate-400 focus:border-[#0056FF] focus:ring-1 focus:ring-[#0056FF]/20',
                     )}
                   />
                   {touchedFields.email && errors.email && (
@@ -775,7 +775,7 @@ export function MultiStepWizard({ theme = 'light', className, onComplete }: Mult
                 <div className="space-y-1.5">
                   <label
                     htmlFor="role"
-                    className="block font-sans text-xs font-semibold text-[#0A1A4A]"
+                    className="block font-sans text-xs font-semibold text-[#020617]"
                   >
                     Applicant Affiliation
                   </label>
@@ -802,7 +802,7 @@ export function MultiStepWizard({ theme = 'light', className, onComplete }: Mult
                 )}
               >
                 <legend id="step2-heading" className="space-y-1 pb-2">
-                  <h3 className="font-sans text-base font-bold text-[#0A1A4A]">
+                  <h3 className="font-sans text-base font-bold text-[#020617]">
                     Campus Branch & Telephone
                   </h3>
                   <p className="font-sans text-xs text-[#334155]">
@@ -814,7 +814,7 @@ export function MultiStepWizard({ theme = 'light', className, onComplete }: Mult
                 <div className="space-y-1.5">
                   <label
                     htmlFor="branch"
-                    className="block font-sans text-xs font-semibold text-[#0A1A4A]"
+                    className="block font-sans text-xs font-semibold text-[#020617]"
                   >
                     Designated Branch Campus *
                   </label>
@@ -830,7 +830,7 @@ export function MultiStepWizard({ theme = 'light', className, onComplete }: Mult
                 <div className="space-y-1.5">
                   <label
                     htmlFor="phone"
-                    className="block font-sans text-xs font-semibold text-[#0A1A4A]"
+                    className="block font-sans text-xs font-semibold text-[#020617]"
                   >
                     Telephone / Telegram Number *
                   </label>
@@ -849,7 +849,7 @@ export function MultiStepWizard({ theme = 'light', className, onComplete }: Mult
                       'h-10 w-full rounded-[4px] border px-3 font-sans text-xs transition-colors focus:outline-none',
                       touchedFields.phone && errors.phone
                         ? 'border-red-500 bg-red-50/15 focus:border-red-500 focus:ring-1 focus:ring-red-500/20'
-                        : 'border-[#CAD3F5] bg-white text-[#0A1A4A] placeholder:text-slate-400 focus:border-[#0056FF] focus:ring-1 focus:ring-[#0056FF]/20',
+                        : 'border-[#CAD3F5] bg-white text-[#020617] placeholder:text-slate-400 focus:border-[#0056FF] focus:ring-1 focus:ring-[#0056FF]/20',
                     )}
                   />
                   {touchedFields.phone && errors.phone && (
@@ -868,7 +868,7 @@ export function MultiStepWizard({ theme = 'light', className, onComplete }: Mult
                 <div className="space-y-1.5">
                   <label
                     htmlFor="idNumber"
-                    className="block font-sans text-xs font-semibold text-[#0A1A4A]"
+                    className="block font-sans text-xs font-semibold text-[#020617]"
                   >
                     National ID / Passport Number *
                   </label>
@@ -887,7 +887,7 @@ export function MultiStepWizard({ theme = 'light', className, onComplete }: Mult
                       'h-10 w-full rounded-[4px] border px-3 font-mono text-xs transition-colors focus:outline-none',
                       touchedFields.idNumber && errors.idNumber
                         ? 'border-red-500 bg-red-50/15 focus:border-red-500 focus:ring-1 focus:ring-red-500/20'
-                        : 'border-[#CAD3F5] bg-white text-[#0A1A4A] placeholder:text-slate-400 focus:border-[#0056FF] focus:ring-1 focus:ring-[#0056FF]/20',
+                        : 'border-[#CAD3F5] bg-white text-[#020617] placeholder:text-slate-400 focus:border-[#0056FF] focus:ring-1 focus:ring-[#0056FF]/20',
                     )}
                   />
                   {touchedFields.idNumber && errors.idNumber && (
@@ -917,7 +917,7 @@ export function MultiStepWizard({ theme = 'light', className, onComplete }: Mult
                 )}
               >
                 <legend id="step3-heading" className="space-y-1 pb-2">
-                  <h3 className="font-sans text-base font-bold text-[#0A1A4A]">
+                  <h3 className="font-sans text-base font-bold text-[#020617]">
                     Two-Factor Auth & Term
                   </h3>
                   <p className="font-sans text-xs text-[#334155]">
@@ -929,7 +929,7 @@ export function MultiStepWizard({ theme = 'light', className, onComplete }: Mult
                 <div className="space-y-1.5">
                   <label
                     htmlFor="mfaMethod"
-                    className="block font-sans text-xs font-semibold text-[#0A1A4A]"
+                    className="block font-sans text-xs font-semibold text-[#020617]"
                   >
                     Authentication Protection Method
                   </label>
@@ -945,7 +945,7 @@ export function MultiStepWizard({ theme = 'light', className, onComplete }: Mult
                 <div className="space-y-1.5">
                   <label
                     htmlFor="term"
-                    className="block font-sans text-xs font-semibold text-[#0A1A4A]"
+                    className="block font-sans text-xs font-semibold text-[#020617]"
                   >
                     Enrollment Academic Term
                   </label>
@@ -961,7 +961,7 @@ export function MultiStepWizard({ theme = 'light', className, onComplete }: Mult
                 <div className="space-y-1.5">
                   <label
                     htmlFor="notificationChannel"
-                    className="block font-sans text-xs font-semibold text-[#0A1A4A]"
+                    className="block font-sans text-xs font-semibold text-[#020617]"
                   >
                     Notification Delivery Preference
                   </label>
@@ -988,7 +988,7 @@ export function MultiStepWizard({ theme = 'light', className, onComplete }: Mult
                 )}
               >
                 <legend id="step4-heading" className="space-y-1 pb-2">
-                  <h3 className="font-sans text-base font-bold text-[#0A1A4A]">
+                  <h3 className="font-sans text-base font-bold text-[#020617]">
                     Review Application Details
                   </h3>
                   <p className="font-sans text-xs text-[#334155]">
@@ -1014,17 +1014,17 @@ export function MultiStepWizard({ theme = 'light', className, onComplete }: Mult
                   <dl className="grid grid-cols-2 gap-2 font-sans text-xs">
                     <div>
                       <dt className="text-slate-400">Name:</dt>
-                      <dd className="font-semibold text-[#0A1A4A]">{formData.fullName || '—'}</dd>
+                      <dd className="font-semibold text-[#020617]">{formData.fullName || '—'}</dd>
                     </div>
                     <div>
                       <dt className="text-slate-400">Email:</dt>
-                      <dd className="truncate font-semibold text-[#0A1A4A]">
+                      <dd className="truncate font-semibold text-[#020617]">
                         {formData.email || '—'}
                       </dd>
                     </div>
                     <div>
                       <dt className="text-slate-400">Role:</dt>
-                      <dd className="font-semibold text-[#0A1A4A]">{formData.role}</dd>
+                      <dd className="font-semibold text-[#020617]">{formData.role}</dd>
                     </div>
                   </dl>
                 </div>
@@ -1047,15 +1047,15 @@ export function MultiStepWizard({ theme = 'light', className, onComplete }: Mult
                   <dl className="grid grid-cols-2 gap-2 font-sans text-xs">
                     <div>
                       <dt className="text-slate-400">Branch:</dt>
-                      <dd className="font-semibold text-[#0A1A4A]">{formData.branch}</dd>
+                      <dd className="font-semibold text-[#020617]">{formData.branch}</dd>
                     </div>
                     <div>
                       <dt className="text-slate-400">Phone:</dt>
-                      <dd className="font-semibold text-[#0A1A4A]">{formData.phone || '—'}</dd>
+                      <dd className="font-semibold text-[#020617]">{formData.phone || '—'}</dd>
                     </div>
                     <div>
                       <dt className="text-slate-400">ID / Passport:</dt>
-                      <dd className="font-semibold text-[#0A1A4A]">{formData.idNumber || '—'}</dd>
+                      <dd className="font-semibold text-[#020617]">{formData.idNumber || '—'}</dd>
                     </div>
                   </dl>
                 </div>
@@ -1078,15 +1078,15 @@ export function MultiStepWizard({ theme = 'light', className, onComplete }: Mult
                   <dl className="grid grid-cols-2 gap-2 font-sans text-xs">
                     <div>
                       <dt className="text-slate-400">MFA Method:</dt>
-                      <dd className="font-semibold text-[#0A1A4A]">{formData.mfaMethod}</dd>
+                      <dd className="font-semibold text-[#020617]">{formData.mfaMethod}</dd>
                     </div>
                     <div>
                       <dt className="text-slate-400">Term:</dt>
-                      <dd className="font-semibold text-[#0A1A4A]">{formData.term}</dd>
+                      <dd className="font-semibold text-[#020617]">{formData.term}</dd>
                     </div>
                     <div>
                       <dt className="text-slate-400">Notification:</dt>
-                      <dd className="font-semibold text-[#0A1A4A]">
+                      <dd className="font-semibold text-[#020617]">
                         {formData.notificationChannel}
                       </dd>
                     </div>
@@ -1132,7 +1132,7 @@ export function MultiStepWizard({ theme = 'light', className, onComplete }: Mult
                   'flex items-center gap-1.5 rounded-[4px] border border-[#CAD3F5] bg-white px-3.5 py-2 font-mono text-xs font-bold transition-colors outline-none',
                   step === 1
                     ? 'cursor-not-allowed text-slate-400 opacity-40'
-                    : 'cursor-pointer text-[#0A1A4A] hover:border-[#0056FF] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
+                    : 'cursor-pointer text-[#020617] hover:border-[#0056FF] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
                 )}
               >
                 <ArrowLeft className="size-3.5" />
@@ -1188,7 +1188,7 @@ export function MultiStepWizardInteractiveDemo() {
     <div className="w-full space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-2.5 rounded-[4px] border border-[#CAD3F5] bg-white p-3 shadow-2xs">
         <div className="flex items-center gap-2">
-          <span className="font-mono text-xs font-bold text-[#0A1A4A] uppercase">
+          <span className="font-mono text-xs font-bold text-[#020617] uppercase">
             Candidate Enrollment Pipeline
           </span>
           <span className="inline-flex items-center rounded-[2px] border border-[#CAD3F5] bg-[#EFF5FF] px-2 py-0.5 font-mono text-[10px] font-bold text-[#0056FF]">
@@ -1199,7 +1199,7 @@ export function MultiStepWizardInteractiveDemo() {
         <button
           type="button"
           onClick={handleReset}
-          className="flex cursor-pointer items-center gap-1.5 rounded-[4px] border border-[#CAD3F5] bg-white px-2.5 py-1 font-mono text-[11px] font-bold text-[#0A1A4A] transition-colors hover:border-[#0056FF] hover:bg-[#EFF5FF] hover:text-[#0056FF] active:scale-95"
+          className="flex cursor-pointer items-center gap-1.5 rounded-[4px] border border-[#CAD3F5] bg-white px-2.5 py-1 font-mono text-[11px] font-bold text-[#020617] transition-colors hover:border-[#0056FF] hover:bg-[#EFF5FF] hover:text-[#0056FF] active:scale-95"
         >
           <RotateCcw className="size-3" />
           <span>Reset Session</span>

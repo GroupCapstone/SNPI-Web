@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 import { useDocsNav, DOCS_FONTS } from './docs-nav-context';
 
 /** Docs font switch. English fonts only. */
-export function FontSwitch({ variant = 'header' }: { variant?: 'header' | 'panel' }) {
+export function FontSwitch({ variant = 'header' }: { variant?: 'header' | 'panel' | 'icon' }) {
   const { font, setFont } = useDocsNav();
   const [open, setOpen] = React.useState(false);
   const rootRef = React.useRef<HTMLDivElement>(null);
@@ -35,20 +35,33 @@ export function FontSwitch({ variant = 'header' }: { variant?: 'header' | 'panel
         aria-haspopup="listbox"
         aria-expanded={open}
         aria-label="Switch font"
+        title="Switch font"
         className={cn(
-          'flex min-h-11 max-w-44 cursor-pointer items-center gap-2 rounded-[4px] font-sans text-sm font-bold transition-all active:scale-95',
-          variant === 'header'
-            ? 'border border-white/20 bg-white/10 px-3 text-white hover:bg-white/20'
-            : 'w-full justify-between border border-[#CAD3F5] bg-white px-3 text-[#0A1A4A] hover:bg-[#EFF5FF]',
+          'flex min-h-11 cursor-pointer items-center gap-2 rounded-[4px] font-sans text-sm font-bold transition-all active:scale-95',
+          variant === 'header' &&
+            'max-w-44 border border-white/20 bg-white/10 px-3 text-white hover:bg-white/20',
+          variant === 'panel' &&
+            'w-full justify-between border border-[#CAD3F5] bg-white px-3 text-[#020617] hover:bg-[#EFF5FF]',
+          variant === 'icon' &&
+            'size-11 justify-center border border-white/20 bg-white/10 px-0 text-white hover:bg-white/20',
         )}
       >
-        <span className="flex min-w-0 items-center gap-2">
+        {variant === 'icon' ? (
           <CaseSensitive className="size-5 shrink-0 stroke-[2]" />
-          <span className="truncate">{active.label}</span>
-        </span>
-        <ChevronDown
-          className={cn('size-4 shrink-0 stroke-[2.5] transition-transform', open && 'rotate-180')}
-        />
+        ) : (
+          <>
+            <span className="flex min-w-0 items-center gap-2">
+              <CaseSensitive className="size-5 shrink-0 stroke-[2]" />
+              <span className="truncate">{active.label}</span>
+            </span>
+            <ChevronDown
+              className={cn(
+                'size-4 shrink-0 stroke-[2.5] transition-transform',
+                open && 'rotate-180',
+              )}
+            />
+          </>
+        )}
       </button>
 
       {open && (
@@ -57,9 +70,9 @@ export function FontSwitch({ variant = 'header' }: { variant?: 'header' | 'panel
           aria-label="Font"
           className={cn(
             'animate-in fade-in zoom-in-95 absolute z-50 overflow-hidden rounded-[4px] border border-[#CAD3F5] bg-white py-1 shadow-lg duration-200',
-            variant === 'header'
-              ? 'top-[calc(100%+8px)] right-0 w-52'
-              : 'top-[calc(100%+6px)] right-0 left-0',
+            variant === 'panel'
+              ? 'top-[calc(100%+6px)] right-0 left-0'
+              : 'top-[calc(100%+8px)] right-0 w-52',
           )}
         >
           {DOCS_FONTS.map((option) => (
@@ -77,7 +90,7 @@ export function FontSwitch({ variant = 'header' }: { variant?: 'header' | 'panel
                 'flex min-h-11 w-full cursor-pointer items-center justify-between px-3 text-sm font-bold transition-colors',
                 option.id === font
                   ? 'bg-[#EFF5FF] text-[#0056FF]'
-                  : 'text-[#0A1A4A] hover:bg-[#EFF5FF]',
+                  : 'text-[#020617] hover:bg-[#EFF5FF]',
               )}
             >
               {option.label}

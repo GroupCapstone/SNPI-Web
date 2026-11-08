@@ -39,7 +39,7 @@ export const COLOR_RAMPS: ColorRampGroup[] = [
       { step: '600', hex: '#0048D9', contrastWhite: '5.6:1', contrastBlack: '3.7:1' },
       { step: '700', hex: '#0038B3', contrastWhite: '7.4:1', contrastBlack: '2.8:1' },
       { step: '800', hex: '#002A8C', contrastWhite: '9.8:1', contrastBlack: '2.1:1' },
-      { step: '900', hex: '#0A1A4A', contrastWhite: '16.5:1', contrastBlack: '1.3:1' },
+      { step: '900', hex: '#020617', contrastWhite: '16.5:1', contrastBlack: '1.3:1' },
       { step: '950', hex: '#050E28', contrastWhite: '18.9:1', contrastBlack: '1.1:1' },
     ],
   },
@@ -248,7 +248,7 @@ export const SEMANTIC_TOKENS: SemanticTokenRow[] = [
   {
     token: 'text-primary',
     exampleType: 'text',
-    lightHex: '#0A1A4A',
+    lightHex: '#020617',
     darkHex: '#FFFFFF',
     lightRamp: 'primary-900',
     darkRamp: 'neutral-50',
@@ -483,7 +483,7 @@ export function ColorRampsTokens() {
               'rounded-lg px-3 py-1.5 font-sans text-xs font-bold transition-all',
               activeCategory === 'all'
                 ? 'bg-[#0056FF] text-white shadow-none'
-                : 'text-[#0A1A4A] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
+                : 'text-[#020617] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
             )}
           >
             ALL
@@ -495,7 +495,7 @@ export function ColorRampsTokens() {
               'rounded-lg px-3 py-1.5 font-sans text-xs font-bold transition-all',
               activeCategory === 'brand'
                 ? 'bg-[#0056FF] text-white shadow-none'
-                : 'text-[#0A1A4A] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
+                : 'text-[#020617] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
             )}
           >
             BRAND
@@ -507,7 +507,7 @@ export function ColorRampsTokens() {
               'rounded-lg px-3 py-1.5 font-sans text-xs font-bold transition-all',
               activeCategory === 'accents'
                 ? 'bg-[#0056FF] text-white shadow-none'
-                : 'text-[#0A1A4A] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
+                : 'text-[#020617] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
             )}
           >
             ACCENT
@@ -519,7 +519,7 @@ export function ColorRampsTokens() {
               'rounded-lg px-3 py-1.5 font-sans text-xs font-bold transition-all',
               activeCategory === 'neutral'
                 ? 'bg-[#0056FF] text-white shadow-none'
-                : 'text-[#0A1A4A] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
+                : 'text-[#020617] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
             )}
           >
             NEUTRAL
@@ -531,7 +531,7 @@ export function ColorRampsTokens() {
               'rounded-lg px-3 py-1.5 font-sans text-xs font-bold transition-all',
               activeCategory === 'status'
                 ? 'bg-[#0056FF] text-white shadow-none'
-                : 'text-[#0A1A4A] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
+                : 'text-[#020617] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
             )}
           >
             STATUS
@@ -549,7 +549,7 @@ export function ColorRampsTokens() {
                 'rounded-lg px-3.5 py-1.5 font-sans text-xs font-bold transition-all',
                 formatMode === 'HEX'
                   ? 'bg-[#0056FF] text-white shadow-none'
-                  : 'text-[#0A1A4A] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
+                  : 'text-[#020617] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
               )}
             >
               HEX
@@ -561,7 +561,7 @@ export function ColorRampsTokens() {
                 'rounded-lg px-3.5 py-1.5 font-sans text-xs font-bold transition-all',
                 formatMode === 'CSS'
                   ? 'bg-[#0056FF] text-white shadow-none'
-                  : 'text-[#0A1A4A] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
+                  : 'text-[#020617] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
               )}
             >
               CSS
@@ -577,7 +577,7 @@ export function ColorRampsTokens() {
                 'rounded-lg px-3.5 py-1.5 font-sans text-xs font-bold transition-all',
                 contrastMode === 'CONTRAST'
                   ? 'bg-[#0056FF] text-white shadow-none'
-                  : 'text-[#0A1A4A] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
+                  : 'text-[#020617] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
               )}
             >
               CONTRAST
@@ -589,7 +589,7 @@ export function ColorRampsTokens() {
                 'rounded-lg px-3.5 py-1.5 font-sans text-xs font-bold transition-all',
                 contrastMode === 'AA'
                   ? 'bg-[#0056FF] text-white shadow-none'
-                  : 'text-[#0A1A4A] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
+                  : 'text-[#020617] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
               )}
             >
               AA
@@ -601,7 +601,7 @@ export function ColorRampsTokens() {
                 'rounded-lg px-3.5 py-1.5 font-sans text-xs font-bold transition-all',
                 contrastMode === 'AAA'
                   ? 'bg-[#0056FF] text-white shadow-none'
-                  : 'text-[#0A1A4A] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
+                  : 'text-[#020617] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
               )}
             >
               AAA
@@ -664,7 +664,7 @@ export function ColorRampsTokens() {
       {/* ------------------------------------------------------------- */}
       <div className="space-y-4 border-t border-slate-200 pt-6">
         <div className="flex items-center justify-between">
-          <h3 className="font-sans text-xl font-black text-[#0A1A4A]">Semantic tokens</h3>
+          <h3 className="font-sans text-xl font-black text-[#020617]">Semantic tokens</h3>
 
           {/* [ RAM | RAMP ] Button Group */}
           <div className="inline-flex items-center gap-1 rounded-xl border border-[#CAD3F5] bg-white p-1">
@@ -675,7 +675,7 @@ export function ColorRampsTokens() {
                 'rounded-lg px-3.5 py-1.5 font-sans text-xs font-bold transition-all',
                 tokenViewMode === 'RAM'
                   ? 'bg-[#0056FF] text-white shadow-none'
-                  : 'text-[#0A1A4A] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
+                  : 'text-[#020617] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
               )}
             >
               RAM
@@ -687,7 +687,7 @@ export function ColorRampsTokens() {
                 'rounded-lg px-3.5 py-1.5 font-sans text-xs font-bold transition-all',
                 tokenViewMode === 'RAMP'
                   ? 'bg-[#0056FF] text-white shadow-none'
-                  : 'text-[#0A1A4A] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
+                  : 'text-[#020617] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
               )}
             >
               RAMP
@@ -756,7 +756,7 @@ export function ColorRampsTokens() {
                     <td className="px-4 py-3 font-mono text-xs text-slate-600">{darkVal}</td>
 
                     {/* CONTRAST / AA / AAA */}
-                    <td className="px-4 py-3 font-mono text-xs font-bold text-[#0A1A4A]">
+                    <td className="px-4 py-3 font-mono text-xs font-bold text-[#020617]">
                       <span
                         className={cn(
                           'rounded-[3px] px-1.5 py-0.5 text-[10px] font-bold',
@@ -844,7 +844,7 @@ export function ColorRampsTokens() {
               </button>
             </div>
 
-            <pre className="overflow-x-auto rounded-lg border border-[#CAD3F5] bg-white p-4 font-mono text-xs leading-relaxed text-[#0A1A4A]">
+            <pre className="overflow-x-auto rounded-lg border border-[#CAD3F5] bg-white p-4 font-mono text-xs leading-relaxed text-[#020617]">
               {JSON.stringify(
                 {
                   $schema: 'https://snpi.edu.kh/schemas/color-palette-v2.json',
@@ -866,7 +866,7 @@ export function ColorRampsTokens() {
                     canvas: '#FFFFFF',
                     subsurface: '#EFF5FF',
                     border: '#CAD3F5',
-                    text: '#0A1A4A',
+                    text: '#020617',
                   },
                   status: {
                     success: '#10B981',

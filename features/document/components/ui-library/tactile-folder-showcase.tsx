@@ -86,7 +86,7 @@ export function TactileFolderShowcase({
                   className={cn(
                     'absolute inset-x-0 top-0 mx-auto h-[280px] w-full max-w-sm cursor-pointer rounded-2xl p-4 transition-all duration-300 select-none sm:max-w-md sm:p-5',
                     isActive
-                      ? 'border-2 border-[#0056FF]/30 bg-white text-[#0A1A4A] shadow-md'
+                      ? 'border-2 border-[#0056FF]/30 bg-white text-[#020617] shadow-md'
                       : 'border border-slate-200 bg-slate-50 text-slate-800',
                     transformClasses,
                     zIndexClass,
@@ -120,12 +120,12 @@ export function TactileFolderShowcase({
           <div
             className={cn(
               'pointer-events-none absolute inset-x-3 bottom-3 z-30 flex items-center justify-between rounded-[24px] px-5 py-3.5 sm:rounded-[28px]',
-              'border border-[#CAD3F5] bg-[#EFF5FF]/90 text-[#0A1A4A] shadow-[0_-8px_20px_rgba(0,86,255,0.06)] backdrop-blur-md',
+              'border border-[#CAD3F5] bg-[#EFF5FF]/90 text-[#020617] shadow-[0_-8px_20px_rgba(0,86,255,0.06)] backdrop-blur-md',
             )}
           >
             <div className="flex items-center gap-2.5">
               <span className="size-2 rounded-full bg-[#0056FF]" />
-              <span className="font-mono text-xs font-bold tracking-wider text-[#0A1A4A] uppercase">
+              <span className="font-mono text-xs font-bold tracking-wider text-[#020617] uppercase">
                 {activeCard.title}
               </span>
             </div>

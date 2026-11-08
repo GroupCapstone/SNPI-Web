@@ -108,7 +108,7 @@ export function DocumentLogo({
 
   // Light mode colors (default for document pages) - STRICT: Motionless logo, NO hover scaling
   const lightModeColors = {
-    title: 'text-[#0A1A4A]',
+    title: 'text-[#020617]',
     subtitle: 'text-[#0056FF]',
     hoverTitle: 'group-hover:text-[#0056FF]',
   };

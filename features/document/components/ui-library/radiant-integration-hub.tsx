@@ -62,8 +62,8 @@ const CARD_PALETTE = [
   {
     bg: 'bg-[#FACC15]',
     border: 'border-none',
-    text: 'text-[#0A1A4A]',
-    accent: '#0A1A4A',
+    text: 'text-[#020617]',
+    accent: '#020617',
     subtext: 'text-amber-950/70',
     tag: 'TOKEN SPEC',
     height: 'h-44 md:h-48 lg:h-52',

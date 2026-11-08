@@ -13,7 +13,7 @@ describe('GitHub Appearance Color Roles Engine (computeActiveColorRoles)', () =>
     expect(roles.themeName).toBe('Light default');
     expect(roles.canvasBg).toBe('#FFFFFF');
     expect(roles.subsurfaceBg).toBe('#EFF5FF');
-    expect(roles.textPrimary).toBe('#0A1A4A');
+    expect(roles.textPrimary).toBe('#020617');
     expect(roles.primary.fill).toBe('#0056FF');
     expect(roles.primary.on).toBe('#FFFFFF');
     expect(roles.secondary.fill).toBe('#2277FF');

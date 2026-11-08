@@ -194,7 +194,7 @@ export function BrandFoundationsSection() {
             </span>
             <span className="font-mono text-xs text-slate-500">Core Identity</span>
           </div>
-          <h2 className="font-sans text-2xl font-black tracking-tight text-[#0A1A4A] sm:text-3xl">
+          <h2 className="font-sans text-2xl font-black tracking-tight text-[#020617] sm:text-3xl">
             Brand Vision &amp; Core Purpose
           </h2>
           <p className="max-w-3xl font-sans text-sm leading-relaxed text-slate-600 sm:text-base">
@@ -211,7 +211,7 @@ export function BrandFoundationsSection() {
               <span className="font-mono text-[10px] font-bold text-[#0056FF] uppercase">
                 01 Purpose
               </span>
-              <h3 className="font-sans text-base font-bold text-[#0A1A4A]">Why We Exist</h3>
+              <h3 className="font-sans text-base font-bold text-[#020617]">Why We Exist</h3>
               <p className="font-sans text-xs leading-relaxed text-slate-600 sm:text-sm">
                 To modernize Cambodian educational management through transparent digital workflows,
                 replacing paper clutter with reliable cloud infrastructure.
@@ -229,7 +229,7 @@ export function BrandFoundationsSection() {
               <span className="font-mono text-[10px] font-bold text-[#0056FF] uppercase">
                 02 Values
               </span>
-              <h3 className="font-sans text-base font-bold text-[#0A1A4A]">What Guides Us</h3>
+              <h3 className="font-sans text-base font-bold text-[#020617]">What Guides Us</h3>
               <p className="font-sans text-xs leading-relaxed text-slate-600 sm:text-sm">
                 Educational integrity, barrier-free accessibility, high-speed responsiveness
                 (&lt;300ms), and respectful bilingual parity across Khmer and English.
@@ -247,7 +247,7 @@ export function BrandFoundationsSection() {
               <span className="font-mono text-[10px] font-bold text-[#0056FF] uppercase">
                 03 Horizon
               </span>
-              <h3 className="font-sans text-base font-bold text-[#0A1A4A]">Future of Product</h3>
+              <h3 className="font-sans text-base font-bold text-[#020617]">Future of Product</h3>
               <p className="font-sans text-xs leading-relaxed text-slate-600 sm:text-sm">
                 Empowering administrators and teachers with autonomous AI assistants that streamline
                 attendance, academic transcripts, and compliance reporting.
@@ -276,7 +276,7 @@ export function BrandFoundationsSection() {
             </span>
             <span className="font-mono text-xs text-slate-500">5 Operational Standards</span>
           </div>
-          <h2 className="font-sans text-2xl font-black tracking-tight text-[#0A1A4A] sm:text-3xl">
+          <h2 className="font-sans text-2xl font-black tracking-tight text-[#020617] sm:text-3xl">
             Design Principles
           </h2>
           <p className="max-w-3xl font-sans text-sm leading-relaxed text-slate-600 sm:text-base">
@@ -290,7 +290,7 @@ export function BrandFoundationsSection() {
             <span className="font-mono text-[10px] font-bold text-[#0056FF] uppercase">
               Principle 01
             </span>
-            <h3 className="mt-1 font-sans text-base font-bold text-[#0A1A4A]">
+            <h3 className="mt-1 font-sans text-base font-bold text-[#020617]">
               Clarity Over Decoration
             </h3>
             <p className="mt-2 text-xs leading-relaxed text-slate-600">
@@ -303,7 +303,7 @@ export function BrandFoundationsSection() {
             <span className="font-mono text-[10px] font-bold text-[#0056FF] uppercase">
               Principle 02
             </span>
-            <h3 className="mt-1 font-sans text-base font-bold text-[#0A1A4A]">
+            <h3 className="mt-1 font-sans text-base font-bold text-[#020617]">
               Fast &amp; Purposeful
             </h3>
             <p className="mt-2 text-xs leading-relaxed text-slate-600">
@@ -316,7 +316,7 @@ export function BrandFoundationsSection() {
             <span className="font-mono text-[10px] font-bold text-[#0056FF] uppercase">
               Principle 03
             </span>
-            <h3 className="mt-1 font-sans text-base font-bold text-[#0A1A4A]">
+            <h3 className="mt-1 font-sans text-base font-bold text-[#020617]">
               Inclusive by Default
             </h3>
             <p className="mt-2 text-xs leading-relaxed text-slate-600">
@@ -329,7 +329,7 @@ export function BrandFoundationsSection() {
             <span className="font-mono text-[10px] font-bold text-[#0056FF] uppercase">
               Principle 04
             </span>
-            <h3 className="mt-1 font-sans text-base font-bold text-[#0A1A4A]">
+            <h3 className="mt-1 font-sans text-base font-bold text-[#020617]">
               Structural Flat Depth
             </h3>
             <p className="mt-2 text-xs leading-relaxed text-slate-600">
@@ -342,7 +342,7 @@ export function BrandFoundationsSection() {
             <span className="font-mono text-[10px] font-bold text-[#0056FF] uppercase">
               Principle 05
             </span>
-            <h3 className="mt-1 font-sans text-base font-bold text-[#0A1A4A]">Bilingual Parity</h3>
+            <h3 className="mt-1 font-sans text-base font-bold text-[#020617]">Bilingual Parity</h3>
             <p className="mt-2 text-xs leading-relaxed text-slate-600">
               Khmer and English typography receive equal visual weight, accommodating Khmer font
               line heights (1.6-1.8) and character height compensations.
@@ -353,7 +353,7 @@ export function BrandFoundationsSection() {
             <span className="font-mono text-[10px] font-bold text-[#0056FF] uppercase">
               Principle 06
             </span>
-            <h3 className="mt-1 font-sans text-base font-bold text-[#0A1A4A]">
+            <h3 className="mt-1 font-sans text-base font-bold text-[#020617]">
               Deterministic Governance
             </h3>
             <p className="mt-2 text-xs leading-relaxed text-slate-600">
@@ -378,7 +378,7 @@ export function BrandFoundationsSection() {
             </span>
             <span className="font-mono text-xs text-slate-500">Editorial Guide</span>
           </div>
-          <h2 className="font-sans text-2xl font-black tracking-tight text-[#0A1A4A] sm:text-3xl">
+          <h2 className="font-sans text-2xl font-black tracking-tight text-[#020617] sm:text-3xl">
             Tone of Voice
           </h2>
           <p className="max-w-3xl font-sans text-sm leading-relaxed text-slate-600 sm:text-base">
@@ -397,7 +397,7 @@ export function BrandFoundationsSection() {
                 <span className="font-mono text-[10px] font-bold text-[#0056FF] uppercase">
                   Pillar 0{idx + 1}
                 </span>
-                <h3 className="font-sans text-base font-bold text-[#0A1A4A]">{item.pillar}</h3>
+                <h3 className="font-sans text-base font-bold text-[#020617]">{item.pillar}</h3>
                 <p className="text-xs leading-relaxed text-slate-600">{item.rule}</p>
               </div>
 
@@ -436,7 +436,7 @@ export function BrandFoundationsSection() {
               </span>
               <span className="font-mono text-xs text-slate-500">Bilingual Dictionary</span>
             </div>
-            <h2 className="font-sans text-2xl font-black tracking-tight text-[#0A1A4A] sm:text-3xl">
+            <h2 className="font-sans text-2xl font-black tracking-tight text-[#020617] sm:text-3xl">
               Standard Terminology
             </h2>
             <p className="max-w-2xl font-sans text-sm leading-relaxed text-slate-600">
@@ -462,7 +462,7 @@ export function BrandFoundationsSection() {
         <div className="overflow-hidden rounded-2xl border border-[#CAD3F5] bg-white">
           <div className="overflow-x-auto">
             <table className="w-full text-left font-sans text-xs">
-              <thead className="border-b border-[#CAD3F5] bg-[#EFF5FF] font-mono text-[10px] font-bold text-[#0A1A4A] uppercase">
+              <thead className="border-b border-[#CAD3F5] bg-[#EFF5FF] font-mono text-[10px] font-bold text-[#020617] uppercase">
                 <tr>
                   <th className="px-4 py-3">Khmer Term</th>
                   <th className="px-4 py-3">English Standard</th>
@@ -474,7 +474,7 @@ export function BrandFoundationsSection() {
               <tbody className="divide-y divide-slate-100">
                 {filteredTerms.map((term, idx) => (
                   <tr key={idx} className="transition-colors hover:bg-slate-50/80">
-                    <td className="px-4 py-3 font-bold text-[#0A1A4A]">{term.khmer}</td>
+                    <td className="px-4 py-3 font-bold text-[#020617]">{term.khmer}</td>
                     <td className="px-4 py-3 font-semibold text-slate-800">{term.english}</td>
                     <td className="px-4 py-3">
                       <button
@@ -513,7 +513,7 @@ export function BrandFoundationsSection() {
             </span>
             <span className="font-mono text-xs text-slate-500">Cross-Channel Consistency</span>
           </div>
-          <h2 className="font-sans text-2xl font-black tracking-tight text-[#0A1A4A] sm:text-3xl">
+          <h2 className="font-sans text-2xl font-black tracking-tight text-[#020617] sm:text-3xl">
             Brand Assets &amp; Guidelines
           </h2>
           <p className="max-w-3xl font-sans text-sm leading-relaxed text-slate-600 sm:text-base">
@@ -529,7 +529,7 @@ export function BrandFoundationsSection() {
               <span className="font-mono text-[10px] font-bold text-[#0056FF] uppercase">
                 Product Application (App Router)
               </span>
-              <h3 className="font-sans text-lg font-bold text-[#0A1A4A]">
+              <h3 className="font-sans text-lg font-bold text-[#020617]">
                 Core School Management UI
               </h3>
               <ul className="space-y-2 text-xs leading-relaxed text-slate-600">
@@ -568,7 +568,7 @@ export function BrandFoundationsSection() {
               <span className="font-mono text-[10px] font-bold text-[#2277FF] uppercase">
                 Marketing Campaigns (Social &amp; Web)
               </span>
-              <h3 className="font-sans text-lg font-bold text-[#0A1A4A]">
+              <h3 className="font-sans text-lg font-bold text-[#020617]">
                 Admissions &amp; Outreach
               </h3>
               <ul className="space-y-2 text-xs leading-relaxed text-slate-600">
@@ -618,7 +618,7 @@ export function BrandFoundationsSection() {
             </span>
             <span className="font-mono text-xs text-slate-500">Universal Inclusivity</span>
           </div>
-          <h2 className="font-sans text-2xl font-black tracking-tight text-[#0A1A4A] sm:text-3xl">
+          <h2 className="font-sans text-2xl font-black tracking-tight text-[#020617] sm:text-3xl">
             Accessible Design: Core Overview
           </h2>
           <p className="max-w-3xl font-sans text-sm leading-relaxed text-slate-600 sm:text-base">
@@ -634,7 +634,7 @@ export function BrandFoundationsSection() {
             <span className="font-mono text-[10px] font-bold text-[#0056FF] uppercase">
               01 Perceivable
             </span>
-            <h3 className="font-sans text-sm font-bold text-[#0A1A4A]">WCAG 2.1 AAA Contrast</h3>
+            <h3 className="font-sans text-sm font-bold text-[#020617]">WCAG 2.1 AAA Contrast</h3>
             <p className="text-xs leading-relaxed text-slate-600">
               Text contrast exceeds 7:1 (Deep Navy on White achieves 16.5:1). Status states never
               rely on color alone, always pairing with text badges.
@@ -645,7 +645,7 @@ export function BrandFoundationsSection() {
             <span className="font-mono text-[10px] font-bold text-[#0056FF] uppercase">
               02 Operable
             </span>
-            <h3 className="font-sans text-sm font-bold text-[#0A1A4A]">
+            <h3 className="font-sans text-sm font-bold text-[#020617]">
               &ge; 44&times;44px Touch Targets
             </h3>
             <p className="text-xs leading-relaxed text-slate-600">
@@ -658,7 +658,7 @@ export function BrandFoundationsSection() {
             <span className="font-mono text-[10px] font-bold text-[#0056FF] uppercase">
               03 Understandable
             </span>
-            <h3 className="font-sans text-sm font-bold text-[#0A1A4A]">Predictable Microcopy</h3>
+            <h3 className="font-sans text-sm font-bold text-[#020617]">Predictable Microcopy</h3>
             <p className="text-xs leading-relaxed text-slate-600">
               Action verbs guide all CTAs. Error banners follow the 3-part formula: what happened,
               why it happened, and the exact step to recover.
@@ -669,7 +669,7 @@ export function BrandFoundationsSection() {
             <span className="font-mono text-[10px] font-bold text-[#0056FF] uppercase">
               04 Robust
             </span>
-            <h3 className="font-sans text-sm font-bold text-[#0A1A4A]">Semantic HTML &amp; ARIA</h3>
+            <h3 className="font-sans text-sm font-bold text-[#020617]">Semantic HTML &amp; ARIA</h3>
             <p className="text-xs leading-relaxed text-slate-600">
               Native HTML5 semantic landmarks (<code className="font-mono">main</code>,{' '}
               <code className="font-mono">nav</code>, <code className="font-mono">aside</code>) and

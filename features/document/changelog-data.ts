@@ -47,7 +47,7 @@ export const CHANGE_LOGS: ChangeLogEntry[] = [
     date: '06.11.2026',
     developer: '史力爱卫',
     description:
-      'Standardize Notification Bell (Campus Alert Center) component behavior: ensure popover list is collapsed (isOpen: false) by default on load, reset, and simulation; mandate explicit user tap/click on the bell button to drop down the notification panel; elevate trigger bell icon contrast (#0A1A4A when idle, #0056FF on active); and replace colored status dots with clean static textual pills (UNREAD, LIVE) strictly adhering to the repository design rules',
+      'Standardize Notification Bell (Campus Alert Center) component behavior: ensure popover list is collapsed (isOpen: false) by default on load, reset, and simulation; mandate explicit user tap/click on the bell button to drop down the notification panel; elevate trigger bell icon contrast (#020617 when idle, #0056FF on active); and replace colored status dots with clean static textual pills (UNREAD, LIVE) strictly adhering to the repository design rules',
   },
   {
     version: '0.2.36',

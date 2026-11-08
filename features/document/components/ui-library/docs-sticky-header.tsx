@@ -8,7 +8,6 @@ import {
   Layers,
   Menu,
   X,
-  Search,
   Moon,
   ChevronRight,
   ChevronDown,
@@ -73,7 +72,6 @@ export function DocsStickyHeader({
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState<boolean>(false);
   const [mobileSearch, setMobileSearch] = React.useState<string>('');
   const menuRef = React.useRef<HTMLDivElement>(null);
-  const searchInputRef = React.useRef<HTMLInputElement>(null);
 
   const isLibraryPath =
     pathname?.startsWith('/document/design-system') ||
@@ -248,24 +246,15 @@ export function DocsStickyHeader({
         </div>
 
         {/* Right Side: Mobile Controls (Search, Theme, Hamburger Dropdown) */}
-        <div ref={menuRef} className="relative z-20 flex items-center gap-1.5 md:hidden">
-          {/* 1. Mobile Search Trigger */}
-          <button
-            type="button"
-            onClick={() => {
-              setMobileMenuOpen(true);
-              setTimeout(() => searchInputRef.current?.focus(), 100);
-            }}
-            aria-label="Search Documentation"
-            className="flex size-11 items-center justify-center rounded-xl border border-white/20 bg-white/10 text-white transition-colors hover:bg-white/20 active:scale-95"
-          >
-            <Search className="size-5 stroke-[2]" />
-          </button>
+        <div ref={menuRef} className="relative z-20 flex items-center gap-2 md:hidden">
+          {/* 1. Mobile Font Switch (always visible) */}
+          <FontSwitch variant="icon" />
 
           {/* 2. Theme / Mode Indicator */}
           <button
             type="button"
             aria-label="Toggle Theme Mode"
+            title="Toggle Theme Mode"
             className="flex size-11 items-center justify-center rounded-xl border border-white/20 bg-white/10 text-white transition-colors hover:bg-white/20 active:scale-95"
           >
             <Moon className="size-5 stroke-[2]" />
@@ -277,6 +266,7 @@ export function DocsStickyHeader({
             onClick={() => setMobileMenuOpen((prev) => !prev)}
             aria-expanded={mobileMenuOpen}
             aria-label="Toggle Navigation Menu"
+            title="Toggle Navigation Menu"
             className={cn(
               'flex size-11 items-center justify-center rounded-xl border transition-all active:scale-95',
               mobileMenuOpen
@@ -293,21 +283,18 @@ export function DocsStickyHeader({
 
           {/* Mobile Dropdown Panel (Right Side) */}
           {mobileMenuOpen && (
-            <div className="animate-in fade-in zoom-in-95 absolute top-[calc(100%+8px)] right-0 w-[min(calc(100vw-24px),380px)] overflow-hidden rounded-2xl border border-[#CAD3F5] bg-white p-3.5 shadow-none duration-150">
+            <div className="animate-in fade-in zoom-in-95 absolute top-[calc(100%+8px)] right-0 w-[min(calc(100vw-24px),380px)] overflow-hidden rounded-2xl border border-[#CAD3F5] bg-white p-4 shadow-none duration-200">
               {/* Top Primary Page Switcher Tabs (3 Distinct Views: Component, API, Design) */}
               <div className="mb-4">
-                <span className="mb-2 block font-mono text-[10px] font-bold tracking-wider text-slate-400 uppercase sm:text-[11px]">
-                  Select Page Hub
-                </span>
                 <div className="grid grid-cols-3 gap-1 rounded-xl bg-slate-100 p-1">
                   <button
                     type="button"
                     onClick={() => handleMobileNavigate('library')}
                     className={cn(
-                      'flex min-h-[52px] flex-col items-center justify-center gap-1 rounded-lg px-1 py-2 font-sans text-[11px] leading-tight font-bold transition-all select-none active:scale-95 sm:text-xs',
+                      'flex min-h-11 items-center justify-center gap-1 rounded-lg px-1 py-2 font-sans text-[11px] leading-tight font-bold transition-all select-none active:scale-95 sm:text-xs',
                       currentTab === 'library'
                         ? 'bg-[#0056FF] text-white shadow-xs'
-                        : 'text-[#334155] hover:text-[#0A1A4A]',
+                        : 'text-[#334155] hover:text-[#020617]',
                     )}
                   >
                     <Layers className="size-4.5 shrink-0 stroke-[2]" />
@@ -344,48 +331,11 @@ export function DocsStickyHeader({
                 <FontSwitch variant="panel" />
               </div>
 
-              {/* Modern Minimalist Search Bar (Clean Blueprint Standard) */}
-              <div className="group relative mb-3 flex items-center">
-                <Search className="pointer-events-none absolute left-3 size-4 text-black" />
-                <input
-                  ref={searchInputRef}
-                  type="text"
-                  value={mobileSearch}
-                  onChange={(e) => setMobileSearch(e.target.value)}
-                  placeholder="Search components..."
-                  className="h-11 w-full rounded-[4px] border border-[#CAD3F5] bg-[#EFF5FF]/50 py-2 pr-10 pl-9 font-sans text-xs font-medium text-[#0A1A4A] shadow-2xs transition-all placeholder:font-normal placeholder:text-[#334155]/70 hover:border-[#0056FF]/50 hover:bg-white focus:border-[#0056FF] focus:bg-white focus:shadow-xs focus:ring-2 focus:ring-[#0056FF]/15 focus:outline-none focus-visible:outline-none"
-                  style={{ outline: 'none' }}
-                />
-                {mobileSearch && (
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setMobileSearch('');
-                      searchInputRef.current?.focus();
-                    }}
-                    title="Clear search"
-                    className="absolute right-2.5 flex size-5 cursor-pointer items-center justify-center rounded-md text-black transition-colors hover:bg-slate-100 active:scale-95"
-                  >
-                    <X className="size-3.5 stroke-[2.5]" />
-                  </button>
-                )}
-              </div>
-
               {/* Sidebar Specific Links Scrollable Viewport (Knowledge Base Style) */}
               <div className="no-scrollbar max-h-[min(65vh,480px)] overflow-y-auto pr-1">
                 {currentTab === 'library' ? (
                   /* UI Library Specific Demos Navigation (Clean React Spectrum Navigation - Icons on Parent Only) */
                   <div className="space-y-3 font-sans text-xs">
-                    {/* Top Hierarchy Identity */}
-                    <div className="border-b border-slate-100 pb-1.5">
-                      <span className="block font-sans text-[10px] font-bold tracking-wider text-black uppercase select-none">
-                        Web
-                      </span>
-                      <span className="block font-sans text-xs font-black tracking-tight text-black select-none">
-                        SNPI System
-                      </span>
-                    </div>
-
                     {/* COMPONENT GROUPS (Black Squircle Icon Tiles, All Black Text & Icons, Zero Numbers) */}
                     <div className="space-y-2 font-sans text-xs">
                       {filteredComponentGroups.length === 0 ? (
@@ -404,9 +354,9 @@ export function DocsStickyHeader({
                               <button
                                 type="button"
                                 onClick={() => toggleCategoryGroup(group.groupId)}
-                                className="group flex min-h-11 w-full cursor-pointer items-center justify-between rounded-xl px-2.5 py-2 text-left font-sans text-xs font-bold text-[#0A1A4A] transition-colors select-none hover:bg-[#EFF5FF]"
+                                className="group flex min-h-11 w-full cursor-pointer items-center justify-between rounded-xl px-3 py-2 text-left font-sans text-xs font-bold text-[#020617] transition-colors select-none hover:bg-[#EFF5FF]"
                               >
-                                <div className="flex min-w-0 items-center gap-2.5">
+                                <div className="flex min-w-0 items-center gap-3">
                                   <ParentGroupIcon className="size-4.5 shrink-0 stroke-[2] text-[#020617]" />
                                   <span className="truncate text-xs font-bold text-black sm:text-[13px]">
                                     {group.group}
@@ -432,7 +382,7 @@ export function DocsStickyHeader({
                                           <button
                                             type="button"
                                             onClick={() => toggleParentGroup(item.id)}
-                                            className="group flex min-h-11 w-full cursor-pointer items-center justify-between rounded-md py-1.5 pr-2 pl-3 text-left font-sans text-xs font-semibold text-[#0A1A4A] transition-colors select-none hover:bg-[#EFF5FF]"
+                                            className="group flex min-h-11 w-full cursor-pointer items-center justify-between rounded-md py-2 pr-2 pl-3 text-left font-sans text-xs font-semibold text-[#020617] transition-colors select-none hover:bg-[#EFF5FF]"
                                           >
                                             <span className="text-left leading-snug break-words whitespace-normal">
                                               {item.name}
@@ -457,21 +407,11 @@ export function DocsStickyHeader({
                                                         child.targetId || `comp-${child.id}`;
                                                       handleMobileNavigate('library', target);
                                                     }}
-                                                    className="group relative flex min-h-11 w-full cursor-pointer items-center justify-between rounded-md py-1.5 pr-2 pl-3.5 text-left font-normal text-[#0A1A4A]/80 transition-colors select-none hover:bg-[#EFF5FF] hover:text-[#0A1A4A]"
+                                                    className="group relative flex min-h-11 w-full cursor-pointer items-center justify-between rounded-md py-2 pr-2 pl-4 text-left font-normal text-[#020617]/80 transition-colors select-none hover:bg-[#EFF5FF] hover:text-[#020617]"
                                                   >
                                                     <span className="text-left font-sans text-xs leading-snug break-words whitespace-normal">
                                                       {child.name}
                                                     </span>
-                                                    {freshness === 'new' && (
-                                                      <span className="py-0.2 ml-1.5 shrink-0 rounded-full border border-emerald-300/80 bg-emerald-50 px-1.5 font-sans text-[9px] leading-none font-bold text-emerald-700 uppercase">
-                                                        New
-                                                      </span>
-                                                    )}
-                                                    {freshness === 'coming' && (
-                                                      <span className="ml-1.5 shrink-0 rounded-[3px] border border-slate-200/90 bg-slate-100/70 px-1 py-0.5 font-mono text-[8px] leading-none font-semibold tracking-wider text-slate-400 uppercase">
-                                                        Coming
-                                                      </span>
-                                                    )}
                                                   </div>
                                                 );
                                               })}
@@ -491,21 +431,11 @@ export function DocsStickyHeader({
                                           const target = item.targetId || `comp-${item.id}`;
                                           handleMobileNavigate('library', target);
                                         }}
-                                        className="group relative flex min-h-11 w-full cursor-pointer items-center justify-between rounded-md py-1.5 pr-2 pl-3.5 text-left font-normal text-[#0A1A4A]/80 transition-colors select-none hover:bg-[#EFF5FF] hover:text-[#0A1A4A]"
+                                        className="group relative flex min-h-11 w-full cursor-pointer items-center justify-between rounded-md py-2 pr-2 pl-4 text-left font-normal text-[#020617]/80 transition-colors select-none hover:bg-[#EFF5FF] hover:text-[#020617]"
                                       >
                                         <span className="text-left font-sans text-xs leading-snug break-words whitespace-normal">
                                           {item.name}
                                         </span>
-                                        {freshness === 'new' && (
-                                          <span className="py-0.2 ml-1.5 shrink-0 rounded-full border border-emerald-300/80 bg-emerald-50 px-1.5 font-sans text-[9px] leading-none font-bold text-emerald-700 uppercase">
-                                            New
-                                          </span>
-                                        )}
-                                        {freshness === 'coming' && (
-                                          <span className="ml-1.5 shrink-0 rounded-[3px] border border-slate-200/90 bg-slate-100/70 px-1 py-0.5 font-mono text-[8px] leading-none font-semibold tracking-wider text-slate-400 uppercase">
-                                            Coming
-                                          </span>
-                                        )}
                                       </div>
                                     );
                                   })}
@@ -520,15 +450,12 @@ export function DocsStickyHeader({
                 ) : currentTab === 'release' ? (
                   /* Design System Page Specific Navigation */
                   <div className="space-y-1.5 font-sans">
-                    <span className="mb-2 block font-mono text-[10px] font-bold tracking-wider text-slate-400 uppercase">
-                      Jump to Design Section
-                    </span>
                     {DESIGN_SYSTEM_SECTIONS.map((sec) => (
                       <button
                         key={sec.id}
                         type="button"
                         onClick={() => handleMobileNavigate('release', sec.id)}
-                        className="flex min-h-11 w-full items-center justify-between rounded-md px-2.5 py-2 text-left font-sans text-xs font-medium text-[#334155] hover:bg-[#EFF5FF] hover:text-[#0056FF]"
+                        className="flex min-h-11 w-full items-center justify-between rounded-md px-3 py-2 text-left font-sans text-xs font-medium text-[#334155] hover:bg-[#EFF5FF] hover:text-[#0056FF]"
                       >
                         <span className="flex-1 leading-snug break-words">{sec.label}</span>
                         <ChevronRight className="size-3 text-slate-400" />
@@ -538,15 +465,12 @@ export function DocsStickyHeader({
                 ) : (
                   /* Open API Specific Sections Navigation */
                   <div className="space-y-1.5 font-sans">
-                    <span className="mb-2 block font-mono text-[10px] font-bold tracking-wider text-slate-400 uppercase">
-                      Jump to API Guide Section
-                    </span>
                     {OPEN_API_SECTIONS.map((sec) => (
                       <button
                         key={sec.id}
                         type="button"
                         onClick={() => handleMobileNavigate('openapi', sec.id)}
-                        className="flex min-h-11 w-full items-center justify-between rounded-md px-2.5 py-2 text-left font-sans text-xs font-medium text-[#334155] hover:bg-[#EFF5FF] hover:text-[#0056FF]"
+                        className="flex min-h-11 w-full items-center justify-between rounded-md px-3 py-2 text-left font-sans text-xs font-medium text-[#334155] hover:bg-[#EFF5FF] hover:text-[#0056FF]"
                       >
                         <span className="flex-1 leading-snug break-words">{sec.label}</span>
                         <ChevronRight className="size-3 text-slate-400" />

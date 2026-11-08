@@ -57,7 +57,7 @@ export function ParamTable({
         ) : (
           <table className="w-full border-collapse text-left text-xs">
             <thead>
-              <tr className="border-b border-[#CAD3F5] bg-[#EFF5FF]/60 text-[11px] font-bold text-[#0A1A4A]">
+              <tr className="border-b border-[#CAD3F5] bg-[#EFF5FF]/60 text-[11px] font-bold text-[#020617]">
                 <th className="px-4 py-2.5">Parameter</th>
                 <th className="px-4 py-2.5">Type</th>
                 <th className="px-4 py-2.5">Mandatory</th>
@@ -69,7 +69,7 @@ export function ParamTable({
                 const req = isRequired(param.mandatory);
                 return (
                   <tr key={`${param.parameter}-${idx}`} className="hover:bg-[#EFF5FF]/40">
-                    <td className="px-4 py-2.5 font-mono font-bold text-[#0A1A4A]">
+                    <td className="px-4 py-2.5 font-mono font-bold text-[#020617]">
                       {param.parameter}
                     </td>
                     <td className="px-4 py-2.5">

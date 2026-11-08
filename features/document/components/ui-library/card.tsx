@@ -20,7 +20,7 @@ export function LibraryCard({
       whileTap={interactive ? { scale: WHILE_TAP_SCALE } : undefined}
       transition={{ type: 'spring', damping: 25, stiffness: 450 }}
       className={cn(
-        'w-full rounded-[4px] bg-white p-5 text-[#0A1A4A] shadow-none transition-colors duration-150',
+        'w-full rounded-[4px] bg-white p-5 text-[#020617] shadow-none transition-colors duration-150',
         interactive && 'cursor-pointer hover:bg-slate-50/50',
         className,
       )}

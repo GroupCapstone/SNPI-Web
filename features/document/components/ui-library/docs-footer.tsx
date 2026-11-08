@@ -224,7 +224,7 @@ export function DocsFooter({ className }: DocsFooterProps) {
               <button
                 type="button"
                 onClick={() => setLangDropdownOpen(!langDropdownOpen)}
-                className="inline-flex cursor-pointer items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-1.5 font-sans text-xs font-semibold text-slate-800 transition-colors hover:border-[#0056FF] hover:text-[#0056FF]"
+                className="inline-flex cursor-pointer items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 font-sans text-xs font-semibold text-slate-800 transition-colors hover:border-[#0056FF] hover:text-[#0056FF]"
               >
                 <GlobeIcon className="size-3.5 text-slate-500" />
                 <span>{selectedLang === 'en' ? 'English (US)' : 'Khmer (KH)'}</span>
@@ -237,7 +237,7 @@ export function DocsFooter({ className }: DocsFooterProps) {
               </button>
 
               {langDropdownOpen && (
-                <div className="absolute right-0 z-50 mt-1.5 w-36 overflow-hidden rounded-xl border border-[#CAD3F5] bg-white p-1 shadow-none">
+                <div className="absolute right-0 z-50 mt-2 w-36 overflow-hidden rounded-xl border border-[#CAD3F5] bg-white p-1 shadow-none">
                   <button
                     type="button"
                     onClick={() => {
@@ -245,7 +245,7 @@ export function DocsFooter({ className }: DocsFooterProps) {
                       setLangDropdownOpen(false);
                     }}
                     className={cn(
-                      'flex w-full items-center justify-between rounded-lg px-2.5 py-1.5 text-left font-sans text-xs font-medium transition-colors',
+                      'flex w-full items-center justify-between rounded-lg px-3 py-2 text-left font-sans text-xs font-medium transition-colors',
                       selectedLang === 'en'
                         ? 'bg-[#0056FF] text-white'
                         : 'text-slate-700 hover:bg-slate-50 hover:text-slate-900',
@@ -261,7 +261,7 @@ export function DocsFooter({ className }: DocsFooterProps) {
                       setLangDropdownOpen(false);
                     }}
                     className={cn(
-                      'flex w-full items-center justify-between rounded-lg px-2.5 py-1.5 text-left font-sans text-xs font-medium transition-colors',
+                      'flex w-full items-center justify-between rounded-lg px-3 py-2 text-left font-sans text-xs font-medium transition-colors',
                       selectedLang === 'kh'
                         ? 'bg-[#0056FF] text-white'
                         : 'text-slate-700 hover:bg-slate-50 hover:text-slate-900',
@@ -275,7 +275,7 @@ export function DocsFooter({ className }: DocsFooterProps) {
             </div>
 
             {/* Social Icons (X, LinkedIn, Butterfly/Bluesky, RSS - Exactly matching Image 6) */}
-            <div className="flex items-center gap-3.5 text-slate-500">
+            <div className="flex items-center gap-4 text-slate-500">
               <a
                 href="https://twitter.com"
                 target="_blank"

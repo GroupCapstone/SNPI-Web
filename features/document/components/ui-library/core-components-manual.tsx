@@ -1343,7 +1343,7 @@ export function CoreComponentsManual({ hideHeader = false }: { hideHeader?: bool
                 <Sparkles className="size-3.5" />
                 <span>CORE REUSABLE COMPONENT SPECIFICATIONS</span>
               </div>
-              <h2 className="font-sans text-2xl font-black tracking-tight text-[#0A1A4A] sm:text-3xl">
+              <h2 className="font-sans text-2xl font-black tracking-tight text-[#020617] sm:text-3xl">
                 Core Components Manual
               </h2>
               <p className="max-w-3xl font-sans text-xs leading-relaxed text-slate-600 sm:text-sm">
@@ -1382,7 +1382,7 @@ export function CoreComponentsManual({ hideHeader = false }: { hideHeader?: bool
                     'cursor-pointer rounded-lg px-2.5 py-1 font-sans text-xs font-semibold transition-all',
                     isActive
                       ? 'bg-[#0056FF] text-white shadow-2xs'
-                      : 'border border-[#CAD3F5] bg-white text-[#0A1A4A] hover:bg-[#EFF5FF]',
+                      : 'border border-[#CAD3F5] bg-white text-[#020617] hover:bg-[#EFF5FF]',
                   )}
                 >
                   <span>{cat.label}</span>
@@ -1418,7 +1418,7 @@ export function CoreComponentsManual({ hideHeader = false }: { hideHeader?: bool
                     'cursor-pointer rounded-lg px-3 py-1.5 font-sans text-xs font-bold transition-all active:scale-[0.97]',
                     isActive
                       ? 'border border-[#0056FF] bg-[#0056FF] text-white shadow-xs'
-                      : 'border border-[#CAD3F5] bg-white text-[#0A1A4A] hover:bg-[#EFF5FF]',
+                      : 'border border-[#CAD3F5] bg-white text-[#020617] hover:bg-[#EFF5FF]',
                   )}
                 >
                   <span>{cat.label}</span>
@@ -1478,7 +1478,7 @@ export function CoreComponentsManual({ hideHeader = false }: { hideHeader?: bool
                     <span className="rounded-[2px] border border-[#CAD3F5] bg-[#E3E7FC] px-2 py-0.5 font-mono text-[10px] font-bold text-[#0056FF] uppercase">
                       {spec.category}
                     </span>
-                    <h3 className="font-sans text-xl font-black text-[#0A1A4A]">{spec.name}</h3>
+                    <h3 className="font-sans text-xl font-black text-[#020617]">{spec.name}</h3>
                   </div>
                   <p className="font-sans text-xs leading-relaxed text-slate-500">
                     {spec.description}
@@ -1533,7 +1533,7 @@ export function CoreComponentsManual({ hideHeader = false }: { hideHeader?: bool
                         <button
                           type="button"
                           onClick={() => setAccordionOpen(!accordionOpen)}
-                          className="flex w-full items-center justify-between p-2.5 font-sans text-xs font-bold text-[#0A1A4A]"
+                          className="flex w-full items-center justify-between p-2.5 font-sans text-xs font-bold text-[#020617]"
                         >
                           <span>Academic Calendar 2026-2027</span>
                           <ChevronDown
@@ -1606,7 +1606,7 @@ export function CoreComponentsManual({ hideHeader = false }: { hideHeader?: bool
                         </button>
                         <button
                           type="button"
-                          className="cursor-pointer rounded-lg border border-[#CAD3F5] bg-white px-3 py-1.5 font-sans text-xs font-bold text-[#0A1A4A] hover:bg-[#EFF5FF]"
+                          className="cursor-pointer rounded-lg border border-[#CAD3F5] bg-white px-3 py-1.5 font-sans text-xs font-bold text-[#020617] hover:bg-[#EFF5FF]"
                         >
                           Secondary
                         </button>
@@ -1629,13 +1629,13 @@ export function CoreComponentsManual({ hideHeader = false }: { hideHeader?: bool
                         <span>/</span>
                         <span className="cursor-pointer hover:text-[#0056FF]">Curriculum</span>
                         <span>/</span>
-                        <span className="font-bold text-[#0A1A4A]">CS401</span>
+                        <span className="font-bold text-[#020617]">CS401</span>
                       </nav>
                     )}
 
                     {spec.id === 'comp-calendar' && (
                       <div className="flex items-center justify-between rounded-lg border border-[#CAD3F5] bg-white p-2">
-                        <div className="flex items-center gap-2 font-sans text-xs font-bold text-[#0A1A4A]">
+                        <div className="flex items-center gap-2 font-sans text-xs font-bold text-[#020617]">
                           <CalendarIcon className="size-4 text-[#0056FF]" />
                           <span>October 2026</span>
                         </div>
@@ -1648,7 +1648,7 @@ export function CoreComponentsManual({ hideHeader = false }: { hideHeader?: bool
                     {spec.id === 'comp-card' && (
                       <div className="rounded-lg border border-[#CAD3F5] bg-white p-2.5">
                         <div className="flex items-center justify-between">
-                          <span className="font-sans text-xs font-bold text-[#0A1A4A]">
+                          <span className="font-sans text-xs font-bold text-[#020617]">
                             CS401 Syllabus
                           </span>
                           <span className="font-mono text-[10px] text-[#0056FF]">3 Credits</span>
@@ -1671,7 +1671,7 @@ export function CoreComponentsManual({ hideHeader = false }: { hideHeader?: bool
 
                     {spec.id === 'comp-checkbox' && (
                       <div className="flex items-center gap-3">
-                        <label className="flex items-center gap-1.5 font-sans text-xs font-bold text-[#0A1A4A]">
+                        <label className="flex items-center gap-1.5 font-sans text-xs font-bold text-[#020617]">
                           <input
                             type="checkbox"
                             checked={checkboxState === 'checked'}
@@ -1697,7 +1697,7 @@ export function CoreComponentsManual({ hideHeader = false }: { hideHeader?: bool
 
                     {spec.id === 'comp-dropdown' && (
                       <div className="flex items-center justify-between rounded-lg border border-[#CAD3F5] bg-white p-2 text-xs">
-                        <span className="font-bold text-[#0A1A4A]">Select Campus Branch...</span>
+                        <span className="font-bold text-[#020617]">Select Campus Branch...</span>
                         <ChevronDown className="size-3.5 text-slate-400" />
                       </div>
                     )}
@@ -1792,7 +1792,7 @@ export function CoreComponentsManual({ hideHeader = false }: { hideHeader?: bool
                     {spec.id === 'comp-modal' && (
                       <div className="space-y-2 rounded-lg border border-[#CAD3F5] bg-white p-3 shadow-xs">
                         <div className="flex items-center justify-between border-b border-slate-100 pb-1.5">
-                          <span className="font-sans text-xs font-bold text-[#0A1A4A]">
+                          <span className="font-sans text-xs font-bold text-[#020617]">
                             Confirm Enrollment
                           </span>
                           <span className="rounded bg-slate-100 px-1 font-mono text-[9px] text-slate-500">
@@ -1868,7 +1868,7 @@ export function CoreComponentsManual({ hideHeader = false }: { hideHeader?: bool
                       <div className="space-y-3 font-sans">
                         <div className="flex items-center justify-between text-xs">
                           <div className="flex items-center gap-2">
-                            <span className="font-bold text-[#0A1A4A]">
+                            <span className="font-bold text-[#020617]">
                               Uploading Transcript PDF
                             </span>
                             <span className="font-mono text-[10px] text-slate-400">
@@ -1941,7 +1941,7 @@ export function CoreComponentsManual({ hideHeader = false }: { hideHeader?: bool
                     {spec.id === 'comp-radio' && (
                       <div className="space-y-3 font-sans">
                         <div className="flex items-center justify-between">
-                          <span className="text-xs font-bold text-[#0A1A4A]">
+                          <span className="text-xs font-bold text-[#020617]">
                             Tuition Payment Frequency
                           </span>
                           <button
@@ -2004,7 +2004,7 @@ export function CoreComponentsManual({ hideHeader = false }: { hideHeader?: bool
                                   className="mt-0.5 size-4 text-[#0056FF] focus:ring-[#0056FF]"
                                 />
                                 <div className="space-y-0.5">
-                                  <span className="block font-sans text-xs font-bold text-[#0A1A4A]">
+                                  <span className="block font-sans text-xs font-bold text-[#020617]">
                                     {opt.label}
                                   </span>
                                   <span className="block font-sans text-[11px] text-slate-500">
@@ -2033,7 +2033,7 @@ export function CoreComponentsManual({ hideHeader = false }: { hideHeader?: bool
                         <div className="flex items-center justify-between">
                           <label
                             htmlFor="campus-select"
-                            className="text-xs font-bold text-[#0A1A4A]"
+                            className="text-xs font-bold text-[#020617]"
                           >
                             Campus Branch Location
                           </label>
@@ -2063,7 +2063,7 @@ export function CoreComponentsManual({ hideHeader = false }: { hideHeader?: bool
                             onChange={(e) => setSelectValue(e.target.value)}
                             aria-invalid={selectHasError}
                             className={cn(
-                              'w-full appearance-none rounded-xl border bg-white py-2.5 pr-10 pl-18 font-sans text-xs font-medium text-[#0A1A4A] shadow-2xs transition-all focus:border-[#0056FF] focus:ring-2 focus:ring-[#0056FF]/20 focus:outline-hidden',
+                              'w-full appearance-none rounded-xl border bg-white py-2.5 pr-10 pl-18 font-sans text-xs font-medium text-[#020617] shadow-2xs transition-all focus:border-[#0056FF] focus:ring-2 focus:ring-[#0056FF]/20 focus:outline-hidden',
                               selectHasError
                                 ? 'border-red-400 bg-red-50/20 text-red-900 focus:border-red-500 focus:ring-red-200'
                                 : 'border-[#CAD3F5] hover:border-[#0056FF]/50',
@@ -2100,7 +2100,7 @@ export function CoreComponentsManual({ hideHeader = false }: { hideHeader?: bool
                     {spec.id === 'comp-skeleton' && (
                       <div className="space-y-3 font-sans">
                         <div className="flex items-center justify-between text-xs">
-                          <span className="font-bold text-[#0A1A4A]">
+                          <span className="font-bold text-[#020617]">
                             Content Card Loading State
                           </span>
                           <span className="font-mono text-[10px] text-slate-400">
@@ -2134,7 +2134,7 @@ export function CoreComponentsManual({ hideHeader = false }: { hideHeader?: bool
                     {spec.id === 'comp-switch' && (
                       <div className="space-y-3 font-sans">
                         <div className="flex items-center justify-between">
-                          <span className="text-xs font-bold text-[#0A1A4A]">
+                          <span className="text-xs font-bold text-[#020617]">
                             Immediate State Toggle
                           </span>
                           <span
@@ -2152,7 +2152,7 @@ export function CoreComponentsManual({ hideHeader = false }: { hideHeader?: bool
                         <div className="space-y-2.5">
                           <label className="flex cursor-pointer items-center justify-between rounded-xl border border-[#CAD3F5] bg-white p-3 transition-colors hover:bg-slate-50">
                             <div className="space-y-0.5 pr-4">
-                              <span className="block font-sans text-xs font-bold text-[#0A1A4A]">
+                              <span className="block font-sans text-xs font-bold text-[#020617]">
                                 Automated SMS Grade Notification
                               </span>
                               <span className="block font-sans text-[11px] text-slate-500">
@@ -2201,7 +2201,7 @@ export function CoreComponentsManual({ hideHeader = false }: { hideHeader?: bool
                     {spec.id === 'comp-tabs' && (
                       <div className="space-y-3 font-sans">
                         <div className="flex items-center justify-between">
-                          <span className="text-xs font-bold text-[#0A1A4A]">
+                          <span className="text-xs font-bold text-[#020617]">
                             Section Navigation
                           </span>
                           <div className="flex rounded border border-[#CAD3F5] p-0.5 font-mono text-[10px]">
@@ -2292,7 +2292,7 @@ export function CoreComponentsManual({ hideHeader = false }: { hideHeader?: bool
                         <div className="flex items-center justify-between">
                           <label
                             htmlFor="comp-textarea-input"
-                            className="text-xs font-bold text-[#0A1A4A]"
+                            className="text-xs font-bold text-[#020617]"
                           >
                             Academic Performance Evaluation
                           </label>
@@ -2318,7 +2318,7 @@ export function CoreComponentsManual({ hideHeader = false }: { hideHeader?: bool
                           placeholder="Enter detailed semester commentary..."
                           aria-invalid={textareaError}
                           className={cn(
-                            'w-full rounded-xl border bg-white p-3 font-sans text-xs font-medium text-[#0A1A4A] shadow-2xs transition-all placeholder:text-slate-400 focus:border-[#0056FF] focus:ring-2 focus:ring-[#0056FF]/20 focus:outline-hidden',
+                            'w-full rounded-xl border bg-white p-3 font-sans text-xs font-medium text-[#020617] shadow-2xs transition-all placeholder:text-slate-400 focus:border-[#0056FF] focus:ring-2 focus:ring-[#0056FF]/20 focus:outline-hidden',
                             textareaError
                               ? 'border-red-400 bg-red-50/20 text-red-900 focus:border-red-500 focus:ring-red-200'
                               : 'border-[#CAD3F5] hover:border-[#0056FF]/50',
@@ -2349,7 +2349,7 @@ export function CoreComponentsManual({ hideHeader = false }: { hideHeader?: bool
                         <div className="flex items-center justify-between">
                           <label
                             htmlFor="comp-textfield-input"
-                            className="text-xs font-bold text-[#0A1A4A]"
+                            className="text-xs font-bold text-[#020617]"
                           >
                             Student Full Name (Latin)
                           </label>
@@ -2379,7 +2379,7 @@ export function CoreComponentsManual({ hideHeader = false }: { hideHeader?: bool
                             placeholder="Enter full legal name..."
                             aria-invalid={textFieldError}
                             className={cn(
-                              'w-full rounded-xl border bg-white py-2.5 pr-20 pl-9.5 font-sans text-xs font-medium text-[#0A1A4A] shadow-2xs transition-all placeholder:text-slate-400 focus:border-[#0056FF] focus:ring-2 focus:ring-[#0056FF]/20 focus:outline-hidden',
+                              'w-full rounded-xl border bg-white py-2.5 pr-20 pl-9.5 font-sans text-xs font-medium text-[#020617] shadow-2xs transition-all placeholder:text-slate-400 focus:border-[#0056FF] focus:ring-2 focus:ring-[#0056FF]/20 focus:outline-hidden',
                               textFieldError
                                 ? 'border-red-400 bg-red-50/20 text-red-900 focus:border-red-500 focus:ring-red-200'
                                 : 'border-[#CAD3F5] hover:border-[#0056FF]/50',
@@ -2411,7 +2411,7 @@ export function CoreComponentsManual({ hideHeader = false }: { hideHeader?: bool
                     {spec.id === 'comp-toast' && (
                       <div className="space-y-3 font-sans">
                         <div className="flex items-center justify-between text-xs">
-                          <span className="font-bold text-[#0A1A4A]">
+                          <span className="font-bold text-[#020617]">
                             Stacked Toast Notification Layer
                           </span>
                           <div className="flex items-center gap-1.5 font-mono text-[10px]">
@@ -2501,7 +2501,7 @@ export function CoreComponentsManual({ hideHeader = false }: { hideHeader?: bool
                     {spec.id === 'comp-tooltip' && (
                       <div className="space-y-3 font-sans">
                         <div className="flex items-center justify-between text-xs">
-                          <span className="font-bold text-[#0A1A4A]">
+                          <span className="font-bold text-[#020617]">
                             Contextual Positioning &amp; Delay
                           </span>
                           <div className="flex rounded border border-[#CAD3F5] p-0.5 font-mono text-[10px]">
@@ -2536,18 +2536,18 @@ export function CoreComponentsManual({ hideHeader = false }: { hideHeader?: bool
                           {tooltipPos === 'top' && (
                             <div
                               role="tooltip"
-                              className="animate-in fade-in zoom-in-95 mb-2 flex items-center gap-1.5 rounded-lg bg-[#0A1A4A] px-2.5 py-1 font-sans text-[11px] font-semibold text-white shadow-md duration-150"
+                              className="animate-in fade-in zoom-in-95 mb-2 flex items-center gap-1.5 rounded-lg bg-[#020617] px-2.5 py-1 font-sans text-[11px] font-semibold text-white shadow-md duration-150"
                             >
                               <Info className="size-3 text-cyan-400" />
                               <span>Calculated based on 8 semester credit weights (GPA 3.85)</span>
-                              <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-[#0A1A4A]" />
+                              <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-[#020617]" />
                             </div>
                           )}
 
                           <button
                             type="button"
                             aria-describedby="gpa-tooltip"
-                            className="cursor-pointer rounded-xl border border-[#CAD3F5] bg-white px-4 py-2 font-sans text-xs font-bold text-[#0A1A4A] shadow-2xs hover:border-[#0056FF] hover:bg-[#EFF5FF] focus:border-[#0056FF] focus:ring-2 focus:ring-[#0056FF]/20 focus:outline-hidden"
+                            className="cursor-pointer rounded-xl border border-[#CAD3F5] bg-white px-4 py-2 font-sans text-xs font-bold text-[#020617] shadow-2xs hover:border-[#0056FF] hover:bg-[#EFF5FF] focus:border-[#0056FF] focus:ring-2 focus:ring-[#0056FF]/20 focus:outline-hidden"
                           >
                             Cumulative Academic GPA: 3.85
                           </button>
@@ -2555,11 +2555,11 @@ export function CoreComponentsManual({ hideHeader = false }: { hideHeader?: bool
                           {tooltipPos === 'bottom' && (
                             <div
                               role="tooltip"
-                              className="animate-in fade-in zoom-in-95 mt-2 flex items-center gap-1.5 rounded-lg bg-[#0A1A4A] px-2.5 py-1 font-sans text-[11px] font-semibold text-white shadow-md duration-150"
+                              className="animate-in fade-in zoom-in-95 mt-2 flex items-center gap-1.5 rounded-lg bg-[#020617] px-2.5 py-1 font-sans text-[11px] font-semibold text-white shadow-md duration-150"
                             >
                               <Info className="size-3 text-cyan-400" />
                               <span>Calculated based on 8 semester credit weights (GPA 3.85)</span>
-                              <div className="absolute bottom-full left-1/2 -translate-x-1/2 border-4 border-transparent border-b-[#0A1A4A]" />
+                              <div className="absolute bottom-full left-1/2 -translate-x-1/2 border-4 border-transparent border-b-[#020617]" />
                             </div>
                           )}
                         </div>
@@ -2620,7 +2620,7 @@ export function CoreComponentsManual({ hideHeader = false }: { hideHeader?: bool
                             className="mt-0.5 size-4 cursor-pointer rounded border-[#CAD3F5] text-[#0056FF] focus:ring-[#0056FF]"
                           />
                           <div className="min-w-0 flex-1 space-y-0.5">
-                            <div className="flex items-center gap-1.5 font-sans font-bold text-[#0A1A4A]">
+                            <div className="flex items-center gap-1.5 font-sans font-bold text-[#020617]">
                               <span>{item.label}</span>
                               {isChecked && (
                                 <Check className="size-3.5 stroke-[3] text-emerald-600" />

@@ -316,7 +316,7 @@ function ToastCard({
             {/* Message Body (No text truncation - 100% visible) */}
             <div className="min-w-0 flex-1 space-y-1">
               <div className="flex flex-wrap items-center gap-2">
-                <h4 className="min-w-0 font-sans text-sm leading-snug font-bold tracking-tight break-words text-[#0A1A4A]">
+                <h4 className="min-w-0 font-sans text-sm leading-snug font-bold tracking-tight break-words text-[#020617]">
                   {item.title || (item.type === 'info' ? 'Notification' : config.label)}
                 </h4>
                 <span
@@ -725,7 +725,7 @@ export function ToastStackDemo() {
       <div className="relative min-h-[380px] w-full overflow-hidden rounded-2xl border border-[#CAD3F5] bg-[#EFF5FF]/20 p-6 shadow-xs sm:min-h-[420px]">
         {/* Stage Status Strip */}
         <div className="relative z-10 flex flex-wrap items-center justify-between gap-1 font-mono text-[10px] text-slate-400">
-          <span className="flex items-center gap-1.5 font-bold text-[#0A1A4A]">
+          <span className="flex items-center gap-1.5 font-bold text-[#020617]">
             <Layers className="size-3 shrink-0 text-[#0056FF]" />
             <span>STACKED DECK · HOVER TO EXPAND</span>
           </span>

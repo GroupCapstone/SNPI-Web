@@ -67,22 +67,21 @@ import { LibraryTooltip } from './tooltip';
  * Live interactive demos for the components that previously rendered the
  * BlankFutureComponent blueprint canvas. Every demo follows the existing
  * component stage display: white card, Soft Lavender keyline (#CAD3F5),
- * Deep Navy (#0A1A4A) text, Royal Blue (#0056FF) primary actions,
+ * Deep Navy (#020617) text, Royal Blue (#0056FF) primary actions,
  * Azure (#2277FF) hover accents, Ice Tint (#EFF5FF) inner surfaces,
  * 4px control radius, >=44px touch targets, zero dots, zero gradients.
  */
 
 function DemoStage({
-  title,
-  badge,
   children,
   wide = false,
 }: {
-  title: string;
-  badge: string;
+  title?: string;
+  badge?: string;
   children: React.ReactNode;
   wide?: boolean;
 }) {
+  // Demo only: no title, badge, guideline, or guidance labels inside the stage.
   return (
     <div
       className={cn(
@@ -90,12 +89,6 @@ function DemoStage({
         wide ? 'max-w-3xl' : 'max-w-2xl',
       )}
     >
-      <div className="mb-4 flex flex-wrap items-center justify-between gap-2 border-b border-[#CAD3F5]/60 pb-3">
-        <span className="font-sans text-xs font-bold text-[#0A1A4A] sm:text-sm">{title}</span>
-        <span className="rounded border border-[#CAD3F5] bg-[#EFF5FF] px-2 py-0.5 font-mono text-[10px] font-bold text-[#0056FF]">
-          {badge}
-        </span>
-      </div>
       {children}
     </div>
   );
@@ -138,7 +131,7 @@ function OutlineButton({
       type="button"
       onClick={onClick}
       className={cn(
-        'inline-flex min-h-11 items-center justify-center gap-2 rounded-[4px] border border-[#CAD3F5] bg-white px-4 font-sans text-sm font-bold text-[#0A1A4A] transition-colors hover:border-[#0056FF] hover:text-[#0056FF] active:scale-[0.97]',
+        'inline-flex min-h-11 items-center justify-center gap-2 rounded-[4px] border border-[#CAD3F5] bg-white px-4 font-sans text-sm font-bold text-[#020617] transition-colors hover:border-[#0056FF] hover:text-[#0056FF] active:scale-[0.97]',
         className,
       )}
     >
@@ -150,7 +143,7 @@ function OutlineButton({
 function StatusLine({ children }: { children: React.ReactNode }) {
   return (
     <div className="mt-4 flex flex-wrap items-center justify-between gap-2 rounded-xl border border-[#CAD3F5] bg-[#EFF5FF]/40 px-3.5 py-2.5 font-sans text-xs">
-      <span className="font-medium text-[#0A1A4A]">{children}</span>
+      <span className="font-medium text-[#020617]">{children}</span>
       <span className="font-mono text-[10px] font-bold text-emerald-600">[ACTIVE]</span>
     </div>
   );
@@ -174,7 +167,7 @@ export function AppBarsDemo() {
             >
               <Menu className="size-5" />
             </button>
-            <span className="min-w-0 flex-1 truncate font-sans text-sm font-bold text-[#0A1A4A]">
+            <span className="min-w-0 flex-1 truncate font-sans text-sm font-bold text-[#020617]">
               Academics
             </span>
             <button
@@ -209,7 +202,7 @@ export function AppBarsDemo() {
               </button>
               <span className="font-mono text-[10px] font-bold text-[#0056FF]">STUDENT RECORD</span>
             </div>
-            <p className="mt-1 truncate px-1 font-sans text-xl font-extrabold tracking-tight text-[#0A1A4A]">
+            <p className="mt-1 truncate px-1 font-sans text-xl font-extrabold tracking-tight text-[#020617]">
               Chan Sreyleak
             </p>
             <p className="px-1 font-sans text-xs font-medium text-[#334155]">
@@ -237,7 +230,7 @@ export function NavigationBarDemo() {
     <DemoStage title="Bottom Navigation Bar" badge="3 to 5 Destinations">
       <div className="rounded-xl border border-[#CAD3F5] bg-[#EFF5FF]/40 p-2 sm:p-4">
         <p className="mb-3 text-center font-sans text-xs font-medium text-[#334155]">
-          Active destination: <span className="font-bold text-[#0A1A4A]">{current?.label}</span>
+          Active destination: <span className="font-bold text-[#020617]">{current?.label}</span>
         </p>
         <LibraryBottomNav items={items} activeId={active} onSelect={setActive} />
       </div>
@@ -266,7 +259,7 @@ export function NavigationDrawerDemo() {
                 S
               </span>
               <div className="min-w-0">
-                <p className="truncate font-sans text-xs font-bold text-[#0A1A4A]">SNPI Portal</p>
+                <p className="truncate font-sans text-xs font-bold text-[#020617]">SNPI Portal</p>
                 <p className="truncate font-sans text-[10px] font-medium text-[#334155]">
                   Registrar Office
                 </p>
@@ -282,7 +275,7 @@ export function NavigationDrawerDemo() {
                     'flex min-h-11 w-full items-center gap-2.5 rounded-[4px] px-3 font-sans text-xs font-bold transition-colors',
                     active === link.label
                       ? 'bg-[#E3E7FC] text-[#0056FF]'
-                      : 'text-[#0A1A4A] hover:bg-[#EFF5FF]',
+                      : 'text-[#020617] hover:bg-[#EFF5FF]',
                   )}
                 >
                   <link.icon className="size-4.5 shrink-0" />
@@ -293,7 +286,7 @@ export function NavigationDrawerDemo() {
             <div className="border-t border-[#CAD3F5]/60 p-2">
               <button
                 type="button"
-                className="flex min-h-11 w-full items-center gap-2.5 rounded-[4px] px-3 font-sans text-xs font-bold text-[#0A1A4A] transition-colors hover:bg-[#EFF5FF]"
+                className="flex min-h-11 w-full items-center gap-2.5 rounded-[4px] px-3 font-sans text-xs font-bold text-[#020617] transition-colors hover:bg-[#EFF5FF]"
               >
                 <LogOut className="size-4.5 shrink-0" /> Sign out
               </button>
@@ -304,11 +297,11 @@ export function NavigationDrawerDemo() {
           <button
             type="button"
             onClick={() => setOpen((o) => !o)}
-            className="inline-flex min-h-11 items-center gap-2 self-start rounded-[4px] border border-[#CAD3F5] bg-white px-3 font-sans text-xs font-bold text-[#0A1A4A] transition-colors hover:border-[#0056FF]"
+            className="inline-flex min-h-11 items-center gap-2 self-start rounded-[4px] border border-[#CAD3F5] bg-white px-3 font-sans text-xs font-bold text-[#020617] transition-colors hover:border-[#0056FF]"
           >
             <Menu className="size-4.5" /> {open ? 'Close drawer' : 'Open drawer'}
           </button>
-          <p className="mt-4 font-sans text-sm font-bold text-[#0A1A4A]">{active}</p>
+          <p className="mt-4 font-sans text-sm font-bold text-[#020617]">{active}</p>
           <p className="mt-1 font-sans text-xs font-medium text-[#334155]">
             Drawer carries the deep hierarchy so the canvas stays clean.
           </p>
@@ -351,7 +344,7 @@ export function NavigationRailDemo() {
                   'flex h-8 w-14 items-center justify-center rounded-full transition-colors',
                   active === item.label
                     ? 'bg-[#E3E7FC] text-[#0056FF]'
-                    : 'text-[#0A1A4A] hover:bg-[#EFF5FF]',
+                    : 'text-[#020617] hover:bg-[#EFF5FF]',
                 )}
               >
                 <item.icon className="size-5" />
@@ -368,7 +361,7 @@ export function NavigationRailDemo() {
           ))}
         </div>
         <div className="min-w-0 flex-1 bg-[#EFF5FF]/40 p-4">
-          <p className="font-sans text-sm font-bold text-[#0A1A4A]">{active}</p>
+          <p className="font-sans text-sm font-bold text-[#020617]">{active}</p>
           <p className="mt-1 font-sans text-xs font-medium text-[#334155]">
             Rail keeps 3 to 7 destinations visible on medium and expanded windows.
           </p>
@@ -413,7 +406,7 @@ export function TabsDemo() {
             onClick={() => setActive(tab)}
             className={cn(
               'min-h-11 flex-1 rounded-[4px] px-4 font-sans text-sm font-bold whitespace-nowrap transition-colors',
-              active.id === tab.id ? 'bg-[#0056FF] text-white' : 'text-[#0A1A4A] hover:bg-white',
+              active.id === tab.id ? 'bg-[#0056FF] text-white' : 'text-[#020617] hover:bg-white',
             )}
           >
             {tab.label}
@@ -421,7 +414,7 @@ export function TabsDemo() {
         ))}
       </div>
       <div className="mt-4 rounded-xl border border-[#CAD3F5] bg-white p-4">
-        <p className="font-sans text-sm font-bold text-[#0A1A4A]">{active.label}</p>
+        <p className="font-sans text-sm font-bold text-[#020617]">{active.label}</p>
         <p className="mt-1 font-sans text-xs leading-relaxed font-medium text-[#334155]">
           {active.body}
         </p>
@@ -469,7 +462,7 @@ export function ToolbarsDemo() {
                     onClick={() => toggle(tool.label)}
                     className={cn(
                       'inline-flex size-11 items-center justify-center rounded-[4px] font-sans text-sm font-extrabold transition-colors',
-                      isActive ? 'bg-[#0056FF] text-white' : 'text-[#0A1A4A] hover:bg-[#EFF5FF]',
+                      isActive ? 'bg-[#0056FF] text-white' : 'text-[#020617] hover:bg-[#EFF5FF]',
                     )}
                   >
                     {tool.icon ? <tool.icon className="size-5" /> : tool.text}
@@ -519,7 +512,7 @@ export function MenusDemo() {
                     'flex min-h-11 w-full items-center gap-2.5 rounded-[4px] px-3 font-sans text-xs font-bold transition-colors',
                     item.label === 'Archive record'
                       ? 'text-rose-600 hover:bg-rose-50'
-                      : 'text-[#0A1A4A] hover:bg-[#EFF5FF]',
+                      : 'text-[#020617] hover:bg-[#EFF5FF]',
                   )}
                 >
                   <item.icon className="size-4.5 shrink-0" />
@@ -566,7 +559,7 @@ export function ButtonsDemo() {
         <button
           type="button"
           disabled
-          className="inline-flex min-h-11 cursor-not-allowed items-center justify-center rounded-[4px] bg-[#E3E7FC]/50 px-4 font-sans text-sm font-bold text-[#0A1A4A]/35"
+          className="inline-flex min-h-11 cursor-not-allowed items-center justify-center rounded-[4px] bg-[#E3E7FC]/50 px-4 font-sans text-sm font-bold text-[#020617]/35"
         >
           Disabled
         </button>
@@ -648,7 +641,7 @@ export function ButtonGroupsDemo() {
                 i > 0 && 'border-l border-[#CAD3F5]',
                 view === v
                   ? 'bg-[#0056FF] text-white'
-                  : 'bg-white text-[#0A1A4A] hover:bg-[#EFF5FF]',
+                  : 'bg-white text-[#020617] hover:bg-[#EFF5FF]',
               )}
             >
               {v === 'List' ? <List className="size-4.5" /> : <LayoutGrid className="size-4.5" />}
@@ -661,7 +654,7 @@ export function ButtonGroupsDemo() {
             type="button"
             title="Previous page"
             onClick={() => setPage((p) => Math.max(1, p - 1))}
-            className="inline-flex size-11 items-center justify-center bg-white text-[#0A1A4A] transition-colors hover:bg-[#EFF5FF]"
+            className="inline-flex size-11 items-center justify-center bg-white text-[#020617] transition-colors hover:bg-[#EFF5FF]"
           >
             <ChevronLeft className="size-5" />
           </button>
@@ -672,7 +665,7 @@ export function ButtonGroupsDemo() {
             type="button"
             title="Next page"
             onClick={() => setPage((p) => Math.min(9, p + 1))}
-            className="inline-flex size-11 items-center justify-center bg-white text-[#0A1A4A] transition-colors hover:bg-[#EFF5FF]"
+            className="inline-flex size-11 items-center justify-center bg-white text-[#020617] transition-colors hover:bg-[#EFF5FF]"
           >
             <ChevronRight className="size-5" />
           </button>
@@ -708,7 +701,7 @@ export function SegmentedButtonsDemo() {
               i > 0 && 'border-l border-[#CAD3F5]',
               selected.includes(opt)
                 ? 'bg-[#E3E7FC] text-[#0056FF]'
-                : 'bg-white text-[#0A1A4A] hover:bg-[#EFF5FF]',
+                : 'bg-white text-[#020617] hover:bg-[#EFF5FF]',
             )}
           >
             {selected.includes(opt) && <Check className="size-4" />}
@@ -752,7 +745,7 @@ export function SplitButtonDemo() {
                   setAction(opt.replace('Save and ', 'Save + ').replace('Save as ', ''));
                   setOpen(false);
                 }}
-                className="flex min-h-11 w-full items-center rounded-[4px] px-3 font-sans text-xs font-bold text-[#0A1A4A] transition-colors hover:bg-[#EFF5FF]"
+                className="flex min-h-11 w-full items-center rounded-[4px] px-3 font-sans text-xs font-bold text-[#020617] transition-colors hover:bg-[#EFF5FF]"
               >
                 {opt}
               </button>
@@ -772,7 +765,7 @@ export function FabsDemo() {
     <DemoStage title="Floating Action Buttons" badge="Primary Action">
       <div className="relative min-h-44 rounded-xl border border-[#CAD3F5] bg-[#EFF5FF]/40 p-4">
         <p className="font-sans text-xs font-medium text-[#334155]">
-          Records created from this FAB: <span className="font-bold text-[#0A1A4A]">{count}</span>
+          Records created from this FAB: <span className="font-bold text-[#020617]">{count}</span>
         </p>
         <div className="absolute right-4 bottom-4 flex items-end gap-3">
           <LibraryFab size="small" variant="surface" onClick={() => setCount((c) => c + 1)} />
@@ -814,7 +807,7 @@ export function FabMenuDemo() {
     <DemoStage title="FAB Menu" badge="Speed Dial">
       <div className="relative min-h-56 rounded-xl border border-[#CAD3F5] bg-[#EFF5FF]/40 p-4">
         <p className="font-sans text-xs font-medium text-[#334155]">
-          Last created: <span className="font-bold text-[#0A1A4A]">{last}</span>
+          Last created: <span className="font-bold text-[#020617]">{last}</span>
         </p>
         <div className="absolute right-4 bottom-4 left-4 flex flex-col items-end gap-2.5">
           {open &&
@@ -826,7 +819,7 @@ export function FabMenuDemo() {
                   setLast(a.label);
                   setOpen(false);
                 }}
-                className="inline-flex min-h-11 items-center gap-2 rounded-[4px] border border-[#CAD3F5] bg-white px-4 font-sans text-xs font-bold text-[#0A1A4A] shadow-xs transition-colors hover:border-[#0056FF] hover:text-[#0056FF]"
+                className="inline-flex min-h-11 items-center gap-2 rounded-[4px] border border-[#CAD3F5] bg-white px-4 font-sans text-xs font-bold text-[#020617] shadow-xs transition-colors hover:border-[#0056FF] hover:text-[#0056FF]"
               >
                 <a.icon className="size-4.5" /> {a.label}
               </button>
@@ -937,7 +930,7 @@ export function CheckboxDemo() {
                 {isOn && <Check className="size-4" />}
               </span>
               <span className="min-w-0">
-                <span className="block font-sans text-xs font-bold text-[#0A1A4A]">
+                <span className="block font-sans text-xs font-bold text-[#020617]">
                   {opt.label}
                 </span>
                 <span className="block font-sans text-[11px] font-medium text-[#334155]">
@@ -990,7 +983,7 @@ export function RadioButtonDemo() {
                 {isOn && <span className="size-3 rounded-full bg-[#0056FF]" />}
               </span>
               <span className="min-w-0">
-                <span className="block font-sans text-xs font-bold text-[#0A1A4A]">
+                <span className="block font-sans text-xs font-bold text-[#020617]">
                   {opt.label}
                 </span>
                 <span className="block font-sans text-[11px] font-medium text-[#334155]">
@@ -1018,15 +1011,15 @@ export function DatePickersDemo() {
           <button
             type="button"
             title="Previous month"
-            className="inline-flex size-11 items-center justify-center rounded-[4px] text-[#0A1A4A] transition-colors hover:bg-[#EFF5FF]"
+            className="inline-flex size-11 items-center justify-center rounded-[4px] text-[#020617] transition-colors hover:bg-[#EFF5FF]"
           >
             <ChevronLeft className="size-5" />
           </button>
-          <span className="font-sans text-sm font-extrabold text-[#0A1A4A]">November 2026</span>
+          <span className="font-sans text-sm font-extrabold text-[#020617]">November 2026</span>
           <button
             type="button"
             title="Next month"
-            className="inline-flex size-11 items-center justify-center rounded-[4px] text-[#0A1A4A] transition-colors hover:bg-[#EFF5FF]"
+            className="inline-flex size-11 items-center justify-center rounded-[4px] text-[#020617] transition-colors hover:bg-[#EFF5FF]"
           >
             <ChevronRight className="size-5" />
           </button>
@@ -1051,7 +1044,7 @@ export function DatePickersDemo() {
                   ? 'bg-[#0056FF] text-white'
                   : day === 8
                     ? 'bg-[#E3E7FC] text-[#0056FF]'
-                    : 'text-[#0A1A4A] hover:bg-[#EFF5FF]',
+                    : 'text-[#020617] hover:bg-[#EFF5FF]',
               )}
             >
               {day}
@@ -1081,7 +1074,7 @@ export function TimePickersDemo() {
             aria-label="Hour"
             value={hour}
             onChange={(e) => setHour(Number(e.target.value))}
-            className="bg-transparent font-sans text-sm font-bold text-[#0A1A4A] outline-none"
+            className="bg-transparent font-sans text-sm font-bold text-[#020617] outline-none"
           >
             {hours.map((h) => (
               <option key={h} value={h}>
@@ -1089,12 +1082,12 @@ export function TimePickersDemo() {
               </option>
             ))}
           </select>
-          <span className="font-sans text-sm font-bold text-[#0A1A4A]">:</span>
+          <span className="font-sans text-sm font-bold text-[#020617]">:</span>
           <select
             aria-label="Minute"
             value={minute}
             onChange={(e) => setMinute(Number(e.target.value))}
-            className="bg-transparent font-sans text-sm font-bold text-[#0A1A4A] outline-none"
+            className="bg-transparent font-sans text-sm font-bold text-[#020617] outline-none"
           >
             {minutes.map((m) => (
               <option key={m} value={m}>
@@ -1113,7 +1106,7 @@ export function TimePickersDemo() {
                 'min-h-11 px-4 font-sans text-sm font-bold transition-colors',
                 period === p
                   ? 'bg-[#0056FF] text-white'
-                  : 'bg-white text-[#0A1A4A] hover:bg-[#EFF5FF]',
+                  : 'bg-white text-[#020617] hover:bg-[#EFF5FF]',
               )}
             >
               {p}
@@ -1135,7 +1128,7 @@ export function SlidersDemo() {
     <DemoStage title="Sliders" badge="Continuous + Stepped">
       <div className="space-y-5">
         <div>
-          <div className="mb-2 flex items-center justify-between font-sans text-xs font-bold text-[#0A1A4A]">
+          <div className="mb-2 flex items-center justify-between font-sans text-xs font-bold text-[#020617]">
             <span>Classroom speaker volume</span>
             <span className="rounded border border-[#CAD3F5] bg-[#EFF5FF] px-2 py-0.5 font-mono text-[10px] text-[#0056FF]">
               {volume}%
@@ -1152,7 +1145,7 @@ export function SlidersDemo() {
           />
         </div>
         <div>
-          <div className="mb-2 flex items-center justify-between font-sans text-xs font-bold text-[#0A1A4A]">
+          <div className="mb-2 flex items-center justify-between font-sans text-xs font-bold text-[#020617]">
             <span>Sibling discount</span>
             <span className="rounded border border-[#CAD3F5] bg-[#EFF5FF] px-2 py-0.5 font-mono text-[10px] text-[#0056FF]">
               {discount}%
@@ -1201,14 +1194,14 @@ export function SearchDemo() {
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search modules"
           aria-label="Search modules"
-          className="min-w-0 flex-1 bg-transparent font-sans text-sm font-medium text-[#0A1A4A] outline-none placeholder:text-[#334155]/60"
+          className="min-w-0 flex-1 bg-transparent font-sans text-sm font-medium text-[#020617] outline-none placeholder:text-[#334155]/60"
         />
         {query && (
           <button
             type="button"
             title="Clear search"
             onClick={() => setQuery('')}
-            className="inline-flex h-11 w-9 shrink-0 items-center justify-center rounded-[4px] text-[#0A1A4A] hover:bg-[#EFF5FF]"
+            className="inline-flex h-11 w-9 shrink-0 items-center justify-center rounded-[4px] text-[#020617] hover:bg-[#EFF5FF]"
           >
             <X className="size-4.5" />
           </button>
@@ -1218,7 +1211,7 @@ export function SearchDemo() {
         {results.map((m) => (
           <div
             key={m}
-            className="flex min-h-11 items-center gap-2.5 rounded-[4px] border border-[#CAD3F5]/60 bg-[#EFF5FF]/40 px-3.5 font-sans text-xs font-bold text-[#0A1A4A]"
+            className="flex min-h-11 items-center gap-2.5 rounded-[4px] border border-[#CAD3F5]/60 bg-[#EFF5FF]/40 px-3.5 font-sans text-xs font-bold text-[#020617]"
           >
             <Sparkles className="size-4 shrink-0 text-[#0056FF]" />
             {m}
@@ -1286,7 +1279,7 @@ export function BottomSheetsDemo() {
                 setChoice(`Export format: ${fmt}`);
                 setOpen(false);
               }}
-              className="flex min-h-11 w-full items-center gap-2.5 rounded-[4px] border border-[#CAD3F5] bg-white px-3.5 font-sans text-xs font-bold text-[#0A1A4A] transition-colors hover:border-[#0056FF]"
+              className="flex min-h-11 w-full items-center gap-2.5 rounded-[4px] border border-[#CAD3F5] bg-white px-3.5 font-sans text-xs font-bold text-[#020617] transition-colors hover:border-[#0056FF]"
             >
               <FileText className="size-4.5" /> {fmt}
             </button>
@@ -1303,14 +1296,14 @@ export function SideSheetsDemo() {
     <DemoStage title="Side Sheets" badge="Inspector Panel" wide>
       <div className="flex min-h-64 flex-col overflow-hidden rounded-xl border border-[#CAD3F5] sm:flex-row">
         <div className="min-w-0 flex-1 bg-[#EFF5FF]/40 p-4">
-          <p className="font-sans text-sm font-bold text-[#0A1A4A]">Grade 10 A, Class List</p>
+          <p className="font-sans text-sm font-bold text-[#020617]">Grade 10 A, Class List</p>
           <p className="mt-1 font-sans text-xs font-medium text-[#334155]">
             Select the inspector to review one student without leaving the list.
           </p>
           <button
             type="button"
             onClick={() => setOpen((o) => !o)}
-            className="mt-4 inline-flex min-h-11 items-center gap-2 rounded-[4px] border border-[#CAD3F5] bg-white px-3 font-sans text-xs font-bold text-[#0A1A4A] transition-colors hover:border-[#0056FF]"
+            className="mt-4 inline-flex min-h-11 items-center gap-2 rounded-[4px] border border-[#CAD3F5] bg-white px-3 font-sans text-xs font-bold text-[#020617] transition-colors hover:border-[#0056FF]"
           >
             <Eye className="size-4.5" /> {open ? 'Hide inspector' : 'Show inspector'}
           </button>
@@ -1318,11 +1311,11 @@ export function SideSheetsDemo() {
         {open && (
           <aside className="w-full shrink-0 border-t border-[#CAD3F5] bg-white p-4 sm:w-60 sm:border-t-0 sm:border-l">
             <p className="font-mono text-[10px] font-bold text-[#0056FF]">STUDENT INSPECTOR</p>
-            <p className="mt-2 font-sans text-sm font-extrabold text-[#0A1A4A]">Chan Sreyleak</p>
+            <p className="mt-2 font-sans text-sm font-extrabold text-[#020617]">Chan Sreyleak</p>
             <dl className="mt-3 space-y-2 font-sans text-xs">
               <div className="flex justify-between gap-2">
                 <dt className="font-medium text-[#334155]">Code</dt>
-                <dd className="font-bold text-[#0A1A4A]">STU-000142</dd>
+                <dd className="font-bold text-[#020617]">STU-000142</dd>
               </div>
               <div className="flex justify-between gap-2">
                 <dt className="font-medium text-[#334155]">Attendance</dt>
@@ -1330,7 +1323,7 @@ export function SideSheetsDemo() {
               </div>
               <div className="flex justify-between gap-2">
                 <dt className="font-medium text-[#334155]">Fee status</dt>
-                <dd className="font-bold text-[#0A1A4A]">[PAID]</dd>
+                <dd className="font-bold text-[#020617]">[PAID]</dd>
               </div>
             </dl>
             <PrimaryButton className="mt-4 w-full">Open full record</PrimaryButton>
@@ -1361,7 +1354,7 @@ export function LoadingIndicatorDemo() {
             </p>
           </>
         ) : (
-          <p className="flex items-center gap-2 font-sans text-sm font-bold text-[#0A1A4A]">
+          <p className="flex items-center gap-2 font-sans text-sm font-bold text-[#020617]">
             <Check className="size-5 text-emerald-600" /> Sync complete, 1,240 records
           </p>
         )}
@@ -1380,7 +1373,7 @@ export function ProgressIndicatorsDemo() {
     <DemoStage title="Progress Indicators" badge="Linear + Circular">
       <div className="space-y-5">
         <div>
-          <div className="mb-2 flex items-center justify-between font-sans text-xs font-bold text-[#0A1A4A]">
+          <div className="mb-2 flex items-center justify-between font-sans text-xs font-bold text-[#020617]">
             <span>Term enrollment completion</span>
             <span className="font-mono text-[10px] text-[#0056FF]">{progress}%</span>
           </div>
@@ -1408,7 +1401,7 @@ export function ProgressIndicatorsDemo() {
                 className="transition-all duration-500"
               />
             </svg>
-            <span className="absolute inset-0 flex items-center justify-center font-sans text-sm font-extrabold text-[#0A1A4A]">
+            <span className="absolute inset-0 flex items-center justify-center font-sans text-sm font-extrabold text-[#020617]">
               {progress}%
             </span>
           </div>
@@ -1510,7 +1503,7 @@ export function BadgesDemo() {
         <span className="rounded bg-emerald-600 px-2.5 py-1 font-mono text-[10px] font-bold text-white">
           [PAID]
         </span>
-        <span className="rounded bg-amber-400 px-2.5 py-1 font-mono text-[10px] font-bold text-[#0A1A4A]">
+        <span className="rounded bg-amber-400 px-2.5 py-1 font-mono text-[10px] font-bold text-[#020617]">
           [PENDING]
         </span>
         <span className="rounded bg-rose-600 px-2.5 py-1 font-mono text-[10px] font-bold text-white">
@@ -1519,7 +1512,7 @@ export function BadgesDemo() {
         <span className="rounded bg-[#0056FF] px-2.5 py-1 font-mono text-[10px] font-bold text-white">
           NEW
         </span>
-        <span className="inline-flex items-center gap-1.5 rounded-full border border-[#CAD3F5] bg-white px-3 py-1.5 font-sans text-xs font-bold text-[#0A1A4A]">
+        <span className="inline-flex items-center gap-1.5 rounded-full border border-[#CAD3F5] bg-white px-3 py-1.5 font-sans text-xs font-bold text-[#020617]">
           <Bell className="size-3.5" /> 3 unread
         </span>
         <span className="inline-flex items-center gap-1.5 rounded-full bg-[#0056FF] px-3 py-1.5 font-sans text-xs font-bold text-white">
@@ -1538,7 +1531,7 @@ export function CardsDemo() {
       <div className="grid gap-4 sm:grid-cols-2">
         <LibraryCard className="border border-[#CAD3F5]">
           <p className="font-mono text-[10px] font-bold text-[#0056FF]">GRADE 10 A</p>
-          <p className="mt-1.5 font-sans text-base font-extrabold text-[#0A1A4A]">
+          <p className="mt-1.5 font-sans text-base font-extrabold text-[#020617]">
             Homeroom overview
           </p>
           <p className="mt-1 font-sans text-xs font-medium text-[#334155]">
@@ -1559,7 +1552,7 @@ export function CardsDemo() {
           onClick={() => setMode((m) => (m === 'summary' ? 'detail' : 'summary'))}
         >
           <p className="font-mono text-[10px] font-bold text-[#0056FF]">INTERACTIVE CARD</p>
-          <p className="mt-1.5 font-sans text-base font-extrabold text-[#0A1A4A]">
+          <p className="mt-1.5 font-sans text-base font-extrabold text-[#020617]">
             {mode === 'summary' ? 'Tap to open detail' : 'Detail is open'}
           </p>
           <p className="mt-1 font-sans text-xs font-medium text-[#334155]">
@@ -1601,7 +1594,7 @@ export function CarouselDemo() {
       <div className="overflow-hidden rounded-xl border border-[#CAD3F5] bg-[#EFF5FF]/40">
         <div className="flex min-h-40 flex-col items-center justify-center gap-2 p-6 text-center">
           <slide.icon className="size-9 text-[#0056FF]" />
-          <p className="font-sans text-base font-extrabold text-[#0A1A4A]">{slide.title}</p>
+          <p className="font-sans text-base font-extrabold text-[#020617]">{slide.title}</p>
           <p className="max-w-sm font-sans text-xs font-medium text-[#334155]">{slide.detail}</p>
         </div>
         <div className="flex items-center justify-between border-t border-[#CAD3F5]/60 bg-white px-3 py-2">
@@ -1609,7 +1602,7 @@ export function CarouselDemo() {
             type="button"
             title="Previous slide"
             onClick={() => setIndex((i) => (i - 1 + slides.length) % slides.length)}
-            className="inline-flex size-11 items-center justify-center rounded-[4px] text-[#0A1A4A] transition-colors hover:bg-[#EFF5FF]"
+            className="inline-flex size-11 items-center justify-center rounded-[4px] text-[#020617] transition-colors hover:bg-[#EFF5FF]"
           >
             <ChevronLeft className="size-5" />
           </button>
@@ -1637,7 +1630,7 @@ export function CarouselDemo() {
             type="button"
             title="Next slide"
             onClick={() => setIndex((i) => (i + 1) % slides.length)}
-            className="inline-flex size-11 items-center justify-center rounded-[4px] text-[#0A1A4A] transition-colors hover:bg-[#EFF5FF]"
+            className="inline-flex size-11 items-center justify-center rounded-[4px] text-[#020617] transition-colors hover:bg-[#EFF5FF]"
           >
             <ChevronRight className="size-5" />
           </button>
@@ -1655,7 +1648,7 @@ export function DividerDemo() {
     <DemoStage title="Divider" badge="Horizontal + Vertical + Label">
       <div className="space-y-4">
         <div>
-          <p className="font-sans text-xs font-bold text-[#0A1A4A]">Invoice 2026-0114</p>
+          <p className="font-sans text-xs font-bold text-[#020617]">Invoice 2026-0114</p>
           <div className="my-2.5 h-px bg-[#CAD3F5]" />
           <p className="font-sans text-xs font-medium text-[#334155]">Tuition Term 1, Phnom Penh</p>
         </div>
@@ -1664,7 +1657,7 @@ export function DividerDemo() {
           <span className="font-mono text-[10px] font-bold text-[#0056FF]">OR PAY WITH</span>
           <span className="h-px flex-1 bg-[#CAD3F5]" />
         </div>
-        <div className="flex min-h-11 items-stretch justify-center gap-4 font-sans text-xs font-bold text-[#0A1A4A]">
+        <div className="flex min-h-11 items-stretch justify-center gap-4 font-sans text-xs font-bold text-[#020617]">
           <span className="flex items-center gap-1.5">
             <Building2 className="size-4.5" /> Bank transfer
           </span>
@@ -1721,7 +1714,7 @@ export function ListsDemo() {
           >
             <row.icon className="size-5 shrink-0 text-[#020617]" />
             <span className="min-w-0 flex-1">
-              <span className="block truncate font-sans text-xs font-bold text-[#0A1A4A]">
+              <span className="block truncate font-sans text-xs font-bold text-[#020617]">
                 {row.title}
               </span>
               <span className="block truncate font-sans text-[11px] font-medium text-[#334155]">
@@ -1754,7 +1747,7 @@ export function TextFieldsDemo() {
         <div>
           <label
             htmlFor="demo-student-name"
-            className="mb-1.5 block font-sans text-xs font-bold text-[#0A1A4A]"
+            className="mb-1.5 block font-sans text-xs font-bold text-[#020617]"
           >
             Student full name
           </label>
@@ -1770,7 +1763,7 @@ export function TextFieldsDemo() {
         <div>
           <label
             htmlFor="demo-guardian-email"
-            className="mb-1.5 block font-sans text-xs font-bold text-[#0A1A4A]"
+            className="mb-1.5 block font-sans text-xs font-bold text-[#020617]"
           >
             Guardian email
           </label>
@@ -1790,7 +1783,7 @@ export function TextFieldsDemo() {
         <div>
           <label
             htmlFor="demo-note"
-            className="mb-1.5 block font-sans text-xs font-bold text-[#0A1A4A]"
+            className="mb-1.5 block font-sans text-xs font-bold text-[#020617]"
           >
             Counselor note
           </label>
@@ -1801,7 +1794,7 @@ export function TextFieldsDemo() {
             rows={3}
             maxLength={140}
             placeholder="Short note, maximum 140 characters"
-            className="w-full rounded-[4px] border border-[#CAD3F5] bg-white px-3.5 py-3 font-sans text-sm font-medium text-[#0A1A4A] transition-colors outline-none placeholder:text-[#334155]/60 focus:border-[#0056FF]"
+            className="w-full rounded-[4px] border border-[#CAD3F5] bg-white px-3.5 py-3 font-sans text-sm font-medium text-[#020617] transition-colors outline-none placeholder:text-[#334155]/60 focus:border-[#0056FF]"
           />
           <p className="mt-1 text-right font-mono text-[10px] font-bold text-[#334155]">
             {note.length} / 140
@@ -1886,7 +1879,7 @@ export function AccordionDemo() {
               type="button"
               aria-expanded={open === i}
               onClick={() => setOpen(open === i ? -1 : i)}
-              className="flex min-h-12 w-full items-center justify-between gap-2 bg-white px-4 font-sans text-sm font-bold text-[#0A1A4A] transition-colors hover:bg-[#EFF5FF]/60"
+              className="flex min-h-12 w-full items-center justify-between gap-2 bg-white px-4 font-sans text-sm font-bold text-[#020617] transition-colors hover:bg-[#EFF5FF]/60"
             >
               {s.title}
               <ChevronDown
@@ -1925,7 +1918,7 @@ export function BreadcrumbsDemo() {
                 'inline-flex min-h-11 items-center rounded-[4px] px-2.5 font-sans text-sm font-bold transition-colors',
                 i === current
                   ? 'text-[#0056FF]'
-                  : 'text-[#0A1A4A] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
+                  : 'text-[#020617] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
               )}
             >
               {crumb}
@@ -2008,7 +2001,7 @@ export function TreeViewDemo() {
               type="button"
               aria-expanded={expanded.includes(node.id)}
               onClick={() => toggle(node.id)}
-              className="flex min-h-11 w-full items-center gap-2 rounded-[4px] px-2.5 font-sans text-xs font-bold text-[#0A1A4A] transition-colors hover:bg-[#EFF5FF]"
+              className="flex min-h-11 w-full items-center gap-2 rounded-[4px] px-2.5 font-sans text-xs font-bold text-[#020617] transition-colors hover:bg-[#EFF5FF]"
             >
               <ChevronRight
                 className={cn(
@@ -2060,7 +2053,7 @@ export function SideNavigationDemo() {
               onClick={() => setActive(link)}
               className={cn(
                 'flex min-h-11 items-center gap-2 rounded-[4px] px-3 font-sans text-xs font-bold whitespace-nowrap transition-colors',
-                active === link ? 'bg-[#0056FF] text-white' : 'text-[#0A1A4A] hover:bg-[#EFF5FF]',
+                active === link ? 'bg-[#0056FF] text-white' : 'text-[#020617] hover:bg-[#EFF5FF]',
               )}
             >
               <span
@@ -2074,7 +2067,7 @@ export function SideNavigationDemo() {
           ))}
         </nav>
         <div className="min-w-0 flex-1 bg-[#EFF5FF]/40 p-4">
-          <p className="font-sans text-sm font-bold text-[#0A1A4A]">{active}</p>
+          <p className="font-sans text-sm font-bold text-[#020617]">{active}</p>
           <p className="mt-1 font-sans text-xs font-medium text-[#334155]">
             Persistent side navigation for one stable product section.
           </p>
@@ -2094,12 +2087,12 @@ export function CloseButtonDemo() {
             key={card}
             className="flex min-h-12 items-center justify-between gap-2 rounded-xl border border-[#CAD3F5] bg-[#EFF5FF]/40 px-4"
           >
-            <span className="font-sans text-xs font-bold text-[#0A1A4A]">{card}</span>
+            <span className="font-sans text-xs font-bold text-[#020617]">{card}</span>
             <button
               type="button"
               title={`Dismiss ${card}`}
               onClick={() => setCards((prev) => prev.filter((c) => c !== card))}
-              className="inline-flex size-11 shrink-0 items-center justify-center rounded-[4px] text-[#0A1A4A] transition-colors hover:bg-white hover:text-[#0056FF]"
+              className="inline-flex size-11 shrink-0 items-center justify-center rounded-[4px] text-[#020617] transition-colors hover:bg-white hover:text-[#0056FF]"
             >
               <X className="size-5" />
             </button>
@@ -2151,9 +2144,9 @@ export function ComboBoxDemo() {
             }}
             placeholder="Type or pick a campus"
             aria-label="Campus combo box"
-            className="min-w-0 flex-1 bg-transparent font-sans text-sm font-medium text-[#0A1A4A] outline-none placeholder:text-[#334155]/60"
+            className="min-w-0 flex-1 bg-transparent font-sans text-sm font-medium text-[#020617] outline-none placeholder:text-[#334155]/60"
           />
-          <ChevronDown className="size-5 shrink-0 text-[#0A1A4A]" />
+          <ChevronDown className="size-5 shrink-0 text-[#020617]" />
         </label>
         {open && (
           <div className="absolute inset-x-0 top-full z-10 mt-2 rounded-xl border border-[#CAD3F5] bg-white p-1.5 shadow-xs">
@@ -2165,7 +2158,7 @@ export function ComboBoxDemo() {
                   setValue(opt);
                   setOpen(false);
                 }}
-                className="flex min-h-11 w-full items-center justify-between gap-2 rounded-[4px] px-3 font-sans text-xs font-bold text-[#0A1A4A] transition-colors hover:bg-[#EFF5FF]"
+                className="flex min-h-11 w-full items-center justify-between gap-2 rounded-[4px] px-3 font-sans text-xs font-bold text-[#020617] transition-colors hover:bg-[#EFF5FF]"
               >
                 {opt}
                 {value === opt && <Check className="size-4.5 shrink-0 text-[#0056FF]" />}
@@ -2195,7 +2188,7 @@ export function NumberFieldDemo() {
             type="button"
             title="Remove one seat"
             onClick={() => setSeats((s) => Math.max(1, s - 1))}
-            className="inline-flex size-11 items-center justify-center bg-white text-[#0A1A4A] transition-colors hover:bg-[#EFF5FF]"
+            className="inline-flex size-11 items-center justify-center bg-white text-[#020617] transition-colors hover:bg-[#EFF5FF]"
           >
             <Minus className="size-5" />
           </button>
@@ -2213,7 +2206,7 @@ export function NumberFieldDemo() {
             type="button"
             title="Add one seat"
             onClick={() => setSeats((s) => Math.min(60, s + 1))}
-            className="inline-flex size-11 items-center justify-center bg-white text-[#0A1A4A] transition-colors hover:bg-[#EFF5FF]"
+            className="inline-flex size-11 items-center justify-center bg-white text-[#020617] transition-colors hover:bg-[#EFF5FF]"
           >
             <Plus className="size-5" />
           </button>

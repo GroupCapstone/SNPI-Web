@@ -303,7 +303,7 @@ export function MaintenanceManual({ hideHeader = false }: { hideHeader?: boolean
                 <Sparkles className="size-3.5" />
                 <span>DESIGN SYSTEM LIFECYCLE &amp; GOVERNANCE</span>
               </div>
-              <h2 className="font-sans text-2xl font-black tracking-tight text-[#0A1A4A] sm:text-3xl">
+              <h2 className="font-sans text-2xl font-black tracking-tight text-[#020617] sm:text-3xl">
                 Maintenance Strategy Manual
               </h2>
               <p className="max-w-3xl font-sans text-xs leading-relaxed text-slate-600 sm:text-sm">
@@ -344,7 +344,7 @@ export function MaintenanceManual({ hideHeader = false }: { hideHeader?: boolean
                     'flex cursor-pointer items-center gap-2 rounded-xl border px-3 py-2 font-sans text-xs font-bold transition-all',
                     isActive
                       ? 'border-[#0056FF] bg-[#0056FF] text-white shadow-xs'
-                      : 'border-[#CAD3F5] bg-white text-[#0A1A4A] hover:border-[#0056FF]/40 hover:bg-[#EFF5FF]',
+                      : 'border-[#CAD3F5] bg-white text-[#020617] hover:border-[#0056FF]/40 hover:bg-[#EFF5FF]',
                   )}
                 >
                   <span>{spec.name}</span>
@@ -387,7 +387,7 @@ export function MaintenanceManual({ hideHeader = false }: { hideHeader?: boolean
                     'flex cursor-pointer items-center gap-2 rounded-lg border px-3 py-1.5 font-sans text-xs font-bold transition-all active:scale-[0.97]',
                     isActive
                       ? 'border-[#0056FF] bg-[#0056FF] text-white shadow-xs'
-                      : 'border-[#CAD3F5] bg-white text-[#0A1A4A] hover:bg-[#EFF5FF]',
+                      : 'border-[#CAD3F5] bg-white text-[#020617] hover:bg-[#EFF5FF]',
                   )}
                 >
                   <span>{spec.name}</span>
@@ -432,7 +432,7 @@ export function MaintenanceManual({ hideHeader = false }: { hideHeader?: boolean
                     <span className="flex size-6 items-center justify-center rounded-lg bg-[#EFF5FF] font-mono text-xs font-bold text-[#0056FF]">
                       M{specIdx + 1}
                     </span>
-                    <h3 className="font-sans text-lg font-black tracking-tight text-[#0A1A4A] sm:text-xl">
+                    <h3 className="font-sans text-lg font-black tracking-tight text-[#020617] sm:text-xl">
                       {spec.name}
                     </h3>
                     <span
@@ -488,7 +488,7 @@ export function MaintenanceManual({ hideHeader = false }: { hideHeader?: boolean
                               'font-sans text-xs font-bold transition-colors',
                               isChecked
                                 ? 'text-emerald-900 line-through opacity-80'
-                                : 'text-[#0A1A4A]',
+                                : 'text-[#020617]',
                             )}
                           >
                             {itemIdx + 1}. {item.label}
@@ -520,25 +520,25 @@ export function MaintenanceManual({ hideHeader = false }: { hideHeader?: boolean
                     </div>
                     <div className="grid grid-cols-2 gap-2 font-sans text-slate-700 sm:grid-cols-4">
                       <div className="rounded-lg border border-slate-200 bg-white p-2">
-                        <span className="block font-bold text-[#0A1A4A]">Tier 1 Browsers</span>
+                        <span className="block font-bold text-[#020617]">Tier 1 Browsers</span>
                         <span className="block text-[11px] text-slate-500">
                           Chrome &ge;118, Safari &ge;16.4, Firefox &ge;120
                         </span>
                       </div>
                       <div className="rounded-lg border border-slate-200 bg-white p-2">
-                        <span className="block font-bold text-[#0A1A4A]">Mobile Web</span>
+                        <span className="block font-bold text-[#020617]">Mobile Web</span>
                         <span className="block text-[11px] text-slate-500">
                           iOS Safari &ge;16, Android Chrome 12+
                         </span>
                       </div>
                       <div className="rounded-lg border border-slate-200 bg-white p-2">
-                        <span className="block font-bold text-[#0A1A4A]">Desktop OS</span>
+                        <span className="block font-bold text-[#020617]">Desktop OS</span>
                         <span className="block text-[11px] text-slate-500">
                           macOS &ge;13 Ventura, Windows &ge;10, Linux x64
                         </span>
                       </div>
                       <div className="rounded-lg border border-slate-200 bg-white p-2">
-                        <span className="block font-bold text-[#0A1A4A]">Reduced Motion</span>
+                        <span className="block font-bold text-[#020617]">Reduced Motion</span>
                         <span className="block text-[11px] text-slate-500">
                           prefers-reduced-motion: reduce 100% honored
                         </span>
@@ -564,7 +564,7 @@ export function MaintenanceManual({ hideHeader = false }: { hideHeader?: boolean
                         </p>
                       </div>
                       <div className="space-y-1 rounded-lg border border-slate-200 bg-white p-2.5">
-                        <span className="block font-bold text-[#0A1A4A]">
+                        <span className="block font-bold text-[#020617]">
                           Vertical Libraries (Domain Local)
                         </span>
                         <p className="text-[11px] leading-relaxed text-slate-600">

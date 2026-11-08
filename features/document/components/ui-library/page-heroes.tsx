@@ -99,13 +99,11 @@ export function LibraryHero() {
         <span className="inline-flex min-h-8 items-center gap-2 rounded-[4px] bg-[#EFF5FF] px-3 font-mono text-[10px] font-bold tracking-wider text-[#0056FF] uppercase">
           <Sparkles className="size-4" /> SNPI Design System · Live Library
         </span>
-        <h1 className="font-sans text-3xl font-black tracking-tight text-[#0A1A4A] sm:text-4xl">
+        <h1 className="font-sans text-3xl font-black tracking-tight text-[#020617] sm:text-4xl">
           Components that feel alive.
         </h1>
         <p className="max-w-2xl font-sans text-sm leading-relaxed font-medium text-[#334155]">
-          Every component below is a working demo, not a picture. Touch the controls, open the
-          menus, run the states. Built on one Royal Blue brand system, responsive from a small phone
-          to a wide monitor.
+          Working demos. Touch the controls and run the states.
         </p>
         <div className="flex flex-wrap gap-2 pt-1">
           {[
@@ -116,7 +114,7 @@ export function LibraryHero() {
           ].map(([value, label]) => (
             <span
               key={label}
-              className="inline-flex min-h-9 items-center gap-1.5 rounded-[4px] border border-[#CAD3F5] bg-white px-3 font-sans text-xs font-bold text-[#0A1A4A]"
+              className="inline-flex min-h-9 items-center gap-2 rounded-[4px] border border-[#CAD3F5] bg-white px-3 font-sans text-xs font-bold text-[#020617]"
             >
               <span className="font-mono text-[#0056FF]">{value}</span> {label}
             </span>
@@ -141,7 +139,7 @@ export function LibraryHero() {
                 onClick={() => setSegment(key)}
                 className={cn(
                   'min-h-11 shrink-0 rounded-[4px] px-4 font-sans text-xs font-bold whitespace-nowrap transition-colors',
-                  segment === key ? 'bg-[#0056FF] text-white' : 'text-[#0A1A4A] hover:bg-[#EFF5FF]',
+                  segment === key ? 'bg-[#0056FF] text-white' : 'text-[#020617] hover:bg-[#EFF5FF]',
                 )}
               >
                 {key}
@@ -170,19 +168,19 @@ export function LibraryHero() {
             ))}
           </div>
           <p className="mt-3 font-sans text-xs font-medium text-[#334155]">
-            {chart.label}: <span className="font-bold text-[#0A1A4A]">{chart.total}</span>
+            {chart.label}: <span className="font-bold text-[#020617]">{chart.total}</span>
           </p>
         </div>
 
         <div className="flex min-w-0 flex-col justify-center gap-4 rounded-xl border border-[#CAD3F5] bg-white p-4">
           <div className="flex min-h-11 items-center justify-between gap-3">
-            <span className="flex items-center gap-2 font-sans text-xs font-bold text-[#0A1A4A]">
+            <span className="flex items-center gap-2 font-sans text-xs font-bold text-[#020617]">
               <RefreshCw className="size-4.5 shrink-0" /> Auto sync
             </span>
             <LibrarySwitch checked={autoSync} onCheckedChange={setAutoSync} />
           </div>
           <div>
-            <div className="mb-1.5 flex items-center justify-between font-sans text-xs font-bold text-[#0A1A4A]">
+            <div className="mb-2 flex items-center justify-between font-sans text-xs font-bold text-[#020617]">
               <span className="flex items-center gap-2">
                 <Bell className="size-4.5 shrink-0" /> Alert volume
               </span>
@@ -222,7 +220,7 @@ export function LibraryHero() {
           {[...MARQUEE_COMPONENTS, ...MARQUEE_COMPONENTS].map((name, i) => (
             <span
               key={`${name}-${i}`}
-              className="inline-flex min-h-9 shrink-0 items-center rounded-[4px] border border-[#CAD3F5] bg-[#EFF5FF]/60 px-3 font-mono text-[11px] font-bold whitespace-nowrap text-[#0A1A4A]"
+              className="inline-flex min-h-9 shrink-0 items-center rounded-[4px] border border-[#CAD3F5] bg-[#EFF5FF]/60 px-3 font-mono text-[11px] font-bold whitespace-nowrap text-[#020617]"
             >
               {name}
             </span>
@@ -297,12 +295,11 @@ export function ApiHero() {
         <span className="inline-flex min-h-8 items-center gap-2 rounded-[4px] bg-[#EFF5FF] px-3 font-mono text-[10px] font-bold tracking-wider text-[#0056FF] uppercase">
           <Terminal className="size-4" /> SNPI Open API · Version 1.1.0
         </span>
-        <h1 className="text-3xl font-black tracking-tight text-[#0A1A4A] sm:text-4xl">
+        <h1 className="text-3xl font-black tracking-tight text-[#020617] sm:text-4xl">
           API Documentation
         </h1>
         <p className="max-w-2xl font-sans text-sm leading-relaxed font-medium text-[#334155]">
-          One REST gateway for the whole school system. Pick an endpoint and run it right here, the
-          same routes, methods and response shapes the production API returns.
+          Pick an endpoint and run it here.
         </p>
       </div>
 
@@ -320,7 +317,7 @@ export function ApiHero() {
               className={cn(
                 'inline-flex min-h-11 items-center gap-2 rounded-[4px] border px-3 font-mono text-xs font-bold transition-colors',
                 i === index
-                  ? 'border-[#0056FF] bg-[#EFF5FF] text-[#0A1A4A]'
+                  ? 'border-[#0056FF] bg-[#EFF5FF] text-[#020617]'
                   : 'border-[#CAD3F5] bg-white text-[#334155] hover:border-[#0056FF]',
               )}
             >
@@ -333,7 +330,7 @@ export function ApiHero() {
         </div>
 
         <div className="mt-4 flex flex-col gap-3 sm:flex-row">
-          <div className="flex min-h-11 min-w-0 flex-1 items-center gap-2.5 rounded-[4px] bg-[#EFF5FF] px-3.5 font-mono text-xs font-bold text-[#0A1A4A]">
+          <div className="flex min-h-11 min-w-0 flex-1 items-center gap-3 rounded-[4px] bg-[#EFF5FF] px-4 font-mono text-xs font-bold text-[#020617]">
             <Globe className="size-4.5 shrink-0 text-[#0056FF]" />
             <span className="min-w-0 break-all">
               {endpoint.method} api.snpi.edu.kh/v1{endpoint.path}
@@ -364,7 +361,7 @@ export function ApiHero() {
               <p className="font-mono text-xs font-bold text-emerald-600">
                 200 OK · {endpoint.latency} ms · application/json
               </p>
-              <pre className="overflow-x-auto font-mono text-xs leading-relaxed font-medium whitespace-pre text-[#0A1A4A]">
+              <pre className="overflow-x-auto font-mono text-xs leading-relaxed font-medium whitespace-pre text-[#020617]">
                 {endpoint.body}
               </pre>
             </div>
@@ -375,7 +372,7 @@ export function ApiHero() {
           <button
             type="button"
             onClick={copyBase}
-            className="inline-flex min-h-11 items-center gap-2 rounded-[4px] border border-[#CAD3F5] bg-white px-3 font-mono text-xs font-bold text-[#0A1A4A] transition-colors hover:border-[#0056FF]"
+            className="inline-flex min-h-11 items-center gap-2 rounded-[4px] border border-[#CAD3F5] bg-white px-3 font-mono text-xs font-bold text-[#020617] transition-colors hover:border-[#0056FF]"
           >
             {copied ? (
               <Check className="size-4.5 text-emerald-600" />
@@ -405,7 +402,7 @@ const BRAND_TOKENS = [
   { name: 'Azure', hex: '#2277FF', role: 'Hover states and links', dark: true },
   { name: 'Soft Lavender', hex: '#E3E7FC', role: 'Selected surfaces and fills', dark: false },
   { name: 'Ice Tint', hex: '#EFF5FF', role: 'Panel and stage backgrounds', dark: false },
-  { name: 'Deep Navy', hex: '#0A1A4A', role: 'Typography and headlines', dark: true },
+  { name: 'Deep Navy', hex: '#020617', role: 'Typography and headlines', dark: true },
 ];
 
 export function BlueprintHero() {
@@ -415,11 +412,10 @@ export function BlueprintHero() {
   return (
     <div className="space-y-5">
       <p className="max-w-2xl font-sans text-sm leading-relaxed font-medium text-[#334155]">
-        Five tokens carry the whole brand. Tap a token to preview how it behaves on real surfaces,
-        then copy the system into your own work.
+        Tap a token to preview it.
       </p>
 
-      <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-5">
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
         {BRAND_TOKENS.map((t, i) => (
           <button
             key={t.hex}
@@ -428,14 +424,14 @@ export function BlueprintHero() {
             aria-pressed={i === selected}
             className={cn(
               'flex min-h-24 flex-col items-start justify-between rounded-xl p-3 text-left transition-transform active:scale-[0.98]',
-              i === selected && 'ring-2 ring-[#0A1A4A] ring-offset-2',
+              i === selected && 'ring-2 ring-[#020617] ring-offset-2',
             )}
             style={{ backgroundColor: t.hex }}
           >
             <span
               className={cn(
                 'font-mono text-[10px] font-bold',
-                t.dark ? 'text-white/85' : 'text-[#0A1A4A]/70',
+                t.dark ? 'text-white/85' : 'text-[#020617]/70',
               )}
             >
               {String(i + 1).padStart(2, '0')}
@@ -444,7 +440,7 @@ export function BlueprintHero() {
               <span
                 className={cn(
                   'block font-sans text-xs leading-tight font-extrabold',
-                  t.dark ? 'text-white' : 'text-[#0A1A4A]',
+                  t.dark ? 'text-white' : 'text-[#020617]',
                 )}
               >
                 {t.name}
@@ -452,7 +448,7 @@ export function BlueprintHero() {
               <span
                 className={cn(
                   'block font-mono text-[10px] font-bold',
-                  t.dark ? 'text-white/85' : 'text-[#0A1A4A]/70',
+                  t.dark ? 'text-white/85' : 'text-[#020617]/70',
                 )}
               >
                 {t.hex}
@@ -464,21 +460,21 @@ export function BlueprintHero() {
 
       <div
         className="rounded-xl border border-[#CAD3F5] p-4 transition-colors duration-300 sm:p-5"
-        style={{ backgroundColor: token.hex === '#0A1A4A' ? '#EFF5FF' : token.hex }}
+        style={{ backgroundColor: token.hex === '#020617' ? '#EFF5FF' : token.hex }}
       >
         <div className="rounded-xl border border-[#CAD3F5] bg-white p-4 sm:p-5">
           <div className="flex flex-wrap items-start justify-between gap-3">
             <div className="min-w-0">
-              <p className="font-sans text-base font-extrabold text-[#0A1A4A]">
+              <p className="font-sans text-base font-extrabold text-[#020617]">
                 {token.name} in action
               </p>
               <p className="mt-1 font-sans text-xs font-medium text-[#334155]">{token.role}</p>
             </div>
-            <span className="shrink-0 rounded-[4px] bg-[#EFF5FF] px-2.5 py-1 font-mono text-[11px] font-bold whitespace-nowrap text-[#0056FF]">
+            <span className="shrink-0 rounded-[4px] bg-[#EFF5FF] px-3 py-1 font-mono text-[11px] font-bold whitespace-nowrap text-[#0056FF]">
               {token.hex}
             </span>
           </div>
-          <div className="mt-4 flex flex-wrap gap-2.5">
+          <div className="mt-4 flex flex-wrap gap-3">
             <span
               className="inline-flex min-h-11 items-center rounded-[4px] px-4 font-sans text-sm font-bold text-white"
               style={{ backgroundColor: token.dark ? token.hex : '#0056FF' }}
@@ -486,14 +482,14 @@ export function BlueprintHero() {
               Primary action
             </span>
             <span
-              className="inline-flex min-h-11 items-center rounded-[4px] border-2 px-4 font-sans text-sm font-bold text-[#0A1A4A]"
+              className="inline-flex min-h-11 items-center rounded-[4px] border-2 px-4 font-sans text-sm font-bold text-[#020617]"
               style={{ borderColor: token.dark ? token.hex : '#CAD3F5' }}
             >
               Outlined action
             </span>
             <span
               className="inline-flex min-h-11 items-center px-2 font-sans text-sm font-extrabold"
-              style={{ color: token.dark ? token.hex : '#0A1A4A' }}
+              style={{ color: token.dark ? token.hex : '#020617' }}
             >
               Sample headline text
             </span>

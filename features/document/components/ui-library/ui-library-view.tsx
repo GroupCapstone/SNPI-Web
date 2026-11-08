@@ -870,7 +870,7 @@ export function UiLibraryView() {
                                   <h2
                                     className={cn(
                                       'font-sans text-xl font-black transition-colors sm:text-2xl',
-                                      isActive ? 'text-[#0056FF]' : 'text-[#0A1A4A]',
+                                      isActive ? 'text-[#0056FF]' : 'text-[#020617]',
                                     )}
                                   >
                                     {comp.name}
@@ -918,7 +918,7 @@ export function UiLibraryView() {
                                         `npx snpi-ui@latest add ${comp.id}`,
                                       )
                                     }
-                                    className="ml-1 cursor-pointer text-[#0A1A4A]/60 transition-colors hover:text-[#0056FF]"
+                                    className="ml-1 cursor-pointer text-[#020617]/60 transition-colors hover:text-[#0056FF]"
                                     aria-label={`Copy install command for ${comp.name}`}
                                   >
                                     {copiedInstallId === comp.id ? (
@@ -954,7 +954,7 @@ export function UiLibraryView() {
                   <span className="font-mono text-[10px] font-bold text-[#0056FF] uppercase">
                     Authoritative Design Hub
                   </span>
-                  <h3 className="font-sans text-base font-bold text-[#0A1A4A]">
+                  <h3 className="font-sans text-base font-bold text-[#020617]">
                     Brand Blueprint &amp; Design Standards
                   </h3>
                   <p className="max-w-xl font-sans text-xs leading-relaxed text-slate-600 sm:text-sm">
@@ -1054,19 +1054,6 @@ function renderFeedComponentDemo(
     case 'chip':
       return (
         <div className="w-full max-w-2xl rounded-2xl border border-[#CAD3F5] bg-white p-5 shadow-xs sm:p-6">
-          <div className="mb-4 flex items-center justify-between border-b border-[#CAD3F5]/60 pb-3">
-            <div className="flex items-center gap-2">
-              <span className="font-sans text-xs font-bold text-[#0A1A4A]">
-                Interactive Filter Chips
-              </span>
-              <span className="rounded border border-[#CAD3F5] bg-[#EFF5FF] px-2 py-0.5 font-mono text-[10px] font-bold text-[#0056FF]">
-                Multi-Select
-              </span>
-            </div>
-            <span className="font-mono text-[10px] font-bold text-slate-500">
-              {state.selectedChips.length} Selected
-            </span>
-          </div>
           <div className="flex w-full flex-wrap items-center justify-center gap-2 py-2">
             {[
               'All Disciplines',
@@ -1109,17 +1096,6 @@ function renderFeedComponentDemo(
     case 'switch':
       return (
         <div className="w-full max-w-md space-y-4 rounded-2xl border border-[#CAD3F5] bg-white p-5 shadow-xs sm:p-6">
-          <div className="flex items-center justify-between border-b border-[#CAD3F5]/60 pb-3">
-            <div className="flex items-center gap-2">
-              <span className="font-sans text-xs font-bold text-[#0A1A4A]">Telemetry Switches</span>
-              <span className="rounded border border-[#CAD3F5] bg-[#EFF5FF] px-2 py-0.5 font-mono text-[10px] font-bold text-[#0056FF]">
-                Stateful
-              </span>
-            </div>
-            <span className="font-mono text-[10px] font-bold text-emerald-600 uppercase">
-              Live Synced
-            </span>
-          </div>
           <div className="space-y-3 font-sans">
             {[
               {
@@ -1139,7 +1115,7 @@ function renderFeedComponentDemo(
                 key={item.id}
                 className="flex items-center justify-between rounded-xl border border-slate-200 bg-slate-50/70 p-3.5 transition-all hover:border-[#0056FF]"
               >
-                <span className="text-xs font-bold text-[#0A1A4A]">{item.title}</span>
+                <span className="text-xs font-bold text-[#020617]">{item.title}</span>
                 <LibrarySwitch checked={item.checked} onCheckedChange={item.setter} />
               </div>
             ))}
@@ -1191,13 +1167,10 @@ function renderFeedComponentDemo(
             <div className="flex items-center justify-between border-b border-[#CAD3F5]/60 pb-3">
               <div className="flex items-center gap-2">
                 <Building2 className="size-4.5 shrink-0 stroke-[2] text-[#020617]" />
-                <h4 className="font-sans text-xs font-bold text-[#0A1A4A] sm:text-sm">
+                <h4 className="font-sans text-xs font-bold text-[#020617] sm:text-sm">
                   Campus Branch Selector
                 </h4>
               </div>
-              <span className="rounded-md border border-[#CAD3F5] bg-[#EFF5FF] px-2 py-0.5 font-mono text-[10px] font-bold text-[#0056FF]">
-                Searchable Dropdown
-              </span>
             </div>
 
             {/* Clean Dropdown Component (Focused, Zero Clutter) */}
@@ -1211,11 +1184,11 @@ function renderFeedComponentDemo(
             {/* Compact Selection Status Pill */}
             <div className="flex items-center justify-between rounded-xl border border-[#CAD3F5] bg-[#EFF5FF]/40 px-3.5 py-2.5 font-sans text-xs">
               <div className="flex items-center gap-2">
-                <span className="font-bold text-[#0A1A4A]">Selected:</span>
+                <span className="font-bold text-[#020617]">Selected:</span>
                 <span className="rounded border border-[#CAD3F5] bg-[#E3E7FC] px-1.5 py-0.5 font-mono text-[10px] font-bold text-[#0056FF]">
                   {selectedCampus.badge}
                 </span>
-                <span className="font-medium text-[#0A1A4A]">{selectedCampus.label}</span>
+                <span className="font-medium text-[#020617]">{selectedCampus.label}</span>
               </div>
               <span className="font-mono text-[10px] font-bold text-emerald-600">[ACTIVE]</span>
             </div>

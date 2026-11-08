@@ -159,7 +159,7 @@ export function LibraryDropdown({
       {/* Optional Top Label */}
       {label && (
         <div className="mb-1.5 flex items-center justify-between">
-          <label className="font-sans text-xs font-semibold text-[#0A1A4A]">{label}</label>
+          <label className="font-sans text-xs font-semibold text-[#020617]">{label}</label>
         </div>
       )}
 
@@ -193,7 +193,7 @@ export function LibraryDropdown({
             <span
               className={cn(
                 'truncate font-sans text-xs font-bold sm:text-sm',
-                selectedOption ? 'text-[#0A1A4A]' : 'font-normal text-slate-400',
+                selectedOption ? 'text-[#020617]' : 'font-normal text-slate-400',
               )}
             >
               {selectedOption ? selectedOption.label : placeholder}
@@ -257,7 +257,7 @@ export function LibraryDropdown({
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder={searchPlaceholder}
-                    className="h-8 w-full rounded-[4px] border border-[#CAD3F5] bg-white pr-7 pl-8 font-sans text-xs font-medium text-[#0A1A4A] placeholder-slate-400 transition-colors focus:border-[#0056FF] focus:outline-none"
+                    className="h-8 w-full rounded-[4px] border border-[#CAD3F5] bg-white pr-7 pl-8 font-sans text-xs font-medium text-[#020617] placeholder-slate-400 transition-colors focus:border-[#0056FF] focus:outline-none"
                   />
                   {searchQuery && (
                     <button
@@ -338,7 +338,7 @@ export function LibraryDropdown({
                           <span
                             className={cn(
                               'truncate font-sans text-xs font-bold sm:text-sm',
-                              isSelected ? 'text-[#0056FF]' : 'text-[#0A1A4A]',
+                              isSelected ? 'text-[#0056FF]' : 'text-[#020617]',
                             )}
                           >
                             {option.label}

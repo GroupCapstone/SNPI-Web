@@ -308,7 +308,7 @@ export function DesignSystemHomeView() {
           <div className="space-y-4 p-4 lg:p-5">
             {/* Header Identity: Brand Title */}
             <div className="flex items-center justify-between border-b border-slate-100 pb-2">
-              <span className="font-sans text-sm font-extrabold tracking-tight text-[#0A1A4A]">
+              <span className="font-sans text-sm font-extrabold tracking-tight text-[#020617]">
                 SNPI System
               </span>
             </div>
@@ -322,7 +322,7 @@ export function DesignSystemHomeView() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search design manual..."
-                className="h-9.5 w-full rounded-xl border border-[#CAD3F5] bg-[#F8FAFC] py-2 pr-12 pl-9 font-sans text-xs font-medium text-[#0A1A4A] shadow-2xs transition-all placeholder:font-normal placeholder:text-slate-400 hover:border-slate-300 hover:bg-white focus:border-[#0056FF] focus:bg-white focus:shadow-xs focus:ring-2 focus:ring-[#0056FF]/15 focus:outline-none focus-visible:outline-none"
+                className="h-9.5 w-full rounded-xl border border-[#CAD3F5] bg-[#F8FAFC] py-2 pr-12 pl-9 font-sans text-xs font-medium text-[#020617] shadow-2xs transition-all placeholder:font-normal placeholder:text-slate-400 hover:border-slate-300 hover:bg-white focus:border-[#0056FF] focus:bg-white focus:shadow-xs focus:ring-2 focus:ring-[#0056FF]/15 focus:outline-none focus-visible:outline-none"
                 style={{ outline: 'none' }}
               />
               {searchQuery ? (
@@ -386,8 +386,8 @@ export function DesignSystemHomeView() {
                       className={cn(
                         'group flex w-full cursor-pointer items-center justify-between rounded-lg px-2.5 py-2 text-left font-sans text-xs font-bold transition-all',
                         isSelected
-                          ? 'bg-[#EFF5FF] text-[#0A1A4A]'
-                          : 'text-[#0A1A4A] hover:bg-slate-100/70',
+                          ? 'bg-[#EFF5FF] text-[#020617]'
+                          : 'text-[#020617] hover:bg-slate-100/70',
                       )}
                       title={item.label}
                     >
@@ -422,7 +422,7 @@ export function DesignSystemHomeView() {
                                 'group flex w-full cursor-pointer items-start justify-between gap-1.5 rounded-md px-2 py-1.5 text-left font-sans text-xs transition-colors',
                                 isChildSelected
                                   ? 'bg-[#EFF5FF] font-bold text-[#0056FF]'
-                                  : 'text-slate-600 hover:bg-slate-100/60 hover:text-[#0A1A4A]',
+                                  : 'text-slate-600 hover:bg-slate-100/60 hover:text-[#020617]',
                               )}
                             >
                               <div className="flex min-w-0 flex-1 items-start gap-2">
@@ -476,7 +476,7 @@ export function DesignSystemHomeView() {
               {/* Section Header Title */}
               <div className="flex items-center gap-3 border-b border-slate-100 pb-4">
                 <ShieldKey className="size-6 shrink-0 stroke-[2] text-[#020617]" />
-                <h1 className="font-sans text-2xl font-black tracking-tight text-[#0A1A4A] sm:text-3xl">
+                <h1 className="font-sans text-2xl font-black tracking-tight text-[#020617] sm:text-3xl">
                   Brand Blueprint &amp; Assets
                 </h1>
               </div>
@@ -498,7 +498,7 @@ export function DesignSystemHomeView() {
               <div className="space-y-1 border-b border-slate-100 pb-4">
                 <div className="flex items-center gap-3">
                   <Sliders className="size-6 shrink-0 stroke-[2] text-[#020617]" />
-                  <h2 className="font-sans text-2xl font-black tracking-tight text-[#0A1A4A] sm:text-3xl">
+                  <h2 className="font-sans text-2xl font-black tracking-tight text-[#020617] sm:text-3xl">
                     Color Ramps &amp; Semantic Tokens
                   </h2>
                 </div>

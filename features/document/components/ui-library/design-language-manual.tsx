@@ -52,7 +52,7 @@ export function DesignLanguageManual() {
             <span>DESIGN LANGUAGE MANUAL &middot; PHASE 1 OF 4</span>
           </div>
 
-          <h2 className="font-sans text-2xl font-black tracking-tight text-[#0A1A4A] sm:text-3xl">
+          <h2 className="font-sans text-2xl font-black tracking-tight text-[#020617] sm:text-3xl">
             Design Language (5/10 Checks)
           </h2>
 
@@ -67,7 +67,7 @@ export function DesignLanguageManual() {
         <div className="grid max-w-xl grid-cols-1 gap-3 font-mono text-xs sm:grid-cols-2">
           <div className="rounded-2xl border border-emerald-300 bg-white p-3.5 shadow-2xs">
             <div className="mb-1.5 flex items-center justify-between">
-              <span className="font-sans font-bold text-[#0A1A4A]">Brand Invariants</span>
+              <span className="font-sans font-bold text-[#020617]">Brand Invariants</span>
               <span className="py-0.2 rounded-md border border-emerald-300 bg-emerald-50 px-1.5 text-[10px] font-bold text-emerald-700">
                 5/5 Completed
               </span>
@@ -82,7 +82,7 @@ export function DesignLanguageManual() {
 
           <div className="rounded-2xl border border-[#CAD3F5] bg-white p-3.5 shadow-2xs">
             <div className="mb-1.5 flex items-center justify-between">
-              <span className="font-sans font-bold text-[#0A1A4A]">Design Guidelines</span>
+              <span className="font-sans font-bold text-[#020617]">Design Guidelines</span>
               <span className="py-0.2 rounded-md border border-blue-200 bg-[#EFF5FF] px-1.5 text-[10px] font-bold text-[#0056FF]">
                 0/5 Queued
               </span>
@@ -107,7 +107,7 @@ export function DesignLanguageManual() {
               <span className="flex size-7 items-center justify-center rounded-lg bg-emerald-50 text-emerald-600">
                 <Check className="size-4 stroke-[3]" />
               </span>
-              <h3 className="font-sans text-xl font-black tracking-tight text-[#0A1A4A] sm:text-2xl">
+              <h3 className="font-sans text-xl font-black tracking-tight text-[#020617] sm:text-2xl">
                 Brand
               </h3>
               <span className="rounded-md border border-emerald-300 bg-emerald-50 px-2 py-0.5 font-mono text-[11px] font-bold text-emerald-700">
@@ -136,7 +136,7 @@ export function DesignLanguageManual() {
                 Active
               </span>
             </div>
-            <h4 className="font-sans text-base font-bold text-[#0A1A4A]">Institutional Vision</h4>
+            <h4 className="font-sans text-base font-bold text-[#020617]">Institutional Vision</h4>
             <p className="font-sans text-xs leading-relaxed text-slate-600">
               Why you exist, what your values are, and how they&apos;ll help guide the future of
               your product.
@@ -160,12 +160,12 @@ export function DesignLanguageManual() {
                 5 Tenets
               </span>
             </div>
-            <h4 className="font-sans text-base font-bold text-[#0A1A4A]">Design Principles</h4>
+            <h4 className="font-sans text-base font-bold text-[#020617]">Design Principles</h4>
             <p className="font-sans text-xs leading-relaxed text-slate-600">
               The considerations that guide the basis of your practice. They outline how you
               approach design philosophically and help with everyday decisions.
             </p>
-            <ul className="space-y-1 font-mono text-[11px] text-[#0A1A4A]">
+            <ul className="space-y-1 font-mono text-[11px] text-[#020617]">
               <li>&bull; Purposeful Speed &amp; High Density</li>
               <li>&bull; Zero-Emoji Enterprise Sobriety</li>
               <li>&bull; Liquid Glass Elevation &amp; Hierarchy</li>
@@ -186,7 +186,7 @@ export function DesignLanguageManual() {
                 3 Pillars
               </span>
             </div>
-            <h4 className="font-sans text-base font-bold text-[#0A1A4A]">Tone of Voice</h4>
+            <h4 className="font-sans text-base font-bold text-[#020617]">Tone of Voice</h4>
             <p className="font-sans text-xs leading-relaxed text-slate-600">
               A clear tone of voice defines how you speak to your audience at every moment of their
               journey, helping them get wherever they want to go.
@@ -211,7 +211,7 @@ export function DesignLanguageManual() {
                 Standard
               </span>
             </div>
-            <h4 className="font-sans text-base font-bold text-[#0A1A4A]">System Terminology</h4>
+            <h4 className="font-sans text-base font-bold text-[#020617]">System Terminology</h4>
             <p className="font-sans text-xs leading-relaxed text-slate-600">
               Create the standard terms and phrases that need to be kept the same throughout the
               user experience, speeding up the design process and unifying your voice.
@@ -234,7 +234,7 @@ export function DesignLanguageManual() {
                 Unified
               </span>
             </div>
-            <h4 className="font-sans text-base font-bold text-[#0A1A4A]">Brand Assets</h4>
+            <h4 className="font-sans text-base font-bold text-[#020617]">Brand Assets</h4>
             <p className="font-sans text-xs leading-relaxed text-slate-600">
               Using a consistent set of brand assets aligns the user experience across your product
               and marketing campaigns. These assets include your logo, fonts, icons, illustrations,
@@ -268,7 +268,7 @@ export function DesignLanguageManual() {
               <span className="flex size-7 items-center justify-center rounded-lg bg-[#EFF5FF] text-[#0056FF]">
                 <Sliders className="size-4" />
               </span>
-              <h3 className="font-sans text-xl font-black tracking-tight text-[#0A1A4A] sm:text-2xl">
+              <h3 className="font-sans text-xl font-black tracking-tight text-[#020617] sm:text-2xl">
                 Guidelines
               </h3>
               <span className="rounded-md border border-[#0056FF] bg-[#EFF5FF] px-2 py-0.5 font-mono text-[11px] font-bold text-[#0056FF]">
@@ -296,7 +296,7 @@ export function DesignLanguageManual() {
                 0/1
               </span>
             </div>
-            <h4 className="font-sans text-base font-bold text-[#0A1A4A]">Accessibility</h4>
+            <h4 className="font-sans text-base font-bold text-[#020617]">Accessibility</h4>
             <p className="font-sans text-xs leading-relaxed text-slate-600">
               Guidelines for how you approach accessibility and how you leverage color, hierarchy,
               and assistive technologies to help your users.
@@ -319,7 +319,7 @@ export function DesignLanguageManual() {
                 0/1
               </span>
             </div>
-            <h4 className="font-sans text-base font-bold text-[#0A1A4A]">Writing Guidelines</h4>
+            <h4 className="font-sans text-base font-bold text-[#020617]">Writing Guidelines</h4>
             <p className="font-sans text-xs leading-relaxed text-slate-600">
               Every consistent experience needs watertight writing. Laying down the foundations for
               your house style early keeps everything in line with consistent grammar, style
@@ -343,7 +343,7 @@ export function DesignLanguageManual() {
                 0/1
               </span>
             </div>
-            <h4 className="font-sans text-base font-bold text-[#0A1A4A]">Microcopy Guidelines</h4>
+            <h4 className="font-sans text-base font-bold text-[#020617]">Microcopy Guidelines</h4>
             <p className="font-sans text-xs leading-relaxed text-slate-600">
               The standard way to write for the components in your design system. These take
               platform conventions and best practices for writing all into consideration.
@@ -366,7 +366,7 @@ export function DesignLanguageManual() {
                 0/1
               </span>
             </div>
-            <h4 className="font-sans text-base font-bold text-[#0A1A4A]">Terminology</h4>
+            <h4 className="font-sans text-base font-bold text-[#020617]">Terminology</h4>
             <p className="font-sans text-xs leading-relaxed text-slate-600">
               Create the standard terms and phrases that need to be kept the same throughout the
               user experience, speeding up the design process and unifying your voice.
@@ -389,7 +389,7 @@ export function DesignLanguageManual() {
                 0/1
               </span>
             </div>
-            <h4 className="font-sans text-base font-bold text-[#0A1A4A]">
+            <h4 className="font-sans text-base font-bold text-[#020617]">
               Internationalisation (Khmer &amp; English)
             </h4>
             <p className="font-sans text-xs leading-relaxed text-slate-600">
@@ -415,7 +415,7 @@ export function DesignLanguageManual() {
               <span className="flex size-7 items-center justify-center rounded-lg bg-[#EFF5FF] text-[#0056FF]">
                 <Layers className="size-4" />
               </span>
-              <h3 className="font-sans text-xl font-black tracking-tight text-[#0A1A4A] sm:text-2xl">
+              <h3 className="font-sans text-xl font-black tracking-tight text-[#020617] sm:text-2xl">
                 Foundations
               </h3>
               <span className="rounded-md border border-[#CAD3F5] bg-[#F8FAFC] px-2 py-0.5 font-mono text-[11px] font-bold text-slate-700">
@@ -444,7 +444,7 @@ export function DesignLanguageManual() {
                 0/4
               </span>
             </div>
-            <h4 className="font-sans text-base font-bold text-[#0A1A4A]">Color Tokens</h4>
+            <h4 className="font-sans text-base font-bold text-[#020617]">Color Tokens</h4>
             <p className="font-sans text-xs leading-relaxed text-slate-600">
               Not only an efficient way to showcase your brand but also an efficient way to
               communicate with your users. Color palettes created with purpose over aesthetics in
@@ -452,19 +452,19 @@ export function DesignLanguageManual() {
             </p>
             <ul className="space-y-1 font-mono text-[11px] text-slate-600">
               <li>
-                &bull; <strong className="text-[#0A1A4A]">Accessibility:</strong> AA standard
+                &bull; <strong className="text-[#020617]">Accessibility:</strong> AA standard
                 contrast (&ge;4.5:1)
               </li>
               <li>
-                &bull; <strong className="text-[#0A1A4A]">Semantic colors:</strong> Disabled,
+                &bull; <strong className="text-[#020617]">Semantic colors:</strong> Disabled,
                 backgrounds, actions
               </li>
               <li>
-                &bull; <strong className="text-[#0A1A4A]">Dark mode:</strong> Tone 98 light / Tone 6
+                &bull; <strong className="text-[#020617]">Dark mode:</strong> Tone 98 light / Tone 6
                 dark
               </li>
               <li>
-                &bull; <strong className="text-[#0A1A4A]">Guidelines:</strong> Purpose over
+                &bull; <strong className="text-[#020617]">Guidelines:</strong> Purpose over
                 aesthetics
               </li>
             </ul>
@@ -483,26 +483,26 @@ export function DesignLanguageManual() {
                 0/4
               </span>
             </div>
-            <h4 className="font-sans text-base font-bold text-[#0A1A4A]">Layout &amp; Grid</h4>
+            <h4 className="font-sans text-base font-bold text-[#020617]">Layout &amp; Grid</h4>
             <p className="font-sans text-xs leading-relaxed text-slate-600">
               A well-thought-out layout goes a long way. Consistent use of a grid and spacing makes
               it easier for your users to scan the user interface and grasp the content.
             </p>
             <ul className="space-y-1 font-mono text-[11px] text-slate-600">
               <li>
-                &bull; <strong className="text-[#0A1A4A]">Units:</strong> 4, 8, 12, 16 4-point
+                &bull; <strong className="text-[#020617]">Units:</strong> 4, 8, 12, 16 4-point
                 increments
               </li>
               <li>
-                &bull; <strong className="text-[#0A1A4A]">Grid:</strong> Mobile, tablet, desktop
+                &bull; <strong className="text-[#020617]">Grid:</strong> Mobile, tablet, desktop
                 columns
               </li>
               <li>
-                &bull; <strong className="text-[#0A1A4A]">Breakpoints:</strong> Compact, Medium,
+                &bull; <strong className="text-[#020617]">Breakpoints:</strong> Compact, Medium,
                 Expanded, Large
               </li>
               <li>
-                &bull; <strong className="text-[#0A1A4A]">Spacing:</strong> Independent rhythm
+                &bull; <strong className="text-[#020617]">Spacing:</strong> Independent rhythm
                 methods
               </li>
             </ul>
@@ -521,30 +521,30 @@ export function DesignLanguageManual() {
                 0/5
               </span>
             </div>
-            <h4 className="font-sans text-base font-bold text-[#0A1A4A]">Typography Scale</h4>
+            <h4 className="font-sans text-base font-bold text-[#020617]">Typography Scale</h4>
             <p className="font-sans text-xs leading-relaxed text-slate-600">
               Typography is one of the main ways you surface content in products. A clear hierarchy
               and contrasting styles in your typography scale make things easier to read.
             </p>
             <ul className="space-y-1 font-mono text-[11px] text-slate-600">
               <li>
-                &bull; <strong className="text-[#0A1A4A]">Responsiveness:</strong> Adapts to
+                &bull; <strong className="text-[#020617]">Responsiveness:</strong> Adapts to
                 viewport size
               </li>
               <li>
-                &bull; <strong className="text-[#0A1A4A]">Grid relation:</strong> Matches 8dp grid
+                &bull; <strong className="text-[#020617]">Grid relation:</strong> Matches 8dp grid
                 &amp; leading
               </li>
               <li>
-                &bull; <strong className="text-[#0A1A4A]">Readability:</strong> Tracking, leading,
+                &bull; <strong className="text-[#020617]">Readability:</strong> Tracking, leading,
                 measure
               </li>
               <li>
-                &bull; <strong className="text-[#0A1A4A]">Performance:</strong> Fast loading &amp;
+                &bull; <strong className="text-[#020617]">Performance:</strong> Fast loading &amp;
                 system fallbacks
               </li>
               <li>
-                &bull; <strong className="text-[#0A1A4A]">Guidelines:</strong> Pairings and scale
+                &bull; <strong className="text-[#020617]">Guidelines:</strong> Pairings and scale
                 rules
               </li>
             </ul>
@@ -563,7 +563,7 @@ export function DesignLanguageManual() {
                 0/3
               </span>
             </div>
-            <h4 className="font-sans text-base font-bold text-[#0A1A4A]">
+            <h4 className="font-sans text-base font-bold text-[#020617]">
               Elevation &amp; Z-Index
             </h4>
             <p className="font-sans text-xs leading-relaxed text-slate-600">
@@ -572,14 +572,14 @@ export function DesignLanguageManual() {
             </p>
             <ul className="space-y-1 font-mono text-[11px] text-slate-600">
               <li>
-                &bull; <strong className="text-[#0A1A4A]">Shadows:</strong> 3 to 4 elevation levels
+                &bull; <strong className="text-[#020617]">Shadows:</strong> 3 to 4 elevation levels
               </li>
               <li>
-                &bull; <strong className="text-[#0A1A4A]">Background colors:</strong> Linked surface
+                &bull; <strong className="text-[#020617]">Background colors:</strong> Linked surface
                 tones
               </li>
               <li>
-                &bull; <strong className="text-[#0A1A4A]">Z-index:</strong> Priority rendering scale
+                &bull; <strong className="text-[#020617]">Z-index:</strong> Priority rendering scale
               </li>
             </ul>
           </div>
@@ -597,22 +597,22 @@ export function DesignLanguageManual() {
                 0/3
               </span>
             </div>
-            <h4 className="font-sans text-base font-bold text-[#0A1A4A]">Motion &amp; Physics</h4>
+            <h4 className="font-sans text-base font-bold text-[#020617]">Motion &amp; Physics</h4>
             <p className="font-sans text-xs leading-relaxed text-slate-600">
               Shared motion values provide a more coherent user experience and better alignment with
               the brand.
             </p>
             <ul className="space-y-1 font-mono text-[11px] text-slate-600">
               <li>
-                &bull; <strong className="text-[#0A1A4A]">Easing:</strong> Standard, accelerated,
+                &bull; <strong className="text-[#020617]">Easing:</strong> Standard, accelerated,
                 decelerated
               </li>
               <li>
-                &bull; <strong className="text-[#0A1A4A]">Duration:</strong> Micro (150ms),
+                &bull; <strong className="text-[#020617]">Duration:</strong> Micro (150ms),
                 Component (250ms)
               </li>
               <li>
-                &bull; <strong className="text-[#0A1A4A]">Accessibility:</strong> Honors
+                &bull; <strong className="text-[#020617]">Accessibility:</strong> Honors
                 prefers-reduced-motion
               </li>
             </ul>
@@ -631,37 +631,37 @@ export function DesignLanguageManual() {
                 0/7
               </span>
             </div>
-            <h4 className="font-sans text-base font-bold text-[#0A1A4A]">Iconography System</h4>
+            <h4 className="font-sans text-base font-bold text-[#020617]">Iconography System</h4>
             <p className="font-sans text-xs leading-relaxed text-slate-600">
               Icons are symbols that represent functionality or content, understood at a glance when
               used meaningfully and consistently.
             </p>
             <ul className="space-y-1 font-mono text-[11px] text-slate-600">
               <li>
-                &bull; <strong className="text-[#0A1A4A]">Accessibility:</strong> Default aria-label
+                &bull; <strong className="text-[#020617]">Accessibility:</strong> Default aria-label
                 / hidden
               </li>
               <li>
-                &bull; <strong className="text-[#0A1A4A]">Style:</strong> Consistent 24dp outlined
+                &bull; <strong className="text-[#020617]">Style:</strong> Consistent 24dp outlined
                 stroke
               </li>
               <li>
-                &bull; <strong className="text-[#0A1A4A]">Naming:</strong> Purpose-based
+                &bull; <strong className="text-[#020617]">Naming:</strong> Purpose-based
                 (&apos;play&apos;, not &apos;triangle&apos;)
               </li>
               <li>
-                &bull; <strong className="text-[#0A1A4A]">Grid relation:</strong> 24x24dp bounding
+                &bull; <strong className="text-[#020617]">Grid relation:</strong> 24x24dp bounding
                 box on grid
               </li>
               <li>
-                &bull; <strong className="text-[#0A1A4A]">Keywords:</strong> Discoverability tagging
+                &bull; <strong className="text-[#020617]">Keywords:</strong> Discoverability tagging
               </li>
               <li>
-                &bull; <strong className="text-[#0A1A4A]">Reserved icons:</strong> Common system
+                &bull; <strong className="text-[#020617]">Reserved icons:</strong> Common system
                 actions
               </li>
               <li>
-                &bull; <strong className="text-[#0A1A4A]">Guidelines:</strong> When &amp; how to use
+                &bull; <strong className="text-[#020617]">Guidelines:</strong> When &amp; how to use
               </li>
             </ul>
           </div>

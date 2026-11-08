@@ -149,7 +149,7 @@ const POKE_REPLIES = [
  * - Card 7 (Right Column): Interactive Kid-Friendly Mascot Lab with "Ask Kid" questions, poke physics, and reactive eyes.
  *
  * Enforces strict zero-emoji policy and SNPI primary brand tokens:
- * #0056FF (Royal Blue), #2277FF (Azure Blue), #E3E7FC (Soft Lavender), #FFFFFF (White), #EFF5FF (Ice Tint), #0A1A4A (Deep Navy).
+ * #0056FF (Royal Blue), #2277FF (Azure Blue), #E3E7FC (Soft Lavender), #FFFFFF (White), #EFF5FF (Ice Tint), #020617 (Deep Navy).
  */
 export function BentoHeroGrid({
   className,
@@ -257,7 +257,7 @@ export function BentoHeroGrid({
       selectedElevation === 'raised'
         ? 'bg-[#0056FF] text-white shadow-md'
         : selectedElevation === 'bordered'
-          ? 'border border-[#CAD3F5] bg-white text-[#0A1A4A]'
+          ? 'border border-[#CAD3F5] bg-white text-[#020617]'
           : 'bg-[#EFF5FF] text-[#0056FF]'
     }`;
     navigator.clipboard?.writeText(snippet);
@@ -284,7 +284,7 @@ export function BentoHeroGrid({
               <span className="font-mono text-[10px] font-bold tracking-wider text-[#0056FF] uppercase">
                 SNPI Brand Companions
               </span>
-              <span className="rounded-full border border-[#CAD3F5] bg-[#EFF5FF] px-2 py-0.5 text-[9px] font-bold text-[#0A1A4A]">
+              <span className="rounded-full border border-[#CAD3F5] bg-[#EFF5FF] px-2 py-0.5 text-[9px] font-bold text-[#020617]">
                 Vector Primitives
               </span>
             </div>
@@ -333,13 +333,13 @@ export function BentoHeroGrid({
                     stroke="#EAB308"
                     strokeWidth="4"
                   />
-                  <circle cx="108" cy="140" r="11" fill="#0A1A4A" />
+                  <circle cx="108" cy="140" r="11" fill="#020617" />
                   <circle cx="112" cy="136" r="4" fill="#FFFFFF" />
-                  <circle cx="168" cy="140" r="11" fill="#0A1A4A" />
+                  <circle cx="168" cy="140" r="11" fill="#020617" />
                   <circle cx="172" cy="136" r="4" fill="#FFFFFF" />
                   <path
                     d="M128 174 Q138 184 148 174"
-                    stroke="#0A1A4A"
+                    stroke="#020617"
                     strokeWidth="6"
                     strokeLinecap="round"
                     fill="none"
@@ -465,8 +465,8 @@ export function BentoHeroGrid({
                             : node.key === 'sr'
                               ? 'border-white bg-[#10B981] text-white'
                               : node.key === 'bt'
-                                ? 'border-white bg-[#FACC15] text-[#0A1A4A]'
-                                : 'border-[#CAD3F5] bg-white text-[#0A1A4A]',
+                                ? 'border-white bg-[#FACC15] text-[#020617]'
+                                : 'border-[#CAD3F5] bg-white text-[#020617]',
                         )}
                       >
                         {node.code.slice(0, 2)}
@@ -480,7 +480,7 @@ export function BentoHeroGrid({
             {/* Bottom Glass Telemetry Strip */}
             <div className="relative z-10 flex items-center justify-between rounded-xl border border-[#CAD3F5] bg-[#EFF5FF]/90 px-3 py-1.5 backdrop-blur-xs">
               <div className="flex flex-col">
-                <span className="text-[11px] font-bold text-[#0A1A4A]">
+                <span className="text-[11px] font-bold text-[#020617]">
                   {activeNode.name} ({activeNode.code})
                 </span>
                 <span className="text-[9px] font-medium text-slate-500">
@@ -500,7 +500,7 @@ export function BentoHeroGrid({
             <div className="mb-3 flex items-center justify-between">
               <div className="flex items-center gap-1.5">
                 <Sliders className="size-4 text-[#0056FF]" />
-                <span className="font-sans text-xs font-bold text-[#0A1A4A]">
+                <span className="font-sans text-xs font-bold text-[#020617]">
                   Design Token Laboratory
                 </span>
               </div>
@@ -522,7 +522,7 @@ export function BentoHeroGrid({
                       'rounded-md px-1.5 py-1 text-center font-mono text-[10px] font-bold transition-all',
                       selectedRadius === rad
                         ? 'border border-[#0056FF] bg-[#0056FF] text-white'
-                        : 'border border-[#CAD3F5] bg-[#EFF5FF] text-[#0A1A4A]',
+                        : 'border border-[#CAD3F5] bg-[#EFF5FF] text-[#020617]',
                     )}
                   >
                     {rad === '9999px' ? 'Pill' : rad}
@@ -544,7 +544,7 @@ export function BentoHeroGrid({
                       'rounded-md px-1.5 py-1 text-center text-[10px] font-bold capitalize transition-all',
                       selectedElevation === elv
                         ? 'border border-[#0056FF] bg-[#0056FF] text-white'
-                        : 'border border-[#CAD3F5] bg-[#EFF5FF] text-[#0A1A4A]',
+                        : 'border border-[#CAD3F5] bg-[#EFF5FF] text-[#020617]',
                     )}
                   >
                     {elv}
@@ -573,7 +573,7 @@ export function BentoHeroGrid({
                   selectedElevation === 'raised' &&
                     'border border-transparent bg-[#0056FF] text-white shadow-sm',
                   selectedElevation === 'bordered' &&
-                    'border border-[#CAD3F5] bg-white text-[#0A1A4A]',
+                    'border border-[#CAD3F5] bg-white text-[#020617]',
                   selectedElevation === 'flat' &&
                     'border border-transparent bg-[#E3E7FC] text-[#0056FF]',
                 )}
@@ -658,7 +658,7 @@ export function BentoHeroGrid({
                   </clipPath>
                 </defs>
 
-                <rect width="282" height="281" fill="#0A1A4A" clipPath="url(#snpi-flower-mask)" />
+                <rect width="282" height="281" fill="#020617" clipPath="url(#snpi-flower-mask)" />
 
                 {/* Gyroscopic Harmonic Rings */}
                 <g clipPath="url(#snpi-flower-mask)">
@@ -747,27 +747,27 @@ export function BentoHeroGrid({
           {/* CARD 6: Sunny Yellow Bulletin (From Reference Image: ACADEMIC DATES Palette) */}
           <div
             onClick={onBulletinClick}
-            className="relative flex h-44 cursor-pointer flex-col justify-between overflow-hidden rounded-[22px] bg-gradient-to-br from-[#FACC15] to-[#F59E0B] p-5 text-[#0A1A4A] shadow-sm sm:h-48"
+            className="relative flex h-44 cursor-pointer flex-col justify-between overflow-hidden rounded-[22px] bg-gradient-to-br from-[#FACC15] to-[#F59E0B] p-5 text-[#020617] shadow-sm sm:h-48"
           >
             <div>
               <div className="flex items-center justify-between">
-                <h3 className="font-sans text-2xl font-black tracking-tight text-[#0A1A4A]">
+                <h3 className="font-sans text-2xl font-black tracking-tight text-[#020617]">
                   Bulletin
                 </h3>
-                <span className="rounded-full border border-[#0A1A4A]/20 bg-white/70 px-2.5 py-0.5 font-mono text-[9px] font-black text-[#0A1A4A]">
+                <span className="rounded-full border border-[#020617]/20 bg-white/70 px-2.5 py-0.5 font-mono text-[9px] font-black text-[#020617]">
                   Release v2.8
                 </span>
               </div>
-              <p className="mt-2 font-sans text-xs font-black text-[#0A1A4A]">
+              <p className="mt-2 font-sans text-xs font-black text-[#020617]">
                 SNPI Autonomous Campus Engine
               </p>
-              <p className="mt-1 max-w-[220px] text-[11px] leading-relaxed font-semibold text-[#0A1A4A]/80 sm:max-w-[240px]">
+              <p className="mt-1 max-w-[220px] text-[11px] leading-relaxed font-semibold text-[#020617]/80 sm:max-w-[240px]">
                 Next.js 15 App Router Edge proxying directly to Express 5 backend services.
               </p>
             </div>
 
             {/* Bottom-Right Line-Art Speech Bubble with Pencil Icon */}
-            <div className="pointer-events-none absolute -right-2 -bottom-2 p-3 text-[#0A1A4A]/20">
+            <div className="pointer-events-none absolute -right-2 -bottom-2 p-3 text-[#020617]/20">
               <svg
                 width="64"
                 height="64"
@@ -802,7 +802,7 @@ export function BentoHeroGrid({
                   <Sparkles className="size-5" />
                 </div>
                 <div>
-                  <h2 className="font-sans text-sm font-black tracking-tight text-[#0A1A4A] sm:text-base">
+                  <h2 className="font-sans text-sm font-black tracking-tight text-[#020617] sm:text-base">
                     Snappy Companion
                   </h2>
                   <p className="text-[10px] font-semibold text-[#0056FF]">Campus AI Mascot</p>
@@ -828,7 +828,7 @@ export function BentoHeroGrid({
                       'rounded-full px-2 py-0.5 text-[9px] font-bold capitalize transition-all select-none',
                       activeMood === mood
                         ? 'bg-[#0056FF] text-white shadow-xs'
-                        : 'text-[#0A1A4A] hover:bg-[#E3E7FC]/60',
+                        : 'text-[#020617] hover:bg-[#E3E7FC]/60',
                     )}
                   >
                     {mood}
@@ -839,7 +839,7 @@ export function BentoHeroGrid({
 
             {/* Happiness & Friendship Energy Meter (Mint Emerald from reference) */}
             <div className="mt-3 flex items-center justify-between rounded-xl border border-[#CAD3F5] bg-[#EFF5FF] px-2.5 py-1.5">
-              <div className="flex items-center gap-1.5 text-[10px] font-bold text-[#0A1A4A]">
+              <div className="flex items-center gap-1.5 text-[10px] font-bold text-[#020617]">
                 <Zap className="size-3.5 text-[#F59E0B]" />
                 <span>Friendship:</span>
                 <span className="font-black text-[#10B981]">{happinessLevel * 20}%</span>
@@ -867,7 +867,7 @@ export function BentoHeroGrid({
                     'flex-1 rounded-md py-1 text-center text-[10px] font-bold transition-all',
                     kidTab === 'actions'
                       ? 'bg-[#0056FF] text-white shadow-xs'
-                      : 'text-[#0A1A4A] hover:text-[#0056FF]',
+                      : 'text-[#020617] hover:text-[#0056FF]',
                   )}
                 >
                   Play Actions
@@ -879,7 +879,7 @@ export function BentoHeroGrid({
                     'flex-1 rounded-md py-1 text-center text-[10px] font-bold transition-all',
                     kidTab === 'questions'
                       ? 'bg-[#0056FF] text-white shadow-xs'
-                      : 'text-[#0A1A4A] hover:text-[#0056FF]',
+                      : 'text-[#020617] hover:text-[#0056FF]',
                   )}
                 >
                   Ask Questions
@@ -925,7 +925,7 @@ export function BentoHeroGrid({
                 transition={{ type: 'spring', stiffness: 350, damping: 25 }}
                 className="relative mx-auto w-full max-w-[300px] rounded-2xl border border-[#CAD3F5] bg-white px-3.5 py-2 text-center shadow-xs"
               >
-                <p className="text-xs leading-snug font-bold text-[#0A1A4A]">{speechText}</p>
+                <p className="text-xs leading-snug font-bold text-[#020617]">{speechText}</p>
                 {/* Downward bubble arrow tail */}
                 <div className="absolute -bottom-1.5 left-1/2 size-3 -translate-x-1/2 rotate-45 border-r border-b border-[#CAD3F5] bg-white" />
               </motion.div>
@@ -952,9 +952,9 @@ export function BentoHeroGrid({
                   repeat: antennaWobble ? 0 : Infinity,
                   ease: 'easeInOut',
                 }}
-                className="group relative z-10 flex size-7 cursor-pointer items-center justify-center rounded-full border-2 border-white bg-[#FACC15] text-[#0A1A4A] shadow-xs active:scale-90"
+                className="group relative z-10 flex size-7 cursor-pointer items-center justify-center rounded-full border-2 border-white bg-[#FACC15] text-[#020617] shadow-xs active:scale-90"
               >
-                <Star className="size-3.5 fill-[#0A1A4A] stroke-none" />
+                <Star className="size-3.5 fill-[#020617] stroke-none" />
               </motion.button>
               <div className="h-4 w-1 rounded-full bg-[#2277FF]" />
             </div>
@@ -1022,7 +1022,7 @@ export function BentoHeroGrid({
                     <div className="relative flex size-12 items-center justify-center rounded-full border border-[#CAD3F5] bg-white shadow-xs sm:size-14">
                       {activeMood === 'curious' && (
                         <div
-                          className="relative flex size-7 items-center justify-center rounded-full bg-[#0A1A4A] transition-transform duration-100 ease-out sm:size-8"
+                          className="relative flex size-7 items-center justify-center rounded-full bg-[#020617] transition-transform duration-100 ease-out sm:size-8"
                           style={{
                             transform: `translate(${eyeOffset.x}px, ${eyeOffset.y}px)`,
                           }}
@@ -1036,7 +1036,7 @@ export function BentoHeroGrid({
                         <svg viewBox="0 0 32 24" className="size-7 sm:size-8">
                           <path
                             d="M 4 18 Q 16 4 28 18"
-                            stroke="#0A1A4A"
+                            stroke="#020617"
                             strokeWidth="4.5"
                             strokeLinecap="round"
                             fill="none"
@@ -1052,7 +1052,7 @@ export function BentoHeroGrid({
                         <svg viewBox="0 0 32 24" className="size-7 sm:size-8">
                           <path
                             d="M 4 8 Q 16 20 28 8"
-                            stroke="#0A1A4A"
+                            stroke="#020617"
                             strokeWidth="4"
                             strokeLinecap="round"
                             fill="none"
@@ -1065,7 +1065,7 @@ export function BentoHeroGrid({
                     <div className="relative flex size-12 items-center justify-center rounded-full border border-[#CAD3F5] bg-white shadow-xs sm:size-14">
                       {activeMood === 'curious' && (
                         <div
-                          className="relative flex size-7 items-center justify-center rounded-full bg-[#0A1A4A] transition-transform duration-100 ease-out sm:size-8"
+                          className="relative flex size-7 items-center justify-center rounded-full bg-[#020617] transition-transform duration-100 ease-out sm:size-8"
                           style={{
                             transform: `translate(${eyeOffset.x}px, ${eyeOffset.y}px)`,
                           }}
@@ -1079,7 +1079,7 @@ export function BentoHeroGrid({
                         <svg viewBox="0 0 32 24" className="size-7 sm:size-8">
                           <path
                             d="M 4 18 Q 16 4 28 18"
-                            stroke="#0A1A4A"
+                            stroke="#020617"
                             strokeWidth="4.5"
                             strokeLinecap="round"
                             fill="none"
@@ -1095,7 +1095,7 @@ export function BentoHeroGrid({
                         <svg viewBox="0 0 32 24" className="size-7 sm:size-8">
                           <path
                             d="M 4 8 Q 16 20 28 8"
-                            stroke="#0A1A4A"
+                            stroke="#020617"
                             strokeWidth="4"
                             strokeLinecap="round"
                             fill="none"
@@ -1114,7 +1114,7 @@ export function BentoHeroGrid({
                     <div className="flex items-center justify-center">
                       {activeMood === 'joyful' || mascotAnim === 'tickle' ? (
                         <svg viewBox="0 0 32 18" className="h-3 w-7">
-                          <path d="M 4 4 Q 16 18 28 4 Z" fill="#0A1A4A" />
+                          <path d="M 4 4 Q 16 18 28 4 Z" fill="#020617" />
                           <path d="M 10 10 Q 16 16 22 10 Z" fill="#0056FF" />
                         </svg>
                       ) : activeMood === 'star' ? (
@@ -1126,7 +1126,7 @@ export function BentoHeroGrid({
                             y1="5"
                             x2="16"
                             y2="5"
-                            stroke="#0A1A4A"
+                            stroke="#020617"
                             strokeWidth="2.5"
                             strokeLinecap="round"
                           />
@@ -1135,7 +1135,7 @@ export function BentoHeroGrid({
                         <svg viewBox="0 0 28 14" className="h-2.5 w-6">
                           <path
                             d="M 4 4 Q 14 14 24 4"
-                            stroke="#0A1A4A"
+                            stroke="#020617"
                             strokeWidth="3"
                             strokeLinecap="round"
                             fill="none"

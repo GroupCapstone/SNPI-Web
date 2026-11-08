@@ -148,7 +148,7 @@ export function ContentCardDemo() {
         </div>
 
         {/* Title & Abstract */}
-        <h3 className="mt-3.5 font-sans text-base font-black text-[#0A1A4A] sm:text-lg">
+        <h3 className="mt-3.5 font-sans text-base font-black text-[#020617] sm:text-lg">
           {article.title}
         </h3>
         <p className="mt-2 font-sans text-xs leading-relaxed text-slate-600">{article.abstract}</p>
@@ -172,7 +172,7 @@ export function ContentCardDemo() {
               {article.initials}
             </div>
             <div>
-              <h4 className="font-sans text-xs font-bold text-[#0A1A4A]">{article.author}</h4>
+              <h4 className="font-sans text-xs font-bold text-[#020617]">{article.author}</h4>
               <p className="font-sans text-[11px] text-slate-500">{article.role}</p>
             </div>
           </div>
@@ -300,7 +300,7 @@ export function FolderDemo() {
       <div className="flex items-center justify-between rounded-xl border border-[#CAD3F5] bg-white p-3 shadow-2xs">
         <div className="flex items-center gap-2">
           <Folder className="size-4 text-[#0056FF]" />
-          <span className="font-sans text-xs font-bold text-[#0A1A4A]">
+          <span className="font-sans text-xs font-bold text-[#020617]">
             Tactile Document Folder
           </span>
         </div>
@@ -563,7 +563,7 @@ export function StepPlayerDemo() {
                 <span
                   className={cn(
                     'block truncate font-sans text-[11px] transition-colors',
-                    isCurrent && 'font-bold text-[#0A1A4A]',
+                    isCurrent && 'font-bold text-[#020617]',
                     isDone && 'font-medium text-[#0056FF]',
                     !isDone && !isCurrent && 'font-normal text-slate-400',
                   )}
@@ -582,7 +582,7 @@ export function StepPlayerDemo() {
           <span className="font-mono text-[10px] font-bold text-[#0056FF] uppercase">
             Active Workflow Phase
           </span>
-          <span className="rounded-[2px] border border-[#CAD3F5] bg-white px-1.5 py-0.5 font-mono text-[9px] font-bold text-[#0A1A4A]">
+          <span className="rounded-[2px] border border-[#CAD3F5] bg-white px-1.5 py-0.5 font-mono text-[9px] font-bold text-[#020617]">
             Phase 0{currentStep} / 0{steps.length}
           </span>
         </div>
@@ -595,7 +595,7 @@ export function StepPlayerDemo() {
             transition={{ duration: 0.18 }}
             className="mt-1.5"
           >
-            <h4 className="font-sans text-xs font-bold text-[#0A1A4A]">
+            <h4 className="font-sans text-xs font-bold text-[#020617]">
               {steps[currentStep - 1].title}
             </h4>
             <p className="mt-0.5 font-sans text-[11px] text-[#334155]">
@@ -615,7 +615,7 @@ export function StepPlayerDemo() {
             'cursor-pointer rounded-[4px] border px-3 py-1.5 font-sans text-xs font-semibold transition-colors select-none',
             currentStep === 1
               ? 'cursor-not-allowed border-slate-200 bg-slate-50 text-slate-300'
-              : 'border-[#CAD3F5] bg-white text-[#0A1A4A] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
+              : 'border-[#CAD3F5] bg-white text-[#020617] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
           )}
         >
           Previous
@@ -918,7 +918,7 @@ export function VoiceNoteDemo() {
             <Volume className="size-4 stroke-[2]" />
           </div>
           <div>
-            <h4 className="font-sans text-xs font-bold text-[#0A1A4A]">Voice Note</h4>
+            <h4 className="font-sans text-xs font-bold text-[#020617]">Voice Note</h4>
             <span className="font-mono text-[10px] text-slate-400">
               {formatTime(currentTime)} / {formatTime(duration)}
             </span>
@@ -1029,7 +1029,7 @@ export function FaqDemo() {
       {/* Search & Filter Header */}
       <div className="space-y-3 border-b border-slate-100 pb-4">
         <div className="flex items-center justify-between">
-          <h4 className="font-sans text-xs font-bold text-[#0A1A4A]">
+          <h4 className="font-sans text-xs font-bold text-[#020617]">
             Institutional Knowledge FAQ
           </h4>
           <span className="font-mono text-[10px] text-slate-400">
@@ -1097,7 +1097,7 @@ export function FaqDemo() {
                     <span className="rounded border border-slate-200/60 bg-slate-100 px-1.5 py-0.5 font-mono text-[9px] font-bold text-[#0056FF] uppercase">
                       {faq.category}
                     </span>
-                    <span className="font-sans text-xs font-bold text-[#0A1A4A]">{faq.q}</span>
+                    <span className="font-sans text-xs font-bold text-[#020617]">{faq.q}</span>
                   </div>
                   <ChevronDown
                     className={cn(

@@ -92,8 +92,8 @@ export const GeometricButton = React.forwardRef<HTMLButtonElement, GeometricButt
       },
       'soft-lavender': {
         button: isActive
-          ? 'border-0 bg-[#CAD3F5] text-[#0A1A4A] shadow-none'
-          : 'border-0 bg-[#E3E7FC] text-[#0A1A4A] hover:bg-[#D5DBF9]',
+          ? 'border-0 bg-[#CAD3F5] text-[#020617] shadow-none'
+          : 'border-0 bg-[#E3E7FC] text-[#020617] hover:bg-[#D5DBF9]',
       },
       white: {
         button: isActive
@@ -118,8 +118,8 @@ export const GeometricButton = React.forwardRef<HTMLButtonElement, GeometricButt
       },
       purple: {
         button: isActive
-          ? 'border-0 bg-[#CAD3F5] text-[#0A1A4A] shadow-none'
-          : 'border-0 bg-[#E3E7FC] text-[#0A1A4A] hover:bg-[#D5DBF9]',
+          ? 'border-0 bg-[#CAD3F5] text-[#020617] shadow-none'
+          : 'border-0 bg-[#E3E7FC] text-[#020617] hover:bg-[#D5DBF9]',
       },
       orange: {
         button: isActive

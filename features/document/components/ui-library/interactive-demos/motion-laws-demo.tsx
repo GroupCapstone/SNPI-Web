@@ -63,7 +63,7 @@ export function TwentyMotionLawsShowcase() {
               Standard Verified
             </span>
           </div>
-          <h4 className="font-sans text-lg font-extrabold text-[#0A1A4A]">
+          <h4 className="font-sans text-lg font-extrabold text-[#020617]">
             Universal Laws of Interface Motion & Micro-Interaction Engineering
           </h4>
           <p className="font-sans text-xs text-slate-500">

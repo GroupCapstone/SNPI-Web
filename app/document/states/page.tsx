@@ -17,7 +17,7 @@ export default function StatesPage() {
           <span>/</span>
           <span className="font-bold text-[#0056FF]">INTERACTION STATES</span>
         </div>
-        <h1 className="font-sans text-2xl font-black tracking-tight text-[#0A1A4A] sm:text-3xl">
+        <h1 className="font-sans text-2xl font-black tracking-tight text-[#020617] sm:text-3xl">
           Interaction States &amp; State Layers Architecture
         </h1>
         <p className="max-w-3xl font-sans text-xs text-slate-500 sm:text-sm">

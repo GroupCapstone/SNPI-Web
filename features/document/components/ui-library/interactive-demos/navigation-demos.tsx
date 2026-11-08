@@ -384,7 +384,7 @@ export function HookSidebarDemo() {
   const colorPresets = [
     { label: 'Royal Blue', value: '#0056FF' },
     { label: 'Azure Blue', value: '#2277FF' },
-    { label: 'Deep Navy', value: '#0A1A4A' },
+    { label: 'Deep Navy', value: '#020617' },
   ];
 
   return (
@@ -394,7 +394,7 @@ export function HookSidebarDemo() {
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#CAD3F5] pb-4">
           {/* 3 Brand Color Swatches */}
           <div className="flex items-center gap-2">
-            <span className="font-mono text-xs font-bold text-[#0A1A4A] uppercase">
+            <span className="font-mono text-xs font-bold text-[#020617] uppercase">
               Rail Color:
             </span>
             <div className="flex items-center gap-2">
@@ -421,7 +421,7 @@ export function HookSidebarDemo() {
             type="button"
             title={dashed ? 'Switch to solid spring rail' : 'Switch to dashed spring rail'}
             onClick={() => setDashed(!dashed)}
-            className="cursor-pointer rounded-full border border-[#CAD3F5] bg-[#EFF5FF] px-3.5 py-1.5 font-mono text-xs font-semibold text-[#0A1A4A] transition-all hover:bg-[#E3E7FC]"
+            className="cursor-pointer rounded-full border border-[#CAD3F5] bg-[#EFF5FF] px-3.5 py-1.5 font-mono text-xs font-semibold text-[#020617] transition-all hover:bg-[#E3E7FC]"
           >
             {dashed ? 'Dashed Rail' : 'Solid Rail'}
           </button>
@@ -462,7 +462,7 @@ export function GooeyNavDemo() {
       {/* DEMO 1: Classic Fluid Capsule Pill (Confirmed Design) */}
       <div className="space-y-3">
         <div className="flex items-center justify-between border-b border-[#CAD3F5]/80 pb-2">
-          <h3 className="font-mono text-xs font-bold tracking-wide text-[#0A1A4A] uppercase">
+          <h3 className="font-mono text-xs font-bold tracking-wide text-[#020617] uppercase">
             01. Fluid Capsule Pill (Classic Gooey Nav)
           </h3>
           <span className="font-mono text-[10px] font-bold text-[#0056FF]">[{selected}]</span>
@@ -482,7 +482,7 @@ export function GooeyNavDemo() {
                     'relative z-10 shrink-0 cursor-pointer rounded-full px-3 py-1.5 font-sans text-xs font-bold transition-all duration-200 select-none sm:px-4',
                     isActive
                       ? 'bg-[#0056FF] text-white shadow-xs'
-                      : 'text-[#0A1A4A] hover:text-[#0056FF]',
+                      : 'text-[#020617] hover:text-[#0056FF]',
                   )}
                 >
                   {tab.label}
@@ -496,7 +496,7 @@ export function GooeyNavDemo() {
       {/* DEMO 2: Corner Brand Border Gooey Nav (New Demo below it) */}
       <div className="space-y-3 border-t border-[#CAD3F5]/60 pt-4">
         <div className="flex items-center justify-between border-b border-[#CAD3F5]/80 pb-2">
-          <h3 className="font-mono text-xs font-bold tracking-wide text-[#0A1A4A] uppercase">
+          <h3 className="font-mono text-xs font-bold tracking-wide text-[#020617] uppercase">
             02. Corner Brand Border Gooey Nav
           </h3>
           <span className="font-mono text-[10px] font-bold text-[#0056FF]">[{cornerSelected}]</span>
@@ -525,7 +525,7 @@ export function GooeyNavDemo() {
                       'relative shrink-0 cursor-pointer rounded px-3 py-1.5 font-mono text-xs font-bold transition-all duration-200 select-none sm:px-4',
                       isActive
                         ? 'bg-[#0056FF] text-white shadow-2xs'
-                        : 'text-[#0A1A4A] hover:bg-white hover:text-[#0056FF]',
+                        : 'text-[#020617] hover:bg-white hover:text-[#0056FF]',
                     )}
                   >
                     {/* Inner Corner Accent on Active Tab */}
@@ -558,10 +558,6 @@ export function IconBarDemo() {
 
   return (
     <div className="w-full max-w-lg space-y-4 rounded-2xl border border-[#CAD3F5] bg-white p-5 shadow-xs sm:p-6">
-      <div className="flex items-center justify-between border-b border-[#CAD3F5]/60 pb-3">
-        <span className="font-sans text-xs font-bold text-[#0A1A4A]">Precision Toolbar</span>
-        <span className="font-mono text-[10px] font-bold text-[#0056FF]">[{selectedTool}]</span>
-      </div>
       <div className="flex w-full items-center justify-center py-2">
         <IconBar selectedId={selectedTool} onSelect={setSelectedTool} />
       </div>
@@ -589,20 +585,6 @@ export function CyberArmorNavDemo() {
 
   return (
     <div className="w-full max-w-4xl space-y-4 rounded-2xl border border-[#CAD3F5] bg-white p-5 shadow-xs sm:p-6">
-      <div className="flex items-center justify-between border-b border-[#CAD3F5]/60 pb-3">
-        <div className="flex items-center gap-2">
-          <span className="font-sans text-xs font-bold text-[#0A1A4A]">
-            Aerospace Mecha HUD Console
-          </span>
-          <span className="rounded border border-[#CAD3F5] bg-[#EFF5FF] px-2 py-0.5 font-mono text-[10px] font-bold text-[#0056FF]">
-            8-Tab Precision
-          </span>
-        </div>
-        <span className="font-mono text-[10px] font-bold text-emerald-600 uppercase">
-          Active: [{activeTab}]
-        </span>
-      </div>
-
       <div className="no-scrollbar flex w-full items-center justify-center overflow-x-auto py-3">
         <div className="flex min-w-fit items-center justify-center px-1">
           <CyberArmorNav

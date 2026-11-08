@@ -354,7 +354,7 @@ export function DataTable<T extends Record<string, any>>({
                           ? 'text-right'
                           : 'text-left',
                       isSortable ? 'cursor-pointer hover:text-[#0056FF]' : '',
-                      isSorted ? 'text-[#0056FF]' : 'text-[#0A1A4A]',
+                      isSorted ? 'text-[#0056FF]' : 'text-[#020617]',
                     )}
                   >
                     <div
@@ -389,7 +389,7 @@ export function DataTable<T extends Record<string, any>>({
           </thead>
 
           {/* Table Body */}
-          <tbody className="divide-y divide-[#CAD3F5]/60 font-sans text-xs text-[#0A1A4A]">
+          <tbody className="divide-y divide-[#CAD3F5]/60 font-sans text-xs text-[#020617]">
             {paginatedData.length > 0
               ? paginatedData.map((row, idx) => (
                   <tr
@@ -471,7 +471,7 @@ export function DataTable<T extends Record<string, any>>({
               'flex size-8 items-center justify-center rounded-[4px] border font-mono text-xs font-bold transition-colors select-none',
               currentPage === 1
                 ? 'cursor-not-allowed border-slate-200 bg-slate-50 text-slate-300'
-                : 'border-[#CAD3F5] bg-white text-[#0A1A4A] hover:border-[#0056FF] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
+                : 'border-[#CAD3F5] bg-white text-[#020617] hover:border-[#0056FF] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
             )}
             aria-label="First page"
           >
@@ -487,7 +487,7 @@ export function DataTable<T extends Record<string, any>>({
               'flex size-8 items-center justify-center rounded-[4px] border transition-colors select-none',
               currentPage === 1
                 ? 'cursor-not-allowed border-slate-200 bg-slate-50 text-slate-300'
-                : 'border-[#CAD3F5] bg-white text-[#0A1A4A] hover:border-[#0056FF] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
+                : 'border-[#CAD3F5] bg-white text-[#020617] hover:border-[#0056FF] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
             )}
             aria-label="Previous page"
           >
@@ -516,7 +516,7 @@ export function DataTable<T extends Record<string, any>>({
                   'flex size-8 items-center justify-center rounded-[4px] border font-mono text-xs font-bold transition-all select-none',
                   isActive
                     ? 'border-[#0056FF] bg-[#0056FF] text-white shadow-xs'
-                    : 'border-[#CAD3F5] bg-white text-[#0A1A4A] hover:border-[#0056FF] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
+                    : 'border-[#CAD3F5] bg-white text-[#020617] hover:border-[#0056FF] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
                 )}
                 aria-label={`Page ${pageNum}`}
                 aria-current={isActive ? 'page' : undefined}
@@ -535,7 +535,7 @@ export function DataTable<T extends Record<string, any>>({
               'flex size-8 items-center justify-center rounded-[4px] border transition-colors select-none',
               currentPage === totalPages
                 ? 'cursor-not-allowed border-slate-200 bg-slate-50 text-slate-300'
-                : 'border-[#CAD3F5] bg-white text-[#0A1A4A] hover:border-[#0056FF] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
+                : 'border-[#CAD3F5] bg-white text-[#020617] hover:border-[#0056FF] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
             )}
             aria-label="Next page"
           >
@@ -551,7 +551,7 @@ export function DataTable<T extends Record<string, any>>({
               'flex size-8 items-center justify-center rounded-[4px] border font-mono text-xs font-bold transition-colors select-none',
               currentPage === totalPages
                 ? 'cursor-not-allowed border-slate-200 bg-slate-50 text-slate-300'
-                : 'border-[#CAD3F5] bg-white text-[#0A1A4A] hover:border-[#0056FF] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
+                : 'border-[#CAD3F5] bg-white text-[#020617] hover:border-[#0056FF] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
             )}
             aria-label="Last page"
           >
@@ -797,7 +797,7 @@ export function DataTableDemo() {
       header: 'Student Name',
       sortable: true,
       type: 'string',
-      render: (val) => <span className="font-sans text-xs font-bold text-[#0A1A4A]">{val}</span>,
+      render: (val) => <span className="font-sans text-xs font-bold text-[#020617]">{val}</span>,
     },
     {
       key: 'program',
@@ -805,7 +805,7 @@ export function DataTableDemo() {
       sortable: true,
       type: 'string',
       render: (val) => (
-        <span className="font-sans text-xs font-semibold text-[#0A1A4A]">{val}</span>
+        <span className="font-sans text-xs font-semibold text-[#020617]">{val}</span>
       ),
     },
     {
@@ -823,7 +823,7 @@ export function DataTableDemo() {
           <span
             className={cn(
               'font-mono text-xs font-black tabular-nums',
-              isHigh ? 'text-emerald-700' : isLow ? 'text-rose-700' : 'text-[#0A1A4A]',
+              isHigh ? 'text-emerald-700' : isLow ? 'text-rose-700' : 'text-[#020617]',
             )}
           >
             {num.toFixed(2)}
@@ -859,7 +859,7 @@ export function DataTableDemo() {
       align: 'right',
       width: '110px',
       render: (val) => (
-        <span className="font-mono text-xs font-bold text-[#0A1A4A] tabular-nums">
+        <span className="font-mono text-xs font-bold text-[#020617] tabular-nums">
           ${Number(val).toLocaleString()}
         </span>
       ),

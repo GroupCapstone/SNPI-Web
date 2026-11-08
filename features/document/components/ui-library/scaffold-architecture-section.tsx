@@ -134,7 +134,7 @@ export function ScaffoldArchitectureSection() {
       <div className="space-y-4 rounded-2xl border border-[#CAD3F5] bg-white p-5">
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-3">
           <div className="space-y-0.5">
-            <span className="font-sans text-xs font-bold tracking-wide text-[#0A1A4A] uppercase">
+            <span className="font-sans text-xs font-bold tracking-wide text-[#020617] uppercase">
               Design System Architectural Hierarchy · From Ingredients to Cookbook
             </span>
             <div className="font-mono text-[10px] text-slate-500">
@@ -172,7 +172,7 @@ export function ScaffoldArchitectureSection() {
 
               {/* Title & Description */}
               <div className="space-y-0.5">
-                <div className="flex items-center justify-center gap-1 font-sans text-xs font-bold text-[#0A1A4A]">
+                <div className="flex items-center justify-center gap-1 font-sans text-xs font-bold text-[#020617]">
                   <span className="font-mono text-[10px] text-slate-400">0{idx + 1}.</span>
                   <span>{stage.title}</span>
                 </div>
@@ -193,7 +193,7 @@ export function ScaffoldArchitectureSection() {
         {/* Row A: Viewport Device Switcher */}
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-2">
-            <span className="font-sans font-bold text-[#0A1A4A]">Adaptive Device Viewport:</span>
+            <span className="font-sans font-bold text-[#020617]">Adaptive Device Viewport:</span>
             <span className="font-mono text-[10px] text-slate-500">
               Reflows Navigation Rails &amp; Multi-Panes
             </span>
@@ -217,7 +217,7 @@ export function ScaffoldArchitectureSection() {
                     'flex cursor-pointer items-center gap-1.5 rounded-lg px-2.5 py-1.5 font-sans text-xs font-bold transition-all',
                     isSelected
                       ? 'bg-[#0056FF] text-white shadow-none'
-                      : 'text-[#0A1A4A] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
+                      : 'text-[#020617] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
                   )}
                 >
                   <Icon className="size-3.5" />
@@ -257,8 +257,8 @@ export function ScaffoldArchitectureSection() {
                 className={cn(
                   'cursor-pointer rounded-lg px-2.5 py-1 font-mono text-[11px] font-bold transition-all',
                   activeElement === item.id
-                    ? 'bg-[#0A1A4A] text-white shadow-none'
-                    : 'border border-[#CAD3F5] bg-white text-[#0A1A4A] hover:bg-[#EFF5FF]',
+                    ? 'bg-[#020617] text-white shadow-none'
+                    : 'border border-[#CAD3F5] bg-white text-[#020617] hover:bg-[#EFF5FF]',
                 )}
               >
                 {item.label}
@@ -383,14 +383,14 @@ export function ScaffoldArchitectureSection() {
             <div className="flex w-full items-center gap-3">
               <button
                 type="button"
-                className="rounded-lg p-1 text-[#0A1A4A] hover:bg-slate-100"
+                className="rounded-lg p-1 text-[#020617] hover:bg-slate-100"
                 title="Navigation Menu"
               >
                 <Menu className="size-5" />
               </button>
               <div className={cn('flex-1', topBarVariant === 'center' && 'text-center')}>
                 <div className="flex items-center gap-2">
-                  <span className="font-sans text-sm font-bold text-[#0A1A4A]">
+                  <span className="font-sans text-sm font-bold text-[#020617]">
                     Academic Scaffold Hub
                   </span>
                   {showCallouts && (
@@ -504,7 +504,7 @@ export function ScaffoldArchitectureSection() {
                     className="space-y-1 rounded-xl border border-[#CAD3F5] bg-[#EFF5FF]/40 p-3 text-left"
                   >
                     <div className="flex items-center justify-between">
-                      <span className="font-sans text-xs font-bold text-[#0A1A4A]">
+                      <span className="font-sans text-xs font-bold text-[#020617]">
                         {item.title}
                       </span>
                       <span className="rounded border border-[#CAD3F5] bg-white px-1.5 py-0.5 font-mono text-[9px] text-[#0056FF]">
@@ -546,7 +546,7 @@ export function ScaffoldArchitectureSection() {
                   <span className="font-mono text-[10px] font-bold text-slate-500 uppercase">
                     Contextual Tools
                   </span>
-                  <div className="space-y-1.5 text-xs text-[#0A1A4A]">
+                  <div className="space-y-1.5 text-xs text-[#020617]">
                     <div className="flex justify-between border-b border-slate-100 py-1">
                       <span>Room Assignment</span>
                       <span className="font-mono font-bold text-[#0056FF]">Lab 402</span>
@@ -670,7 +670,7 @@ export function ScaffoldArchitectureSection() {
       {/* ------------------------------------------------------------- */}
       <div className="space-y-3 rounded-xl border border-[#CAD3F5] bg-white p-4 text-xs">
         <div className="flex items-center justify-between">
-          <span className="font-sans font-bold tracking-wide text-[#0A1A4A] uppercase">
+          <span className="font-sans font-bold tracking-wide text-[#020617] uppercase">
             Implementation Standards: Jetpack Compose Rulers &amp; Spacing Tokens
           </span>
           <span className="font-mono text-[10px] text-slate-500">
@@ -692,7 +692,7 @@ export function ScaffoldArchitectureSection() {
               className="rounded-lg border border-[#CAD3F5] bg-[#EFF5FF]/50 p-2 text-left"
             >
               <div className="font-mono text-[10px] font-bold text-[#0056FF]">{sp.token}</div>
-              <div className="font-sans text-sm font-bold text-[#0A1A4A]">{sp.val}</div>
+              <div className="font-sans text-sm font-bold text-[#020617]">{sp.val}</div>
               <div className="line-clamp-1 font-mono text-[9px] text-slate-500">{sp.role}</div>
             </div>
           ))}

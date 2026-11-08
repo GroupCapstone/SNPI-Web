@@ -647,7 +647,7 @@ export function RichTextEditor({
           }}
           style={{ minHeight: `${minHeight}px` }}
           aria-label="Raw HTML Source"
-          className="w-full resize-y border-none bg-[#0A1A4A] p-5 font-mono text-xs leading-relaxed text-cyan-200 outline-none selection:bg-[#0056FF] selection:text-white"
+          className="w-full resize-y border-none bg-[#020617] p-5 font-mono text-xs leading-relaxed text-cyan-200 outline-none selection:bg-[#0056FF] selection:text-white"
         />
       ) : (
         <div
@@ -663,15 +663,15 @@ export function RichTextEditor({
           data-placeholder={placeholder}
           style={{ minHeight: `${minHeight}px` }}
           className={cn(
-            'p-5 font-sans text-sm leading-relaxed text-[#0A1A4A] transition-colors outline-none selection:bg-[#E3E7FC] selection:text-[#0056FF] focus:outline-none sm:p-6',
-            '[&_h1]:mt-2 [&_h1]:mb-3 [&_h1]:border-b [&_h1]:border-slate-100 [&_h1]:pb-2 [&_h1]:text-xl [&_h1]:font-black [&_h1]:tracking-tight [&_h1]:text-[#0A1A4A]',
-            '[&_h2]:mt-4 [&_h2]:mb-2 [&_h2]:text-base [&_h2]:font-bold [&_h2]:tracking-tight [&_h2]:text-[#0A1A4A]',
+            'p-5 font-sans text-sm leading-relaxed text-[#020617] transition-colors outline-none selection:bg-[#E3E7FC] selection:text-[#0056FF] focus:outline-none sm:p-6',
+            '[&_h1]:mt-2 [&_h1]:mb-3 [&_h1]:border-b [&_h1]:border-slate-100 [&_h1]:pb-2 [&_h1]:text-xl [&_h1]:font-black [&_h1]:tracking-tight [&_h1]:text-[#020617]',
+            '[&_h2]:mt-4 [&_h2]:mb-2 [&_h2]:text-base [&_h2]:font-bold [&_h2]:tracking-tight [&_h2]:text-[#020617]',
             '[&_h3]:mt-3 [&_h3]:mb-1.5 [&_h3]:text-sm [&_h3]:font-bold [&_h3]:text-slate-800',
             '[&_p]:mb-3 [&_p]:text-[13.5px] [&_p]:leading-relaxed [&_p]:text-slate-700',
             '[&_ul]:mb-3 [&_ul]:list-disc [&_ul]:space-y-1 [&_ul]:pl-5 [&_ul]:text-slate-700',
             '[&_ol]:mb-3 [&_ol]:list-decimal [&_ol]:space-y-1 [&_ol]:pl-5 [&_ol]:text-slate-700',
-            '[&_blockquote]:my-3.5 [&_blockquote]:rounded-r-xl [&_blockquote]:border-l-[3.5px] [&_blockquote]:border-[#0056FF] [&_blockquote]:bg-[#EFF5FF] [&_blockquote]:p-3.5 [&_blockquote]:text-[#0A1A4A] [&_blockquote]:italic [&_blockquote]:shadow-2xs',
-            '[&_pre]:my-3.5 [&_pre]:overflow-x-auto [&_pre]:rounded-xl [&_pre]:border [&_pre]:border-slate-800 [&_pre]:bg-[#0A1A4A] [&_pre]:p-4 [&_pre]:font-mono [&_pre]:text-xs [&_pre]:text-cyan-200',
+            '[&_blockquote]:my-3.5 [&_blockquote]:rounded-r-xl [&_blockquote]:border-l-[3.5px] [&_blockquote]:border-[#0056FF] [&_blockquote]:bg-[#EFF5FF] [&_blockquote]:p-3.5 [&_blockquote]:text-[#020617] [&_blockquote]:italic [&_blockquote]:shadow-2xs',
+            '[&_pre]:my-3.5 [&_pre]:overflow-x-auto [&_pre]:rounded-xl [&_pre]:border [&_pre]:border-slate-800 [&_pre]:bg-[#020617] [&_pre]:p-4 [&_pre]:font-mono [&_pre]:text-xs [&_pre]:text-cyan-200',
             '[&_code]:rounded-md [&_code]:border [&_code]:border-[#CAD3F5]/80 [&_code]:bg-[#E3E7FC] [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:font-mono [&_code]:text-xs [&_code]:font-bold [&_code]:text-[#0056FF]',
             '[&_a]:font-medium [&_a]:text-[#0056FF] [&_a]:underline [&_a]:decoration-[#0056FF]/40 [&_a]:underline-offset-2 [&_a]:hover:text-[#2277FF]',
             '[&_hr]:my-4 [&_hr]:border-t [&_hr]:border-[#CAD3F5]',

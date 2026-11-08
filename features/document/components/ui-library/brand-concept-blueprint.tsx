@@ -126,11 +126,11 @@ export function BrandConceptBlueprint() {
         {/* 03 Soft Lavender */}
         <div
           onClick={() => handleCopy('#E3E7FC', 'Soft Lavender')}
-          className="group relative flex min-h-[160px] cursor-pointer flex-col justify-between rounded-2xl border border-[#CAD3F5] bg-[#E3E7FC] p-5 text-[#0A1A4A] shadow-xs sm:col-span-6 md:col-span-4"
+          className="group relative flex min-h-[160px] cursor-pointer flex-col justify-between rounded-2xl border border-[#CAD3F5] bg-[#E3E7FC] p-5 text-[#020617] shadow-xs sm:col-span-6 md:col-span-4"
           title="Click to copy HEX: #E3E7FC"
         >
           <div className="flex items-start justify-between">
-            <span className="font-sans text-4xl font-extrabold tracking-tighter text-[#0A1A4A] select-none">
+            <span className="font-sans text-4xl font-extrabold tracking-tighter text-[#020617] select-none">
               03
             </span>
             <span className="font-mono text-xs font-bold text-[#0056FF]">
@@ -138,7 +138,7 @@ export function BrandConceptBlueprint() {
             </span>
           </div>
           <div className="space-y-0.5">
-            <h4 className="font-sans text-base font-bold text-[#0A1A4A]">Soft Lavender</h4>
+            <h4 className="font-sans text-base font-bold text-[#020617]">Soft Lavender</h4>
             <p className="font-mono text-[11px] text-[#0056FF]">Micro-Tint & Badges</p>
           </div>
         </div>
@@ -146,11 +146,11 @@ export function BrandConceptBlueprint() {
         {/* 04 White */}
         <div
           onClick={() => handleCopy('#FFFFFF', 'White')}
-          className="group relative flex min-h-[160px] cursor-pointer flex-col justify-between rounded-2xl border-2 border-[#CAD3F5] bg-white p-5 text-[#0A1A4A] shadow-xs sm:col-span-6 md:col-span-3"
+          className="group relative flex min-h-[160px] cursor-pointer flex-col justify-between rounded-2xl border-2 border-[#CAD3F5] bg-white p-5 text-[#020617] shadow-xs sm:col-span-6 md:col-span-3"
           title="Click to copy HEX: #FFFFFF"
         >
           <div className="flex items-start justify-between">
-            <span className="font-sans text-4xl font-extrabold tracking-tighter text-[#0A1A4A] select-none">
+            <span className="font-sans text-4xl font-extrabold tracking-tighter text-[#020617] select-none">
               04
             </span>
             <span className="rounded-full border border-[#CAD3F5] bg-[#EFF5FF] px-2.5 py-0.5 font-mono text-[11px] font-bold text-[#0056FF]">
@@ -158,7 +158,7 @@ export function BrandConceptBlueprint() {
             </span>
           </div>
           <div className="space-y-0.5">
-            <h4 className="font-sans text-base font-bold text-[#0A1A4A]">White</h4>
+            <h4 className="font-sans text-base font-bold text-[#020617]">White</h4>
             <p className="font-mono text-[11px] text-slate-500">Document Canvas Base</p>
           </div>
         </div>
@@ -232,7 +232,7 @@ export function BrandConceptBlueprint() {
                 <div className="font-mono text-[10px] font-bold text-[#0056FF] uppercase">
                   Edition 01 (Core Base)
                 </div>
-                <div className="font-sans text-xs font-extrabold text-[#0A1A4A]">
+                <div className="font-sans text-xs font-extrabold text-[#020617]">
                   Blue Brand on Light
                 </div>
               </div>
@@ -305,7 +305,7 @@ export function BrandConceptBlueprint() {
               />
             </div>
             <div className="space-y-1">
-              <h4 className="font-sans text-base font-black text-[#0A1A4A]">
+              <h4 className="font-sans text-base font-black text-[#020617]">
                 SNPI Bold Asterisk Master Mark
               </h4>
               <p className="font-mono text-xs text-slate-500">

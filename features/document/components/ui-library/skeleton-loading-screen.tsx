@@ -153,7 +153,7 @@ function ProfileHeaderPattern({ isLoaded }: { isLoaded: boolean; theme?: 'light'
 
         <div className="flex-1 space-y-1.5">
           <div className="flex flex-wrap items-center gap-2">
-            <h4 className="font-sans text-base font-bold text-[#0A1A4A]">Dr. Sokha Chann</h4>
+            <h4 className="font-sans text-base font-bold text-[#020617]">Dr. Sokha Chann</h4>
             <span className="flex items-center gap-1 rounded-[4px] border border-emerald-300 bg-[#ECFDF5] px-2 py-0.5 font-mono text-[10px] font-bold text-emerald-800">
               <ShieldCheck className="size-3" />
               <span>SUPERADMIN VERIFIED</span>
@@ -273,7 +273,7 @@ function CardGridPattern({ isLoaded }: { isLoaded: boolean; theme?: 'light' | 'd
 
             <div className="space-y-1">
               <span className="font-mono text-[10px] font-bold text-[#0056FF]">{c.code}</span>
-              <h4 className="font-sans text-xs font-bold text-[#0A1A4A]">{c.title}</h4>
+              <h4 className="font-sans text-xs font-bold text-[#020617]">{c.title}</h4>
               <p className="font-sans text-[11px] leading-relaxed text-slate-700">{c.desc}</p>
             </div>
           </div>
@@ -354,7 +354,7 @@ function ContentListPattern({ isLoaded }: { isLoaded: boolean; theme?: 'light' |
             <FileText className="size-5 shrink-0 text-[#0056FF]" />
 
             <div className="min-w-0 space-y-0.5">
-              <h5 className="truncate font-sans text-xs font-bold text-[#0A1A4A]">{item.title}</h5>
+              <h5 className="truncate font-sans text-xs font-bold text-[#020617]">{item.title}</h5>
               <div className="flex items-center gap-2 font-mono text-[10px] text-slate-500">
                 <span className="font-bold text-[#0056FF]">{item.tag}</span>
                 <span>&middot;</span>

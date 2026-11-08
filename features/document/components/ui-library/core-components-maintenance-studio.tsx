@@ -96,7 +96,7 @@ export function CoreComponentsMaintenanceStudio() {
                 <div className="flex size-10 shrink-0 items-center justify-center rounded-[2px] bg-white shadow-2xs">
                   <Layers className="size-6 text-[#020617]" />
                 </div>
-                <h2 className="font-sans text-2xl font-black tracking-tight text-[#0A1A4A] sm:text-3xl lg:text-4xl">
+                <h2 className="font-sans text-2xl font-black tracking-tight text-[#020617] sm:text-3xl lg:text-4xl">
                   Core Components &bull; Maintenance Studio
                 </h2>
               </div>
@@ -112,7 +112,7 @@ export function CoreComponentsMaintenanceStudio() {
               <button
                 type="button"
                 onClick={() => setActiveTab('panoramic')}
-                className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-[#CAD3F5] bg-white px-4 py-2 font-sans text-xs font-bold text-[#0A1A4A] transition-all hover:bg-[#EFF5FF] active:scale-[0.97]"
+                className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-[#CAD3F5] bg-white px-4 py-2 font-sans text-xs font-bold text-[#020617] transition-all hover:bg-[#EFF5FF] active:scale-[0.97]"
               >
                 <Sliders className="size-3.5 text-[#0056FF]" />
                 <span>Panoramic View</span>
@@ -129,7 +129,7 @@ export function CoreComponentsMaintenanceStudio() {
                 Atomic Primitives
               </div>
               <div className="mt-1 flex items-baseline gap-2">
-                <span className="font-sans text-2xl font-black text-[#0A1A4A]">29</span>
+                <span className="font-sans text-2xl font-black text-[#020617]">29</span>
                 <span className="font-mono text-[11px] font-bold text-[#0056FF]">6 Clusters</span>
               </div>
               <div className="mt-1 font-sans text-[11px] text-slate-500">
@@ -142,7 +142,7 @@ export function CoreComponentsMaintenanceStudio() {
                 Component Invariants
               </div>
               <div className="mt-1 flex items-baseline gap-2">
-                <span className="font-sans text-2xl font-black text-[#0A1A4A]">
+                <span className="font-sans text-2xl font-black text-[#020617]">
                   {totalComponentChecks}
                 </span>
                 <span className="font-mono text-[11px] font-bold text-emerald-600">
@@ -159,7 +159,7 @@ export function CoreComponentsMaintenanceStudio() {
                 Maintenance Pillars
               </div>
               <div className="mt-1 flex items-baseline gap-2">
-                <span className="font-sans text-2xl font-black text-[#0A1A4A]">05</span>
+                <span className="font-sans text-2xl font-black text-[#020617]">05</span>
                 <span className="font-mono text-[11px] font-bold text-[#0056FF]">Governance</span>
               </div>
               <div className="mt-1 font-sans text-[11px] text-slate-500">
@@ -172,7 +172,7 @@ export function CoreComponentsMaintenanceStudio() {
                 Operational Rules
               </div>
               <div className="mt-1 flex items-baseline gap-2">
-                <span className="font-sans text-2xl font-black text-[#0A1A4A]">
+                <span className="font-sans text-2xl font-black text-[#020617]">
                   {totalMaintenanceChecks}
                 </span>
                 <span className="font-mono text-[11px] font-bold text-emerald-600">
@@ -225,7 +225,7 @@ export function CoreComponentsMaintenanceStudio() {
                 onClick={() => setActiveTab(tab.id)}
                 className={cn(
                   'relative flex shrink-0 cursor-pointer items-center gap-2 rounded-lg px-4 py-2 font-sans text-xs font-bold whitespace-nowrap transition-colors select-none',
-                  isSelected ? 'text-white' : 'text-[#0A1A4A] hover:text-[#0056FF]',
+                  isSelected ? 'text-white' : 'text-[#020617] hover:text-[#0056FF]',
                 )}
               >
                 {isSelected && (
@@ -320,7 +320,7 @@ export function CoreComponentsMaintenanceStudio() {
                 <span className="rounded-[2px] bg-[#0056FF] px-2 py-0.5 font-mono text-[10px] font-bold text-white uppercase">
                   SUBSECTION 03.1
                 </span>
-                <h3 className="font-sans text-lg font-black text-[#0A1A4A]">
+                <h3 className="font-sans text-lg font-black text-[#020617]">
                   Core Components (29 Primitives)
                 </h3>
               </div>
@@ -333,7 +333,7 @@ export function CoreComponentsMaintenanceStudio() {
                 <span className="rounded-[2px] bg-[#0056FF] px-2 py-0.5 font-mono text-[10px] font-bold text-white uppercase">
                   SUBSECTION 03.2
                 </span>
-                <h3 className="font-sans text-lg font-black text-[#0A1A4A]">
+                <h3 className="font-sans text-lg font-black text-[#020617]">
                   Maintenance Strategy (5 Governance Pillars)
                 </h3>
               </div>

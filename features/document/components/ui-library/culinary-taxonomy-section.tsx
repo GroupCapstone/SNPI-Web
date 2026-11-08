@@ -48,7 +48,7 @@ export const CULINARY_STAGES: CulinaryStage[] = [
     checklistBadge: '0/26 Foundations',
     checklistBadgeColor: 'blue',
     examples: [
-      'Color Ramps: #0056FF (Brand Blue), #0A1A4A (Navy Deep), #CAD3F5 (Border)',
+      'Color Ramps: #0056FF (Brand Blue), #020617 (Navy Deep), #CAD3F5 (Border)',
       'Typography: Google Sans 36px Bold, 14px Regular, font-mono line-heights',
       'Spacing Grid: 4px, 8px, 12px, 16px, 24px, 32px standard increments',
       'Elevation Tokens: shadow-2xs, shadow-xs, z-index 10-50 layers',
@@ -64,7 +64,7 @@ export const CULINARY_STAGES: CulinaryStage[] = [
 export const TOKENS = {
   colors: {
     brandBlue: '#0056FF',
-    brandNavy: '#0A1A4A',
+    brandNavy: '#020617',
     borderSlate: '#CAD3F5',
   },
   spacing: {
@@ -368,7 +368,7 @@ export function CulinaryTaxonomySection() {
                   6-Tier Culinary Model
                 </span>
               </div>
-              <h2 className="mt-0.5 font-sans text-xl font-black text-[#0A1A4A] sm:text-2xl">
+              <h2 className="mt-0.5 font-sans text-xl font-black text-[#020617] sm:text-2xl">
                 From Ingredients to the Master Cookbook
               </h2>
             </div>
@@ -396,7 +396,7 @@ export function CulinaryTaxonomySection() {
       {/* ------------------------------------------------------------- */}
       <div className="rounded-2xl border border-[#CAD3F5] bg-white p-5 shadow-xs">
         <div className="mb-4 flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-3">
-          <span className="font-sans text-xs font-black tracking-wide text-[#0A1A4A] uppercase">
+          <span className="font-sans text-xs font-black tracking-wide text-[#020617] uppercase">
             Click Any Stage to Inspect Architecture &amp; Component Invariants
           </span>
           <span className="font-mono text-[11px] font-bold text-[#0056FF]">
@@ -435,7 +435,7 @@ export function CulinaryTaxonomySection() {
 
                 {/* Label & Subtitle */}
                 <div className="w-full space-y-0.5">
-                  <div className="flex items-center justify-center gap-1 font-sans text-xs font-bold text-[#0A1A4A]">
+                  <div className="flex items-center justify-center gap-1 font-sans text-xs font-bold text-[#020617]">
                     <span className="font-mono text-[10px] text-slate-400">0{stage.level}.</span>
                     <span className={cn(isSelected && 'text-[#0056FF]')}>{stage.title}</span>
                   </div>
@@ -474,7 +474,7 @@ export function CulinaryTaxonomySection() {
                 0{selectedStage.level}
               </span>
               <div>
-                <h3 className="font-sans text-base font-bold text-[#0A1A4A]">
+                <h3 className="font-sans text-base font-bold text-[#020617]">
                   Tier 0{selectedStage.level}: {selectedStage.title} ({selectedStage.subtitle})
                 </h3>
                 <span className="font-mono text-[10px] text-slate-500">
@@ -496,14 +496,14 @@ export function CulinaryTaxonomySection() {
             <span className="font-mono text-[10px] font-bold tracking-wide text-[#0056FF] uppercase">
               Checklist Framework Association:
             </span>
-            <div className="mt-1 font-sans text-xs font-semibold text-[#0A1A4A]">
+            <div className="mt-1 font-sans text-xs font-semibold text-[#020617]">
               {selectedStage.checklistMapping}
             </div>
           </div>
 
           {/* Key Invariants */}
           <div className="space-y-2">
-            <span className="font-mono text-[11px] font-bold tracking-wide text-[#0A1A4A] uppercase">
+            <span className="font-mono text-[11px] font-bold tracking-wide text-[#020617] uppercase">
               Mandatory Architectural Invariants:
             </span>
             <div className="space-y-1.5">
@@ -523,7 +523,7 @@ export function CulinaryTaxonomySection() {
 
           {/* Real-World Concrete Examples */}
           <div className="space-y-2">
-            <span className="font-mono text-[11px] font-bold tracking-wide text-[#0A1A4A] uppercase">
+            <span className="font-mono text-[11px] font-bold tracking-wide text-[#020617] uppercase">
               Concrete Catalog Components in SNP-SMS:
             </span>
             <div className="grid grid-cols-1 gap-1.5 sm:grid-cols-2">
@@ -532,7 +532,7 @@ export function CulinaryTaxonomySection() {
                   key={idx}
                   className="rounded-lg border border-[#CAD3F5]/70 bg-white p-2 font-sans text-[11px] leading-snug text-slate-700 shadow-2xs"
                 >
-                  <span className="font-bold text-[#0A1A4A]">{item.split(':')[0]}:</span>{' '}
+                  <span className="font-bold text-[#020617]">{item.split(':')[0]}:</span>{' '}
                   <span className="text-slate-600">{item.split(':')[1] || ''}</span>
                 </div>
               ))}
@@ -543,7 +543,7 @@ export function CulinaryTaxonomySection() {
         {/* Right Column: Code Implementation & Invariant Enforcement (5 cols) */}
         <div className="space-y-4 rounded-2xl border border-[#CAD3F5] bg-white p-5 lg:col-span-5">
           <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-            <span className="font-sans text-xs font-bold tracking-wide text-[#0A1A4A] uppercase">
+            <span className="font-sans text-xs font-bold tracking-wide text-[#020617] uppercase">
               TypeScript / React Specification
             </span>
             <button
@@ -577,7 +577,7 @@ export function CulinaryTaxonomySection() {
             <div className="divide-y divide-slate-100 rounded-xl border border-[#CAD3F5] bg-[#F8FAFC] text-xs">
               <div className="flex items-center justify-between p-2.5 font-mono text-[11px]">
                 <span className="text-slate-500">Inputs:</span>
-                <span className="font-bold text-[#0A1A4A]">
+                <span className="font-bold text-[#020617]">
                   {selectedStage.level === 1
                     ? 'Raw Figma Design Tokens'
                     : `Tier 0${selectedStage.level - 1} (${CULINARY_STAGES[selectedStage.level - 2].title})`}

@@ -29,7 +29,7 @@ export const LIGHT_THEMES: ThemeOption<LightThemeId>[] = [
     id: 'light-default',
     label: 'Day (White Default)',
     description:
-      'Crisp pure white canvas (#FFFFFF) with soft lavender borders (#CAD3F5), royal blue accents (#0056FF), and deep navy typography (#0A1A4A).',
+      'Crisp pure white canvas (#FFFFFF) with soft lavender borders (#CAD3F5), royal blue accents (#0056FF), and deep navy typography (#020617).',
     swatchFill: '#FFFFFF',
     swatchBorder: '#CAD3F5',
   },
@@ -105,7 +105,7 @@ export function computeActiveColorRoles(
     const canvasBg = isLavender ? '#EFF5FF' : '#FFFFFF';
     const subsurfaceBg = isLavender ? '#E3E7FC' : '#EFF5FF';
     const cardBorder = isHC ? '#0F172A' : '#CAD3F5';
-    const textPrimary = isHC ? '#000000' : '#0A1A4A';
+    const textPrimary = isHC ? '#000000' : '#020617';
     const textSecondary = isHC ? '#1E293B' : '#475569';
 
     const primaryFill = isHC ? '#0038B3' : isColorblind ? '#2563EB' : '#0056FF';
@@ -266,7 +266,7 @@ export function computeActiveColorRoles(
         },
         {
           role: 'inverse-surface',
-          fill: '#0A1A4A',
+          fill: '#020617',
           on: '#FFFFFF',
           tokenAlias: 'primary-900',
           contrastRatio: '16.5:1',
@@ -670,14 +670,14 @@ export function GithubAppearanceColorRoles() {
   };
 
   return (
-    <div className="space-y-8 rounded-2xl border border-[#CAD3F5] bg-white p-4 text-[#0A1A4A] sm:p-7">
+    <div className="space-y-8 rounded-2xl border border-[#CAD3F5] bg-white p-4 text-[#020617] sm:p-7">
       {/* ------------------------------------------------------------- */}
       {/* 1. GITHUB APPEARANCE HEADER                                   */}
       {/* ------------------------------------------------------------- */}
       <div className="space-y-2 border-b border-slate-100 pb-5">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div className="space-y-1">
-            <h3 className="font-sans text-xl font-bold tracking-tight text-[#0A1A4A] sm:text-2xl">
+            <h3 className="font-sans text-xl font-bold tracking-tight text-[#020617] sm:text-2xl">
               Theme preferences
             </h3>
             <p className="max-w-2xl font-sans text-xs leading-relaxed text-slate-600 sm:text-sm">
@@ -700,7 +700,7 @@ export function GithubAppearanceColorRoles() {
         <div className="pt-3">
           <label
             htmlFor="theme-mode-select"
-            className="block font-sans text-xs font-bold text-[#0A1A4A]"
+            className="block font-sans text-xs font-bold text-[#020617]"
           >
             Active Theme Selection
           </label>
@@ -713,7 +713,7 @@ export function GithubAppearanceColorRoles() {
                 setActiveTheme(val);
                 setThemeMode(val === 'light' ? 'light' : 'dark');
               }}
-              className="rounded-[2px] border border-[#CAD3F5] bg-white px-3 py-2 font-sans text-xs font-bold text-[#0A1A4A] transition-colors focus:border-[#0056FF] focus:outline-none"
+              className="rounded-[2px] border border-[#CAD3F5] bg-white px-3 py-2 font-sans text-xs font-bold text-[#020617] transition-colors focus:border-[#0056FF] focus:outline-none"
               style={{ borderRadius: '2px' }}
             >
               <option value="light">Day (White Default) — Active</option>
@@ -747,7 +747,7 @@ export function GithubAppearanceColorRoles() {
             <div className="flex items-center gap-2.5">
               <Sun className="size-5 shrink-0 stroke-[2] text-[#020617]" />
               <div>
-                <span className="font-sans text-sm font-extrabold text-[#0A1A4A]">
+                <span className="font-sans text-sm font-extrabold text-[#020617]">
                   Day (White Default)
                 </span>
                 <span
@@ -816,10 +816,10 @@ export function GithubAppearanceColorRoles() {
               CANVAS: #FFFFFF
             </span>
             <span
-              className="rounded-[2px] bg-slate-100 px-2 py-0.5 font-mono text-[9px] font-bold text-[#0A1A4A]"
+              className="rounded-[2px] bg-slate-100 px-2 py-0.5 font-mono text-[9px] font-bold text-[#020617]"
               style={{ borderRadius: '2px' }}
             >
-              TEXT: #0A1A4A
+              TEXT: #020617
             </span>
             <span
               className="rounded-[2px] bg-slate-100 px-2 py-0.5 font-mono text-[9px] font-bold text-slate-800"
@@ -942,7 +942,7 @@ export function GithubAppearanceColorRoles() {
         <div className="flex items-center justify-between border-b border-slate-200 pb-2.5">
           <div className="flex items-center gap-2">
             <ShieldCheck className="size-4.5 shrink-0 stroke-[2] text-[#020617]" />
-            <h4 className="font-sans text-sm font-extrabold text-[#0A1A4A]">
+            <h4 className="font-sans text-sm font-extrabold text-[#020617]">
               Psychological Foundations: Day &amp; Moon Visual Spectrum
             </h4>
           </div>
@@ -959,7 +959,7 @@ export function GithubAppearanceColorRoles() {
             <span className="font-mono text-[10px] font-bold text-[#0056FF] uppercase">
               01. Scotopic Glare Mitigation
             </span>
-            <p className="font-sans text-xs font-extrabold text-[#0A1A4A]">
+            <p className="font-sans text-xs font-extrabold text-[#020617]">
               Why Moon Uses Slate (#0F172A) Over Pitch Black
             </p>
             <p className="font-sans text-[11px] leading-relaxed text-slate-600">
@@ -973,7 +973,7 @@ export function GithubAppearanceColorRoles() {
             <span className="font-mono text-[10px] font-bold text-[#0056FF] uppercase">
               02. 1:1 Vector &amp; Typographic Luminescence
             </span>
-            <p className="font-sans text-xs font-extrabold text-[#0A1A4A]">
+            <p className="font-sans text-xs font-extrabold text-[#020617]">
               Pure White (#FFFFFF) Icons in Moon Mode
             </p>
             <p className="font-sans text-[11px] leading-relaxed text-slate-600">
@@ -987,7 +987,7 @@ export function GithubAppearanceColorRoles() {
             <span className="font-mono text-[10px] font-bold text-[#0056FF] uppercase">
               03. Geometric Container Invariant
             </span>
-            <p className="font-sans text-xs font-extrabold text-[#0A1A4A]">
+            <p className="font-sans text-xs font-extrabold text-[#020617]">
               Strict 2px Corner Radius Containers
             </p>
             <p className="font-sans text-[11px] leading-relaxed text-slate-600">
@@ -1004,7 +1004,7 @@ export function GithubAppearanceColorRoles() {
       {/* ------------------------------------------------------------- */}
       <div className="space-y-3 rounded-2xl border border-[#CAD3F5] bg-[#F8FAFC] p-4 text-xs">
         <div className="space-y-0.5 border-b border-slate-200 pb-2.5">
-          <h4 className="font-sans text-sm font-bold text-[#0A1A4A]">Contrast</h4>
+          <h4 className="font-sans text-sm font-bold text-[#020617]">Contrast</h4>
           <p className="font-sans text-slate-500">
             Increase contrast. Enable high contrast for light or dark mode (or both) based on your
             system settings.
@@ -1015,7 +1015,7 @@ export function GithubAppearanceColorRoles() {
           {/* Light mode contrast switch */}
           <div className="flex items-center justify-between rounded-xl border border-[#CAD3F5] bg-white p-3">
             <div>
-              <span className="font-sans font-bold text-[#0A1A4A]">Light mode</span>
+              <span className="font-sans font-bold text-[#020617]">Light mode</span>
               <p className="text-[11px] text-slate-500">Higher contrast on light surfaces</p>
             </div>
             <button
@@ -1038,7 +1038,7 @@ export function GithubAppearanceColorRoles() {
           {/* Dark mode contrast switch */}
           <div className="flex items-center justify-between rounded-xl border border-[#CAD3F5] bg-white p-3">
             <div>
-              <span className="font-sans font-bold text-[#0A1A4A]">Dark mode</span>
+              <span className="font-sans font-bold text-[#020617]">Dark mode</span>
               <p className="text-[11px] text-slate-500">Maximum nocturnal contrast ratio</p>
             </div>
             <button

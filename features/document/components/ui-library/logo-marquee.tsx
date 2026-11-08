@@ -169,7 +169,7 @@ function LogoCard({ item, isDark }: { item: EnterpriseLogoItem; isDark: boolean 
         'group relative flex shrink-0 cursor-pointer items-center gap-3.5 rounded-2xl border px-5 py-3 transition-all select-none',
         isDark
           ? 'border-neutral-800 bg-neutral-900/90 text-white hover:border-white/40 hover:bg-neutral-800/90 hover:shadow-lg'
-          : 'border-[#CAD3F5] bg-white text-[#0A1A4A] shadow-2xs hover:border-[#0056FF] hover:bg-[#EFF5FF]/40 hover:shadow-xs',
+          : 'border-[#CAD3F5] bg-white text-[#020617] shadow-2xs hover:border-[#0056FF] hover:bg-[#EFF5FF]/40 hover:shadow-xs',
       )}
     >
       {/* Monochrome Vector Logo Icon */}
@@ -190,7 +190,7 @@ function LogoCard({ item, isDark }: { item: EnterpriseLogoItem; isDark: boolean 
           <span
             className={cn(
               'font-sans text-xs font-black tracking-tight',
-              isDark ? 'text-white' : 'text-[#0A1A4A]',
+              isDark ? 'text-white' : 'text-[#020617]',
             )}
           >
             {item.name}
@@ -442,7 +442,7 @@ export function LogoMarqueeDemo() {
           <button
             type="button"
             onClick={() => setDirection((prev) => (prev === 'left' ? 'right' : 'left'))}
-            className="flex cursor-pointer items-center gap-1.5 rounded-xl border border-[#CAD3F5] bg-white px-3 py-1.5 font-mono text-xs font-bold text-[#0A1A4A] transition-all select-none hover:border-[#0056FF] hover:bg-[#EFF5FF] hover:text-[#0056FF] active:scale-95"
+            className="flex cursor-pointer items-center gap-1.5 rounded-xl border border-[#CAD3F5] bg-white px-3 py-1.5 font-mono text-xs font-bold text-[#020617] transition-all select-none hover:border-[#0056FF] hover:bg-[#EFF5FF] hover:text-[#0056FF] active:scale-95"
           >
             <RotateCw className="size-3.5 text-[#0056FF]" />
             <span>Direction: {direction === 'left' ? 'Left ←' : 'Right →'}</span>
@@ -474,7 +474,7 @@ export function LogoMarqueeDemo() {
               'flex cursor-pointer items-center gap-1.5 rounded-xl border px-3 py-1.5 font-mono text-xs font-bold transition-all select-none',
               theme === 'dark'
                 ? 'border-neutral-700 bg-black text-white'
-                : 'border-[#CAD3F5] bg-white text-[#0A1A4A] hover:bg-slate-50',
+                : 'border-[#CAD3F5] bg-white text-[#020617] hover:bg-slate-50',
             )}
           >
             <span

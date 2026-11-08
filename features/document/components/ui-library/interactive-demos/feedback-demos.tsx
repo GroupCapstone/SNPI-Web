@@ -304,7 +304,7 @@ export function NotificationBellDemo() {
       {/* 1. Simulation & State Toolbar */}
       <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-[#CAD3F5] bg-white p-3 shadow-2xs sm:px-4 sm:py-3">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="font-mono text-xs font-bold text-[#0A1A4A] uppercase">
+          <span className="font-mono text-xs font-bold text-[#020617] uppercase">
             Simulate Alerts:
           </span>
           <div className="flex flex-wrap items-center gap-1.5">
@@ -368,7 +368,7 @@ export function NotificationBellDemo() {
               S
             </span>
             <div className="flex flex-col">
-              <span className="font-sans text-xs font-black tracking-tight text-[#0A1A4A] sm:text-sm">
+              <span className="font-sans text-xs font-black tracking-tight text-[#020617] sm:text-sm">
                 SNPI Campus Alert Hub
               </span>
               <span className="flex items-center gap-1 font-mono text-[10px] text-slate-400">
@@ -391,14 +391,14 @@ export function NotificationBellDemo() {
                 'group relative flex size-11 cursor-pointer items-center justify-center rounded-2xl border-2 transition-all select-none active:scale-[0.97]',
                 isOpen
                   ? 'border-[#0056FF] bg-[#EFF5FF] text-[#0056FF] shadow-xs ring-4 ring-[#0056FF]/15'
-                  : 'border-[#CAD3F5] bg-white text-[#0A1A4A] hover:border-[#0056FF] hover:bg-[#EFF5FF]/50 hover:text-[#0056FF]',
+                  : 'border-[#CAD3F5] bg-white text-[#020617] hover:border-[#0056FF] hover:bg-[#EFF5FF]/50 hover:text-[#0056FF]',
                 hasNewAlert && 'scale-105 ring-4 ring-[#0056FF]/30',
               )}
             >
               <Bell
                 className={cn(
                   'size-5 stroke-[2.2]',
-                  isOpen ? 'text-[#0056FF]' : 'text-[#0A1A4A]',
+                  isOpen ? 'text-[#0056FF]' : 'text-[#020617]',
                   hasNewAlert && 'text-[#0056FF]',
                 )}
               />
@@ -419,7 +419,7 @@ export function NotificationBellDemo() {
                 {/* 1. Popover Header Row */}
                 <div className="flex items-center justify-between border-b border-[#CAD3F5]/80 pb-3">
                   <div className="flex items-center gap-2">
-                    <span className="font-sans text-sm font-black text-[#0A1A4A]">
+                    <span className="font-sans text-sm font-black text-[#020617]">
                       Notifications
                     </span>
                     <span className="rounded-full border border-[#CAD3F5] bg-[#E3E7FC] px-2 py-0.5 font-mono text-[10px] font-bold text-[#0056FF]">
@@ -474,7 +474,7 @@ export function NotificationBellDemo() {
                         'flex shrink-0 cursor-pointer items-center gap-1 rounded-lg px-2.5 py-1 font-mono text-[11px] font-bold uppercase transition-all select-none',
                         filter === tab.id
                           ? 'bg-[#0056FF] text-white shadow-2xs'
-                          : 'border border-slate-200 bg-slate-50 text-slate-600 hover:border-[#CAD3F5] hover:text-[#0A1A4A]',
+                          : 'border border-slate-200 bg-slate-50 text-slate-600 hover:border-[#CAD3F5] hover:text-[#020617]',
                       )}
                     >
                       <span>{tab.label}</span>
@@ -497,7 +497,7 @@ export function NotificationBellDemo() {
                   {filteredItems.length === 0 ? (
                     <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-[#CAD3F5] py-10 text-center">
                       <BellDot className="size-7 text-[#0056FF]/40" />
-                      <p className="mt-2 font-sans text-xs font-bold text-[#0A1A4A]">
+                      <p className="mt-2 font-sans text-xs font-bold text-[#020617]">
                         No notifications in this category
                       </p>
                       <p className="mt-0.5 font-sans text-[11px] text-slate-400">
@@ -560,7 +560,7 @@ export function NotificationBellDemo() {
                               </div>
                             </div>
 
-                            <h5 className="mt-1 font-sans text-xs leading-snug font-bold text-[#0A1A4A]">
+                            <h5 className="mt-1 font-sans text-xs leading-snug font-bold text-[#020617]">
                               {n.title}
                             </h5>
                             <p className="mt-0.5 line-clamp-2 font-sans text-[11px] leading-relaxed text-slate-600">
@@ -666,12 +666,6 @@ export function StatusPage404Demo() {
     <div className="w-full max-w-4xl space-y-3 rounded-[4px] border border-[#CAD3F5] bg-white p-5 shadow-2xs sm:p-6">
       {/* HTTP Status Code Selector */}
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#CAD3F5]/60 pb-3">
-        <div className="flex items-center gap-2">
-          <span className="font-sans text-xs font-bold text-[#0A1A4A]">
-            Status Archetype Engine
-          </span>
-          <span className="font-mono text-[10px] text-slate-400">Select Code:</span>
-        </div>
         <div className="flex flex-wrap items-center gap-1.5">
           {statusCodes.map((sc) => (
             <button
@@ -683,7 +677,7 @@ export function StatusPage404Demo() {
                 'cursor-pointer rounded-[2px] border px-2.5 py-1 font-mono text-xs font-bold transition-colors select-none active:scale-[0.97]',
                 selectedCode === sc.code
                   ? 'border-[#0056FF] bg-[#0056FF] text-white'
-                  : 'border-[#CAD3F5] bg-white text-[#0A1A4A] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
+                  : 'border-[#CAD3F5] bg-white text-[#020617] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
               )}
             >
               {sc.code}
@@ -713,7 +707,7 @@ export function StatusPage404Demo() {
                 <span className="font-mono text-[9px] font-bold text-[#0056FF]">{arch.tag}</span>
                 {isSelected && <span className="h-1.5 w-1.5 rounded-[1px] bg-[#0056FF]" />}
               </div>
-              <div className="mt-1 font-sans text-xs font-bold text-[#0A1A4A]">{arch.label}</div>
+              <div className="mt-1 font-sans text-xs font-bold text-[#020617]">{arch.label}</div>
             </button>
           );
         })}

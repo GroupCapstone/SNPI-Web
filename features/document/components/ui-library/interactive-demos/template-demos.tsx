@@ -355,7 +355,7 @@ export function FloatingLabelFormDemo() {
         <div className="flex items-center gap-3">
           <FileText className="size-5 shrink-0 stroke-[2] text-[#020617]" />
           <div>
-            <h4 className="font-sans text-sm font-bold text-[#0A1A4A] sm:text-base">
+            <h4 className="font-sans text-sm font-bold text-[#020617] sm:text-base">
               Candidate Registration Dossier
             </h4>
             <div className="font-sans text-xs text-[#334155]">
@@ -374,7 +374,7 @@ export function FloatingLabelFormDemo() {
           <div className="flex items-center justify-between gap-3">
             <label
               htmlFor="std-full-name"
-              className="block font-sans text-xs font-bold text-[#0A1A4A]"
+              className="block font-sans text-xs font-bold text-[#020617]"
             >
               Candidate Full Legal Name <span className="text-[#0056FF]">*</span>
             </label>
@@ -396,7 +396,7 @@ export function FloatingLabelFormDemo() {
               value={formData.fullName}
               onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
               placeholder="Enter full legal name (e.g. Dara Sok)"
-              className="h-11 w-full rounded-xl border-2 border-[#CAD3F5] bg-[#EFF5FF]/40 pr-3 pl-10 font-sans text-xs font-semibold text-[#0A1A4A] transition-all placeholder:text-slate-400 hover:border-[#0056FF]/50 hover:bg-white focus:border-[#0056FF] focus:bg-white focus:ring-3 focus:ring-[#0056FF]/15 focus:outline-none"
+              className="h-11 w-full rounded-xl border-2 border-[#CAD3F5] bg-[#EFF5FF]/40 pr-3 pl-10 font-sans text-xs font-semibold text-[#020617] transition-all placeholder:text-slate-400 hover:border-[#0056FF]/50 hover:bg-white focus:border-[#0056FF] focus:bg-white focus:ring-3 focus:ring-[#0056FF]/15 focus:outline-none"
             />
           </div>
           <div className="font-sans text-[11px] text-slate-500">
@@ -407,7 +407,7 @@ export function FloatingLabelFormDemo() {
         {/* Field 2: Institutional Campus Email Address */}
         <div className="space-y-1.5">
           <div className="flex items-center justify-between gap-3">
-            <label htmlFor="std-email" className="block font-sans text-xs font-bold text-[#0A1A4A]">
+            <label htmlFor="std-email" className="block font-sans text-xs font-bold text-[#020617]">
               Institutional Campus Email Address <span className="text-[#0056FF]">*</span>
             </label>
             {formData.email.includes('@') && (
@@ -428,7 +428,7 @@ export function FloatingLabelFormDemo() {
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               placeholder="e.g. dara.sok@student.snpi.edu.kh"
-              className="h-11 w-full rounded-xl border-2 border-[#CAD3F5] bg-[#EFF5FF]/40 pr-3 pl-10 font-mono text-[11px] font-semibold text-[#0A1A4A] transition-all placeholder:font-sans placeholder:text-slate-400 hover:border-[#0056FF]/50 hover:bg-white focus:border-[#0056FF] focus:bg-white focus:ring-3 focus:ring-[#0056FF]/15 focus:outline-none"
+              className="h-11 w-full rounded-xl border-2 border-[#CAD3F5] bg-[#EFF5FF]/40 pr-3 pl-10 font-mono text-[11px] font-semibold text-[#020617] transition-all placeholder:font-sans placeholder:text-slate-400 hover:border-[#0056FF]/50 hover:bg-white focus:border-[#0056FF] focus:bg-white focus:ring-3 focus:ring-[#0056FF]/15 focus:outline-none"
             />
           </div>
           <div className="font-sans text-[11px] text-slate-500">
@@ -441,7 +441,7 @@ export function FloatingLabelFormDemo() {
           <div className="flex items-center justify-between gap-3">
             <label
               htmlFor="std-student-id"
-              className="block font-sans text-xs font-bold text-[#0A1A4A]"
+              className="block font-sans text-xs font-bold text-[#020617]"
             >
               National Student ID (STU-XXXX-XXXX) <span className="text-[#0056FF]">*</span>
             </label>
@@ -463,7 +463,7 @@ export function FloatingLabelFormDemo() {
               value={formData.studentId}
               onChange={(e) => setFormData({ ...formData, studentId: e.target.value })}
               placeholder="e.g. STU-2026-0891"
-              className="h-11 w-full rounded-xl border-2 border-[#CAD3F5] bg-[#EFF5FF]/40 pr-3 pl-10 font-mono text-xs font-bold text-[#0A1A4A] transition-all placeholder:font-sans placeholder:font-normal placeholder:text-slate-400 hover:border-[#0056FF]/50 hover:bg-white focus:border-[#0056FF] focus:bg-white focus:ring-3 focus:ring-[#0056FF]/15 focus:outline-none"
+              className="h-11 w-full rounded-xl border-2 border-[#CAD3F5] bg-[#EFF5FF]/40 pr-3 pl-10 font-mono text-xs font-bold text-[#020617] transition-all placeholder:font-sans placeholder:font-normal placeholder:text-slate-400 hover:border-[#0056FF]/50 hover:bg-white focus:border-[#0056FF] focus:bg-white focus:ring-3 focus:ring-[#0056FF]/15 focus:outline-none"
             />
           </div>
           <div className="font-sans text-[11px] text-slate-500">
@@ -482,7 +482,7 @@ export function FloatingLabelFormDemo() {
             <button
               type="button"
               onClick={formData.fullName ? handleReset : handleFillSample}
-              className="cursor-pointer rounded-xl border border-[#CAD3F5] bg-white px-3.5 py-2 font-sans text-xs font-bold text-[#0A1A4A] transition-colors hover:border-[#0056FF] hover:bg-[#EFF5FF] hover:text-[#0056FF] active:scale-[0.97]"
+              className="cursor-pointer rounded-xl border border-[#CAD3F5] bg-white px-3.5 py-2 font-sans text-xs font-bold text-[#020617] transition-colors hover:border-[#0056FF] hover:bg-[#EFF5FF] hover:text-[#0056FF] active:scale-[0.97]"
             >
               {formData.fullName ? 'Clear' : 'Fill Sample'}
             </button>

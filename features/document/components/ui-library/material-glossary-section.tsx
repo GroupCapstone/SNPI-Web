@@ -972,7 +972,7 @@ export function MaterialGlossarySection() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search Material A-Z terms, concepts, tokens, or definitions..."
-            className="w-full rounded-xl border border-[#CAD3F5] bg-[#EFF5FF]/40 py-2.5 pr-10 pl-10 font-sans text-xs text-[#0A1A4A] transition-all placeholder:text-slate-400 focus:border-[#0056FF] focus:bg-white focus:outline-hidden"
+            className="w-full rounded-xl border border-[#CAD3F5] bg-[#EFF5FF]/40 py-2.5 pr-10 pl-10 font-sans text-xs text-[#020617] transition-all placeholder:text-slate-400 focus:border-[#0056FF] focus:bg-white focus:outline-hidden"
           />
           {searchQuery && (
             <button
@@ -1007,7 +1007,7 @@ export function MaterialGlossarySection() {
                 'flex cursor-pointer items-center gap-1.5 rounded-lg px-3 py-1.5 font-sans text-xs font-semibold transition-all',
                 viewMode === 'lexicon'
                   ? 'bg-[#0056FF] text-white shadow-xs'
-                  : 'text-[#0A1A4A] hover:bg-white/60 hover:text-[#0056FF]',
+                  : 'text-[#020617] hover:bg-white/60 hover:text-[#0056FF]',
               )}
             >
               <List className="size-3.5" />
@@ -1020,7 +1020,7 @@ export function MaterialGlossarySection() {
                 'flex cursor-pointer items-center gap-1.5 rounded-lg px-3 py-1.5 font-sans text-xs font-semibold transition-all',
                 viewMode === 'grid'
                   ? 'bg-[#0056FF] text-white shadow-xs'
-                  : 'text-[#0A1A4A] hover:bg-white/60 hover:text-[#0056FF]',
+                  : 'text-[#020617] hover:bg-white/60 hover:text-[#0056FF]',
               )}
             >
               <Grid2x2 className="size-3.5" />
@@ -1047,7 +1047,7 @@ export function MaterialGlossarySection() {
                 'cursor-pointer rounded-lg px-3 py-1.5 font-sans text-xs font-semibold transition-all',
                 isActive
                   ? 'bg-[#0056FF] text-white shadow-xs'
-                  : 'border border-[#CAD3F5] bg-white text-[#0A1A4A] hover:border-[#0056FF]/40 hover:bg-[#EFF5FF]',
+                  : 'border border-[#CAD3F5] bg-white text-[#020617] hover:border-[#0056FF]/40 hover:bg-[#EFF5FF]',
               )}
             >
               {cat}
@@ -1076,7 +1076,7 @@ export function MaterialGlossarySection() {
                   isActive
                     ? 'bg-[#0056FF] text-white shadow-xs'
                     : hasTerms
-                      ? 'border border-[#CAD3F5] bg-white text-[#0A1A4A] hover:border-[#0056FF]/50 hover:bg-[#EFF5FF] hover:text-[#0056FF]'
+                      ? 'border border-[#CAD3F5] bg-white text-[#020617] hover:border-[#0056FF]/50 hover:bg-[#EFF5FF] hover:text-[#0056FF]'
                       : 'cursor-not-allowed border border-transparent bg-transparent text-slate-300',
                 )}
               >
@@ -1100,7 +1100,7 @@ export function MaterialGlossarySection() {
       {filteredTerms.length === 0 ? (
         <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-[#CAD3F5] bg-[#EFF5FF]/30 p-12 text-center">
           <BookOpen className="mb-3 size-9 text-[#0056FF]" />
-          <h4 className="font-sans text-base font-bold text-[#0A1A4A]">No matching terms found</h4>
+          <h4 className="font-sans text-base font-bold text-[#020617]">No matching terms found</h4>
           <p className="mt-1 max-w-sm font-sans text-xs leading-relaxed text-slate-500">
             No glossary entries match your active query or filters. Try adjusting your search
             keywords, letter index, or category filter.
@@ -1144,7 +1144,7 @@ export function MaterialGlossarySection() {
                       {/* Term Info */}
                       <div className="flex-1 space-y-2">
                         <div className="flex flex-wrap items-center gap-2.5">
-                          <h4 className="font-sans text-base font-bold tracking-tight text-[#0A1A4A]">
+                          <h4 className="font-sans text-base font-bold tracking-tight text-[#020617]">
                             {item.term}
                           </h4>
                           <span className="rounded-full border border-[#CAD3F5] bg-[#EFF5FF] px-2.5 py-0.5 font-mono text-[10px] font-bold text-[#0056FF]">
@@ -1189,7 +1189,7 @@ export function MaterialGlossarySection() {
                         <button
                           type="button"
                           onClick={() => handleCopy(`${item.term}: ${item.definition}`, defKey)}
-                          className="flex cursor-pointer items-center gap-1.5 rounded-lg border border-[#CAD3F5] bg-white px-3 py-1.5 font-mono text-xs font-semibold text-[#0A1A4A] transition-all hover:border-[#0056FF] hover:bg-[#EFF5FF] hover:text-[#0056FF]"
+                          className="flex cursor-pointer items-center gap-1.5 rounded-lg border border-[#CAD3F5] bg-white px-3 py-1.5 font-mono text-xs font-semibold text-[#020617] transition-all hover:border-[#0056FF] hover:bg-[#EFF5FF] hover:text-[#0056FF]"
                         >
                           {isDefCopied ? (
                             <>
@@ -1245,7 +1245,7 @@ export function MaterialGlossarySection() {
                   </div>
 
                   {/* Term Title */}
-                  <h4 className="font-sans text-base font-bold tracking-tight text-[#0A1A4A]">
+                  <h4 className="font-sans text-base font-bold tracking-tight text-[#020617]">
                     {item.term}
                   </h4>
 

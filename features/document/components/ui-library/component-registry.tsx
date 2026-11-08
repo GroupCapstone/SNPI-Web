@@ -1689,7 +1689,7 @@ export function Demo() {
     implementationNotes: [
       'Popover anchored cleanly below bell trigger with 12px vertical offset.',
       'Subtle enter animation: fade-in with slide-in-from-top-2.',
-      'High contrast text (#0A1A4A) with Soft Lavender (#CAD3F5) borders.',
+      'High contrast text (#020617) with Soft Lavender (#CAD3F5) borders.',
     ],
     supportedStates: [
       'Idle (0 Unread)',

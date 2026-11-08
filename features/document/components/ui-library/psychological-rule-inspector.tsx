@@ -282,7 +282,7 @@ Audited Chunking Size: ${params.chunkedGroupSize} fields/card`;
                   AI Agent Skill Enforcement
                 </span>
               </div>
-              <h2 className="mt-0.5 font-sans text-xl font-black text-[#0A1A4A] sm:text-2xl">
+              <h2 className="mt-0.5 font-sans text-xl font-black text-[#020617] sm:text-2xl">
                 Real-Time Psychological Design Rule Inspector
               </h2>
             </div>
@@ -325,7 +325,7 @@ Audited Chunking Size: ${params.chunkedGroupSize} fields/card`;
         {/* Left Column: Interactive Audit Sliders (5 cols) */}
         <div className="space-y-4 rounded-2xl border border-[#CAD3F5] bg-white p-5 shadow-xs lg:col-span-5">
           <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-            <span className="font-sans text-xs font-black tracking-wide text-[#0A1A4A] uppercase">
+            <span className="font-sans text-xs font-black tracking-wide text-[#020617] uppercase">
               Interactive Component Parameters
             </span>
             <span className="font-mono text-[10px] text-slate-400">Live Simulator</span>
@@ -334,7 +334,7 @@ Audited Chunking Size: ${params.chunkedGroupSize} fields/card`;
           {/* Slider 1: Fitts's Law Touch Target */}
           <div className="space-y-1.5">
             <div className="flex items-center justify-between text-xs">
-              <span className="font-sans font-bold text-[#0A1A4A]">Touch Target Dimension:</span>
+              <span className="font-sans font-bold text-[#020617]">Touch Target Dimension:</span>
               <span className="font-mono font-bold text-[#0056FF]">{params.touchTargetPx}px</span>
             </div>
             <input
@@ -358,7 +358,7 @@ Audited Chunking Size: ${params.chunkedGroupSize} fields/card`;
           {/* Slider 2: Hick's Law Options Count */}
           <div className="space-y-1.5 pt-2">
             <div className="flex items-center justify-between text-xs">
-              <span className="font-sans font-bold text-[#0A1A4A]">Visible Choices per Tier:</span>
+              <span className="font-sans font-bold text-[#020617]">Visible Choices per Tier:</span>
               <span className="font-mono font-bold text-[#0056FF]">
                 {params.visibleOptionsCount} options
               </span>
@@ -384,7 +384,7 @@ Audited Chunking Size: ${params.chunkedGroupSize} fields/card`;
           {/* Slider 3: Miller's Law Chunking Size */}
           <div className="space-y-1.5 pt-2">
             <div className="flex items-center justify-between text-xs">
-              <span className="font-sans font-bold text-[#0A1A4A]">Fields per Card / Chunk:</span>
+              <span className="font-sans font-bold text-[#020617]">Fields per Card / Chunk:</span>
               <span className="font-mono font-bold text-[#0056FF]">
                 {params.chunkedGroupSize} fields
               </span>
@@ -410,7 +410,7 @@ Audited Chunking Size: ${params.chunkedGroupSize} fields/card`;
           {/* Slider 4: Doherty Threshold Latency */}
           <div className="space-y-1.5 pt-2">
             <div className="flex items-center justify-between text-xs">
-              <span className="font-sans font-bold text-[#0A1A4A]">Perceived System Response:</span>
+              <span className="font-sans font-bold text-[#020617]">Perceived System Response:</span>
               <span className="font-mono font-bold text-[#0056FF]">
                 {params.feedbackLatencyMs}ms
               </span>
@@ -436,7 +436,7 @@ Audited Chunking Size: ${params.chunkedGroupSize} fields/card`;
           {/* Toggle: Postel's Law Permissive Normalization */}
           <div className="flex items-center justify-between rounded-xl border border-slate-100 bg-[#F8FAFC] p-3 pt-2">
             <div>
-              <span className="block font-sans text-xs font-bold text-[#0A1A4A]">
+              <span className="block font-sans text-xs font-bold text-[#020617]">
                 Postel Normalization:
               </span>
               <span className="font-mono text-[10px] text-slate-500">
@@ -467,7 +467,7 @@ Audited Chunking Size: ${params.chunkedGroupSize} fields/card`;
 
           {/* Selector: Culinary Tier Selection */}
           <div className="space-y-1.5 pt-2">
-            <span className="font-sans text-xs font-bold text-[#0A1A4A]">
+            <span className="font-sans text-xs font-bold text-[#020617]">
               Target Component Tier:
             </span>
             <div className="grid grid-cols-3 gap-1.5 font-mono text-[10px]">
@@ -495,7 +495,7 @@ Audited Chunking Size: ${params.chunkedGroupSize} fields/card`;
         {/* Right Column: Live Compliance Evaluation Cards (7 cols) */}
         <div className="space-y-3 lg:col-span-7">
           <div className="flex items-center justify-between border-b border-slate-100 pb-2">
-            <span className="font-sans text-xs font-black tracking-wide text-[#0A1A4A] uppercase">
+            <span className="font-sans text-xs font-black tracking-wide text-[#020617] uppercase">
               Psychological Invariant Checklist (Real-Time Evaluation)
             </span>
             <span className="font-mono text-[10px] text-slate-500">Live Engine</span>
@@ -528,7 +528,7 @@ Audited Chunking Size: ${params.chunkedGroupSize} fields/card`;
                       >
                         {result.passed ? '✓' : '!'}
                       </span>
-                      <span className="font-sans text-xs font-bold text-[#0A1A4A] group-hover:text-[#0056FF]">
+                      <span className="font-sans text-xs font-bold text-[#020617] group-hover:text-[#0056FF]">
                         {law.name}
                       </span>
                       <span className="font-mono text-[10px] text-slate-400">
@@ -561,7 +561,7 @@ Audited Chunking Size: ${params.chunkedGroupSize} fields/card`;
                       {law.mathFormula && (
                         <div className="flex items-center justify-between text-slate-500">
                           <span>Mathematical Formula:</span>
-                          <span className="font-bold text-[#0A1A4A]">{law.mathFormula}</span>
+                          <span className="font-bold text-[#020617]">{law.mathFormula}</span>
                         </div>
                       )}
                       <div className="font-sans text-xs text-slate-700">
@@ -586,7 +586,7 @@ Audited Chunking Size: ${params.chunkedGroupSize} fields/card`;
               <Sparkles className="size-4" />
             </div>
             <div>
-              <h3 className="font-sans text-sm font-bold text-[#0A1A4A]">
+              <h3 className="font-sans text-sm font-bold text-[#020617]">
                 AI Agent Skill Rule Specification (Real-Time Output)
               </h3>
               <span className="font-mono text-[10px] text-slate-500">

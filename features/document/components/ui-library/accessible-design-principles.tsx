@@ -403,7 +403,7 @@ export function AccessibleDesignPrinciples({
                   'group flex cursor-pointer flex-col items-start gap-1.5 rounded-xl border p-3 text-left transition-all',
                   isDomainActive
                     ? 'border-[#0056FF] bg-[#0056FF] text-white shadow-xs'
-                    : 'border-[#CAD3F5] bg-white text-[#0A1A4A] hover:border-[#0056FF]/40 hover:bg-[#EFF5FF]',
+                    : 'border-[#CAD3F5] bg-white text-[#020617] hover:border-[#0056FF]/40 hover:bg-[#EFF5FF]',
                 )}
               >
                 <div className="flex w-full items-center justify-between">
@@ -466,7 +466,7 @@ export function AccessibleDesignPrinciples({
                     'cursor-pointer rounded-lg px-3 py-1.5 font-sans text-xs font-bold transition-all',
                     isTabActive
                       ? 'bg-[#0056FF] text-white shadow-none'
-                      : 'bg-transparent text-[#0A1A4A] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
+                      : 'bg-transparent text-[#020617] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
                   )}
                 >
                   {tab.label}
@@ -493,7 +493,7 @@ export function AccessibleDesignPrinciples({
           <div className="space-y-4 rounded-2xl border border-[#CAD3F5] bg-white p-5">
             <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-3">
               <div className="space-y-0.5">
-                <span className="font-sans text-xs font-bold tracking-wide text-[#0A1A4A] uppercase">
+                <span className="font-sans text-xs font-bold tracking-wide text-[#020617] uppercase">
                   Alt Text Architecture &amp; Character Boundary (&le; 140 Chars)
                 </span>
                 <div className="font-mono text-[10px] text-slate-500">
@@ -513,7 +513,7 @@ export function AccessibleDesignPrinciples({
                       'rounded-lg px-3 py-1 font-mono text-xs font-bold uppercase transition-all',
                       altType === t
                         ? 'bg-[#0056FF] text-white shadow-none'
-                        : 'text-[#0A1A4A] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
+                        : 'text-[#020617] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
                     )}
                   >
                     {t}
@@ -600,7 +600,7 @@ export function AccessibleDesignPrinciples({
           {/* Global Writing & Localization Rules Matrix */}
           <div className="space-y-4 rounded-2xl border border-[#CAD3F5] bg-white p-5">
             <div className="flex items-center justify-between border-b border-slate-100 pb-2">
-              <span className="font-sans text-xs font-bold tracking-wide text-[#0A1A4A] uppercase">
+              <span className="font-sans text-xs font-bold tracking-wide text-[#020617] uppercase">
                 8 Global Writing &amp; Plain Language Rules
               </span>
               <span className="font-mono text-[10px] font-bold text-[#0056FF]">
@@ -680,7 +680,7 @@ export function AccessibleDesignPrinciples({
           <div className="space-y-4 rounded-2xl border border-[#CAD3F5] bg-white p-5">
             <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-3">
               <div className="space-y-0.5">
-                <span className="font-sans text-xs font-bold tracking-wide text-[#0A1A4A] uppercase">
+                <span className="font-sans text-xs font-bold tracking-wide text-[#020617] uppercase">
                   UX Writing &amp; Grammatical Standards
                 </span>
                 <div className="font-mono text-[10px] text-slate-500">
@@ -707,7 +707,7 @@ export function AccessibleDesignPrinciples({
                       'rounded-lg px-2.5 py-1 font-mono text-xs font-bold uppercase transition-all',
                       uxCategory === c.id
                         ? 'bg-[#0056FF] text-white shadow-none'
-                        : 'text-[#0A1A4A] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
+                        : 'text-[#020617] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
                     )}
                   >
                     {c.label}
@@ -736,7 +736,7 @@ export function AccessibleDesignPrinciples({
                 <div className="space-y-2 rounded-lg border border-[#CAD3F5] bg-[#F8FAFC] p-3">
                   {uxCategory === 'consequences' && (
                     <div className="space-y-2">
-                      <div className="font-sans text-xs font-bold text-[#0A1A4A]">
+                      <div className="font-sans text-xs font-bold text-[#020617]">
                         Archive course section?
                       </div>
                       <div className="font-mono text-[11px] leading-relaxed text-slate-700">
@@ -752,7 +752,7 @@ export function AccessibleDesignPrinciples({
                         </button>
                         <button
                           type="button"
-                          className="rounded-md border border-[#CAD3F5] bg-white px-2.5 py-1 font-mono text-[10px] font-bold text-[#0A1A4A] hover:bg-[#EFF5FF]"
+                          className="rounded-md border border-[#CAD3F5] bg-white px-2.5 py-1 font-mono text-[10px] font-bold text-[#020617] hover:bg-[#EFF5FF]"
                         >
                           Cancel
                         </button>
@@ -762,7 +762,7 @@ export function AccessibleDesignPrinciples({
 
                   {uxCategory === 'pronouns' && (
                     <div className="space-y-2">
-                      <div className="font-sans text-xs font-bold text-[#0A1A4A]">
+                      <div className="font-sans text-xs font-bold text-[#020617]">
                         Your timetable is updated
                       </div>
                       <div className="font-mono text-[11px] leading-relaxed text-slate-700">
@@ -783,7 +783,7 @@ export function AccessibleDesignPrinciples({
                     <div className="space-y-2 font-mono text-[11px] text-slate-800">
                       <div className="flex items-center justify-between border-b border-slate-200/60 pb-1">
                         <span className="text-slate-500">Form label (no period):</span>
-                        <span className="font-bold text-[#0A1A4A]">
+                        <span className="font-bold text-[#020617]">
                           Student identification number
                         </span>
                       </div>
@@ -808,7 +808,7 @@ export function AccessibleDesignPrinciples({
                     <div className="space-y-2 font-mono text-[11px] text-slate-800">
                       <div className="flex items-center justify-between border-b border-slate-200/60 pb-1">
                         <span className="text-slate-500">Navigation:</span>
-                        <span className="font-bold text-[#0A1A4A]">Course registration</span>
+                        <span className="font-bold text-[#020617]">Course registration</span>
                       </div>
                       <div className="flex items-center justify-between border-b border-slate-200/60 pb-1">
                         <span className="text-slate-500">Button:</span>
@@ -954,7 +954,7 @@ export function AccessibleDesignPrinciples({
           {/* 10 Pillars of Enterprise UX Writing & Syntax Matrix */}
           <div className="space-y-4 rounded-2xl border border-[#CAD3F5] bg-white p-5">
             <div className="flex items-center justify-between border-b border-slate-100 pb-2">
-              <span className="font-sans text-xs font-bold tracking-wide text-[#0A1A4A] uppercase">
+              <span className="font-sans text-xs font-bold tracking-wide text-[#020617] uppercase">
                 10 Pillars of Enterprise UX Writing &amp; Syntax
               </span>
               <span className="font-mono text-[10px] font-bold text-[#0056FF]">
@@ -1048,7 +1048,7 @@ export function AccessibleDesignPrinciples({
           <div className="space-y-4 rounded-2xl border border-[#CAD3F5] bg-white p-5">
             <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-3">
               <div className="space-y-0.5">
-                <span className="font-sans text-xs font-bold tracking-wide text-[#0A1A4A] uppercase">
+                <span className="font-sans text-xs font-bold tracking-wide text-[#020617] uppercase">
                   Notification Architecture &amp; Character Gauges
                 </span>
                 <div className="font-mono text-[10px] text-slate-500">
@@ -1075,7 +1075,7 @@ export function AccessibleDesignPrinciples({
                       'rounded-lg px-2.5 py-1 font-mono text-xs font-bold uppercase transition-all',
                       notificationMode === m.id
                         ? 'bg-[#0056FF] text-white shadow-none'
-                        : 'text-[#0A1A4A] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
+                        : 'text-[#020617] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
                     )}
                   >
                     {m.label}
@@ -1112,7 +1112,7 @@ export function AccessibleDesignPrinciples({
 
                   {notificationMode.startsWith('push') ? (
                     <div className="space-y-1.5">
-                      <div className="font-sans text-xs font-bold text-[#0A1A4A]">
+                      <div className="font-sans text-xs font-bold text-[#020617]">
                         {notificationMode === 'push-collapsed'
                           ? 'Tuition Fee Due Tuesday'
                           : 'Grade Report Published'}
@@ -1131,7 +1131,7 @@ export function AccessibleDesignPrinciples({
                         </button>
                         <button
                           type="button"
-                          className="rounded-md border border-[#CAD3F5] bg-white px-2.5 py-1 font-mono text-[10px] font-bold text-[#0A1A4A] hover:bg-[#EFF5FF]"
+                          className="rounded-md border border-[#CAD3F5] bg-white px-2.5 py-1 font-mono text-[10px] font-bold text-[#020617] hover:bg-[#EFF5FF]"
                         >
                           {notificationMode === 'push-collapsed' ? 'Details' : 'Download'}
                         </button>
@@ -1234,7 +1234,7 @@ export function AccessibleDesignPrinciples({
               <div className="flex items-center gap-2">
                 <BellRing className="size-4 text-[#0056FF]" />
                 <div className="space-y-0.5">
-                  <div className="font-sans text-xs font-bold text-[#0A1A4A]">
+                  <div className="font-sans text-xs font-bold text-[#020617]">
                     Contextual In-Situ Opt-Out Control
                   </div>
                   <div className="font-mono text-[10px] text-slate-500">
@@ -1245,7 +1245,7 @@ export function AccessibleDesignPrinciples({
               </div>
 
               <div className="inline-flex items-center gap-2">
-                <span className="font-mono text-xs font-bold text-[#0A1A4A]">
+                <span className="font-mono text-xs font-bold text-[#020617]">
                   {notificationsOptIn ? 'Notifications: ACTIVE' : 'Notifications: MUTED'}
                 </span>
                 <button
@@ -1270,7 +1270,7 @@ export function AccessibleDesignPrinciples({
           {/* 8 Rules of Notification & SMS Architecture Matrix */}
           <div className="space-y-4 rounded-2xl border border-[#CAD3F5] bg-white p-5">
             <div className="flex items-center justify-between border-b border-slate-100 pb-2">
-              <span className="font-sans text-xs font-bold tracking-wide text-[#0A1A4A] uppercase">
+              <span className="font-sans text-xs font-bold tracking-wide text-[#020617] uppercase">
                 8 Notification &amp; SMS Invariants
               </span>
               <span className="font-mono text-[10px] font-bold text-[#0056FF]">
@@ -1352,7 +1352,7 @@ export function AccessibleDesignPrinciples({
           <div className="space-y-4 rounded-2xl border border-[#CAD3F5] bg-white p-5">
             <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-3">
               <div className="space-y-0.5">
-                <span className="font-sans text-xs font-bold tracking-wide text-[#0A1A4A] uppercase">
+                <span className="font-sans text-xs font-bold tracking-wide text-[#020617] uppercase">
                   Multi-Modal Input Architecture &amp; Cursor Semantics
                 </span>
                 <div className="font-mono text-[10px] text-slate-500">
@@ -1379,7 +1379,7 @@ export function AccessibleDesignPrinciples({
                       'rounded-lg px-2.5 py-1 font-mono text-xs font-bold uppercase transition-all',
                       selectedInputDevice === dev.id
                         ? 'bg-[#0056FF] text-white shadow-none'
-                        : 'text-[#0A1A4A] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
+                        : 'text-[#020617] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
                     )}
                   >
                     {dev.label}
@@ -1415,7 +1415,7 @@ export function AccessibleDesignPrinciples({
                       }}
                       className="relative cursor-context-menu rounded-lg border-2 border-dashed border-[#CAD3F5] bg-[#F8FAFC] p-4 text-center"
                     >
-                      <div className="font-sans text-xs font-bold text-[#0A1A4A]">
+                      <div className="font-sans text-xs font-bold text-[#020617]">
                         Right-Click / Secondary Click this Box
                       </div>
                       <div className="mt-1 font-mono text-[10px] text-slate-500">
@@ -1427,14 +1427,14 @@ export function AccessibleDesignPrinciples({
                           <button
                             type="button"
                             onClick={() => setSecondaryMenuOpen(false)}
-                            className="w-full rounded px-2 py-1.5 text-left text-[#0A1A4A] hover:bg-[#EFF5FF]"
+                            className="w-full rounded px-2 py-1.5 text-left text-[#020617] hover:bg-[#EFF5FF]"
                           >
                             Copy text
                           </button>
                           <button
                             type="button"
                             onClick={() => setSecondaryMenuOpen(false)}
-                            className="w-full rounded px-2 py-1.5 text-left text-[#0A1A4A] hover:bg-[#EFF5FF]"
+                            className="w-full rounded px-2 py-1.5 text-left text-[#020617] hover:bg-[#EFF5FF]"
                           >
                             Inspect details
                           </button>
@@ -1559,7 +1559,7 @@ export function AccessibleDesignPrinciples({
                       <div className="inline-flex size-10 items-center justify-center rounded-full border-2 border-[#0056FF] bg-blue-50 font-mono text-[10px] font-bold text-[#0056FF]">
                         8px
                       </div>
-                      <div className="font-sans text-xs font-bold text-[#0A1A4A]">
+                      <div className="font-sans text-xs font-bold text-[#020617]">
                         Stylus Tool Circle Indicator
                       </div>
                       <div className="font-mono text-[10px] text-slate-500">
@@ -1631,7 +1631,7 @@ export function AccessibleDesignPrinciples({
           {/* 8 Rules of Multi-Modal Inputs Matrix */}
           <div className="space-y-4 rounded-2xl border border-[#CAD3F5] bg-white p-5">
             <div className="flex items-center justify-between border-b border-slate-100 pb-2">
-              <span className="font-sans text-xs font-bold tracking-wide text-[#0A1A4A] uppercase">
+              <span className="font-sans text-xs font-bold tracking-wide text-[#020617] uppercase">
                 8 Multi-Modal Input Invariants
               </span>
               <span className="font-mono text-[10px] font-bold text-[#0056FF]">
@@ -1714,7 +1714,7 @@ export function AccessibleDesignPrinciples({
           <div className="space-y-4 rounded-2xl border border-[#CAD3F5] bg-white p-5">
             <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-3">
               <div className="space-y-0.5">
-                <span className="font-sans text-xs font-bold tracking-wide text-[#0A1A4A] uppercase">
+                <span className="font-sans text-xs font-bold tracking-wide text-[#020617] uppercase">
                   Layout Scaffold &amp; Adaptive Breakpoint Architecture
                 </span>
                 <div className="font-mono text-[10px] text-slate-500">
@@ -1738,7 +1738,7 @@ export function AccessibleDesignPrinciples({
             <div className="grid grid-cols-1 gap-3 rounded-xl border border-[#CAD3F5] bg-[#F8FAFC] p-3 text-xs md:grid-cols-2">
               {/* Breakpoint Selector */}
               <div className="space-y-1.5">
-                <span className="font-sans text-[11px] font-bold tracking-wider text-[#0A1A4A] uppercase">
+                <span className="font-sans text-[11px] font-bold tracking-wider text-[#020617] uppercase">
                   Breakpoints (Window Size Classes)
                 </span>
                 <div className="flex flex-wrap items-center gap-1">
@@ -1768,7 +1768,7 @@ export function AccessibleDesignPrinciples({
                         'rounded-lg px-2.5 py-1 text-left font-sans text-xs transition-all',
                         layoutBreakpoint === b.id
                           ? 'border border-[#0056FF] bg-[#0056FF] font-bold text-white'
-                          : 'border border-[#CAD3F5] bg-white text-[#0A1A4A] hover:border-[#2277FF] hover:bg-[#EFF5FF]',
+                          : 'border border-[#CAD3F5] bg-white text-[#020617] hover:border-[#2277FF] hover:bg-[#EFF5FF]',
                       )}
                     >
                       <span>{b.label}</span>
@@ -1780,7 +1780,7 @@ export function AccessibleDesignPrinciples({
 
               {/* Experience Type Selector */}
               <div className="space-y-1.5">
-                <span className="font-sans text-[11px] font-bold tracking-wider text-[#0A1A4A] uppercase">
+                <span className="font-sans text-[11px] font-bold tracking-wider text-[#020617] uppercase">
                   Experience Environments
                 </span>
                 <div className="flex flex-wrap items-center gap-1">
@@ -1799,7 +1799,7 @@ export function AccessibleDesignPrinciples({
                         'rounded-lg px-2.5 py-1 text-left font-sans text-xs transition-all',
                         layoutDeviceMode === m.id
                           ? 'border border-[#0056FF] bg-[#0056FF] font-bold text-white'
-                          : 'border border-[#CAD3F5] bg-white text-[#0A1A4A] hover:border-[#2277FF] hover:bg-[#EFF5FF]',
+                          : 'border border-[#CAD3F5] bg-white text-[#020617] hover:border-[#2277FF] hover:bg-[#EFF5FF]',
                       )}
                     >
                       <span>{m.label}</span>
@@ -1816,7 +1816,7 @@ export function AccessibleDesignPrinciples({
             <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-slate-200 bg-white p-2.5 text-xs">
               {/* Panes Configuration */}
               <div className="flex items-center gap-1.5">
-                <span className="font-sans font-bold text-[#0A1A4A]">Panes:</span>
+                <span className="font-sans font-bold text-[#020617]">Panes:</span>
                 {([1, 2, 3] as const).map((count) => (
                   <button
                     key={count}
@@ -1826,7 +1826,7 @@ export function AccessibleDesignPrinciples({
                       'rounded-md px-2 py-0.5 font-mono text-xs font-bold transition-all',
                       layoutPaneCount === count
                         ? 'bg-[#0056FF] text-white'
-                        : 'border border-[#CAD3F5] bg-slate-50 text-[#0A1A4A] hover:bg-[#EFF5FF]',
+                        : 'border border-[#CAD3F5] bg-slate-50 text-[#020617] hover:bg-[#EFF5FF]',
                     )}
                   >
                     {count} {count === 1 ? 'Pane' : 'Panes'}
@@ -1836,7 +1836,7 @@ export function AccessibleDesignPrinciples({
 
               {/* Adaptive Strategy */}
               <div className="flex items-center gap-1.5">
-                <span className="font-sans font-bold text-[#0A1A4A]">Strategy:</span>
+                <span className="font-sans font-bold text-[#020617]">Strategy:</span>
                 {(
                   [
                     { id: 'show-hide', label: 'Show/Hide' },
@@ -1852,7 +1852,7 @@ export function AccessibleDesignPrinciples({
                       'rounded-md px-2 py-0.5 font-sans text-xs transition-all',
                       layoutStrategy === s.id
                         ? 'bg-[#0056FF] font-bold text-white'
-                        : 'border border-[#CAD3F5] bg-slate-50 text-[#0A1A4A] hover:bg-[#EFF5FF]',
+                        : 'border border-[#CAD3F5] bg-slate-50 text-[#020617] hover:bg-[#EFF5FF]',
                     )}
                   >
                     {s.label}
@@ -1998,7 +1998,7 @@ export function AccessibleDesignPrinciples({
                     'flex items-center justify-between border-b px-4 py-3 transition-colors',
                     layoutDeviceMode === 'spatial'
                       ? 'border-cyan-500/30 bg-[#1E293B]/80 text-white'
-                      : 'border-[#CAD3F5] bg-white text-[#0A1A4A]',
+                      : 'border-[#CAD3F5] bg-white text-[#020617]',
                   )}
                 >
                   <div className="flex items-center gap-3">
@@ -2077,7 +2077,7 @@ export function AccessibleDesignPrinciples({
                               'flex cursor-pointer items-center rounded-lg px-2.5 py-2 font-sans text-xs transition-colors',
                               idx === 1
                                 ? 'bg-[#0056FF] font-bold text-white'
-                                : 'text-[#0A1A4A] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
+                                : 'text-[#020617] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
                               layoutBreakpoint !== 'large' &&
                                 layoutBreakpoint !== 'extra-large' &&
                                 'justify-center',
@@ -2129,7 +2129,7 @@ export function AccessibleDesignPrinciples({
                           <span className="font-mono text-[10px] font-bold text-[#0056FF] uppercase">
                             Pane 1 &middot; List Destination
                           </span>
-                          <h3 className="font-sans text-xs font-bold text-[#0A1A4A]">
+                          <h3 className="font-sans text-xs font-bold text-[#020617]">
                             Academic Cohorts (12)
                           </h3>
                         </div>
@@ -2170,7 +2170,7 @@ export function AccessibleDesignPrinciples({
                             className={cn(
                               'cursor-pointer rounded-xl border p-2.5 text-xs transition-all',
                               item.active
-                                ? 'border-[#0056FF] bg-[#EFF5FF] text-[#0A1A4A]'
+                                ? 'border-[#0056FF] bg-[#EFF5FF] text-[#020617]'
                                 : 'border-slate-200 bg-white hover:border-[#CAD3F5] hover:bg-slate-50',
                             )}
                           >
@@ -2219,7 +2219,7 @@ export function AccessibleDesignPrinciples({
                             <span className="font-mono text-[10px] font-bold text-emerald-600 uppercase">
                               Pane 2 &middot; Detail Workspace
                             </span>
-                            <h3 className="font-sans text-sm font-bold text-[#0A1A4A]">
+                            <h3 className="font-sans text-sm font-bold text-[#020617]">
                               CS-401: Advanced Distributed Systems
                             </h3>
                           </div>
@@ -2287,7 +2287,7 @@ export function AccessibleDesignPrinciples({
                           <span className="font-mono text-[10px] font-bold text-purple-600 uppercase">
                             Pane 3 &middot; Inspector
                           </span>
-                          <h4 className="font-sans text-xs font-bold text-[#0A1A4A]">
+                          <h4 className="font-sans text-xs font-bold text-[#020617]">
                             Telemetry &amp; Audit Logs
                           </h4>
                         </div>
@@ -2318,7 +2318,7 @@ export function AccessibleDesignPrinciples({
                               <span className="font-mono text-[9px] font-bold text-[#0056FF] uppercase">
                                 Levitated Workflow &middot; Floating Sheet
                               </span>
-                              <h4 className="font-sans text-xs font-bold text-[#0A1A4A]">
+                              <h4 className="font-sans text-xs font-bold text-[#020617]">
                                 Fast Grade Submission
                               </h4>
                             </div>
@@ -2394,7 +2394,7 @@ export function AccessibleDesignPrinciples({
             <div className="grid grid-cols-1 gap-3 pt-2 text-xs md:grid-cols-3">
               <div className="space-y-1.5 rounded-xl border border-[#CAD3F5] bg-[#F8FAFC] p-3">
                 <div className="flex items-center justify-between">
-                  <span className="font-sans font-bold text-[#0A1A4A]">1. Show &amp; Hide</span>
+                  <span className="font-sans font-bold text-[#020617]">1. Show &amp; Hide</span>
                   <span className="py-0.2 rounded bg-blue-100 px-1.5 font-mono text-[9px] text-[#0056FF]">
                     Expand/Fold
                   </span>
@@ -2408,7 +2408,7 @@ export function AccessibleDesignPrinciples({
 
               <div className="space-y-1.5 rounded-xl border border-[#CAD3F5] bg-[#F8FAFC] p-3">
                 <div className="flex items-center justify-between">
-                  <span className="font-sans font-bold text-[#0A1A4A]">2. Levitate</span>
+                  <span className="font-sans font-bold text-[#020617]">2. Levitate</span>
                   <span className="py-0.2 rounded bg-purple-100 px-1.5 font-mono text-[9px] text-purple-700">
                     Modal Focus
                   </span>
@@ -2421,7 +2421,7 @@ export function AccessibleDesignPrinciples({
 
               <div className="space-y-1.5 rounded-xl border border-[#CAD3F5] bg-[#F8FAFC] p-3">
                 <div className="flex items-center justify-between">
-                  <span className="font-sans font-bold text-[#0A1A4A]">3. Reflow</span>
+                  <span className="font-sans font-bold text-[#020617]">3. Reflow</span>
                   <span className="py-0.2 rounded bg-emerald-100 px-1.5 font-mono text-[9px] text-emerald-800">
                     Dynamic Grid
                   </span>
@@ -2436,12 +2436,12 @@ export function AccessibleDesignPrinciples({
 
             {/* Material 3 Layout Architecture Invariants Matrix */}
             <div className="space-y-2 pt-2">
-              <span className="font-sans text-[11px] font-bold tracking-wider text-[#0A1A4A] uppercase">
+              <span className="font-sans text-[11px] font-bold tracking-wider text-[#020617] uppercase">
                 Material 3 Layout Terms &amp; Architectural Invariants Matrix
               </span>
               <div className="overflow-x-auto rounded-xl border border-[#CAD3F5]">
                 <table className="w-full text-left font-sans text-xs">
-                  <thead className="border-b border-[#CAD3F5] bg-[#EFF5FF] font-bold text-[#0A1A4A]">
+                  <thead className="border-b border-[#CAD3F5] bg-[#EFF5FF] font-bold text-[#020617]">
                     <tr>
                       <th className="p-2.5">Scaffold Element</th>
                       <th className="p-2.5">Architectural Role</th>
@@ -2535,7 +2535,7 @@ export function AccessibleDesignPrinciples({
           <div className="space-y-4 rounded-2xl border border-[#CAD3F5] bg-white p-5">
             <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-3">
               <div className="space-y-0.5">
-                <span className="font-sans text-xs font-bold tracking-wide text-[#0A1A4A] uppercase">
+                <span className="font-sans text-xs font-bold tracking-wide text-[#020617] uppercase">
                   Interaction States &amp; State Layers Architecture
                 </span>
                 <div className="font-mono text-[10px] text-slate-500">
@@ -2559,7 +2559,7 @@ export function AccessibleDesignPrinciples({
             <div className="grid grid-cols-1 gap-3 rounded-xl border border-[#CAD3F5] bg-[#F8FAFC] p-3 text-xs md:grid-cols-2">
               {/* Interaction State Selector */}
               <div className="space-y-1.5">
-                <span className="font-sans text-[11px] font-bold tracking-wider text-[#0A1A4A] uppercase">
+                <span className="font-sans text-[11px] font-bold tracking-wider text-[#020617] uppercase">
                   Select Interaction State
                 </span>
                 <div className="flex flex-wrap items-center gap-1">
@@ -2581,7 +2581,7 @@ export function AccessibleDesignPrinciples({
                         'rounded-lg px-2.5 py-1 text-left font-sans text-xs transition-all',
                         interactionState === s.id
                           ? 'border border-[#0056FF] bg-[#0056FF] font-bold text-white'
-                          : 'border border-[#CAD3F5] bg-white text-[#0A1A4A] hover:border-[#2277FF] hover:bg-[#EFF5FF]',
+                          : 'border border-[#CAD3F5] bg-white text-[#020617] hover:border-[#2277FF] hover:bg-[#EFF5FF]',
                       )}
                     >
                       <span>{s.label}</span>
@@ -2593,7 +2593,7 @@ export function AccessibleDesignPrinciples({
 
               {/* Component Selector */}
               <div className="space-y-1.5">
-                <span className="font-sans text-[11px] font-bold tracking-wider text-[#0A1A4A] uppercase">
+                <span className="font-sans text-[11px] font-bold tracking-wider text-[#020617] uppercase">
                   Select Target Component
                 </span>
                 <div className="flex flex-wrap items-center gap-1">
@@ -2616,7 +2616,7 @@ export function AccessibleDesignPrinciples({
                         'rounded-lg px-2.5 py-1 text-left font-sans text-xs transition-all',
                         selectedTargetComponent === c.id
                           ? 'border border-[#0056FF] bg-[#0056FF] font-bold text-white'
-                          : 'border border-[#CAD3F5] bg-white text-[#0A1A4A] hover:border-[#2277FF] hover:bg-[#EFF5FF]',
+                          : 'border border-[#CAD3F5] bg-white text-[#020617] hover:border-[#2277FF] hover:bg-[#EFF5FF]',
                       )}
                     >
                       {c.label}
@@ -2629,7 +2629,7 @@ export function AccessibleDesignPrinciples({
             {/* Compound State Toggle Bar */}
             <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-slate-200 bg-white p-2.5 text-xs">
               <div className="flex items-center gap-2">
-                <span className="font-sans font-bold text-[#0A1A4A]">Compound Modifiers:</span>
+                <span className="font-sans font-bold text-[#020617]">Compound Modifiers:</span>
                 <button
                   type="button"
                   onClick={() => setCompoundSelectedState(!compoundSelectedState)}
@@ -2756,7 +2756,7 @@ export function AccessibleDesignPrinciples({
                       'inline-flex cursor-pointer items-center gap-2 rounded-lg px-4 py-2 font-sans text-xs font-bold transition-all duration-200',
                       compoundSelectedState
                         ? 'border-2 border-[#0056FF] bg-[#EFF5FF] text-[#0056FF]'
-                        : 'border border-[#CAD3F5] bg-white text-[#0A1A4A]',
+                        : 'border border-[#CAD3F5] bg-white text-[#020617]',
                       interactionState === 'disabled' &&
                         'cursor-not-allowed border-slate-200 bg-slate-100 text-slate-400 opacity-38',
                       interactionState === 'hover' && 'border-[#2277FF] bg-[#EFF5FF]',
@@ -2779,7 +2779,7 @@ export function AccessibleDesignPrinciples({
               {selectedTargetComponent === 'switch' && (
                 <div className="space-y-3 text-center">
                   <div className="inline-flex items-center gap-3">
-                    <span className="font-sans text-xs font-bold text-[#0A1A4A]">
+                    <span className="font-sans text-xs font-bold text-[#020617]">
                       Auto-Grading Roster
                     </span>
                     <div
@@ -2927,7 +2927,7 @@ export function AccessibleDesignPrinciples({
             <div className="grid grid-cols-1 gap-3 pt-2 text-xs sm:grid-cols-2 md:grid-cols-4">
               <div className="space-y-1 rounded-xl border border-[#CAD3F5] bg-[#F8FAFC] p-3">
                 <div className="flex items-center justify-between">
-                  <span className="font-sans font-bold text-[#0A1A4A]">1. Hover Exclusivity</span>
+                  <span className="font-sans font-bold text-[#020617]">1. Hover Exclusivity</span>
                   <span className="py-0.2 rounded bg-blue-100 px-1.5 font-mono text-[9px] text-[#0056FF]">
                     Single Cursor
                   </span>
@@ -2940,7 +2940,7 @@ export function AccessibleDesignPrinciples({
 
               <div className="space-y-1 rounded-xl border border-[#CAD3F5] bg-[#F8FAFC] p-3">
                 <div className="flex items-center justify-between">
-                  <span className="font-sans font-bold text-[#0A1A4A]">2. Focus Indicator</span>
+                  <span className="font-sans font-bold text-[#020617]">2. Focus Indicator</span>
                   <span className="py-0.2 rounded bg-purple-100 px-1.5 font-mono text-[9px] text-purple-700">
                     Tab Ring
                   </span>
@@ -2953,7 +2953,7 @@ export function AccessibleDesignPrinciples({
 
               <div className="space-y-1 rounded-xl border border-[#CAD3F5] bg-[#F8FAFC] p-3">
                 <div className="flex items-center justify-between">
-                  <span className="font-sans font-bold text-[#0A1A4A]">3. Pressed Ripple</span>
+                  <span className="font-sans font-bold text-[#020617]">3. Pressed Ripple</span>
                   <span className="py-0.2 rounded bg-emerald-100 px-1.5 font-mono text-[9px] text-emerald-800">
                     High-Emphasis
                   </span>
@@ -2966,7 +2966,7 @@ export function AccessibleDesignPrinciples({
 
               <div className="space-y-1 rounded-xl border border-[#CAD3F5] bg-[#F8FAFC] p-3">
                 <div className="flex items-center justify-between">
-                  <span className="font-sans font-bold text-[#0A1A4A]">4. Dragged Lift</span>
+                  <span className="font-sans font-bold text-[#020617]">4. Dragged Lift</span>
                   <span className="py-0.2 rounded bg-amber-100 px-1.5 font-mono text-[9px] text-amber-800">
                     4–8dp Lift
                   </span>
@@ -2980,12 +2980,12 @@ export function AccessibleDesignPrinciples({
 
             {/* Component State Inheritance & Exclusion Matrix Table */}
             <div className="space-y-2 pt-2">
-              <span className="font-sans text-[11px] font-bold tracking-wider text-[#0A1A4A] uppercase">
+              <span className="font-sans text-[11px] font-bold tracking-wider text-[#020617] uppercase">
                 Material 3 State Inheritance &amp; Exclusion Matrix
               </span>
               <div className="overflow-x-auto rounded-xl border border-[#CAD3F5]">
                 <table className="w-full text-left font-sans text-xs">
-                  <thead className="border-b border-[#CAD3F5] bg-[#EFF5FF] font-bold text-[#0A1A4A]">
+                  <thead className="border-b border-[#CAD3F5] bg-[#EFF5FF] font-bold text-[#020617]">
                     <tr>
                       <th className="p-2.5">Component Group</th>
                       <th className="p-2.5">Examples</th>
@@ -3063,7 +3063,7 @@ export function AccessibleDesignPrinciples({
           <div className="space-y-4 rounded-2xl border border-[#CAD3F5] bg-white p-5">
             <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-3">
               <div className="space-y-0.5">
-                <span className="font-sans text-xs font-bold tracking-wide text-[#0A1A4A] uppercase">
+                <span className="font-sans text-xs font-bold tracking-wide text-[#020617] uppercase">
                   Grids, Expressive Spacing &amp; Density Scaling Architecture
                 </span>
                 <div className="font-mono text-[10px] text-slate-500">
@@ -3087,7 +3087,7 @@ export function AccessibleDesignPrinciples({
             <div className="grid grid-cols-1 gap-3 rounded-xl border border-[#CAD3F5] bg-[#F8FAFC] p-3 text-xs md:grid-cols-2">
               {/* Component Density Scale Selector */}
               <div className="space-y-1.5">
-                <span className="font-sans text-[11px] font-bold tracking-wider text-[#0A1A4A] uppercase">
+                <span className="font-sans text-[11px] font-bold tracking-wider text-[#020617] uppercase">
                   Component Density Scale (Height &amp; Padding)
                 </span>
                 <div className="flex flex-wrap items-center gap-1">
@@ -3107,7 +3107,7 @@ export function AccessibleDesignPrinciples({
                         'rounded-lg px-2.5 py-1 text-left font-sans text-xs transition-all',
                         densityScale === d.scale
                           ? 'border border-[#0056FF] bg-[#0056FF] font-bold text-white'
-                          : 'border border-[#CAD3F5] bg-white text-[#0A1A4A] hover:border-[#2277FF] hover:bg-[#EFF5FF]',
+                          : 'border border-[#CAD3F5] bg-white text-[#020617] hover:border-[#2277FF] hover:bg-[#EFF5FF]',
                       )}
                     >
                       <span>{d.label}</span>
@@ -3119,7 +3119,7 @@ export function AccessibleDesignPrinciples({
 
               {/* Grid Columns & Rulers Selector */}
               <div className="space-y-1.5">
-                <span className="font-sans text-[11px] font-bold tracking-wider text-[#0A1A4A] uppercase">
+                <span className="font-sans text-[11px] font-bold tracking-wider text-[#020617] uppercase">
                   Adaptive Columns &amp; Global Rulers
                 </span>
                 <div className="flex flex-wrap items-center gap-1">
@@ -3132,7 +3132,7 @@ export function AccessibleDesignPrinciples({
                         'rounded-lg px-2.5 py-1 font-sans text-xs transition-all',
                         activeGridColumns === cols
                           ? 'border border-[#0056FF] bg-[#0056FF] font-bold text-white'
-                          : 'border border-[#CAD3F5] bg-white text-[#0A1A4A] hover:bg-[#EFF5FF]',
+                          : 'border border-[#CAD3F5] bg-white text-[#020617] hover:bg-[#EFF5FF]',
                       )}
                     >
                       {cols} Columns
@@ -3381,7 +3381,7 @@ export function AccessibleDesignPrinciples({
             <div className="grid grid-cols-1 gap-3 pt-2 text-xs sm:grid-cols-2 md:grid-cols-4">
               <div className="space-y-1 rounded-xl border border-[#CAD3F5] bg-[#F8FAFC] p-3">
                 <div className="flex items-center justify-between">
-                  <span className="font-sans font-bold text-[#0A1A4A]">1. Rhythm</span>
+                  <span className="font-sans font-bold text-[#020617]">1. Rhythm</span>
                   <span className="py-0.2 rounded bg-blue-100 px-1.5 font-mono text-[9px] text-[#0056FF]">
                     Cadence
                   </span>
@@ -3394,7 +3394,7 @@ export function AccessibleDesignPrinciples({
 
               <div className="space-y-1 rounded-xl border border-[#CAD3F5] bg-[#F8FAFC] p-3">
                 <div className="flex items-center justify-between">
-                  <span className="font-sans font-bold text-[#0A1A4A]">2. Similarity</span>
+                  <span className="font-sans font-bold text-[#020617]">2. Similarity</span>
                   <span className="py-0.2 rounded bg-purple-100 px-1.5 font-mono text-[9px] text-purple-700">
                     Parity
                   </span>
@@ -3407,7 +3407,7 @@ export function AccessibleDesignPrinciples({
 
               <div className="space-y-1 rounded-xl border border-[#CAD3F5] bg-[#F8FAFC] p-3">
                 <div className="flex items-center justify-between">
-                  <span className="font-sans font-bold text-[#0A1A4A]">3. Proximity</span>
+                  <span className="font-sans font-bold text-[#020617]">3. Proximity</span>
                   <span className="py-0.2 rounded bg-emerald-100 px-1.5 font-mono text-[9px] text-emerald-800">
                     Causality
                   </span>
@@ -3420,7 +3420,7 @@ export function AccessibleDesignPrinciples({
 
               <div className="space-y-1 rounded-xl border border-[#CAD3F5] bg-[#F8FAFC] p-3">
                 <div className="flex items-center justify-between">
-                  <span className="font-sans font-bold text-[#0A1A4A]">4. Continuity</span>
+                  <span className="font-sans font-bold text-[#020617]">4. Continuity</span>
                   <span className="py-0.2 rounded bg-amber-100 px-1.5 font-mono text-[9px] text-amber-800">
                     Unified Row
                   </span>
@@ -3434,12 +3434,12 @@ export function AccessibleDesignPrinciples({
 
             {/* Density & Spacing Invariants Matrix Table */}
             <div className="space-y-2 pt-2">
-              <span className="font-sans text-[11px] font-bold tracking-wider text-[#0A1A4A] uppercase">
+              <span className="font-sans text-[11px] font-bold tracking-wider text-[#020617] uppercase">
                 Material 3 Grids, Spacing &amp; Density Invariants Matrix
               </span>
               <div className="overflow-x-auto rounded-xl border border-[#CAD3F5]">
                 <table className="w-full text-left font-sans text-xs">
-                  <thead className="border-b border-[#CAD3F5] bg-[#EFF5FF] font-bold text-[#0A1A4A]">
+                  <thead className="border-b border-[#CAD3F5] bg-[#EFF5FF] font-bold text-[#020617]">
                     <tr>
                       <th className="p-2.5">Domain</th>
                       <th className="p-2.5">Architectural Standard</th>
@@ -3517,7 +3517,7 @@ export function AccessibleDesignPrinciples({
           <div className="space-y-4 rounded-2xl border border-[#CAD3F5] bg-white p-5">
             <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-3">
               <div className="space-y-0.5">
-                <span className="font-sans text-xs font-bold tracking-wide text-[#0A1A4A] uppercase">
+                <span className="font-sans text-xs font-bold tracking-wide text-[#020617] uppercase">
                   Adaptive Breakpoints &amp; The 5 Transformation Vectors
                 </span>
                 <div className="font-mono text-[10px] text-slate-500">
@@ -3540,7 +3540,7 @@ export function AccessibleDesignPrinciples({
             {/* Controls Row 1: The 5 Material Breakpoints */}
             <div className="space-y-1.5 rounded-xl border border-[#CAD3F5] bg-[#F8FAFC] p-3 text-xs">
               <div className="flex items-center justify-between">
-                <span className="font-sans text-[11px] font-bold tracking-wider text-[#0A1A4A] uppercase">
+                <span className="font-sans text-[11px] font-bold tracking-wider text-[#020617] uppercase">
                   Select Target Breakpoint
                 </span>
                 <span className="font-mono text-[10px] text-slate-500">
@@ -3604,8 +3604,8 @@ export function AccessibleDesignPrinciples({
                     className={cn(
                       'flex flex-col rounded-xl p-2.5 text-left transition-all',
                       vectorBreakpoint === b.id
-                        ? 'border-2 border-[#0056FF] bg-[#EFF5FF] text-[#0A1A4A] shadow-xs'
-                        : 'border border-[#CAD3F5] bg-white text-[#0A1A4A] hover:bg-[#F8FAFC]',
+                        ? 'border-2 border-[#0056FF] bg-[#EFF5FF] text-[#020617] shadow-xs'
+                        : 'border border-[#CAD3F5] bg-white text-[#020617] hover:bg-[#F8FAFC]',
                     )}
                   >
                     <div className="flex items-center justify-between">
@@ -3623,7 +3623,7 @@ export function AccessibleDesignPrinciples({
 
             {/* Controls Row 2: The 5 Adaptation Questions Selector */}
             <div className="space-y-1.5 rounded-xl border border-slate-200 bg-white p-3 text-xs">
-              <span className="font-sans text-[11px] font-bold tracking-wider text-[#0A1A4A] uppercase">
+              <span className="font-sans text-[11px] font-bold tracking-wider text-[#020617] uppercase">
                 The 5 Foundational Transformation Questions
               </span>
               <div className="flex flex-wrap items-center gap-1.5">
@@ -3664,7 +3664,7 @@ export function AccessibleDesignPrinciples({
                       'rounded-lg px-3 py-1.5 text-left font-sans text-xs transition-all',
                       activeVectorQuestion === q.id
                         ? 'border border-[#0056FF] bg-[#0056FF] font-bold text-white'
-                        : 'border border-[#CAD3F5] bg-[#F8FAFC] text-[#0A1A4A] hover:bg-[#EFF5FF]',
+                        : 'border border-[#CAD3F5] bg-[#F8FAFC] text-[#020617] hover:bg-[#EFF5FF]',
                     )}
                   >
                     <span className="block">{q.label}</span>
@@ -3733,7 +3733,7 @@ export function AccessibleDesignPrinciples({
                       S
                     </div>
                     <div>
-                      <div className="font-sans text-xs font-bold text-[#0A1A4A]">
+                      <div className="font-sans text-xs font-bold text-[#020617]">
                         SNPI Enterprise Portal &middot; Breakpoint Adaptive Scaffold
                       </div>
                       <div className="font-mono text-[9px] text-slate-500">
@@ -3785,7 +3785,7 @@ export function AccessibleDesignPrinciples({
                               'flex cursor-pointer items-center rounded-lg px-2.5 py-1.5 font-sans text-xs transition-colors',
                               idx === 1
                                 ? 'bg-[#0056FF] font-bold text-white'
-                                : 'text-[#0A1A4A] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
+                                : 'text-[#020617] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
                               vectorBreakpoint !== 'large' &&
                                 vectorBreakpoint !== 'extra-large' &&
                                 'justify-center',
@@ -3831,7 +3831,7 @@ export function AccessibleDesignPrinciples({
                       className="space-y-2 border-r border-slate-200 bg-white p-3 transition-all"
                     >
                       <div className="flex items-center justify-between border-b border-slate-100 pb-1.5">
-                        <span className="font-sans text-xs font-bold text-[#0A1A4A]">
+                        <span className="font-sans text-xs font-bold text-[#020617]">
                           Cohort Master List
                         </span>
                         <span className="rounded bg-[#EFF5FF] px-1.5 py-0.5 font-mono text-[9px] text-[#0056FF]">
@@ -3873,7 +3873,7 @@ export function AccessibleDesignPrinciples({
                             <span className="font-mono text-[9px] font-bold text-emerald-600 uppercase">
                               Pane 2 &middot; Detail Workspace
                             </span>
-                            <h3 className="font-sans text-xs font-bold text-[#0A1A4A]">
+                            <h3 className="font-sans text-xs font-bold text-[#020617]">
                               CS-401: Advanced Distributed Systems
                             </h3>
                           </div>
@@ -3919,7 +3919,7 @@ export function AccessibleDesignPrinciples({
                         <span className="font-mono text-[9px] font-bold text-purple-600 uppercase">
                           Pane 3 &middot; Side Sheet
                         </span>
-                        <div className="font-sans text-xs font-bold text-[#0A1A4A]">
+                        <div className="font-sans text-xs font-bold text-[#020617]">
                           Real-Time Audit Log
                         </div>
                         <div className="space-y-1 rounded-lg bg-slate-50 p-2 font-mono text-[10px] text-slate-600">
@@ -3961,7 +3961,7 @@ export function AccessibleDesignPrinciples({
             {/* 5 Questions Explainer Cards */}
             <div className="grid grid-cols-1 gap-2.5 pt-2 text-xs sm:grid-cols-2 md:grid-cols-5">
               <div className="space-y-1 rounded-xl border border-[#CAD3F5] bg-[#F8FAFC] p-3">
-                <span className="block font-sans font-bold text-[#0A1A4A]">1. Reveal</span>
+                <span className="block font-sans font-bold text-[#020617]">1. Reveal</span>
                 <p className="text-[11px] leading-relaxed text-slate-600">
                   Expose navigation drawer labels and secondary detail panes simultaneously on wider
                   viewports without navigation churn.
@@ -3969,7 +3969,7 @@ export function AccessibleDesignPrinciples({
               </div>
 
               <div className="space-y-1 rounded-xl border border-[#CAD3F5] bg-[#F8FAFC] p-3">
-                <span className="block font-sans font-bold text-[#0A1A4A]">2. Divide</span>
+                <span className="block font-sans font-bold text-[#020617]">2. Divide</span>
                 <p className="text-[11px] leading-relaxed text-slate-600">
                   Partition the screen into 1 pane on compact/medium, 2 panes on expanded/large, and
                   3 panes on extra-large displays.
@@ -3977,7 +3977,7 @@ export function AccessibleDesignPrinciples({
               </div>
 
               <div className="space-y-1 rounded-xl border border-[#CAD3F5] bg-[#F8FAFC] p-3">
-                <span className="block font-sans font-bold text-[#0A1A4A]">3. Resize</span>
+                <span className="block font-sans font-bold text-[#020617]">3. Resize</span>
                 <p className="text-[11px] leading-relaxed text-slate-600">
                   Scale cards, lists, and images while strictly preserving optimal reading
                   typography between 40–60 characters per line.
@@ -3985,7 +3985,7 @@ export function AccessibleDesignPrinciples({
               </div>
 
               <div className="space-y-1 rounded-xl border border-[#CAD3F5] bg-[#F8FAFC] p-3">
-                <span className="block font-sans font-bold text-[#0A1A4A]">4. Reposition</span>
+                <span className="block font-sans font-bold text-[#020617]">4. Reposition</span>
                 <p className="text-[11px] leading-relaxed text-slate-600">
                   Shift primary action controls from mobile bottom thumb reach to leading edge
                   navigation rails on mouse/cursor desktop screens.
@@ -3993,7 +3993,7 @@ export function AccessibleDesignPrinciples({
               </div>
 
               <div className="space-y-1 rounded-xl border border-[#CAD3F5] bg-[#F8FAFC] p-3">
-                <span className="block font-sans font-bold text-[#0A1A4A]">5. Swap</span>
+                <span className="block font-sans font-bold text-[#020617]">5. Swap</span>
                 <p className="text-[11px] leading-relaxed text-slate-600">
                   Exchange functionally equivalent components: Bottom Nav &rarr; Rail &rarr; Drawer;
                   Full-screen Dialog &rarr; Centered Modal; Bottom Sheet &rarr; Menu.
@@ -4003,12 +4003,12 @@ export function AccessibleDesignPrinciples({
 
             {/* Component Swapping Matrix Across Breakpoints Table */}
             <div className="space-y-2 pt-2">
-              <span className="font-sans text-[11px] font-bold tracking-wider text-[#0A1A4A] uppercase">
+              <span className="font-sans text-[11px] font-bold tracking-wider text-[#020617] uppercase">
                 Material 3 Component Swapping Matrix Across Breakpoints
               </span>
               <div className="overflow-x-auto rounded-xl border border-[#CAD3F5]">
                 <table className="w-full text-left font-sans text-xs">
-                  <thead className="border-b border-[#CAD3F5] bg-[#EFF5FF] font-bold text-[#0A1A4A]">
+                  <thead className="border-b border-[#CAD3F5] bg-[#EFF5FF] font-bold text-[#020617]">
                     <tr>
                       <th className="p-2.5">Component Role</th>
                       <th className="p-2.5">Compact (&lt;600dp)</th>
@@ -4063,7 +4063,7 @@ export function AccessibleDesignPrinciples({
           <div className="space-y-4 rounded-2xl border border-[#CAD3F5] bg-white p-5">
             <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-3">
               <div className="space-y-0.5">
-                <span className="font-sans text-xs font-bold tracking-wide text-[#0A1A4A] uppercase">
+                <span className="font-sans text-xs font-bold tracking-wide text-[#020617] uppercase">
                   Material 3 Canonical Layout Archetypes
                 </span>
                 <div className="font-mono text-[10px] text-slate-500">
@@ -4087,7 +4087,7 @@ export function AccessibleDesignPrinciples({
             <div className="grid grid-cols-1 gap-3 rounded-xl border border-[#CAD3F5] bg-[#F8FAFC] p-3 text-xs md:grid-cols-2">
               {/* Canonical Archetype Selector */}
               <div className="space-y-1.5">
-                <span className="font-sans text-[11px] font-bold tracking-wider text-[#0A1A4A] uppercase">
+                <span className="font-sans text-[11px] font-bold tracking-wider text-[#020617] uppercase">
                   Select Canonical Archetype
                 </span>
                 <div className="flex flex-wrap items-center gap-1.5">
@@ -4110,7 +4110,7 @@ export function AccessibleDesignPrinciples({
                         'rounded-lg px-2.5 py-1.5 text-left font-sans text-xs transition-all',
                         canonicalArchetype === a.id
                           ? 'border border-[#0056FF] bg-[#0056FF] font-bold text-white'
-                          : 'border border-[#CAD3F5] bg-white text-[#0A1A4A] hover:border-[#2277FF] hover:bg-[#EFF5FF]',
+                          : 'border border-[#CAD3F5] bg-white text-[#020617] hover:border-[#2277FF] hover:bg-[#EFF5FF]',
                       )}
                     >
                       <span>{a.label}</span>
@@ -4124,7 +4124,7 @@ export function AccessibleDesignPrinciples({
 
               {/* Breakpoint Viewport Selector */}
               <div className="space-y-1.5">
-                <span className="font-sans text-[11px] font-bold tracking-wider text-[#0A1A4A] uppercase">
+                <span className="font-sans text-[11px] font-bold tracking-wider text-[#020617] uppercase">
                   Simulated Viewport Size
                 </span>
                 <div className="flex flex-wrap items-center gap-1.5">
@@ -4154,7 +4154,7 @@ export function AccessibleDesignPrinciples({
                         'rounded-lg px-2.5 py-1.5 text-left font-sans text-xs transition-all',
                         canonicalBreakpoint === b.id
                           ? 'border border-[#0056FF] bg-[#0056FF] font-bold text-white'
-                          : 'border border-[#CAD3F5] bg-white text-[#0A1A4A] hover:border-[#2277FF] hover:bg-[#EFF5FF]',
+                          : 'border border-[#CAD3F5] bg-white text-[#020617] hover:border-[#2277FF] hover:bg-[#EFF5FF]',
                       )}
                     >
                       <span>{b.label}</span>
@@ -4203,7 +4203,7 @@ export function AccessibleDesignPrinciples({
                             &larr; Back to Roster
                           </button>
                         )}
-                      <span className="font-sans font-bold text-[#0A1A4A]">
+                      <span className="font-sans font-bold text-[#020617]">
                         {canonicalBreakpoint === 'compact' && canonicalDetailViewMode === 'detail'
                           ? 'Student Dossier & Grades'
                           : 'Cohort Enrollment & Dossiers'}
@@ -4310,7 +4310,7 @@ export function AccessibleDesignPrinciples({
                             <span className="font-mono text-[10px] font-bold text-emerald-600 uppercase">
                               Detail Pane (Child Context)
                             </span>
-                            <h3 className="font-sans text-sm font-bold text-[#0A1A4A]">
+                            <h3 className="font-sans text-sm font-bold text-[#020617]">
                               Academic Dossier &middot; {canonicalSelectedItemId.toUpperCase()}
                             </h3>
                           </div>
@@ -4353,7 +4353,7 @@ export function AccessibleDesignPrinciples({
               {canonicalArchetype === 'supporting' && (
                 <div className="overflow-hidden rounded-xl border border-slate-300 bg-white shadow-xs">
                   <div className="flex items-center justify-between border-b border-slate-200 bg-slate-50 px-4 py-2.5 text-xs">
-                    <span className="font-sans font-bold text-[#0A1A4A]">
+                    <span className="font-sans font-bold text-[#020617]">
                       Curriculum Editor &middot; Supporting Pane Layout
                     </span>
                     <span className="font-mono text-[10px] text-slate-500">
@@ -4383,7 +4383,7 @@ export function AccessibleDesignPrinciples({
                           Main Workspace
                         </span>
                       </div>
-                      <h4 className="font-sans text-sm font-bold text-[#0A1A4A]">
+                      <h4 className="font-sans text-sm font-bold text-[#020617]">
                         CS-401 Lecture 12: Raft Leader Election &amp; Heartbeats
                       </h4>
                       <p className="font-sans text-xs leading-relaxed text-slate-700">
@@ -4406,7 +4406,7 @@ export function AccessibleDesignPrinciples({
                           Contextual Tool
                         </span>
                       </div>
-                      <div className="font-sans text-xs font-bold text-[#0A1A4A]">
+                      <div className="font-sans text-xs font-bold text-[#020617]">
                         Review Comments &amp; Co-Pilot
                       </div>
                       <div className="space-y-1.5 text-[11px]">
@@ -4428,7 +4428,7 @@ export function AccessibleDesignPrinciples({
               {canonicalArchetype === 'feed' && (
                 <div className="space-y-3 overflow-hidden rounded-xl border border-slate-300 bg-white p-4 shadow-xs">
                   <div className="flex items-center justify-between border-b border-slate-200 pb-2 text-xs">
-                    <span className="font-sans font-bold text-[#0A1A4A]">
+                    <span className="font-sans font-bold text-[#020617]">
                       Campus Academic Feed &middot; Card Grid Reflow
                     </span>
                     <span className="font-mono text-[10px] text-[#0056FF]">
@@ -4491,7 +4491,7 @@ export function AccessibleDesignPrinciples({
                           <span className="font-bold text-[#0056FF]">{feedItem.tag}</span>
                           <span className="text-slate-400">{feedItem.time}</span>
                         </div>
-                        <div className="font-sans text-xs font-bold text-[#0A1A4A]">
+                        <div className="font-sans text-xs font-bold text-[#020617]">
                           {feedItem.title}
                         </div>
                         <p className="line-clamp-2 font-sans text-[11px] text-slate-600">
@@ -4509,7 +4509,7 @@ export function AccessibleDesignPrinciples({
             <div className="grid grid-cols-1 gap-3 pt-2 text-xs md:grid-cols-3">
               <div className="space-y-1 rounded-xl border border-[#CAD3F5] bg-[#F8FAFC] p-3">
                 <div className="flex items-center justify-between">
-                  <span className="font-sans font-bold text-[#0A1A4A]">1. Feed Layout</span>
+                  <span className="font-sans font-bold text-[#020617]">1. Feed Layout</span>
                   <span className="py-0.2 rounded bg-blue-100 px-1.5 font-mono text-[9px] text-[#0056FF]">
                     Discovery
                   </span>
@@ -4522,7 +4522,7 @@ export function AccessibleDesignPrinciples({
 
               <div className="space-y-1 rounded-xl border border-[#CAD3F5] bg-[#F8FAFC] p-3">
                 <div className="flex items-center justify-between">
-                  <span className="font-sans font-bold text-[#0A1A4A]">2. List-Detail Layout</span>
+                  <span className="font-sans font-bold text-[#020617]">2. List-Detail Layout</span>
                   <span className="py-0.2 rounded bg-emerald-100 px-1.5 font-mono text-[9px] text-emerald-800">
                     Parent-Child
                   </span>
@@ -4535,7 +4535,7 @@ export function AccessibleDesignPrinciples({
 
               <div className="space-y-1 rounded-xl border border-[#CAD3F5] bg-[#F8FAFC] p-3">
                 <div className="flex items-center justify-between">
-                  <span className="font-sans font-bold text-[#0A1A4A]">3. Supporting Pane</span>
+                  <span className="font-sans font-bold text-[#020617]">3. Supporting Pane</span>
                   <span className="py-0.2 rounded bg-purple-100 px-1.5 font-mono text-[9px] text-purple-700">
                     2/3 + 1/3 Focus
                   </span>
@@ -4549,12 +4549,12 @@ export function AccessibleDesignPrinciples({
 
             {/* Canonical Layout Invariants Table */}
             <div className="space-y-2 pt-2">
-              <span className="font-sans text-[11px] font-bold tracking-wider text-[#0A1A4A] uppercase">
+              <span className="font-sans text-[11px] font-bold tracking-wider text-[#020617] uppercase">
                 Material 3 Canonical Layouts Invariants Matrix
               </span>
               <div className="overflow-x-auto rounded-xl border border-[#CAD3F5]">
                 <table className="w-full text-left font-sans text-xs">
-                  <thead className="border-b border-[#CAD3F5] bg-[#EFF5FF] font-bold text-[#0A1A4A]">
+                  <thead className="border-b border-[#CAD3F5] bg-[#EFF5FF] font-bold text-[#020617]">
                     <tr>
                       <th className="p-2.5">Archetype</th>
                       <th className="p-2.5">Primary Relationship</th>
@@ -4616,7 +4616,7 @@ export function AccessibleDesignPrinciples({
           <div className="space-y-4 rounded-2xl border border-[#CAD3F5] bg-white p-5">
             <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-3">
               <div className="space-y-0.5">
-                <span className="font-sans text-xs font-bold tracking-wide text-[#0A1A4A] uppercase">
+                <span className="font-sans text-xs font-bold tracking-wide text-[#020617] uppercase">
                   Selection Indicators &amp; Interaction Modes
                 </span>
                 <div className="font-mono text-[10px] text-slate-500">
@@ -4642,7 +4642,7 @@ export function AccessibleDesignPrinciples({
                       'rounded-lg px-2.5 py-1 font-mono text-xs font-bold uppercase transition-all',
                       selectionTypeView === v.id
                         ? 'bg-[#0056FF] text-white shadow-none'
-                        : 'text-[#0A1A4A] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
+                        : 'text-[#020617] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
                     )}
                   >
                     {v.label}
@@ -4686,7 +4686,7 @@ export function AccessibleDesignPrinciples({
                               'relative rounded-full px-3 py-1 font-bold transition-all',
                               activeNavTab === tab
                                 ? 'bg-[#0056FF] text-white shadow-none'
-                                : 'text-[#0A1A4A] hover:bg-[#EFF5FF]',
+                                : 'text-[#020617] hover:bg-[#EFF5FF]',
                             )}
                           >
                             {tab}
@@ -4776,7 +4776,7 @@ export function AccessibleDesignPrinciples({
                             className={cn(
                               'flex cursor-pointer items-center justify-between rounded-lg border p-2.5 transition-all',
                               isSelected
-                                ? 'border-[#0056FF] bg-[#EFF5FF] text-[#0A1A4A]'
+                                ? 'border-[#0056FF] bg-[#EFF5FF] text-[#020617]'
                                 : 'border-[#CAD3F5] bg-white text-slate-700 hover:bg-[#F8FAFC]',
                             )}
                           >
@@ -4898,7 +4898,7 @@ export function AccessibleDesignPrinciples({
                                     <span className="inline-block size-3.5" />
                                   )}
                                 </td>
-                                <td className="px-3 py-2 font-bold text-[#0A1A4A]">{row.name}</td>
+                                <td className="px-3 py-2 font-bold text-[#020617]">{row.name}</td>
                                 <td className="px-3 py-2 text-slate-600">{row.credits}</td>
                               </tr>
                             );
@@ -4964,7 +4964,7 @@ export function AccessibleDesignPrinciples({
           {/* 8 Rules of Selection Architecture Matrix */}
           <div className="space-y-4 rounded-2xl border border-[#CAD3F5] bg-white p-5">
             <div className="flex items-center justify-between border-b border-slate-100 pb-2">
-              <span className="font-sans text-xs font-bold tracking-wide text-[#0A1A4A] uppercase">
+              <span className="font-sans text-xs font-bold tracking-wide text-[#020617] uppercase">
                 8 Selection Architecture Invariants
               </span>
               <span className="font-mono text-[10px] font-bold text-[#0056FF]">
@@ -5041,7 +5041,7 @@ export function AccessibleDesignPrinciples({
           <div className="space-y-4 rounded-2xl border border-[#CAD3F5] bg-white p-5">
             <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-3">
               <div className="space-y-0.5">
-                <span className="font-sans text-xs font-bold tracking-wide text-[#0A1A4A] uppercase">
+                <span className="font-sans text-xs font-bold tracking-wide text-[#020617] uppercase">
                   13 Dimensions of Lived Experience
                 </span>
                 <div className="font-mono text-[10px] text-slate-500">
@@ -5066,7 +5066,7 @@ export function AccessibleDesignPrinciples({
                       'rounded-lg px-3 py-1.5 font-mono text-xs font-bold transition-all',
                       isSelected
                         ? 'bg-[#0056FF] text-white shadow-none'
-                        : 'border border-[#CAD3F5] bg-[#F8FAFC] text-[#0A1A4A] hover:bg-[#EFF5FF]',
+                        : 'border border-[#CAD3F5] bg-[#F8FAFC] text-[#020617] hover:bg-[#EFF5FF]',
                     )}
                   >
                     {dim.label}
@@ -5076,7 +5076,7 @@ export function AccessibleDesignPrinciples({
             </div>
 
             <div className="space-y-1 rounded-xl border border-[#CAD3F5] bg-[#EFF5FF]/40 p-4">
-              <div className="font-sans text-xs font-bold text-[#0A1A4A]">
+              <div className="font-sans text-xs font-bold text-[#020617]">
                 Design &amp; Evaluation Inquiry ({selectedDimension}):
               </div>
               <div className="font-sans text-xs leading-relaxed text-slate-700">
@@ -5088,7 +5088,7 @@ export function AccessibleDesignPrinciples({
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
             <div className="space-y-3 rounded-2xl border border-[#CAD3F5] bg-white p-5">
               <div className="flex items-center justify-between border-b border-slate-100 pb-2">
-                <span className="font-sans text-xs font-bold tracking-wide text-[#0A1A4A] uppercase">
+                <span className="font-sans text-xs font-bold tracking-wide text-[#020617] uppercase">
                   Participatory Co-Design Loop
                 </span>
                 <span className="font-mono text-[10px] font-bold text-emerald-700">
@@ -5126,7 +5126,7 @@ export function AccessibleDesignPrinciples({
 
             <div className="space-y-3 rounded-2xl border border-[#CAD3F5] bg-white p-5">
               <div className="flex items-center justify-between border-b border-slate-100 pb-2">
-                <span className="font-sans text-xs font-bold tracking-wide text-[#0A1A4A] uppercase">
+                <span className="font-sans text-xs font-bold tracking-wide text-[#020617] uppercase">
                   ML / AI Bias &amp; Harm Mitigation Guards
                 </span>
                 <span className="font-mono text-[10px] font-bold text-[#0056FF]">
@@ -5138,7 +5138,7 @@ export function AccessibleDesignPrinciples({
                 <div className="flex items-start gap-2 rounded-lg border border-[#CAD3F5] bg-[#EFF5FF] p-2.5">
                   <ShieldKey className="mt-0.5 size-4 shrink-0 text-[#0056FF]" />
                   <div className="space-y-0.5">
-                    <div className="font-bold text-[#0A1A4A]">
+                    <div className="font-bold text-[#020617]">
                       Dataset Parity &amp; Counterfactual Auditing
                     </div>
                     <div className="font-sans text-[10px] text-slate-600">
@@ -5149,7 +5149,7 @@ export function AccessibleDesignPrinciples({
                 <div className="flex items-start gap-2 rounded-lg border border-[#CAD3F5] bg-white p-2.5">
                   <Eye className="mt-0.5 size-4 shrink-0 text-[#0056FF]" />
                   <div className="space-y-0.5">
-                    <div className="font-bold text-[#0A1A4A]">
+                    <div className="font-bold text-[#020617]">
                       Harm Prevention &amp; Exclusion Defense
                     </div>
                     <div className="font-sans text-[10px] text-slate-600">
@@ -5161,7 +5161,7 @@ export function AccessibleDesignPrinciples({
                 <div className="flex items-start gap-2 rounded-lg border border-[#CAD3F5] bg-white p-2.5">
                   <Check className="mt-0.5 size-4 shrink-0 text-emerald-600" />
                   <div className="space-y-0.5">
-                    <div className="font-bold text-[#0A1A4A]">Continuous Community Feedback</div>
+                    <div className="font-bold text-[#020617]">Continuous Community Feedback</div>
                     <div className="font-sans text-[10px] text-slate-600">
                       Actively channel community feedback into autonomous agent prompts &amp; rules.
                     </div>
@@ -5180,7 +5180,7 @@ export function AccessibleDesignPrinciples({
         <div className="space-y-6">
           <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-[#CAD3F5] bg-white p-5">
             <div className="space-y-1">
-              <span className="font-sans text-xs font-bold tracking-wide text-[#0A1A4A] uppercase">
+              <span className="font-sans text-xs font-bold tracking-wide text-[#020617] uppercase">
                 Interactive Text Resizing Multiplier (&ge; 200% Standard)
               </span>
               <div className="font-mono text-[10px] text-slate-500">
@@ -5198,7 +5198,7 @@ export function AccessibleDesignPrinciples({
                     'rounded-lg px-3.5 py-1.5 font-mono text-xs font-bold transition-all',
                     textScale === scale
                       ? 'bg-[#0056FF] text-white shadow-none'
-                      : 'text-[#0A1A4A] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
+                      : 'text-[#020617] hover:bg-[#EFF5FF] hover:text-[#0056FF]',
                   )}
                 >
                   {scale}x ({scale * 100}%)
@@ -5210,7 +5210,7 @@ export function AccessibleDesignPrinciples({
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
             <div className="space-y-4 rounded-2xl border border-[#CAD3F5] bg-white p-5">
               <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-                <span className="font-sans text-xs font-bold tracking-wide text-[#0A1A4A] uppercase">
+                <span className="font-sans text-xs font-bold tracking-wide text-[#020617] uppercase">
                   Component Scaling &amp; Constant 1x Padding
                 </span>
                 <span className="rounded bg-[#EFF5FF] px-2 py-0.5 font-mono text-[10px] font-bold text-[#0056FF]">
@@ -5224,7 +5224,7 @@ export function AccessibleDesignPrinciples({
                     fontSize: `${14 * textScale}px`,
                     lineHeight: `${20 * textScale}px`,
                   }}
-                  className="font-sans font-bold text-[#0A1A4A] transition-all"
+                  className="font-sans font-bold text-[#020617] transition-all"
                 >
                   SNP International School Portal
                 </div>
@@ -5262,7 +5262,7 @@ export function AccessibleDesignPrinciples({
                       lineHeight: `${16 * textScale}px`,
                       padding: '8px 24px',
                     }}
-                    className="rounded-lg border border-[#CAD3F5] bg-white text-center font-sans font-bold text-[#0A1A4A] transition-all hover:bg-[#EFF5FF]"
+                    className="rounded-lg border border-[#CAD3F5] bg-white text-center font-sans font-bold text-[#020617] transition-all hover:bg-[#EFF5FF]"
                   >
                     Secondary Action
                   </button>
@@ -5281,7 +5281,7 @@ export function AccessibleDesignPrinciples({
 
             <div className="space-y-4 rounded-2xl border border-[#CAD3F5] bg-white p-5">
               <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-                <span className="font-sans text-xs font-bold tracking-wide text-[#0A1A4A] uppercase">
+                <span className="font-sans text-xs font-bold tracking-wide text-[#020617] uppercase">
                   Text Truncation &amp; Reveal Protocol
                 </span>
                 <span className="rounded bg-emerald-100 px-2 py-0.5 font-mono text-[10px] font-bold text-emerald-800">
@@ -5291,7 +5291,7 @@ export function AccessibleDesignPrinciples({
 
               <div className="space-y-3 rounded-xl border border-[#CAD3F5] bg-[#F8FAFC] p-4">
                 <div className="space-y-1">
-                  <div className="font-sans text-xs font-bold text-[#0A1A4A]">
+                  <div className="font-sans text-xs font-bold text-[#020617]">
                     Academic Schedule Notification
                   </div>
                   <div className="font-sans text-xs leading-relaxed text-slate-700">
@@ -5317,7 +5317,7 @@ export function AccessibleDesignPrinciples({
 
               <div className="space-y-2 rounded-xl border border-[#CAD3F5] bg-white p-3">
                 <div className="flex items-center justify-between">
-                  <span className="font-sans text-xs font-bold text-[#0A1A4A]">
+                  <span className="font-sans text-xs font-bold text-[#020617]">
                     Fixed Navigation Bar / Rail Chrome
                   </span>
                   <div className="relative">
@@ -5330,7 +5330,7 @@ export function AccessibleDesignPrinciples({
                       Hover / Touch &amp; Hold
                     </button>
                     {showFixedChromeTooltip && (
-                      <div className="animate-in fade-in absolute right-0 bottom-full z-20 mb-2 w-48 rounded-lg bg-[#0A1A4A] p-2 font-sans text-xs text-white shadow-none">
+                      <div className="animate-in fade-in absolute right-0 bottom-full z-20 mb-2 w-48 rounded-lg bg-[#020617] p-2 font-sans text-xs text-white shadow-none">
                         <div className="text-[13px] font-bold">Administration</div>
                         <div className="text-[10px] text-slate-300">Enlarged 2x Tooltip Label</div>
                       </div>
@@ -5355,7 +5355,7 @@ export function AccessibleDesignPrinciples({
           <div className="space-y-4 rounded-2xl border border-[#CAD3F5] bg-white p-5">
             <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-3">
               <div className="space-y-0.5">
-                <span className="font-sans text-xs font-bold tracking-wide text-[#0A1A4A] uppercase">
+                <span className="font-sans text-xs font-bold tracking-wide text-[#020617] uppercase">
                   1. Focus Return Protocol (Dialog Trapping &amp; Restoration)
                 </span>
                 <div className="font-mono text-[10px] text-slate-500">
@@ -5399,7 +5399,7 @@ export function AccessibleDesignPrinciples({
                 <div className="space-y-1">
                   <div
                     id="live-dialog-title"
-                    className="font-sans text-sm font-bold text-[#0A1A4A]"
+                    className="font-sans text-sm font-bold text-[#020617]"
                   >
                     Discard Current Operation?
                   </div>
@@ -5414,7 +5414,7 @@ export function AccessibleDesignPrinciples({
                     ref={dialogConfirmRef}
                     type="button"
                     onClick={handleCloseDialog}
-                    className="rounded-lg border border-[#CAD3F5] bg-white px-3.5 py-1.5 font-sans text-xs font-bold text-[#0A1A4A] hover:bg-[#EFF5FF] focus-visible:ring-3 focus-visible:ring-[#0056FF] focus-visible:ring-offset-2 focus-visible:outline-none"
+                    className="rounded-lg border border-[#CAD3F5] bg-white px-3.5 py-1.5 font-sans text-xs font-bold text-[#020617] hover:bg-[#EFF5FF] focus-visible:ring-3 focus-visible:ring-[#0056FF] focus-visible:ring-offset-2 focus-visible:outline-none"
                   >
                     Keep Editing
                   </button>
@@ -5433,7 +5433,7 @@ export function AccessibleDesignPrinciples({
           <div className="space-y-4 rounded-2xl border border-[#CAD3F5] bg-white p-5">
             <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-3">
               <div className="space-y-0.5">
-                <span className="font-sans text-xs font-bold tracking-wide text-[#0A1A4A] uppercase">
+                <span className="font-sans text-xs font-bold tracking-wide text-[#020617] uppercase">
                   2. Roving Tabindex Pattern (1 Tab Stop Group + Arrow Key Traversal)
                 </span>
                 <div className="font-mono text-[10px] text-slate-500">
@@ -5473,7 +5473,7 @@ export function AccessibleDesignPrinciples({
                       'rounded-lg px-3 py-1.5 font-mono text-xs font-bold transition-all focus-visible:ring-3 focus-visible:ring-[#0056FF] focus-visible:ring-offset-1 focus-visible:outline-none',
                       isFocused
                         ? 'bg-[#0056FF] text-white shadow-none'
-                        : 'border border-[#CAD3F5] bg-white text-[#0A1A4A] hover:bg-[#EFF5FF]',
+                        : 'border border-[#CAD3F5] bg-white text-[#020617] hover:bg-[#EFF5FF]',
                     )}
                   >
                     {item}
@@ -5491,7 +5491,7 @@ export function AccessibleDesignPrinciples({
           <div className="space-y-4 rounded-2xl border border-[#CAD3F5] bg-white p-5">
             <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-3">
               <div className="space-y-0.5">
-                <span className="font-sans text-xs font-bold tracking-wide text-[#0A1A4A] uppercase">
+                <span className="font-sans text-xs font-bold tracking-wide text-[#020617] uppercase">
                   3. Standard Multi-Key Shortcuts &amp; Single-Key Protection
                 </span>
                 <div className="font-mono text-[10px] text-slate-500">
@@ -5499,7 +5499,7 @@ export function AccessibleDesignPrinciples({
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <span className="font-mono text-xs font-bold text-[#0A1A4A]">Single-Key Remap</span>
+                <span className="font-mono text-xs font-bold text-[#020617]">Single-Key Remap</span>
                 <button
                   type="button"
                   role="switch"
@@ -5590,7 +5590,7 @@ export function AccessibleDesignPrinciples({
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
             <div className="space-y-1 rounded-xl border border-[#CAD3F5] bg-white p-3.5 text-center">
               <span className="font-mono text-lg font-black text-[#0056FF]">21:1</span>
-              <div className="font-sans text-[11px] font-bold text-[#0A1A4A]">Peak Max</div>
+              <div className="font-sans text-[11px] font-bold text-[#020617]">Peak Max</div>
               <div className="font-mono text-[9px] text-slate-400">Pure Black / White</div>
             </div>
             <div className="space-y-1 rounded-xl border border-[#0056FF] bg-[#EFF5FF] p-3.5 text-center">
@@ -5601,18 +5601,18 @@ export function AccessibleDesignPrinciples({
               </div>
             </div>
             <div className="space-y-1 rounded-xl border border-[#CAD3F5] bg-white p-3.5 text-center">
-              <span className="font-mono text-lg font-black text-[#0A1A4A]">&ge; 7:1</span>
-              <div className="font-sans text-[11px] font-bold text-[#0A1A4A]">WCAG AAA</div>
+              <span className="font-mono text-lg font-black text-[#020617]">&ge; 7:1</span>
+              <div className="font-sans text-[11px] font-bold text-[#020617]">WCAG AAA</div>
               <div className="font-mono text-[9px] text-slate-500">Body &amp; Small Text</div>
             </div>
             <div className="space-y-1 rounded-xl border border-[#CAD3F5] bg-white p-3.5 text-center">
-              <span className="font-mono text-lg font-black text-[#0A1A4A]">&ge; 4.5:1</span>
-              <div className="font-sans text-[11px] font-bold text-[#0A1A4A]">WCAG AA</div>
+              <span className="font-mono text-lg font-black text-[#020617]">&ge; 4.5:1</span>
+              <div className="font-sans text-[11px] font-bold text-[#020617]">WCAG AA</div>
               <div className="font-mono text-[9px] text-slate-500">Regular Text Baseline</div>
             </div>
             <div className="space-y-1 rounded-xl border border-[#CAD3F5] bg-white p-3.5 text-center">
-              <span className="font-mono text-lg font-black text-[#0A1A4A]">&ge; 3:1</span>
-              <div className="font-sans text-[11px] font-bold text-[#0A1A4A]">UI Containers</div>
+              <span className="font-mono text-lg font-black text-[#020617]">&ge; 3:1</span>
+              <div className="font-sans text-[11px] font-bold text-[#020617]">UI Containers</div>
               <div className="font-mono text-[9px] text-slate-500">Large Text &amp; Icons</div>
             </div>
             <div className="space-y-1 rounded-xl border border-slate-200 bg-slate-50 p-3.5 text-center opacity-70">
@@ -5625,7 +5625,7 @@ export function AccessibleDesignPrinciples({
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <div className="space-y-4 rounded-2xl border border-[#CAD3F5] bg-white p-5">
               <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-                <span className="font-sans text-xs font-bold tracking-wide text-[#0A1A4A] uppercase">
+                <span className="font-sans text-xs font-bold tracking-wide text-[#020617] uppercase">
                   Clustered Elements (&ge; 3:1 Container Rule)
                 </span>
                 <span className="rounded bg-[#EFF5FF] px-2 py-0.5 font-mono text-[10px] font-bold text-[#0056FF]">
@@ -5647,7 +5647,7 @@ export function AccessibleDesignPrinciples({
                 </button>
                 <button
                   type="button"
-                  className="rounded-lg border border-[#CAD3F5] bg-white px-3.5 py-1.5 font-sans text-xs font-bold text-[#0A1A4A]"
+                  className="rounded-lg border border-[#CAD3F5] bg-white px-3.5 py-1.5 font-sans text-xs font-bold text-[#020617]"
                 >
                   Cancel (16.5:1)
                 </button>
@@ -5660,7 +5660,7 @@ export function AccessibleDesignPrinciples({
 
             <div className="space-y-4 rounded-2xl border border-[#CAD3F5] bg-white p-5">
               <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-                <span className="font-sans text-xs font-bold tracking-wide text-[#0A1A4A] uppercase">
+                <span className="font-sans text-xs font-bold tracking-wide text-[#020617] uppercase">
                   Standalone Elements (Prominence Exception)
                 </span>
                 <span className="rounded bg-slate-100 px-2 py-0.5 font-mono text-[10px] font-bold text-slate-700">
@@ -5689,7 +5689,7 @@ export function AccessibleDesignPrinciples({
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
             <div className="space-y-3 rounded-2xl border border-[#CAD3F5] bg-white p-5">
               <div className="flex items-center justify-between border-b border-slate-100 pb-2">
-                <span className="font-sans text-xs font-bold tracking-wide text-[#0A1A4A] uppercase">
+                <span className="font-sans text-xs font-bold tracking-wide text-[#020617] uppercase">
                   Linear Reading Order (Screen Reader Map)
                 </span>
                 <span className="font-mono text-[10px] font-bold text-[#0056FF]">
@@ -5699,22 +5699,22 @@ export function AccessibleDesignPrinciples({
               <div className="grid grid-cols-2 gap-3 pt-1">
                 <div className="rounded-xl border-2 border-[#0056FF] bg-[#EFF5FF] p-3 text-left">
                   <span className="font-mono text-xs font-black text-[#0056FF]">01</span>
-                  <div className="font-sans text-xs font-bold text-[#0A1A4A]">Top Left</div>
+                  <div className="font-sans text-xs font-bold text-[#020617]">Top Left</div>
                   <div className="font-mono text-[9px] text-slate-500">DOM Index: 0</div>
                 </div>
                 <div className="rounded-xl border border-[#CAD3F5] bg-white p-3 text-left">
                   <span className="font-mono text-xs font-black text-slate-600">02</span>
-                  <div className="font-sans text-xs font-bold text-[#0A1A4A]">Top Right</div>
+                  <div className="font-sans text-xs font-bold text-[#020617]">Top Right</div>
                   <div className="font-mono text-[9px] text-slate-500">DOM Index: 1</div>
                 </div>
                 <div className="rounded-xl border border-[#CAD3F5] bg-white p-3 text-left">
                   <span className="font-mono text-xs font-black text-slate-600">03</span>
-                  <div className="font-sans text-xs font-bold text-[#0A1A4A]">Bottom Left</div>
+                  <div className="font-sans text-xs font-bold text-[#020617]">Bottom Left</div>
                   <div className="font-mono text-[9px] text-slate-500">DOM Index: 2</div>
                 </div>
                 <div className="rounded-xl border border-[#CAD3F5] bg-white p-3 text-left">
                   <span className="font-mono text-xs font-black text-slate-600">04</span>
-                  <div className="font-sans text-xs font-bold text-[#0A1A4A]">Bottom Right</div>
+                  <div className="font-sans text-xs font-bold text-[#020617]">Bottom Right</div>
                   <div className="font-mono text-[9px] text-slate-500">DOM Index: 3</div>
                 </div>
               </div>
@@ -5722,7 +5722,7 @@ export function AccessibleDesignPrinciples({
 
             <div className="space-y-3 rounded-2xl border border-[#CAD3F5] bg-white p-5">
               <div className="flex items-center justify-between border-b border-slate-100 pb-2">
-                <span className="font-sans text-xs font-bold tracking-wide text-[#0A1A4A] uppercase">
+                <span className="font-sans text-xs font-bold tracking-wide text-[#020617] uppercase">
                   Heading Ladder (No Skipped Levels)
                 </span>
                 <span className="font-mono text-[10px] font-bold text-emerald-600">
@@ -5735,13 +5735,13 @@ export function AccessibleDesignPrinciples({
                   <span className="text-[10px] text-slate-500">1 per page</span>
                 </div>
                 <div className="ml-3 flex items-center justify-between rounded-lg border border-slate-200 bg-white px-3 py-1.5">
-                  <span className="font-bold text-[#0A1A4A]">
+                  <span className="font-bold text-[#020617]">
                     &lt;h2&gt; Primary Section Heading
                   </span>
                   <span className="text-[10px] text-slate-500">Major group</span>
                 </div>
                 <div className="ml-6 flex items-center justify-between rounded-lg border border-slate-200 bg-white px-3 py-1.5">
-                  <span className="font-bold text-[#0A1A4A]">&lt;h3&gt; Subsection Card Title</span>
+                  <span className="font-bold text-[#020617]">&lt;h3&gt; Subsection Card Title</span>
                   <span className="text-[10px] text-slate-500">Never skip H2 &rarr; H4</span>
                 </div>
               </div>
@@ -5750,7 +5750,7 @@ export function AccessibleDesignPrinciples({
 
           <div className="space-y-3 rounded-2xl border border-[#CAD3F5] bg-white p-5">
             <div className="flex items-center justify-between border-b border-slate-100 pb-2">
-              <span className="font-sans text-xs font-bold tracking-wide text-[#0A1A4A] uppercase">
+              <span className="font-sans text-xs font-bold tracking-wide text-[#020617] uppercase">
                 8 W3C ARIA Landmark Roles
               </span>
               <span className="font-mono text-[10px] text-slate-400">
@@ -5802,7 +5802,7 @@ export function AccessibleDesignPrinciples({
         <div className="space-y-6">
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             <div className="space-y-3 rounded-2xl border border-[#CAD3F5] bg-white p-5 text-center">
-              <span className="font-sans text-xs font-bold tracking-wide text-[#0A1A4A] uppercase">
+              <span className="font-sans text-xs font-bold tracking-wide text-[#020617] uppercase">
                 Touch Target (&ge; 48&times;48dp)
               </span>
               <div className="flex items-center justify-center p-4">
@@ -5821,7 +5821,7 @@ export function AccessibleDesignPrinciples({
             </div>
 
             <div className="space-y-3 rounded-2xl border border-[#CAD3F5] bg-white p-5 text-center">
-              <span className="font-sans text-xs font-bold tracking-wide text-[#0A1A4A] uppercase">
+              <span className="font-sans text-xs font-bold tracking-wide text-[#020617] uppercase">
                 Pointer Target (&ge; 44&times;44px)
               </span>
               <div className="flex items-center justify-center p-4">
@@ -5840,12 +5840,12 @@ export function AccessibleDesignPrinciples({
             </div>
 
             <div className="space-y-3 rounded-2xl border border-[#CAD3F5] bg-white p-5 text-center">
-              <span className="font-sans text-xs font-bold tracking-wide text-[#0A1A4A] uppercase">
+              <span className="font-sans text-xs font-bold tracking-wide text-[#020617] uppercase">
                 Inter-Target Spacing (&ge; 8dp)
               </span>
               <div className="flex items-center justify-center p-4">
                 <div className="flex items-center gap-2">
-                  <div className="flex size-10 items-center justify-center rounded-lg border border-[#CAD3F5] bg-white font-mono text-xs font-bold text-[#0A1A4A]">
+                  <div className="flex size-10 items-center justify-center rounded-lg border border-[#CAD3F5] bg-white font-mono text-xs font-bold text-[#020617]">
                     A
                   </div>
                   <div className="flex flex-col items-center">
@@ -5854,7 +5854,7 @@ export function AccessibleDesignPrinciples({
                     </span>
                     <div className="h-0.5 w-6 bg-[#0056FF]" />
                   </div>
-                  <div className="flex size-10 items-center justify-center rounded-lg border border-[#CAD3F5] bg-white font-mono text-xs font-bold text-[#0A1A4A]">
+                  <div className="flex size-10 items-center justify-center rounded-lg border border-[#CAD3F5] bg-white font-mono text-xs font-bold text-[#020617]">
                     B
                   </div>
                 </div>

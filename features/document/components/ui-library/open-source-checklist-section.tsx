@@ -1107,7 +1107,7 @@ export function OpenSourceChecklistSection() {
               <span>OPEN-SOURCE DESIGN SYSTEM CHECKLIST</span>
             </div>
 
-            <h2 className="font-sans text-2xl font-black tracking-tight text-[#0A1A4A] sm:text-3xl md:text-4xl">
+            <h2 className="font-sans text-2xl font-black tracking-tight text-[#020617] sm:text-3xl md:text-4xl">
               Build better design systems
             </h2>
 
@@ -1144,7 +1144,7 @@ export function OpenSourceChecklistSection() {
             )}
           >
             <div className="mb-2 flex items-center justify-between">
-              <span className="font-sans font-bold text-[#0A1A4A]">Design language</span>
+              <span className="font-sans font-bold text-[#020617]">Design language</span>
               <span className="rounded-md border border-emerald-300 bg-emerald-50 px-2 py-0.5 text-[11px] font-bold text-emerald-700">
                 5/10
               </span>
@@ -1169,7 +1169,7 @@ export function OpenSourceChecklistSection() {
             )}
           >
             <div className="mb-2 flex items-center justify-between">
-              <span className="font-sans font-bold text-[#0A1A4A]">Foundations</span>
+              <span className="font-sans font-bold text-[#020617]">Foundations</span>
               <span className="rounded-md border border-blue-200 bg-[#EFF5FF] px-2 py-0.5 text-[11px] font-bold text-[#0056FF]">
                 0/26
               </span>
@@ -1194,7 +1194,7 @@ export function OpenSourceChecklistSection() {
             )}
           >
             <div className="mb-2 flex items-center justify-between">
-              <span className="font-sans font-bold text-[#0A1A4A]">Core components</span>
+              <span className="font-sans font-bold text-[#020617]">Core components</span>
               <span className="rounded-md border border-blue-200 bg-[#EFF5FF] px-2 py-0.5 text-[11px] font-bold text-[#0056FF]">
                 0/166
               </span>
@@ -1217,7 +1217,7 @@ export function OpenSourceChecklistSection() {
             )}
           >
             <div className="mb-2 flex items-center justify-between">
-              <span className="font-sans font-bold text-[#0A1A4A]">Maintenance</span>
+              <span className="font-sans font-bold text-[#020617]">Maintenance</span>
               <span className="rounded-md border border-blue-200 bg-[#EFF5FF] px-2 py-0.5 text-[11px] font-bold text-[#0056FF]">
                 0/28
               </span>
@@ -1244,7 +1244,7 @@ export function OpenSourceChecklistSection() {
             className={cn(
               'rounded-xl px-3 py-1.5 font-sans text-xs font-bold transition-all',
               activeCategoryFilter === 'all'
-                ? 'bg-[#0A1A4A] text-white shadow-xs'
+                ? 'bg-[#020617] text-white shadow-xs'
                 : 'bg-slate-100 text-slate-600 hover:bg-slate-200',
             )}
           >
@@ -1316,7 +1316,7 @@ export function OpenSourceChecklistSection() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search 230 checks..."
-            className="h-9 w-full rounded-xl border border-[#CAD3F5] bg-[#F8FAFC] pr-3 pl-9 font-sans text-xs text-[#0A1A4A] placeholder:text-slate-400 focus:border-[#0056FF] focus:bg-white focus:outline-none"
+            className="h-9 w-full rounded-xl border border-[#CAD3F5] bg-[#F8FAFC] pr-3 pl-9 font-sans text-xs text-[#020617] placeholder:text-slate-400 focus:border-[#0056FF] focus:bg-white focus:outline-none"
           />
         </div>
       </div>
@@ -1327,7 +1327,7 @@ export function OpenSourceChecklistSection() {
       <div className="space-y-3">
         <div className="flex items-center justify-between font-mono text-xs text-slate-500">
           <span>
-            Showing <strong className="text-[#0A1A4A]">{filteredItems.length}</strong> of{' '}
+            Showing <strong className="text-[#020617]">{filteredItems.length}</strong> of{' '}
             {totalChecks} items
           </span>
           {activeCategoryFilter !== 'all' && (
@@ -1366,7 +1366,7 @@ export function OpenSourceChecklistSection() {
                       >
                         {isCompleted ? <Check className="size-3 stroke-[3]" /> : item.index}
                       </span>
-                      <span className="font-sans text-xs font-extrabold text-[#0A1A4A]">
+                      <span className="font-sans text-xs font-extrabold text-[#020617]">
                         {item.name}
                       </span>
                     </div>

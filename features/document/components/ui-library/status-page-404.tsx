@@ -183,7 +183,7 @@ export function StatusPage404({
                   'cursor-pointer rounded-[2px] border px-2.5 py-1 font-sans text-xs font-bold transition-all select-none',
                   activeMode === m.id
                     ? 'border-[#0056FF] bg-[#0056FF] text-white shadow-none'
-                    : 'border-[#CAD3F5] bg-white text-[#0A1A4A] hover:bg-[#EFF5FF]',
+                    : 'border-[#CAD3F5] bg-white text-[#020617] hover:bg-[#EFF5FF]',
                 )}
               >
                 {m.label}
@@ -205,7 +205,7 @@ export function StatusPage404({
                   'cursor-pointer rounded-[2px] border px-2 py-0.5 font-mono text-[11px] font-bold transition-all select-none',
                   activeCode === code
                     ? 'border-[#0056FF] bg-[#0056FF] text-white'
-                    : 'border-[#CAD3F5] bg-white text-[#0A1A4A] hover:bg-[#EFF5FF]',
+                    : 'border-[#CAD3F5] bg-white text-[#020617] hover:bg-[#EFF5FF]',
                 )}
               >
                 {code}
@@ -315,7 +315,7 @@ export function StatusPage404({
               <span className="rounded-[2px] border border-[#CAD3F5] bg-[#E3E7FC] px-2.5 py-0.5 font-mono text-[11px] font-bold text-[#0056FF]">
                 {meta.badge}
               </span>
-              <h2 className="font-sans text-2xl font-black tracking-tight text-[#0A1A4A] sm:text-3xl">
+              <h2 className="font-sans text-2xl font-black tracking-tight text-[#020617] sm:text-3xl">
                 {resolvedTitle}
               </h2>
               {resolvedDesc ? (
@@ -329,13 +329,13 @@ export function StatusPage404({
         {/* MODE 2: BRUTALIST BARCODE LEDGER                         */}
         {/* ========================================================= */}
         {activeMode === 'barcode' && (
-          <div className="relative flex flex-col items-center justify-center bg-white p-10 text-center text-[#0A1A4A] sm:p-16">
+          <div className="relative flex flex-col items-center justify-center bg-white p-10 text-center text-[#020617] sm:p-16">
             {/* Subtle Right Border Divider Line */}
             <div className="absolute top-0 right-10 bottom-0 w-[1px] bg-[#0056FF]/30 sm:right-16" />
 
             {/* Cryptographic High-Density Barcode Graphic */}
             <div className="flex flex-col items-center space-y-3">
-              <svg viewBox="0 0 240 70" className="h-16 w-56 fill-[#0A1A4A]" aria-hidden="true">
+              <svg viewBox="0 0 240 70" className="h-16 w-56 fill-[#020617]" aria-hidden="true">
                 {[
                   4, 12, 16, 22, 28, 38, 44, 48, 56, 68, 74, 82, 90, 96, 104, 112, 120, 130, 136,
                   144, 154, 160, 168, 178, 186, 194, 202, 210, 218, 226, 234,
@@ -349,14 +349,14 @@ export function StatusPage404({
                   />
                 ))}
               </svg>
-              <span className="font-mono text-xs font-bold tracking-[0.35em] text-[#0A1A4A] uppercase">
+              <span className="font-mono text-xs font-bold tracking-[0.35em] text-[#020617] uppercase">
                 ERROR · {activeCode}
               </span>
             </div>
 
             {/* Editorial Heading */}
             <div className="mt-8 space-y-2">
-              <h2 className="font-sans text-3xl font-black tracking-tight text-[#0A1A4A] sm:text-4xl">
+              <h2 className="font-sans text-3xl font-black tracking-tight text-[#020617] sm:text-4xl">
                 {resolvedTitle}
               </h2>
               <p className="font-mono text-xs text-slate-500">{meta.tagline}</p>
@@ -391,7 +391,7 @@ export function StatusPage404({
         {/* MODE 3: CRT PHOSPHOR NOISE                               */}
         {/* ========================================================= */}
         {activeMode === 'noise' && (
-          <div className="relative flex flex-col items-center justify-center overflow-hidden bg-[#EFF5FF]/60 p-10 text-center text-[#0A1A4A] sm:p-16">
+          <div className="relative flex flex-col items-center justify-center overflow-hidden bg-[#EFF5FF]/60 p-10 text-center text-[#020617] sm:p-16">
             {/* Subtle Coordinate Grid Canvas */}
             <div
               className="pointer-events-none absolute inset-0 opacity-40"
@@ -409,7 +409,7 @@ export function StatusPage404({
               </span>
 
               {/* Heading */}
-              <h2 className="relative font-sans text-3xl font-black tracking-tight text-[#0A1A4A] sm:text-5xl">
+              <h2 className="relative font-sans text-3xl font-black tracking-tight text-[#020617] sm:text-5xl">
                 {resolvedTitle}
               </h2>
 
@@ -451,7 +451,7 @@ export function StatusPage404({
           <div className="relative flex flex-col items-center justify-between overflow-hidden bg-white p-8 text-center sm:p-12">
             {/* Top Text & Controls */}
             <div className="space-y-3">
-              <h2 className="font-sans text-2xl font-black tracking-tight text-[#0A1A4A] sm:text-3xl">
+              <h2 className="font-sans text-2xl font-black tracking-tight text-[#020617] sm:text-3xl">
                 {resolvedTitle}
               </h2>
               <div className="flex flex-wrap items-center justify-center gap-3">
@@ -552,7 +552,7 @@ export function StatusPage404({
                         transition: { type: 'spring', stiffness: 240, damping: 18 },
                       }
                 }
-                className="flex h-52 w-36 shrink-0 flex-col justify-between rounded-xl border border-[#CAD3F5] bg-[#EFF5FF] p-4 text-[#0A1A4A] shadow-xs"
+                className="flex h-52 w-36 shrink-0 flex-col justify-between rounded-xl border border-[#CAD3F5] bg-[#EFF5FF] p-4 text-[#020617] shadow-xs"
               >
                 <div className="flex justify-between font-serif text-3xl leading-none font-black text-[#0056FF] opacity-80">
                   <span>“</span>
@@ -611,7 +611,7 @@ export function StatusPage404({
                         transition: { type: 'spring', stiffness: 270, damping: 21 },
                       }
                 }
-                className="hidden h-52 w-32 shrink-0 flex-col justify-between rounded-xl border border-[#CAD3F5] bg-white p-3 text-[#0A1A4A] shadow-xs sm:flex"
+                className="hidden h-52 w-32 shrink-0 flex-col justify-between rounded-xl border border-[#CAD3F5] bg-white p-3 text-[#020617] shadow-xs sm:flex"
               >
                 <span className="font-mono text-[9px] font-bold text-[#0056FF]">CLUSTER</span>
                 <svg

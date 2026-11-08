@@ -222,7 +222,7 @@ export function NavigationMenuContent({
  * - Island 2 (Center): [ Home | Components (Mega Menu) | Documentation ] Links Pill
  * - Island 3 (Right): [ GitHub 1.8k ] GitHub stars pill + [ HUD Mode ] Toggle
  *
- * Strict 0px blur shadows, crisp 1px borders (#CAD3F5), high contrast Deep Navy (#0A1A4A).
+ * Strict 0px blur shadows, crisp 1px borders (#CAD3F5), high contrast Deep Navy (#020617).
  */
 export function RareUiNavigationMenu({ className }: { className?: string }) {
   const [activeTab, setActiveTab] = React.useState('components');
@@ -243,7 +243,7 @@ export function RareUiNavigationMenu({ className }: { className?: string }) {
           <span className="flex size-5 items-center justify-center rounded-full bg-[#E3E7FC] text-[#0056FF]">
             ✦
           </span>
-          <span className="font-sans text-xs font-black tracking-tight text-[#0A1A4A]">
+          <span className="font-sans text-xs font-black tracking-tight text-[#020617]">
             SNPI UI
           </span>
         </div>
@@ -290,7 +290,7 @@ export function RareUiNavigationMenu({ className }: { className?: string }) {
                           Featured
                         </span>
                       </div>
-                      <h4 className="mt-2 font-sans text-sm font-extrabold text-[#0A1A4A]">
+                      <h4 className="mt-2 font-sans text-sm font-extrabold text-[#020617]">
                         Cyber Armor Nav
                       </h4>
                       <p className="mt-1 font-sans text-[11px] leading-relaxed text-slate-600">
@@ -318,7 +318,7 @@ export function RareUiNavigationMenu({ className }: { className?: string }) {
                       <SquarePen className="mt-0.5 size-4.5 shrink-0 stroke-[2] text-[#020617]" />
                       <div>
                         <div className="flex items-center gap-1.5">
-                          <span className="font-sans text-xs font-bold text-[#0A1A4A] group-hover/item:text-[#0056FF]">
+                          <span className="font-sans text-xs font-bold text-[#020617] group-hover/item:text-[#0056FF]">
                             Rich Text Editor
                           </span>
                           <span className="rounded border border-[#CAD3F5] bg-white px-1 font-mono text-[9px] font-bold text-[#0056FF]">
@@ -338,7 +338,7 @@ export function RareUiNavigationMenu({ className }: { className?: string }) {
                     >
                       <Bell className="mt-0.5 size-4.5 shrink-0 stroke-[2] text-[#020617]" />
                       <div>
-                        <span className="font-sans text-xs font-bold text-[#0A1A4A] group-hover/item:text-[#0056FF]">
+                        <span className="font-sans text-xs font-bold text-[#020617] group-hover/item:text-[#0056FF]">
                           Toast Stack & Alerts
                         </span>
                         <p className="font-sans text-[11px] text-slate-500">
@@ -354,7 +354,7 @@ export function RareUiNavigationMenu({ className }: { className?: string }) {
                     >
                       <Layers className="mt-0.5 size-4.5 shrink-0 stroke-[2] text-[#020617]" />
                       <div>
-                        <span className="font-sans text-xs font-bold text-[#0A1A4A] group-hover/item:text-[#0056FF]">
+                        <span className="font-sans text-xs font-bold text-[#020617] group-hover/item:text-[#0056FF]">
                           73 Design Primitives
                         </span>
                         <p className="font-sans text-[11px] text-slate-500">

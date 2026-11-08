@@ -121,7 +121,7 @@ export function BlankFutureComponent({
           <span className="block font-mono text-[9px] font-bold text-slate-400 uppercase">
             Elevation
           </span>
-          <span className="font-sans text-xs font-bold text-[#0A1A4A]">Level 1 Surface</span>
+          <span className="font-sans text-xs font-bold text-[#020617]">Level 1 Surface</span>
         </div>
 
         <div className="rounded-lg border border-slate-200/80 bg-[#EFF5FF]/50 p-2.5 text-center">
@@ -144,7 +144,7 @@ export function BlankFutureComponent({
           <span className="block font-mono text-[9px] font-bold text-slate-400 uppercase">
             Readiness
           </span>
-          <span className="font-sans text-xs font-bold text-[#0A1A4A]">Spec Finalized</span>
+          <span className="font-sans text-xs font-bold text-[#020617]">Spec Finalized</span>
         </div>
       </div>
     </div>
@@ -167,7 +167,7 @@ function renderBlueprintWireframe(
         <div className="flex h-12 w-full items-center justify-between rounded-lg border border-[#CAD3F5] bg-white px-3 shadow-2xs">
           <div className="flex items-center gap-2">
             <MenuIcon className="size-4 text-slate-600" />
-            <span className="font-sans text-xs font-bold text-[#0A1A4A]">App Bar (56px)</span>
+            <span className="font-sans text-xs font-bold text-[#020617]">App Bar (56px)</span>
           </div>
           <div className="flex items-center gap-1.5">
             <SearchIcon className="size-3.5 text-slate-400" />
@@ -267,7 +267,7 @@ function renderBlueprintWireframe(
                 <Check className="size-3.5 stroke-[3]" />
               ))}
           </div>
-          <span className="font-sans text-xs font-bold text-[#0A1A4A]">
+          <span className="font-sans text-xs font-bold text-[#020617]">
             {id === 'radio-button' ? 'Radio Selection Option' : 'Interactive Checkbox'}
           </span>
         </div>
@@ -322,7 +322,7 @@ function renderBlueprintWireframe(
             Elevated Surface (Card)
           </span>
         </div>
-        <h4 className="font-sans text-xs font-bold text-[#0A1A4A]">Institutional Academic Card</h4>
+        <h4 className="font-sans text-xs font-bold text-[#020617]">Institutional Academic Card</h4>
         <p className="mt-1 font-sans text-[11px] text-slate-500">
           Standard M3 surface container with 16px corner radius.
         </p>
@@ -335,7 +335,7 @@ function renderBlueprintWireframe(
     return (
       <div className="w-full rounded-xl border border-slate-300 bg-white p-4 shadow-xs">
         <div className="flex items-center justify-between border-b border-slate-100 pb-2">
-          <span className="font-sans text-xs font-bold text-[#0A1A4A]">
+          <span className="font-sans text-xs font-bold text-[#020617]">
             {id === 'dialogs' ? 'Confirm Operation' : 'Sheet Surface'}
           </span>
           <span className="size-2 rounded-full bg-emerald-500" />
@@ -442,7 +442,7 @@ function renderBlueprintWireframe(
       <div className="flex size-14 items-center justify-center rounded-2xl border border-dashed border-[#0056FF] bg-[#EFF5FF] text-[#0056FF]">
         <Layers className="size-6" />
       </div>
-      <p className="font-mono text-xs font-bold text-[#0A1A4A]">{name} Blueprint</p>
+      <p className="font-mono text-xs font-bold text-[#020617]">{name} Blueprint</p>
       <p className="font-sans text-[11px] text-slate-500">
         Material 3 Standard Component Specification Ready
       </p>
