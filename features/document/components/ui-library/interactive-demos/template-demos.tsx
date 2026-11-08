@@ -312,9 +312,9 @@ export { LogoMarqueeDemo as MarqueeSectionDemo } from '../logo-marquee';
 // 5.1 Standard Form Inputs (Candidate Registration Dossier)
 export function FloatingLabelFormDemo() {
   const [formData, setFormData] = React.useState({
-    fullName: 'Dara Sok',
-    email: 'dara.sok@student.snpi.edu.kh',
-    studentId: 'STU-2026-0891',
+    fullName: '',
+    email: '',
+    studentId: '',
   });
   const [submitted, setSubmitted] = React.useState(false);
 
@@ -386,8 +386,8 @@ export function FloatingLabelFormDemo() {
             )}
           </div>
           <div className="group relative flex items-center">
-            <div className="pointer-events-none absolute left-3 flex size-5 items-center justify-center text-slate-400 transition-colors group-focus-within:text-[#0056FF]">
-              <User className="size-4 stroke-[2]" />
+            <div className="pointer-events-none absolute left-3 flex size-5 items-center justify-center text-[#0056FF]">
+              <User className="size-5 stroke-[2.5]" />
             </div>
             <input
               type="text"
@@ -418,8 +418,8 @@ export function FloatingLabelFormDemo() {
             )}
           </div>
           <div className="group relative flex items-center">
-            <div className="pointer-events-none absolute left-3 flex size-5 items-center justify-center text-slate-400 transition-colors group-focus-within:text-[#0056FF]">
-              <Mail className="size-4 stroke-[2]" />
+            <div className="pointer-events-none absolute left-3 flex size-5 items-center justify-center text-[#0056FF]">
+              <Mail className="size-5 stroke-[2.5]" />
             </div>
             <input
               type="email"
@@ -453,8 +453,8 @@ export function FloatingLabelFormDemo() {
             )}
           </div>
           <div className="group relative flex items-center">
-            <div className="pointer-events-none absolute left-3 flex size-5 items-center justify-center text-slate-400 transition-colors group-focus-within:text-[#0056FF]">
-              <IdCard className="size-4 stroke-[2]" />
+            <div className="pointer-events-none absolute left-3 flex size-5 items-center justify-center text-[#0056FF]">
+              <IdCard className="size-5 stroke-[2.5]" />
             </div>
             <input
               type="text"

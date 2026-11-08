@@ -2237,27 +2237,40 @@ export function PopoverDemo() {
 
 export function AvatarDemo() {
   const people = [
-    { initials: 'SD', name: 'Sok Dara', blue: true },
-    { initials: 'KM', name: 'Kimheng', blue: false },
-    { initials: 'VR', name: 'Virak', blue: false },
+    { src: 'https://avatars.githubusercontent.com/u/233213854?v=4', name: 'Member 1' },
+    { src: 'https://avatars.githubusercontent.com/u/70220432?v=4', name: 'shiliaiwei' },
+    { src: 'https://avatars.githubusercontent.com/u/216975960?v=4', name: 'Member 3' },
   ];
   return (
     <DemoStage>
       <div className="flex items-end justify-center gap-4 py-2">
         {people.map((p, i) => (
-          <span key={p.name} className="flex flex-col items-center gap-2">
-            <span
+          <span key={p.src} className="flex flex-col items-center gap-2">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={p.src}
+              alt={`${p.name} profile photo`}
               className={cn(
-                'flex items-center justify-center rounded-full font-sans font-black',
-                i === 1 ? 'size-16 text-lg' : 'size-11 text-xs',
-                p.blue ? 'bg-[#0056FF] text-white' : 'bg-[#E3E7FC] text-[#020617]',
+                'rounded-full border border-[#CAD3F5]',
+                i === 1 ? 'size-16' : 'size-11',
               )}
-            >
-              {p.initials}
-            </span>
+            />
             <span className="font-sans text-xs font-bold text-[#020617]">{p.name}</span>
           </span>
         ))}
+      </div>
+      <div className="flex items-center justify-center py-2">
+        <div className="flex -space-x-3">
+          {people.map((p) => (
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img
+              key={p.src}
+              src={p.src}
+              alt={`${p.name} profile photo`}
+              className="size-11 rounded-full border-2 border-white"
+            />
+          ))}
+        </div>
       </div>
     </DemoStage>
   );

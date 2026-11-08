@@ -2,7 +2,7 @@
 
 /**
  * Page Heroes: one creative interactive hero per documentation page.
- * - LibraryHero (COMPONENT): one realistic SNPI student ID card, liquid glass brand style, front and back with QR code, mouse tilt with shine, flip button, plus promotion and merchandise cards.
+ * - LibraryHero (COMPONENT): three SNPI profile ID cards in one row (Business, Student, Event), liquid glass style, real avatar photos, follow buttons with live follower counts, mouse tilt with shine.
  * - ApiHero (API): simulated request runner with real interaction states.
  * - BlueprintHero (BLUEPRINT): interactive brand token color lab.
  * All follow the Royal Blue brand system: flat surfaces, #CAD3F5 keylines,
@@ -32,235 +32,150 @@ import { LibrarySwitch } from './switch';
 // COMPONENT PAGE HERO
 // ==========================================
 
-const QR_PATTERN = [
-  1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1,
-  0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 0, 0,
-  0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 1, 1, 1, 0, 1,
-  0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1,
-  0, 1, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 1,
-  1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0,
-  0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1,
-  0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0,
-  0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1,
-  1, 0, 1, 0, 1, 1, 1,
-];
-
-function QrCode({ className }: { className?: string }) {
-  return (
-    <div
-      className={cn('grid shrink-0 grid-cols-[repeat(21,1fr)] gap-0 bg-white p-1', className)}
-      aria-hidden="true"
-    >
-      {QR_PATTERN.slice(0, 441).map((bit, i) => (
-        <span key={i} className={bit ? 'bg-[#020617]' : 'bg-white'} style={{ aspectRatio: '1' }} />
-      ))}
-    </div>
-  );
-}
-
-export function LibraryHero() {
-  const [flipped, setFlipped] = React.useState(false);
+function HeroProfileCard({
+  band,
+  type,
+  photo,
+  name,
+  line1,
+  line2,
+  followers,
+  following,
+  actionLabel,
+}: {
+  band: string;
+  type: string;
+  photo: string;
+  name: string;
+  line1: string;
+  line2: string;
+  followers: number;
+  following: number;
+  actionLabel: string;
+}) {
+  const [followed, setFollowed] = React.useState(false);
   const [tilt, setTilt] = React.useState({ rx: 0, ry: 0 });
   const [shine, setShine] = React.useState({ x: 50, y: 50 });
-  const [following, setFollowing] = React.useState(false);
-  const [applied, setApplied] = React.useState(false);
 
   const handleMove = (e: React.PointerEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const px = (e.clientX - rect.left) / rect.width;
     const py = (e.clientY - rect.top) / rect.height;
-    setTilt({ rx: Math.round((0.5 - py) * 14), ry: Math.round((px - 0.5) * 18) });
+    setTilt({ rx: Math.round((0.5 - py) * 10), ry: Math.round((px - 0.5) * 12) });
     setShine({ x: Math.round(px * 100), y: Math.round(py * 100) });
   };
 
+  return (
+    <div
+      style={{ perspective: '900px' }}
+      onPointerMove={handleMove}
+      onPointerLeave={() => setTilt({ rx: 0, ry: 0 })}
+    >
+      <div
+        className="relative overflow-hidden rounded-2xl border border-white/50 bg-white shadow-lg ring-1 ring-[#CAD3F5] backdrop-blur-xl transition-transform duration-200"
+        style={{ transform: `rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg)` }}
+      >
+        <div
+          className="pointer-events-none absolute z-10 size-24 rounded-full bg-white/30 blur-2xl"
+          style={{ left: `${shine.x}%`, top: `${shine.y}%`, transform: 'translate(-50%, -50%)' }}
+        />
+        <div
+          className="relative flex items-center justify-between px-5 py-3"
+          style={{ backgroundColor: band }}
+        >
+          <span className="font-sans text-sm font-black tracking-wider text-white">SNPI</span>
+          <span className="font-sans text-[10px] font-bold tracking-widest text-white/85 uppercase">
+            {type}
+          </span>
+        </div>
+        <div className="relative flex flex-col items-center px-5 pt-5 pb-5 text-center">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={photo}
+            alt={`${name} profile photo`}
+            className="size-20 rounded-full border-2 border-[#CAD3F5]"
+          />
+          <p className="mt-3 font-sans text-base font-black text-[#020617]">{name}</p>
+          <p className="font-sans text-xs font-medium text-[#334155]">{line1}</p>
+          <p className="font-sans text-xs font-medium text-[#334155]">{line2}</p>
+          <div className="mt-3 flex gap-4">
+            <span className="font-sans text-xs font-bold text-[#020617]">
+              {followers + (followed ? 1 : 0)}{' '}
+              <span className="font-medium text-[#334155]">Followers</span>
+            </span>
+            <span className="font-sans text-xs font-bold text-[#020617]">
+              {following} <span className="font-medium text-[#334155]">Following</span>
+            </span>
+          </div>
+          <div className="mt-4 flex w-full gap-2">
+            <button
+              type="button"
+              onClick={() => setFollowed((f) => !f)}
+              className={cn(
+                'inline-flex min-h-11 flex-1 items-center justify-center gap-2 rounded-[4px] px-4 font-sans text-sm font-bold transition-all active:scale-[0.97]',
+                followed
+                  ? 'border border-[#CAD3F5] bg-white text-[#0056FF]'
+                  : 'bg-[#0056FF] text-white hover:bg-[#2277FF]',
+              )}
+            >
+              {followed && <Check className="size-4" />}
+              {followed ? 'Following' : 'Follow'}
+            </button>
+            <button
+              type="button"
+              title={actionLabel}
+              className="inline-flex size-11 shrink-0 items-center justify-center rounded-[4px] border border-[#CAD3F5] bg-white text-[#020617] transition-colors hover:bg-[#EFF5FF]"
+            >
+              <Send className="size-5" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function LibraryHero() {
   return (
     <section className="space-y-8 rounded-2xl border border-[#CAD3F5] bg-white p-6 shadow-xs sm:p-8">
       <h1 className="font-sans text-3xl font-black tracking-tight text-[#020617] sm:text-4xl">
         Component Library
       </h1>
 
-      <div className="flex flex-col items-center gap-6">
-        <div
-          className="w-full max-w-[420px]"
-          style={{ perspective: '1200px' }}
-          onPointerMove={handleMove}
-          onPointerLeave={() => setTilt({ rx: 0, ry: 0 })}
-        >
-          <div
-            className="relative aspect-[1.586] w-full transition-transform duration-300"
-            style={{
-              transformStyle: 'preserve-3d',
-              transform: `rotateX(${tilt.rx}deg) rotateY(${tilt.ry + (flipped ? 180 : 0)}deg)`,
-            }}
-          >
-            {/* Front */}
-            <div
-              className="absolute inset-0 overflow-hidden rounded-2xl border border-white/50 bg-[#0056FF]/95 p-5 shadow-lg ring-1 ring-white/30 backdrop-blur-xl"
-              style={{ backfaceVisibility: 'hidden' }}
-            >
-              <div className="pointer-events-none absolute -top-10 -right-10 size-36 rounded-full bg-white/10" />
-              <div className="pointer-events-none absolute -bottom-14 -left-8 size-40 rounded-full bg-[#2277FF]/40" />
-              <div
-                className="pointer-events-none absolute size-28 rounded-full bg-white/25 blur-2xl"
-                style={{
-                  left: `${shine.x}%`,
-                  top: `${shine.y}%`,
-                  transform: 'translate(-50%, -50%)',
-                }}
-              />
-              <div className="relative flex items-center justify-between">
-                <span className="font-sans text-base font-black tracking-wider text-white">
-                  SNPI
-                </span>
-                <span className="font-sans text-[10px] font-bold tracking-widest text-white/80 uppercase">
-                  Student Card
-                </span>
-              </div>
-              <div className="relative mt-4 flex items-center gap-4">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="https://avatars.githubusercontent.com/u/70220432?v=4"
-                  alt="shiliaiwei profile photo"
-                  className="size-16 rounded-[4px] border-2 border-white/60"
-                />
-                <div className="min-w-0">
-                  <p className="truncate font-sans text-lg font-black text-white">shiliaiwei</p>
-                  <p className="font-sans text-xs font-medium text-white/80">@shiliaiwei</p>
-                  <p className="font-sans text-xs font-medium text-white/80">
-                    Senior Software Engineer
-                  </p>
-                  <div className="mt-2 flex flex-wrap gap-1">
-                    {['React', 'TypeScript', 'Node.js'].map((skill) => (
-                      <span
-                        key={skill}
-                        className="rounded-[4px] bg-white/15 px-2 py-0.5 font-sans text-[10px] font-bold text-white"
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                <QrCode className="ml-auto w-14 rounded-[4px]" />
-              </div>
-              <div className="relative mt-4">
-                <div className="mb-1 flex items-center justify-between">
-                  <span className="font-sans text-[10px] font-bold text-white/80">
-                    Profile strength
-                  </span>
-                  <span className="font-sans text-[10px] font-bold text-white">86%</span>
-                </div>
-                <div className="h-1.5 overflow-hidden rounded-full border border-white/40 bg-white/20">
-                  <div className="h-full w-[86%] rounded-full bg-white" />
-                </div>
-              </div>
-              <div className="relative mt-3 flex items-end justify-between">
-                <div className="flex gap-4">
-                  <span className="font-sans text-xs font-bold text-white">
-                    312 <span className="font-medium text-white/80">Followers</span>
-                  </span>
-                  <span className="font-sans text-xs font-bold text-white">
-                    86 <span className="font-medium text-white/80">Following</span>
-                  </span>
-                </div>
-                <span className="font-mono text-[10px] font-bold text-white/80">STU-2026-0891</span>
-              </div>
-            </div>
-
-            {/* Back */}
-            <div
-              className="absolute inset-0 overflow-hidden rounded-2xl border border-white/60 bg-white/90 shadow-lg ring-1 ring-[#CAD3F5] backdrop-blur-xl"
-              style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
-            >
-              <div className="h-10 bg-[#020617]" />
-              <div className="flex items-center gap-4 p-5">
-                <QrCode className="w-24 rounded-[4px] border border-[#CAD3F5]" />
-                <div className="min-w-0 space-y-2">
-                  <p className="font-sans text-sm font-black text-[#020617]">shiliaiwei</p>
-                  <p className="font-mono text-xs font-bold text-[#334155]">5399 2026 0891 0042</p>
-                  <p className="font-sans text-xs font-medium text-[#334155]">
-                    SNPI International School
-                  </p>
-                  <p className="font-sans text-xs font-medium text-[#334155]">Valid thru 12/28</p>
-                  <p className="font-sans text-xs font-bold text-[#020617]">
-                    React · TypeScript · Node.js · MongoDB
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="flex flex-wrap items-center justify-center gap-2">
-          <button
-            type="button"
-            onClick={() => setFlipped((f) => !f)}
-            className="inline-flex min-h-11 items-center gap-2 rounded-[4px] bg-[#0056FF] px-6 font-sans text-sm font-bold text-white transition-all hover:bg-[#2277FF] active:scale-[0.97]"
-          >
-            <RefreshCw className="size-4" /> Flip card
-          </button>
-          <button
-            type="button"
-            title="Download CV"
-            className="inline-flex min-h-11 items-center gap-2 rounded-[4px] border border-[#CAD3F5] bg-white px-6 font-sans text-sm font-bold text-[#020617] transition-all hover:bg-[#EFF5FF] active:scale-[0.97]"
-          >
-            <Download className="size-4" /> CV
-          </button>
-          <button
-            type="button"
-            onClick={() => setFollowing((f) => !f)}
-            className={cn(
-              'inline-flex min-h-11 items-center gap-2 rounded-[4px] px-6 font-sans text-sm font-bold transition-all active:scale-[0.97]',
-              following
-                ? 'border border-[#CAD3F5] bg-white text-[#0056FF]'
-                : 'border border-[#CAD3F5] bg-white text-[#020617] hover:bg-[#EFF5FF]',
-            )}
-          >
-            {following && <Check className="size-4" />}
-            {following ? 'Following' : 'Follow'}
-          </button>
-        </div>
-
-        <div className="grid w-full gap-4 md:grid-cols-2">
-          <div className="rounded-2xl border border-[#CAD3F5] bg-[#EFF5FF] p-5">
-            <div className="flex items-center justify-between gap-3">
-              <span className="font-sans text-xs font-black tracking-wider text-[#0056FF] uppercase">
-                Promotion
-              </span>
-              <Zap className="size-5 text-[#020617]" />
-            </div>
-            <p className="mt-3 font-sans text-2xl font-black text-[#020617]">20% off tuition</p>
-            <button
-              type="button"
-              onClick={() => setApplied((a) => !a)}
-              className={cn(
-                'mt-4 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-[4px] px-4 font-sans text-sm font-bold transition-all active:scale-[0.97]',
-                applied
-                  ? 'border border-[#CAD3F5] bg-white text-[#0056FF]'
-                  : 'bg-[#0056FF] text-white hover:bg-[#2277FF]',
-              )}
-            >
-              {applied && <Check className="size-4" />}
-              {applied ? 'Applied' : 'Apply'}
-            </button>
-          </div>
-          <div className="rounded-2xl border border-[#CAD3F5] bg-white p-5">
-            <div className="flex items-center justify-between gap-3">
-              <span className="font-sans text-xs font-black tracking-wider text-[#0056FF] uppercase">
-                Merchandise
-              </span>
-              <Sparkles className="size-5 text-[#020617]" />
-            </div>
-            <p className="mt-3 font-sans text-2xl font-black text-[#020617]">SNPI Hoodie</p>
-            <p className="mt-1 font-sans text-xs font-medium text-[#334155]">Student store · $25</p>
-            <button
-              type="button"
-              title="Open the student store"
-              className="mt-4 inline-flex min-h-11 w-full items-center justify-center rounded-[4px] border border-[#CAD3F5] bg-white px-4 font-sans text-sm font-bold text-[#020617] transition-all hover:bg-[#EFF5FF] active:scale-[0.97]"
-            >
-              View item
-            </button>
-          </div>
-        </div>
+      <div className="grid gap-4 md:grid-cols-3">
+        <HeroProfileCard
+          band="#0056FF"
+          type="Business"
+          photo="https://avatars.githubusercontent.com/u/70220432?v=4"
+          name="shiliaiwei"
+          line1="Senior Software Engineer"
+          line2="GroupCapstone"
+          followers={312}
+          following={86}
+          actionLabel="Send message"
+        />
+        <HeroProfileCard
+          band="#2277FF"
+          type="Student"
+          photo="https://avatars.githubusercontent.com/u/233213854?v=4"
+          name="Sok Dara"
+          line1="Software Engineering"
+          line2="STU-2026-0891"
+          followers={128}
+          following={64}
+          actionLabel="Send message"
+        />
+        <HeroProfileCard
+          band="#020617"
+          type="Event"
+          photo="https://avatars.githubusercontent.com/u/216975960?v=4"
+          name="SNPI Tech Day"
+          line1="Hosted by Kimheng Ly"
+          line2="Nov 20, 2026 · Phnom Penh"
+          followers={542}
+          following={12}
+          actionLabel="Send message"
+        />
       </div>
     </section>
   );

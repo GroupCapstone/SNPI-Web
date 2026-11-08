@@ -14,6 +14,9 @@ import {
   Lock,
   FileText,
   ChevronDown,
+  Mail,
+  Phone,
+  IdCard,
 } from '@/components/icons';
 
 export interface WizardFormData {
@@ -703,24 +706,27 @@ export function MultiStepWizard({ theme = 'light', className, onComplete }: Mult
                   >
                     Full Legal Name *
                   </label>
-                  <input
-                    id="fullName"
-                    type="text"
-                    value={formData.fullName}
-                    onChange={(e) => handleChange('fullName', e.target.value)}
-                    onBlur={() => handleBlur('fullName')}
-                    aria-invalid={touchedFields.fullName && !!errors.fullName}
-                    aria-describedby={
-                      touchedFields.fullName && errors.fullName ? 'fullName-error' : undefined
-                    }
-                    placeholder="e.g. Chan Dara"
-                    className={cn(
-                      'h-10 w-full rounded-[4px] border px-3 font-sans text-xs transition-colors focus:outline-none',
-                      touchedFields.fullName && errors.fullName
-                        ? 'border-red-500 bg-red-50/15 focus:border-red-500 focus:ring-1 focus:ring-red-500/20'
-                        : 'border-[#CAD3F5] bg-white text-[#020617] placeholder:text-slate-400 focus:border-[#0056FF] focus:ring-1 focus:ring-[#0056FF]/20',
-                    )}
-                  />
+                  <div className="relative">
+                    <User className="pointer-events-none absolute top-1/2 left-3 size-5 -translate-y-1/2 stroke-[2.5] text-[#0056FF]" />
+                    <input
+                      id="fullName"
+                      type="text"
+                      value={formData.fullName}
+                      onChange={(e) => handleChange('fullName', e.target.value)}
+                      onBlur={() => handleBlur('fullName')}
+                      aria-invalid={touchedFields.fullName && !!errors.fullName}
+                      aria-describedby={
+                        touchedFields.fullName && errors.fullName ? 'fullName-error' : undefined
+                      }
+                      placeholder="Full name"
+                      className={cn(
+                        'h-11 w-full rounded-[4px] border pr-3 pl-11 font-sans text-xs transition-colors focus:outline-none',
+                        touchedFields.fullName && errors.fullName
+                          ? 'border-red-500 bg-red-50/15 focus:border-red-500 focus:ring-1 focus:ring-red-500/20'
+                          : 'border-[#CAD3F5] bg-[#EFF5FF] text-[#020617] placeholder:text-[#334155]/60 focus:border-[#0056FF] focus:ring-1 focus:ring-[#0056FF]/20',
+                      )}
+                    />
+                  </div>
                   {touchedFields.fullName && errors.fullName && (
                     <p
                       id="fullName-error"
@@ -741,24 +747,27 @@ export function MultiStepWizard({ theme = 'light', className, onComplete }: Mult
                   >
                     Institutional Email *
                   </label>
-                  <input
-                    id="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) => handleChange('email', e.target.value)}
-                    onBlur={() => handleBlur('email')}
-                    aria-invalid={touchedFields.email && !!errors.email}
-                    aria-describedby={
-                      touchedFields.email && errors.email ? 'email-error' : undefined
-                    }
-                    placeholder="Email address"
-                    className={cn(
-                      'h-10 w-full rounded-[4px] border px-3 font-sans text-xs transition-colors focus:outline-none',
-                      touchedFields.email && errors.email
-                        ? 'border-red-500 bg-red-50/15 focus:border-red-500 focus:ring-1 focus:ring-red-500/20'
-                        : 'border-[#CAD3F5] bg-white text-[#020617] placeholder:text-slate-400 focus:border-[#0056FF] focus:ring-1 focus:ring-[#0056FF]/20',
-                    )}
-                  />
+                  <div className="relative">
+                    <Mail className="pointer-events-none absolute top-1/2 left-3 size-5 -translate-y-1/2 stroke-[2.5] text-[#0056FF]" />
+                    <input
+                      id="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={(e) => handleChange('email', e.target.value)}
+                      onBlur={() => handleBlur('email')}
+                      aria-invalid={touchedFields.email && !!errors.email}
+                      aria-describedby={
+                        touchedFields.email && errors.email ? 'email-error' : undefined
+                      }
+                      placeholder="Email address"
+                      className={cn(
+                        'h-11 w-full rounded-[4px] border pr-3 pl-11 font-sans text-xs transition-colors focus:outline-none',
+                        touchedFields.email && errors.email
+                          ? 'border-red-500 bg-red-50/15 focus:border-red-500 focus:ring-1 focus:ring-red-500/20'
+                          : 'border-[#CAD3F5] bg-[#EFF5FF] text-[#020617] placeholder:text-[#334155]/60 focus:border-[#0056FF] focus:ring-1 focus:ring-[#0056FF]/20',
+                      )}
+                    />
+                  </div>
                   {touchedFields.email && errors.email && (
                     <p
                       id="email-error"
@@ -834,24 +843,27 @@ export function MultiStepWizard({ theme = 'light', className, onComplete }: Mult
                   >
                     Telephone / Telegram Number *
                   </label>
-                  <input
-                    id="phone"
-                    type="tel"
-                    value={formData.phone}
-                    onChange={(e) => handleChange('phone', e.target.value)}
-                    onBlur={() => handleBlur('phone')}
-                    aria-invalid={touchedFields.phone && !!errors.phone}
-                    aria-describedby={
-                      touchedFields.phone && errors.phone ? 'phone-error' : undefined
-                    }
-                    placeholder="Phone number"
-                    className={cn(
-                      'h-10 w-full rounded-[4px] border px-3 font-sans text-xs transition-colors focus:outline-none',
-                      touchedFields.phone && errors.phone
-                        ? 'border-red-500 bg-red-50/15 focus:border-red-500 focus:ring-1 focus:ring-red-500/20'
-                        : 'border-[#CAD3F5] bg-white text-[#020617] placeholder:text-slate-400 focus:border-[#0056FF] focus:ring-1 focus:ring-[#0056FF]/20',
-                    )}
-                  />
+                  <div className="relative">
+                    <Phone className="pointer-events-none absolute top-1/2 left-3 size-5 -translate-y-1/2 stroke-[2.5] text-[#0056FF]" />
+                    <input
+                      id="phone"
+                      type="tel"
+                      value={formData.phone}
+                      onChange={(e) => handleChange('phone', e.target.value)}
+                      onBlur={() => handleBlur('phone')}
+                      aria-invalid={touchedFields.phone && !!errors.phone}
+                      aria-describedby={
+                        touchedFields.phone && errors.phone ? 'phone-error' : undefined
+                      }
+                      placeholder="Phone number"
+                      className={cn(
+                        'h-11 w-full rounded-[4px] border pr-3 pl-11 font-sans text-xs transition-colors focus:outline-none',
+                        touchedFields.phone && errors.phone
+                          ? 'border-red-500 bg-red-50/15 focus:border-red-500 focus:ring-1 focus:ring-red-500/20'
+                          : 'border-[#CAD3F5] bg-[#EFF5FF] text-[#020617] placeholder:text-[#334155]/60 focus:border-[#0056FF] focus:ring-1 focus:ring-[#0056FF]/20',
+                      )}
+                    />
+                  </div>
                   {touchedFields.phone && errors.phone && (
                     <p
                       id="phone-error"
@@ -872,24 +884,27 @@ export function MultiStepWizard({ theme = 'light', className, onComplete }: Mult
                   >
                     National ID / Passport Number *
                   </label>
-                  <input
-                    id="idNumber"
-                    type="text"
-                    value={formData.idNumber}
-                    onChange={(e) => handleChange('idNumber', e.target.value)}
-                    onBlur={() => handleBlur('idNumber')}
-                    aria-invalid={touchedFields.idNumber && !!errors.idNumber}
-                    aria-describedby={
-                      touchedFields.idNumber && errors.idNumber ? 'idNumber-error' : undefined
-                    }
-                    placeholder="e.g. KH-9842104"
-                    className={cn(
-                      'h-10 w-full rounded-[4px] border px-3 font-mono text-xs transition-colors focus:outline-none',
-                      touchedFields.idNumber && errors.idNumber
-                        ? 'border-red-500 bg-red-50/15 focus:border-red-500 focus:ring-1 focus:ring-red-500/20'
-                        : 'border-[#CAD3F5] bg-white text-[#020617] placeholder:text-slate-400 focus:border-[#0056FF] focus:ring-1 focus:ring-[#0056FF]/20',
-                    )}
-                  />
+                  <div className="relative">
+                    <IdCard className="pointer-events-none absolute top-1/2 left-3 size-5 -translate-y-1/2 stroke-[2.5] text-[#0056FF]" />
+                    <input
+                      id="idNumber"
+                      type="text"
+                      value={formData.idNumber}
+                      onChange={(e) => handleChange('idNumber', e.target.value)}
+                      onBlur={() => handleBlur('idNumber')}
+                      aria-invalid={touchedFields.idNumber && !!errors.idNumber}
+                      aria-describedby={
+                        touchedFields.idNumber && errors.idNumber ? 'idNumber-error' : undefined
+                      }
+                      placeholder="ID number"
+                      className={cn(
+                        'h-11 w-full rounded-[4px] border pr-3 pl-11 font-mono text-xs transition-colors focus:outline-none',
+                        touchedFields.idNumber && errors.idNumber
+                          ? 'border-red-500 bg-red-50/15 focus:border-red-500 focus:ring-1 focus:ring-red-500/20'
+                          : 'border-[#CAD3F5] bg-[#EFF5FF] text-[#020617] placeholder:text-[#334155]/60 focus:border-[#0056FF] focus:ring-1 focus:ring-[#0056FF]/20',
+                      )}
+                    />
+                  </div>
                   {touchedFields.idNumber && errors.idNumber && (
                     <p
                       id="idNumber-error"
